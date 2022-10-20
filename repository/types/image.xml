@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_image</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>3.6.8393</Version>
+		<Version>3.7.8393</Version>
 		<Category>Standard</Category>
 		<InterfaceType>4</InterfaceType>
 		<Icon>#Res(e8115c4a-903a-a4c6-c0bc-08a336586d51)</Icon>
@@ -1268,10 +1268,14 @@ def on_update(object, attributes):
     else:
         # if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:
         #     o.set_attributes({"width": 2500})
+        if "width" in attributes and attributes["width"] != '' and not attributes["width"].isdigit():
+            attributes["width"] = ''.join(ch for ch in attributes["width"] if ch.isdigit()) or 50
         if "width" in attributes and attributes["width"] != '' and int(attributes["width"]) > 2500:
             attributes["width"] = "2500"
         # if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:
         #     o.set_attributes({"height": 2500})
+        if "height" in attributes and attributes["height"] != '' and not attributes["height"].isdigit():
+            attributes["height"] = ''.join(ch for ch in attributes["height"] if ch.isdigit()) or 50
         if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
             attributes["width"] = "2500"
     return ""]]>
