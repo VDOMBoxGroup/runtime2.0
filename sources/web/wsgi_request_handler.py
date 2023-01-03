@@ -32,12 +32,12 @@ class HeaderHandler:
             d = getattr(header, i)
 
             try:
-                fault = int(attrs[id(d)][(NS.ENV, 'mustUnderstand')])
+                fault = int(attrs[id(d)][(SOAPpy.NS.ENV, 'mustUnderstand')])
             except:
                 fault = 0
 
             if fault:
-                raise faultType, ("%s:MustUnderstand" % NS.ENV_T,
+                raise faultType, ("%s:MustUnderstand" % SOAPpy.NS.ENV_T,
                                   "Required Header Misunderstood",
                                   "%s" % i)
 
@@ -60,9 +60,6 @@ class VDOM_wsgi_request_handler(object):
         self.request = request
         self.client_address = client_address
         self.server = server
-
-
-
 
     def start_response(self, status, response_headers, exc_info=None):
         if exc_info:
@@ -868,14 +865,12 @@ class VDOM_wsgi_request_handler(object):
             # SSL connections drops the output, so this work-around.
             # This should be investigated more someday.
 
-            if self.server.config.SSLserver and \
-               isinstance(self.connection, SSL.Connection):
-                self.connection.set_shutdown(SSL.SSL_SENT_SHUTDOWN |
-                                             SSL.SSL_RECEIVED_SHUTDOWN)
+            if self.server.config.SSLserver and isinstance(self.connection, SSL.Connection):
+                from OpenSSL import SSL
+                self.connection.set_shutdown(SSL.SSL_SENT_SHUTDOWN | SSL.SSL_RECEIVED_SHUTDOWN)
             else:
                 #self.connection.shutdown(1)
                 pass
-
 
     def date_time_string(self):
         self.__last_date_time_string = BaseHTTPServer.BaseHTTPRequestHandler.date_time_string(self)
