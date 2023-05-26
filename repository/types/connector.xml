@@ -1,560 +1,629 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-	<Information>
-		<ID>46a1f14a-fd07-be09-125f-389704623ac1</ID>
-		<Name>connector</Name>
-		<DisplayName>#Lang(001)</DisplayName>
-		<ClassName>VDOM_connector</ClassName>
-		<Description>#Lang(002)</Description>
-		<Version>1.38.8477</Version>
-		<Category>Additional</Category>
-		<InterfaceType>1</InterfaceType>
-		<Icon>#Res(246e74f1-3967-ea00-1261-ab6e3521033f)</Icon>
-		<EditorIcon>#Res(7318daf8-3a10-847d-08ae-91603b7052c8)</EditorIcon>
-		<StructureIcon>#Res(f22e167e-b167-9858-8ba3-39638e39e300)</StructureIcon>
-		<Dynamic>1</Dynamic>
-		<Moveable>1</Moveable>
-		<Resizable>3</Resizable>
-		<OptimizationPriority>1</OptimizationPriority>
-		<Container>1</Container>
-		<Containers>htmlcontainer, container</Containers>
-		<Languages>en_US, fr_FR, ru_RU</Languages>
-	</Information>
-	<Attributes>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue>50</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>width</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<Description>#Lang(207)</Description>
-			<DefaultValue>400</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>height</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<Description>#Lang(208)</Description>
-			<DefaultValue>250</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>vdomclassid</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<Description>#Lang(209)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>ObjectList(0bb24c16-14fe-08ef-858f-ba24aafc8049)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>data</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
-			<DefaultValue>{}</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>3</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>lifetime</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[12]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|1)|(#Lang(406)|2))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>defaultconnects</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
-			<DefaultValue>[]</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>connectorclass</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(50)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>parameters</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
-			<DefaultValue>{}</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>3</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>draggable</Name>
-			<DisplayName>#Lang(116)</DisplayName>
-			<Description>#Lang(216)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>[01]</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(407)|1)|(#Lang(408)|0))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>overflow</Name>
-			<DisplayName>#Lang(117)</DisplayName>
-			<Description>#Lang(217)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1)|(#Lang(412)|2)|(#Lang(413)|3))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>linescolor</Name>
-			<DisplayName>#Lang(118)</DisplayName>
-			<Description>#Lang(218)</Description>
-			<DefaultValue>005566</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>Color()</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>linescolorhover</Name>
-			<DisplayName>#Lang(119)</DisplayName>
-			<Description>#Lang(219)</Description>
-			<DefaultValue>FF0000</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>Color()</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>lineswidth</Name>
-			<DisplayName>#Lang(121)</DisplayName>
-			<Description>#Lang(221)</Description>
-			<DefaultValue>2</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>classname</Name>
-			<DisplayName>#Lang(122)</DisplayName>
-			<Description>#Lang(222)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(50)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-	</Attributes>
-	<Languages>
-		<Language Code="en_US">
-			<Sentence ID="001">connector</Sentence>
-			<Sentence ID="002">This object allow to connect elements with arrow, it allow also to drag &amp; drop it. The genaral size define the space to draw it.</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visible</Sentence>
-			<Sentence ID="104">Z-index</Sentence>
-			<Sentence ID="105">Top</Sentence>
-			<Sentence ID="106">Left</Sentence>
-			<Sentence ID="107">Width</Sentence>
-			<Sentence ID="108">Height</Sentence>
-			<Sentence ID="109">VDOM class</Sentence>
-			<Sentence ID="111">Data</Sentence>
-			<Sentence ID="112">Lifetime</Sentence>
-			<Sentence ID="113">Connects</Sentence>
-			<Sentence ID="114">Connector class</Sentence>
-			<Sentence ID="115">Parameters</Sentence>
-			<Sentence ID="116">Draggable</Sentence>
-			<Sentence ID="117">Overflow</Sentence>
-			<Sentence ID="118">Lines color</Sentence>
-			<Sentence ID="119">Lines hover color</Sentence>
-			<Sentence ID="121">Lines width</Sentence>
-			<Sentence ID="122">CSS class</Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202"></Sentence>
-			<Sentence ID="203"></Sentence>
-			<Sentence ID="204"></Sentence>
-			<Sentence ID="205"></Sentence>
-			<Sentence ID="206"></Sentence>
-			<Sentence ID="207"></Sentence>
-			<Sentence ID="208"></Sentence>
-			<Sentence ID="209"></Sentence>
-			<Sentence ID="211">Data and parameters (JSON)</Sentence>
-			<Sentence ID="212">Lifetime</Sentence>
-			<Sentence ID="213">Default links between elements (JSON)</Sentence>
-			<Sentence ID="214">CSS class of &apos;connector point&apos; objects, cam be set on VDOMclass container</Sentence>
-			<Sentence ID="215">Parameters for elements (JSON)</Sentence>
-			<Sentence ID="216">Draggable</Sentence>
-			<Sentence ID="217">Content overflow control</Sentence>
-			<Sentence ID="218">lines color</Sentence>
-			<Sentence ID="219">Lines hover color</Sentence>
-			<Sentence ID="221">incorrect value</Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302"></Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304"></Sentence>
-			<Sentence ID="305"></Sentence>
-			<Sentence ID="306"></Sentence>
-			<Sentence ID="307"></Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311">Invalid data</Sentence>
-			<Sentence ID="312">Incorrect value</Sentence>
-			<Sentence ID="313">Must be JSON</Sentence>
-			<Sentence ID="314">Incorrect value</Sentence>
-			<Sentence ID="315">Invalid data</Sentence>
-			<Sentence ID="316">incorrect value</Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318">incorreact value</Sentence>
-			<Sentence ID="319">incorreact value</Sentence>
-			<Sentence ID="321">Lines width</Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Invisible</Sentence>
-			<Sentence ID="404">Visible</Sentence>
-			<Sentence ID="405">Request</Sentence>
-			<Sentence ID="406">Session</Sentence>
-			<Sentence ID="407">Yes</Sentence>
-			<Sentence ID="408">No</Sentence>
-			<Sentence ID="409">Auto</Sentence>
-			<Sentence ID="411">Hidden</Sentence>
-			<Sentence ID="412">Scroll</Sentence>
-			<Sentence ID="413">Visible</Sentence>
-			<Sentence ID="501"></Sentence>
-			<Sentence ID="502"></Sentence>
-			<Sentence ID="503"></Sentence>
-			<Sentence ID="504"></Sentence>
-			<Sentence ID="505"></Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="901">The object that was detached</Sentence>
-			<Sentence ID="902">The object that was detached</Sentence>
-			<Sentence ID="903">The object that was detached</Sentence>
-			<Sentence ID="904">The object that was detached</Sentence>
-			<Sentence ID="905">The object that was detached</Sentence>
-			<Sentence ID="906">The object that was detached</Sentence>
-			<Sentence ID="907">The object that was detached</Sentence>
-			<Sentence ID="908">The object that was detached</Sentence>
-			<Sentence ID="909">The object that was detached</Sentence>
-			<Sentence ID="911">The object that was detached</Sentence>
-		</Language>
-		<Language Code="fr_FR">
-			<Sentence ID="001">connecteur</Sentence>
-			<Sentence ID="002">Description</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102"></Sentence>
-			<Sentence ID="103"></Sentence>
-			<Sentence ID="104"></Sentence>
-			<Sentence ID="105"></Sentence>
-			<Sentence ID="106"></Sentence>
-			<Sentence ID="107"></Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="109"></Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112">Lifetime</Sentence>
-			<Sentence ID="113"></Sentence>
-			<Sentence ID="114"></Sentence>
-			<Sentence ID="115"></Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118"></Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202"></Sentence>
-			<Sentence ID="203"></Sentence>
-			<Sentence ID="204"></Sentence>
-			<Sentence ID="205"></Sentence>
-			<Sentence ID="206"></Sentence>
-			<Sentence ID="207"></Sentence>
-			<Sentence ID="208"></Sentence>
-			<Sentence ID="209"></Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212">Lifetime</Sentence>
-			<Sentence ID="213"></Sentence>
-			<Sentence ID="214"></Sentence>
-			<Sentence ID="215"></Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218"></Sentence>
-			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302"></Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304"></Sentence>
-			<Sentence ID="305"></Sentence>
-			<Sentence ID="306"></Sentence>
-			<Sentence ID="307"></Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311"></Sentence>
-			<Sentence ID="312">Incorrect value</Sentence>
-			<Sentence ID="313"></Sentence>
-			<Sentence ID="314"></Sentence>
-			<Sentence ID="315"></Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405">Request</Sentence>
-			<Sentence ID="406">Session</Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413"></Sentence>
-			<Sentence ID="501"></Sentence>
-			<Sentence ID="502"></Sentence>
-			<Sentence ID="503"></Sentence>
-			<Sentence ID="504"></Sentence>
-			<Sentence ID="505"></Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="901"></Sentence>
-			<Sentence ID="902"></Sentence>
-			<Sentence ID="903"></Sentence>
-			<Sentence ID="904"></Sentence>
-			<Sentence ID="905"></Sentence>
-			<Sentence ID="906"></Sentence>
-			<Sentence ID="907"></Sentence>
-			<Sentence ID="908"></Sentence>
-			<Sentence ID="909"></Sentence>
-			<Sentence ID="911"></Sentence>
-		</Language>
-		<Language Code="ru_RU">
-			<Sentence ID="001">connector</Sentence>
-			<Sentence ID="002">Description</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102"></Sentence>
-			<Sentence ID="103"></Sentence>
-			<Sentence ID="104"></Sentence>
-			<Sentence ID="105"></Sentence>
-			<Sentence ID="106"></Sentence>
-			<Sentence ID="107"></Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="109"></Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112">Lifetime</Sentence>
-			<Sentence ID="113"></Sentence>
-			<Sentence ID="114"></Sentence>
-			<Sentence ID="115"></Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118"></Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202"></Sentence>
-			<Sentence ID="203"></Sentence>
-			<Sentence ID="204"></Sentence>
-			<Sentence ID="205"></Sentence>
-			<Sentence ID="206"></Sentence>
-			<Sentence ID="207"></Sentence>
-			<Sentence ID="208"></Sentence>
-			<Sentence ID="209"></Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212">Lifetime</Sentence>
-			<Sentence ID="213"></Sentence>
-			<Sentence ID="214"></Sentence>
-			<Sentence ID="215"></Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218"></Sentence>
-			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302"></Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304"></Sentence>
-			<Sentence ID="305"></Sentence>
-			<Sentence ID="306"></Sentence>
-			<Sentence ID="307"></Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311"></Sentence>
-			<Sentence ID="312">Incorrect value</Sentence>
-			<Sentence ID="313"></Sentence>
-			<Sentence ID="314"></Sentence>
-			<Sentence ID="315"></Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405">Request</Sentence>
-			<Sentence ID="406">Session</Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413"></Sentence>
-			<Sentence ID="501"></Sentence>
-			<Sentence ID="502"></Sentence>
-			<Sentence ID="503"></Sentence>
-			<Sentence ID="504"></Sentence>
-			<Sentence ID="505"></Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="901"></Sentence>
-			<Sentence ID="902"></Sentence>
-			<Sentence ID="903"></Sentence>
-			<Sentence ID="904"></Sentence>
-			<Sentence ID="905"></Sentence>
-			<Sentence ID="906"></Sentence>
-			<Sentence ID="907"></Sentence>
-			<Sentence ID="908"></Sentence>
-			<Sentence ID="909"></Sentence>
-			<Sentence ID="911"></Sentence>
-		</Language>
-	</Languages>
-	<Resources>
-		<Resource ID="1065fca0-5647-807d-1f02-fc4a38ec388d" Type="js" Name="jquery.jsPlumb-1.3.16-all-min.js">
-			anNQbHVtYlV0aWw9e2lzQXJyYXk6ZnVuY3Rpb24oYil7cmV0dXJuIE9iamVjdC5wcm90b3R5cGUu
+  <Information>
+    <Name>connector</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_connector</ClassName>
+    <ID>46a1f14a-fd07-be09-125f-389704623ac1</ID>
+    <Icon>#Res(246e74f1-3967-ea00-1261-ab6e3521033f)</Icon>
+    <EditorIcon>#Res(7318daf8-3a10-847d-08ae-91603b7052c8)</EditorIcon>
+    <StructureIcon>#Res(f22e167e-b167-9858-8ba3-39638e39e300)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Additional</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1.106.8477</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, container</Containers>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
+    <Handlers/>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue>250</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>vdomclassid</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>ObjectList(0bb24c16-14fe-08ef-858f-ba24aafc8049)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>data</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>{}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>3</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>lifetime</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|1)|(#Lang(406)|2))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[12]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>defaultconnects</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue>[]</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>connectorclass</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>link_type</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1)|(#Lang(409)|2))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>draggable</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(411)|1)|(#Lang(412)|0))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>parameters</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>{}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>overflow</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1)|(#Lang(415)|2)|(#Lang(416)|3))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>linescolor</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue>005566</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>linescolorhover</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>FF0000</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>lineswidth</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>2</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(50)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">connector</Sentence>
+      <Sentence ID="002">This object allow to connect elements with arrow, it allow also to drag &amp; drop it. The genaral size define the space to draw it.</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Visible</Sentence>
+      <Sentence ID="104">Z-index</Sentence>
+      <Sentence ID="105">Top</Sentence>
+      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="107">Width</Sentence>
+      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="109">VDOM class</Sentence>
+      <Sentence ID="111">Data</Sentence>
+      <Sentence ID="112">Lifetime</Sentence>
+      <Sentence ID="113">Connects</Sentence>
+      <Sentence ID="114">Connector class</Sentence>
+      <Sentence ID="115">Link_type</Sentence>
+      <Sentence ID="116">Draggable</Sentence>
+      <Sentence ID="117">Parameters</Sentence>
+      <Sentence ID="118">Overflow</Sentence>
+      <Sentence ID="119">Lines color</Sentence>
+      <Sentence ID="121">Lines hover color</Sentence>
+      <Sentence ID="122">Lines width</Sentence>
+      <Sentence ID="123">CSS class</Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="205"></Sentence>
+      <Sentence ID="206"></Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211">Data and parameters (JSON)</Sentence>
+      <Sentence ID="212">Lifetime</Sentence>
+      <Sentence ID="213">Default links between elements (JSON)</Sentence>
+      <Sentence ID="214">CSS class of 'connector point' objects, cam be set on VDOMclass container</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Draggable</Sentence>
+      <Sentence ID="217">Parameters for elements (JSON)</Sentence>
+      <Sentence ID="218">Content overflow control</Sentence>
+      <Sentence ID="219">lines color</Sentence>
+      <Sentence ID="221">Lines hover color</Sentence>
+      <Sentence ID="222">incorrect value</Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304"></Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307"></Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Invalid data</Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="313">Must be JSON</Sentence>
+      <Sentence ID="314">Incorrect value</Sentence>
+      <Sentence ID="315">value should be 0, 1 or 2</Sentence>
+      <Sentence ID="316">incorrect value</Sentence>
+      <Sentence ID="317">Invalid data</Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319">incorreact value</Sentence>
+      <Sentence ID="321">incorreact value</Sentence>
+      <Sentence ID="322">Lines width</Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">Invisible</Sentence>
+      <Sentence ID="404">Visible</Sentence>
+      <Sentence ID="405">Request</Sentence>
+      <Sentence ID="406">Session</Sentence>
+      <Sentence ID="407">Straight</Sentence>
+      <Sentence ID="408">Flowchart</Sentence>
+      <Sentence ID="409">StateMachine</Sentence>
+      <Sentence ID="411">Yes</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Auto</Sentence>
+      <Sentence ID="414">Hidden</Sentence>
+      <Sentence ID="415">Scroll</Sentence>
+      <Sentence ID="416">Visible</Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="904">The object that was detached</Sentence>
+      <Sentence ID="905">The object that was detached</Sentence>
+      <Sentence ID="906">The object that was detached</Sentence>
+      <Sentence ID="907">The object that was detached</Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909">The object that was detached</Sentence>
+      <Sentence ID="911">The object that was detached</Sentence>
+      <Sentence ID="912">The node that was dragged</Sentence>
+      <Sentence ID="913">left position</Sentence>
+      <Sentence ID="914">top position</Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="920"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923">The node that was dragged</Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">connecteur</Sentence>
+      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102"></Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104"></Sentence>
+      <Sentence ID="105"></Sentence>
+      <Sentence ID="106"></Sentence>
+      <Sentence ID="107"></Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Lifetime</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="205"></Sentence>
+      <Sentence ID="206"></Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">Lifetime</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304"></Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307"></Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405">Request</Sentence>
+      <Sentence ID="406">Session</Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="920"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">connector</Sentence>
+      <Sentence ID="002">Description</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102"></Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104"></Sentence>
+      <Sentence ID="105"></Sentence>
+      <Sentence ID="106"></Sentence>
+      <Sentence ID="107"></Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Lifetime</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="205"></Sentence>
+      <Sentence ID="206"></Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">Lifetime</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304"></Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307"></Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405">Request</Sentence>
+      <Sentence ID="406">Session</Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503"></Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+      <Sentence ID="912"></Sentence>
+      <Sentence ID="913"></Sentence>
+      <Sentence ID="914"></Sentence>
+      <Sentence ID="915"></Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="920"></Sentence>
+      <Sentence ID="921"></Sentence>
+      <Sentence ID="922"></Sentence>
+      <Sentence ID="923"></Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="1065fca0-5647-807d-1f02-fc4a38ec388d" Name="jquery.jsPlumb-1.3.16-all-min.js" Type="js"><![CDATA[anNQbHVtYlV0aWw9e2lzQXJyYXk6ZnVuY3Rpb24oYil7cmV0dXJuIE9iamVjdC5wcm90b3R5cGUu
 			dG9TdHJpbmcuY2FsbChiKT09PSJbb2JqZWN0IEFycmF5XSJ9LGlzU3RyaW5nOmZ1bmN0aW9uKGEp
 			e3JldHVybiB0eXBlb2YgYT09PSJzdHJpbmcifSxpc0Jvb2xlYW46ZnVuY3Rpb24oYSl7cmV0dXJu
 			IHR5cGVvZiBhPT09ImJvb2xlYW4ifSxpc09iamVjdDpmdW5jdGlvbihhKXtyZXR1cm4gT2JqZWN0
@@ -2894,10 +2963,8 @@
 			bGw/MDpvKTttPWkobSxsLmxvY2F0aW9uKTtvPU1hdGguYXRhbigtMS9tKTttPW4vMipNYXRoLnNp
 			bihvKTtuPW4vMipNYXRoLmNvcyhvKTtyZXR1cm5be3g6bC5wb2ludC54K24seTpsLnBvaW50Lnkr
 			bX0se3g6bC5wb2ludC54LW4seTpsLnBvaW50LnktbX1dfSxsb2NhdGlvbkFsb25nQ3VydmVGcm9t
-			OmZ1bmN0aW9uKG0sbCxuKXtyZXR1cm4gYihtLGwsbikubG9jYXRpb259fX0pKCk7
-		</Resource>
-		<Resource ID="246e74f1-3967-ea00-1261-ab6e3521033f" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAIAAABu2d1/AAAGmElEQVR42u2ZWWhTWRiAmzZba5Ym
+			OmZ1bmN0aW9uKG0sbCxuKXtyZXR1cm4gYihtLGwsbikubG9jYXRpb259fX0pKCk7]]></Resource>
+    <Resource ID="246e74f1-3967-ea00-1261-ab6e3521033f" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAIAAABu2d1/AAAGmElEQVR42u2ZWWhTWRiAmzZba5Ym
 			adLWmqmguDwILoyoKAji2qr0QdDGtOOKuFTwYeq8KKjtYH1TmDRF37qkWimOPqhQFYo+iKCjSCsu
 			oKjdstSq3Zf57NFMW5PcWOokhfwPl3tPzvKdfz33RjY0NOT1et1ud4JcHhet0t/XZ7Vak5KSZE+e
 			PCkoKGhsaOzq6Yo0VWAZiovTabSzZ88uLy+XVVRUgOvxeEwmk1wuR9mRxhslMpmsr7fX6/NlZmaW
@@ -2927,10 +2994,8 @@
 			r1+/LvqTievr60MsgfWw8MqVK/0tEmWCM0pAf6ARt0OX/hYR4LgmZUKkP1jhoF1cERz9+6nmz58f
 			8L+m75eQxo02ieHGcMfiljqdR/842u71RZonlBB81l+sjr8cMdwYbgw3hhvD/Z9xqWr2/LyeqK9q
 			5rTUi1Q1V3V13m/5vV3dkeaRkBSL+ctXnGqXq+jP4sf/PI40j4T8unhxyenTMk7HRUVFbre7f3Ag
-			Ov/ChlAp//L6dOTIkX8BI8cj+K2hHrAAAAAASUVORK5CYII=
-		</Resource>
-		<Resource ID="7318daf8-3a10-847d-08ae-91603b7052c8" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB
+			Ov/ChlAp//L6dOTIkX8BI8cj+K2hHrAAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="7318daf8-3a10-847d-08ae-91603b7052c8" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB
 			hklEQVR42pVSvW7iYBDcNSvkwkiWoaYgFeQkFESBLtWlQDwB4j1yb4CoqKjoEC/Aa8RlQlxQ5WRk
 			nRtjGyH/fZ8l7xWW0JG7wplutTO7o9nF5+efH78+oBq+3d+Tab4EQVBRkCQxISIzVxQgICEiIn5q
 			FEUBAP9tkaIof9fMPJ1OR6MRAByPx9VqdaNBoH9nz2azXq8HAJfLZb1e53l+s+HKS9OUmVVV3e12
@@ -2938,10 +3003,8 @@
 			s9/vkyRRVVVK6XmeZVm6rj/9eAIA27Y1TcOHwaDVbC4WC2ZGxOVyOR6PO50OEUkp5/P5ZrPJcxlF
 			8Xa7fbcsAgAhRK1WK68hhIjjGBHzPBdCBEFwPp/LiIUQAIAPg8Hb66thGKXG9/16vd5oNAAgTdMo
 			igzDICIA8H3/++MjMRcl75pDlmVZll3Lm8dhVoqi6l+UUBC+Burc3YXnsCK73W7/AWdzydNagQm6
-			AAAAAElFTkSuQmCC
-		</Resource>
-		<Resource ID="f22e167e-b167-9858-8ba3-39638e39e300" Type="jpg" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB
+			AAAAAElFTkSuQmCC]]></Resource>
+    <Resource ID="f22e167e-b167-9858-8ba3-39638e39e300" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB
 			hklEQVR42pVSvW7iYBDcNSvkwkiWoaYgFeQkFESBLtWlQDwB4j1yb4CoqKjoEC/Aa8RlQlxQ5WRk
 			nRtjGyH/fZ8l7xWW0JG7wplutTO7o9nF5+efH78+oBq+3d+Tab4EQVBRkCQxISIzVxQgICEiIn5q
 			FEUBAP9tkaIof9fMPJ1OR6MRAByPx9VqdaNBoH9nz2azXq8HAJfLZb1e53l+s+HKS9OUmVVV3e12
@@ -2949,11 +3012,10 @@
 			s9/vkyRRVVVK6XmeZVm6rj/9eAIA27Y1TcOHwaDVbC4WC2ZGxOVyOR6PO50OEUkp5/P5ZrPJcxlF
 			8Xa7fbcsAgAhRK1WK68hhIjjGBHzPBdCBEFwPp/LiIUQAIAPg8Hb66thGKXG9/16vd5oNAAgTdMo
 			igzDICIA8H3/++MjMRcl75pDlmVZll3Lm8dhVoqi6l+UUBC+Burc3YXnsCK73W7/AWdzydNagQm6
-			AAAAAElFTkSuQmCC
-		</Resource>
-	</Resources>
-	<SourceCode>
-<![CDATA[import collections
+			AAAAAElFTkSuQmCC]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[from builtins import str
+import collections
 import json
 from scripting import e2vdom
 import managers
@@ -2978,7 +3040,7 @@ class VDOM_connector(VDOM_object):
 
         last_index = len(items) - 1
         contents = []
-        for index, (key, data) in enumerate(items.iteritems()):
+        for index, (key, data) in enumerate(items.items()):
             copy = managers.engine.application.objects.new(source_object.type,
                 name="vdomclass%d" % index, virtual=True, attributes=source_object.attributes)
             copy.objects.replicate(source_object.objects)
@@ -2989,12 +3051,12 @@ class VDOM_connector(VDOM_object):
             elif self.lifetime == "2":
                 managers.memory.track(copy, sync=managers.session_manager.current)
 
-            classes = " ".join(filter(None, (
+            classes = " ".join([_f for _f in (
                 u"%s-item" % classname,
                 u"%s-item-%s" % (classname, index + 1),
                 u"%s-item-first" % classname if index == 0 else None,
                 u"%s-item-last" % classname if index == last_index else None,
-                u"%s-item-odd" % classname if index % 2 else None)))
+                u"%s-item-odd" % classname if index % 2 else None) if _f])
             copy.attributes.update({
                 "data": json.dumps(data.get('data', "{}")),
                 "dataid": key,
@@ -3123,17 +3185,17 @@ $("#%(id)s .%(connectorclass)s").each(function(i,e) {
             for x in connects_array:
                 lbl_tmp = u"%s" % x.get('label', '').replace('"', '&quot;').strip()
                 lbl = ''
-                if lbl_tmp <> "":
+                if lbl_tmp != "":
                     #lbl = u""",overlays:[["Label",{label:"%s"}]]""" % lbl_tmp
                     lbl = u',label:"%s"' % lbl_tmp
 
                 clr_tmp = u"%s" % x.get('color', '').replace('"', '').strip()
                 clr = ''
-                if clr_tmp <> "":
+                if clr_tmp != "":
                     clr = u',paintStyle:{strokeStyle:"%s"}' % clr_tmp
 
                 # connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(label)s },ourConnector /*,%(skin)s*/); """ % {
-                connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(clr)s %(label)s },ourConnector); """ % {
+                connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(clr)s %(label)s},ourConnector); """ % {
                     "source": x.get('source', '').replace('"', '&quot;'),
                     "target": x.get('target', '').replace('"', '&quot;'),
                     "label": lbl,
@@ -3141,6 +3203,28 @@ $("#%(id)s .%(connectorclass)s").each(function(i,e) {
                     "skin": ''
                 }
 
+        if self.link_type == "0":
+            link_type = u"Straight"
+        elif self.link_type == "1":
+            link_type = u"Flowchart"
+        elif self.link_type == "2":
+            link_type = u"StateMachine"
+            
+        if self.draggable == "1":
+            draggable = u"""
+x.draggable(x.getSelector('#%(id)s div[dataid]'), {
+	start: function(event) {
+		console.log("start  " + $(this).attr("dataid") + "  " + $(this).position().left + "  " + $(this).position().top);
+		execEventBinded('%(woid)s', "itemDragStart", {"item_id": $(this).attr("dataid"), "x": $(this).position().left, "y": $(this).position().top}, true);
+	},
+	stop: function(event) {
+		execEventBinded('%(woid)s', "itemDragStop", {"item_id": $(this).attr("dataid"), "x": $(this).position().left, "y": $(this).position().top}, true);
+	}
+});
+""" % {"id": id, "woid": woid}
+        else:
+        	draggable =  ""
+            
         # main js
 
         js = u"""
@@ -3149,7 +3233,7 @@ $(document).ready(function(){
 
 	var ourConnector = {
 		margin:          0,
-		connector:       [ "StateMachine", { curviness: 1 } ],//"Straight",//"Flowchart",//"StateMachine",
+		connector:       [ "%(link_type)s", { curviness: 1 } ],//"Straight",//"Flowchart",//"StateMachine"
 		paintStyle:      { lineWidth: %(lines_width)s, strokeStyle: "%(lines_color)s" },
 		hoverPaintStyle: { strokeStyle: "%(lines_color_hover)s" },
 		endpoint:        "Blank",
@@ -3165,7 +3249,7 @@ $(document).ready(function(){
 
 	window.plumb_%(id)s.bind("ready", function() {
 
-		var x = plumb_%(id)s;
+		var x = window.plumb_%(id)s;
 
 		x.importDefaults({
 			DragOptions: { cursor: "pointer", zIndex: 2000 },
@@ -3187,11 +3271,11 @@ $(document).ready(function(){
 
 		x.bind("click", function(connection) {
 			//x.detach(c);
-			execEventBinded('%(woid)s', "connectionClick", {source: connection.sourceId, target: connection.targetId}, true);
+			execEventBinded('%(woid)s', "connectionClick", {"source": connection.sourceId, "target": connection.targetId}, true);
 		});
 
 		x.bind("dblclick", function(connection, originalEvent) {
-			execEventBinded('%(woid)s', "connectionDblClick", {source: connection.sourceId, target: connection.targetId}, true);
+			execEventBinded('%(woid)s', "connectionDblClick", {"source": connection.sourceId, "target": connection.targetId}, true);
 		});
 
 		%(connectorclass_js)s
@@ -3211,26 +3295,26 @@ console.info('jsPlumbConnection');
 				overlays:        [ ["PlainArrow", { location: 1, width: 10, length: 15 } ]]
 			});
 */
-			execEventBinded('%(woid)s', "connection", {source: conn.sourceId, target: conn.targetId}, true);
+			execEventBinded('%(woid)s', "connection", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("jsPlumbConnectionDetached", function(conn) {
 console.info('jsPlumbConnectionDetached');
-			execEventBinded('%(woid)s', "connectionDetached", {source: conn.sourceId, target: conn.targetId}, true);
+			execEventBinded('%(woid)s', "connectionDetached", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("connectionDrag", function(conn) {
 console.info('connectionDrag');
-			execEventBinded('%(woid)s', "connectionDrag", {source: conn.sourceId, target: conn.targetId}, true);
+			execEventBinded('%(woid)s', "connectionDrag", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("connectionDragStop", function(conn) {
 console.info('connectionDragStop');
-			execEventBinded('%(woid)s', "connectionDragStop", {source: conn.sourceId, target: conn.targetId}, true);
+			execEventBinded('%(woid)s', "connectionDragStop", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("beforeDetach", function(conn) {
-			execEventBinded('%(woid)s', "beforeDetach", {source: conn.sourceId, target: conn.targetId}, true);
+			execEventBinded('%(woid)s', "beforeDetach", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.makeTarget(x.getSelector(".%(class)s-item"), {
@@ -3261,7 +3345,7 @@ console.info('connectionDragStop');
 
 });
 </script>""" % {
-            "id": id, "woid": woid, "class": classname_item, "connectorclass_js": connectorclass_js, "defaultconnects": connects, "lines_color": lines_color, "lines_color_hover": lines_color_hover, "lines_width": lines_width, "draggable": u'x.draggable(x.getSelector("#' + id + ' div[dataid]"));' if self.draggable == "1" else ""
+            "id": id, "woid": woid, "class": classname_item, "connectorclass_js": connectorclass_js, "defaultconnects": connects, "link_type": link_type, "lines_color": lines_color, "lines_color_hover": lines_color_hover, "lines_width": lines_width, "draggable": draggable
         }
 
         if VDOM_CONFIG_1["DEBUG"] == "1":
@@ -3359,10 +3443,9 @@ console.info('connectionDragStop');
                 , tleft=int(self.width) - 130, ttop=int(self.height) - 24, hwidth=int(self.width) - 8, hheight=int(self.height) - 24, html=html
             )
 
-        return VDOM_object.wysiwyg(self, contents=result)]]>
-	</SourceCode>
-	<Libraries>
-		<Library Target="html"><![CDATA[<script type="text/javascript" src="/1065fca0-5647-807d-1f02-fc4a38ec388d.res"></script>
+        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
+  <Libraries>
+    <Library Target="html"><![CDATA[<script type="text/javascript" src="/1065fca0-5647-807d-1f02-fc4a38ec388d.res"></script>
 
 <script type="text/javascript">
 
@@ -3372,48 +3455,78 @@ console.info('connectionDragStop');
 })();
 
 </script>]]></Library>
-	</Libraries>
-	<E2VDOM>
-		<Events>
-			<UserInterfaceEvents>
-				<Event Name="beforeDetach" Description="#Lang(501)"/>
-				<Event Name="connectionDrag" Description="#Lang(502)"/>
-				<Event Name="itemclick" Description="#Lang(503)">
-					<Parameters>
-						<Parameter Name="id" Description="#Lang(901)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="itemdblclick" Description="#Lang(504)">
-					<Parameters>
-						<Parameter Name="id" Description="#Lang(902)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="connectionDetached" Description="#Lang(505)">
-					<Parameters>
-						<Parameter Name="connection" Description="#Lang(903)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="connection" Description="#Lang(506)">
-					<Parameters>
-						<Parameter Name="connection" Description="#Lang(904)" Order="0"/>
-						<Parameter Name="mouseX" Description="#Lang(905)" Order="0"/>
-						<Parameter Name="mouseY" Description="#Lang(906)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="connectionDragStop" Description="#Lang(507)"/>
-				<Event Name="connectionDblClick" Description="#Lang(508)">
-					<Parameters>
-						<Parameter Name="source" Description="#Lang(907)" Order="0"/>
-						<Parameter Name="target" Description="#Lang(908)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="connectionClick" Description="#Lang(509)">
-					<Parameters>
-						<Parameter Name="source" Description="#Lang(909)" Order="0"/>
-						<Parameter Name="target" Description="#Lang(911)" Order="0"/>
-					</Parameters>
-				</Event>
-			</UserInterfaceEvents>
-		</Events>
-	</E2VDOM>
+  </Libraries>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="beforeDetach" Help="#Lang(501)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(922)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connection" Help="#Lang(502)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(920)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connectionClick" Help="#Lang(503)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connectionDblClick" Help="#Lang(504)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connectionDetached" Help="#Lang(505)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(915)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connectionDrag" Help="#Lang(506)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="connectionDragStop" Help="#Lang(507)">
+          <Parameters>
+            <Parameter Name="source" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="target" Order="0" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemDragStart" Help="">
+          <Parameters>
+            <Parameter Name="item_id" Order="0" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="x" Order="0" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="y" Order="0" VbType="" Help="#Lang(925)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemDragStop" Help="">
+          <Parameters>
+            <Parameter Name="item_id" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="x" Order="0" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="y" Order="0" VbType="" Help="#Lang(914)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemclick" Help="#Lang(508)">
+          <Parameters>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(909)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemdblclick" Help="#Lang(509)">
+          <Parameters>
+            <Parameter Name="id" Order="" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions/>
+  </E2vdom>
 </Type>
