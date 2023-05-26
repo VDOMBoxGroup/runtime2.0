@@ -3014,8 +3014,7 @@
 			igzDICIA8H3/++MjMRcl75pDlmVZll3Lm8dhVoqi6l+UUBC+Burc3YXnsCK73W7/AWdzydNagQm6
 			AAAAAElFTkSuQmCC]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[from builtins import str
-import collections
+  <SourceCode><![CDATA[import collections
 import json
 from scripting import e2vdom
 import managers
@@ -3040,7 +3039,7 @@ class VDOM_connector(VDOM_object):
 
         last_index = len(items) - 1
         contents = []
-        for index, (key, data) in enumerate(items.items()):
+        for index, (key, data) in enumerate(items.iteritems()):
             copy = managers.engine.application.objects.new(source_object.type,
                 name="vdomclass%d" % index, virtual=True, attributes=source_object.attributes)
             copy.objects.replicate(source_object.objects)
@@ -3051,12 +3050,12 @@ class VDOM_connector(VDOM_object):
             elif self.lifetime == "2":
                 managers.memory.track(copy, sync=managers.session_manager.current)
 
-            classes = " ".join([_f for _f in (
+            classes = " ".join(filter(None, (
                 u"%s-item" % classname,
                 u"%s-item-%s" % (classname, index + 1),
                 u"%s-item-first" % classname if index == 0 else None,
                 u"%s-item-last" % classname if index == last_index else None,
-                u"%s-item-odd" % classname if index % 2 else None) if _f])
+                u"%s-item-odd" % classname if index % 2 else None)))
             copy.attributes.update({
                 "data": json.dumps(data.get('data', "{}")),
                 "dataid": key,
@@ -3185,13 +3184,13 @@ $("#%(id)s .%(connectorclass)s").each(function(i,e) {
             for x in connects_array:
                 lbl_tmp = u"%s" % x.get('label', '').replace('"', '&quot;').strip()
                 lbl = ''
-                if lbl_tmp != "":
+                if lbl_tmp <> "":
                     #lbl = u""",overlays:[["Label",{label:"%s"}]]""" % lbl_tmp
                     lbl = u',label:"%s"' % lbl_tmp
 
                 clr_tmp = u"%s" % x.get('color', '').replace('"', '').strip()
                 clr = ''
-                if clr_tmp != "":
+                if clr_tmp <> "":
                     clr = u',paintStyle:{strokeStyle:"%s"}' % clr_tmp
 
                 # connects += u""" x.connect({source:"conn-%(source)s",target:"conn-%(target)s" %(label)s },ourConnector /*,%(skin)s*/); """ % {
