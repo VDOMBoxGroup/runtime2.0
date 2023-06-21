@@ -3213,17 +3213,18 @@ $("#%(id)s .%(connectorclass)s").each(function(i,e) {
             draggable = u"""
 x.draggable(x.getSelector('#%(id)s div[dataid]'), {
 	start: function(event) {
-		console.log("start  " + $(this).attr("dataid") + "  " + $(this).position().left + "  " + $(this).position().top);
+		//console.log("start  " + $(this).attr("dataid") + "  " + $(this).position().left + "  " + $(this).position().top);
 		execEventBinded('%(woid)s', "itemDragStart", {"item_id": $(this).attr("dataid"), "x": $(this).position().left, "y": $(this).position().top}, true);
 	},
 	stop: function(event) {
+		x.repaintEverything();
 		execEventBinded('%(woid)s', "itemDragStop", {"item_id": $(this).attr("dataid"), "x": $(this).position().left, "y": $(this).position().top}, true);
 	}
 });
 """ % {"id": id, "woid": woid}
         else:
         	draggable =  ""
-            
+
         # main js
 
         js = u"""
@@ -3269,7 +3270,7 @@ $(document).ready(function(){
 		%(defaultconnects)s
 
 		x.bind("click", function(connection) {
-			//x.detach(c);
+			//x.detach(connection);
 			execEventBinded('%(woid)s', "connectionClick", {"source": connection.sourceId, "target": connection.targetId}, true);
 		});
 
@@ -3279,8 +3280,7 @@ $(document).ready(function(){
 
 		%(connectorclass_js)s
 
-		x.bind("jsPlumbConnection", function(conn) {
-console.info('jsPlumbConnection');
+		x.bind("connection", function(info) {
 /*
 			conn.connection.setPaintStyle({
 				lineWidth: %(lines_width)s, strokeStyle: "%(lines_color)s"
@@ -3294,21 +3294,32 @@ console.info('jsPlumbConnection');
 				overlays:        [ ["PlainArrow", { location: 1, width: 10, length: 15 } ]]
 			});
 */
-			execEventBinded('%(woid)s', "connection", {"source": conn.sourceId, "target": conn.targetId}, true);
+			var conn = info.connection;
+			var arr = x.select({source:conn.sourceId,target:conn.targetId});
+			if(arr.length > 1) {
+				conn.setDetachable();
+				x.detach(conn, {
+					"forceDetach": true,
+				});
+				x.repaintEverything();
+			}
+			else {
+				execEventBinded('%(woid)s', "connection", {"source": conn.sourceId, "target": conn.targetId}, true);
+			}
 		});
 
 		x.bind("jsPlumbConnectionDetached", function(conn) {
-console.info('jsPlumbConnectionDetached');
+			console.info('jsPlumbConnectionDetached');
 			execEventBinded('%(woid)s', "connectionDetached", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("connectionDrag", function(conn) {
-console.info('connectionDrag');
+			console.info('connectionDrag');
 			execEventBinded('%(woid)s', "connectionDrag", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
 		x.bind("connectionDragStop", function(conn) {
-console.info('connectionDragStop');
+			console.info('connectionDragStop');
 			execEventBinded('%(woid)s', "connectionDragStop", {"source": conn.sourceId, "target": conn.targetId}, true);
 		});
 
@@ -3317,9 +3328,32 @@ console.info('connectionDragStop');
 		});
 
 		x.makeTarget(x.getSelector(".%(class)s-item"), {
-			dropOptions: { hoverClass: "dragHover" },
 			anchor: "Continuous"
 		});
+
+		x.makeSource(x.getSelector(".%(class)s-item"), {
+			connector: [ "%(link_type)s", { curviness: 1 } ],
+			anchor: "Continuous"
+		});
+
+		/*x.addEndpoints(x.getSelector(".%(class)s-item"), [{
+			isSource: true,
+			isTarget: false,
+			setEnabled: true,
+			anchor: "Continuous",
+			maxConnections: 2,
+			endpoint: "Rectangle",
+			connector: [ "%(link_type)s", { curviness: 1 } ],
+		}, {
+			isSource: true,
+			isTarget: false,
+			setEnabled: true,
+			anchor: "Continuous",
+			maxConnections: 2,
+			endpoint: "Rectangle",
+			connector: [ "%(link_type)s", { curviness: 1 } ],
+		}]);*/
+		x.repaintEverything();
 
 		$("#%(id)s div[dataid]").bind('click dblclick', function(e){
 			if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
