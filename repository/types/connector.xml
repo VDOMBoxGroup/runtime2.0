@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.423.8477</Version>
+    <Version>1.428.8477</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, container</Containers>
@@ -3401,8 +3401,9 @@ $(document).ready(function(){
 			});
 */
 			var conn = info.connection;
-			var arr = x.select({source:conn.sourceId,target:conn.targetId});
-			if(arr.length > 1 || conn.sourceId === conn.targetId) {
+			var existing_connects_to_target = x.select({source:conn.sourceId,target:conn.targetId});
+			var existing_connects_from_target = x.select({source:conn.targetId,target:conn.sourceId});
+			if(existing_connects_to_target.length > 1 || existing_connects_from_target.length > 0 || conn.sourceId === conn.targetId) {
 				conn.setDetachable();
 				x.detach(conn, {
 					"forceDetach": true,
