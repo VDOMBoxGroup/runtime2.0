@@ -49,7 +49,7 @@ class VDOM_database_manager(object):
 
     def add_database(self, owner_id, attributes, data):
         """Adding a new database"""
-        if "id" in attributes and attributes["id"] in self.__index:
+        if "id" in attributes and attributes["id"] in self.__index and self.__index[attributes["id"]].owner_id == owner_id:
             pass
         else:
             database = VDOM_database_object(owner_id, attributes["id"])

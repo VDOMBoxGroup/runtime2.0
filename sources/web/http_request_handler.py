@@ -462,6 +462,8 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.send_headers()
             self.end_headers()
             return None
+        elif self.__request.binary():
+            return None
         else:
             self.send_error(404, self.responses[404][0])
             return None
@@ -523,8 +525,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def address_string(self):
         """Return the client address formatted for logging"""
         host, port = self.client_address[:2]
-        remote_ip = self.headers.get("X-Real-IP")\
-            or self.headers.get("X-Forwarded-For")\
+        headers = getattr(self, "headers", {}) # TODO: Sometimes we do not have self.headers
+        remote_ip = headers.get("X-Real-IP")\
+            or headers.get("X-Forwarded-For")\
             or host
         return remote_ip
 

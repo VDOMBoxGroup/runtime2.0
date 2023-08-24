@@ -50,7 +50,7 @@ class VDOM_request(object):
         #parse request data depenging on the request method
         if arguments["method"] == "post":
             try:
-                if env["HTTP_CONTENT-TYPE"] == r'application/json':
+                if env.get("HTTP_CONTENT-TYPE", "").startswith(r'application/json'):
                     import json
                     try:
                         request_body_size = int(env.get('HTTP_CONTENT-LENGTH', 0))
