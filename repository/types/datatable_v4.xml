@@ -1259,12 +1259,8 @@ class VDOM_datatable_v4(VDOM_object):
     else:
       debug_info = u""
     buttonsjs = """const loadScript = (url, callback) => {
-jQuery.ajax({
-    url: url,
-    dataType: 'script',
-    success: callback,
-    async: false
-});
+jQuery.ajax({url: url, dataType: 'script', success: callback, async: false});
+}
 //<!-- dataTables.buttons.min.js -->
 loadScript('/d29cfae0-39cf-48a2-8fc2-88061fa5e7b2.js', doNothing);
 //<!-- jszip.min.js -->
