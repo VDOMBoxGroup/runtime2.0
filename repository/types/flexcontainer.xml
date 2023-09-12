@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.1274.8389</Version>
+    <Version>1.1275.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, flexcontainer, tablecell, form, accordeon, tabview, dialog_2, vdomclass, desktopapplication, desktopshared, smartfolderdata</Containers>
@@ -2048,7 +2048,7 @@ def on_update(object, attributes):
 	if "superheight" in attributes:
 		superheight = attributes["superheight"]
 		if 'px' in superheight.lower():
-			modifications.update(width = int(superheight[0:superheight.find("px")]))
+			modifications.update(height = int(superheight[0:superheight.find("px")]))
 	attributes.update(modifications)
 	return ""
 ]]></SourceCode>
