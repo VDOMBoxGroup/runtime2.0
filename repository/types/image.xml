@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.23.8393</Version>
+    <Version>3.24.8393</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -390,11 +390,11 @@
       <DisplayName>#Lang(134)</DisplayName>
       <DefaultValue>-px</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(334)</Help>
+      <Help>#Lang(234)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(234)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
       <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -402,11 +402,11 @@
       <DisplayName>#Lang(135)</DisplayName>
       <DefaultValue>-px</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(335)</Help>
+      <Help>#Lang(235)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(235)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
       <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -414,11 +414,11 @@
       <DisplayName>#Lang(136)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(336)</Help>
+      <Help>#Lang(236)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(236)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
       <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -426,11 +426,11 @@
       <DisplayName>#Lang(137)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(337)</Help>
+      <Help>#Lang(237)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(237)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
       <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -503,10 +503,10 @@
       <Sentence ID="231">The image’s resource identifier. If both External URL and Value parameters are set, the prior will be the Value attribute.</Sentence>
       <Sentence ID="232">The bubble help appearing when cursor points at the object.</Sentence>
       <Sentence ID="233">Hierarchy of object</Sentence>
-      <Sentence ID="234">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="235">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="236"></Sentence>
-      <Sentence ID="237"></Sentence>
+      <Sentence ID="234">newAttribute30</Sentence>
+      <Sentence ID="235">newAttribute31</Sentence>
+      <Sentence ID="236">newAttribute32</Sentence>
+      <Sentence ID="237">newAttribute33</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
@@ -537,10 +537,10 @@
       <Sentence ID="331">Incorrect value</Sentence>
       <Sentence ID="332">Incorrect value, must contain only printable chars</Sentence>
       <Sentence ID="333">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="334">newAttribute30</Sentence>
-      <Sentence ID="335">newAttribute31</Sentence>
-      <Sentence ID="336">newAttribute32</Sentence>
-      <Sentence ID="337">newAttribute33</Sentence>
+      <Sentence ID="334">Incorrect value, must be positive integer | auto</Sentence>
+      <Sentence ID="335">Incorrect value, must be positive integer | auto</Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -1224,7 +1224,8 @@ class VDOM_image(VDOM_object):
         visible = u"display:none;" if self.visible == "0" else ""
         position = "static"
         if self.positioning1 == "0":
-            position = "static" 
+            position = "static"
+            self.superleft = self.supertop = ""
         if self.positioning1 == "1":
             position = "absolute"
         if self.positioning1 == "2":

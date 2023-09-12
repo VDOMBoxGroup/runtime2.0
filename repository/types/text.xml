@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.115.6720</Version>
+    <Version>3.116.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -1191,11 +1191,15 @@ class VDOM_text(VDOM_object):
             self.fontweight if self.fontweight=="bold" else None,
             "%spx" % self.fontsize or "12px",
             "%s" % self.fontfamily.replace('"', "'") or None]
+            
+        if self.positioning == "static":
+        	self.positioning = ""
+        	self.superleft = self.supertop = ""
 
         style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
         style = {
             "display": "none" if self.visible=="0" else self.displaying or None,
-            "position": self.positioning,
+            "position": self.positioning if self.positioning else None,
             "overflow": "auto",
             "top": "%s" % self.supertop if self.supertop else None,
             "left": "%s" % self.superleft if self.superleft else None,
