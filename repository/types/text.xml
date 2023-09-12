@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.109.6720</Version>
+    <Version>3.115.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers/>
+    <Handlers>on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -77,7 +77,7 @@
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -89,7 +89,7 @@
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(4)</CodeInterface>
@@ -101,10 +101,10 @@
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>400</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
@@ -122,160 +122,244 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>value</Name>
+      <Name>superwidth</Name>
       <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue>400px</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>supertop</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>-px</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>superleft</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>-px</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>value</Name>
+      <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(209)</Help>
+      <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hint</Name>
-      <DisplayName>#Lang(111)</DisplayName>
+      <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>css</Name>
-      <DisplayName>#Lang(112)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(212)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>color</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>htmltag</Name>
-      <DisplayName>#Lang(940)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>div</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(941)|div)|(#Lang(942)|span)|(#Lang(943)|h1)|(#Lang(944)|h2)|(#Lang(945)|h3)|(#Lang(946)|h4)|(#Lang(947)|h5)|(#Lang(948)|h6)|(#Lang(949)|p))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(407)|div)|(#Lang(408)|span)|(#Lang(409)|h1)|(#Lang(411)|h2)|(#Lang(412)|h3)|(#Lang(413)|h4)|(#Lang(414)|h5)|(#Lang(415)|h6)|(#Lang(416)|p))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontfamily</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>Tahoma, "Geneva CY", geneva, sans-serif</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
-      <DisplayName>#Lang(115)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>12</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontstyle</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|italic)|(#Lang(408)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(417)|italic)|(#Lang(418)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^(italic|normal)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontweight</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|bold)|(#Lang(411)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|bold)|(#Lang(421)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>^(bold|normal)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>align</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>left</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|left)|(#Lang(413)|center)|(#Lang(414)|right))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(422)|left)|(#Lang(423)|center)|(#Lang(424)|right))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>alpha</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Number(0, 100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^(100|\d{1,2})$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textdecoration</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue>none</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|underline)|(#Lang(416)|none))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(425)|underline)|(#Lang(426)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>classname</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(427)|block)|(#Lang(428)|inline)|(#Lang(429)|flex)|(#Lang(431)|inline-block)|(#Lang(432)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue>absolute</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(433)|absolute)|(#Lang(434)|relative)|(#Lang(435)|fixed)|(#Lang(436)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -292,18 +376,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Left</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">Value</Sentence>
-      <Sentence ID="111">Hint</Sentence>
-      <Sentence ID="112">Text-decoration</Sentence>
-      <Sentence ID="113">Color</Sentence>
-      <Sentence ID="114">FontFamily</Sentence>
-      <Sentence ID="115">FontSize</Sentence>
-      <Sentence ID="116">FontStyle</Sentence>
-      <Sentence ID="117">FontWeight</Sentence>
-      <Sentence ID="118">Alignment</Sentence>
-      <Sentence ID="119">Alpha</Sentence>
-      <Sentence ID="121">Text-decoration</Sentence>
-      <Sentence ID="122">CSS Class</Sentence>
+      <Sentence ID="109">Width</Sentence>
+      <Sentence ID="111">Top</Sentence>
+      <Sentence ID="112">Left</Sentence>
+      <Sentence ID="113">Value</Sentence>
+      <Sentence ID="114">Hint</Sentence>
+      <Sentence ID="115">Text-decoration</Sentence>
+      <Sentence ID="116">Color</Sentence>
+      <Sentence ID="117">HTML tag</Sentence>
+      <Sentence ID="118">FontFamily</Sentence>
+      <Sentence ID="119">FontSize</Sentence>
+      <Sentence ID="121">FontStyle</Sentence>
+      <Sentence ID="122">FontWeight</Sentence>
+      <Sentence ID="123">Alignment</Sentence>
+      <Sentence ID="124">Alpha</Sentence>
+      <Sentence ID="125">Text-decoration</Sentence>
+      <Sentence ID="126">CSS Class</Sentence>
+      <Sentence ID="127">Display</Sentence>
+      <Sentence ID="128">Margins</Sentence>
+      <Sentence ID="129">Paddings</Sentence>
+      <Sentence ID="131">Position</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -312,18 +404,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Spacing between the left edge of the container and the object in pixels.</Sentence>
       <Sentence ID="207">Width of the object in pixels.</Sentence>
       <Sentence ID="208">Height of the object in pixels.</Sentence>
-      <Sentence ID="209">Text of the object.</Sentence>
-      <Sentence ID="211">The bubble help appearing when cursor points at the object.</Sentence>
-      <Sentence ID="212">Define if the text is underlined or not.</Sentence>
-      <Sentence ID="213">Color of the object's text. It represents an HTML color code (for example, #FFFFFF - white, #FF0000 - red).</Sentence>
-      <Sentence ID="214">Font type of the object.</Sentence>
-      <Sentence ID="215">Font size of the object in points.</Sentence>
-      <Sentence ID="216">Font style.</Sentence>
-      <Sentence ID="217">Font weight.</Sentence>
-      <Sentence ID="218">Text alignment.</Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Text decoration.</Sentence>
-      <Sentence ID="222">Names of CSS classes.</Sentence>
+      <Sentence ID="209">newAttribute25</Sentence>
+      <Sentence ID="211">newAttribute26</Sentence>
+      <Sentence ID="212">newAttribute27</Sentence>
+      <Sentence ID="213">Text of the object.</Sentence>
+      <Sentence ID="214">The bubble help appearing when cursor points at the object.</Sentence>
+      <Sentence ID="215">Define if the text is underlined or not.</Sentence>
+      <Sentence ID="216">Color of the object's text. It represents an HTML color code (for example, #FFFFFF - white, #FF0000 - red).</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218">Font type of the object.</Sentence>
+      <Sentence ID="219">Font size of the object in points.</Sentence>
+      <Sentence ID="221">Font style.</Sentence>
+      <Sentence ID="222">Font weight.</Sentence>
+      <Sentence ID="223">Text alignment.</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">Text decoration.</Sentence>
+      <Sentence ID="226">Names of CSS classes.</Sentence>
+      <Sentence ID="227">newAttribute21</Sentence>
+      <Sentence ID="228">newAttribute22</Sentence>
+      <Sentence ID="229">newAttribute23</Sentence>
+      <Sentence ID="231">newAttribute24</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
@@ -332,77 +432,121 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="308">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="309">Incorrect value.</Sentence>
-      <Sentence ID="311">Incorrect value, must contain only printable chars</Sentence>
-      <Sentence ID="312">Incorrect value.</Sentence>
+      <Sentence ID="309">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="311">newAttribute26</Sentence>
+      <Sentence ID="312">newAttribute27</Sentence>
       <Sentence ID="313">Incorrect value.</Sentence>
-      <Sentence ID="314">Incorrect value.</Sentence>
-      <Sentence ID="315">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="314">Incorrect value, must contain only printable chars</Sentence>
+      <Sentence ID="315">Incorrect value.</Sentence>
       <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="317">Incorrect value.</Sentence>
       <Sentence ID="318">Incorrect value.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
+      <Sentence ID="319">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="321">Incorrect value.</Sentence>
       <Sentence ID="322">Incorrect value.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">Incorrect value.</Sentence>
+      <Sentence ID="325">Incorrect value.</Sentence>
+      <Sentence ID="326">Incorrect value.</Sentence>
+      <Sentence ID="327">newAttribute21</Sentence>
+      <Sentence ID="328">newAttribute22</Sentence>
+      <Sentence ID="329">newAttribute23</Sentence>
+      <Sentence ID="331">newAttribute24</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
       <Sentence ID="404">Visible</Sentence>
       <Sentence ID="405">No</Sentence>
       <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">Italic</Sentence>
-      <Sentence ID="408">Normal</Sentence>
-      <Sentence ID="409">Bold</Sentence>
-      <Sentence ID="411">Normal</Sentence>
-      <Sentence ID="412">Left</Sentence>
-      <Sentence ID="413">Center</Sentence>
-      <Sentence ID="414">Right</Sentence>
-      <Sentence ID="415">Underline</Sentence>
-      <Sentence ID="416">None</Sentence>
+      <Sentence ID="407">div</Sentence>
+      <Sentence ID="408">span</Sentence>
+      <Sentence ID="409">h1</Sentence>
+      <Sentence ID="411">h2</Sentence>
+      <Sentence ID="412">h3</Sentence>
+      <Sentence ID="413">h4</Sentence>
+      <Sentence ID="414">h5</Sentence>
+      <Sentence ID="415">h6</Sentence>
+      <Sentence ID="416">p</Sentence>
+      <Sentence ID="417">Italic</Sentence>
+      <Sentence ID="418">Normal</Sentence>
+      <Sentence ID="419">Bold</Sentence>
+      <Sentence ID="421">Normal</Sentence>
+      <Sentence ID="422">Left</Sentence>
+      <Sentence ID="423">Center</Sentence>
+      <Sentence ID="424">Right</Sentence>
+      <Sentence ID="425">Underline</Sentence>
+      <Sentence ID="426">None</Sentence>
+      <Sentence ID="427">Block</Sentence>
+      <Sentence ID="428">Inline</Sentence>
+      <Sentence ID="429">Flex</Sentence>
+      <Sentence ID="431">Inline-block</Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433">Absolute</Sentence>
+      <Sentence ID="434">Relative</Sentence>
+      <Sentence ID="435">Fixed</Sentence>
+      <Sentence ID="436">Static</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Set new text inside the object</Sentence>
+      <Sentence ID="503">Hide the object</Sentence>
       <Sentence ID="504">Move the object to a new position</Sentence>
-      <Sentence ID="505">Set font size</Sentence>
-      <Sentence ID="506">Set new font type</Sentence>
-      <Sentence ID="507">Set new HTML inside the object</Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507">Set new font type</Sentence>
+      <Sentence ID="508">Set font size</Sentence>
+      <Sentence ID="509">Set new HTML inside the object</Sentence>
+      <Sentence ID="511">Set new text inside the object</Sentence>
+      <Sentence ID="512">Show the object</Sentence>
+      <Sentence ID="513">Toggle CSS class</Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
-      <Sentence ID="517">Toggle CSS class</Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
       <Sentence ID="604">Visibility</Sentence>
-      <Sentence ID="605">Visibility</Sentence>
-      <Sentence ID="606">Visibility</Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
       <Sentence ID="607">Visibility</Sentence>
-      <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="608">Visibility</Sentence>
+      <Sentence ID="609">Visibility</Sentence>
+      <Sentence ID="611">Visibility</Sentence>
+      <Sentence ID="612">Visibility</Sentence>
+      <Sentence ID="613">toggleClass</Sentence>
       <Sentence ID="701">toggleClass</Sentence>
       <Sentence ID="702">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="703">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="704">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="704">toggleClass</Sentence>
       <Sentence ID="705">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="706">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="707">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="708">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="709">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="710">Name of CSS class</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
+      <Sentence ID="711">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="712">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="713">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="714">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="715">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="716">className</Sentence>
       <Sentence ID="801">Name of CSS class</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">String to load into Value attribute</Sentence>
-      <Sentence ID="804">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="805">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="806">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="807">Font size</Sentence>
-      <Sentence ID="808">Font family name</Sentence>
-      <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="810">className</Sentence>
+      <Sentence ID="804">Name of CSS class</Sentence>
+      <Sentence ID="805">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="806">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="807">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
+      <Sentence ID="811">Font family name</Sentence>
+      <Sentence ID="812">Font size</Sentence>
+      <Sentence ID="813">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="814">String to load into Value attribute</Sentence>
+      <Sentence ID="815">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="816">Name of CSS class</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903"></Sentence>
@@ -411,44 +555,34 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="906"></Sentence>
       <Sentence ID="907">Left</Sentence>
       <Sentence ID="908">Top</Sentence>
-      <Sentence ID="909">Left</Sentence>
-      <Sentence ID="911">Top</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
       <Sentence ID="912"></Sentence>
       <Sentence ID="913"></Sentence>
-      <Sentence ID="914"></Sentence>
-      <Sentence ID="915"></Sentence>
-      <Sentence ID="916">Left</Sentence>
-      <Sentence ID="917">Top</Sentence>
-      <Sentence ID="918">Left</Sentence>
-      <Sentence ID="919">Top</Sentence>
-      <Sentence ID="921"></Sentence>
-      <Sentence ID="922"></Sentence>
+      <Sentence ID="914">Left</Sentence>
+      <Sentence ID="915">Top</Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Left</Sentence>
+      <Sentence ID="922">Top</Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
-      <Sentence ID="925">Left</Sentence>
-      <Sentence ID="926">Top</Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
       <Sentence ID="927">Left</Sentence>
       <Sentence ID="928">Top</Sentence>
-      <Sentence ID="929"></Sentence>
-      <Sentence ID="931"></Sentence>
-      <Sentence ID="932"></Sentence>
-      <Sentence ID="933"></Sentence>
+      <Sentence ID="929">Left</Sentence>
+      <Sentence ID="931">Top</Sentence>
+      <Sentence ID="932">Left</Sentence>
+      <Sentence ID="933">Top</Sentence>
       <Sentence ID="934">Left</Sentence>
       <Sentence ID="935">Top</Sentence>
       <Sentence ID="936"></Sentence>
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
-      <Sentence ID="940">HTML tag</Sentence>
-      <Sentence ID="941">div</Sentence>
-      <Sentence ID="942">span</Sentence>
-      <Sentence ID="943">h1</Sentence>
-      <Sentence ID="944">h2</Sentence>
-      <Sentence ID="945">h3</Sentence>
-      <Sentence ID="946">h4</Sentence>
-      <Sentence ID="947">h5</Sentence>
-      <Sentence ID="948">h6</Sentence>
-      <Sentence ID="949">p</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Texte simple</Sentence>
@@ -462,18 +596,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Gauche</Sentence>
       <Sentence ID="107">Largeur</Sentence>
       <Sentence ID="108">Hauteur</Sentence>
-      <Sentence ID="109">Valeur</Sentence>
+      <Sentence ID="109"></Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112">Souligné</Sentence>
-      <Sentence ID="113">Couleur</Sentence>
-      <Sentence ID="114">Famille de police</Sentence>
-      <Sentence ID="115">Taille</Sentence>
-      <Sentence ID="116">Style</Sentence>
-      <Sentence ID="117">Graisse</Sentence>
-      <Sentence ID="118">Alignement</Sentence>
-      <Sentence ID="119">Alpha</Sentence>
-      <Sentence ID="121">Text-decoration</Sentence>
-      <Sentence ID="122">Class</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Valeur</Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115">Souligné</Sentence>
+      <Sentence ID="116">Couleur</Sentence>
+      <Sentence ID="117">HTML tag</Sentence>
+      <Sentence ID="118">Famille de police</Sentence>
+      <Sentence ID="119">Taille</Sentence>
+      <Sentence ID="121">Style</Sentence>
+      <Sentence ID="122">Graisse</Sentence>
+      <Sentence ID="123">Alignement</Sentence>
+      <Sentence ID="124">Alpha</Sentence>
+      <Sentence ID="125">Text-decoration</Sentence>
+      <Sentence ID="126">Class</Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -482,18 +624,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
       <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="208">Height of the object in pixels</Sentence>
-      <Sentence ID="209">Valeur de l'object</Sentence>
+      <Sentence ID="209"></Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212">Texte souligné</Sentence>
-      <Sentence ID="213">Couleur du texte</Sentence>
-      <Sentence ID="214">Famille de police</Sentence>
-      <Sentence ID="215">Taille de la police</Sentence>
-      <Sentence ID="216">Style de la police</Sentence>
-      <Sentence ID="217">Graisse de la police</Sentence>
-      <Sentence ID="218">Alignement du texte</Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Texte decoration</Sentence>
-      <Sentence ID="222">CSS class name</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Valeur de l'object</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Texte souligné</Sentence>
+      <Sentence ID="216">Couleur du texte</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218">Famille de police</Sentence>
+      <Sentence ID="219">Taille de la police</Sentence>
+      <Sentence ID="221">Style de la police</Sentence>
+      <Sentence ID="222">Graisse de la police</Sentence>
+      <Sentence ID="223">Alignement du texte</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">Texte decoration</Sentence>
+      <Sentence ID="226">CSS class name</Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -502,57 +652,91 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="309">Valeur Incorrecte</Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Valeur Incorrecte</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="314">Valeur Incorrecte</Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Valeur Incorrecte</Sentence>
       <Sentence ID="316">Valeur Incorrecte</Sentence>
       <Sentence ID="317">Valeur Incorrecte</Sentence>
       <Sentence ID="318">Valeur Incorrecte</Sentence>
-      <Sentence ID="319">Valeur Incorrecte</Sentence>
+      <Sentence ID="319">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="321">Valeur Incorrecte</Sentence>
-      <Sentence ID="322">Incorrect value</Sentence>
+      <Sentence ID="322">Valeur Incorrecte</Sentence>
+      <Sentence ID="323">Valeur Incorrecte</Sentence>
+      <Sentence ID="324">Valeur Incorrecte</Sentence>
+      <Sentence ID="325">Valeur Incorrecte</Sentence>
+      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
       <Sentence ID="404">Visible</Sentence>
       <Sentence ID="405">Non</Sentence>
       <Sentence ID="406">Oui</Sentence>
-      <Sentence ID="407">Italic</Sentence>
-      <Sentence ID="408">Normal</Sentence>
-      <Sentence ID="409">Gras</Sentence>
-      <Sentence ID="411">Normal</Sentence>
-      <Sentence ID="412">Gauche</Sentence>
-      <Sentence ID="413">Centrer</Sentence>
-      <Sentence ID="414">Droite</Sentence>
-      <Sentence ID="415">Souligné</Sentence>
-      <Sentence ID="416">Aucun</Sentence>
+      <Sentence ID="407">div</Sentence>
+      <Sentence ID="408">span</Sentence>
+      <Sentence ID="409">h1</Sentence>
+      <Sentence ID="411">h2</Sentence>
+      <Sentence ID="412">h3</Sentence>
+      <Sentence ID="413">h4</Sentence>
+      <Sentence ID="414">h5</Sentence>
+      <Sentence ID="415">h6</Sentence>
+      <Sentence ID="416">p</Sentence>
+      <Sentence ID="417">Italic</Sentence>
+      <Sentence ID="418">Normal</Sentence>
+      <Sentence ID="419">Gras</Sentence>
+      <Sentence ID="421">Normal</Sentence>
+      <Sentence ID="422">Gauche</Sentence>
+      <Sentence ID="423">Centrer</Sentence>
+      <Sentence ID="424">Droite</Sentence>
+      <Sentence ID="425">Souligné</Sentence>
+      <Sentence ID="426">Aucun</Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
       <Sentence ID="504">Visibilité</Sentence>
-      <Sentence ID="505">Visibilité</Sentence>
-      <Sentence ID="506">Visibilité</Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507">Visibilité</Sentence>
+      <Sentence ID="508">Visibilité</Sentence>
       <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="511">Visibilité</Sentence>
+      <Sentence ID="512">Visibilité</Sentence>
+      <Sentence ID="513">Toggle CSS class</Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
-      <Sentence ID="517">Toggle CSS class</Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
       <Sentence ID="604">Visibilité</Sentence>
-      <Sentence ID="605">Visibilité</Sentence>
-      <Sentence ID="606">Visibilité</Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
       <Sentence ID="607">Visibilité</Sentence>
-      <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="608">Visibilité</Sentence>
+      <Sentence ID="609">Visibilité</Sentence>
+      <Sentence ID="611">Visibilité</Sentence>
+      <Sentence ID="612">Visibilité</Sentence>
+      <Sentence ID="613">toggleClass</Sentence>
       <Sentence ID="701">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="702">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="703">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -560,9 +744,14 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="705">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="706">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="707">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="708">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="709">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="710">Name of CSS class</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
+      <Sentence ID="711">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="712">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="713">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="714">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="715">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="716">className</Sentence>
       <Sentence ID="801">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="802">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="803">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -570,9 +759,14 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="805">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="806">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="807">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="808">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="809">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="810">className</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
+      <Sentence ID="811">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="812">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="813">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="814">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="815">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="816">Name of CSS class</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903"></Sentence>
@@ -581,44 +775,34 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="906"></Sentence>
       <Sentence ID="907">Gauche</Sentence>
       <Sentence ID="908">Haut</Sentence>
-      <Sentence ID="909">Gauche</Sentence>
-      <Sentence ID="911">Haut</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
       <Sentence ID="912"></Sentence>
       <Sentence ID="913"></Sentence>
-      <Sentence ID="914"></Sentence>
-      <Sentence ID="915"></Sentence>
-      <Sentence ID="916">Gauche</Sentence>
-      <Sentence ID="917">Haut</Sentence>
-      <Sentence ID="918">Gauche</Sentence>
-      <Sentence ID="919">Haut</Sentence>
-      <Sentence ID="921"></Sentence>
-      <Sentence ID="922"></Sentence>
+      <Sentence ID="914">Gauche</Sentence>
+      <Sentence ID="915">Haut</Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Gauche</Sentence>
+      <Sentence ID="922">Haut</Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
-      <Sentence ID="925">Gauche</Sentence>
-      <Sentence ID="926">Haut</Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
       <Sentence ID="927">Gauche</Sentence>
       <Sentence ID="928">Haut</Sentence>
-      <Sentence ID="929"></Sentence>
-      <Sentence ID="931"></Sentence>
-      <Sentence ID="932"></Sentence>
-      <Sentence ID="933"></Sentence>
+      <Sentence ID="929">Gauche</Sentence>
+      <Sentence ID="931">Haut</Sentence>
+      <Sentence ID="932">Gauche</Sentence>
+      <Sentence ID="933">Haut</Sentence>
       <Sentence ID="934">Gauche</Sentence>
       <Sentence ID="935">Haut</Sentence>
       <Sentence ID="936"></Sentence>
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
-      <Sentence ID="940">HTML tag</Sentence>
-      <Sentence ID="941">div</Sentence>
-      <Sentence ID="942">span</Sentence>
-      <Sentence ID="943">h1</Sentence>
-      <Sentence ID="944">h2</Sentence>
-      <Sentence ID="945">h3</Sentence>
-      <Sentence ID="946">h4</Sentence>
-      <Sentence ID="947">h5</Sentence>
-      <Sentence ID="948">h6</Sentence>
-      <Sentence ID="949">p</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Текст</Sentence>
@@ -632,18 +816,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Слева</Sentence>
       <Sentence ID="107">Ширина</Sentence>
       <Sentence ID="108">Высота</Sentence>
-      <Sentence ID="109">Значение</Sentence>
+      <Sentence ID="109"></Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112">Подчеркивание</Sentence>
-      <Sentence ID="113">Цвет</Sentence>
-      <Sentence ID="114">Шрифт</Sentence>
-      <Sentence ID="115">Размер шрифта</Sentence>
-      <Sentence ID="116">Стиль шрифта</Sentence>
-      <Sentence ID="117">Выделение</Sentence>
-      <Sentence ID="118">Выравнивание</Sentence>
-      <Sentence ID="119">Прозрачность</Sentence>
-      <Sentence ID="121">Оформление текста</Sentence>
-      <Sentence ID="122">Класс CSS</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Значение</Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115">Подчеркивание</Sentence>
+      <Sentence ID="116">Цвет</Sentence>
+      <Sentence ID="117">HTML tag</Sentence>
+      <Sentence ID="118">Шрифт</Sentence>
+      <Sentence ID="119">Размер шрифта</Sentence>
+      <Sentence ID="121">Стиль шрифта</Sentence>
+      <Sentence ID="122">Выделение</Sentence>
+      <Sentence ID="123">Выравнивание</Sentence>
+      <Sentence ID="124">Прозрачность</Sentence>
+      <Sentence ID="125">Оформление текста</Sentence>
+      <Sentence ID="126">Класс CSS</Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -652,18 +844,26 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="207">Ширина объекта в пикселях</Sentence>
       <Sentence ID="208">Высота объекта в пикселях</Sentence>
-      <Sentence ID="209">Текст</Sentence>
+      <Sentence ID="209"></Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212">Определяет, использовать подчеркивание или нет</Sentence>
-      <Sentence ID="213">Цвет текста</Sentence>
-      <Sentence ID="214">Шрифт текста</Sentence>
-      <Sentence ID="215">Размер шрифта</Sentence>
-      <Sentence ID="216">Стиль шрифта</Sentence>
-      <Sentence ID="217">Выделение шрифта</Sentence>
-      <Sentence ID="218">Выравнивание текста</Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Определяет, использовать подчеркивание или нет</Sentence>
-      <Sentence ID="222">Имена классов CSS</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Текст</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Определяет, использовать подчеркивание или нет</Sentence>
+      <Sentence ID="216">Цвет текста</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218">Шрифт текста</Sentence>
+      <Sentence ID="219">Размер шрифта</Sentence>
+      <Sentence ID="221">Стиль шрифта</Sentence>
+      <Sentence ID="222">Выделение шрифта</Sentence>
+      <Sentence ID="223">Выравнивание текста</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">Определяет, использовать подчеркивание или нет</Sentence>
+      <Sentence ID="226">Имена классов CSS</Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -672,57 +872,91 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="314">Неправильное значение</Sentence>
-      <Sentence ID="315">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Неправильное значение</Sentence>
       <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="317">Неправильное значение</Sentence>
       <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
+      <Sentence ID="319">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="321">Неправильное значение</Sentence>
       <Sentence ID="322">Неправильное значение</Sentence>
+      <Sentence ID="323">Неправильное значение</Sentence>
+      <Sentence ID="324">Неправильное значение</Sentence>
+      <Sentence ID="325">Неправильное значение</Sentence>
+      <Sentence ID="326">Неправильное значение</Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
       <Sentence ID="404">Отображать</Sentence>
       <Sentence ID="405">Нет</Sentence>
       <Sentence ID="406">Да</Sentence>
-      <Sentence ID="407">Курсив</Sentence>
-      <Sentence ID="408">Обычный</Sentence>
-      <Sentence ID="409">Полужирный</Sentence>
-      <Sentence ID="411">Обычный</Sentence>
-      <Sentence ID="412">По левому краю</Sentence>
-      <Sentence ID="413">По центру</Sentence>
-      <Sentence ID="414">По правому краю</Sentence>
-      <Sentence ID="415">Подчеркнутый</Sentence>
-      <Sentence ID="416">Обычный</Sentence>
+      <Sentence ID="407">div</Sentence>
+      <Sentence ID="408">span</Sentence>
+      <Sentence ID="409">h1</Sentence>
+      <Sentence ID="411">h2</Sentence>
+      <Sentence ID="412">h3</Sentence>
+      <Sentence ID="413">h4</Sentence>
+      <Sentence ID="414">h5</Sentence>
+      <Sentence ID="415">h6</Sentence>
+      <Sentence ID="416">p</Sentence>
+      <Sentence ID="417">Курсив</Sentence>
+      <Sentence ID="418">Обычный</Sentence>
+      <Sentence ID="419">Полужирный</Sentence>
+      <Sentence ID="421">Обычный</Sentence>
+      <Sentence ID="422">По левому краю</Sentence>
+      <Sentence ID="423">По центру</Sentence>
+      <Sentence ID="424">По правому краю</Sentence>
+      <Sentence ID="425">Подчеркнутый</Sentence>
+      <Sentence ID="426">Обычный</Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать объект</Sentence>
-      <Sentence ID="503">Изменить текст объекта</Sentence>
+      <Sentence ID="503">Скрыть объект</Sentence>
       <Sentence ID="504">Переместить объект</Sentence>
-      <Sentence ID="505">Размер шрифта</Sentence>
-      <Sentence ID="506">Установить тип шрифта</Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507">Установить тип шрифта</Sentence>
+      <Sentence ID="508">Размер шрифта</Sentence>
       <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="511">Изменить текст объекта</Sentence>
+      <Sentence ID="512">Показать объект</Sentence>
+      <Sentence ID="513">Toggle CSS class</Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
-      <Sentence ID="517">Toggle CSS class</Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
       <Sentence ID="604">Отображение</Sentence>
-      <Sentence ID="605">Отображение</Sentence>
-      <Sentence ID="606">Отображение</Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
       <Sentence ID="607">Отображение</Sentence>
-      <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="608">Отображение</Sentence>
+      <Sentence ID="609">Отображение</Sentence>
+      <Sentence ID="611">Отображение</Sentence>
+      <Sentence ID="612">Отображение</Sentence>
+      <Sentence ID="613">toggleClass</Sentence>
       <Sentence ID="701">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="702">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="703">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -730,19 +964,29 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="705">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="706">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="707">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="708">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="709">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="710">Name of CSS class</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
+      <Sentence ID="711">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="712">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="713">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="714">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="715">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="716">className</Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="803">Новый текст для поля "Значение"</Sentence>
-      <Sentence ID="804">Координата новой точки по оси X</Sentence>
-      <Sentence ID="805">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="806">Визуальный эффект при перетаскивании, время указано в миллисекундах</Sentence>
-      <Sentence ID="807">Установить размер шрифта</Sentence>
-      <Sentence ID="808">Имя семейства шрифтов</Sentence>
-      <Sentence ID="809">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="810">className</Sentence>
+      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="805">Координата новой точки по оси X</Sentence>
+      <Sentence ID="806">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="807">Визуальный эффект при перетаскивании, время указано в миллисекундах</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
+      <Sentence ID="811">Имя семейства шрифтов</Sentence>
+      <Sentence ID="812">Установить размер шрифта</Sentence>
+      <Sentence ID="813">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="814">Новый текст для поля "Значение"</Sentence>
+      <Sentence ID="815">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="816">Name of CSS class</Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Сверху</Sentence>
       <Sentence ID="903"></Sentence>
@@ -751,44 +995,34 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="906"></Sentence>
       <Sentence ID="907">Слева</Sentence>
       <Sentence ID="908">Сверху</Sentence>
-      <Sentence ID="909">Слева</Sentence>
-      <Sentence ID="911">Сверху</Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
       <Sentence ID="912"></Sentence>
       <Sentence ID="913"></Sentence>
-      <Sentence ID="914"></Sentence>
-      <Sentence ID="915"></Sentence>
-      <Sentence ID="916">Слева</Sentence>
-      <Sentence ID="917">Сверху</Sentence>
-      <Sentence ID="918">Слева</Sentence>
-      <Sentence ID="919">Сверху</Sentence>
-      <Sentence ID="921"></Sentence>
-      <Sentence ID="922"></Sentence>
+      <Sentence ID="914">Слева</Sentence>
+      <Sentence ID="915">Сверху</Sentence>
+      <Sentence ID="916"></Sentence>
+      <Sentence ID="917"></Sentence>
+      <Sentence ID="918"></Sentence>
+      <Sentence ID="919"></Sentence>
+      <Sentence ID="921">Слева</Sentence>
+      <Sentence ID="922">Сверху</Sentence>
       <Sentence ID="923"></Sentence>
       <Sentence ID="924"></Sentence>
-      <Sentence ID="925">Слева</Sentence>
-      <Sentence ID="926">Сверху</Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
       <Sentence ID="927">Слева</Sentence>
       <Sentence ID="928">Сверху</Sentence>
-      <Sentence ID="929"></Sentence>
-      <Sentence ID="931"></Sentence>
-      <Sentence ID="932"></Sentence>
-      <Sentence ID="933"></Sentence>
+      <Sentence ID="929">Слева</Sentence>
+      <Sentence ID="931">Сверху</Sentence>
+      <Sentence ID="932">Слева</Sentence>
+      <Sentence ID="933">Сверху</Sentence>
       <Sentence ID="934">Слева</Sentence>
       <Sentence ID="935">Сверху</Sentence>
       <Sentence ID="936"></Sentence>
       <Sentence ID="937"></Sentence>
       <Sentence ID="938"></Sentence>
       <Sentence ID="939"></Sentence>
-      <Sentence ID="940">HTML tag</Sentence>
-      <Sentence ID="941">div</Sentence>
-      <Sentence ID="942">span</Sentence>
-      <Sentence ID="943">h1</Sentence>
-      <Sentence ID="944">h2</Sentence>
-      <Sentence ID="945">h3</Sentence>
-      <Sentence ID="946">h4</Sentence>
-      <Sentence ID="947">h5</Sentence>
-      <Sentence ID="948">h6</Sentence>
-      <Sentence ID="949">p</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -960,16 +1194,18 @@ class VDOM_text(VDOM_object):
 
         style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
         style = {
-            "display": "none" if self.visible=="0" else None,
-            "position": self.position,
+            "display": "none" if self.visible=="0" else self.displaying or None,
+            "position": self.positioning,
             "overflow": "auto",
-            "top": "%spx" % self.top,
-            "left": "%spx" % self.left,
-            "width": "%spx" % self.width,
+            "top": "%s" % self.supertop if self.supertop else None,
+            "left": "%s" % self.superleft if self.superleft else None,
+            "width": "%s" % self.superwidth if self.superwidth else None,
             "text-align": self.align or None,
             "font": " ".join(filter(None, font)),
             "color" : "#%s" % self.color if self.color else None,
-            "text-decoration": self.textdecoration or None}
+            "text-decoration": self.textdecoration or None,
+            "margin": "%s" % self.margins if self.margins else None,
+            "padding": "%s" % self.paddings if self.paddings else None}
 
         hint = u" title=\"%s\" " % (self.hint).replace('"', '&quot;') if (self.hint).strip() <> "" else u""
 
@@ -1041,12 +1277,54 @@ class VDOM_text(VDOM_object):
         return VDOM_object.wysiwyg(self, contents=result)
 
 
-]]></SourceCode>
+def on_update(object, attributes):
+	
+	width = attributes.get("width")
+	if width is None:
+		attributes["width"] = width = "400"
+
+	modifications = {}
+	
+	# Left
+	if "left" in attributes:
+		if 'px' in object.attributes.get('superleft', '').lower():
+			newleft = str(attributes["left"])+"px"
+			modifications.update(superleft=newleft)
+			
+	if "superleft" in attributes:
+		superleft = attributes["superleft"]
+		if 'px' in superleft.lower():
+			modifications.update(left = int(superleft[0:superleft.find("px")]))
+
+	# top
+	if "top" in attributes:
+		if 'px' in object.attributes.get('supertop', '').lower():
+			newtop = str(attributes["top"])+"px"
+			modifications.update(supertop=newtop)
+			
+	if "supertop" in attributes:
+		supertop = attributes["supertop"]
+		if 'px' in supertop.lower():
+			modifications.update(top = int(supertop[0:supertop.find("px")]))
+
+	# width
+	if "width" in attributes:
+		if 'px' in object.attributes.get('superwidth', '').lower():
+			newwidth = str(attributes["width"])+"px"
+			modifications.update(superwidth=newwidth)
+			
+	if "superwidth" in attributes:
+		superwidth = attributes["superwidth"]
+		if 'px' in superwidth.lower():
+			modifications.update(width = int(superwidth[0:superwidth.find("px")]))
+
+	attributes.update(modifications)
+	return ""]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(508)">
+        <Event Name="click" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
@@ -1056,55 +1334,55 @@ class VDOM_text(VDOM_object):
             <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(509)">
+        <Event Name="ctrlclick" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown" Help="#Lang(511)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="button" Order="0" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout" Help="#Lang(512)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="ctrlclick" Help="#Lang(513)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="button" Order="0" VbType="" Help="#Lang(921)"/>
-            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(922)"/>
-            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(923)"/>
-            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(924)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover" Help="#Lang(514)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(925)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(926)"/>
-          </Parameters>
-        </Event>
-        <Event Name="click" Help="#Lang(515)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(927)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(928)"/>
-            <Parameter Name="button" Order="0" VbType="" Help="#Lang(929)"/>
-            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(931)"/>
-            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(932)"/>
-            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(933)"/>
+            <Parameter Name="button" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
         <Event Name="dblclick" Help="#Lang(516)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="button" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown" Help="#Lang(517)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="button" Order="0" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="altKey" Order="0" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="ctrlKey" Order="0" VbType="" Help="#Lang(925)"/>
+            <Parameter Name="shiftKey" Order="0" VbType="" Help="#Lang(926)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove" Help="#Lang(518)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(927)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(928)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout" Help="#Lang(519)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(929)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(931)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover" Help="#Lang(521)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(932)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(933)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(934)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(935)"/>
@@ -1118,62 +1396,12 @@ class VDOM_text(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveTo">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="Effect" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setFontFamily">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="familyName" Help="#Lang(808)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_setFontFamily(this.domCont, familyName);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setFontSize">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="size" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery(this.domCont).css("font-size", size);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setHTML">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="text" Help="#Lang(809)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery(this.domCont).html(text);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setText">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="text" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery(this.domCont).text(text);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(517)" InterfaceName="#Lang(608)" MethodName="toggleClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(810)" ScriptName="className" Help="#Lang(710)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="cssClass" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="newClass" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$j(this.domCont).attr('class', cssClass);
+$q(this.domCont).addClass(newClass);
       ]]></SourceCode>
         </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeClass">
@@ -1190,21 +1418,71 @@ if ($j(this.domCont).hasClass(oldClass)){
 }
       ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeClass">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newX" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newY" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="Effect" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 $j(this.domCont).removeClass(className);
       ]]></SourceCode>
         </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="newClass" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="cssClass" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
-$q(this.domCont).addClass(newClass);
+$j(this.domCont).attr('class', cssClass);
       ]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setFontFamily">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="familyName" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_setFontFamily(this.domCont, familyName);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setFontSize">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="size" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this.domCont).css("font-size", size);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setHTML">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="text" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this.domCont).html(text);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setText">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="text" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this.domCont).text(text);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(715)" ScriptName="fade" Help="#Lang(815)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="toggleClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(716)" ScriptName="className" Help="#Lang(816)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
       </Container>
     </Actions>
