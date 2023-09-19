@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.324.6720</Version>
+    <Version>1.337.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -77,193 +77,145 @@
       <Name>height</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superwidth</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>200px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superheight</Name>
-      <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>200px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>currenttab</Name>
-      <DisplayName>#Lang(109)</DisplayName>
+      <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
+      <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>showtabs</Name>
-      <DisplayName>#Lang(111)</DisplayName>
+      <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
+      <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>style</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classname</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <CodeInterface>TextField()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>skin</Name>
+      <Name>margins</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue/>
+      <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
+      <Name>paddings</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>absolute</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(409)|absolute)|(#Lang(411)|relative)|(#Lang(412)|fixed)|(#Lang(413)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>supertop</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superleft</Name>
-      <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>top</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(221)</Help>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(222)</Help>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -277,60 +229,48 @@
       <Sentence ID="104">Z-Index</Sentence>
       <Sentence ID="105">Height</Sentence>
       <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">currenttab</Sentence>
-      <Sentence ID="111">Show tabs</Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="113">Skin</Sentence>
-      <Sentence ID="114">CSS class</Sentence>
-      <Sentence ID="115">Margins</Sentence>
-      <Sentence ID="116">Paddings</Sentence>
-      <Sentence ID="117">Position</Sentence>
-      <Sentence ID="118">Top</Sentence>
-      <Sentence ID="119">Left</Sentence>
-      <Sentence ID="121">Top</Sentence>
-      <Sentence ID="122">Left</Sentence>
+      <Sentence ID="107">currenttab</Sentence>
+      <Sentence ID="108">Show tabs</Sentence>
+      <Sentence ID="109">Style</Sentence>
+      <Sentence ID="111">Skin</Sentence>
+      <Sentence ID="112">CSS class</Sentence>
+      <Sentence ID="113">Margins</Sentence>
+      <Sentence ID="114">Paddings</Sentence>
+      <Sentence ID="115">Position</Sentence>
+      <Sentence ID="116">Top</Sentence>
+      <Sentence ID="117">Left</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
       <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
       <Sentence ID="205">Height of the object in pixels.</Sentence>
       <Sentence ID="206">Width of the object in pixels.</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
-      <Sentence ID="209">The sequence number of the current inserted element</Sentence>
-      <Sentence ID="211">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="212">CSS style of the object</Sentence>
-      <Sentence ID="213">Visual appearance of the object</Sentence>
-      <Sentence ID="214">Incorrect value</Sentence>
-      <Sentence ID="215">newAttribute14</Sentence>
-      <Sentence ID="216">newAttribute15</Sentence>
-      <Sentence ID="217">newAttribute13</Sentence>
-      <Sentence ID="218">newAttribute16</Sentence>
-      <Sentence ID="219">newAttribute17</Sentence>
-      <Sentence ID="221">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="222">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="207">The sequence number of the current inserted element</Sentence>
+      <Sentence ID="208">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="209">CSS style of the object</Sentence>
+      <Sentence ID="211">Visual appearance of the object</Sentence>
+      <Sentence ID="212">Incorrect value</Sentence>
+      <Sentence ID="213">newAttribute14</Sentence>
+      <Sentence ID="214">newAttribute15</Sentence>
+      <Sentence ID="215">newAttribute13</Sentence>
+      <Sentence ID="216">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="217">Spacing between the left edge of the container and the object in pixels</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="304">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="309">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="307">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">newAttribute14</Sentence>
-      <Sentence ID="316">newAttribute15</Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="319">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="321">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="322">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="313">newAttribute14</Sentence>
+      <Sentence ID="314">newAttribute15</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="317">Incorrect value, must be positive integer | auto.</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -386,40 +326,32 @@
       <Sentence ID="104">Z-Index</Sentence>
       <Sentence ID="105"></Sentence>
       <Sentence ID="106"></Sentence>
-      <Sentence ID="107">Largeur</Sentence>
-      <Sentence ID="108">Hauteur</Sentence>
-      <Sentence ID="109">currentTab</Sentence>
-      <Sentence ID="111">Show tabs</Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="113">Skin</Sentence>
+      <Sentence ID="107">currentTab</Sentence>
+      <Sentence ID="108">Show tabs</Sentence>
+      <Sentence ID="109">Style</Sentence>
+      <Sentence ID="111">Skin</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
       <Sentence ID="114"></Sentence>
       <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119"></Sentence>
-      <Sentence ID="121">Haut</Sentence>
-      <Sentence ID="122">Gauche</Sentence>
+      <Sentence ID="116">Haut</Sentence>
+      <Sentence ID="117">Gauche</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="204">Niveau de superposition de l'objet par rapport aux autres</Sentence>
       <Sentence ID="205"></Sentence>
       <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="208">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="209">Current tab</Sentence>
-      <Sentence ID="211">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="212">CSS style of the object</Sentence>
-      <Sentence ID="213">Visual appearance of the object</Sentence>
+      <Sentence ID="207">Current tab</Sentence>
+      <Sentence ID="208">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="209">CSS style of the object</Sentence>
+      <Sentence ID="211">Visual appearance of the object</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
       <Sentence ID="214"></Sentence>
       <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="222">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="216">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="217">Distance from the left edge of the parent object in pixels</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -427,19 +359,15 @@
       <Sentence ID="305"></Sentence>
       <Sentence ID="306"></Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
       <Sentence ID="314"></Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="322">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="317">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -495,60 +423,48 @@
       <Sentence ID="104">Позиция</Sentence>
       <Sentence ID="105"></Sentence>
       <Sentence ID="106"></Sentence>
-      <Sentence ID="107">Ширина</Sentence>
-      <Sentence ID="108">Высота</Sentence>
-      <Sentence ID="109">Текущая вкладка</Sentence>
-      <Sentence ID="111">Показывать вкладки</Sentence>
-      <Sentence ID="112">Стиль</Sentence>
-      <Sentence ID="113">Оформление</Sentence>
+      <Sentence ID="107">Текущая вкладка</Sentence>
+      <Sentence ID="108">Показывать вкладки</Sentence>
+      <Sentence ID="109">Стиль</Sentence>
+      <Sentence ID="111">Оформление</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
       <Sentence ID="114"></Sentence>
       <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119"></Sentence>
-      <Sentence ID="121">Сверху</Sentence>
-      <Sentence ID="122">Слева</Sentence>
+      <Sentence ID="116">Сверху</Sentence>
+      <Sentence ID="117">Слева</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
       <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
       <Sentence ID="205"></Sentence>
       <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="208">Высота объекта в пикселях</Sentence>
-      <Sentence ID="209">Порядковый номер текущей вкладки</Sentence>
-      <Sentence ID="211">Определяет, будут ли отображаться вкладки</Sentence>
-      <Sentence ID="212">CSS стиль объекта</Sentence>
-      <Sentence ID="213">Визуальное оформление объекта</Sentence>
+      <Sentence ID="207">Порядковый номер текущей вкладки</Sentence>
+      <Sentence ID="208">Определяет, будут ли отображаться вкладки</Sentence>
+      <Sentence ID="209">CSS стиль объекта</Sentence>
+      <Sentence ID="211">Визуальное оформление объекта</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
       <Sentence ID="214"></Sentence>
       <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="222">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="216">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="217">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="304">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="305"></Sentence>
       <Sentence ID="306"></Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
       <Sentence ID="314"></Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="322">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="317">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -804,30 +720,36 @@
 			SpGJCYFHANBQPO3xb/yPAAMA/2Lna620zO0AAAAASUVORK5CYII=]]></Resource>
   </Resources>
   <SourceCode><![CDATA[from scripting import e2vdom
-
+import re
 
 class VDOM_tabview(VDOM_object):
+	
+	def check_unit(self, value):
+		if value.isdigit():
+			return value + "px"
+		else:
+			return value
 
 	def render(self, contents=""):
 		from collections import OrderedDict
 		display = u" display:none; " if self.visible == "0" else u""
 
 		e2vdom.process(self)
-			
-		width_in = u"width: {width};".format(width=self.superwidth) if self.superwidth else ""
-		height_in = u"height: {height};".format(height=self.superheight) if self.superheight else ""
+					
+		width_in = u"width: {width};".format(width = self.check_unit(self.width)) if self.width else ""
+		height_in = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
 		
-		margin_in = u"margin: {margins};".format(margins=self.margins) if self.margins else ""
-		padding_in = u"padding: {paddings};".format(paddings=self.paddings) if self.paddings else ""
-		
+		margin_in = u"margin: {margins};".format(margins = self.margins) if self.margins else ""
+		padding_in = u"padding: {paddings};".format(paddings = self.paddings) if self.paddings else ""
+
 		if self.positioning == "static":
 			position = self.positioning = ""
-			self.superleft = self.supertop = ""
+			self.left = self.top = ""
 		else:
-			position = u"position: {pos};".format(pos=self.positioning)
+			position = u"position: {pos};".format(pos = self.positioning)
 			
-		top_inline = u"top: {top};".format(top=self.supertop) if self.supertop else ""
-		left_inline = u"left: {left};".format(left=self.superleft) if self.superleft else ""
+		top_inline = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
+		left_inline = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
 
 		style = u"""{display} z-index: {zind}; {pos} {top} {left}
 					{width} {height} border: none; {margin} {padding}""".format(
@@ -936,22 +858,23 @@ var tabview_children_%(id)s = %(arr)s;
 
 		return VDOM_object.render(self, contents=result)
 	
+	def regex(self, obj):
+		if obj:
+			match = re.search(r'\d+', obj)
+			if match:
+				return int(match.group())
+			else:
+				return 200
+		else:
+			return 200
+
 	def wysiwyg(self, contents=""):
-	
-		object_width = 200
-		object_height = 200
-		if self.width and self.width.isdigit():
-			if "px" in self.width:
-				self.width = self.width.replace("px", "")
-			if self.width.isdigit() and int(self.width) > 0:
-				object_width = self.width
-		
-		if self.height and self.height.isdigit():
-			if "px" in self.height:
-				self.height = self.height.replace("px", "")
-			if self.height.isdigit() and int(self.height) > 0:
-				object_height = self.height
-		
+
+		self.top = self.regex(self.top) if self.top else ""
+		self.left = self.regex(self.left) if self.left else ""
+		self.width = self.regex(self.width)
+		self.height = self.regex(self.height)
+
 		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
 		result = \
 			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
@@ -968,11 +891,11 @@ var tabview_children_%(id)s = %(arr)s;
 			""".format(
 					id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
 					hierarchy = self.hierarchy, top = self.top, left = self.left,
-					width = int(object_width) + 2,
-					height = int(object_height) + 2, 
-					panel_width = int(object_width) - 140,
-					container_height = int(object_height) - 20,
-					container_width = object_width, 
+					width = int(self.width) + 2,
+					height = int(self.height) + 2, 
+					panel_width = int(self.width) - 140,
+					container_height = int(self.height) - 20,
+					container_width = int(self.width), 
 					img_id = image_id,
 					contents = contents)
 
@@ -1061,50 +984,18 @@ def on_update(object, attributes):
 	# return ""
 	modifications = {}
 	
-	# Left
-	if "left" in attributes:
-		if 'px' in object.attributes.get('superleft', '').lower():
-			newleft = str(attributes["left"])+"px"
-			modifications.update(superleft=newleft)
-			
-	if "superleft" in attributes:
-		superleft = attributes["superleft"]
-		if 'px' in superleft.lower():
-			modifications.update(left = int(superleft[0:superleft.find("px")]))
+	for attr in ["left", "top", "width", "height"]:
+		if attr in attributes:
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
+			unit = unit[0] if unit else "px"
 
-	# top
-	if "top" in attributes:
-		if 'px' in object.attributes.get('supertop', '').lower():
-			newtop = str(attributes["top"])+"px"
-			modifications.update(supertop=newtop)
-			
-	if "supertop" in attributes:
-		supertop = attributes["supertop"]
-		if 'px' in supertop.lower():
-			modifications.update(top = int(supertop[0:supertop.find("px")]))
+			if new_value is not None and new_value.isdigit():
+				new_value = new_value + unit
+			modifications[attr] = new_value
 
-	# width
-	if "width" in attributes:
-		if 'px' in object.attributes.get('superwidth', '').lower():
-			newwidth = str(attributes["width"])+"px"
-			modifications.update(superwidth=newwidth)
-			
-	if "superwidth" in attributes:
-		superwidth = attributes["superwidth"]
-		if 'px' in superwidth.lower():
-			modifications.update(width = int(superwidth[0:superwidth.find("px")]))
-
-	# height
-	if "height" in attributes:
-		if 'px' in object.attributes.get('superheight', '').lower():
-			newheight = str(attributes["height"])+"px"
-			modifications.update(superheight=newheight)
-			
-	if "superheight" in attributes:
-		superheight = attributes["superheight"]
-		if 'px' in superheight.lower():
-			modifications.update(height = int(superheight[0:superheight.find("px")]))
 	attributes.update(modifications)
+
 	return ""
 
 
