@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.24.8393</Version>
+    <Version>3.120.8393</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -77,49 +77,49 @@
       <Name>width</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue/>
+      <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue/>
+      <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>right</Name>
@@ -385,54 +385,6 @@
       <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
-    <Attribute>
-      <Name>supertop</Name>
-      <DisplayName>#Lang(134)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(234)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superleft</Name>
-      <DisplayName>#Lang(135)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(235)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superwidth</Name>
-      <DisplayName>#Lang(136)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(236)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superheight</Name>
-      <DisplayName>#Lang(137)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(237)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
-    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -469,10 +421,6 @@
       <Sentence ID="131">Base64 Stream</Sentence>
       <Sentence ID="132">Hint</Sentence>
       <Sentence ID="133">Hierarchy</Sentence>
-      <Sentence ID="134">Top</Sentence>
-      <Sentence ID="135">Left</Sentence>
-      <Sentence ID="136">Width</Sentence>
-      <Sentence ID="137">Height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Order of rendering the object on the page. Must be positive integer from 0 to 99. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
@@ -503,18 +451,14 @@
       <Sentence ID="231">The image’s resource identifier. If both External URL and Value parameters are set, the prior will be the Value attribute.</Sentence>
       <Sentence ID="232">The bubble help appearing when cursor points at the object.</Sentence>
       <Sentence ID="233">Hierarchy of object</Sentence>
-      <Sentence ID="234">newAttribute30</Sentence>
-      <Sentence ID="235">newAttribute31</Sentence>
-      <Sentence ID="236">newAttribute32</Sentence>
-      <Sentence ID="237">newAttribute33</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="304">Incorrect value</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer | auto.</Sentence>
       <Sentence ID="309">Incorrect value</Sentence>
       <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="312">Incorrect value</Sentence>
@@ -537,10 +481,6 @@
       <Sentence ID="331">Incorrect value</Sentence>
       <Sentence ID="332">Incorrect value, must contain only printable chars</Sentence>
       <Sentence ID="333">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="334">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="335">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -596,8 +536,8 @@
       <Sentence ID="611">Visibility</Sentence>
       <Sentence ID="612">Visibility</Sentence>
       <Sentence ID="613">Visibility</Sentence>
-      <Sentence ID="701">Incorrect value, must be 0 or 1</Sentence>
-      <Sentence ID="702">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="701">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="702">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="703">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="704">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="705">Incorrect value, must be either 0 or 1.</Sentence>
@@ -605,8 +545,8 @@
       <Sentence ID="707">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="708">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="709">Incorrect value, must be 0 or 1.</Sentence>
-      <Sentence ID="801">Incorrect value, must be 0 or 1.</Sentence>
-      <Sentence ID="802">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="801">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="802">Incorrect value, must be 0 or 1.</Sentence>
       <Sentence ID="803">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="804">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="805">Incorrect value, must be either 0 or 1.</Sentence>
@@ -671,10 +611,6 @@
       <Sentence ID="131">Base64 Stream</Sentence>
       <Sentence ID="132">Hint</Sentence>
       <Sentence ID="133">Hiérarchie</Sentence>
-      <Sentence ID="134"></Sentence>
-      <Sentence ID="135"></Sentence>
-      <Sentence ID="136"></Sentence>
-      <Sentence ID="137"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -705,10 +641,6 @@
       <Sentence ID="231">Fichier image</Sentence>
       <Sentence ID="232">Hint(ToolTip) on mouseover</Sentence>
       <Sentence ID="233">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="234"></Sentence>
-      <Sentence ID="235"></Sentence>
-      <Sentence ID="236"></Sentence>
-      <Sentence ID="237"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -739,10 +671,6 @@
       <Sentence ID="331">Valeur Incorrecte</Sentence>
       <Sentence ID="332">Incorrect value, must contain only printable chars</Sentence>
       <Sentence ID="333">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="334"></Sentence>
-      <Sentence ID="335"></Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -873,10 +801,6 @@
       <Sentence ID="131">Base64 данные</Sentence>
       <Sentence ID="132">Подсказка</Sentence>
       <Sentence ID="133">Иерархия</Sentence>
-      <Sentence ID="134"></Sentence>
-      <Sentence ID="135"></Sentence>
-      <Sentence ID="136"></Sentence>
-      <Sentence ID="137"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
@@ -907,10 +831,6 @@
       <Sentence ID="231">Значение</Sentence>
       <Sentence ID="232">Всплывающая подсказка при наведении курсора мыши</Sentence>
       <Sentence ID="233">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="234"></Sentence>
-      <Sentence ID="235"></Sentence>
-      <Sentence ID="236"></Sentence>
-      <Sentence ID="237"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение, должно быть целое положительное число</Sentence>
@@ -941,10 +861,6 @@
       <Sentence ID="331">Неправильное значение</Sentence>
       <Sentence ID="332">Неправильное значение, должно содержать только печатные символы</Sentence>
       <Sentence ID="333">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="334"></Sentence>
-      <Sentence ID="335"></Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображается</Sentence>
@@ -1192,7 +1108,7 @@
 			Pf0uF4TRJO7XPtm6tW+7yemnk/Wvdu505xkV638JMAB+aVbxMc0jFgAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[from scripting.legacy.id import id2link1
-
+import re
 
 class VDOM_image(VDOM_object):
     def get_css_style(self, style_name, style_value):
@@ -1203,6 +1119,9 @@ class VDOM_image(VDOM_object):
         if style_name == 'z-index' and style_value == '0': return ""
 
         if (style_name == "right" or style_name == "bottom") and (style_value == 'px'): return ""
+        
+        if style_value.isdigit():
+            return "{}: {}px;".format(style_name, style_value)
 
         if style_value == "": return ""
         else: return "{}: {};".format(style_name, style_value)
@@ -1225,7 +1144,7 @@ class VDOM_image(VDOM_object):
         position = "static"
         if self.positioning1 == "0":
             position = "static"
-            self.superleft = self.supertop = ""
+            self.left = self.top = ""
         if self.positioning1 == "1":
             position = "absolute"
         if self.positioning1 == "2":
@@ -1244,28 +1163,17 @@ class VDOM_image(VDOM_object):
         style = u""
         style_mixin = u""
 
-        title = inline_w = inline_h = ""
+        title = ""
         if self.hint:
             title = u"""title="{hint}" """.format(hint = self.hint)
 
-        if self.superwidth.isdigit():
-            self.superwidth = str(self.superwidth) + "px"
+        iw = self.width
+        ih = self.height
+        if iw == "":
+            iw = "0px"
 
-        if self.superheight.isdigit():
-            self.superheight = str(self.superheight) + "px"
-
-        wdth = self.superwidth
-        hght = self.superheight
-        if self.superwidth == "":
-            wdth = "0px"
-        iw = u"""width="{width};" """.format(width = wdth)
-
-        if self.superheight == "":
-            hght = "0px"
-        ih = u"""height="{height};" """.format(height = hght)
-
-        inline_w = u"width='{width}'".format(width=self.superwidth) if self.superwidth else ""
-        inline_h = u"height='{height}'".format(height=self.superheight) if self.superheight else ""
+        if ih == "":
+            ih = "0px"
 
         result = ""
         if self.render_mode == "0":
@@ -1292,8 +1200,8 @@ class VDOM_image(VDOM_object):
 						name= self.name,
 						visible = visible,
 						link = link,
-						width = iw,
-						height = ih,
+						width = self.get_css_style('width', iw),
+						height = self.get_css_style('height', ih),
 						tabindex = self.tabindex,
 						classname = self.classname, 
 						title = title)
@@ -1335,11 +1243,11 @@ class VDOM_image(VDOM_object):
 				{flexshrink} \
 				{backgroundcolor} }}".format(
 					id=id,
-					height=             self.get_css_style('height', self.superheight),
-					width=              self.get_css_style('width', self.superwidth),
+					height=             self.get_css_style('height', self.height),
+					width=              self.get_css_style('width', self.width),
 					zindex=             self.get_css_style('z-index', self.zindex),
-					top=                self.get_css_style('top', self.supertop),
-					left=               self.get_css_style('left', self.superleft),
+					top=                self.get_css_style('top', self.top),
+					left=               self.get_css_style('left', self.left),
 					right=              self.get_css_style('right', self.right + "px"),
 					bottom=             self.get_css_style('bottom', self.bottom + "px"),
 					backgroundposition= self.get_css_style('background-position', self.backgroundposition),
@@ -1366,9 +1274,22 @@ class VDOM_image(VDOM_object):
         if url.lower().startswith("http://") or url.lower().startswith("https://"):
             return True
         return False
+        
+    def regex(self, obj):
+        if obj:
+            match = re.search(r'\d+', obj)
+            if match:
+            	return int(match.group())
+            else:
+            	return 50
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        
+        self.top = self.regex(self.top)
+        self.left = self.regex(self.left)
+        self.width = self.regex(self.width)
+        self.height = self.regex(self.height)
 
         if self.value:      # show image from resources
             editable = u' editable="value" '
@@ -1387,8 +1308,8 @@ class VDOM_image(VDOM_object):
                         hierarchy = self.hierarchy,
                         top = self.top,
                         left = self.left,
-                        width = ''.join(ch for ch in self.width if ch.isdigit()) or 50,
-                        height = ''.join(ch for ch in self.height if ch.isdigit()) or 50,
+                        width = self.width,
+                        height = self.height,
                         image_x = 0,
                         image_y = 0,
                         image_id = self.value,
@@ -1415,8 +1336,8 @@ class VDOM_image(VDOM_object):
                         order = self.order,
                         top = self.top,
                         left = self.left,
-                        width = self.width or 50,
-                        height = self.height or 50,
+                        width = self.width,
+                        height = self.height,
                         image_url = url,
                         name = self.name)
 
@@ -1431,49 +1352,16 @@ def on_update(object, attributes):
     o = object
     modifications = {}
 
-    # Left
-    if "left" in attributes:
-        if 'px' in o.attributes.get('superleft', '').lower():
-            newleft = str(attributes["left"])+"px"
-            modifications.update(superleft=newleft)
-
-    if "superleft" in attributes:
-        superleft = attributes["superleft"]
-        if 'px' in superleft.lower():
-            modifications.update(left = int(superleft[0:superleft.find("px")]))
-
-    # top
-    if "top" in attributes:
-        if 'px' in o.attributes.get('supertop', '').lower():
-            newtop = str(attributes["top"])+"px"
-            modifications.update(supertop=newtop)
-
-    if "supertop" in attributes:
-        supertop = attributes["supertop"]
-        if 'px' in supertop.lower():
-            modifications.update(top = int(supertop[0:supertop.find("px")]))
-
-    # width
-    if "width" in attributes:
-        if 'px' in o.attributes.get('superwidth', '').lower():
-            newwidth = str(attributes["width"])+"px"
-            modifications.update(superwidth=newwidth)
-
-    if "superwidth" in attributes:
-        superwidth = attributes["superwidth"]
-        if 'px' in superwidth.lower():
-            modifications.update(width = int(superwidth[0:superwidth.find("px")]))
-
-    # height
-    if "height" in attributes:
-        if 'px' in o.attributes.get('superheight', '').lower():
-            newheight = str(attributes["height"])+"px"
-            modifications.update(superheight=newheight)
-
-    if "superheight" in attributes:
-        superheight = attributes["superheight"]
-        if 'px' in superheight.lower():
-            modifications.update(height = int(superheight[0:superheight.find("px")]))
+    for attr in ["left", "top", "width", "height"]:
+    	if attr in attributes:
+    		new_value = attributes.get(attr)
+    		unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+    		unit = unit[0] if unit else "px"
+    		
+    		if new_value is not None and new_value.isdigit():
+    			new_value = new_value + unit
+    		modifications[attr] = new_value
+    		
     attributes.update(modifications)
 
     # o = application.objects.search(object_id)
@@ -1506,73 +1394,73 @@ def on_update(object, attributes):
         # if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:
         #     o.set_attributes({"width": 2500})
         if "width" in attributes and attributes["width"] != '' and int(attributes["width"]) > 2500:
-            attributes["width"] = "2500"
+             attributes["width"] = "2500"
         # if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:
         #     o.set_attributes({"height": 2500})
         if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
-            attributes["width"] = "2500"
+            attributes["height"] = "2500"
     return ""]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(514)">
+        <Event Name="border" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(515)">
+        <Event Name="click" Help="#Lang(515)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(516)">
+        <Event Name="corner" Help="#Lang(516)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(517)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="ctrlclick" Help="#Lang(518)">
+        <Event Name="ctrlclick" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="corner" Help="#Lang(519)">
+        <Event Name="dblclick" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(521)">
+        <Event Name="mousedown" Help="#Lang(519)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="border" Help="#Lang(522)">
+        <Event Name="mousemove" Help="#Lang(521)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(523)">
+        <Event Name="mouseout" Help="#Lang(522)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(524)">
+        <Event Name="mouseup" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(923)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(924)"/>
@@ -1582,69 +1470,69 @@ def on_update(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeCursor">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="cursorType" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="cursorType" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.cursor = cursorType;]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setImage">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="resource" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery('img',this.domCont).attr('src', resource);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setAlt">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="text" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery(this.domCont).attr('alt', text);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="startResizeXY">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_startResizeXY(this.domCont);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_moveZindexTo(this.domCont, newZindex);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveTo">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newX" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newY" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="Effect" Help="#Lang(808)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="dragStart">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="dragStart">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="dragStop">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStop">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_moveZindexTo(this.domCont, newZindex);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setAlt">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="text" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this.domCont).attr('alt', text);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setImage">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="resource" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery('img',this.domCont).attr('src', resource);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="fade" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeY">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_startResizeY(this.domCont);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeX">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="startResizeX">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_startResizeX(this.domCont);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="startResizeXY">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_startResizeXY(this.domCont);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="startResizeY">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_startResizeY(this.domCont);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

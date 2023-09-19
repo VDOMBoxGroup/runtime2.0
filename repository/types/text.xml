@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.116.6720</Version>
+    <Version>3.157.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -76,38 +76,38 @@
     <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue>-px</DefaultValue>
+      <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue/>
+      <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue>400</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -122,243 +122,207 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>superwidth</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>400px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>supertop</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>superleft</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>-px</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>value</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(213)</Help>
+      <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hint</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
+      <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(1000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>css</Name>
-      <DisplayName>#Lang(115)</DisplayName>
+      <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(215)</Help>
+      <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>color</Name>
-      <DisplayName>#Lang(116)</DisplayName>
+      <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>000000</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
+      <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>htmltag</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>div</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(407)|div)|(#Lang(408)|span)|(#Lang(409)|h1)|(#Lang(411)|h2)|(#Lang(412)|h3)|(#Lang(413)|h4)|(#Lang(414)|h5)|(#Lang(415)|h6)|(#Lang(416)|p))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontfamily</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>Tahoma, "Geneva CY", geneva, sans-serif</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontsize</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>12</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontstyle</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(417)|italic)|(#Lang(418)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^(italic|normal)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontweight</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>normal</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(419)|bold)|(#Lang(421)|normal))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^(bold|normal)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>align</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>left</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(422)|left)|(#Lang(423)|center)|(#Lang(424)|right))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>alpha</Name>
-      <DisplayName>#Lang(124)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(224)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Number(0, 100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^(100|\d{1,2})$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textdecoration</Name>
-      <DisplayName>#Lang(125)</DisplayName>
+      <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>none</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(225)</Help>
+      <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(425)|underline)|(#Lang(426)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>classname</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(224)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(427)|block)|(#Lang(428)|inline)|(#Lang(429)|flex)|(#Lang(431)|inline-block)|(#Lang(432)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(225)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
       <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(227)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(427)|block)|(#Lang(428)|inline)|(#Lang(429)|flex)|(#Lang(431)|inline-block)|(#Lang(432)|))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(128)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(228)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(129)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(229)</Help>
-      <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
-      <DisplayName>#Lang(131)</DisplayName>
+      <DisplayName>#Lang(127)</DisplayName>
       <DefaultValue>absolute</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(231)</Help>
+      <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(433)|absolute)|(#Lang(434)|relative)|(#Lang(435)|fixed)|(#Lang(436)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -376,26 +340,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Left</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">Width</Sentence>
-      <Sentence ID="111">Top</Sentence>
-      <Sentence ID="112">Left</Sentence>
-      <Sentence ID="113">Value</Sentence>
-      <Sentence ID="114">Hint</Sentence>
-      <Sentence ID="115">Text-decoration</Sentence>
-      <Sentence ID="116">Color</Sentence>
-      <Sentence ID="117">HTML tag</Sentence>
-      <Sentence ID="118">FontFamily</Sentence>
-      <Sentence ID="119">FontSize</Sentence>
-      <Sentence ID="121">FontStyle</Sentence>
-      <Sentence ID="122">FontWeight</Sentence>
-      <Sentence ID="123">Alignment</Sentence>
-      <Sentence ID="124">Alpha</Sentence>
-      <Sentence ID="125">Text-decoration</Sentence>
-      <Sentence ID="126">CSS Class</Sentence>
-      <Sentence ID="127">Display</Sentence>
-      <Sentence ID="128">Margins</Sentence>
-      <Sentence ID="129">Paddings</Sentence>
-      <Sentence ID="131">Position</Sentence>
+      <Sentence ID="109">Value</Sentence>
+      <Sentence ID="111">Hint</Sentence>
+      <Sentence ID="112">Text-decoration</Sentence>
+      <Sentence ID="113">Color</Sentence>
+      <Sentence ID="114">HTML tag</Sentence>
+      <Sentence ID="115">FontFamily</Sentence>
+      <Sentence ID="116">FontSize</Sentence>
+      <Sentence ID="117">FontStyle</Sentence>
+      <Sentence ID="118">FontWeight</Sentence>
+      <Sentence ID="119">Alignment</Sentence>
+      <Sentence ID="121">Alpha</Sentence>
+      <Sentence ID="122">Text-decoration</Sentence>
+      <Sentence ID="123">CSS Class</Sentence>
+      <Sentence ID="124">Display</Sentence>
+      <Sentence ID="125">Margins</Sentence>
+      <Sentence ID="126">Paddings</Sentence>
+      <Sentence ID="127">Position</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -404,54 +365,48 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Spacing between the left edge of the container and the object in pixels.</Sentence>
       <Sentence ID="207">Width of the object in pixels.</Sentence>
       <Sentence ID="208">Height of the object in pixels.</Sentence>
-      <Sentence ID="209">newAttribute25</Sentence>
-      <Sentence ID="211">newAttribute26</Sentence>
-      <Sentence ID="212">newAttribute27</Sentence>
-      <Sentence ID="213">Text of the object.</Sentence>
-      <Sentence ID="214">The bubble help appearing when cursor points at the object.</Sentence>
-      <Sentence ID="215">Define if the text is underlined or not.</Sentence>
-      <Sentence ID="216">Color of the object's text. It represents an HTML color code (for example, #FFFFFF - white, #FF0000 - red).</Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Font type of the object.</Sentence>
-      <Sentence ID="219">Font size of the object in points.</Sentence>
-      <Sentence ID="221">Font style.</Sentence>
-      <Sentence ID="222">Font weight.</Sentence>
-      <Sentence ID="223">Text alignment.</Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="225">Text decoration.</Sentence>
-      <Sentence ID="226">Names of CSS classes.</Sentence>
-      <Sentence ID="227">newAttribute21</Sentence>
-      <Sentence ID="228">newAttribute22</Sentence>
-      <Sentence ID="229">newAttribute23</Sentence>
-      <Sentence ID="231">newAttribute24</Sentence>
+      <Sentence ID="209">Text of the object.</Sentence>
+      <Sentence ID="211">The bubble help appearing when cursor points at the object.</Sentence>
+      <Sentence ID="212">Define if the text is underlined or not.</Sentence>
+      <Sentence ID="213">Color of the object's text. It represents an HTML color code (for example, #FFFFFF - white, #FF0000 - red).</Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215">Font type of the object.</Sentence>
+      <Sentence ID="216">Font size of the object in points.</Sentence>
+      <Sentence ID="217">Font style.</Sentence>
+      <Sentence ID="218">Font weight.</Sentence>
+      <Sentence ID="219">Text alignment.</Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Text decoration.</Sentence>
+      <Sentence ID="223">Names of CSS classes.</Sentence>
+      <Sentence ID="224">newAttribute21</Sentence>
+      <Sentence ID="225">newAttribute22</Sentence>
+      <Sentence ID="226">newAttribute23</Sentence>
+      <Sentence ID="227">newAttribute24</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="308">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="309">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="311">newAttribute26</Sentence>
-      <Sentence ID="312">newAttribute27</Sentence>
+      <Sentence ID="309">Incorrect value.</Sentence>
+      <Sentence ID="311">Incorrect value, must contain only printable chars</Sentence>
+      <Sentence ID="312">Incorrect value.</Sentence>
       <Sentence ID="313">Incorrect value.</Sentence>
-      <Sentence ID="314">Incorrect value, must contain only printable chars</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
       <Sentence ID="315">Incorrect value.</Sentence>
-      <Sentence ID="316">Incorrect value.</Sentence>
+      <Sentence ID="316">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="317">Incorrect value.</Sentence>
       <Sentence ID="318">Incorrect value.</Sentence>
-      <Sentence ID="319">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="319">Incorrect value.</Sentence>
       <Sentence ID="321">Incorrect value.</Sentence>
       <Sentence ID="322">Incorrect value.</Sentence>
       <Sentence ID="323">Incorrect value.</Sentence>
-      <Sentence ID="324">Incorrect value.</Sentence>
-      <Sentence ID="325">Incorrect value.</Sentence>
-      <Sentence ID="326">Incorrect value.</Sentence>
-      <Sentence ID="327">newAttribute21</Sentence>
-      <Sentence ID="328">newAttribute22</Sentence>
-      <Sentence ID="329">newAttribute23</Sentence>
-      <Sentence ID="331">newAttribute24</Sentence>
+      <Sentence ID="324">newAttribute21</Sentence>
+      <Sentence ID="325">newAttribute22</Sentence>
+      <Sentence ID="326">newAttribute23</Sentence>
+      <Sentence ID="327">newAttribute24</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -596,26 +551,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Gauche</Sentence>
       <Sentence ID="107">Largeur</Sentence>
       <Sentence ID="108">Hauteur</Sentence>
-      <Sentence ID="109"></Sentence>
+      <Sentence ID="109">Valeur</Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113">Valeur</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Souligné</Sentence>
-      <Sentence ID="116">Couleur</Sentence>
-      <Sentence ID="117">HTML tag</Sentence>
-      <Sentence ID="118">Famille de police</Sentence>
-      <Sentence ID="119">Taille</Sentence>
-      <Sentence ID="121">Style</Sentence>
-      <Sentence ID="122">Graisse</Sentence>
-      <Sentence ID="123">Alignement</Sentence>
-      <Sentence ID="124">Alpha</Sentence>
-      <Sentence ID="125">Text-decoration</Sentence>
-      <Sentence ID="126">Class</Sentence>
+      <Sentence ID="112">Souligné</Sentence>
+      <Sentence ID="113">Couleur</Sentence>
+      <Sentence ID="114">HTML tag</Sentence>
+      <Sentence ID="115">Famille de police</Sentence>
+      <Sentence ID="116">Taille</Sentence>
+      <Sentence ID="117">Style</Sentence>
+      <Sentence ID="118">Graisse</Sentence>
+      <Sentence ID="119">Alignement</Sentence>
+      <Sentence ID="121">Alpha</Sentence>
+      <Sentence ID="122">Text-decoration</Sentence>
+      <Sentence ID="123">Class</Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="128"></Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="131"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -624,26 +576,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
       <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="208">Height of the object in pixels</Sentence>
-      <Sentence ID="209"></Sentence>
+      <Sentence ID="209">Valeur de l'object</Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213">Valeur de l'object</Sentence>
+      <Sentence ID="212">Texte souligné</Sentence>
+      <Sentence ID="213">Couleur du texte</Sentence>
       <Sentence ID="214"></Sentence>
-      <Sentence ID="215">Texte souligné</Sentence>
-      <Sentence ID="216">Couleur du texte</Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Famille de police</Sentence>
-      <Sentence ID="219">Taille de la police</Sentence>
-      <Sentence ID="221">Style de la police</Sentence>
-      <Sentence ID="222">Graisse de la police</Sentence>
-      <Sentence ID="223">Alignement du texte</Sentence>
+      <Sentence ID="215">Famille de police</Sentence>
+      <Sentence ID="216">Taille de la police</Sentence>
+      <Sentence ID="217">Style de la police</Sentence>
+      <Sentence ID="218">Graisse de la police</Sentence>
+      <Sentence ID="219">Alignement du texte</Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Texte decoration</Sentence>
+      <Sentence ID="223">CSS class name</Sentence>
       <Sentence ID="224"></Sentence>
-      <Sentence ID="225">Texte decoration</Sentence>
-      <Sentence ID="226">CSS class name</Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -652,26 +601,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="308">Valeur Incorrecte</Sentence>
-      <Sentence ID="309"></Sentence>
+      <Sentence ID="309">Valeur Incorrecte</Sentence>
       <Sentence ID="311"></Sentence>
-      <Sentence ID="312"></Sentence>
+      <Sentence ID="312">Valeur Incorrecte</Sentence>
       <Sentence ID="313">Valeur Incorrecte</Sentence>
-      <Sentence ID="314"></Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="315">Valeur Incorrecte</Sentence>
-      <Sentence ID="316">Valeur Incorrecte</Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="317">Valeur Incorrecte</Sentence>
       <Sentence ID="318">Valeur Incorrecte</Sentence>
-      <Sentence ID="319">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="319">Valeur Incorrecte</Sentence>
       <Sentence ID="321">Valeur Incorrecte</Sentence>
       <Sentence ID="322">Valeur Incorrecte</Sentence>
-      <Sentence ID="323">Valeur Incorrecte</Sentence>
-      <Sentence ID="324">Valeur Incorrecte</Sentence>
-      <Sentence ID="325">Valeur Incorrecte</Sentence>
-      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
-      <Sentence ID="328"></Sentence>
-      <Sentence ID="329"></Sentence>
-      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -816,26 +762,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="106">Слева</Sentence>
       <Sentence ID="107">Ширина</Sentence>
       <Sentence ID="108">Высота</Sentence>
-      <Sentence ID="109"></Sentence>
+      <Sentence ID="109">Значение</Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113">Значение</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Подчеркивание</Sentence>
-      <Sentence ID="116">Цвет</Sentence>
-      <Sentence ID="117">HTML tag</Sentence>
-      <Sentence ID="118">Шрифт</Sentence>
-      <Sentence ID="119">Размер шрифта</Sentence>
-      <Sentence ID="121">Стиль шрифта</Sentence>
-      <Sentence ID="122">Выделение</Sentence>
-      <Sentence ID="123">Выравнивание</Sentence>
-      <Sentence ID="124">Прозрачность</Sentence>
-      <Sentence ID="125">Оформление текста</Sentence>
-      <Sentence ID="126">Класс CSS</Sentence>
+      <Sentence ID="112">Подчеркивание</Sentence>
+      <Sentence ID="113">Цвет</Sentence>
+      <Sentence ID="114">HTML tag</Sentence>
+      <Sentence ID="115">Шрифт</Sentence>
+      <Sentence ID="116">Размер шрифта</Sentence>
+      <Sentence ID="117">Стиль шрифта</Sentence>
+      <Sentence ID="118">Выделение</Sentence>
+      <Sentence ID="119">Выравнивание</Sentence>
+      <Sentence ID="121">Прозрачность</Sentence>
+      <Sentence ID="122">Оформление текста</Sentence>
+      <Sentence ID="123">Класс CSS</Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="128"></Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="131"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -844,26 +787,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="207">Ширина объекта в пикселях</Sentence>
       <Sentence ID="208">Высота объекта в пикселях</Sentence>
-      <Sentence ID="209"></Sentence>
+      <Sentence ID="209">Текст</Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213">Текст</Sentence>
+      <Sentence ID="212">Определяет, использовать подчеркивание или нет</Sentence>
+      <Sentence ID="213">Цвет текста</Sentence>
       <Sentence ID="214"></Sentence>
-      <Sentence ID="215">Определяет, использовать подчеркивание или нет</Sentence>
-      <Sentence ID="216">Цвет текста</Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Шрифт текста</Sentence>
-      <Sentence ID="219">Размер шрифта</Sentence>
-      <Sentence ID="221">Стиль шрифта</Sentence>
-      <Sentence ID="222">Выделение шрифта</Sentence>
-      <Sentence ID="223">Выравнивание текста</Sentence>
+      <Sentence ID="215">Шрифт текста</Sentence>
+      <Sentence ID="216">Размер шрифта</Sentence>
+      <Sentence ID="217">Стиль шрифта</Sentence>
+      <Sentence ID="218">Выделение шрифта</Sentence>
+      <Sentence ID="219">Выравнивание текста</Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Определяет, использовать подчеркивание или нет</Sentence>
+      <Sentence ID="223">Имена классов CSS</Sentence>
       <Sentence ID="224"></Sentence>
-      <Sentence ID="225">Определяет, использовать подчеркивание или нет</Sentence>
-      <Sentence ID="226">Имена классов CSS</Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -872,26 +812,23 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309"></Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
       <Sentence ID="311"></Sentence>
-      <Sentence ID="312"></Sentence>
+      <Sentence ID="312">Неправильное значение</Sentence>
       <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="314"></Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316">Неправильное значение</Sentence>
+      <Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="317">Неправильное значение</Sentence>
       <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="319">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="319">Неправильное значение</Sentence>
       <Sentence ID="321">Неправильное значение</Sentence>
       <Sentence ID="322">Неправильное значение</Sentence>
       <Sentence ID="323">Неправильное значение</Sentence>
-      <Sentence ID="324">Неправильное значение</Sentence>
-      <Sentence ID="325">Неправильное значение</Sentence>
-      <Sentence ID="326">Неправильное значение</Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
-      <Sentence ID="328"></Sentence>
-      <Sentence ID="329"></Sentence>
-      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -1183,7 +1120,15 @@ All changes of attributes are applied to the whole text. You cannot change the s
 			wWDHgtQQdgAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[
+import re
+
 class VDOM_text(VDOM_object):
+	
+    def get_px(self, value):
+        if value.isdigit():
+            return value + "px"
+        else:
+            return value
 
     def render(self, contents=""):
         font=[
@@ -1194,16 +1139,16 @@ class VDOM_text(VDOM_object):
             
         if self.positioning == "static":
         	self.positioning = ""
-        	self.superleft = self.supertop = ""
+        	self.left = self.top = ""
 
         style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
         style = {
             "display": "none" if self.visible=="0" else self.displaying or None,
             "position": self.positioning if self.positioning else None,
             "overflow": "auto",
-            "top": "%s" % self.supertop if self.supertop else None,
-            "left": "%s" % self.superleft if self.superleft else None,
-            "width": "%s" % self.superwidth if self.superwidth else None,
+            "top": "%s" % self.get_px(self.top) if self.top else None,
+            "left": "%s" % self.get_px(self.left) if self.left else None,
+            "width": "%s" % self.get_px(self.width) if self.width else None,
             "text-align": self.align or None,
             "font": " ".join(filter(None, font)),
             "color" : "#%s" % self.color if self.color else None,
@@ -1231,7 +1176,17 @@ class VDOM_text(VDOM_object):
         }
 
         return VDOM_object.render(self, contents=result)
-
+        
+    def regex(self, obj):
+    	if obj:
+    		match = re.search(r'\d+', obj)
+    		if match:
+    			return int(match.group())
+    		else:
+    			return 400
+    	else:
+    		return 400
+    		
     def wysiwyg(self, contents=""):
         the_value = self.value
 
@@ -1245,6 +1200,10 @@ class VDOM_text(VDOM_object):
         fontsize="fontsize=\"%s\""%self.fontsize if self.fontsize else ""
 
         editable="value,color,fontfamily,fontsize,fontstyle,fontweight,align,textdecoration"
+
+        self.top = self.regex(self.top) if self.top else ""
+        self.left = self.regex(self.left) if self.left else ""
+        self.width = self.regex(self.width)
 
         result=\
             u"""<container name="{name}" id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" order="{order}" top="{top}" left="{left}" width="{width}">
@@ -1280,49 +1239,22 @@ class VDOM_text(VDOM_object):
         #print result
         return VDOM_object.wysiwyg(self, contents=result)
 
-
 def on_update(object, attributes):
-	
-	width = attributes.get("width")
-	if width is None:
-		attributes["width"] = width = "400"
-
+	o = object
 	modifications = {}
-	
-	# Left
-	if "left" in attributes:
-		if 'px' in object.attributes.get('superleft', '').lower():
-			newleft = str(attributes["left"])+"px"
-			modifications.update(superleft=newleft)
-			
-	if "superleft" in attributes:
-		superleft = attributes["superleft"]
-		if 'px' in superleft.lower():
-			modifications.update(left = int(superleft[0:superleft.find("px")]))
 
-	# top
-	if "top" in attributes:
-		if 'px' in object.attributes.get('supertop', '').lower():
-			newtop = str(attributes["top"])+"px"
-			modifications.update(supertop=newtop)
-			
-	if "supertop" in attributes:
-		supertop = attributes["supertop"]
-		if 'px' in supertop.lower():
-			modifications.update(top = int(supertop[0:supertop.find("px")]))
+	for attr in ["left", "top", "width"]:
+		if attr in attributes:
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+			unit = unit[0] if unit else "px"
 
-	# width
-	if "width" in attributes:
-		if 'px' in object.attributes.get('superwidth', '').lower():
-			newwidth = str(attributes["width"])+"px"
-			modifications.update(superwidth=newwidth)
-			
-	if "superwidth" in attributes:
-		superwidth = attributes["superwidth"]
-		if 'px' in superwidth.lower():
-			modifications.update(width = int(superwidth[0:superwidth.find("px")]))
+			if new_value is not None and new_value.isdigit():
+				new_value = new_value + unit
+			modifications[attr] = new_value
 
 	attributes.update(modifications)
+
 	return ""]]></SourceCode>
   <Libraries/>
   <E2vdom>
