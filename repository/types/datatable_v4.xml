@@ -1261,6 +1261,7 @@ class VDOM_datatable_v4(VDOM_object):
     buttonsjs = """const loadScript = (url, callback) => {
 jQuery.ajax({url: url, dataType: 'script', success: callback, async: false});
 }
+const doNothing = () => {};
 //<!-- dataTables.buttons.min.js -->
 loadScript('/d29cfae0-39cf-48a2-8fc2-88061fa5e7b2.js', doNothing);
 //<!-- jszip.min.js -->
@@ -1273,8 +1274,6 @@ loadScript('/99b0e311-cf88-42e9-9c11-f051b6566105.js', doNothing);
 loadScript('/09e4831d-54eb-4c7d-85a5-642f9d54d34a.js', doNothing);
 //<!-- buttons.print.min.js -->
 loadScript('/075d48bd-23cc-4e39-9e7e-f9142de723e9.js', doNothing);
-//<!-- time.js for sorting by time -->
-loadScript('/66ee65b8-53d0-47a7-bdbb-5c2aff14c221.js', doNothing);
 //<!-- date-uk.js for sorting by time -->
 loadScript('/651c5b80-e639-4cf6-a740-6be6d2482e9c.js', doNothing);"""
     result = u"""
@@ -1402,8 +1401,8 @@ loadScript('/651c5b80-e639-4cf6-a740-6be6d2482e9c.js', doNothing);"""
         "data":                  json.dumps(src_data),
         "columns":               json.dumps(col_title),
         "key_index":             key_index,
-        "buttons":               "buttons: ['copy', 'csv', 'excel', 'pdf', 'print']," if self.showbuttons else "",
-        "loadbuttonjs":          buttonsjs if self.showbuttons else ""
+        "buttons":               "buttons: ['copy', 'csv', 'excel', 'pdf', 'print']," if self.showbuttons  == "1" else "",
+        "loadbuttonjs":          buttonsjs if self.showbuttons == "1" else ""
     }
 
     return VDOM_object.render(self, contents=result)
@@ -1745,6 +1744,8 @@ def on_update(object, attributes):
                 const doNothing = () => {};
                 //<!-- date-euro.js for sorting by time -->
                 loadScript('/b59b082a-db89-437b-82fc-6434123d87f8.js', doNothing);
+                //<!-- time.js for sorting by time -->
+                loadScript('/66ee65b8-53d0-47a7-bdbb-5c2aff14c221.js', doNothing);
             });
           }
         }
