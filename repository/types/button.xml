@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.143.6201</Version>
+    <Version>1.209.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
@@ -80,10 +80,10 @@
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
@@ -92,10 +92,10 @@
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
@@ -104,10 +104,10 @@
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -116,10 +116,10 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>tabindex</Name>
@@ -134,31 +134,31 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>hint</Name>
+      <Name>text</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(5000)</CodeInterface>
+      <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>image</Name>
+      <Name>hint</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>File()</CodeInterface>
+      <CodeInterface>TextField(5000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>rollover</Name>
+      <Name>image</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -170,7 +170,7 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>disabledimg</Name>
+      <Name>rollover</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -182,37 +182,37 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>link</Name>
+      <Name>disabledimg</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2000)</CodeInterface>
+      <CodeInterface>File()</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>containerlink</Name>
+      <Name>link</Name>
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>PageLink()</CodeInterface>
+      <CodeInterface>TextField(2000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>text</Name>
+      <Name>containerlink</Name>
       <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
+      <CodeInterface>PageLink()</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -362,40 +362,136 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>align</Name>
+      <Name>borderradius</Name>
       <DisplayName>#Lang(132)</DisplayName>
-      <DefaultValue>left</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(232)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(418)|left)|(#Lang(419)|center)|(#Lang(421)|right))</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>backgroundcolor</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue>FFFFFF</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>align</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <DefaultValue>left</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(234)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(418)|left)|(#Lang(419)|center)|(#Lang(421)|right))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>style</Name>
-      <DisplayName>#Lang(133)</DisplayName>
+      <DisplayName>#Lang(135)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(233)</Help>
+      <Help>#Lang(235)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(134)</DisplayName>
+      <DisplayName>#Lang(136)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(234)</Help>
+      <Help>#Lang(236)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>form</Name>
+      <DisplayName>#Lang(137)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(237)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(138)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(238)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(338)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(139)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(239)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(339)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(141)</DisplayName>
+      <DefaultValue>absolute</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(241)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(424)|absolute)|(#Lang(425)|relative)|(#Lang(426)|fixed)|(#Lang(427)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(341)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(142)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(242)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(428)|block)|(#Lang(429)|inline)|(#Lang(431)|flex)|(#Lang(432)|inline-block)|(#Lang(433)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(342)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>rendermode</Name>
+      <DisplayName>#Lang(143)</DisplayName>
+      <DefaultValue>div</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(243)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(434)|div)|(#Lang(435)|link)|(#Lang(436)|image))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(343)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -413,13 +509,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
       <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="111">Hint</Sentence>
-      <Sentence ID="112">Button image</Sentence>
-      <Sentence ID="113">Rollover image</Sentence>
-      <Sentence ID="114">Disabled Image</Sentence>
-      <Sentence ID="115">External link</Sentence>
-      <Sentence ID="116">Container link</Sentence>
-      <Sentence ID="117">Text</Sentence>
+      <Sentence ID="111">Text</Sentence>
+      <Sentence ID="112">Hint</Sentence>
+      <Sentence ID="113">Button image</Sentence>
+      <Sentence ID="114">Rollover image</Sentence>
+      <Sentence ID="115">Disabled Image</Sentence>
+      <Sentence ID="116">External link</Sentence>
+      <Sentence ID="117">Container link</Sentence>
       <Sentence ID="118">Highlight button</Sentence>
       <Sentence ID="119">Pressed state</Sentence>
       <Sentence ID="121">Disabled</Sentence>
@@ -432,9 +528,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="128">FontWeight</Sentence>
       <Sentence ID="129">Text-decoration</Sentence>
       <Sentence ID="131">FontShift</Sentence>
-      <Sentence ID="132">Alignment</Sentence>
-      <Sentence ID="133">Style</Sentence>
-      <Sentence ID="134">Skin</Sentence>
+      <Sentence ID="132">Border radius</Sentence>
+      <Sentence ID="133">Background-color</Sentence>
+      <Sentence ID="134">Alignment</Sentence>
+      <Sentence ID="135">Style</Sentence>
+      <Sentence ID="136">Skin</Sentence>
+      <Sentence ID="137">Form</Sentence>
+      <Sentence ID="138">Margins</Sentence>
+      <Sentence ID="139">Paddings</Sentence>
+      <Sentence ID="141">Position</Sentence>
+      <Sentence ID="142">Display</Sentence>
+      <Sentence ID="143">Render Mode</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -444,13 +548,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="207">Width of the object in pixels.</Sentence>
       <Sentence ID="208">Height of the object in pixels.</Sentence>
       <Sentence ID="209">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
-      <Sentence ID="211">A bubble help that is shown when the cursor points at the object.</Sentence>
-      <Sentence ID="212">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
-      <Sentence ID="213">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
-      <Sentence ID="214">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
-      <Sentence ID="215">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="216">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="217">The text of the object.</Sentence>
+      <Sentence ID="211">The text of the object.</Sentence>
+      <Sentence ID="212">A bubble help that is shown when the cursor points at the object.</Sentence>
+      <Sentence ID="213">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
+      <Sentence ID="214">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
+      <Sentence ID="215">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
+      <Sentence ID="216">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
+      <Sentence ID="217">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
       <Sentence ID="218">The highlighting of the object when the cursor points at it.</Sentence>
       <Sentence ID="219">The pressed state of the button.</Sentence>
       <Sentence ID="221">Define if the object is active or not. It is useful when you want to display the button which is inactive at the moment, but which is active in another circumstances.</Sentence>
@@ -463,25 +567,33 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="228">The font weight.</Sentence>
       <Sentence ID="229">The text decoration.</Sentence>
       <Sentence ID="231">The text indent in pixels.</Sentence>
-      <Sentence ID="232">The text alignment.</Sentence>
-      <Sentence ID="233">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="234">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="232">newAttribute37</Sentence>
+      <Sentence ID="233">The background color</Sentence>
+      <Sentence ID="234">The text alignment.</Sentence>
+      <Sentence ID="235">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="236">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="237">newAttribute31</Sentence>
+      <Sentence ID="238">newAttribute36</Sentence>
+      <Sentence ID="239">newAttribute37</Sentence>
+      <Sentence ID="241">newAttribute38</Sentence>
+      <Sentence ID="242">newAttribute39</Sentence>
+      <Sentence ID="243">newAttribute36</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value.</Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer | auto.</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="308">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="309">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="311">Incorrect value, must contain only printable characters.</Sentence>
-      <Sentence ID="312">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="311">Incorrect value, must be valid text.</Sentence>
+      <Sentence ID="312">Incorrect value, must contain only printable characters.</Sentence>
       <Sentence ID="313">Incorrect file, must be the image’s resource identifier.</Sentence>
       <Sentence ID="314">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="315">Incorrect value, must be a valid link.</Sentence>
-      <Sentence ID="316">Incorrect value, must be valid internal container.</Sentence>
-      <Sentence ID="317">Incorrect value, must be valid text.</Sentence>
+      <Sentence ID="315">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="316">Incorrect value, must be a valid link.</Sentence>
+      <Sentence ID="317">Incorrect value, must be valid internal container.</Sentence>
       <Sentence ID="318">Incorrect value.</Sentence>
       <Sentence ID="319">Incorrect value.</Sentence>
       <Sentence ID="321">Incorrect value.</Sentence>
@@ -494,9 +606,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="328">Incorrect value.</Sentence>
       <Sentence ID="329">Incorrect value.</Sentence>
       <Sentence ID="331">Incorrect value, must be positive integer from 1 to 9999.</Sentence>
-      <Sentence ID="332">Incorrect value.</Sentence>
-      <Sentence ID="333"></Sentence>
-      <Sentence ID="334"></Sentence>
+      <Sentence ID="332">newAttribute37</Sentence>
+      <Sentence ID="333">Incorrect value.</Sentence>
+      <Sentence ID="334">Incorrect value.</Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337">newAttribute31</Sentence>
+      <Sentence ID="338">Incorrect value</Sentence>
+      <Sentence ID="339">Incorrect value</Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
+      <Sentence ID="343">newAttribute36</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -518,20 +638,32 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="421">Right</Sentence>
       <Sentence ID="422">User Defined</Sentence>
       <Sentence ID="423">ProSuite</Sentence>
-      <Sentence ID="501">Show the object</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="424">Absolute</Sentence>
+      <Sentence ID="425">Relative</Sentence>
+      <Sentence ID="426">Fixed</Sentence>
+      <Sentence ID="427">Static</Sentence>
+      <Sentence ID="428">Block</Sentence>
+      <Sentence ID="429">Inline</Sentence>
+      <Sentence ID="431">Flex</Sentence>
+      <Sentence ID="432">Inline-block</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434">Button</Sentence>
+      <Sentence ID="435">Link</Sentence>
+      <Sentence ID="436">Image</Sentence>
+      <Sentence ID="501">Add new CSS class</Sentence>
+      <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Add new CSS class</Sentence>
-      <Sentence ID="505">Set new text inside the object</Sentence>
-      <Sentence ID="506">Add new CSS class</Sentence>
-      <Sentence ID="507">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="509">Move the object to a new position</Sentence>
-      <Sentence ID="511">Set new container URL</Sentence>
-      <Sentence ID="512">Set CSS class</Sentence>
-      <Sentence ID="513">Set button image</Sentence>
-      <Sentence ID="514">Set button rollover</Sentence>
-      <Sentence ID="515"></Sentence>
+      <Sentence ID="504">Hide the object</Sentence>
+      <Sentence ID="505">Move the object to a new position</Sentence>
+      <Sentence ID="506">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="507">Add new CSS class</Sentence>
+      <Sentence ID="508">Set button image</Sentence>
+      <Sentence ID="509">Set button rollover</Sentence>
+      <Sentence ID="511">Set CSS class</Sentence>
+      <Sentence ID="512">Set new container URL</Sentence>
+      <Sentence ID="513">Set new text inside the object</Sentence>
+      <Sentence ID="514">Show the object</Sentence>
+      <Sentence ID="515">Toggle CSS class</Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
@@ -539,49 +671,49 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
       <Sentence ID="523"></Sentence>
-      <Sentence ID="524">Toggle CSS class</Sentence>
-      <Sentence ID="601">Show</Sentence>
-      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="601">addClass</Sentence>
+      <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604">addClass</Sentence>
-      <Sentence ID="605">setText</Sentence>
-      <Sentence ID="606">addClass</Sentence>
-      <Sentence ID="607">moveZindexTo</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="609">moveTo</Sentence>
-      <Sentence ID="611">setLink</Sentence>
-      <Sentence ID="612">setClass</Sentence>
-      <Sentence ID="613">setButtonImage</Sentence>
-      <Sentence ID="614">setButtonRollover</Sentence>
+      <Sentence ID="604">Hide</Sentence>
+      <Sentence ID="605">moveTo</Sentence>
+      <Sentence ID="606">moveZindexTo</Sentence>
+      <Sentence ID="607">addClass</Sentence>
+      <Sentence ID="608">setButtonImage</Sentence>
+      <Sentence ID="609">setButtonRollover</Sentence>
+      <Sentence ID="611">setClass</Sentence>
+      <Sentence ID="612">setLink</Sentence>
+      <Sentence ID="613">setText</Sentence>
+      <Sentence ID="614">Show</Sentence>
       <Sentence ID="615">toggleClass</Sentence>
-      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="701">className</Sentence>
       <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">className</Sentence>
-      <Sentence ID="704">Text</Sentence>
-      <Sentence ID="705">className</Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
       <Sentence ID="706">newZindex</Sentence>
-      <Sentence ID="707">newX</Sentence>
-      <Sentence ID="708">newY</Sentence>
-      <Sentence ID="709">Effect</Sentence>
-      <Sentence ID="711">containerUrl</Sentence>
-      <Sentence ID="712">className</Sentence>
-      <Sentence ID="713">resourceUrl</Sentence>
-      <Sentence ID="714">resourceUrl</Sentence>
-      <Sentence ID="715">Name of CSS class</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="707">className</Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="709">resourceUrl</Sentence>
+      <Sentence ID="711">className</Sentence>
+      <Sentence ID="712">containerUrl</Sentence>
+      <Sentence ID="713">Text</Sentence>
+      <Sentence ID="714">Fade</Sentence>
+      <Sentence ID="715">className</Sentence>
+      <Sentence ID="801">Name of CSS class</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="803">Name of CSS class</Sentence>
-      <Sentence ID="804">String to load into Text attribute</Sentence>
-      <Sentence ID="805">Name of CSS class</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">visual effect of moving, time is indicated in milliseconds</Sentence>
       <Sentence ID="806">New Z-index value</Sentence>
-      <Sentence ID="807">X-coordinate of new point</Sentence>
-      <Sentence ID="808">Y-coordinate of new point</Sentence>
-      <Sentence ID="809">visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="811">Container URL</Sentence>
-      <Sentence ID="812">Name of new CSS class</Sentence>
-      <Sentence ID="813">Resource identifier of the image</Sentence>
-      <Sentence ID="814">Resource identifier of the image</Sentence>
-      <Sentence ID="815">className</Sentence>
+      <Sentence ID="807">Name of CSS class</Sentence>
+      <Sentence ID="808">Resource identifier of the image</Sentence>
+      <Sentence ID="809">Resource identifier of the image</Sentence>
+      <Sentence ID="811">Name of new CSS class</Sentence>
+      <Sentence ID="812">Container URL</Sentence>
+      <Sentence ID="813">String to load into Text attribute</Sentence>
+      <Sentence ID="814">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="815">Name of CSS class</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -612,13 +744,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="107">Largeur</Sentence>
       <Sentence ID="108">Hauteur</Sentence>
       <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="111">Info bulle</Sentence>
-      <Sentence ID="112">Image</Sentence>
-      <Sentence ID="113">Image de survol</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Lien externe</Sentence>
-      <Sentence ID="116">Lien vers page</Sentence>
-      <Sentence ID="117">Texte</Sentence>
+      <Sentence ID="111">Texte</Sentence>
+      <Sentence ID="112">Info bulle</Sentence>
+      <Sentence ID="113">Image</Sentence>
+      <Sentence ID="114">Image de survol</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Lien externe</Sentence>
+      <Sentence ID="117">Lien vers page</Sentence>
       <Sentence ID="118">Highlight button</Sentence>
       <Sentence ID="119">Pressed state</Sentence>
       <Sentence ID="121">Disabled</Sentence>
@@ -631,9 +763,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="128">Gras</Sentence>
       <Sentence ID="129">Text-decoration</Sentence>
       <Sentence ID="131">Décalage du texte</Sentence>
-      <Sentence ID="132">Alignment</Sentence>
+      <Sentence ID="132"></Sentence>
       <Sentence ID="133"></Sentence>
-      <Sentence ID="134"></Sentence>
+      <Sentence ID="134">Alignment</Sentence>
+      <Sentence ID="135"></Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="141"></Sentence>
+      <Sentence ID="142"></Sentence>
+      <Sentence ID="143"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -643,13 +783,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="208">Hauteur de l'objet en pixels</Sentence>
       <Sentence ID="209">Tab index</Sentence>
-      <Sentence ID="211">Texte alternatif, s'affichant au survol de l'objet</Sentence>
-      <Sentence ID="212">Image du bouton</Sentence>
-      <Sentence ID="213">Image du bouton au survol</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215">Lien vers une page web externe</Sentence>
-      <Sentence ID="216">Liens vers une rubrique interne du site</Sentence>
-      <Sentence ID="217">Texte du bouton</Sentence>
+      <Sentence ID="211">Texte du bouton</Sentence>
+      <Sentence ID="212">Texte alternatif, s'affichant au survol de l'objet</Sentence>
+      <Sentence ID="213">Image du bouton</Sentence>
+      <Sentence ID="214">Image du bouton au survol</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Lien vers une page web externe</Sentence>
+      <Sentence ID="217">Liens vers une rubrique interne du site</Sentence>
       <Sentence ID="218">Highlight button while mouse over</Sentence>
       <Sentence ID="219">Draw button in pressed state</Sentence>
       <Sentence ID="221">Enable or disable button</Sentence>
@@ -662,9 +802,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="228">Graisse de la police : gras ou normal</Sentence>
       <Sentence ID="229">Décoration du texte : souligné ou pas</Sentence>
       <Sentence ID="231">Décalage du texte par rapport au bord de l'image du bouton</Sentence>
-      <Sentence ID="232">Alignement du texte</Sentence>
+      <Sentence ID="232"></Sentence>
       <Sentence ID="233"></Sentence>
-      <Sentence ID="234"></Sentence>
+      <Sentence ID="234">Alignement du texte</Sentence>
+      <Sentence ID="235"></Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="241"></Sentence>
+      <Sentence ID="242"></Sentence>
+      <Sentence ID="243"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte</Sentence>
@@ -674,13 +822,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="311">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
-      <Sentence ID="312">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="311">Valeur Incorrecte, doit être un texte valide</Sentence>
+      <Sentence ID="312">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
       <Sentence ID="313">Fichier Incorrect, doit être un fichier image</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être un lien valide</Sentence>
-      <Sentence ID="316">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
-      <Sentence ID="317">Valeur Incorrecte, doit être un texte valide</Sentence>
+      <Sentence ID="314">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être un lien valide</Sentence>
+      <Sentence ID="317">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
       <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="321">Incorrect value</Sentence>
@@ -693,9 +841,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="328">Valeur Incorrecte</Sentence>
       <Sentence ID="329">Valeur Incorrecte</Sentence>
       <Sentence ID="331">Valeur Incorrecte, doit être compris entre 1 et 4</Sentence>
-      <Sentence ID="332">Valeur Incorrecte</Sentence>
+      <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
-      <Sentence ID="334"></Sentence>
+      <Sentence ID="334">Valeur Incorrecte</Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
+      <Sentence ID="343"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -717,20 +873,32 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="421">Droite</Sentence>
       <Sentence ID="422"></Sentence>
       <Sentence ID="423"></Sentence>
-      <Sentence ID="501">Show the object</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="508">Show the object</Sentence>
-      <Sentence ID="509">Move object to selected point</Sentence>
-      <Sentence ID="511">Set new container link</Sentence>
-      <Sentence ID="512">Set new CSS class</Sentence>
-      <Sentence ID="513">Set new button image</Sentence>
-      <Sentence ID="514">Set button image when the cursor is over</Sentence>
-      <Sentence ID="515"></Sentence>
+      <Sentence ID="504">Hide the object</Sentence>
+      <Sentence ID="505">Move object to selected point</Sentence>
+      <Sentence ID="506">Change position in visual hierarchy of objects</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508">Set new button image</Sentence>
+      <Sentence ID="509">Set button image when the cursor is over</Sentence>
+      <Sentence ID="511">Set new CSS class</Sentence>
+      <Sentence ID="512">Set new container link</Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514">Show the object</Sentence>
+      <Sentence ID="515">Toggle CSS class</Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
@@ -738,49 +906,49 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
       <Sentence ID="523"></Sentence>
-      <Sentence ID="524">Toggle CSS class</Sentence>
-      <Sentence ID="601">Show</Sentence>
-      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="605"></Sentence>
-      <Sentence ID="606"></Sentence>
-      <Sentence ID="607">moveZindexTo</Sentence>
-      <Sentence ID="608">Show</Sentence>
-      <Sentence ID="609">moveTo</Sentence>
-      <Sentence ID="611">setLink</Sentence>
-      <Sentence ID="612">setClass</Sentence>
-      <Sentence ID="613">setButtonImage</Sentence>
-      <Sentence ID="614">setButtonRollover</Sentence>
+      <Sentence ID="604">Hide</Sentence>
+      <Sentence ID="605">moveTo</Sentence>
+      <Sentence ID="606">moveZindexTo</Sentence>
+      <Sentence ID="607"></Sentence>
+      <Sentence ID="608">setButtonImage</Sentence>
+      <Sentence ID="609">setButtonRollover</Sentence>
+      <Sentence ID="611">setClass</Sentence>
+      <Sentence ID="612">setLink</Sentence>
+      <Sentence ID="613"></Sentence>
+      <Sentence ID="614">Show</Sentence>
       <Sentence ID="615">toggleClass</Sentence>
-      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="701"></Sentence>
       <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="705"></Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
       <Sentence ID="706">newZindex</Sentence>
-      <Sentence ID="707">newX</Sentence>
-      <Sentence ID="708">newY</Sentence>
-      <Sentence ID="709">Effect</Sentence>
-      <Sentence ID="711">containerUrl</Sentence>
-      <Sentence ID="712">className</Sentence>
-      <Sentence ID="713">resourceUrl</Sentence>
-      <Sentence ID="714">resourceUrl</Sentence>
-      <Sentence ID="715">Name of CSS class</Sentence>
-      <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="803"></Sentence>
-      <Sentence ID="804"></Sentence>
-      <Sentence ID="805"></Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708">resourceUrl</Sentence>
+      <Sentence ID="709">resourceUrl</Sentence>
+      <Sentence ID="711">className</Sentence>
+      <Sentence ID="712">containerUrl</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714">Fade</Sentence>
+      <Sentence ID="715">toggleClass</Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802">Fade time</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">Visual effect by moving</Sentence>
       <Sentence ID="806">New Z-index value</Sentence>
-      <Sentence ID="807">X-coordinate of new point</Sentence>
-      <Sentence ID="808">Y-coordinate of new point</Sentence>
-      <Sentence ID="809">Visual effect by moving</Sentence>
-      <Sentence ID="811">New container URL</Sentence>
-      <Sentence ID="812">New CSS class name</Sentence>
-      <Sentence ID="813">Resource URL of new image</Sentence>
-      <Sentence ID="814">Resource URL of new image</Sentence>
-      <Sentence ID="815">toggleClass</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808">Resource URL of new image</Sentence>
+      <Sentence ID="809">Resource URL of new image</Sentence>
+      <Sentence ID="811">New CSS class name</Sentence>
+      <Sentence ID="812">New container URL</Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814">Time of appearance</Sentence>
+      <Sentence ID="815">Name of CSS class</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -811,13 +979,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="107">Ширина</Sentence>
       <Sentence ID="108">Высота</Sentence>
       <Sentence ID="109">Индекс табуляции</Sentence>
-      <Sentence ID="111">Подсказка</Sentence>
-      <Sentence ID="112">Изображение кнопки</Sentence>
-      <Sentence ID="113">Изображение при наведении</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Внешняя ссылка</Sentence>
-      <Sentence ID="116">Ссылка на контейнер</Sentence>
-      <Sentence ID="117">Текст</Sentence>
+      <Sentence ID="111">Текст</Sentence>
+      <Sentence ID="112">Подсказка</Sentence>
+      <Sentence ID="113">Изображение кнопки</Sentence>
+      <Sentence ID="114">Изображение при наведении</Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Внешняя ссылка</Sentence>
+      <Sentence ID="117">Ссылка на контейнер</Sentence>
       <Sentence ID="118">Выделить кнопку</Sentence>
       <Sentence ID="119">Нажатое состояние</Sentence>
       <Sentence ID="121">Disabled</Sentence>
@@ -830,9 +998,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="128">Выделение</Sentence>
       <Sentence ID="129">Оформление текста</Sentence>
       <Sentence ID="131">Смещение текста</Sentence>
-      <Sentence ID="132">Выравнивание</Sentence>
-      <Sentence ID="133">Стиль</Sentence>
-      <Sentence ID="134">Скин</Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="134">Выравнивание</Sentence>
+      <Sentence ID="135">Стиль</Sentence>
+      <Sentence ID="136">Скин</Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="141"></Sentence>
+      <Sentence ID="142"></Sentence>
+      <Sentence ID="143"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -842,13 +1018,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="207">Ширина объекта в пикселях</Sentence>
       <Sentence ID="208">Высота объекта в пикселях</Sentence>
       <Sentence ID="209">Индекс табуляции для объекта на странице</Sentence>
-      <Sentence ID="211">Всплывающая подсказка при наведении на объект</Sentence>
-      <Sentence ID="212">Графическое изображение объекта</Sentence>
-      <Sentence ID="213">Графическое изображение объекта при наведении курсора</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215">Ссылка на внешнюю веб-страницу</Sentence>
-      <Sentence ID="216">Ссылка на внутренний контейнер</Sentence>
-      <Sentence ID="217">Текст, отображающийся на кнопке</Sentence>
+      <Sentence ID="211">Текст, отображающийся на кнопке</Sentence>
+      <Sentence ID="212">Всплывающая подсказка при наведении на объект</Sentence>
+      <Sentence ID="213">Графическое изображение объекта</Sentence>
+      <Sentence ID="214">Графическое изображение объекта при наведении курсора</Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Ссылка на внешнюю веб-страницу</Sentence>
+      <Sentence ID="217">Ссылка на внутренний контейнер</Sentence>
       <Sentence ID="218">Выделить кнопку при наведении курсора мыши</Sentence>
       <Sentence ID="219">Отобразить кнопку в нажатом состоянии</Sentence>
       <Sentence ID="221">Enable or disable button</Sentence>
@@ -861,9 +1037,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="228">Выделение шрифта</Sentence>
       <Sentence ID="229">Оформление текста</Sentence>
       <Sentence ID="231">Смещение текста от края кнопки</Sentence>
-      <Sentence ID="232">Выравнивание текста</Sentence>
-      <Sentence ID="233">Стиль CSS</Sentence>
-      <Sentence ID="234">Скин объекта</Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="234">Выравнивание текста</Sentence>
+      <Sentence ID="235">Стиль CSS</Sentence>
+      <Sentence ID="236">Скин объекта</Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="241"></Sentence>
+      <Sentence ID="242"></Sentence>
+      <Sentence ID="243"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -873,13 +1057,13 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="309">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="311">Неправильное значение, должно содержать только печатаемые символы</Sentence>
-      <Sentence ID="312">Неправильный файл, должно быть изображение</Sentence>
-      <Sentence ID="313">Неправильный файл, должен быть изображением</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Неправильное значение, должно быть допустимой ссылкой</Sentence>
-      <Sentence ID="316">Неправильное значение, должен быть существующий контейнер</Sentence>
-      <Sentence ID="317">Неправильное значение, должно быть текстом</Sentence>
+      <Sentence ID="311">Неправильное значение, должно быть текстом</Sentence>
+      <Sentence ID="312">Неправильное значение, должно содержать только печатаемые символы</Sentence>
+      <Sentence ID="313">Неправильный файл, должно быть изображение</Sentence>
+      <Sentence ID="314">Неправильный файл, должен быть изображением</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Неправильное значение, должно быть допустимой ссылкой</Sentence>
+      <Sentence ID="317">Неправильное значение, должен быть существующий контейнер</Sentence>
       <Sentence ID="318">Неправильное значение</Sentence>
       <Sentence ID="319">Неправильное значение</Sentence>
       <Sentence ID="321">Incorrect value</Sentence>
@@ -892,9 +1076,17 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="328">Неправильное значение</Sentence>
       <Sentence ID="329">Неправильное значение</Sentence>
       <Sentence ID="331">Неправильное значение, должно быть указано целое положительное число от 1 до 4</Sentence>
-      <Sentence ID="332">Неправильное значение</Sentence>
+      <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
-      <Sentence ID="334"></Sentence>
+      <Sentence ID="334">Неправильное значение</Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
+      <Sentence ID="343"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -916,20 +1108,32 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="421">Справа</Sentence>
       <Sentence ID="422">Определенный пользователем</Sentence>
       <Sentence ID="423">ProSuite</Sentence>
-      <Sentence ID="501">Показать объект</Sentence>
-      <Sentence ID="502">Скрыть объект</Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="501">Добавить объекту класс CSS</Sentence>
+      <Sentence ID="502">Показать объект</Sentence>
       <Sentence ID="503">Показать объект</Sentence>
-      <Sentence ID="504">Добавить объекту класс CSS</Sentence>
-      <Sentence ID="505">Изменение атрибута Текст</Sentence>
-      <Sentence ID="506">Добавить объекту класс CSS</Sentence>
-      <Sentence ID="507">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="508">Показать объект</Sentence>
-      <Sentence ID="509">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="511">Установить новую ссылку на контейнер</Sentence>
-      <Sentence ID="512">Установить новый класс CSS</Sentence>
-      <Sentence ID="513">Установить новое изображение для объекта</Sentence>
-      <Sentence ID="514">Изображение, которое появляется при наведении курсора на объект</Sentence>
-      <Sentence ID="515"></Sentence>
+      <Sentence ID="504">Скрыть объект</Sentence>
+      <Sentence ID="505">Сдвинуть объект в заданную точку</Sentence>
+      <Sentence ID="506">Изменить позицию в визуальной иерархии объектов</Sentence>
+      <Sentence ID="507">Добавить объекту класс CSS</Sentence>
+      <Sentence ID="508">Установить новое изображение для объекта</Sentence>
+      <Sentence ID="509">Изображение, которое появляется при наведении курсора на объект</Sentence>
+      <Sentence ID="511">Установить новый класс CSS</Sentence>
+      <Sentence ID="512">Установить новую ссылку на контейнер</Sentence>
+      <Sentence ID="513">Изменение атрибута Текст</Sentence>
+      <Sentence ID="514">Показать объект</Sentence>
+      <Sentence ID="515">Toggle CSS class</Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
@@ -937,49 +1141,49 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
       <Sentence ID="523"></Sentence>
-      <Sentence ID="524">Toggle CSS class</Sentence>
-      <Sentence ID="601">Отображать</Sentence>
-      <Sentence ID="602">Скрыть</Sentence>
+      <Sentence ID="524"></Sentence>
+      <Sentence ID="601">Добавить класс CSS</Sentence>
+      <Sentence ID="602">Отображать</Sentence>
       <Sentence ID="603">Отображать</Sentence>
-      <Sentence ID="604">Добавить класс CSS</Sentence>
-      <Sentence ID="605">Установить текст</Sentence>
-      <Sentence ID="606">Добавить класс CSS</Sentence>
-      <Sentence ID="607">Изменить позицию</Sentence>
-      <Sentence ID="608">Отображать</Sentence>
-      <Sentence ID="609">Сдвинуть</Sentence>
-      <Sentence ID="611">Установить ссылку</Sentence>
-      <Sentence ID="612">Установить класс CSS</Sentence>
-      <Sentence ID="613">Установить изображение</Sentence>
-      <Sentence ID="614">Изображение при наведении курсора</Sentence>
+      <Sentence ID="604">Скрыть</Sentence>
+      <Sentence ID="605">Сдвинуть</Sentence>
+      <Sentence ID="606">Изменить позицию</Sentence>
+      <Sentence ID="607">Добавить класс CSS</Sentence>
+      <Sentence ID="608">Установить изображение</Sentence>
+      <Sentence ID="609">Изображение при наведении курсора</Sentence>
+      <Sentence ID="611">Установить класс CSS</Sentence>
+      <Sentence ID="612">Установить ссылку</Sentence>
+      <Sentence ID="613">Установить текст</Sentence>
+      <Sentence ID="614">Отображать</Sentence>
       <Sentence ID="615">toggleClass</Sentence>
-      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="701">Имя класса CSS</Sentence>
       <Sentence ID="702">Исчезновение</Sentence>
-      <Sentence ID="703">Имя класса CSS</Sentence>
-      <Sentence ID="704">Текст</Sentence>
-      <Sentence ID="705">Имя класса CSS</Sentence>
+      <Sentence ID="703">Координата новой точки по оси X</Sentence>
+      <Sentence ID="704">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="705">Эффект</Sentence>
       <Sentence ID="706">Позиция</Sentence>
-      <Sentence ID="707">Координата новой точки по оси X</Sentence>
-      <Sentence ID="708">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="709">Эффект</Sentence>
-      <Sentence ID="711">URL контейнера</Sentence>
-      <Sentence ID="712">Имя класса CSS</Sentence>
-      <Sentence ID="713">URL ресурса</Sentence>
-      <Sentence ID="714">URL ресурса</Sentence>
-      <Sentence ID="715">Name of CSS class</Sentence>
-      <Sentence ID="801">Время исчезновения</Sentence>
-      <Sentence ID="802">Время появления</Sentence>
-      <Sentence ID="803">Имя класса CSS</Sentence>
-      <Sentence ID="804">Строка для загрузки в атрибут Текст</Sentence>
-      <Sentence ID="805">Имя класса CSS</Sentence>
+      <Sentence ID="707">Имя класса CSS</Sentence>
+      <Sentence ID="708">URL ресурса</Sentence>
+      <Sentence ID="709">URL ресурса</Sentence>
+      <Sentence ID="711">Имя класса CSS</Sentence>
+      <Sentence ID="712">URL контейнера</Sentence>
+      <Sentence ID="713">Текст</Sentence>
+      <Sentence ID="714">Исчезновение</Sentence>
+      <Sentence ID="715">toggleClass</Sentence>
+      <Sentence ID="801">Имя класса CSS</Sentence>
+      <Sentence ID="802">Время исчезновения</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
       <Sentence ID="806">Новое значение позиции</Sentence>
-      <Sentence ID="807">Координата новой точки по оси X</Sentence>
-      <Sentence ID="808">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="809">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="811">URL нового контейнера</Sentence>
-      <Sentence ID="812">Имя нового класса CSS</Sentence>
-      <Sentence ID="813">URL ресурса для изображения</Sentence>
-      <Sentence ID="814">URL ресурса для изображения</Sentence>
-      <Sentence ID="815">toggleClass</Sentence>
+      <Sentence ID="807">Имя класса CSS</Sentence>
+      <Sentence ID="808">URL ресурса для изображения</Sentence>
+      <Sentence ID="809">URL ресурса для изображения</Sentence>
+      <Sentence ID="811">Имя нового класса CSS</Sentence>
+      <Sentence ID="812">URL нового контейнера</Sentence>
+      <Sentence ID="813">Строка для загрузки в атрибут Текст</Sentence>
+      <Sentence ID="814">Время появления</Sentence>
+      <Sentence ID="815">Name of CSS class</Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -1147,7 +1351,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
   </Resources>
   <SourceCode><![CDATA[from scripting.legacy.id import id2link1
 import StringIO
-
+import re
 
 class VDOM_button(VDOM_object):
 
@@ -1195,7 +1399,7 @@ class VDOM_button(VDOM_object):
             bgimg = u"background:url('%s');" % id2link1(self.finalimage) if self.image and self.rollover else u""
         else:
             bgimg = u"background:url('%s');" % id2link1(self.finalrollover) if self.image and self.rollover else u""
-        height = u"height:%spx;" % self.height if self.height else u""
+        height = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
         #clname = u"""class="%s" """ % self.classname if self.classname else u""
         if self.disabled == "1":
             clname = u"""class="%s disabled" """ % self.classname
@@ -1204,152 +1408,238 @@ class VDOM_button(VDOM_object):
             clname = u"""class="%s" """ % self.classname if self.classname else u""
             donot = u""
 
-        return u"""<a style="display:block;text-decoration:none;{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot} {tabindex}>
+        return u"""<a style="display: block; text-decoration: none; {height} {bgimage}" href="{link}" title="{hint}" {classname} {donot} {tabindex}>
                 """.format(
                         tabindex = "" if int(self.tabindex) <= 0 else u'tabindex="%s"' % self.tabindex,
                         bgimage = bgimg, height = height, link = link,
                         hint = (self.hint).replace('"', '&quot;'),
                         classname = clname, donot = donot)
 
-
+    def check_unit(self, value):
+	    if value.isdigit():
+	    	return value + "px"
+	    else:
+	    	return value
+	    
     def render(self, contents=""):
         id_out = u"o_%s" % (self.id).replace('-', '_')
         styleblock = u""
         scriptblock = u""
-        clname = u"holder_" + self.classname.split(' ')[0] if self.classname else u"" #take only first class
+        width_style = u"width: {width};".format(width = self.check_unit(self.width)) if self.width else ""
+        height_style = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
+
+        margin_in = u"margin: {margins};".format(margins=self.margins) if self.margins else ""
+        padding_in = u"padding: {paddings};".format(paddings=self.paddings) if self.paddings else ""
+
+        if self.positioning == "static":
+            position = self.positioning = ""
+            self.left = self.top = ""
+        else:
+            position = u"position: {pos};".format(pos=self.positioning)
+
+        top_style = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
+        left_style = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
+        clname = self.classname if self.classname else u""
         if self.disabled == "0":
             disabled_html = u""
         else:
             zindex_disabled = u"z-index:%s;" % str(int(self.zindex) + 1)
-            disabled_html = u"""<div id='{id}_e2vdomhelper' class='disabled-over' style='{zindex_disabled}background:#fff;opacity:0.01;filter:alpha(opacity=1);position:absolute;left:{left}px;top:{top}px;width:{width}px;height:{height}px;'></div>
-                """.format(id = id_out, zindex_disabled = zindex_disabled, width = self.width, height = self.height, left = self.left, top = self.top, classname = clname)
-
+            disabled_html = u"""<div id='{id}_e2vdomhelper' class='disabled-over' style='{zindex_disabled} background: #fff;
+                                        opacity: 0.01; filter: alpha(opacity=1); {position} {left} {top} 
+                                        {width} {height} {margin} {padding}'></div>
+                            """.format(
+                                id=id_out, zindex_disabled=zindex_disabled, width=width_style, height=height_style,
+                                left=left_style, top=top_style, position=position,
+                                margin=margin_in, padding=padding_in)
+    
         overcss = u"<style>\n" + self.style % {"id": id_out} + u"</style>" if self.style else u""
         disablecss = u""
         representation = u""
-        if self.image:
-            if self.rollover:
-                rover_link = id2link1(self.finalrollover)
-                overcss =  u"""<style>#%(id)s a:hover {background-image:url("%(image)s")!important}</style>
-                                <div style="display:none"><img src="%(image)s" /></div>
-                            """ % {"id": id_out, "image": rover_link}
-            else:
-                hover_link = id2link1(self.finalimage)
-                if self.ishover == "0":
-                    representation = \
-                        u"""<img src="{image}" width={width} height={height} 
-                                style="text-decoration:none;border:0" title="{hint}" />
-                        """.format(image = hover_link, width = self.width, height = self.height, hint = self.hint)
-                else:
-                    if not self.classname:
-                        self.classname = "button"
-                    classtut = self.classname
-                    if self.ispressed == "1":
-                        self.classname = "{classname} {classname}_sel".format(classname = self.classname)
-
-                    # shift background position for show another state of button
-                    bgpos_left = str(int(self.height)+int(self.height))
-
-                    styleblock = \
-                        u"""<style>.%(classname)s,.%(classname)s_sel
-                                {display:block;width:%(width)spx;height:%(height)spx;background:url("%(image)s") left top no-repeat;}
-                                .%(classname)s:hover{background-position:left -%(height)spx}
-                                .%(classname)s_sel,.%(classname)s_sel:hover{background-position:left -%(bgleft)spx!important}
-                            </style>
-                        """ % {"classname": classtut, "width": self.width, "height": self.height,
-                                    "image": hover_link, "bgleft": bgpos_left}
-
-                    scriptblock += \
-                        u"""$q("#%(id)s a").click(function(){$q(this).toggleClass("%(classname)s_sel");});
-                        """ % {"id": id_out, "classname": self.classname}
-                    #------------------------
-            if self.disabledimg:
-                disablecss =  u"""<style>#%(id)s .disabled {background-image:url("%(image)s")!important}</style>
-                                <div style="display:none"><img src="%(image)s" /></div>
-                            """ % {"id": id_out, "image": id2link1(self.finaldisabledimg)}
+        render_mode = self.rendermode.lower() if self.rendermode else "default"
+        style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u""
+        style = u"""overflow: hidden; {position} {zindex} {left} {top} {margin} {padding}
+                        {wstyle} {hstyle} text-align: {align}; border: {border}px solid black;
+                    """.format(
+                zindex=style_zindex, left=left_style, top=top_style, position=position,
+                wstyle=width_style, hstyle=height_style, align=self.align, border=self.border,
+                margin=margin_in, padding=padding_in)
+    
+        display = u"display: none; " if self.visible == "0" else u"display: {disp}; ".format
+        if self.visible == "0":
+        	display = u"display: none; "
+        elif self.displaying != "":
+        	display = u"display: {disp}; ".format(disp=self.displaying)
         else:
-            spstyle = StringIO.StringIO()
-            spstyle.write(u"font: ")
-            if self.fontweight == "bold":
-                spstyle.write(u"bold ")
-            if self.fontstyle == "italic":
-                spstyle.write(u"italic ")
-            if self.fontsize:
-                spstyle.write(u"%spx " % self.fontsize)
-            else:
-                spstyle.write(u"12px ")
-            if self.fontfamily:
-                spstyle.write(u"%s" % self.fontfamily.replace('"', "'"))
-            spstyle.write(u";")
-            if self.align:
-                spstyle.write(u"text-align: %s;" % self.align)
-            if self.color:
-                spstyle.write(u"color: #%s;" % self.color)
-            if self.textdecoration:
-                spstyle.write(u"text-decoration: %s;" % self.textdecoration)
-            
-            if not self.style:
-                representation = u"""<span style="{style}">{text}</span>""".format(style = spstyle.getvalue(), text = self.text)
-            else:
-                representation = u"""<span>{text}</span>""".format(text = self.text)
-            spstyle.close()
-
-        if not self.text and not self.image and not self.style:
-            def_image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
-            
-            representation = \
-                u"""<img src="/{image}.res" width={width} height={height} style="text-decoration:none;border:0" title="{hint}" />
-                """.format(
-                        image = def_image_id, width = self.width, 
-                        height = self.height, hint = self.hint)
-        
-        width_style = u"width:%spx;" % self.width if self.width else u""
-        height_style = u"height:%spx;" % self.height if self.height else u""
-
-        style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
-
-        style = u"""overflow:hidden;position:absolute;{zindex}left:{left}px;top:{top}px;
-                    {wstyle}{hstyle}text-align:{align};border:{border}px solid black;
-                """.format(
-                        zindex = style_zindex, left = self.left, top = self.top, 
-                        wstyle = width_style, hstyle = height_style, align = self.align, border = self.border)
-
-        display = u" display:none; " if self.visible == "0" else u""
-
-        if self.link:
-            anchor = self.get_anchor(self.link)
-        elif self.containerlink:
-            ref_obj = application.objects.search(self.containerlink)
-            ref_page = ref_obj.name + ".vdom" if ref_obj else ""
-            anchor = self.get_anchor(ref_page)
-        else:
-            anchor = self.get_anchor(u"javascript://")
-
-        if scriptblock <> '':
-            scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
-
+        	display = ""
+        	        
         if VDOM_CONFIG_1["DEBUG"] == "1":
             debug_info = u"objtype='button' objname='%s' ver='%s'" % (self.name, self.type.version)
         else:
-            debug_info = u""
+            debug_info = ""
+            
+        if not self.style:
+        	spstyle = StringIO.StringIO()
+        	spstyle.write(u"font: ")
+        	if self.fontweight == "bold":
+        		spstyle.write(u"bold ")
+        	if self.fontstyle == "italic":
+        		spstyle.write(u"italic ")
+        	if self.fontsize:
+        		spstyle.write(u"%spx " % self.fontsize)
+        	else:
+        		spstyle.write(u"12px ")
+        	if self.fontfamily:
+        		spstyle.write(u"%s" % self.fontfamily.replace('"', "'"))
+        	spstyle.write(u";")
+        	if self.align:
+        		spstyle.write(u"text-align: %s;" % self.align)
+        	if self.color:
+        		spstyle.write(u"color: #%s;" % self.color)
+        	if self.textdecoration:
+        		spstyle.write(u"text-decoration: %s;" % self.textdecoration)
+        	if self.borderradius:
+        		spstyle.write(u"border-radius: %s;" % self.borderradius)
+        	if self.backgroundcolor:
+        		spstyle.write(u"background-color: #%s;" % self.backgroundcolor)
+        	text_style = spstyle.getvalue()
+        	spstyle.close()
+        else:
+        	text_style = ""
         
-        return u"""{ocss}
-                    <div {debug_info} id="{id}" style="{style}{disp}" class="{classname}">
-                        {anchor}{repr}</a>
-                    </div>{disabled}{styleblk}{scriptblk}{disablecss}
-                """.format(
-                        #tabind = "" if int(self.tabindex) <= 0 else u'tabindex="%s"' % self.tabindex,
-                        #tabind = u'tabindex="%s"' % self.tabindex,
-                        repr = representation,
-                        debug_info = debug_info, ocss = overcss, id = id_out,
-                        style = style, disp = display,
-                        anchor = anchor,
-                        disabled = disabled_html,
-                        classname = clname,
-                        styleblk = styleblock, scriptblk = scriptblock, disablecss = disablecss)
+        if render_mode == "image":
+            if self.image:
+                if self.rollover:
+                    rover_link = id2link1(self.finalrollover)
+                    overcss = u"""<style>#%(id)s a:hover {background-image: url("%(image)s")!important}</style>
+                                    <div style="display: none"><img src="%(image)s" /></div>
+                                """ % {"id": id_out, "image": rover_link}
+                else:
+                    hover_link = id2link1(self.finalimage)
+                    width_img = self.check_unit(self.width)
+                    height_img = self.check_unit(self.height)
+                    
+                    if self.ishover == "0":
+                        representation = \
+                            u"""<img src="{image}" width={width} height={height} 
+                                    style="text-decoration: none; border: 0" title="{hint}" />
+                            """.format(
+                                image=hover_link, width=width_img, height=height_img, hint=self.hint)
+                    else:
+                        if not self.classname:
+                            self.classname = "button"
+                        classtut = self.classname
+                        if self.ispressed == "1":
+                            self.classname = "{classname} {classname}_sel".format(classname=self.classname)
+    
+                        matches = re.match(r"(\d+)(px|em|%)", height_img)
+                        # shift background position for show another state of button
+                        if matches:
+                        	value = int(matches.group(1)) * 2
+                        	unit = matches.group(2)
+                        	bgpos_left = str(value) + unit
+                        else:
+                        	bgpos_left = "100px"
+                        	height_img = width_img = "50px"
+    
+                        styleblock = \
+                            u"""<style>.%(classname)s,.%(classname)s_sel {
+                            		display: block; width: %(width)s; height: %(height)s; 
+                            		background: url("%(image)s") left top no-repeat;
+                            	}
+                                .%(classname)s:hover {
+                                	background-position: left -%(height)s
+                                }
+                                .%(classname)s_sel,.%(classname)s_sel:hover {
+                                	background-position: left -%(bgleft)s!important
+                                }
+                                </style>
+                            """ % {"classname": classtut, "width": width_img, "height": height_img,
+                                    "image": hover_link, "bgleft": bgpos_left}
+    
+                        scriptblock += \
+                            u"""$q("#%(id)s a").click(function(){$q(this).toggleClass("%(classname)s_sel");});
+                            """ % {"id": id_out, "classname": self.classname}
+                        #------------------------
+                if self.disabledimg:
+                    disablecss = u"""<style>#%(id)s .disabled {background-image:url("%(image)s")!important}</style>
+                                        <div style="display:none"><img src="%(image)s" /></div>
+                                """ % {"id": id_out, "image": id2link1(self.finaldisabledimg)}
+            else:
+                def_image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
+    
+                representation = \
+                    u"""<img src="/{image}.res" width={width} height={height} style="text-decoration: none; border: 0" title="{hint}" />
+                    """.format(
+                        image=def_image_id, width=self.width,
+                        height=self.height, hint=self.hint)
+    
+            if self.link:
+                anchor = self.get_anchor(self.link)
+            elif self.containerlink:
+                ref_obj = application.objects.search(self.containerlink)
+                ref_page = ref_obj.name + ".vdom" if ref_obj else ""
+                anchor = self.get_anchor(ref_page)
+            else:
+                anchor = self.get_anchor(u"javascript://")
+                
+            if scriptblock <> '':
+                scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
+    
+            return u"""{ocss}
+                        <div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button {classname}">
+                            {anchor}{repr}</a>
+                        </div>{disabled}{styleblk}{scriptblk}{disablecss}
+                    """.format(
+                repr=representation,
+                debug_info=debug_info, ocss=overcss, id=id_out,
+                style=style, disp=display, disabled=disabled_html,
+                classname=clname, anchor=anchor,
+                styleblk=styleblock, scriptblk=scriptblock, disablecss=disablecss)
+    
+        elif render_mode == "link":
+
+            return u"""{ocss}
+            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" class="vdom_button link {classname}">
+                            {text}
+                        </a>
+                    """.format(
+                            text=self.text, debug_info=debug_info, id=id_out, style=style, ocss=overcss,
+                            disp=display, link=self.link, classname=clname, text_style=text_style)
+    
+        else:  # render_mode == "button"
+            if self.link:
+                return u"""{ocss}
+                			<div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button button {classname}">
+                                <a style="{text_style}" href="{link}">{text}</a>
+                            </div>
+                        """.format(
+                    			debug_info=debug_info, id=id_out, style=style, ocss=overcss,
+                    			disp=display, link=self.link, classname=clname, text=self.text, text_style=text_style)
+            else:
+                return u"""{ocss}
+                			<div {debug_info} id="{id}" style="{style}{disp}{text_style}" class="vdom_button button {classname}">
+                                {text}
+                            </div>
+                        """.format(
+                    			debug_info=debug_info, id=id_out, style=style, text_style=text_style,
+                    			disp=display, link=self.link, classname=clname, text=self.text, ocss=overcss)
         
-        
+    def regex(self, obj):
+		if obj:
+			match = re.search(r'\d+', obj)
+			if match:
+				return int(match.group())
+			else:
+				return 50
+		else:
+			return 50
+	
     def wysiwyg(self, contents=""):
+        outer_width = self.width = self.regex(self.width)
+        outer_height = self.height = self.regex(self.height)
+        self.top = self.regex(self.top) if self.top else ""
+        self.left = self.regex(self.left) if self.left else ""
+            
         if self.border and self.border != "0":
             bw = int(self.border)
             minsize = min(int(self.width), int(self.height))
@@ -1359,84 +1649,99 @@ class VDOM_button(VDOM_object):
         else:
             bw = 0
             border_string = u""
-            
-        if not self.text and not self.image:
-            image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
-            
-            outer_width = int(self.width)
-            outer_height = int(self.height)
-            
-            result = \
-                u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-                        top="{top}" left="{left}" width="{out_wid}" height="{out_hei}">
-                        <svg>
-                            <image href="#Res({img_id})" x="0" y="0" width="{out_wid}" height="{out_hei}"/>
-                        </svg>
-                        {contents}
-                    </container>
-                """.format(
-                        id = self.id, vis = self.visible, zind = self.zindex,
-                        hierarchy = self.hierarchy, order = self.order,
-                        top = self.top, left = self.left, out_wid = outer_width, out_hei = outer_height,
-                        img_id = image_id, name = self.name, contents = contents)
-                        
-            return VDOM_object.wysiwyg(self, contents=result)
         
-        width = self.width if self.width else 50
-        height = self.height if self.height else 50
+        if self.rendermode == "image":
+            if not self.image:
+                image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
+
+                result = \
+        			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+        					top="{top}" left="{left}" width="{out_wid}" height="{out_hei}">
+                			<svg>
+                				<image href="#Res({img_id})" x="0" y="0" width="{out_wid}" height="{out_hei}"/>
+                			</svg>
+                			{contents}
+                		</container>
+                	""".format(
+            				id = self.id, vis = self.visible, zind = self.zindex,
+            				hierarchy = self.hierarchy, order = self.order,
+            				top = self.top, left = self.left, out_wid = outer_width, out_hei = outer_height,
+            				img_id = image_id, name = self.name, contents = contents)
+                
+                return VDOM_object.wysiwyg(self, contents=result)
+            
+            width = self.width if self.width else 50
+            height = self.height if self.height else 50
+            
+            if self.image:
+            	result = \
+            		u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+            					top="{top}" left="{left}" width="{width}" height="{height}">
+            				<svg>
+            					<image href="#Res({image})" x="0" y="0" width="{width}" height="{height}"/>
+            				</svg>{contents}
+            				<svg>
+            					<rect x="{rleft}" y="{rtop}" width="{rwid}" height="{rhei}" fill="#FFFFFF" fill-opacity=".0" {bord}/>
+            				</svg>
+            			</container>
+            		""".format(
+            				id = self.id, vis = self.visible, zind = self.zindex,
+            				hierarchy = self.hierarchy, order = self.order,
+            				top = self.top, left = self.left, width = width, height = height,
+            				image = self.finalimage, contents = contents,
+            				rleft = bw/2, rtop = bw/2, rwid = int(self.width)-bw, rhei = int(self.height)-bw, bord = border_string,
+            				name = self.name)
+                
+                return VDOM_object.wysiwyg(self, contents=result)
         
-        if self.image: 
-            result = \
-                u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
-                            top="{top}" left="{left}" width="{width}" height="{height}">
-                        <svg>
-                            <image href="#Res({image})" x="0" y="0" width="{width}" height="{height}"/>
-                        </svg>{contents}
-                        <svg>
-                            <rect x="{rleft}" y="{rtop}" width="{rwid}" height="{rhei}" fill="#FFFFFF" fill-opacity=".0" {bord}/>
-                        </svg>
-                    </container>
-                """.format(
-                        id = self.id, vis = self.visible, zind = self.zindex,
-                        hierarchy = self.hierarchy, order = self.order,
-                        top = self.top, left = self.left, width = width, height = height,
-                        image = self.finalimage, contents = contents,
-                        rleft = bw/2, rtop = bw/2, rwid = int(self.width)-bw, rhei = int(self.height)-bw, bord = border_string,
-                        name = self.name)
         else:
-            fontsize = u"""fontsize="%s" """ % self.fontsize if self.fontsize else u""
-            label = u"<![CDATA[%s%s]>" % (self.text, "]")
-                    
-            result = \
-                u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-                            top="{top}" left="{left}" width="{width}" height="{height}">
-                        <svg>
-                            <rect x="{rec_left}" y="{rec_top}" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" {bord}/>
-                        </svg>
-                        <text top="{txt_top}" left="{txt_left}" width="{txt_wid}" textalign="{align}" 
-                            color="#{color}" fontstyle="{fstyle}" 
-                            textdecoration="{txt_decor}" fontweight="{fweight}" fontfamily="{ffamily}" {fsize}>
-                            {label}
-                        </text>{contents}
-                    </container>
-                """.format(
-                        id = self.id, vis = self.visible, zind = self.zindex, 
-                        hierarchy = self.hierarchy, order = self.order, 
-                        top = self.top, left = self.left, width = self.width, height = self.height, 
-                        rec_left = bw/2, rec_top = bw/2, rec_wid = int(self.width)-bw, rec_hei = int(self.height)-bw,
-                        bord = border_string,
-                        txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
-                        align = self.align, color = self.color, fstyle = self.fontstyle, 
-                        txt_decor = self.textdecoration,
-                        fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
-                        fsize = fontsize, label = label, contents = contents, name = self.name)
-        return VDOM_object.wysiwyg(self, contents=result)
+        	fontsize = u"""fontsize="%s" """ % self.fontsize if self.fontsize else u""
+        	label = u"<![CDATA[%s%s]>" % (self.text, "]")
+        	
+        	result = \
+        		u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+        					top="{top}" left="{left}" width="{width}" height="{height}">
+        				<svg>
+        					<rect x="{rec_left}" y="{rec_top}" width="{rec_wid}" height="{rec_hei}" fill="#FFFFFF" {bord}/>
+        				</svg>
+        				<text top="{txt_top}" left="{txt_left}" width="{txt_wid}" textalign="{align}" 
+        					color="#{color}" fontstyle="{fstyle}" 
+        					textdecoration="{txt_decor}" fontweight="{fweight}" fontfamily="{ffamily}" {fsize}>
+        					{label}
+        				</text>{contents}
+        			</container>
+        		""".format(
+        				id = self.id, vis = self.visible, zind = self.zindex, 
+        				hierarchy = self.hierarchy, order = self.order, 
+        				top = self.top, left = self.left, width = self.width, height = self.height, 
+        				rec_left = bw/2, rec_top = bw/2, rec_wid = int(self.width)-bw, rec_hei = int(self.height)-bw,
+        				bord = border_string,
+        				txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
+        				align = self.align, color = self.color, fstyle = self.fontstyle, 
+        				txt_decor = self.textdecoration,
+        				fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
+        				fsize = fontsize, label = label, contents = contents, name = self.name)
+        	
+        	return VDOM_object.wysiwyg(self, contents=result)
 
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
     # o = application.objects.search(object_id)
     o = object
+    modifications = {}
+
+    for attr in ["left", "top", "width", "height"]:
+		if attr in attributes:
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+			unit = unit[0] if unit else "px"
+
+			if new_value is not None and new_value.isdigit():
+				new_value = new_value + unit
+			modifications[attr] = new_value
+
+    attributes.update(modifications)
     # if "image" in param and not "width" in param and not "height" in param:
     if "image" in attributes and not "width" in attributes and not "height" in attributes:
         # res_id = param["image"]["value"]
@@ -1517,53 +1822,83 @@ color: #999 !important;
     if "style" in attributes and attributes["style"] and o.attributes.style != pro_suite:        
         o.attributes.update(skin=0)
     return ""]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_button {
+            
+        }
+
+        .vdom_button.image div {
+          
+        }
+
+        .vdom_button.image div a {
+          
+        }
+
+        .vdom_button.image div img {
+          
+        }
+
+        .vdom_button.button div {
+          
+        }
+
+        .vdom_button.button div a {
+          
+        }
+
+        .vdom_button.link a {
+          
+        }
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(515)">
+        <Event Name="click" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(516)">
+        <Event Name="ctrlclick" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(517)">
+        <Event Name="dblclick" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(518)">
+        <Event Name="mousedown" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(519)">
+        <Event Name="mousemove" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(521)">
+        <Event Name="mouseout" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(522)">
+        <Event Name="mouseover" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(523)">
+        <Event Name="mouseup" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
@@ -1573,87 +1908,87 @@ color: #999 !important;
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="addClass">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="className" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="disable">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="disable">
           <Parameters/>
           <SourceCode><![CDATA[$j('#'+this.domCont.id+' a').addClass('disabled');
 $j('#'+this.domCont.id+'_e2vdomhelper.disabled-over').show(0);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="enable">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="enable">
           <Parameters/>
           <SourceCode><![CDATA[$j('#'+this.domCont.id+' a').removeClass('disabled');
 $j('#'+this.domCont.id+'_e2vdomhelper.disabled-over').hide(0);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="moveTo">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newX" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="newY" Help="#Lang(808)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="Effect" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveZindexTo">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeClass">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="className" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="className" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="setButtonImage">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setButtonImage">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="resourceUrl" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="resourceUrl" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_setButtonImage(this.domCont, resourceUrl);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="setButtonRollover">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setButtonRollover">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="resourceUrl" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="resourceUrl" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_setButtonRollover(this.domCont, resourceUrl);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setClass">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="className" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).attr('class',className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="setLink">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setLink">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="containerUrl" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="containerUrl" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_setLink(this.domCont, containerUrl);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setText">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="setText">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="text" Help="#Lang(804)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="text" Help="#Lang(813)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[$q('a span',this.domCont).text(text);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="fade" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade, undefined, undefined, '');]]></SourceCode>
         </Action>
-        <Action Help="#Lang(524)" InterfaceName="#Lang(615)" MethodName="toggleClass">
+        <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(815)" ScriptName="className" Help="#Lang(715)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(715)" ScriptName="className" Help="#Lang(815)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
