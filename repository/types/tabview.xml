@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.337.6720</Version>
+    <Version>1.338.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -293,9 +293,13 @@
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
+      <Sentence ID="512">Toggle CSS class</Sentence>
       <Sentence ID="601">activateTab</Sentence>
+      <Sentence ID="602">toggleClass</Sentence>
       <Sentence ID="701">open tab</Sentence>
+      <Sentence ID="702">Name of CSS class</Sentence>
       <Sentence ID="801">Name of the opened tab</Sentence>
+      <Sentence ID="802">className</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -390,9 +394,13 @@
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">activateTab</Sentence>
+      <Sentence ID="602"></Sentence>
       <Sentence ID="701">newTab</Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="801">new tab</Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -487,9 +495,13 @@
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">Активировать вкладку</Sentence>
+      <Sentence ID="602"></Sentence>
       <Sentence ID="701">Открыть вкладку</Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="801">Имя открытой вкладки</Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -846,7 +858,7 @@ var tabview_children_%(id)s = %(arr)s;
 		result = \
 			u"""
 <style type="text/css">{css}</style>
-<div {debug_info} id="{id}" class="tabview {classname}" style="{style}">
+<div {debug_info} id="{id}" class="vdom_tabview {classname}" style="{style}">
     {tabs}
     {cont_tag}
 </div>
@@ -1046,35 +1058,10 @@ def on_insert(parent, object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="tabchanged" Help="#Lang(502)">
+        <Event Name="click" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="ID" Order="0" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Name" Order="0" VbType="" Help="#Lang(902)"/>
-            <Parameter Name="Hierarchy" Order="0" VbType="" Help="#Lang(903)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseup" Help="#Lang(503)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove" Help="#Lang(504)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown" Help="#Lang(505)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout" Help="#Lang(506)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick" Help="#Lang(507)">
@@ -1083,22 +1070,47 @@ def on_insert(parent, object):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
+        <Event Name="dblclick" Help="#Lang(511)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown" Help="#Lang(505)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove" Help="#Lang(504)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout" Help="#Lang(506)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
+          </Parameters>
+        </Event>
         <Event Name="mouseover" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(509)">
+        <Event Name="mouseup" Help="#Lang(503)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(511)">
+        <Event Name="tabchanged" Help="#Lang(502)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="ID" Order="0" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Name" Order="0" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="Hierarchy" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -1126,6 +1138,12 @@ if (typeof x !== 'undefined') {
    
 	});
 }]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(512)" InterfaceName="#Lang(602)" MethodName="toggleClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(802)" ScriptName="className" Help="#Lang(702)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

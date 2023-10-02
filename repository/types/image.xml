@@ -1178,7 +1178,7 @@ class VDOM_image(VDOM_object):
         result = ""
         if self.render_mode == "0":
             result = \
-				u"""<img id="{id}" objname={name} class="{classname}" src="{link}" tabindex="{tabindex}" style="{visible}" {title} />
+				u"""<img id="{id}" objname={name} class="vdom_image {classname}" src="{link}" tabindex="{tabindex}" style="{visible}" {title} />
 				""".format(
 						id = id,
 						name= self.name,
@@ -1194,7 +1194,7 @@ class VDOM_image(VDOM_object):
 					backgroundimage= self.get_css_style('background-image', "url("+link+")")
 				)
             result = \
-				u"""<div objname={name} class="{classname}" {width} {height} id="{id}" style="{visible}"></div>
+				u"""<div objname={name} class="vdom_image {classname}" {width} {height} id="{id}" style="{visible}"></div>
 				""".format(
 						id = id,
 						name= self.name,
@@ -1208,7 +1208,7 @@ class VDOM_image(VDOM_object):
 
         if self.render_mode == "2":
             result = \
-				u"""<div objname={name} class="{classname}" id="{id}" style="{visible}">
+				u"""<div objname={name} class="vdom_image {classname}" id="{id}" style="{visible}">
 						<img src="{link}" tabindex="{tabindex}" {title} />
 					</div>
 				""".format(
@@ -1400,7 +1400,14 @@ def on_update(object, attributes):
         if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
             attributes["height"] = "2500"
     return ""]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_image {
+            
+        }
+
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
