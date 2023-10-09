@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.209.6201</Version>
+    <Version>1.211.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
@@ -1625,21 +1625,15 @@ class VDOM_button(VDOM_object):
                     			disp=display, link=self.link, classname=clname, text=self.text, ocss=overcss)
         
     def regex(self, obj):
-		if obj:
-			match = re.search(r'\d+', obj)
-			if match:
-				return int(match.group())
-			else:
-				return 50
-		else:
-			return 50
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
 	
     def wysiwyg(self, contents=""):
-        outer_width = self.width = self.regex(self.width)
-        outer_height = self.height = self.regex(self.height)
-        self.top = self.regex(self.top) if self.top else ""
-        self.left = self.regex(self.left) if self.left else ""
-            
+        width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
+        
+        self.width = int(width) if width else 150
+        self.height = int(height) if height else 20
+        
         if self.border and self.border != "0":
             bw = int(self.border)
             minsize = min(int(self.width), int(self.height))
@@ -1665,13 +1659,13 @@ class VDOM_button(VDOM_object):
                 	""".format(
             				id = self.id, vis = self.visible, zind = self.zindex,
             				hierarchy = self.hierarchy, order = self.order,
-            				top = self.top, left = self.left, out_wid = outer_width, out_hei = outer_height,
+            				top = self.top, left = self.left, out_wid = self.width, out_hei = self.height,
             				img_id = image_id, name = self.name, contents = contents)
                 
                 return VDOM_object.wysiwyg(self, contents=result)
             
-            width = self.width if self.width else 50
-            height = self.height if self.height else 50
+            width = int(width) if width else 50
+            height = int(height) if height else 50
             
             if self.image:
             	result = \
@@ -1735,7 +1729,7 @@ def on_update(object, attributes):
 		if attr in attributes:
 			new_value = attributes.get(attr)
 			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit else "px"
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
 
 			if new_value is not None and new_value.isdigit():
 				new_value = new_value + unit
