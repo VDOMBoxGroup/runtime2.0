@@ -14,10 +14,10 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.554.9</Version>
+    <Version>1.561.9</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, form, accordeon, tabview, dialog_2, vdomclass, desktopapplication, desktopshared, smartfolderdata, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, tabview, form, accordeon, dialog_2, vdomclass, desktopapplication, desktopshared, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_update</Handlers>
     <RemoteMethods/>
@@ -92,10 +92,10 @@
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^-?\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(-?\d{0,4}|(auto|\d{0,4}(px)?|\d{0,4}(%)))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
@@ -104,10 +104,10 @@
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^-?\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(-?\d{0,4}|(auto|\d{0,4}(px)?|\d{0,4}(%)))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
@@ -116,10 +116,10 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -128,10 +128,10 @@
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>title</Name>
@@ -218,63 +218,99 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>lockposition</Name>
+      <Name>margins</Name>
       <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>absolute</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(429)|absolute)|(#Lang(430)|fixed)|(#Lang(431)|relative)|(#Lang(432)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>lockposition</Name>
+      <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(423)|1)|(#Lang(424)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>backgroundcolor</Name>
-      <DisplayName>#Lang(119)</DisplayName>
+      <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
+      <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>backgroundimage</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>File()</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>resource_cache</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue/>
       <Visible>0</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(5000)</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>backgroundrepeat</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1)|(#Lang(427)|2)|(#Lang(428)|3))</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -299,11 +335,14 @@
       <Sentence ID="115">Security code</Sentence>
       <Sentence ID="116">Overflow</Sentence>
       <Sentence ID="117">CSS Class</Sentence>
-      <Sentence ID="118">lockposition</Sentence>
-      <Sentence ID="119">Background color</Sentence>
-      <Sentence ID="121">Background image</Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="123">Background repeat</Sentence>
+      <Sentence ID="118">Margins</Sentence>
+      <Sentence ID="119">Paddings</Sentence>
+      <Sentence ID="121">Position</Sentence>
+      <Sentence ID="122">lockposition</Sentence>
+      <Sentence ID="123">Background color</Sentence>
+      <Sentence ID="124">Background image</Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126">Background repeat</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">The background color of the object in the WYSIWYG mode of VDOM IDE. It helps to navigate the objects of the page if there are too many of them.</Sentence>
       <Sentence ID="203">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
@@ -320,11 +359,14 @@
       <Sentence ID="215">Define the security code of the container. If it is set (it must be an integer), the Container will not be displayed until you pass this security code to the page on its rendering.</Sentence>
       <Sentence ID="216">The overflow control mode: Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown; Hidden - if the content does not fit in the object' borders - it will be cropped within the borders; Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not; Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
       <Sentence ID="217">Incorrect value</Sentence>
-      <Sentence ID="218">Set parent's position.</Sentence>
-      <Sentence ID="219">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
-      <Sentence ID="221">Incorrect value.</Sentence>
-      <Sentence ID="222">Incorrect value</Sentence>
-      <Sentence ID="223">Incorrect value.</Sentence>
+      <Sentence ID="218">newAttribute22</Sentence>
+      <Sentence ID="219">newAttribute21</Sentence>
+      <Sentence ID="221">newAttribute23</Sentence>
+      <Sentence ID="222">Set parent's position.</Sentence>
+      <Sentence ID="223">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
+      <Sentence ID="224">Incorrect value.</Sentence>
+      <Sentence ID="225">Incorrect value</Sentence>
+      <Sentence ID="226">Incorrect value.</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 99.</Sentence>
@@ -341,11 +383,14 @@
       <Sentence ID="315">Incorrect value.</Sentence>
       <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317"></Sentence>
-      <Sentence ID="318">Incorrect value, must be 0 or 1.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
-      <Sentence ID="321">The background image of the object. Can be set together with the Background color attribute.</Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
+      <Sentence ID="318">newAttribute22</Sentence>
+      <Sentence ID="319">newAttribute21</Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322">Incorrect value, must be 0 or 1.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">The background image of the object. Can be set together with the Background color attribute.</Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -372,23 +417,27 @@
       <Sentence ID="426">no-repeat</Sentence>
       <Sentence ID="427">repeat-x</Sentence>
       <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="501">Change size of the object</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Start dragging the object</Sentence>
-      <Sentence ID="505">Start dragging the object</Sentence>
-      <Sentence ID="506">Start changing size of the object</Sentence>
-      <Sentence ID="507">Set new transparency</Sentence>
+      <Sentence ID="429">Absolute</Sentence>
+      <Sentence ID="430">Fixed</Sentence>
+      <Sentence ID="431">Relative</Sentence>
+      <Sentence ID="432">Static</Sentence>
+      <Sentence ID="501">Start dragging the object</Sentence>
+      <Sentence ID="502">Stop drag action</Sentence>
+      <Sentence ID="503">Start dragging the object</Sentence>
+      <Sentence ID="504">Stop drag action</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506">Hide the object</Sentence>
+      <Sentence ID="507">Move object to the selected point</Sentence>
       <Sentence ID="508">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="509">Move object to the selected point</Sentence>
-      <Sentence ID="511">Start dragging the object</Sentence>
+      <Sentence ID="509">Start dragging the object</Sentence>
+      <Sentence ID="511">Change size of the object</Sentence>
       <Sentence ID="512">Start changing width of the object</Sentence>
-      <Sentence ID="513">Stop drag action</Sentence>
-      <Sentence ID="514">Stop drag action</Sentence>
-      <Sentence ID="515">Start changing height of the object</Sentence>
-      <Sentence ID="516">Start changing width of the object</Sentence>
-      <Sentence ID="517">Show the object</Sentence>
-      <Sentence ID="518"></Sentence>
+      <Sentence ID="513">Set new transparency</Sentence>
+      <Sentence ID="514">Show the object</Sentence>
+      <Sentence ID="515">Start changing width of the object</Sentence>
+      <Sentence ID="516">Start changing size of the object</Sentence>
+      <Sentence ID="517">Start changing height of the object</Sentence>
+      <Sentence ID="518">Toggle CSS class</Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
@@ -398,56 +447,56 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
-      <Sentence ID="529">Toggle CSS class</Sentence>
-      <Sentence ID="601">resizeTo</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604">dragStart</Sentence>
-      <Sentence ID="605">dragStart</Sentence>
-      <Sentence ID="606">startResizeXY</Sentence>
-      <Sentence ID="607">setTransparency</Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="601">dragStart</Sentence>
+      <Sentence ID="602">dragStop</Sentence>
+      <Sentence ID="603">dragStart</Sentence>
+      <Sentence ID="604">dragStop</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606">Hide</Sentence>
+      <Sentence ID="607">moveTo</Sentence>
       <Sentence ID="608">moveZindexTo</Sentence>
-      <Sentence ID="609">moveTo</Sentence>
-      <Sentence ID="611">dragStart</Sentence>
+      <Sentence ID="609">dragStart</Sentence>
+      <Sentence ID="611">resizeTo</Sentence>
       <Sentence ID="612">startResizeX</Sentence>
-      <Sentence ID="613">dragStop</Sentence>
-      <Sentence ID="614">dragStop</Sentence>
-      <Sentence ID="615">startResizeY</Sentence>
-      <Sentence ID="616">startResizeX</Sentence>
-      <Sentence ID="617">Show</Sentence>
+      <Sentence ID="613">setTransparency</Sentence>
+      <Sentence ID="614">Show</Sentence>
+      <Sentence ID="615">startResizeX</Sentence>
+      <Sentence ID="616">startResizeXY</Sentence>
+      <Sentence ID="617">startResizeY</Sentence>
       <Sentence ID="618">toggleClass</Sentence>
-      <Sentence ID="701">Width</Sentence>
-      <Sentence ID="702">Height</Sentence>
-      <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704"></Sentence>
       <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="707">Transparency</Sentence>
-      <Sentence ID="708">newZindex</Sentence>
-      <Sentence ID="709">newX</Sentence>
-      <Sentence ID="711">newY</Sentence>
-      <Sentence ID="712">Effect</Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="714">newX</Sentence>
-      <Sentence ID="715">newY</Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717">Name of CSS class</Sentence>
-      <Sentence ID="801">New width value</Sentence>
-      <Sentence ID="802">New height value</Sentence>
-      <Sentence ID="803">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="706">newX</Sentence>
+      <Sentence ID="707">newY</Sentence>
+      <Sentence ID="708">Effect</Sentence>
+      <Sentence ID="709">newZindex</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712">Width</Sentence>
+      <Sentence ID="713">Height</Sentence>
+      <Sentence ID="714"></Sentence>
+      <Sentence ID="715">Transparency</Sentence>
+      <Sentence ID="716">Fade</Sentence>
+      <Sentence ID="717">className</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="804"></Sentence>
       <Sentence ID="805">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="806">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="807">New transparency value</Sentence>
-      <Sentence ID="808">New Z-index value</Sentence>
-      <Sentence ID="809">X-coordinate of new point</Sentence>
-      <Sentence ID="811">Y-coordinate of new point</Sentence>
-      <Sentence ID="812">Visual effect of moving, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="813"></Sentence>
-      <Sentence ID="814">X-coordinate of new point</Sentence>
-      <Sentence ID="815">Y-coordinate of new point</Sentence>
-      <Sentence ID="816"></Sentence>
-      <Sentence ID="817">className</Sentence>
+      <Sentence ID="806">X-coordinate of new point</Sentence>
+      <Sentence ID="807">Y-coordinate of new point</Sentence>
+      <Sentence ID="808">Visual effect of moving, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="809">New Z-index value</Sentence>
+      <Sentence ID="811">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="812">New width value</Sentence>
+      <Sentence ID="813">New height value</Sentence>
+      <Sentence ID="814"></Sentence>
+      <Sentence ID="815">New transparency value</Sentence>
+      <Sentence ID="816">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="817">Name of CSS class</Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -492,10 +541,13 @@
       <Sentence ID="116">Overflow</Sentence>
       <Sentence ID="117">CSS Class</Sentence>
       <Sentence ID="118"></Sentence>
-      <Sentence ID="119">Background color</Sentence>
-      <Sentence ID="121">Background image</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
-      <Sentence ID="123">Background repeat</Sentence>
+      <Sentence ID="123">Background color</Sentence>
+      <Sentence ID="124">Background image</Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126">Background repeat</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">The background color of the object in the WYSIWYG mode of VDOM IDE. It helps to navigate the objects of the page if there are too many of them.</Sentence>
       <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -513,10 +565,13 @@
       <Sentence ID="216">Overflow mode</Sentence>
       <Sentence ID="217">Valeur Incorrecte</Sentence>
       <Sentence ID="218"></Sentence>
-      <Sentence ID="219">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
-      <Sentence ID="221">Incorrect value.</Sentence>
-      <Sentence ID="222">Valeur Incorrecte</Sentence>
-      <Sentence ID="223">Incorrect value.</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
+      <Sentence ID="224">Incorrect value.</Sentence>
+      <Sentence ID="225">Valeur Incorrecte</Sentence>
+      <Sentence ID="226">Incorrect value.</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value.</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -534,10 +589,13 @@
       <Sentence ID="316">Valeur Incorrecte</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
-      <Sentence ID="321">The background image of the object. Can be set together with the Background color attribute.</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
-      <Sentence ID="323">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">The background image of the object. Can be set together with the Background color attribute.</Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -564,23 +622,27 @@
       <Sentence ID="426">no-repeat</Sentence>
       <Sentence ID="427">repeat-x</Sentence>
       <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="501">Change size of the object</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Start drag action</Sentence>
-      <Sentence ID="505">Start drag action</Sentence>
-      <Sentence ID="506">Start changing size of the object</Sentence>
-      <Sentence ID="507">Set new transparency</Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="430"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="501">Start drag action</Sentence>
+      <Sentence ID="502">Stop drag action</Sentence>
+      <Sentence ID="503">Start drag action</Sentence>
+      <Sentence ID="504">Stop drag action</Sentence>
+      <Sentence ID="505">Show the object</Sentence>
+      <Sentence ID="506">Hide the object</Sentence>
+      <Sentence ID="507">Move object to selected point</Sentence>
       <Sentence ID="508">Change position in visual hierarchy of objects</Sentence>
-      <Sentence ID="509">Move object to selected point</Sentence>
-      <Sentence ID="511">Start drag action</Sentence>
+      <Sentence ID="509">Start drag action</Sentence>
+      <Sentence ID="511">Change size of the object</Sentence>
       <Sentence ID="512">Start changing width of the object</Sentence>
-      <Sentence ID="513">Stop drag action</Sentence>
-      <Sentence ID="514">Stop drag action</Sentence>
-      <Sentence ID="515">Start changing height of the object</Sentence>
-      <Sentence ID="516">Start changing width of the object</Sentence>
-      <Sentence ID="517">Show the object</Sentence>
-      <Sentence ID="518"></Sentence>
+      <Sentence ID="513">Set new transparency</Sentence>
+      <Sentence ID="514">Show the object</Sentence>
+      <Sentence ID="515">Start changing width of the object</Sentence>
+      <Sentence ID="516">Start changing size of the object</Sentence>
+      <Sentence ID="517">Start changing height of the object</Sentence>
+      <Sentence ID="518">Toggle CSS class</Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
@@ -590,56 +652,56 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
-      <Sentence ID="529">Toggle CSS class</Sentence>
-      <Sentence ID="601">resizeTo</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604">dragStart</Sentence>
-      <Sentence ID="605">dragStart</Sentence>
-      <Sentence ID="606">startResizeXY</Sentence>
-      <Sentence ID="607">setTransparency</Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="601">dragStart</Sentence>
+      <Sentence ID="602">dragStop</Sentence>
+      <Sentence ID="603">dragStart</Sentence>
+      <Sentence ID="604">dragStop</Sentence>
+      <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606">Hide</Sentence>
+      <Sentence ID="607">moveTo</Sentence>
       <Sentence ID="608">moveZindexTo</Sentence>
-      <Sentence ID="609">moveTo</Sentence>
-      <Sentence ID="611">dragStart</Sentence>
+      <Sentence ID="609">dragStart</Sentence>
+      <Sentence ID="611">resizeTo</Sentence>
       <Sentence ID="612">startResizeX</Sentence>
-      <Sentence ID="613">dragStop</Sentence>
-      <Sentence ID="614">dragStop</Sentence>
-      <Sentence ID="615">startResizeY</Sentence>
-      <Sentence ID="616">startResizeX</Sentence>
-      <Sentence ID="617">Show</Sentence>
+      <Sentence ID="613">setTransparency</Sentence>
+      <Sentence ID="614">Show</Sentence>
+      <Sentence ID="615">startResizeX</Sentence>
+      <Sentence ID="616">startResizeXY</Sentence>
+      <Sentence ID="617">startResizeY</Sentence>
       <Sentence ID="618">toggleClass</Sentence>
-      <Sentence ID="701">Width</Sentence>
-      <Sentence ID="702">Height</Sentence>
-      <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">newX</Sentence>
+      <Sentence ID="703">newY</Sentence>
+      <Sentence ID="704"></Sentence>
       <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="706">Fade</Sentence>
-      <Sentence ID="707">Transparency</Sentence>
-      <Sentence ID="708">newZindex</Sentence>
-      <Sentence ID="709">newX</Sentence>
-      <Sentence ID="711">newY</Sentence>
-      <Sentence ID="712">Effect</Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="714">newX</Sentence>
-      <Sentence ID="715">newY</Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717">Name of CSS class</Sentence>
-      <Sentence ID="801">New width value</Sentence>
-      <Sentence ID="802">New height value</Sentence>
-      <Sentence ID="803">Fade time</Sentence>
-      <Sentence ID="804">Time of appearance</Sentence>
+      <Sentence ID="706">newX</Sentence>
+      <Sentence ID="707">newY</Sentence>
+      <Sentence ID="708">Effect</Sentence>
+      <Sentence ID="709">newZindex</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712">Width</Sentence>
+      <Sentence ID="713">Height</Sentence>
+      <Sentence ID="714"></Sentence>
+      <Sentence ID="715">Transparency</Sentence>
+      <Sentence ID="716">Fade</Sentence>
+      <Sentence ID="717">className</Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802">X-coordinate of new point</Sentence>
+      <Sentence ID="803">Y-coordinate of new point</Sentence>
+      <Sentence ID="804"></Sentence>
       <Sentence ID="805">Fade time</Sentence>
-      <Sentence ID="806">Fade time</Sentence>
-      <Sentence ID="807">New transparency value</Sentence>
-      <Sentence ID="808">New Z-index value</Sentence>
-      <Sentence ID="809">X-coordinate of new point</Sentence>
-      <Sentence ID="811">Y-coordinate of new point</Sentence>
-      <Sentence ID="812">Visual effect by moving</Sentence>
-      <Sentence ID="813"></Sentence>
-      <Sentence ID="814">X-coordinate of new point</Sentence>
-      <Sentence ID="815">Y-coordinate of new point</Sentence>
-      <Sentence ID="816"></Sentence>
-      <Sentence ID="817">className</Sentence>
+      <Sentence ID="806">X-coordinate of new point</Sentence>
+      <Sentence ID="807">Y-coordinate of new point</Sentence>
+      <Sentence ID="808">Visual effect by moving</Sentence>
+      <Sentence ID="809">New Z-index value</Sentence>
+      <Sentence ID="811">Fade time</Sentence>
+      <Sentence ID="812">New width value</Sentence>
+      <Sentence ID="813">New height value</Sentence>
+      <Sentence ID="814"></Sentence>
+      <Sentence ID="815">New transparency value</Sentence>
+      <Sentence ID="816">Time of appearance</Sentence>
+      <Sentence ID="817">Name of CSS class</Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -684,10 +746,13 @@
       <Sentence ID="116">Переполнение</Sentence>
       <Sentence ID="117">CSS Class</Sentence>
       <Sentence ID="118"></Sentence>
-      <Sentence ID="119">Background color</Sentence>
-      <Sentence ID="121">Background image</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
-      <Sentence ID="123">Background repeat</Sentence>
+      <Sentence ID="123">Background color</Sentence>
+      <Sentence ID="124">Background image</Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126">Background repeat</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">The background color of the object in the WYSIWYG mode of VDOM IDE. It helps to navigate the objects of the page if there are too many of them.</Sentence>
       <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
@@ -705,10 +770,13 @@
       <Sentence ID="216">Режим переполнения</Sentence>
       <Sentence ID="217">Неправильное значение</Sentence>
       <Sentence ID="218"></Sentence>
-      <Sentence ID="219">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
-      <Sentence ID="221">Incorrect value.</Sentence>
-      <Sentence ID="222">Неправильное значение</Sentence>
-      <Sentence ID="223">Incorrect value.</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
+      <Sentence ID="224">Incorrect value.</Sentence>
+      <Sentence ID="225">Неправильное значение</Sentence>
+      <Sentence ID="226">Incorrect value.</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value.</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -726,10 +794,13 @@
       <Sentence ID="316">Неправильное значение</Sentence>
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
-      <Sentence ID="321">The background image of the object. Can be set together with the Background color attribute.</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
-      <Sentence ID="323">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">The background image of the object. Can be set together with the Background color attribute.</Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326">The way of displaying the background image: no-repeat - the image is not repeated and situated at the top left; repeat - the image is repeated in the whole Container; repeat-x - the image is repeated along the x-axis; repeat-y - the image is repeated along the y-axis.</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Невидимый</Sentence>
@@ -756,23 +827,27 @@
       <Sentence ID="426">no-repeat</Sentence>
       <Sentence ID="427">repeat-x</Sentence>
       <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="501">Изменить размеры объекта</Sentence>
-      <Sentence ID="502">Спрятать объект</Sentence>
-      <Sentence ID="503">Показать объект</Sentence>
-      <Sentence ID="504">Начать операцию перетаскивания</Sentence>
-      <Sentence ID="505">Начать операцию перетаскивания</Sentence>
-      <Sentence ID="506">Начать изменение размеров объекта</Sentence>
-      <Sentence ID="507">Установить значение прозрачности</Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="430"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="501">Начать операцию перетаскивания</Sentence>
+      <Sentence ID="502">Закончить операцию перетаскивания</Sentence>
+      <Sentence ID="503">Начать операцию перетаскивания</Sentence>
+      <Sentence ID="504">Закончить операцию перетаскивания</Sentence>
+      <Sentence ID="505">Показать объект</Sentence>
+      <Sentence ID="506">Спрятать объект</Sentence>
+      <Sentence ID="507">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="508">Изменить позицию в визуальной иерархии объектов</Sentence>
-      <Sentence ID="509">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="511">Начать операцию перетаскивания</Sentence>
+      <Sentence ID="509">Начать операцию перетаскивания</Sentence>
+      <Sentence ID="511">Изменить размеры объекта</Sentence>
       <Sentence ID="512">Начать изменение ширины объекта</Sentence>
-      <Sentence ID="513">Закончить операцию перетаскивания</Sentence>
-      <Sentence ID="514">Закончить операцию перетаскивания</Sentence>
-      <Sentence ID="515">Начать изменение высоты объекта</Sentence>
-      <Sentence ID="516">Начать изменение ширины объекта</Sentence>
-      <Sentence ID="517">Показать объект</Sentence>
-      <Sentence ID="518"></Sentence>
+      <Sentence ID="513">Установить значение прозрачности</Sentence>
+      <Sentence ID="514">Показать объект</Sentence>
+      <Sentence ID="515">Начать изменение ширины объекта</Sentence>
+      <Sentence ID="516">Начать изменение размеров объекта</Sentence>
+      <Sentence ID="517">Начать изменение высоты объекта</Sentence>
+      <Sentence ID="518">Toggle CSS class</Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
@@ -782,56 +857,56 @@
       <Sentence ID="526"></Sentence>
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
-      <Sentence ID="529">Toggle CSS class</Sentence>
-      <Sentence ID="601">Изменить размеры</Sentence>
-      <Sentence ID="602">Спрятать</Sentence>
-      <Sentence ID="603">Показать</Sentence>
-      <Sentence ID="604">Начать перетаскивание</Sentence>
-      <Sentence ID="605">Начать перетаскивание</Sentence>
-      <Sentence ID="606">Начать изменение размеров</Sentence>
-      <Sentence ID="607">Установить прозрачность</Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="601">Начать перетаскивание</Sentence>
+      <Sentence ID="602">Закончить перетаскивание</Sentence>
+      <Sentence ID="603">Начать перетаскивание</Sentence>
+      <Sentence ID="604">Закончить перетаскивание</Sentence>
+      <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="606">Спрятать</Sentence>
+      <Sentence ID="607">Сдвинуть</Sentence>
       <Sentence ID="608">Изменить Z-индекс</Sentence>
-      <Sentence ID="609">Сдвинуть</Sentence>
-      <Sentence ID="611">Начать перетаскивание</Sentence>
+      <Sentence ID="609">Начать перетаскивание</Sentence>
+      <Sentence ID="611">Изменить размеры</Sentence>
       <Sentence ID="612">Начать изменение ширины</Sentence>
-      <Sentence ID="613">Закончить перетаскивание</Sentence>
-      <Sentence ID="614">Закончить перетаскивание</Sentence>
-      <Sentence ID="615">Начать изменение высоты</Sentence>
-      <Sentence ID="616">Начать изменение ширины</Sentence>
-      <Sentence ID="617">Показать</Sentence>
+      <Sentence ID="613">Установить прозрачность</Sentence>
+      <Sentence ID="614">Показать</Sentence>
+      <Sentence ID="615">Начать изменение ширины</Sentence>
+      <Sentence ID="616">Начать изменение размеров</Sentence>
+      <Sentence ID="617">Начать изменение высоты</Sentence>
       <Sentence ID="618">toggleClass</Sentence>
-      <Sentence ID="701">Ширина</Sentence>
-      <Sentence ID="702">Высота</Sentence>
-      <Sentence ID="703">Затухание</Sentence>
-      <Sentence ID="704">Задержка</Sentence>
+      <Sentence ID="701">Затухание</Sentence>
+      <Sentence ID="702">X</Sentence>
+      <Sentence ID="703">Y</Sentence>
+      <Sentence ID="704"></Sentence>
       <Sentence ID="705">Затухание</Sentence>
-      <Sentence ID="706">Затухание</Sentence>
-      <Sentence ID="707">Прозрачность</Sentence>
-      <Sentence ID="708">Z-индекс</Sentence>
-      <Sentence ID="709">X</Sentence>
-      <Sentence ID="711">Y</Sentence>
-      <Sentence ID="712">Эффект</Sentence>
-      <Sentence ID="713"></Sentence>
-      <Sentence ID="714">X</Sentence>
-      <Sentence ID="715">Y</Sentence>
-      <Sentence ID="716"></Sentence>
-      <Sentence ID="717">Name of CSS class</Sentence>
-      <Sentence ID="801">Новое значение ширины</Sentence>
-      <Sentence ID="802">Новое значение высоты</Sentence>
-      <Sentence ID="803">Время исчезновения</Sentence>
-      <Sentence ID="804">Время задержки</Sentence>
+      <Sentence ID="706">X</Sentence>
+      <Sentence ID="707">Y</Sentence>
+      <Sentence ID="708">Эффект</Sentence>
+      <Sentence ID="709">Z-индекс</Sentence>
+      <Sentence ID="711">Затухание</Sentence>
+      <Sentence ID="712">Ширина</Sentence>
+      <Sentence ID="713">Высота</Sentence>
+      <Sentence ID="714"></Sentence>
+      <Sentence ID="715">Прозрачность</Sentence>
+      <Sentence ID="716">Задержка</Sentence>
+      <Sentence ID="717">className</Sentence>
+      <Sentence ID="801">Время исчезновения</Sentence>
+      <Sentence ID="802">X-координата новой точки</Sentence>
+      <Sentence ID="803">Y-координата новой точки</Sentence>
+      <Sentence ID="804"></Sentence>
       <Sentence ID="805">Время исчезновения</Sentence>
-      <Sentence ID="806">Время исчезновения</Sentence>
-      <Sentence ID="807">Новое значение прозрачности</Sentence>
-      <Sentence ID="808">Новое значение Z-индекса</Sentence>
-      <Sentence ID="809">X-координата новой точки</Sentence>
-      <Sentence ID="811">Y-координата новой точки</Sentence>
-      <Sentence ID="812">Визуальный эффект при сдвиге</Sentence>
-      <Sentence ID="813"></Sentence>
-      <Sentence ID="814">X-координата новой точки</Sentence>
-      <Sentence ID="815">Y-координата новой точки</Sentence>
-      <Sentence ID="816"></Sentence>
-      <Sentence ID="817">className</Sentence>
+      <Sentence ID="806">X-координата новой точки</Sentence>
+      <Sentence ID="807">Y-координата новой точки</Sentence>
+      <Sentence ID="808">Визуальный эффект при сдвиге</Sentence>
+      <Sentence ID="809">Новое значение Z-индекса</Sentence>
+      <Sentence ID="811">Время исчезновения</Sentence>
+      <Sentence ID="812">Новое значение ширины</Sentence>
+      <Sentence ID="813">Новое значение высоты</Sentence>
+      <Sentence ID="814"></Sentence>
+      <Sentence ID="815">Новое значение прозрачности</Sentence>
+      <Sentence ID="816">Время задержки</Sentence>
+      <Sentence ID="817">Name of CSS class</Sentence>
       <Sentence ID="901">Текущее значение Y</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение Y</Sentence>
@@ -1041,9 +1116,12 @@
   </Resources>
   <SourceCode><![CDATA[from scripting import e2vdom
 from scripting.legacy.id import id2link1
-
+import re
 
 class VDOM_container(VDOM_object):
+	
+    def check_unit(self, value):
+        return value + "px" if value.isdigit() else value
 
     def render(self, contents=""):
 
@@ -1081,16 +1159,29 @@ class VDOM_container(VDOM_object):
             background_repeat = u''
 
         style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+        
+        position = u"position: {pos};".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+        
+        styles = {
+            "width": self.check_unit(self.width),
+            "height": self.check_unit(self.height),
+            "margin": self.margins,
+            "padding": self.paddings,
+            "top": self.check_unit(self.top),
+            "left": self.check_unit(self.left)
+        }
+        if self.positioning == "static":
+        	styles["top"] = styles["left"] = ""
+        	
+        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-        style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
-                    width: {width}px; overflow: {overflow}; {height} {background_color} {background_image} {background_repeat}"""\
-                .format(display = display, zind = style_zindex, pos = self.position,
+        style = u"""{display} {zind} {pos} {styles} overflow: {overflow} {background_color} {background_image} {background_repeat}"""\
+                .format(display = display, zind = style_zindex, pos = position,
                     background_color = background_color, background_image = background_image, background_repeat = background_repeat,
-                    top = self.top, left = self.left, width = self.width, overflow = overflow, height = height)
+                    overflow = overflow, height = height, styles = styles_str)
 
         id = u"o_" + (self.id).replace('-', '_')
         footer = u"""rel="footer" """ if self.footer == "1" else u""
-        classname = u"""class="%s" """ % self.classname if self.classname else u""
 
         if self.titlewrap == "0":
             title_tag = u""
@@ -1106,21 +1197,30 @@ class VDOM_container(VDOM_object):
             debug_info = u"objtype='container' objname='%s'" % ( self.name )
 
 
-        result = u"""<div {debug_info} {footer} id="{id}" style="{style}" {classname}>{title_tag}{cont_tag}</div>"""\
-                .format(debug_info = debug_info, footer =  footer, id = id, style = style, classname = classname,
+        result = u"""<div {debug_info} {footer} id="{id}" style="{style}" class="vdom_container {classname}">
+        				{title_tag}{cont_tag}
+        			</div>"""\
+                .format(debug_info = debug_info, footer =  footer, id = id, style = style, classname = self.classname,
                             title_tag = title_tag, cont_tag = cont_tag)
 
         return VDOM_object.render(self, contents=result)
 
 
-
+    def regex(self, obj):
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_centered_image_metrics
 
         colorNumber = self.backgroundcolor if self.backgroundcolor != "" else self.designcolor
         colorValue = "#" + colorNumber if colorNumber != "" else "none"
-
+        
+        width, height, top, left = map(self.regex, (self.width, self.height, self.top, self.left))
+		
+        width = int(width) if width else 100
+        height = int(height) if height else 100
+        
         # title
         title_text = ""
         if self.title!="" and self.titlewrap!="0":
@@ -1133,7 +1233,7 @@ class VDOM_container(VDOM_object):
             image_id = "8c8c753c-f1e4-07bb-e5bf-08771d63f502"
             image_width = image_height = 50
 
-            image_x, image_y, image_width, image_height = get_centered_image_metrics( image_width, image_height, int(self.width), int(self.height) )
+            image_x, image_y, image_width, image_height = get_centered_image_metrics( image_width, image_height, width, height )
 
             empty_container_image = u"""<image href="#Res({image_id})" x="{image_x}" y="{image_y}"
                                                         width="{image_width}" height="{image_height}" />
@@ -1158,7 +1258,7 @@ class VDOM_container(VDOM_object):
                         containerHeight="{containerHeight}" />
                 """.format(
                     backgroundimage = self.backgroundimage, repeat = bg_image_repeat,
-                    containerWidth = self.width,  containerHeight = self.height
+                    containerWidth = width,  containerHeight = height
                 )
 
         # get overflow value
@@ -1178,7 +1278,7 @@ class VDOM_container(VDOM_object):
                 </container>""".format(
                     id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
                     hierarchy = self.hierarchy, order = self.order, colorValue = colorValue,
-                    top = self.top, left = self.left, width = self.width, height = self.height,
+                    top = top, left = left, width = width, height = height,
                     contents = contents,
                     title_text = title_text,
                     empty_container_image = empty_container_image,
@@ -1192,40 +1292,56 @@ class VDOM_container(VDOM_object):
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
     # object = application.objects.search(object_id)
+    modifications = {}
+    
+    for attr in ["left", "top", "width", "height"]:
+    	if attr in attributes:
+    		new_value = attributes.get(attr)
+    		unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
+    		unit = unit[0] if unit and unit[0]!="auto" else "px"
+    		
+    		if new_value is not None and new_value.isdigit():
+    			new_value = new_value + unit
+    		modifications[attr] = new_value
+    
+    attributes.update(modifications)
 
-    if object.parent and object.parent.type.class_name == "VDOM_tabview" and object.attributes["lockposition"] == "1" and int(object.attributes["top"]) != 20 and int(object.attributes["left"]) != 1:
+    if object.parent and object.parent.type.class_name == "VDOM_tabview_v2" and object.attributes["lockposition"] == "1" and int(object.attributes["top"]) != 20 and int(object.attributes["left"]) != 1:
         # top_container = 20
         # left_container = 1
         # object.set_attributes({"left": left_container, "top": top_container})
         attributes.update(left="1", top="20")
 
     return ""]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_container {
+            
+        }
+
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(518)">
+        <Event Name="border" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(519)">
+        <Event Name="click" Help="#Lang(521)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(521)">
+        <Event Name="corner" Help="#Lang(522)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout" Help="#Lang(522)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick" Help="#Lang(523)">
@@ -1234,33 +1350,37 @@ def on_update(object, attributes):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="corner" Help="#Lang(524)">
+        <Event Name="dblclick" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(525)">
+        <Event Name="mousedown" Help="#Lang(525)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="border" Help="#Lang(526)">
+        <Event Name="mousemove" Help="#Lang(526)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(527)">
+        <Event Name="mouseout" Help="#Lang(527)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover" Help="#Lang(528)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(921)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(528)">
+        <Event Name="mouseup" Help="#Lang(529)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(923)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(924)"/>
@@ -1270,16 +1390,16 @@ def on_update(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="addClass">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="newClass" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="newClass" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).addClass(newClass);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="changeClass">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="changeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="newClass" Help="#Lang(814)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(715)" ScriptName="oldClass" Help="#Lang(815)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="newClass" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="oldClass" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[if ($j(this.domCont).hasClass(oldClass)){
     $j(this.domCont).removeClass(oldClass);
@@ -1288,87 +1408,87 @@ def on_update(object, attributes):
     console.info("Object " + this.domCont.id + " hasn't class " + oldClass);
 }]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="dragStart">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStart">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="dragStop">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="dragStop">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(517)" InterfaceName="#Lang(617)" MethodName="goTo">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="goTo">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(716)" ScriptName="url" Help="#Lang(816)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="url" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[document.location.href=url; return false;]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="moveTo">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="newX" Help="#Lang(809)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="newY" Help="#Lang(811)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="Effect" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newX" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newY" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="Effect" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="newZindex" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="newZindex" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeClass">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="className" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$j(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="resizeTo">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="width" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="height" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="width" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="height" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$j(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]></SourceCode>
         </Action>
         <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="setClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="cssClass" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="cssClass" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$j(this.domCont).attr('class', cssClass);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setTransparency">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="setTransparency">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="value" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(715)" ScriptName="value" Help="#Lang(815)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[var nn = parseInt(value,10) / 100;
 $j(this.domCont).css('opacity', nn);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(716)" ScriptName="fade" Help="#Lang(816)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(516)" InterfaceName="#Lang(616)" MethodName="startResizeX">
+        <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="startResizeX">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_startResizeX(this.domCont);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="startResizeXY">
+        <Action Help="#Lang(516)" InterfaceName="#Lang(616)" MethodName="startResizeXY">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_startResizeXY(this.domCont);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="startResizeY">
+        <Action Help="#Lang(517)" InterfaceName="#Lang(617)" MethodName="startResizeY">
           <Parameters/>
           <SourceCode><![CDATA[vdom_ui_startResizeY(this.domCont);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(529)" InterfaceName="#Lang(618)" MethodName="toggleClass">
+        <Action Help="#Lang(518)" InterfaceName="#Lang(618)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(817)" ScriptName="className" Help="#Lang(717)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(717)" ScriptName="className" Help="#Lang(817)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>

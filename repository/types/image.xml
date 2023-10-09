@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.120.8393</Version>
+    <Version>3.138.8393</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -1276,21 +1276,16 @@ class VDOM_image(VDOM_object):
         return False
         
     def regex(self, obj):
-        if obj:
-            match = re.search(r'\d+', obj)
-            if match:
-            	return int(match.group())
-            else:
-            	return 50
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
         
-        self.top = self.regex(self.top)
-        self.left = self.regex(self.left)
-        self.width = self.regex(self.width)
-        self.height = self.regex(self.height)
-
+        width, height, top, left = map(self.regex, (self.width, self.height, self.top, self.left))
+        width = width if width != "" else 50
+        height = height if height != "" else 50
+        
         if self.value:      # show image from resources
             editable = u' editable="value" '
 
@@ -1306,10 +1301,10 @@ class VDOM_image(VDOM_object):
                         id = self.id,
                         zindex = self.zindex,
                         hierarchy = self.hierarchy,
-                        top = self.top,
-                        left = self.left,
-                        width = self.width,
-                        height = self.height,
+                        top = top,
+                        left = left,
+                        width = width,
+                        height = height,
                         image_x = 0,
                         image_y = 0,
                         image_id = self.value,
@@ -1334,16 +1329,32 @@ class VDOM_image(VDOM_object):
                         zindex = self.zindex,
                         hierarchy = self.hierarchy,
                         order = self.order,
-                        top = self.top,
-                        left = self.left,
-                        width = self.width,
-                        height = self.height,
+                        top = top,
+                        left = left,
+                        width = width,
+                        height = height,
                         image_url = url,
                         name = self.name)
 
         else:
             image_id = "e8115c4a-903a-a4c6-c0bc-08a336586d51"
-            result = get_empty_wysiwyg_value(self, image_id)
+            result = \
+                u"""<container name="{name}" id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}"
+                        width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000">
+                        <svg>
+                            <image x="{image_x}" y="{image_y}" href="#Res({image_id})"/>
+                        </svg>
+                    </container>
+                """.format(
+                        id = self.id,
+                        zindex = self.zindex,
+                        hierarchy = self.hierarchy,
+                        top = top, left = left,
+                        width = width, height = height,
+                        image_x = (width - 50) / 2,
+                        image_y = (height - 50) /2,
+                        image_id = image_id,
+                        name = self.name)
 
         return VDOM_object.wysiwyg(self, contents=result)
 
@@ -1356,7 +1367,7 @@ def on_update(object, attributes):
     	if attr in attributes:
     		new_value = attributes.get(attr)
     		unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-    		unit = unit[0] if unit else "px"
+    		unit = unit[0] if unit and unit[0]!="auto" else "px"
     		
     		if new_value is not None and new_value.isdigit():
     			new_value = new_value + unit
@@ -1390,15 +1401,15 @@ def on_update(object, attributes):
         #     o.set_attributes({"width": width, "height": height})
         if o.attributes["width"] != width or o.attributes["height"] != height:
             attributes.update(width=str(width) + "px", height=str(height) + "px")
-    else:
+#     else:
         # if "width" in param and param["width"]["value"] != '' and int(param["width"]["value"]) > 2500:
         #     o.set_attributes({"width": 2500})
-        if "width" in attributes and attributes["width"] != '' and int(attributes["width"]) > 2500:
-             attributes["width"] = "2500"
+#         if "width" in attributes and attributes["width"] != '' and int(attributes["width"]) > 2500:
+#              attributes["width"] = "2500"
         # if "height" in param and param["height"]["value"] != '' and int(param["height"]["value"]) > 2500:
         #     o.set_attributes({"height": 2500})
-        if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
-            attributes["height"] = "2500"
+#         if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
+#             attributes["height"] = "2500"
     return ""]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
