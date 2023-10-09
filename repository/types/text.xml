@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.158.6720</Version>
+    <Version>3.161.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -1178,14 +1178,8 @@ class VDOM_text(VDOM_object):
         return VDOM_object.render(self, contents=result)
         
     def regex(self, obj):
-    	if obj:
-    		match = re.search(r'\d+', obj)
-    		if match:
-    			return int(match.group())
-    		else:
-    			return 400
-    	else:
-    		return 400
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
     		
     def wysiwyg(self, contents=""):
         the_value = self.value
@@ -1201,10 +1195,9 @@ class VDOM_text(VDOM_object):
 
         editable="value,color,fontfamily,fontsize,fontstyle,fontweight,align,textdecoration"
 
-        self.top = self.regex(self.top) if self.top else ""
-        self.left = self.regex(self.left) if self.left else ""
-        self.width = self.regex(self.width)
-
+        width, top, left = map(self.regex, (self.width, self.top, self.left))
+        width = width if width != "" else 400
+        
         result=\
             u"""<container name="{name}" id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" order="{order}" top="{top}" left="{left}" width="{width}">
                 {empty_value}
@@ -1217,9 +1210,9 @@ class VDOM_text(VDOM_object):
                 zindex = self.zindex,
                 hierarchy = self.hierarchy,
                 order = self.order,
-                top = self.top,
-                left = self.left,
-                width = self.width,
+                top = top,
+                left = left,
+                width = width,
                 textTop = 0,
                 textLeft = 0,
                 color = self.color,
@@ -1247,7 +1240,7 @@ def on_update(object, attributes):
 		if attr in attributes:
 			new_value = attributes.get(attr)
 			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit else "px"
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
 
 			if new_value is not None and new_value.isdigit():
 				new_value = new_value + unit

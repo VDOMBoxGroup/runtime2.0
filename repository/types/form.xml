@@ -14,12 +14,12 @@
     <Container>2</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.87</Version>
+    <Version>1.90.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers/>
+    <Handlers>on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -80,10 +80,10 @@
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
@@ -92,10 +92,10 @@
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
@@ -104,10 +104,10 @@
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -116,10 +116,10 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>target</Name>
@@ -198,12 +198,48 @@
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(316)</Help>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(420)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>absolute</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(422)|absolute)|(#Lang(423)|fixed)|(#Lang(424)|relative)|(#Lang(425)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -226,6 +262,9 @@
       <Sentence ID="114">Overflow</Sentence>
       <Sentence ID="115">Class CSS</Sentence>
       <Sentence ID="116">Report validity</Sentence>
+      <Sentence ID="117">Positioning</Sentence>
+      <Sentence ID="118">Margins</Sentence>
+      <Sentence ID="119">Paddings</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -240,7 +279,10 @@
       <Sentence ID="213">Submit once.</Sentence>
       <Sentence ID="214">The overflow control mode: Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown; Hidden - if the content does not fit in the object' borders - it will be cropped within the borders; Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not; Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
       <Sentence ID="215">Names of CSS classes.</Sentence>
-      <Sentence ID="216">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="216">Reports form controls validity</Sentence>
+      <Sentence ID="217">newAttribute15</Sentence>
+      <Sentence ID="218">newAttribute16</Sentence>
+      <Sentence ID="219">newAttribute17</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
@@ -255,7 +297,10 @@
       <Sentence ID="313">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="314">Incorrect value.</Sentence>
       <Sentence ID="315">Incorrect value.</Sentence>
-      <Sentence ID="316">Reports form controls validity</Sentence>
+      <Sentence ID="316">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="317">newAttribute15</Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -274,19 +319,23 @@
       <Sentence ID="417">Scroll</Sentence>
       <Sentence ID="418">Visible</Sentence>
       <Sentence ID="419">No</Sentence>
-      <Sentence ID="420">Yes</Sentence>
-      <Sentence ID="501">Resize the object width and height</Sentence>
-      <Sentence ID="502">Hide the object.</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Hide the object.</Sentence>
-      <Sentence ID="505">Load data in HTML format to the server.</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">Absolute</Sentence>
+      <Sentence ID="423">Fixed</Sentence>
+      <Sentence ID="424">Relative</Sentence>
+      <Sentence ID="425">Static</Sentence>
+      <Sentence ID="501">Hide the object.</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Hide the object.</Sentence>
+      <Sentence ID="504">Load data in HTML format to the server.</Sentence>
+      <Sentence ID="505">Hide the object.</Sentence>
       <Sentence ID="506">Hide the object.</Sentence>
-      <Sentence ID="507">Hide the object.</Sentence>
-      <Sentence ID="508">Set URL where to send the data</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511">Send the form</Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
+      <Sentence ID="507">Resize the object width and height</Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509">Set URL where to send the data</Sentence>
+      <Sentence ID="511">Show the object</Sentence>
+      <Sentence ID="512">Send the form</Sentence>
+      <Sentence ID="513">Toggle CSS class</Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
@@ -294,34 +343,42 @@
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
-      <Sentence ID="601">ResizeTo</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604">Hide</Sentence>
-      <Sentence ID="605">LoadHTML</Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">custom</Sentence>
+      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="604">LoadHTML</Sentence>
+      <Sentence ID="605">Hide</Sentence>
       <Sentence ID="606">Hide</Sentence>
-      <Sentence ID="607">Hide</Sentence>
-      <Sentence ID="608">setUrlTarget</Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="611">Submit</Sentence>
-      <Sentence ID="701">Width</Sentence>
-      <Sentence ID="702">Height</Sentence>
+      <Sentence ID="607">ResizeTo</Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="609">setUrlTarget</Sentence>
+      <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612">Submit</Sentence>
+      <Sentence ID="613">toggleClass</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="704">HTMLdata</Sentence>
       <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="706">HTMLdata</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="708">containerUrl</Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="801">New value of width</Sentence>
-      <Sentence ID="802">New value of height.</Sentence>
+      <Sentence ID="706">Width</Sentence>
+      <Sentence ID="707">Height</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709">containerUrl</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712">className</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds.</Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="804">Data in HTML format</Sentence>
       <Sentence ID="805">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="806">Data in HTML format</Sentence>
-      <Sentence ID="807">Fade effect, time is indicated in milliseconds.</Sentence>
-      <Sentence ID="808">New container URL</Sentence>
-      <Sentence ID="809"></Sentence>
+      <Sentence ID="806">New value of width</Sentence>
+      <Sentence ID="807">New value of height.</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">New container URL</Sentence>
+      <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="812">Name of CSS class</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -339,7 +396,6 @@
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current X-value</Sentence>
       <Sentence ID="918">Current X-value</Sentence>
-      <Sentence ID="919">custom</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Formulaire</Sentence>
@@ -361,6 +417,9 @@
       <Sentence ID="115">Class</Sentence>
       <Sentence ID="116">Validité du rapport
 Validité du rapport</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -375,7 +434,10 @@ Validité du rapport</Sentence>
       <Sentence ID="213">Submit once</Sentence>
       <Sentence ID="214">Overflow mode</Sentence>
       <Sentence ID="215">CSS class name</Sentence>
-      <Sentence ID="216">Valeur incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="216">Le formulaire de rapports contrôle la validité</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte</Sentence>
@@ -390,7 +452,10 @@ Validité du rapport</Sentence>
       <Sentence ID="313">Valeur Incorrecte</Sentence>
       <Sentence ID="314">Valeur Incorrecte</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316">Le formulaire de rapports contrôle la validité</Sentence>
+      <Sentence ID="316">Valeur incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -409,18 +474,22 @@ Validité du rapport</Sentence>
       <Sentence ID="417">Scroll</Sentence>
       <Sentence ID="418">Visible</Sentence>
       <Sentence ID="419">Non</Sentence>
-      <Sentence ID="420">Oui</Sentence>
-      <Sentence ID="501">Change object size</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
-      <Sentence ID="504">Hide the object</Sentence>
-      <Sentence ID="505">Load HTML-data</Sentence>
+      <Sentence ID="421">Oui</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423"></Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="504">Load HTML-data</Sentence>
+      <Sentence ID="505">Hide the object</Sentence>
       <Sentence ID="506">Hide the object</Sentence>
-      <Sentence ID="507">Hide the object</Sentence>
-      <Sentence ID="508">Set new target URL</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511">Submit the form</Sentence>
-      <Sentence ID="512"></Sentence>
+      <Sentence ID="507">Change object size</Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509">Set new target URL</Sentence>
+      <Sentence ID="511">Show the object</Sentence>
+      <Sentence ID="512">Submit the form</Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
@@ -429,34 +498,42 @@ Validité du rapport</Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
-      <Sentence ID="601">ResizeTo</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">Show</Sentence>
-      <Sentence ID="604">Hide</Sentence>
-      <Sentence ID="605">Load HTML</Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="601">Hide</Sentence>
+      <Sentence ID="602">custom</Sentence>
+      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="604">Load HTML</Sentence>
+      <Sentence ID="605">Hide</Sentence>
       <Sentence ID="606">Hide</Sentence>
-      <Sentence ID="607">Hide</Sentence>
-      <Sentence ID="608">setUrlTarget</Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="611">Submit</Sentence>
-      <Sentence ID="701">Width</Sentence>
-      <Sentence ID="702">Height</Sentence>
+      <Sentence ID="607">ResizeTo</Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="609">setUrlTarget</Sentence>
+      <Sentence ID="611">Show</Sentence>
+      <Sentence ID="612">Submit</Sentence>
+      <Sentence ID="613"></Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="704">HTMLdata</Sentence>
       <Sentence ID="705">Fade</Sentence>
-      <Sentence ID="706">HTMLdata</Sentence>
-      <Sentence ID="707">Fade</Sentence>
-      <Sentence ID="708">containerUrl</Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="801">New width value</Sentence>
-      <Sentence ID="802">New height value</Sentence>
+      <Sentence ID="706">Width</Sentence>
+      <Sentence ID="707">Height</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709">containerUrl</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712"></Sentence>
+      <Sentence ID="801">Fade time</Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="803">Fade time</Sentence>
-      <Sentence ID="804">Time of appearance</Sentence>
+      <Sentence ID="804">Data in HTML format</Sentence>
       <Sentence ID="805">Fade time</Sentence>
-      <Sentence ID="806">Data in HTML format</Sentence>
-      <Sentence ID="807">Fade time</Sentence>
-      <Sentence ID="808">New container URL</Sentence>
-      <Sentence ID="809"></Sentence>
+      <Sentence ID="806">New width value</Sentence>
+      <Sentence ID="807">New height value</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">New container URL</Sentence>
+      <Sentence ID="811">Time of appearance</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -474,7 +551,6 @@ Validité du rapport</Sentence>
       <Sentence ID="916">Current X-value</Sentence>
       <Sentence ID="917">Current X-value</Sentence>
       <Sentence ID="918">Current X-value</Sentence>
-      <Sentence ID="919">custom</Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Форма</Sentence>
@@ -495,6 +571,9 @@ Validité du rapport</Sentence>
       <Sentence ID="114">Переполнение</Sentence>
       <Sentence ID="115">Класс CSS</Sentence>
       <Sentence ID="116">Сообщить о проблеме проверки</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -509,7 +588,10 @@ Validité du rapport</Sentence>
       <Sentence ID="213">Отправить форму только один раз до перезагрузки страницы</Sentence>
       <Sentence ID="214">Режим при переполнении</Sentence>
       <Sentence ID="215">Имена классов CSS</Sentence>
-      <Sentence ID="216">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="216">Сообщает о проблемы проверки</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -524,7 +606,10 @@ Validité du rapport</Sentence>
       <Sentence ID="313">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316">Сообщает о проблемы проверки</Sentence>
+      <Sentence ID="316">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Невидимый</Sentence>
@@ -543,18 +628,22 @@ Validité du rapport</Sentence>
       <Sentence ID="417">Прокрутка</Sentence>
       <Sentence ID="418">Видимый</Sentence>
       <Sentence ID="419">Нет</Sentence>
-      <Sentence ID="420">Да</Sentence>
-      <Sentence ID="501">Изменить размеры объекта</Sentence>
-      <Sentence ID="502">Скрыть объект</Sentence>
-      <Sentence ID="503">Показать объект</Sentence>
-      <Sentence ID="504">Скрыть объект</Sentence>
-      <Sentence ID="505">Загрузить данные в формате HTML</Sentence>
+      <Sentence ID="421">Да</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423"></Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Скрыть объект</Sentence>
+      <Sentence ID="504">Загрузить данные в формате HTML</Sentence>
+      <Sentence ID="505">Скрыть объект</Sentence>
       <Sentence ID="506">Скрыть объект</Sentence>
-      <Sentence ID="507">Скрыть объект</Sentence>
-      <Sentence ID="508">Установить новую ссылку</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511">Передать форму</Sentence>
-      <Sentence ID="512"></Sentence>
+      <Sentence ID="507">Изменить размеры объекта</Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509">Установить новую ссылку</Sentence>
+      <Sentence ID="511">Показать объект</Sentence>
+      <Sentence ID="512">Передать форму</Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
@@ -563,34 +652,42 @@ Validité du rapport</Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
-      <Sentence ID="601">Изменить размеры</Sentence>
-      <Sentence ID="602">Скрыть</Sentence>
-      <Sentence ID="603">Показать</Sentence>
-      <Sentence ID="604">Скрыть</Sentence>
-      <Sentence ID="605">Загрузить HTML</Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
+      <Sentence ID="601">Скрыть</Sentence>
+      <Sentence ID="602">custom</Sentence>
+      <Sentence ID="603">Скрыть</Sentence>
+      <Sentence ID="604">Загрузить HTML</Sentence>
+      <Sentence ID="605">Скрыть</Sentence>
       <Sentence ID="606">Скрыть</Sentence>
-      <Sentence ID="607">Скрыть</Sentence>
-      <Sentence ID="608">Установить ссылку</Sentence>
-      <Sentence ID="609"></Sentence>
-      <Sentence ID="611">Передать</Sentence>
-      <Sentence ID="701">Ширина</Sentence>
-      <Sentence ID="702">Высота</Sentence>
+      <Sentence ID="607">Изменить размеры</Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="609">Установить ссылку</Sentence>
+      <Sentence ID="611">Показать</Sentence>
+      <Sentence ID="612">Передать</Sentence>
+      <Sentence ID="613"></Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="703">Исчезновение</Sentence>
-      <Sentence ID="704">Появление</Sentence>
+      <Sentence ID="704">HTML-данные</Sentence>
       <Sentence ID="705">Исчезновение</Sentence>
-      <Sentence ID="706">HTML-данные</Sentence>
-      <Sentence ID="707">Исчезновение</Sentence>
-      <Sentence ID="708">URL контейнера</Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="801">Новое значение ширины</Sentence>
-      <Sentence ID="802">Новое значение высоты</Sentence>
+      <Sentence ID="706">Ширина</Sentence>
+      <Sentence ID="707">Высота</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709">URL контейнера</Sentence>
+      <Sentence ID="711">Появление</Sentence>
+      <Sentence ID="712"></Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="804">Время появления в миллисекундах</Sentence>
+      <Sentence ID="804">Данные в формате HTML</Sentence>
       <Sentence ID="805">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="806">Данные в формате HTML</Sentence>
-      <Sentence ID="807">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="808">URL для контейнера</Sentence>
-      <Sentence ID="809"></Sentence>
+      <Sentence ID="806">Новое значение ширины</Sentence>
+      <Sentence ID="807">Новое значение высоты</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">URL для контейнера</Sentence>
+      <Sentence ID="811">Время появления в миллисекундах</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -608,7 +705,6 @@ Validité du rapport</Sentence>
       <Sentence ID="916">Текущее значение X</Sentence>
       <Sentence ID="917">Текущее значение X</Sentence>
       <Sentence ID="918">Текущее значение X</Sentence>
-      <Sentence ID="918">9екcustom</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -792,12 +888,16 @@ DAAAAABJRU5ErkJggg==]]></Resource>
       ICAgICAgICAgICAgKGZ1bmN0aW9uICgkKSB7DQogICAgY2xhc3MgU3VibWl0VkRPTUZvcm1KcyB7DQogICAgICAgIGNvbnN0cnVjdG9yKGZvcm1JZCwgcmVwb3J0QWJvdXRWYWxpZGl0eSkgew0KICAgICAgICAgICAgdGhpcy5mb3JtSWQgPSBmb3JtSWQ7DQogICAgICAgICAgICB0aGlzLiRmb3JtID0gJChgIyR7Zm9ybUlkfWApOw0KICAgICAgICAgICAgdGhpcy5yZXBvcnRBYm91dFZhbGlkaXR5ID0gcmVwb3J0QWJvdXRWYWxpZGl0eTsNCiAgICAgICAgICAgIHRoaXMuYm9keSA9ICQoImJvZHkiKTsNCiAgICAgICAgICAgIHRoaXMuaW5pdEZvcm1TdWJtaXRFdmVudCgpOw0KICAgICAgICB9DQoNCiAgICAgICAgaW5pdEZvcm1TdWJtaXRFdmVudCgpIHsNCiAgICAgICAgICAgIHRoaXMuJGZvcm0uc3VibWl0KGUgPT4gew0KICAgICAgICAgICAgICAgIGNvbnN0IHJlc3VsdCA9IHRoaXMuc3VibWl0Rm9ybSh0aGlzLiRmb3JtLCBlKTsNCiAgICAgICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7DQogICAgICAgICAgICAgICAgcmV0dXJuIHJlc3VsdDsNCiAgICAgICAgICAgIH0pOw0KICAgICAgICB9DQoNCiAgICAgICAgc3VibWl0Rm9ybShmb3JtLCBlKSB7DQogICAgICAgICAgICAvL2FkZCBuYXRpdmUgaHRtbCB2YWxpZGF0ZSBmcm9tICQoLi4uKS5zdWJtaXQoKSBtZXRob2QuDQogICAgICAgICAgICBjb25zdCBmb3JtSXNWYWxpZCA9IHRoaXMucmVwb3J0VmFsaWRpdHkoZm9ybSk7DQogICAgICAgICAgICBpZiAoIWZvcm1Jc1ZhbGlkKSB7DQogICAgICAgICAgICAgIGNvbnN0IGZha2VTdWJtaXRCdG4gPSAkKGA8YnV0dG9uIHR5cGU9J3N1Ym1pdCcgc3R5bGU9J2Rpc3BsYXk6IG5vbmUnPmApOw0KICAgICAgICAgICAgICBmb3JtLmFwcGVuZChmYWtlU3VibWl0QnRuKTsNCiAgICAgICAgICAgICAgZmFrZVN1Ym1pdEJ0bi5jbGljaygpOw0KICAgICAgICAgICAgICBmYWtlU3VibWl0QnRuLnJlbW92ZSgpOw0KICAgICAgICAgICAgICByZXR1cm4gZmFsc2U7DQogICAgICAgICAgICB9Ow0KDQogICAgICAgICAgICAvL1RISVMgSVMgRklYIEZPUk0gU1BBTQ0KICAgICAgICAgICAgY29uc3QgZm9ybUlzU3VibWl0dGVkID0gdGhpcy5mb3JtSXNTdWJtaXR0ZWQodGhpcy5mb3JtSWQpOw0KICAgICAgICAgICAgaWYgKGZvcm1Jc1N1Ym1pdHRlZCkgcmV0dXJuIGZhbHNlOw0KDQogICAgICAgICAgICB0aGlzLmFkZFN1Ym1pdHRlck1peGluVG9Gb3JtKGZvcm0sIGUpOw0KDQogICAgICAgICAgICBjb25zdCBmb3JtRGF0YSA9IHt9Ow0KICAgICAgICAgICAgdGhpcy5zZXJlYWxpemVGb3JtKGZvcm1EYXRhLCBmb3JtKTsNCg0KICAgICAgICAgICAgdGhpcy5zZW5kRm9ybVRocm91Z2hFMlZET00oZm9ybURhdGEpOw0KDQogICAgICAgICAgICByZXR1cm4gZmFsc2U7DQogICAgICAgIH0NCg0KICAgICAgICBzZXJlYWxpemVGb3JtKGZvcm1EYXRhLCBmb3JtKSB7DQogICAgICAgICAgICBjb25zdCBzdWJtaXRUcmlnZ2VyID0gZm9ybS5jaGlsZHJlbigiaW5wdXRbbmFtZT0nX19zdWJtaXRfdHJpZ2dlcl9fJ10iKTsNCiAgICAgICAgICAgIGlmIChzdWJtaXRUcmlnZ2VyLmxlbmd0aCkgew0KICAgICAgICAgICAgICAgIGZvcm1EYXRhW3N1Ym1pdFRyaWdnZXIudmFsKCldID0gc3VibWl0VHJpZ2dlci5hdHRyKCdkYXRhLXZhbHVlJyk7DQogICAgICAgICAgICAgICAgc3VibWl0VHJpZ2dlci5yZW1vdmUoKTsNCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgY29uc3Qgb2JqSGFzS2V5ID0gKG9iaiwga2V5KSA9PiBvYmouaGFzT3duUHJvcGVydHkoa2V5KTsNCiAgICAgICAgICAgIGNvbnN0IGRhdGFJc0FycmF5ID0gKHZhbHVlKSA9PiAkLmlzQXJyYXkodmFsdWUpOw0KDQogICAgICAgICAgICBjb25zdCBzZXJlYWxpemVkRm9ybURhdGEgPSBmb3JtLnNlcmlhbGl6ZUFycmF5KCk7DQogICAgICAgICAgICBmb3IgKGxldCBrIG9mIHNlcmVhbGl6ZWRGb3JtRGF0YSkgew0KICAgICAgICAgICAgICAgIGNvbnN0IGtleSA9IGsubmFtZTsNCiAgICAgICAgICAgICAgICBjb25zdCB2YWx1ZSA9IGsudmFsdWU7DQogICAgICAgICAgICAgICAgY29uc3QgZGF0YUlzVmFsaWQgPQ0KICAgICAgICAgICAgICAgICAgICB0eXBlb2Yga2V5ICE9PSAidW5kZWZpbmVkIiAmJiB0eXBlb2YgdmFsdWUgIT09ICJ1bmRlZmluZWQiOw0KICAgICAgICAgICAgICAgIGlmIChkYXRhSXNWYWxpZCkgew0KICAgICAgICAgICAgICAgICAgICBpZiAob2JqSGFzS2V5KGZvcm1EYXRhLCBrZXkpKSB7DQogICAgICAgICAgICAgICAgICAgICAgICBpZiAoZGF0YUlzQXJyYXkoZm9ybURhdGFba2V5XSkpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb3JtRGF0YVtrZXldLnB1c2godmFsdWUpOw0KICAgICAgICAgICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb25zdCBmb3JtVmFsdWUgPSBmb3JtRGF0YVtrZXldOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1EYXRhW2tleV0gPSBuZXcgQXJyYXkoZm9ybVZhbHVlLCB2YWx1ZSk7DQogICAgICAgICAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgICAgICAgICBmb3JtRGF0YVtrZXldID0gdmFsdWU7DQogICAgICAgICAgICAgICAgICAgIH0NCiAgICAgICAgICAgICAgICB9DQogICAgICAgICAgICB9DQogICAgICAgIH0NCg0KICAgICAgICByZXBvcnRWYWxpZGl0eShmb3JtKSB7DQogICAgICAgICAgICBpZiAodGhpcy5yZXBvcnRBYm91dFZhbGlkaXR5KSB7DQogICAgICAgICAgICAgICAgcmV0dXJuIGZvcm1bMF0uY2hlY2tWYWxpZGl0eSgpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgcmV0dXJuIHRydWU7DQogICAgICAgIH0NCg0KICAgICAgICBhZGRTdWJtaXR0ZXJNaXhpblRvRm9ybShmb3JtLCBlKSB7DQogICAgICAgICAgICBjb25zdCBoYXNTdWJtaXR0ZXIgPSAoZSkgPT4gZS5oYXNPd25Qcm9wZXJ0eSgnb3JpZ2luYWxFdmVudCcpOw0KICAgICAgICAgICAgaWYgKCFoYXNTdWJtaXR0ZXIoZSkpIHJldHVybiBmYWxzZTsNCg0KICAgICAgICAgICAgY29uc3Qgc3VibWl0dGVyID0gJChlLm9yaWdpbmFsRXZlbnQuc3VibWl0dGVyKTsNCiAgICAgICAgICAgIGNvbnN0IHN1Ym1pdHRlck5hbWUgPSBzdWJtaXR0ZXIuYXR0cigibmFtZSIpOw0KICAgICAgICAgICAgY29uc3QgZm9ybUhhc1N1Ym1pdFRyaWdnZXIgPSBmb3JtLmNoaWxkcmVuKA0KICAgICAgICAgICAgICAgICJpbnB1dFtuYW1lPV9fc3VibWl0X3RyaWdnZXJfX10iDQogICAgICAgICAgICApLmxlbmd0aDsNCg0KICAgICAgICAgICAgY29uc3QgaGlkZGVuSW5wdXQgPSAkKA0KICAgICAgICAgICAgICAgIGA8aW5wdXQgdHlwZT0naGlkZGVuJyBuYW1lPSdfX3N1Ym1pdF90cmlnZ2VyX18nPjwvaW5wdXQ+YA0KICAgICAgICAgICAgKTsNCg0KICAgICAgICAgICAgaWYgKCFmb3JtSGFzU3VibWl0VHJpZ2dlcikgew0KICAgICAgICAgICAgICBoaWRkZW5JbnB1dC5hdHRyKCdkYXRhLXZhbHVlJywgc3VibWl0dGVyLmF0dHIoJ3ZhbHVlJykpOw0KICAgICAgICAgICAgICBmb3JtLmFwcGVuZChoaWRkZW5JbnB1dC52YWwoc3VibWl0dGVyTmFtZSkpOw0KICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgZm9ybS5jaGlsZHJlbigiaW5wdXRbbmFtZT1fX3N1Ym1pdF90cmlnZ2VyX19dIikudmFsKHN1Ym1pdHRlck5hbWUpOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9DQoNCiAgICAgICAgc2VuZEZvcm1UaHJvdWdoRTJWRE9NKGZvcm1EYXRhKSB7DQogICAgICAgICAgICBjb25zdCB2ZG9tSWQgPSB0aGlzLmZvcm1JZC5zbGljZSgyKTsNCiAgICAgICAgICAgIGNvbnN0IGV2ZW50ID0gInN1Ym1pdCI7DQogICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQodmRvbUlkLCBldmVudCwgZm9ybURhdGEpOw0KICAgICAgICB9DQoNCiAgICAgICAgZm9ybUlzU3VibWl0dGVkKGZvcm1JZCkgew0KICAgICAgICAgICAgY29uc3QgZGF0YUtleSA9IGAke2Zvcm1JZH1fc3VibWl0dGVkYDsNCiAgICAgICAgICAgIGNvbnN0IGZvcm1Jc1N1Ym1pdHRlZCA9IHRoaXMuYm9keS5kYXRhKGRhdGFLZXkpID09ICIxIjsNCg0KICAgICAgICAgICAgaWYgKGZvcm1Jc1N1Ym1pdHRlZCkgcmV0dXJuIHRydWU7DQoNCiAgICAgICAgICAgIHRoaXMuYm9keS5kYXRhKGRhdGFLZXksICIxIik7DQogICAgICAgICAgICBzZXRUaW1lb3V0KCgpID0+IHsNCiAgICAgICAgICAgICAgICB0aGlzLmJvZHkuZGF0YShkYXRhS2V5LCAiIik7DQogICAgICAgICAgICB9LCAxMDAwKTsNCg0KICAgICAgICAgICAgcmV0dXJuIGZhbHNlOw0KICAgICAgICB9DQogICAgfQ0KICAgICQuU3VibWl0VkRPTUZvcm1KcyA9IFN1Ym1pdFZET01Gb3JtSnM7DQp9KShqUXVlcnkpOw==
     ]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
+  <SourceCode><![CDATA[import re
+import re
 from scripting import e2vdom
 from utils.csrf import create_csrf_token, csrf_token_arg_name
 
 
 class VDOM_form(VDOM_object):
+	
+	def check_unit(self, value):
+		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
 		display = u"display:none; " if self.visible == "0" else u""
@@ -841,12 +941,24 @@ class VDOM_form(VDOM_object):
 			enctype = u""
 		else:
 			enctype = u"""enctype="%s" """ % self.enctype
+			
+		position = u"position: {pos};".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+		
+		styles = {
+			"width": self.check_unit(self.width),
+			"height": self.check_unit(self.height),
+			"margin": self.margins,
+			"padding": self.paddings,
+			"top": self.check_unit(self.top),
+			"left": self.check_unit(self.left)
+		}
+		if self.positioning == "static":
+			styles["top"] = styles["left"] = ""
+		
+		styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-		style = u"overflow:{ovf};z-index:{zind};position:{pos};top:{top}px;left:{left}px;width:{wid}px;height:{hei}px;" \
-			.format(ovf = ov, zind = self.zindex, pos = self.position, 
-					top = self.top, left = self.left, wid = self.width, hei = self.height)
-
-		classname = u"""class="%s" """ % self.classname if self.classname else u""
+		style = u"overflow:{ovf};z-index:{zind}; {pos} {styles}" \
+			.format(ovf = ov, zind = self.zindex, pos = position, styles = styles_str)
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
 			debug_info = u"objtype='form' objname='%s' ver='%s'" % (self.name, self.type.version)
@@ -856,23 +968,48 @@ class VDOM_form(VDOM_object):
 		result = \
 			u"""<form {debug_info} id="{id}" style="display:block;margin:0; {display} {style}" 
 					name="{name}" method="{method}" action="{target}" style="overflow:visible" 
-					{enctype} {submitonce} {classname}>
+					{enctype} {submitonce} class="vdom_form {classname}">
 					{contents}
 					{csrftoken}
 				</form> {submitjs} 
 			""".format(
 					debug_info = debug_info, id = id, display = display, style = style, name = self.name, 
 					method = self.meth, target = target, enctype = enctype, submitonce = submitonce, 
-					contents = contents, csrftoken=csrftoken, submitjs = submitjs, classname = classname )
+					contents = contents, csrftoken=csrftoken, submitjs = submitjs, classname = self.classname )
 
 		return VDOM_object.render(self, contents=result)
 
+	def regex(self, obj):
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
+
 	def wysiwyg(self, contents=""):
+		width, height, top, left = map(self.regex, (self.width, self.height, self.top, self.left))
+		
+		width = int(width) if width else 400
+		height = int(height) if height else 200
+		
 		if len(contents) == 0:
-			from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
-			
+			from scripting.legacy.wysiwyg import get_empty_wysiwyg_value			
 			image_id = "54e7f8ab-64f1-b113-029e-1703a76c6fa4"
+			self.width = width
+			self.height = height
+			self.top = top
+			self.left = left
 			result = get_empty_wysiwyg_value(self, image_id)
+#			result = \
+#        			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" top="{top}"
+#        				 left="{left}" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000">
+#        					<svg>
+#                				<image href="#Res({img_id})" x="{x}" y="{y}"/>
+#                			</svg>
+#                		</container>
+#                	""".format(
+#            				id = self.id, vis = self.visible, zind = self.zindex,
+#            				hierarchy = self.hierarchy, top = top, left = left,
+#            				width = width, height = height,
+#            				img_id = image_id, name = self.name,
+#            				x = (int(width) - 50) / 2, y = (int(height) - 50) / 2)
 			
 			return VDOM_object.wysiwyg(self, contents=result)
 		
@@ -889,68 +1026,88 @@ class VDOM_form(VDOM_object):
 					</container>
 				""".format(id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
 				hierarchy = self.hierarchy, order = self.order, 
-				top = self.top, left = self.left, width = self.width, height = self.height, 
+				top = top, left = left, width = width, height = height, 
 				contents = contents,
 				overflow = overflow)
 		
 		return VDOM_object.wysiwyg(self, contents=result)
 
-		
+def on_update(object, attributes):
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "top", "width", "height"]:
+		if attr in attributes:
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
+			if new_value is not None and new_value.isdigit():
+				new_value = new_value + unit
+			modifications[attr] = new_value
+	attributes.update(modifications)
+	
+	return ""		
 ]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<script src="/d71c042b-2d14-4e1b-9323-9305f0e2dc36.res"></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_form {
+            
+        }
+
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(512)">
+        <Event Name="mouseup" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="submit" Help="#Lang(513)">
+        <Event Name="submit" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="params" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(514)">
+        <Event Name="mousemove" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(515)">
+        <Event Name="mousedown" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(516)">
+        <Event Name="mouseout" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(517)">
+        <Event Name="ctrlclick" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(911)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(518)">
+        <Event Name="mouseover" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(519)">
+        <Event Name="click" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(521)">
+        <Event Name="dblclick" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
@@ -960,68 +1117,74 @@ class VDOM_form(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="addClass">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="className" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="custom">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="custom" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[eval(custom);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="loadHTMLData">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadHTMLData">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="HTMLdata" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="HTMLdata" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).html(HTMLdata);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeClass">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="removeClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="className" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="reset">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="reset">
           <Parameters/>
           <SourceCode><![CDATA[$q(this.domCont)[0].reset();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="resizeTo">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="width" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="height" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="width" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="height" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="className" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).attr('class',className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setUrlTarget">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setUrlTarget">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="containerUrl" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="containerUrl" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).attr('action', containerUrl);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="fade" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont,fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="submit">
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="submit">
           <Parameters/>
           <SourceCode><![CDATA[$q(this.domCont).submit();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(003)" InterfaceName="#Lang(919)" MethodName="custom">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(003)" ScriptName="custom" Help="#Lang(003)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="className" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[eval(custom);]]></SourceCode>
+          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

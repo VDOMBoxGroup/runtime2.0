@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.338.6720</Version>
+    <Version>1.341.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -284,7 +284,7 @@
       <Sentence ID="412">Fixed</Sentence>
       <Sentence ID="413">Static</Sentence>
       <Sentence ID="501">Tab is activated</Sentence>
-      <Sentence ID="502"></Sentence>
+      <Sentence ID="502">Toggle CSS class</Sentence>
       <Sentence ID="503"></Sentence>
       <Sentence ID="504"></Sentence>
       <Sentence ID="505"></Sentence>
@@ -293,13 +293,13 @@
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
-      <Sentence ID="512">Toggle CSS class</Sentence>
+      <Sentence ID="512"></Sentence>
       <Sentence ID="601">activateTab</Sentence>
       <Sentence ID="602">toggleClass</Sentence>
       <Sentence ID="701">open tab</Sentence>
-      <Sentence ID="702">Name of CSS class</Sentence>
+      <Sentence ID="702">className</Sentence>
       <Sentence ID="801">Name of the opened tab</Sentence>
-      <Sentence ID="802">className</Sentence>
+      <Sentence ID="802">Name of CSS class</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -763,10 +763,10 @@ class VDOM_tabview(VDOM_object):
 		top_inline = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
 		left_inline = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
 
-		style = u"""{display} z-index: {zind}; {pos} {top} {left}
-					{width} {height} border: none; {margin} {padding}""".format(
-			display=display, zind=self.zindex, pos=position, top=top_inline, left=left_inline,
-			width=width_in, height=height_in, margin=margin_in, padding=padding_in)
+		style = u"""{display} z-index: {zind}; {pos} {top} {left} {width} {height} border: none; {margin} {padding}"""\
+				.format(
+					display=display, zind=self.zindex, pos=position, top=top_inline, left=left_inline,
+					width=width_in, height=height_in, margin=margin_in, padding=padding_in)
 			
 		id = u"o_" + (self.id).replace('-', '_')
 		cont_tag = u"""<div class="tabContent">%s</div>""" % contents
@@ -871,21 +871,14 @@ var tabview_children_%(id)s = %(arr)s;
 		return VDOM_object.render(self, contents=result)
 	
 	def regex(self, obj):
-		if obj:
-			match = re.search(r'\d+', obj)
-			if match:
-				return int(match.group())
-			else:
-				return 200
-		else:
-			return 200
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
 
 	def wysiwyg(self, contents=""):
 
-		self.top = self.regex(self.top) if self.top else ""
-		self.left = self.regex(self.left) if self.left else ""
-		self.width = self.regex(self.width)
-		self.height = self.regex(self.height)
+		width, height, top, left = map(self.regex, (self.width, self.height, self.top, self.left))
+		width = int(width) if width else 200
+		height = int(height) if height else 200
 
 		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
 		result = \
@@ -902,12 +895,12 @@ var tabview_children_%(id)s = %(arr)s;
 				</container>
 			""".format(
 					id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
-					hierarchy = self.hierarchy, top = self.top, left = self.left,
-					width = int(self.width) + 2,
-					height = int(self.height) + 2, 
-					panel_width = int(self.width) - 140,
-					container_height = int(self.height) - 20,
-					container_width = int(self.width), 
+					hierarchy = self.hierarchy, top = top, left = left,
+					width = width + 2,
+					height = height + 2, 
+					panel_width = width - 140,
+					container_height = height - 20,
+					container_width = width, 
 					img_id = image_id,
 					contents = contents)
 
@@ -1000,7 +993,7 @@ def on_update(object, attributes):
 		if attr in attributes:
 			new_value = attributes.get(attr)
 			unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
-			unit = unit[0] if unit else "px"
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
 
 			if new_value is not None and new_value.isdigit():
 				new_value = new_value + unit
@@ -1058,59 +1051,59 @@ def on_insert(parent, object):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click" Help="#Lang(509)">
+        <Event Name="click" Help="#Lang(503)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(507)">
+        <Event Name="ctrlclick" Help="#Lang(504)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(511)">
+        <Event Name="dblclick" Help="#Lang(505)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(505)">
+        <Event Name="mousedown" Help="#Lang(506)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(504)">
+        <Event Name="mousemove" Help="#Lang(507)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(506)">
+        <Event Name="mouseout" Help="#Lang(508)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(508)">
+        <Event Name="mouseover" Help="#Lang(509)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(503)">
+        <Event Name="mouseup" Help="#Lang(511)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="tabchanged" Help="#Lang(502)">
+        <Event Name="tabchanged" Help="#Lang(512)">
           <Parameters>
-            <Parameter Name="ID" Order="0" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Name" Order="0" VbType="" Help="#Lang(902)"/>
-            <Parameter Name="Hierarchy" Order="0" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="ID" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Name" Order="0" VbType="" Help="#Lang(919)"/>
+            <Parameter Name="Hierarchy" Order="0" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
@@ -1139,9 +1132,9 @@ if (typeof x !== 'undefined') {
 	});
 }]]></SourceCode>
         </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(602)" MethodName="toggleClass">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(802)" ScriptName="className" Help="#Lang(702)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="className" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
