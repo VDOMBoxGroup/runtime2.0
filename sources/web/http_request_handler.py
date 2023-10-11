@@ -512,9 +512,14 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def log_message(self, format, *args):
         """log an arbitrary message to stderr"""
-        if "127.0.0.1" != self.client_address[0]:
-            debug("%s %s {%d}" % (self.address_string(), format % args, self.server.get_cur_con()))
-        #sys.stderr.write("%s - Thread %d - [%s] %s {%d}\n" % (self.address_string(), thread.get_ident(), self.log_date_time_string(), format%args, self.server.get_cur_con()))
+        try:    
+            unicode_args = [arg.decode('utf-8') if isinstance(arg, str) else arg for arg in args]
+    
+            if "127.0.0.1" != self.client_address[0]:
+                debug("%s %s {%d}" % (self.address_string(), format % args, self.server.get_cur_con()))
+            #sys.stderr.write("%s - Thread %d - [%s] %s {%d}\n" % (self.address_string(), thread.get_ident(), self.log_date_time_string(), format%args, self.server.get_cur_con()))
+        except UnicodeDecodeError:
+            debug("Error decoding message for client %s" % self.address_string())
 
     def print_list(self, list, f):
         """print contents of the dictionary in the form of list"""
