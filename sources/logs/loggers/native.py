@@ -156,6 +156,9 @@ class Logger(BaseLogger):
             except socket.error as error:
                 log.error(error.strerror or error.message)
                 self._stream = None
+        except UnicodeDecodeError as e: 
+            log.error(u"nonascii data in native logger: %s"%e)
+            return 0
         except:
             with self._lock:
                 if entry[0] == actions.WRITE:
