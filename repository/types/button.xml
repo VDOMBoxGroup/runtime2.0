@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.211.6201</Version>
+    <Version>1.331.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
@@ -26,16 +26,16 @@
   </Information>
   <Attributes>
     <Attribute>
-      <Name>stateful</Name>
+      <Name>classname</Name>
       <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -50,448 +50,474 @@
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>visible</Name>
+      <Name>rendermode</Name>
       <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>div</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(401)|div)|(#Lang(402)|link)|(#Lang(403)|image))</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>zindex</Name>
+      <Name>positioning</Name>
       <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(404)|absolute)|(#Lang(405)|relative)|(#Lang(406)|fixed)|(#Lang(407)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>top</Name>
+      <Name>left</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>left</Name>
+      <Name>top</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>tabindex</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>DropDown((#Lang(408)|block)|(#Lang(409)|inline)|(#Lang(411)|flex)|(#Lang(412)|inline-block)|(#Lang(413)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>text</Name>
+      <Name>visible</Name>
       <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>DropDown((#Lang(414)|0)|(#Lang(415)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>hint</Name>
+      <Name>zindex</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(5000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>image</Name>
+      <Name>text</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>Button</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>File()</CodeInterface>
+      <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>rollover</Name>
+      <Name>hint</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>File()</CodeInterface>
+      <CodeInterface>TextField(5000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>disabledimg</Name>
+      <Name>link</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>File()</CodeInterface>
+      <CodeInterface>TextField(2000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>link</Name>
+      <Name>containerlink</Name>
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2000)</CodeInterface>
+      <CodeInterface>PageLink()</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>containerlink</Name>
+      <Name>tabindex</Name>
       <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>PageLink()</CodeInterface>
+      <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>image</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>rollover</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>disabledimg</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>ishover</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>ispressed</Name>
-      <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>disabled</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>border</Name>
       <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(416)|0)|(#Lang(417)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>color</Name>
+      <Name>ispressed</Name>
       <DisplayName>#Lang(123)</DisplayName>
-      <DefaultValue>000000</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>Color()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(418)|0)|(#Lang(419)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>fontfamily</Name>
+      <Name>disabled</Name>
       <DisplayName>#Lang(124)</DisplayName>
-      <DefaultValue>Tahoma, "Geneva CY", geneva, sans-serif</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>Font()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>fontsize</Name>
+      <Name>margins</Name>
       <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue>12</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>fontstyle</Name>
+      <Name>paddings</Name>
       <DisplayName>#Lang(126)</DisplayName>
-      <DefaultValue>normal</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|italic)|(#Lang(413)|normal))</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(normal|italic)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
+      <Name>style</Name>
       <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>#%(id)s {
+
+}
+#%(id)s .vdom_button {
+
+}
+#%(id)s .vdom_button.link {
+
+}
+#%(id)s .vdom_button.button {
+
+}
+#%(id)s .vdom_button.image {
+
+}</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>fontweight</Name>
+      <Name>skin</Name>
       <DisplayName>#Lang(128)</DisplayName>
-      <DefaultValue>normal</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|bold)|(#Lang(415)|normal))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1)|(#Lang(425)|2))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(normal|bold)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>textdecoration</Name>
+      <Name>color</Name>
       <DisplayName>#Lang(129)</DisplayName>
-      <DefaultValue>none</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(229)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(416)|underline)|(#Lang(417)|none))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(underline|none)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>fontshift</Name>
+      <Name>border</Name>
       <DisplayName>#Lang(131)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(231)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>TextField(5)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,2}(px|em|rem)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>borderradius</Name>
+      <Name>backgroundcolor</Name>
       <DisplayName>#Lang(132)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(232)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>backgroundcolor</Name>
-      <DisplayName>#Lang(133)</DisplayName>
-      <DefaultValue>FFFFFF</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(233)</Help>
-      <InterfaceType>0</InterfaceType>
       <CodeInterface>Color()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
       <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>align</Name>
+      <Name>borderradius</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>bordercolor</Name>
       <DisplayName>#Lang(134)</DisplayName>
-      <DefaultValue>left</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(234)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(418)|left)|(#Lang(419)|center)|(#Lang(421)|right))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(left|center|right)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>fontfamily</Name>
       <DisplayName>#Lang(135)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(235)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <CodeInterface>Font()</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>skin</Name>
+      <Name>fontsize</Name>
       <DisplayName>#Lang(136)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(236)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
+      <CodeInterface>TextField(5)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d{0,2})(px|em|rem)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>form</Name>
+      <Name>fontstyle</Name>
       <DisplayName>#Lang(137)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(237)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(426)|italic)|(#Lang(427)|normal)|(#Lang(428)|oblique)|(#Lang(429)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^(normal|italic|oblique|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>margins</Name>
+      <Name>fontweight</Name>
       <DisplayName>#Lang(138)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(238)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(431)|bold)|(#Lang(432)|normal)|(#Lang(433)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(338)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(normal|bold|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>paddings</Name>
+      <Name>textdecoration</Name>
       <DisplayName>#Lang(139)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(239)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(434)|underline)|(#Lang(435)|none)|(#Lang(436)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(339)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(underline|none|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>positioning</Name>
+      <Name>fontshift</Name>
       <DisplayName>#Lang(141)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(241)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(424)|absolute)|(#Lang(425)|relative)|(#Lang(426)|fixed)|(#Lang(427)|static))</CodeInterface>
+      <CodeInterface>TextField(4)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(341)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>displaying</Name>
+      <Name>align</Name>
       <DisplayName>#Lang(142)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(242)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(428)|block)|(#Lang(429)|inline)|(#Lang(431)|flex)|(#Lang(432)|inline-block)|(#Lang(433)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(437)|left)|(#Lang(438)|center)|(#Lang(439)|right)|(#Lang(441)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(342)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^(left|center|right|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>rendermode</Name>
+      <Name>form</Name>
       <DisplayName>#Lang(143)</DisplayName>
-      <DefaultValue>div</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(243)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(434)|div)|(#Lang(435)|link)|(#Lang(436)|image))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>0</Colorgroup>
       <ErrorValidationMessage>#Lang(343)</ErrorValidationMessage>
       <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(144)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(244)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(442)|0)|(#Lang(443)|1))</CodeInterface>
+      <Colorgroup>0</Colorgroup>
+      <ErrorValidationMessage>#Lang(344)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -500,156 +526,165 @@
       <Sentence ID="002">The Button type produces an object displayed as a button, that provides a way to trigger an event. It can also be used as an external or an internal hyperlink.
 There are the following ways of displaying the Button object: if the 'Text' attribute is set, the object will be displayed as a hyperlink; if a 'Button image' attribute is set, the object will be displayed as a button; if none of these attributes is set, the default image will be displayed; if both attributes are set, both image and text will be displayed.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="103">Render Mode</Sentence>
+      <Sentence ID="104">Position</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Top</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="111">Text</Sentence>
-      <Sentence ID="112">Hint</Sentence>
-      <Sentence ID="113">Button image</Sentence>
-      <Sentence ID="114">Rollover image</Sentence>
-      <Sentence ID="115">Disabled Image</Sentence>
-      <Sentence ID="116">External link</Sentence>
-      <Sentence ID="117">Container link</Sentence>
-      <Sentence ID="118">Highlight button</Sentence>
-      <Sentence ID="119">Pressed state</Sentence>
-      <Sentence ID="121">Disabled</Sentence>
-      <Sentence ID="122">Border</Sentence>
-      <Sentence ID="123">Text color</Sentence>
-      <Sentence ID="124">FontFamily</Sentence>
-      <Sentence ID="125">FontSize</Sentence>
-      <Sentence ID="126">FontStyle</Sentence>
-      <Sentence ID="127">CSS Class</Sentence>
-      <Sentence ID="128">FontWeight</Sentence>
-      <Sentence ID="129">Text-decoration</Sentence>
-      <Sentence ID="131">FontShift</Sentence>
-      <Sentence ID="132">Border radius</Sentence>
-      <Sentence ID="133">Background-color</Sentence>
-      <Sentence ID="134">Alignment</Sentence>
-      <Sentence ID="135">Style</Sentence>
-      <Sentence ID="136">Skin</Sentence>
-      <Sentence ID="137">Form</Sentence>
-      <Sentence ID="138">Margins</Sentence>
-      <Sentence ID="139">Paddings</Sentence>
-      <Sentence ID="141">Position</Sentence>
-      <Sentence ID="142">Display</Sentence>
-      <Sentence ID="143">Render Mode</Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="109">Display</Sentence>
+      <Sentence ID="111">Visibility</Sentence>
+      <Sentence ID="112">Z-Index</Sentence>
+      <Sentence ID="113">Text</Sentence>
+      <Sentence ID="114">Hint</Sentence>
+      <Sentence ID="115">External link</Sentence>
+      <Sentence ID="116">Container link</Sentence>
+      <Sentence ID="117">TabIndex</Sentence>
+      <Sentence ID="118">Button image</Sentence>
+      <Sentence ID="119">Rollover image</Sentence>
+      <Sentence ID="121">Disabled Image</Sentence>
+      <Sentence ID="122">Highlight button</Sentence>
+      <Sentence ID="123">Pressed state</Sentence>
+      <Sentence ID="124">Disabled</Sentence>
+      <Sentence ID="125">Margins</Sentence>
+      <Sentence ID="126">Paddings</Sentence>
+      <Sentence ID="127">Style</Sentence>
+      <Sentence ID="128">Skin</Sentence>
+      <Sentence ID="129">Text color</Sentence>
+      <Sentence ID="131">Border</Sentence>
+      <Sentence ID="132">Background-color</Sentence>
+      <Sentence ID="133">Border radius</Sentence>
+      <Sentence ID="134">Border color</Sentence>
+      <Sentence ID="135">FontFamily</Sentence>
+      <Sentence ID="136">FontSize</Sentence>
+      <Sentence ID="137">FontStyle</Sentence>
+      <Sentence ID="138">FontWeight</Sentence>
+      <Sentence ID="139">Text-decoration</Sentence>
+      <Sentence ID="141">FontShift</Sentence>
+      <Sentence ID="142">Alignment</Sentence>
+      <Sentence ID="143">Form</Sentence>
+      <Sentence ID="144"></Sentence>
+      <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="203">Visibility of the object.</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="206">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
+      <Sentence ID="203">newAttribute36</Sentence>
+      <Sentence ID="204">newAttribute38</Sentence>
+      <Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
+      <Sentence ID="206">Spacing between the top edge of the container and the object in pixels.</Sentence>
       <Sentence ID="207">Width of the object in pixels.</Sentence>
       <Sentence ID="208">Height of the object in pixels.</Sentence>
-      <Sentence ID="209">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
-      <Sentence ID="211">The text of the object.</Sentence>
-      <Sentence ID="212">A bubble help that is shown when the cursor points at the object.</Sentence>
-      <Sentence ID="213">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
-      <Sentence ID="214">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
-      <Sentence ID="215">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
-      <Sentence ID="216">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="217">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
-      <Sentence ID="218">The highlighting of the object when the cursor points at it.</Sentence>
-      <Sentence ID="219">The pressed state of the button.</Sentence>
-      <Sentence ID="221">Define if the object is active or not. It is useful when you want to display the button which is inactive at the moment, but which is active in another circumstances.</Sentence>
-      <Sentence ID="222">The border width of the object in pixels</Sentence>
-      <Sentence ID="223">The text color.</Sentence>
-      <Sentence ID="224">The font type of the object.</Sentence>
-      <Sentence ID="225">The font size of the object in points.</Sentence>
-      <Sentence ID="226">The font style.</Sentence>
-      <Sentence ID="227">The name of the CSS class.</Sentence>
-      <Sentence ID="228">The font weight.</Sentence>
-      <Sentence ID="229">The text decoration.</Sentence>
-      <Sentence ID="231">The text indent in pixels.</Sentence>
-      <Sentence ID="232">newAttribute37</Sentence>
-      <Sentence ID="233">The background color</Sentence>
-      <Sentence ID="234">The text alignment.</Sentence>
-      <Sentence ID="235">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="236">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
-      <Sentence ID="237">newAttribute31</Sentence>
-      <Sentence ID="238">newAttribute36</Sentence>
-      <Sentence ID="239">newAttribute37</Sentence>
-      <Sentence ID="241">newAttribute38</Sentence>
-      <Sentence ID="242">newAttribute39</Sentence>
-      <Sentence ID="243">newAttribute36</Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="209">newAttribute39</Sentence>
+      <Sentence ID="211">Visibility of the object.</Sentence>
+      <Sentence ID="212">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="213">The text of the object.</Sentence>
+      <Sentence ID="214">A bubble help that is shown when the cursor points at the object.</Sentence>
+      <Sentence ID="215">The hyperlink to the external page. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
+      <Sentence ID="216">The hyperlink to the internal HTML container. If the Container and the External link are determined at the same time - the priority is given to the External link.</Sentence>
+      <Sentence ID="217">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
+      <Sentence ID="218">The image of the object (image’s resource identifier). This attribute can not be set up together with the Text attribute.</Sentence>
+      <Sentence ID="219">The the image of the object (image’s resource identifier) that is shown when the cursor points at it.</Sentence>
+      <Sentence ID="221">The the image of the object (image’s resource identifier) if the Disabled attribute is set to Yes.</Sentence>
+      <Sentence ID="222">The highlighting of the object when the cursor points at it.</Sentence>
+      <Sentence ID="223">The pressed state of the button.</Sentence>
+      <Sentence ID="224">Define if the object is active or not. It is useful when you want to display the button which is inactive at the moment, but which is active in another circumstances.</Sentence>
+      <Sentence ID="225">newAttribute36</Sentence>
+      <Sentence ID="226">newAttribute37</Sentence>
+      <Sentence ID="227">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="228">The visual appearance of the object (ProSuite, User defined). If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="229">The text color.</Sentence>
+      <Sentence ID="231">The border width of the object in pixels</Sentence>
+      <Sentence ID="232">The background color</Sentence>
+      <Sentence ID="233">newAttribute37</Sentence>
+      <Sentence ID="234">newAttribute39</Sentence>
+      <Sentence ID="235">The font type of the object.</Sentence>
+      <Sentence ID="236">The font size of the object in points.</Sentence>
+      <Sentence ID="237">The font style.</Sentence>
+      <Sentence ID="238">The font weight.</Sentence>
+      <Sentence ID="239">The text decoration.</Sentence>
+      <Sentence ID="241">The text indent in pixels.</Sentence>
+      <Sentence ID="242">The text alignment.</Sentence>
+      <Sentence ID="243">newAttribute31</Sentence>
+      <Sentence ID="244"></Sentence>
+      <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="303">Incorrect value.</Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="303">newAttribute36</Sentence>
+      <Sentence ID="304"></Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer | auto.</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer | auto.</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="308">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="309">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="311">Incorrect value, must be valid text.</Sentence>
-      <Sentence ID="312">Incorrect value, must contain only printable characters.</Sentence>
-      <Sentence ID="313">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="314">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="315">Incorrect file, must be the image’s resource identifier.</Sentence>
-      <Sentence ID="316">Incorrect value, must be a valid link.</Sentence>
-      <Sentence ID="317">Incorrect value, must be valid internal container.</Sentence>
-      <Sentence ID="318">Incorrect value.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
-      <Sentence ID="321">Incorrect value.</Sentence>
-      <Sentence ID="322">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Incorrect value.</Sentence>
+      <Sentence ID="312">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="313">Incorrect value, must be valid text.</Sentence>
+      <Sentence ID="314">Incorrect value, must contain only printable characters.</Sentence>
+      <Sentence ID="315">Incorrect value, must be a valid link.</Sentence>
+      <Sentence ID="316">Incorrect value, must be valid internal container.</Sentence>
+      <Sentence ID="317">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="318">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="319">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="321">Incorrect file, must be the image’s resource identifier.</Sentence>
+      <Sentence ID="322">Incorrect value.</Sentence>
       <Sentence ID="323">Incorrect value.</Sentence>
       <Sentence ID="324">Incorrect value.</Sentence>
-      <Sentence ID="325">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="326">Incorrect value.</Sentence>
-      <Sentence ID="327">Incorrect value.</Sentence>
-      <Sentence ID="328">Incorrect value.</Sentence>
+      <Sentence ID="325">Incorrect value</Sentence>
+      <Sentence ID="326">Incorrect value</Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="329">Incorrect value.</Sentence>
-      <Sentence ID="331">Incorrect value, must be positive integer from 1 to 9999.</Sentence>
-      <Sentence ID="332">newAttribute37</Sentence>
-      <Sentence ID="333">Incorrect value.</Sentence>
+      <Sentence ID="331">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="332">Incorrect value.</Sentence>
+      <Sentence ID="333">newAttribute37</Sentence>
       <Sentence ID="334">Incorrect value.</Sentence>
-      <Sentence ID="335"></Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337">newAttribute31</Sentence>
-      <Sentence ID="338">Incorrect value</Sentence>
-      <Sentence ID="339">Incorrect value</Sentence>
-      <Sentence ID="341"></Sentence>
-      <Sentence ID="342"></Sentence>
-      <Sentence ID="343">newAttribute36</Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">No</Sentence>
-      <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="409">No</Sentence>
-      <Sentence ID="411">Yes</Sentence>
-      <Sentence ID="412">Italic</Sentence>
-      <Sentence ID="413">Normal</Sentence>
-      <Sentence ID="414">Bold</Sentence>
-      <Sentence ID="415">Normal</Sentence>
-      <Sentence ID="416">Underline</Sentence>
-      <Sentence ID="417">None</Sentence>
-      <Sentence ID="418">Left</Sentence>
-      <Sentence ID="419">Center</Sentence>
-      <Sentence ID="421">Right</Sentence>
-      <Sentence ID="422">User Defined</Sentence>
-      <Sentence ID="423">ProSuite</Sentence>
-      <Sentence ID="424">Absolute</Sentence>
-      <Sentence ID="425">Relative</Sentence>
-      <Sentence ID="426">Fixed</Sentence>
-      <Sentence ID="427">Static</Sentence>
-      <Sentence ID="428">Block</Sentence>
-      <Sentence ID="429">Inline</Sentence>
-      <Sentence ID="431">Flex</Sentence>
-      <Sentence ID="432">Inline-block</Sentence>
+      <Sentence ID="335">Incorrect value.</Sentence>
+      <Sentence ID="336">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="337">Incorrect value.</Sentence>
+      <Sentence ID="338">Incorrect value.</Sentence>
+      <Sentence ID="339">Incorrect value.</Sentence>
+      <Sentence ID="341">Incorrect value, must be positive integer from 1 to 9999.</Sentence>
+      <Sentence ID="342">Incorrect value.</Sentence>
+      <Sentence ID="343">newAttribute31</Sentence>
+      <Sentence ID="344"></Sentence>
+      <Sentence ID="401">Button</Sentence>
+      <Sentence ID="402">Link</Sentence>
+      <Sentence ID="403">Image</Sentence>
+      <Sentence ID="404">Absolute</Sentence>
+      <Sentence ID="405">Relative</Sentence>
+      <Sentence ID="406">Fixed</Sentence>
+      <Sentence ID="407">Static</Sentence>
+      <Sentence ID="408">Block</Sentence>
+      <Sentence ID="409">Inline</Sentence>
+      <Sentence ID="411">Flex</Sentence>
+      <Sentence ID="412">Inline-block</Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414">Invisible</Sentence>
+      <Sentence ID="415">Visible</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">Yes</Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
+      <Sentence ID="421">No</Sentence>
+      <Sentence ID="422">Yes</Sentence>
+      <Sentence ID="423">User Defined</Sentence>
+      <Sentence ID="424">ProSuite</Sentence>
+      <Sentence ID="425">Empty</Sentence>
+      <Sentence ID="426">Italic</Sentence>
+      <Sentence ID="427">Normal</Sentence>
+      <Sentence ID="428">Oblique</Sentence>
+      <Sentence ID="429"></Sentence>
+      <Sentence ID="431">Bold</Sentence>
+      <Sentence ID="432">Normal</Sentence>
       <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Button</Sentence>
-      <Sentence ID="435">Link</Sentence>
-      <Sentence ID="436">Image</Sentence>
+      <Sentence ID="434">Underline</Sentence>
+      <Sentence ID="435">None</Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="437">Left</Sentence>
+      <Sentence ID="438">Center</Sentence>
+      <Sentence ID="439">Right</Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
       <Sentence ID="501">Add new CSS class</Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
@@ -735,156 +770,165 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="001">Bouton</Sentence>
       <Sentence ID="002">Lien sur une image</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">Class</Sentence>
       <Sentence ID="102">Hiérarchie</Sentence>
-      <Sentence ID="103">Visibilité</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Haut</Sentence>
-      <Sentence ID="106">Gauche</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104"></Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Haut</Sentence>
       <Sentence ID="107">Largeur</Sentence>
       <Sentence ID="108">Hauteur</Sentence>
-      <Sentence ID="109">TabIndex</Sentence>
-      <Sentence ID="111">Texte</Sentence>
-      <Sentence ID="112">Info bulle</Sentence>
-      <Sentence ID="113">Image</Sentence>
-      <Sentence ID="114">Image de survol</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Lien externe</Sentence>
-      <Sentence ID="117">Lien vers page</Sentence>
-      <Sentence ID="118">Highlight button</Sentence>
-      <Sentence ID="119">Pressed state</Sentence>
-      <Sentence ID="121">Disabled</Sentence>
-      <Sentence ID="122">Bordure</Sentence>
-      <Sentence ID="123">Couleur</Sentence>
-      <Sentence ID="124">Police</Sentence>
-      <Sentence ID="125">Taille</Sentence>
-      <Sentence ID="126">Style</Sentence>
-      <Sentence ID="127">Class</Sentence>
-      <Sentence ID="128">Gras</Sentence>
-      <Sentence ID="129">Text-decoration</Sentence>
-      <Sentence ID="131">Décalage du texte</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111">Visibilité</Sentence>
+      <Sentence ID="112">Z-Index</Sentence>
+      <Sentence ID="113">Texte</Sentence>
+      <Sentence ID="114">Info bulle</Sentence>
+      <Sentence ID="115">Lien externe</Sentence>
+      <Sentence ID="116">Lien vers page</Sentence>
+      <Sentence ID="117">TabIndex</Sentence>
+      <Sentence ID="118">Image</Sentence>
+      <Sentence ID="119">Image de survol</Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122">Highlight button</Sentence>
+      <Sentence ID="123">Pressed state</Sentence>
+      <Sentence ID="124">Disabled</Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129">Couleur</Sentence>
+      <Sentence ID="131">Bordure</Sentence>
       <Sentence ID="132"></Sentence>
       <Sentence ID="133"></Sentence>
-      <Sentence ID="134">Alignment</Sentence>
-      <Sentence ID="135"></Sentence>
-      <Sentence ID="136"></Sentence>
-      <Sentence ID="137"></Sentence>
-      <Sentence ID="138"></Sentence>
-      <Sentence ID="139"></Sentence>
-      <Sentence ID="141"></Sentence>
-      <Sentence ID="142"></Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135">Police</Sentence>
+      <Sentence ID="136">Taille</Sentence>
+      <Sentence ID="137">Style</Sentence>
+      <Sentence ID="138">Gras</Sentence>
+      <Sentence ID="139">Text-decoration</Sentence>
+      <Sentence ID="141">Décalage du texte</Sentence>
+      <Sentence ID="142">Alignment</Sentence>
       <Sentence ID="143"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="144"></Sentence>
+      <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="204">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="205">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="206">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
       <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
       <Sentence ID="208">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="209">Tab index</Sentence>
-      <Sentence ID="211">Texte du bouton</Sentence>
-      <Sentence ID="212">Texte alternatif, s'affichant au survol de l'objet</Sentence>
-      <Sentence ID="213">Image du bouton</Sentence>
-      <Sentence ID="214">Image du bouton au survol</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Lien vers une page web externe</Sentence>
-      <Sentence ID="217">Liens vers une rubrique interne du site</Sentence>
-      <Sentence ID="218">Highlight button while mouse over</Sentence>
-      <Sentence ID="219">Draw button in pressed state</Sentence>
-      <Sentence ID="221">Enable or disable button</Sentence>
-      <Sentence ID="222">Epaisseur de la bordure de l'objet en pixels</Sentence>
-      <Sentence ID="223">Couleur du texte</Sentence>
-      <Sentence ID="224">Famille de police</Sentence>
-      <Sentence ID="225">Taille du texte</Sentence>
-      <Sentence ID="226">Style de police : italique ou normal</Sentence>
-      <Sentence ID="227">CSS class name</Sentence>
-      <Sentence ID="228">Graisse de la police : gras ou normal</Sentence>
-      <Sentence ID="229">Décoration du texte : souligné ou pas</Sentence>
-      <Sentence ID="231">Décalage du texte par rapport au bord de l'image du bouton</Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="212">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="213">Texte du bouton</Sentence>
+      <Sentence ID="214">Texte alternatif, s'affichant au survol de l'objet</Sentence>
+      <Sentence ID="215">Lien vers une page web externe</Sentence>
+      <Sentence ID="216">Liens vers une rubrique interne du site</Sentence>
+      <Sentence ID="217">Tab index</Sentence>
+      <Sentence ID="218">Image du bouton</Sentence>
+      <Sentence ID="219">Image du bouton au survol</Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Highlight button while mouse over</Sentence>
+      <Sentence ID="223">Draw button in pressed state</Sentence>
+      <Sentence ID="224">Enable or disable button</Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229">Couleur du texte</Sentence>
+      <Sentence ID="231">Epaisseur de la bordure de l'objet en pixels</Sentence>
       <Sentence ID="232"></Sentence>
       <Sentence ID="233"></Sentence>
-      <Sentence ID="234">Alignement du texte</Sentence>
-      <Sentence ID="235"></Sentence>
-      <Sentence ID="236"></Sentence>
-      <Sentence ID="237"></Sentence>
-      <Sentence ID="238"></Sentence>
-      <Sentence ID="239"></Sentence>
-      <Sentence ID="241"></Sentence>
-      <Sentence ID="242"></Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235">Famille de police</Sentence>
+      <Sentence ID="236">Taille du texte</Sentence>
+      <Sentence ID="237">Style de police : italique ou normal</Sentence>
+      <Sentence ID="238">Graisse de la police : gras ou normal</Sentence>
+      <Sentence ID="239">Décoration du texte : souligné ou pas</Sentence>
+      <Sentence ID="241">Décalage du texte par rapport au bord de l'image du bouton</Sentence>
+      <Sentence ID="242">Alignement du texte</Sentence>
       <Sentence ID="243"></Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="244"></Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="303">Valeur Incorrecte</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être comprise entre 0 et 99</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304"></Sentence>
       <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="311">Valeur Incorrecte, doit être un texte valide</Sentence>
-      <Sentence ID="312">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
-      <Sentence ID="313">Fichier Incorrect, doit être un fichier image</Sentence>
-      <Sentence ID="314">Fichier Incorrect, doit être un fichier image</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Valeur Incorrecte, doit être un lien valide</Sentence>
-      <Sentence ID="317">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
-      <Sentence ID="319">Incorrect value</Sentence>
-      <Sentence ID="321">Incorrect value</Sentence>
-      <Sentence ID="322">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="323">Valeur Incorrecte</Sentence>
-      <Sentence ID="324">Valeur Incorrecte</Sentence>
-      <Sentence ID="325">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="326">Valeur Incorrecte</Sentence>
-      <Sentence ID="327">Incorrect value</Sentence>
-      <Sentence ID="328">Valeur Incorrecte</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Valeur Incorrecte</Sentence>
+      <Sentence ID="312">Valeur Incorrecte, doit être comprise entre 0 et 99</Sentence>
+      <Sentence ID="313">Valeur Incorrecte, doit être un texte valide</Sentence>
+      <Sentence ID="314">Valeur Incorrecte, ne doit comporter que des caractères imprimables</Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être un lien valide</Sentence>
+      <Sentence ID="316">Valeur Incorrecte, doit être un lien valide vers un conteneur interne valide</Sentence>
+      <Sentence ID="317">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="318">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="319">Fichier Incorrect, doit être un fichier image</Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322">Incorrect value</Sentence>
+      <Sentence ID="323">Incorrect value</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="329">Valeur Incorrecte</Sentence>
-      <Sentence ID="331">Valeur Incorrecte, doit être compris entre 1 et 4</Sentence>
+      <Sentence ID="331">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
-      <Sentence ID="334">Valeur Incorrecte</Sentence>
-      <Sentence ID="335"></Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337"></Sentence>
-      <Sentence ID="338"></Sentence>
-      <Sentence ID="339"></Sentence>
-      <Sentence ID="341"></Sentence>
-      <Sentence ID="342"></Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335">Valeur Incorrecte</Sentence>
+      <Sentence ID="336">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="337">Valeur Incorrecte</Sentence>
+      <Sentence ID="338">Valeur Incorrecte</Sentence>
+      <Sentence ID="339">Valeur Incorrecte</Sentence>
+      <Sentence ID="341">Valeur Incorrecte, doit être compris entre 1 et 4</Sentence>
+      <Sentence ID="342">Valeur Incorrecte</Sentence>
       <Sentence ID="343"></Sentence>
+      <Sentence ID="344"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">No</Sentence>
-      <Sentence ID="408">Yes</Sentence>
-      <Sentence ID="409">No</Sentence>
-      <Sentence ID="411">Yes</Sentence>
-      <Sentence ID="412">Italique</Sentence>
-      <Sentence ID="413">Normal</Sentence>
-      <Sentence ID="414">Gras</Sentence>
-      <Sentence ID="415">Normal</Sentence>
-      <Sentence ID="416">Souligné</Sentence>
-      <Sentence ID="417">Aucune</Sentence>
-      <Sentence ID="418">Gauche</Sentence>
-      <Sentence ID="419">Centrer</Sentence>
-      <Sentence ID="421">Droite</Sentence>
-      <Sentence ID="422"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414">Invisible</Sentence>
+      <Sentence ID="415">Visible</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">Yes</Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
+      <Sentence ID="421">No</Sentence>
+      <Sentence ID="422">Yes</Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
-      <Sentence ID="426"></Sentence>
-      <Sentence ID="427"></Sentence>
+      <Sentence ID="426">Italique</Sentence>
+      <Sentence ID="427">Normal</Sentence>
       <Sentence ID="428"></Sentence>
       <Sentence ID="429"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
+      <Sentence ID="431">Gras</Sentence>
+      <Sentence ID="432">Normal</Sentence>
       <Sentence ID="433"></Sentence>
-      <Sentence ID="434"></Sentence>
-      <Sentence ID="435"></Sentence>
+      <Sentence ID="434">Souligné</Sentence>
+      <Sentence ID="435">Aucune</Sentence>
       <Sentence ID="436"></Sentence>
+      <Sentence ID="437">Gauche</Sentence>
+      <Sentence ID="438">Centrer</Sentence>
+      <Sentence ID="439">Droite</Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
@@ -970,156 +1014,165 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="001">Кнопка</Sentence>
       <Sentence ID="002">Кнопка в виде ссылки или изображения</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
       <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103">Отображение</Sentence>
-      <Sentence ID="104">Порядок</Sentence>
-      <Sentence ID="105">Сверху</Sentence>
-      <Sentence ID="106">Слева</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104"></Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Сверху</Sentence>
       <Sentence ID="107">Ширина</Sentence>
       <Sentence ID="108">Высота</Sentence>
-      <Sentence ID="109">Индекс табуляции</Sentence>
-      <Sentence ID="111">Текст</Sentence>
-      <Sentence ID="112">Подсказка</Sentence>
-      <Sentence ID="113">Изображение кнопки</Sentence>
-      <Sentence ID="114">Изображение при наведении</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Внешняя ссылка</Sentence>
-      <Sentence ID="117">Ссылка на контейнер</Sentence>
-      <Sentence ID="118">Выделить кнопку</Sentence>
-      <Sentence ID="119">Нажатое состояние</Sentence>
-      <Sentence ID="121">Disabled</Sentence>
-      <Sentence ID="122">Граница</Sentence>
-      <Sentence ID="123">Цвет текста</Sentence>
-      <Sentence ID="124">Шрифт</Sentence>
-      <Sentence ID="125">Размер шрифта</Sentence>
-      <Sentence ID="126">Стиль шрифта</Sentence>
-      <Sentence ID="127">Класс CSS</Sentence>
-      <Sentence ID="128">Выделение</Sentence>
-      <Sentence ID="129">Оформление текста</Sentence>
-      <Sentence ID="131">Смещение текста</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111">Отображение</Sentence>
+      <Sentence ID="112">Порядок</Sentence>
+      <Sentence ID="113">Текст</Sentence>
+      <Sentence ID="114">Подсказка</Sentence>
+      <Sentence ID="115">Внешняя ссылка</Sentence>
+      <Sentence ID="116">Ссылка на контейнер</Sentence>
+      <Sentence ID="117">Индекс табуляции</Sentence>
+      <Sentence ID="118">Изображение кнопки</Sentence>
+      <Sentence ID="119">Изображение при наведении</Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122">Выделить кнопку</Sentence>
+      <Sentence ID="123">Нажатое состояние</Sentence>
+      <Sentence ID="124">Disabled</Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127">Стиль</Sentence>
+      <Sentence ID="128">Скин</Sentence>
+      <Sentence ID="129">Цвет текста</Sentence>
+      <Sentence ID="131">Граница</Sentence>
       <Sentence ID="132"></Sentence>
       <Sentence ID="133"></Sentence>
-      <Sentence ID="134">Выравнивание</Sentence>
-      <Sentence ID="135">Стиль</Sentence>
-      <Sentence ID="136">Скин</Sentence>
-      <Sentence ID="137"></Sentence>
-      <Sentence ID="138"></Sentence>
-      <Sentence ID="139"></Sentence>
-      <Sentence ID="141"></Sentence>
-      <Sentence ID="142"></Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135">Шрифт</Sentence>
+      <Sentence ID="136">Размер шрифта</Sentence>
+      <Sentence ID="137">Стиль шрифта</Sentence>
+      <Sentence ID="138">Выделение</Sentence>
+      <Sentence ID="139">Оформление текста</Sentence>
+      <Sentence ID="141">Смещение текста</Sentence>
+      <Sentence ID="142">Выравнивание</Sentence>
       <Sentence ID="143"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="144"></Sentence>
+      <Sentence ID="201">Имя класса CSS</Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="203">Режим отображения объекта</Sentence>
-      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204"></Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="207">Ширина объекта в пикселях</Sentence>
       <Sentence ID="208">Высота объекта в пикселях</Sentence>
-      <Sentence ID="209">Индекс табуляции для объекта на странице</Sentence>
-      <Sentence ID="211">Текст, отображающийся на кнопке</Sentence>
-      <Sentence ID="212">Всплывающая подсказка при наведении на объект</Sentence>
-      <Sentence ID="213">Графическое изображение объекта</Sentence>
-      <Sentence ID="214">Графическое изображение объекта при наведении курсора</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Ссылка на внешнюю веб-страницу</Sentence>
-      <Sentence ID="217">Ссылка на внутренний контейнер</Sentence>
-      <Sentence ID="218">Выделить кнопку при наведении курсора мыши</Sentence>
-      <Sentence ID="219">Отобразить кнопку в нажатом состоянии</Sentence>
-      <Sentence ID="221">Enable or disable button</Sentence>
-      <Sentence ID="222">Толщина границы объекта в пикселях</Sentence>
-      <Sentence ID="223">Цвет текста</Sentence>
-      <Sentence ID="224">Cемейство шрифтов</Sentence>
-      <Sentence ID="225">Размер шрифта</Sentence>
-      <Sentence ID="226">Стиль шрифта</Sentence>
-      <Sentence ID="227">Имя класса CSS</Sentence>
-      <Sentence ID="228">Выделение шрифта</Sentence>
-      <Sentence ID="229">Оформление текста</Sentence>
-      <Sentence ID="231">Смещение текста от края кнопки</Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211">Режим отображения объекта</Sentence>
+      <Sentence ID="212">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="213">Текст, отображающийся на кнопке</Sentence>
+      <Sentence ID="214">Всплывающая подсказка при наведении на объект</Sentence>
+      <Sentence ID="215">Ссылка на внешнюю веб-страницу</Sentence>
+      <Sentence ID="216">Ссылка на внутренний контейнер</Sentence>
+      <Sentence ID="217">Индекс табуляции для объекта на странице</Sentence>
+      <Sentence ID="218">Графическое изображение объекта</Sentence>
+      <Sentence ID="219">Графическое изображение объекта при наведении курсора</Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Выделить кнопку при наведении курсора мыши</Sentence>
+      <Sentence ID="223">Отобразить кнопку в нажатом состоянии</Sentence>
+      <Sentence ID="224">Enable or disable button</Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227">Стиль CSS</Sentence>
+      <Sentence ID="228">Скин объекта</Sentence>
+      <Sentence ID="229">Цвет текста</Sentence>
+      <Sentence ID="231">Толщина границы объекта в пикселях</Sentence>
       <Sentence ID="232"></Sentence>
       <Sentence ID="233"></Sentence>
-      <Sentence ID="234">Выравнивание текста</Sentence>
-      <Sentence ID="235">Стиль CSS</Sentence>
-      <Sentence ID="236">Скин объекта</Sentence>
-      <Sentence ID="237"></Sentence>
-      <Sentence ID="238"></Sentence>
-      <Sentence ID="239"></Sentence>
-      <Sentence ID="241"></Sentence>
-      <Sentence ID="242"></Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235">Cемейство шрифтов</Sentence>
+      <Sentence ID="236">Размер шрифта</Sentence>
+      <Sentence ID="237">Стиль шрифта</Sentence>
+      <Sentence ID="238">Выделение шрифта</Sentence>
+      <Sentence ID="239">Оформление текста</Sentence>
+      <Sentence ID="241">Смещение текста от края кнопки</Sentence>
+      <Sentence ID="242">Выравнивание текста</Sentence>
       <Sentence ID="243"></Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="244"></Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="303">Неправильное значение</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304"></Sentence>
       <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть целое положительное число</Sentence>
-      <Sentence ID="311">Неправильное значение, должно быть текстом</Sentence>
-      <Sentence ID="312">Неправильное значение, должно содержать только печатаемые символы</Sentence>
-      <Sentence ID="313">Неправильный файл, должно быть изображение</Sentence>
-      <Sentence ID="314">Неправильный файл, должен быть изображением</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Неправильное значение, должно быть допустимой ссылкой</Sentence>
-      <Sentence ID="317">Неправильное значение, должен быть существующий контейнер</Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
-      <Sentence ID="321">Incorrect value</Sentence>
-      <Sentence ID="322">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Неправильное значение</Sentence>
+      <Sentence ID="312">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="313">Неправильное значение, должно быть текстом</Sentence>
+      <Sentence ID="314">Неправильное значение, должно содержать только печатаемые символы</Sentence>
+      <Sentence ID="315">Неправильное значение, должно быть допустимой ссылкой</Sentence>
+      <Sentence ID="316">Неправильное значение, должен быть существующий контейнер</Sentence>
+      <Sentence ID="317">Неправильное значение, должно быть целое положительное число</Sentence>
+      <Sentence ID="318">Неправильный файл, должно быть изображение</Sentence>
+      <Sentence ID="319">Неправильный файл, должен быть изображением</Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322">Неправильное значение</Sentence>
       <Sentence ID="323">Неправильное значение</Sentence>
-      <Sentence ID="324">Неправильное значение</Sentence>
-      <Sentence ID="325">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="326">Неправильное значение</Sentence>
-      <Sentence ID="327">Неправильное значение</Sentence>
-      <Sentence ID="328">Неправильное значение</Sentence>
+      <Sentence ID="324">Incorrect value</Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="329">Неправильное значение</Sentence>
-      <Sentence ID="331">Неправильное значение, должно быть указано целое положительное число от 1 до 4</Sentence>
+      <Sentence ID="331">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
-      <Sentence ID="334">Неправильное значение</Sentence>
-      <Sentence ID="335"></Sentence>
-      <Sentence ID="336"></Sentence>
-      <Sentence ID="337"></Sentence>
-      <Sentence ID="338"></Sentence>
-      <Sentence ID="339"></Sentence>
-      <Sentence ID="341"></Sentence>
-      <Sentence ID="342"></Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335">Неправильное значение</Sentence>
+      <Sentence ID="336">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="337">Неправильное значение</Sentence>
+      <Sentence ID="338">Неправильное значение</Sentence>
+      <Sentence ID="339">Неправильное значение</Sentence>
+      <Sentence ID="341">Неправильное значение, должно быть указано целое положительное число от 1 до 4</Sentence>
+      <Sentence ID="342">Неправильное значение</Sentence>
       <Sentence ID="343"></Sentence>
+      <Sentence ID="344"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Не отображать</Sentence>
-      <Sentence ID="404">Отображать</Sentence>
-      <Sentence ID="405">Нет</Sentence>
-      <Sentence ID="406">Да</Sentence>
-      <Sentence ID="407">Нет</Sentence>
-      <Sentence ID="408">Да</Sentence>
-      <Sentence ID="409">Нет</Sentence>
-      <Sentence ID="411">Да</Sentence>
-      <Sentence ID="412">Курсив</Sentence>
-      <Sentence ID="413">Обычный</Sentence>
-      <Sentence ID="414">Полужирный</Sentence>
-      <Sentence ID="415">Обычный</Sentence>
-      <Sentence ID="416">Подчеркнутый</Sentence>
-      <Sentence ID="417">Обычный</Sentence>
-      <Sentence ID="418">Слева</Sentence>
-      <Sentence ID="419">По центру</Sentence>
-      <Sentence ID="421">Справа</Sentence>
-      <Sentence ID="422">Определенный пользователем</Sentence>
-      <Sentence ID="423">ProSuite</Sentence>
-      <Sentence ID="424"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414">Не отображать</Sentence>
+      <Sentence ID="415">Отображать</Sentence>
+      <Sentence ID="416">Нет</Sentence>
+      <Sentence ID="417">Да</Sentence>
+      <Sentence ID="418">Нет</Sentence>
+      <Sentence ID="419">Да</Sentence>
+      <Sentence ID="421">Нет</Sentence>
+      <Sentence ID="422">Да</Sentence>
+      <Sentence ID="423">Определенный пользователем</Sentence>
+      <Sentence ID="424">ProSuite</Sentence>
       <Sentence ID="425"></Sentence>
-      <Sentence ID="426"></Sentence>
-      <Sentence ID="427"></Sentence>
+      <Sentence ID="426">Курсив</Sentence>
+      <Sentence ID="427">Обычный</Sentence>
       <Sentence ID="428"></Sentence>
       <Sentence ID="429"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
+      <Sentence ID="431">Полужирный</Sentence>
+      <Sentence ID="432">Обычный</Sentence>
       <Sentence ID="433"></Sentence>
-      <Sentence ID="434"></Sentence>
-      <Sentence ID="435"></Sentence>
+      <Sentence ID="434">Подчеркнутый</Sentence>
+      <Sentence ID="435">Обычный</Sentence>
       <Sentence ID="436"></Sentence>
+      <Sentence ID="437">Слева</Sentence>
+      <Sentence ID="438">По центру</Sentence>
+      <Sentence ID="439">Справа</Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
       <Sentence ID="501">Добавить объекту класс CSS</Sentence>
       <Sentence ID="502">Показать объект</Sentence>
       <Sentence ID="503">Показать объект</Sentence>
@@ -1352,6 +1405,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
   <SourceCode><![CDATA[from scripting.legacy.id import id2link1
 import StringIO
 import re
+import pdb
 
 class VDOM_button(VDOM_object):
 
@@ -1360,39 +1414,50 @@ class VDOM_button(VDOM_object):
         self.finalimage = self.image
         self.finalrollover = self.rollover
         self.finaldisabledimg = self.disabledimg
-        if self.text:
-            if self.image or self.rollover or self.disabledimg:
-                try:
-                    from scripting.legacy.imaging import VDOM_imaging
-                    im = VDOM_imaging()
-                    im.create_font(name = self.fontfamily, size = int(self.fontsize), 
-                            fontstyle = self.fontstyle, fontweight = self.fontweight)
-                    if self.image:
-                        resource = application.resources.get_by_label(self.id, "image")
-                        if resource:
-                            self.finalimage = resource.id
-                        else:
-                            im.load(application.id, self.image)
-                            im.write_text(self.text,
-                                color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
-                                align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
-                            self.finalimage = im.save_temporary(application.id, self.id, "image")
-                    if self.rollover:
-                        resource = application.resources.get_by_label(self.id, "rollover")
-                        if resource:
-                            self.finalrollover = resource.id
-                        else:
-                            im.load(application.id, self.rollover)
-                            im.write_text(self.text,
-                                color = ( int(self.color[:2], 16), int(self.color[2:4], 16), int(self.color[4:6], 16)),
-                                align = self.align, ident = self.fontshift, textdecoration = self.textdecoration)
-                            self.finalrollover = im.save_temporary(application.id, self.id, "rollover")
-                except Exception as e:
-                    debug("Error while text rendering on button image: %s"%str(e))
-        if self.image or self.rollover or self.disabledimg:
-            self.finaltext = ''
+        
+        deffamily = "Tahoma, 'Geneva CY', geneva, sans-serif".replace('"', '').replace("'", '')
+        fontsize = self.regex(str(self.fontsize)) or "12"
+        fontstyle = self.fontstyle# or "normal"
+        fontfamily = self.fontfamily.replace('"', '').replace("'", '') or deffamily
+        fontweight = self.fontweight# or "normal"
+        textdecor = self.textdecoration or "none"
+        color = self.color or "000000"
+        
+        if self.text and (self.image or self.rollover or self.disabledimg):
+        	try:
+        		from scripting.legacy.imaging import VDOM_imaging
+        		im = VDOM_imaging()
+        		
+        		im.create_font(name = fontfamily, size = int(fontsize),
+        						fontstyle = fontstyle, fontweight = fontweight)
+        		if self.image:
+        			resource = application.resources.get_by_label(self.id, "image")
+        			if resource:
+        				self.finalimage = resource.id
+        			else:
+        				im.load(application.id, self.image)
+        				im.write_text(self.text,
+        							color = ( int(color[:2], 16), int(color[2:4], 16), int(color[4:6], 16)),
+        							align = self.align or "left", ident = self.fontshift, textdecoration = textdecor)
+        				self.finalimage = im.save_temporary(application.id, self.id, "image")
+        				
+        			if self.rollover:
+        				resource = application.resources.get_by_label(self.id, "rollover")
+        				if resource:
+        					self.finalrollover = resource.id
+        				else:
+        					im.load(application.id, self.rollover)
+        					im.write_text(self.text,
+        								color = ( int(color[:2], 16), int(color[2:4], 16), int(color[4:6], 16)),
+        								align = self.align or "left", ident = self.fontshift, textdecoration = textdecor)
+        					self.finalrollover = im.save_temporary(application.id, self.id, "rollover")
+        	except Exception as e:
+        		debug("Error while text rendering on button image: %s"%str(e))
+        
+        if not (self.image or self.rollover or self.disabledimg):
+        	self.finaltext = self.text
         else:
-            self.finaltext = self.text
+        	self.finaltext = ''            
 
     def get_anchor(self, link):
         if self.ispressed == "0":
@@ -1425,12 +1490,17 @@ class VDOM_button(VDOM_object):
         id_out = u"o_%s" % (self.id).replace('-', '_')
         styleblock = u""
         scriptblock = u""
+        border_style = u"border: {border} {bdcolor};".format(
+                          border = self.check_unit(self.border), bdcolor = self.bordercolor
+                       ) if self.border else ""
+        text_align = u"text-align: {align};".format(align = self.align) if self.align else ""
+
         width_style = u"width: {width};".format(width = self.check_unit(self.width)) if self.width else ""
         height_style = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
 
         margin_in = u"margin: {margins};".format(margins=self.margins) if self.margins else ""
         padding_in = u"padding: {paddings};".format(paddings=self.paddings) if self.paddings else ""
-
+        
         if self.positioning == "static":
             position = self.positioning = ""
             self.left = self.top = ""
@@ -1443,7 +1513,7 @@ class VDOM_button(VDOM_object):
         if self.disabled == "0":
             disabled_html = u""
         else:
-            zindex_disabled = u"z-index:%s;" % str(int(self.zindex) + 1)
+            zindex_disabled = u"z-index: %s;" % str(int(self.zindex) + 1)
             disabled_html = u"""<div id='{id}_e2vdomhelper' class='disabled-over' style='{zindex_disabled} background: #fff;
                                         opacity: 0.01; filter: alpha(opacity=1); {position} {left} {top} 
                                         {width} {height} {margin} {padding}'></div>
@@ -1456,12 +1526,11 @@ class VDOM_button(VDOM_object):
         disablecss = u""
         representation = u""
         render_mode = self.rendermode.lower() if self.rendermode else "default"
-        style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u""
-        style = u"""overflow: hidden; {position} {zindex} {left} {top} {margin} {padding}
-                        {wstyle} {hstyle} text-align: {align}; border: {border}px solid black;
-                    """.format(
+        style_zindex = u"z-index: %s;" % self.zindex if int(self.zindex) != 0 else u""
+        style = u"""{zindex} {position} {left} {top} {margin} {padding} {wstyle} {hstyle} {align} {border}"""\
+            .format(
                 zindex=style_zindex, left=left_style, top=top_style, position=position,
-                wstyle=width_style, hstyle=height_style, align=self.align, border=self.border,
+                wstyle=width_style, hstyle=height_style, align=text_align, border=border_style,
                 margin=margin_in, padding=padding_in)
     
         display = u"display: none; " if self.visible == "0" else u"display: {disp}; ".format
@@ -1477,34 +1546,25 @@ class VDOM_button(VDOM_object):
         else:
             debug_info = ""
             
-        if not self.style:
-        	spstyle = StringIO.StringIO()
-        	spstyle.write(u"font: ")
-        	if self.fontweight == "bold":
-        		spstyle.write(u"bold ")
-        	if self.fontstyle == "italic":
-        		spstyle.write(u"italic ")
-        	if self.fontsize:
-        		spstyle.write(u"%spx " % self.fontsize)
-        	else:
-        		spstyle.write(u"12px ")
-        	if self.fontfamily:
-        		spstyle.write(u"%s" % self.fontfamily.replace('"', "'"))
-        	spstyle.write(u";")
-        	if self.align:
-        		spstyle.write(u"text-align: %s;" % self.align)
-        	if self.color:
-        		spstyle.write(u"color: #%s;" % self.color)
-        	if self.textdecoration:
-        		spstyle.write(u"text-decoration: %s;" % self.textdecoration)
-        	if self.borderradius:
-        		spstyle.write(u"border-radius: %s;" % self.borderradius)
-        	if self.backgroundcolor:
-        		spstyle.write(u"background-color: #%s;" % self.backgroundcolor)
-        	text_style = spstyle.getvalue()
-        	spstyle.close()
-        else:
-        	text_style = ""
+        spstyle = StringIO.StringIO()
+        if self.fontweight == "bold":
+        	spstyle.write(u"font-weight: bold; ")
+        if self.fontstyle == "italic":
+        	spstyle.write(u"font-style: italic; ")
+        if self.fontsize:
+        	spstyle.write(u"font-size: %spx; " % self.fontsize)
+        if self.fontfamily:
+        	spstyle.write(u"font-family: %s;" % self.fontfamily.replace('"', "'"))
+        if self.color:
+        	spstyle.write(u"color: #%s; " % self.color)
+        if self.textdecoration:
+        	spstyle.write(u"text-decoration: %s; " % self.textdecoration)
+        if self.borderradius:
+        	spstyle.write(u"border-radius: %s; " % self.check_unit(self.borderradius))
+        if self.backgroundcolor:
+        	spstyle.write(u"background-color: #%s; " % self.backgroundcolor)
+        text_style = spstyle.getvalue()
+        spstyle.close()
         
         if render_mode == "image":
             if self.image:
@@ -1526,12 +1586,12 @@ class VDOM_button(VDOM_object):
                                 image=hover_link, width=width_img, height=height_img, hint=self.hint)
                     else:
                         if not self.classname:
-                            self.classname = "button"
+                            self.classname = "imagebtn"
                         classtut = self.classname
                         if self.ispressed == "1":
                             self.classname = "{classname} {classname}_sel".format(classname=self.classname)
     
-                        matches = re.match(r"(\d+)(px|em|%)", height_img)
+                        matches = re.match(r"(\d+)(px|em|rem|vh|%)", height_img)
                         # shift background position for show another state of button
                         if matches:
                         	value = int(matches.group(1)) * 2
@@ -1542,19 +1602,19 @@ class VDOM_button(VDOM_object):
                         	height_img = width_img = "50px"
     
                         styleblock = \
-                            u"""<style>.%(classname)s,.%(classname)s_sel {
+                            u"""<style>#%(id)s .%(classname)s, #%(id)s .%(classname)s_sel {
                             		display: block; width: %(width)s; height: %(height)s; 
                             		background: url("%(image)s") left top no-repeat;
                             	}
-                                .%(classname)s:hover {
+                                #%(id)s .%(classname)s:hover {
                                 	background-position: left -%(height)s
                                 }
-                                .%(classname)s_sel,.%(classname)s_sel:hover {
+                                #%(id)s .%(classname)s_sel, #%(id)s .%(classname)s_sel:hover {
                                 	background-position: left -%(bgleft)s!important
                                 }
                                 </style>
                             """ % {"classname": classtut, "width": width_img, "height": height_img,
-                                    "image": hover_link, "bgleft": bgpos_left}
+                                    "image": hover_link, "bgleft": bgpos_left, "id": id_out}
     
                         scriptblock += \
                             u"""$q("#%(id)s a").click(function(){$q(this).toggleClass("%(classname)s_sel");});
@@ -1586,7 +1646,7 @@ class VDOM_button(VDOM_object):
                 scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
     
             return u"""{ocss}
-                        <div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button {classname}">
+                        <div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button image {classname}">
                             {anchor}{repr}</a>
                         </div>{disabled}{styleblk}{scriptblk}{disablecss}
                     """.format(
@@ -1634,6 +1694,9 @@ class VDOM_button(VDOM_object):
         self.width = int(width) if width else 150
         self.height = int(height) if height else 20
         
+        self.border = self.regex(self.border)
+        deffamily = "Tahoma, 'Geneva CY', geneva, sans-serif".replace('"', '').replace("'", '')
+        
         if self.border and self.border != "0":
             bw = int(self.border)
             minsize = min(int(self.width), int(self.height))
@@ -1641,8 +1704,16 @@ class VDOM_button(VDOM_object):
                 bw = minsize / 2
             border_string = u""" stroke="#000000" stroke-width="%s" """ % bw
         else:
-            bw = 0
-            border_string = u""
+            bw = 1
+            border_string = u""" stroke="#000000" stroke-width="%s" """ % bw
+            
+        self.fontweight = self.fontweight or "normal"
+        self.fontstyle = self.fontstyle or "normal"
+        self.fontsize = self.regex(self.fontsize) or "12"
+        self.fontfamily = self.fontfamily.replace('"', '').replace("'", '') or deffamily
+        self.align = self.align or "left"
+        self.color = str(self.color) or "000000"
+        self.textdecoration = self.textdecoration or "none"
         
         if self.rendermode == "image":
             if not self.image:
@@ -1689,9 +1760,7 @@ class VDOM_button(VDOM_object):
                 return VDOM_object.wysiwyg(self, contents=result)
         
         else:
-        	fontsize = u"""fontsize="%s" """ % self.fontsize if self.fontsize else u""
         	label = u"<![CDATA[%s%s]>" % (self.text, "]")
-        	
         	result = \
         		u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
         					top="{top}" left="{left}" width="{width}" height="{height}">
@@ -1700,7 +1769,7 @@ class VDOM_button(VDOM_object):
         				</svg>
         				<text top="{txt_top}" left="{txt_left}" width="{txt_wid}" textalign="{align}" 
         					color="#{color}" fontstyle="{fstyle}" 
-        					textdecoration="{txt_decor}" fontweight="{fweight}" fontfamily="{ffamily}" {fsize}>
+        					textdecoration="{txt_decor}" fontweight="{fweight}" fontfamily="{ffamily}" fontsize="{fsize}">
         					{label}
         				</text>{contents}
         			</container>
@@ -1714,28 +1783,30 @@ class VDOM_button(VDOM_object):
         				align = self.align, color = self.color, fstyle = self.fontstyle, 
         				txt_decor = self.textdecoration,
         				fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
-        				fsize = fontsize, label = label, contents = contents, name = self.name)
+        				fsize = self.fontsize, label = label, contents = contents, name = self.name)
         	
         	return VDOM_object.wysiwyg(self, contents=result)
 
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
-    # o = application.objects.search(object_id)
     o = object
     modifications = {}
-
+    
     for attr in ["left", "top", "width", "height"]:
-		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-
-			if new_value is not None and new_value.isdigit():
-				new_value = new_value + unit
-			modifications[attr] = new_value
-
+    	if attr in attributes:
+    		new_value = attributes.get(attr, '')
+    		obj_value = o.attributes.get(attr, '')
+    		
+    		if 'px' in obj_value.lower() and new_value.isdigit():
+    			new_value = str(new_value) + "px"
+    		elif new_value.isdigit():
+    			new_value = obj_value
+    			
+    		modifications[attr] = new_value
+    		
     attributes.update(modifications)
+    
     # if "image" in param and not "width" in param and not "height" in param:
     if "image" in attributes and not "width" in attributes and not "height" in attributes:
         # res_id = param["image"]["value"]
@@ -1758,6 +1829,24 @@ def on_update(object, attributes):
         if o.attributes["width"] != width or o.attributes["height"] != height:
             attributes.update(width=str(width), height=str(height))
 
+    users = """\
+#%(id)s {
+
+}
+#%(id)s .vdom_button {
+
+}
+#%(id)s .vdom_button.link {
+
+}
+#%(id)s .vdom_button.button {
+
+}
+#%(id)s .vdom_button.image {
+
+}
+"""
+    
     pro_suite = """#%(id)s {height: 33px !important}
 #%(id)s a {
  text-align:center !important;
@@ -1805,45 +1894,50 @@ font-family:Arial,sans-serif;
 #%(id)s a.disabled span {
 color: #999 !important;
 }"""
+
+    empty = ""
+    
     # if "skin" in param:
     #     if param["skin"]["value"] == "1":
     #         o.set_attributes({"style": pro_suite})
+    skin_mapping = {
+        "0": users,
+        "1": pro_suite,
+        "2": empty
+    }
+    
     if "skin" in attributes:
-        if attributes["skin"] == "1":
-            o.attributes.update(style=pro_suite)
+    	skin = attributes["skin"]
+    	if skin in skin_mapping:
+    		attributes.update(style=skin_mapping[skin])
+    	else:
+    		attributes.update(skin="0")
+    		
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+    	attributes.update(skin="0")
+        	
     # if "style" in param and param["style"]["value"] and o.attributes.style != pro_suite:        
     #     o.set_attributes({"skin": 0})
-    if "style" in attributes and attributes["style"] and o.attributes.style != pro_suite:        
-        o.attributes.update(skin=0)
+    		
     return ""]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_button {
-            
+            font-size: 12px;
+            font-family: Tahoma, "Geneva CY", geneva, sans-serif;
+            text-align: left;
+            color: #000000;
+            text-decoration: none;
+            background-color: #d1d1d1;
+            overflow: hidden;
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 5px;
         }
-
-        .vdom_button.image div {
-          
-        }
-
-        .vdom_button.image div a {
-          
-        }
-
-        .vdom_button.image div img {
-          
-        }
-
-        .vdom_button.button div {
-          
-        }
-
-        .vdom_button.button div a {
-          
-        }
-
-        .vdom_button.link a {
-          
+        
+        .vdom_button.link {
+           text-decoration: underline;
+           background-color: transparent;
         }
 </style>]]></Library>
   </Libraries>
