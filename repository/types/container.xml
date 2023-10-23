@@ -248,7 +248,7 @@
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(429)|absolute)|(#Lang(430)|fixed)|(#Lang(431)|relative)|(#Lang(432)|static))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|absolute)|(#Lang(424)|fixed)|(#Lang(425)|relative)|(#Lang(426)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
@@ -260,7 +260,7 @@
       <Visible>0</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(423)|1)|(#Lang(424)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(427)|1)|(#Lang(428)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -308,7 +308,7 @@
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1)|(#Lang(427)|2)|(#Lang(428)|3))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(429)|0)|(#Lang(431)|1)|(#Lang(432)|2)|(#Lang(433)|3))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
@@ -411,16 +411,16 @@
       <Sentence ID="419">Hidden</Sentence>
       <Sentence ID="421">Scroll</Sentence>
       <Sentence ID="422">Visible</Sentence>
-      <Sentence ID="423">True</Sentence>
-      <Sentence ID="424">False</Sentence>
-      <Sentence ID="425">repeat</Sentence>
-      <Sentence ID="426">no-repeat</Sentence>
-      <Sentence ID="427">repeat-x</Sentence>
-      <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="429">Absolute</Sentence>
-      <Sentence ID="430">Fixed</Sentence>
-      <Sentence ID="431">Relative</Sentence>
-      <Sentence ID="432">Static</Sentence>
+      <Sentence ID="423">Absolute</Sentence>
+      <Sentence ID="424">Fixed</Sentence>
+      <Sentence ID="425">Relative</Sentence>
+      <Sentence ID="426">Static</Sentence>
+      <Sentence ID="427">True</Sentence>
+      <Sentence ID="428">False</Sentence>
+      <Sentence ID="429">repeat</Sentence>
+      <Sentence ID="431">no-repeat</Sentence>
+      <Sentence ID="432">repeat-x</Sentence>
+      <Sentence ID="433">repeat-y</Sentence>
       <Sentence ID="501">Start dragging the object</Sentence>
       <Sentence ID="502">Stop drag action</Sentence>
       <Sentence ID="503">Start dragging the object</Sentence>
@@ -618,14 +618,14 @@
       <Sentence ID="422">Visible</Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
-      <Sentence ID="425">repeat</Sentence>
-      <Sentence ID="426">no-repeat</Sentence>
-      <Sentence ID="427">repeat-x</Sentence>
-      <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="429"></Sentence>
-      <Sentence ID="430"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429">repeat</Sentence>
+      <Sentence ID="431">no-repeat</Sentence>
+      <Sentence ID="432">repeat-x</Sentence>
+      <Sentence ID="433">repeat-y</Sentence>
       <Sentence ID="501">Start drag action</Sentence>
       <Sentence ID="502">Stop drag action</Sentence>
       <Sentence ID="503">Start drag action</Sentence>
@@ -823,14 +823,14 @@
       <Sentence ID="422">Видимый</Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
-      <Sentence ID="425">repeat</Sentence>
-      <Sentence ID="426">no-repeat</Sentence>
-      <Sentence ID="427">repeat-x</Sentence>
-      <Sentence ID="428">repeat-y</Sentence>
-      <Sentence ID="429"></Sentence>
-      <Sentence ID="430"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="429">repeat</Sentence>
+      <Sentence ID="431">no-repeat</Sentence>
+      <Sentence ID="432">repeat-x</Sentence>
+      <Sentence ID="433">repeat-y</Sentence>
       <Sentence ID="501">Начать операцию перетаскивания</Sentence>
       <Sentence ID="502">Закончить операцию перетаскивания</Sentence>
       <Sentence ID="503">Начать операцию перетаскивания</Sentence>
@@ -1175,7 +1175,7 @@ class VDOM_container(VDOM_object):
         	
         styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-        style = u"""{display} {zind} {pos} {styles} overflow: {overflow} {background_color} {background_image} {background_repeat}"""\
+        style = u"""{display} {zind} {pos} {styles} overflow: {overflow}; {background_color} {background_image} {background_repeat}"""\
                 .format(display = display, zind = style_zindex, pos = position,
                     background_color = background_color, background_image = background_image, background_repeat = background_repeat,
                     overflow = overflow, height = height, styles = styles_str)
