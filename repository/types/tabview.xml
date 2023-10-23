@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.341.6720</Version>
+    <Version>1.345.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -26,196 +26,198 @@
   </Information>
   <Attributes>
     <Attribute>
-      <Name>stateful</Name>
+      <Name>classname</Name>
       <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>hierarchy</Name>
+      <Name>stateful</Name>
       <DisplayName>#Lang(102)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(202)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(103)</DisplayName>
+      <DisplayName>#Lang(104)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
+      <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>zindex</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>200</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
+      <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>width</Name>
+      <Name>positioning</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>200</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(405)|absolute)|(#Lang(406)|relative)|(#Lang(407)|fixed)|(#Lang(408)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>currenttab</Name>
+      <Name>top</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>showtabs</Name>
+      <Name>left</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>height</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>#%(id)s .vdom_tabview {
+
+}</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>currenttab</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>showtabs</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>paddings</Name>
-      <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>positioning</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|absolute)|(#Lang(411)|relative)|(#Lang(412)|fixed)|(#Lang(413)|static))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
       <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -223,66 +225,66 @@
       <Sentence ID="001">Tabview</Sentence>
       <Sentence ID="002">The Tabview type allows storing and displaying the blocks of information, called tabs, in a predefined way.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Height</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">currenttab</Sentence>
-      <Sentence ID="108">Show tabs</Sentence>
-      <Sentence ID="109">Style</Sentence>
-      <Sentence ID="111">Skin</Sentence>
-      <Sentence ID="112">CSS class</Sentence>
-      <Sentence ID="113">Margins</Sentence>
-      <Sentence ID="114">Paddings</Sentence>
-      <Sentence ID="115">Position</Sentence>
-      <Sentence ID="116">Top</Sentence>
-      <Sentence ID="117">Left</Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Height of the object in pixels.</Sentence>
-      <Sentence ID="206">Width of the object in pixels.</Sentence>
-      <Sentence ID="207">The sequence number of the current inserted element</Sentence>
-      <Sentence ID="208">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="209">CSS style of the object</Sentence>
-      <Sentence ID="211">Visual appearance of the object</Sentence>
-      <Sentence ID="212">Incorrect value</Sentence>
-      <Sentence ID="213">newAttribute14</Sentence>
-      <Sentence ID="214">newAttribute15</Sentence>
-      <Sentence ID="215">newAttribute13</Sentence>
-      <Sentence ID="216">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="217">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="101">CSS class</Sentence>
+      <Sentence ID="102"></Sentence>
+      <Sentence ID="103">Hierarchy</Sentence>
+      <Sentence ID="104">Visibility</Sentence>
+      <Sentence ID="105">Z-Index</Sentence>
+      <Sentence ID="106">Position</Sentence>
+      <Sentence ID="107">Top</Sentence>
+      <Sentence ID="108">Left</Sentence>
+      <Sentence ID="109">Height</Sentence>
+      <Sentence ID="111">Width</Sentence>
+      <Sentence ID="112">Style</Sentence>
+      <Sentence ID="113">Skin</Sentence>
+      <Sentence ID="114">currenttab</Sentence>
+      <Sentence ID="115">Show tabs</Sentence>
+      <Sentence ID="116">Margins</Sentence>
+      <Sentence ID="117">Paddings</Sentence>
+      <Sentence ID="201">Incorrect value</Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203">Order of rendering the object on the page</Sentence>
+      <Sentence ID="204">Visibility of the object</Sentence>
+      <Sentence ID="205">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="206">newAttribute13</Sentence>
+      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="209">Height of the object in pixels.</Sentence>
+      <Sentence ID="211">Width of the object in pixels.</Sentence>
+      <Sentence ID="212">CSS style of the object</Sentence>
+      <Sentence ID="213">Visual appearance of the object</Sentence>
+      <Sentence ID="214">The sequence number of the current inserted element</Sentence>
+      <Sentence ID="215">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="216">newAttribute14</Sentence>
+      <Sentence ID="217">newAttribute15</Sentence>
       <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="304">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="307">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="304">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="305">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="309">Incorrect value, must be positive integer.</Sentence>
+      <Sentence ID="311">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="312"></Sentence>
-      <Sentence ID="313">newAttribute14</Sentence>
-      <Sentence ID="314">newAttribute15</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Incorrect value, must be positive integer | auto.</Sentence>
-      <Sentence ID="317">Incorrect value, must be positive integer | auto.</Sentence>
+      <Sentence ID="316">newAttribute14</Sentence>
+      <Sentence ID="317">newAttribute15</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
       <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">User defined</Sentence>
-      <Sentence ID="408">Custom</Sentence>
-      <Sentence ID="409">Absolute</Sentence>
-      <Sentence ID="411">Relative</Sentence>
-      <Sentence ID="412">Fixed</Sentence>
-      <Sentence ID="413">Static</Sentence>
+      <Sentence ID="405">Absolute</Sentence>
+      <Sentence ID="406">Relative</Sentence>
+      <Sentence ID="407">Fixed</Sentence>
+      <Sentence ID="408">Static</Sentence>
+      <Sentence ID="409">User defined</Sentence>
+      <Sentence ID="411">Empty</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Yes</Sentence>
       <Sentence ID="501">Tab is activated</Sentence>
       <Sentence ID="502">Toggle CSS class</Sentence>
       <Sentence ID="503"></Sentence>
@@ -325,65 +327,65 @@
       <Sentence ID="002">Container for tabs</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Hiérarchie</Sentence>
-      <Sentence ID="103">Visibilité</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105"></Sentence>
+      <Sentence ID="102"></Sentence>
+      <Sentence ID="103">Hiérarchie</Sentence>
+      <Sentence ID="104">Visibilité</Sentence>
+      <Sentence ID="105">Z-Index</Sentence>
       <Sentence ID="106"></Sentence>
-      <Sentence ID="107">currentTab</Sentence>
-      <Sentence ID="108">Show tabs</Sentence>
-      <Sentence ID="109">Style</Sentence>
-      <Sentence ID="111">Skin</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Haut</Sentence>
-      <Sentence ID="117">Gauche</Sentence>
+      <Sentence ID="107">Haut</Sentence>
+      <Sentence ID="108">Gauche</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Style</Sentence>
+      <Sentence ID="113">Skin</Sentence>
+      <Sentence ID="114">currentTab</Sentence>
+      <Sentence ID="115">Show tabs</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
       <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="204">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="205"></Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="205">Niveau de superposition de l'objet par rapport aux autres</Sentence>
       <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Current tab</Sentence>
-      <Sentence ID="208">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="209">CSS style of the object</Sentence>
-      <Sentence ID="211">Visual appearance of the object</Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="217">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="207">Distance from the top edge of the parent object in pixels</Sentence>
+      <Sentence ID="208">Distance from the left edge of the parent object in pixels</Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">CSS style of the object</Sentence>
+      <Sentence ID="213">Visual appearance of the object</Sentence>
+      <Sentence ID="214">Current tab</Sentence>
+      <Sentence ID="215">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
       <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="305"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="306"></Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="308"></Sentence>
+      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
+      <Sentence ID="314">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="317">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
       <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">No</Sentence>
-      <Sentence ID="406">Yes</Sentence>
-      <Sentence ID="407">User defined</Sentence>
-      <Sentence ID="408">Custom</Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411"></Sentence>
-      <Sentence ID="412"></Sentence>
-      <Sentence ID="413"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409">User defined</Sentence>
+      <Sentence ID="411">Custom</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Yes</Sentence>
       <Sentence ID="501">activate tab</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -426,65 +428,65 @@
       <Sentence ID="002">Используется как контейнер для вкладок</Sentence>
       <Sentence ID="003"></Sentence>
       <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103">Отображение</Sentence>
-      <Sentence ID="104">Позиция</Sentence>
-      <Sentence ID="105"></Sentence>
+      <Sentence ID="102"></Sentence>
+      <Sentence ID="103">Иерархия</Sentence>
+      <Sentence ID="104">Отображение</Sentence>
+      <Sentence ID="105">Позиция</Sentence>
       <Sentence ID="106"></Sentence>
-      <Sentence ID="107">Текущая вкладка</Sentence>
-      <Sentence ID="108">Показывать вкладки</Sentence>
-      <Sentence ID="109">Стиль</Sentence>
-      <Sentence ID="111">Оформление</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Сверху</Sentence>
-      <Sentence ID="117">Слева</Sentence>
+      <Sentence ID="107">Сверху</Sentence>
+      <Sentence ID="108">Слева</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Стиль</Sentence>
+      <Sentence ID="113">Оформление</Sentence>
+      <Sentence ID="114">Текущая вкладка</Sentence>
+      <Sentence ID="115">Показывать вкладки</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
       <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="203">Режим отображения объекта</Sentence>
-      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="205"></Sentence>
+      <Sentence ID="202"></Sentence>
+      <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="204">Режим отображения объекта</Sentence>
+      <Sentence ID="205">Положение в визуальной иерархии объектов</Sentence>
       <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Порядковый номер текущей вкладки</Sentence>
-      <Sentence ID="208">Определяет, будут ли отображаться вкладки</Sentence>
-      <Sentence ID="209">CSS стиль объекта</Sentence>
-      <Sentence ID="211">Визуальное оформление объекта</Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="217">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="207">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="208">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">CSS стиль объекта</Sentence>
+      <Sentence ID="213">Визуальное оформление объекта</Sentence>
+      <Sentence ID="214">Порядковый номер текущей вкладки</Sentence>
+      <Sentence ID="215">Определяет, будут ли отображаться вкладки</Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
       <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="305"></Sentence>
+      <Sentence ID="302"></Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="304">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="306"></Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="308"></Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="309"></Sentence>
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
+      <Sentence ID="314">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="317">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
       <Sentence ID="404">Отображать</Sentence>
-      <Sentence ID="405">Нет</Sentence>
-      <Sentence ID="406">Да</Sentence>
-      <Sentence ID="407">Определено пользователем</Sentence>
-      <Sentence ID="408">Пользовательский</Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411"></Sentence>
-      <Sentence ID="412"></Sentence>
-      <Sentence ID="413"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409">Определено пользователем</Sentence>
+      <Sentence ID="411">Пользовательский</Sentence>
+      <Sentence ID="412">Нет</Sentence>
+      <Sentence ID="413">Да</Sentence>
       <Sentence ID="501">Активировать вкладку</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -744,7 +746,8 @@ class VDOM_tabview(VDOM_object):
 
 	def render(self, contents=""):
 		from collections import OrderedDict
-		display = u" display:none; " if self.visible == "0" else u""
+		display = u"display: none; " if self.visible == "0" else u""
+		zindex = u"z-index: %s; " if self.zindex != "0" else u""
 
 		e2vdom.process(self)
 					
@@ -763,9 +766,9 @@ class VDOM_tabview(VDOM_object):
 		top_inline = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
 		left_inline = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
 
-		style = u"""{display} z-index: {zind}; {pos} {top} {left} {width} {height} border: none; {margin} {padding}"""\
+		style = u"""{display} {zind} {pos} {top} {left} {width} {height} {margin} {padding}"""\
 				.format(
-					display=display, zind=self.zindex, pos=position, top=top_inline, left=left_inline,
+					display=display, zind=zindex, pos=position, top=top_inline, left=left_inline,
 					width=width_in, height=height_in, margin=margin_in, padding=padding_in)
 			
 		id = u"o_" + (self.id).replace('-', '_')
@@ -802,25 +805,8 @@ class VDOM_tabview(VDOM_object):
 		for key in sortTagArray:
 			tab_tag += tag_array[key]
 
-		css = u"""
-#ul_%(id)s {
-    list-style: none outside none;
-    margin: 0;
-    padding: 0;
-}
-
-#ul_%(id)s li {
-    display: inline;
-}
-
-.tabContent div:nth-child(%(hierarchy)s) {
-    /* Apply child classes here */
-    class: tab-child-%(hierarchy)s;
-}
-""" % {"id": id, "hierarchy": len(children)}
-
 		if self.showtabs == '1':
-			css += self.style % {"id": id}
+			tabclass = "with_tabs"
 			tabs = u'<ul id="ul_%(id)s" class="tabNavigation" style="list-style: none"> %(tab)s </ul>' % {"id": id,
                                                                                                            "tab": tab_tag}
 			js += u"""<script type="text/javascript">
@@ -844,7 +830,7 @@ $(document).ready(function($){
 });
 </script>""" % {"id": id, "arr": str(children_array)}
 		else:
-			css = u''
+			tabclass = ""
 			tabs = u''
 			js += u"""<script type="text/javascript">
 var tabview_children_%(id)s = %(arr)s;
@@ -854,18 +840,19 @@ var tabview_children_%(id)s = %(arr)s;
 			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
 		else:
 			debug_info = u""
+		
+		outcss = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
 
-		result = \
-			u"""
-<style type="text/css">{css}</style>
-<div {debug_info} id="{id}" class="vdom_tabview {classname}" style="{style}">
+		result = u"""\
+{css}
+<div {debug_info} id="{id}" class="vdom_tabview {withtabs} {classname}" style="{style}">
     {tabs}
     {cont_tag}
 </div>
 {js}
 			""".format(
 			debug_info=debug_info, classname=self.classname if self.classname else "",
-			css=css, id=id, style=style,
+			css=outcss, id=id, style=style, withtabs = tabclass,
 			tabs=tabs, cont_tag=cont_tag, js=js)
 
 		return VDOM_object.render(self, contents=result)
@@ -923,6 +910,7 @@ def on_update(object, attributes):
 	# 		height = 200			
 	# 	if obj.attributes.height != height:
 	# 		obj.set_attribute_ex("height", height)
+	o = object
 
 	width = attributes.get("width")
 	if width is not None:
@@ -942,15 +930,15 @@ def on_update(object, attributes):
 
 	# childs = obj.objects
 	# for key in childs:
-	for child in object.objects.itervalues():
+	for child in o.objects.itervalues():
 		# child = childs[key]
 		# if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
 		# 	child.set_attribute_ex("zindex", "1")
 		# elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
 		# 	child.set_attribute_ex("zindex", "0")
-		if object.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
+		if o.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
 			child.attributes.update(zindex="1")
-		elif object.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
+		elif o.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
 			child.attributes.update(zindex="0")
 
 		# if "width" in param:
@@ -970,7 +958,13 @@ def on_update(object, attributes):
 		if height is not None:
 			child.attributes.update(height=height)
 
-	css = u""""""
+	users = u"""\
+#%(id)s .vdom_tabview {
+
+}
+"""
+
+	empty = ""
 	
 	#o = application.objects.search(object_id)
 	
@@ -991,15 +985,32 @@ def on_update(object, attributes):
 	
 	for attr in ["left", "top", "width", "height"]:
 		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-
-			if new_value is not None and new_value.isdigit():
-				new_value = new_value + unit
+			new_value = attributes.get(attr, '')
+			obj_value = o.attributes.get(attr, '')
+			
+			if 'px' in obj_value.lower() and new_value.isdigit():
+				new_value = str(new_value) + "px"
+			elif new_value.isdigit():
+				new_value = obj_value
+				
 			modifications[attr] = new_value
-
+			
 	attributes.update(modifications)
+	
+	skin_mapping = {
+		"0": users,
+		"1": empty
+	}
+	
+	if "skin" in attributes:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+			
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+		attributes.update(skin="0")
 
 	return ""
 
@@ -1047,7 +1058,14 @@ def on_insert(parent, object):
 			object.attributes.update(zindex="0")
 
 	# return ""]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_tabview {
+            border: none;
+        }
+
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
