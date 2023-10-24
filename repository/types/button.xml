@@ -1552,7 +1552,7 @@ class VDOM_button(VDOM_object):
         if self.fontstyle == "italic":
         	spstyle.write(u"font-style: italic; ")
         if self.fontsize:
-        	spstyle.write(u"font-size: %spx; " % self.fontsize)
+        	spstyle.write(u"font-size: %s; " % self.check_unit(self.fontsize))
         if self.fontfamily:
         	spstyle.write(u"font-family: %s;" % self.fontfamily.replace('"', "'"))
         if self.color:

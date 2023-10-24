@@ -256,7 +256,7 @@
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|flex-start)|(#Lang(416)|flex-end)|(#Lang(417)|center)|(#Lang(418)|baseline)|(#Lang(419)|stretch)|(#Lang(421)|auto))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|flex-start)|(#Lang(416)|flex-end)|(#Lang(417)|center)|(#Lang(418)|baseline)|(#Lang(419)|stretch)|(#Lang(421)|auto)|(#Lang(422)|))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -316,7 +316,7 @@
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(422)|none)|(#Lang(423)|left)|(#Lang(424)|right)|(#Lang(425)|both))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|none)|(#Lang(424)|left)|(#Lang(425)|right)|(#Lang(426)|both)|(#Lang(427)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -538,10 +538,12 @@
       <Sentence ID="418">baseline</Sentence>
       <Sentence ID="419">stretch</Sentence>
       <Sentence ID="421">auto</Sentence>
-      <Sentence ID="422">none</Sentence>
-      <Sentence ID="423">Left</Sentence>
-      <Sentence ID="424">Right</Sentence>
-      <Sentence ID="425">Both</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423">none</Sentence>
+      <Sentence ID="424">Left</Sentence>
+      <Sentence ID="425">Right</Sentence>
+      <Sentence ID="426">Both</Sentence>
+      <Sentence ID="427"></Sentence>
       <Sentence ID="501">Visibility</Sentence>
       <Sentence ID="502">Visibility</Sentence>
       <Sentence ID="503">Visibility</Sentence>
@@ -740,10 +742,12 @@
       <Sentence ID="418">baseline</Sentence>
       <Sentence ID="419">stretch</Sentence>
       <Sentence ID="421">auto</Sentence>
-      <Sentence ID="422">none</Sentence>
-      <Sentence ID="423">Left</Sentence>
-      <Sentence ID="424">Right</Sentence>
-      <Sentence ID="425">Both</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423">none</Sentence>
+      <Sentence ID="424">Left</Sentence>
+      <Sentence ID="425">Right</Sentence>
+      <Sentence ID="426">Both</Sentence>
+      <Sentence ID="427"></Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -942,10 +946,12 @@
       <Sentence ID="418">baseline</Sentence>
       <Sentence ID="419">stretch</Sentence>
       <Sentence ID="421">auto</Sentence>
-      <Sentence ID="422">none</Sentence>
-      <Sentence ID="423">Left</Sentence>
-      <Sentence ID="424">Right</Sentence>
-      <Sentence ID="425">Both</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423">none</Sentence>
+      <Sentence ID="424">Left</Sentence>
+      <Sentence ID="425">Right</Sentence>
+      <Sentence ID="426">Both</Sentence>
+      <Sentence ID="427"></Sentence>
       <Sentence ID="501">Отображение</Sentence>
       <Sentence ID="502">Отображение</Sentence>
       <Sentence ID="503">Отображение</Sentence>
@@ -1221,14 +1227,13 @@ class VDOM_image(VDOM_object):
         	self.left = self.top = ""
         	self.right = self.bottom = ""
 
+        id = 'o_' + (self.id).replace('-', '_')
+        
+        style_mixin = u""
         clear = "none"
         if self.float == 'both':
             clear = "both"
             self.float = "none"
-
-        id = 'o_' + (self.id).replace('-', '_')
-        
-        style_mixin = u""
 
         title = ""
         if self.hint:
