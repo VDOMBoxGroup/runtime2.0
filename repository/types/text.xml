@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.179.6720</Version>
+    <Version>3.189.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_create, on_update, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -208,12 +208,7 @@
     <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>#%(id)s {
-
-}
-#%(id)s .myClass {
-
-}</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
@@ -225,7 +220,7 @@
     <Attribute>
       <Name>skin</Name>
       <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
@@ -354,6 +349,42 @@
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|)</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(132)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(232)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -388,6 +419,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="127">Alignment</Sentence>
       <Sentence ID="128">Alpha</Sentence>
       <Sentence ID="129">Text-decoration</Sentence>
+      <Sentence ID="131">IDE_top</Sentence>
+      <Sentence ID="132">IDE_left</Sentence>
+      <Sentence ID="133">IDE_width</Sentence>
       <Sentence ID="201">Names of CSS classes.</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
@@ -415,6 +449,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="227">Text alignment.</Sentence>
       <Sentence ID="228"></Sentence>
       <Sentence ID="229">Text decoration.</Sentence>
+      <Sentence ID="231">newAttribute27</Sentence>
+      <Sentence ID="232">newAttribute28</Sentence>
+      <Sentence ID="233">newAttribute29</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99.</Sentence>
@@ -442,6 +479,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="327">Incorrect value.</Sentence>
       <Sentence ID="328">Incorrect value.</Sentence>
       <Sentence ID="329">Incorrect value.</Sentence>
+      <Sentence ID="331">newAttribute27</Sentence>
+      <Sentence ID="332">newAttribute28</Sentence>
+      <Sentence ID="333">newAttribute29</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -608,6 +648,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="127">Alignement</Sentence>
       <Sentence ID="128">Alpha</Sentence>
       <Sentence ID="129">Text-decoration</Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -635,6 +678,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="227">Alignement du texte</Sentence>
       <Sentence ID="228"></Sentence>
       <Sentence ID="229">Texte decoration</Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -662,6 +708,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="327">Valeur Incorrecte</Sentence>
       <Sentence ID="328">Valeur Incorrecte</Sentence>
       <Sentence ID="329">Valeur Incorrecte</Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -828,6 +877,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="127">Выравнивание</Sentence>
       <Sentence ID="128">Прозрачность</Sentence>
       <Sentence ID="129">Оформление текста</Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
       <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
@@ -855,6 +907,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="227">Выравнивание текста</Sentence>
       <Sentence ID="228"></Sentence>
       <Sentence ID="229">Определяет, использовать подчеркивание или нет</Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -882,6 +937,9 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="327">Неправильное значение</Sentence>
       <Sentence ID="328">Неправильное значение</Sentence>
       <Sentence ID="329">Неправильное значение</Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -1235,11 +1293,11 @@ class VDOM_text(VDOM_object):
         }
 
         return VDOM_object.render(self, contents=result)
-        
+    		
     def regex(self, obj):
 		match = re.search(r'\d+', obj)
 		return int(match.group()) if match else ""
-    		
+    
     def wysiwyg(self, contents=""):
         the_value = self.value
 
@@ -1253,9 +1311,8 @@ class VDOM_text(VDOM_object):
         fontsize="fontsize=\"%s\"" % self.regex(self.fontsize) if self.fontsize else ""
         self.fontfamily = self.fontfamily.replace('"', '').replace("'", '') or 'Tahoma, "Geneva CY", geneva, sans-serif'
         editable="value,color,fontfamily,fontsize,fontstyle,fontweight,align,textdecoration"
-
-        width, top, left = map(self.regex, (self.width, self.top, self.left))
-        width = width if width != "" else 400
+        	
+        width, top, left = [int(self.ide_width), int(self.ide_top), int(self.ide_left)]
         
         result=\
             u"""<container name="{name}" id="{id}" visible="{visible}" zindex="{zindex}" hierarchy="{hierarchy}" order="{order}" top="{top}" left="{left}" width="{width}">
@@ -1295,25 +1352,27 @@ def on_update(object, attributes):
 	o = object
 	modifications = {}
 	
-	for attr in ["left", "top", "width"]:
+	for attr in ["left", "width", "top"]:
 		if attr in attributes:
-			new_value = attributes.get(attr, '')
-			obj_value = o.attributes.get(attr, '')
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
 			
-			if 'px' in obj_value.lower() and new_value.isdigit():
-				new_value = str(new_value) + "px"
-			elif new_value.isdigit():
-				new_value = obj_value
-			
-			modifications[attr] = new_value
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_" + attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
 			
 	attributes.update(modifications)
 	
 	users = """\
 #%(id)s {
-
-}
-#%(id)s .myClass {
 
 }
 """
@@ -1336,62 +1395,27 @@ def on_update(object, attributes):
 	# if "style" in attributes and attributes["style"] and o.attributes.style != custom:
 	# 	o.attributes.update(skin=0)
 
-	return ""]]></SourceCode>
+	return ""
+	
+def on_create(object):
+	for attr in ["left", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
+			
+def on_compile(object, attributes):
+	for attr in ["left", "width", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
     .vdom_text {
-        position: static !important;
-        font-family: Montserrat  !important;
-        width: initial !important;
-        margin: 0px;
-        padding: 0px;
-    }
 
-    h1.vdom_text {
-        font-size: 60px !important;
-        font-weight: 700 !important;
-    }
-
-    h2.vdom_text {
-        font-size: 45px !important;
-        font-weight: 700 !important;
-    }
-
-    h3.vdom_text{
-        font-size: 36px !important;
-        font-weight: 700 !important;
-    }
-
-    h4.vdom_text {
-        font-size: 32px !important;
-        font-weight: 600 !important;
-    }
-    
-    h5.vdom_text {
-        font-size: 30px !important;
-        font-weight: 600 !important;
-    }
-
-    h6.vdom_text {
-        font-size: 22px !important;
-        font-weight: 600 !important;
-    }
-
-    p.vdom_text {
-        font-size: 13px !important;
-        font-weight: 400 !important;
-        display: inline;
-        line-height: 130% !important;
-    }
-    div.vdom_text {
-        font-size: 13px !important;
-        font-weight: 400 !important;
-    }
-   
-    span.vdom_text {
-        font-size: 13px !important;
-        font-weight: 400 !important;
-        display: inline;
     }
 </style>
 ]]></Library>

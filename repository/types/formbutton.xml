@@ -14,28 +14,28 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.33.6201</Version>
+    <Version>1.21.6201</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, dialog_2, container</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_compile, on_update</Handlers>
+    <Handlers>on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
   <Attributes>
     <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue/>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -50,52 +50,88 @@
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>90</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>25</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>type</Name>
@@ -205,90 +241,6 @@
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
-    <Attribute>
-      <Name>ide_top</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(221)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_left</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(222)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_width</Name>
-      <DisplayName>#Lang(123)</DisplayName>
-      <DefaultValue>90</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(223)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_height</Name>
-      <DisplayName>#Lang(124)</DisplayName>
-      <DefaultValue>25</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(224)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>stateful</Name>
-      <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -313,10 +265,6 @@
       <Sentence ID="117">Position</Sentence>
       <Sentence ID="118">Margins</Sentence>
       <Sentence ID="119">Paddings</Sentence>
-      <Sentence ID="121">IDE_top</Sentence>
-      <Sentence ID="122">IDE_left</Sentence>
-      <Sentence ID="123">IDE_width</Sentence>
-      <Sentence ID="124">IDE_height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -338,19 +286,15 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="217">newAttribute14</Sentence>
       <Sentence ID="218">newAttribute15</Sentence>
       <Sentence ID="219">newAttribute16</Sentence>
-      <Sentence ID="221">newAttribute18</Sentence>
-      <Sentence ID="222">newAttribute19</Sentence>
-      <Sentence ID="223">newAttribute20</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="305">Incorrect value.</Sentence>
-      <Sentence ID="306">Incorrect value. Valid formats: number with optional unit modifier or auto.</Sentence>
-      <Sentence ID="307">Incorrect value. Valid formats: number with optional unit modifier or auto.</Sentence>
-      <Sentence ID="308">Incorrect value. Valid formats: number with optional unit modifier or auto.</Sentence>
-      <Sentence ID="309">Incorrect value. Valid formats: number with optional unit modifier or auto.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="308">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="309">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="311">Incorrect value, must be either 0, 1 or 2.</Sentence>
       <Sentence ID="312">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="313">Incorrect value.</Sentence>
@@ -358,12 +302,8 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="315">Incorrect value.</Sentence>
       <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="317"></Sentence>
-      <Sentence ID="318">Incorrent value.</Sentence>
-      <Sentence ID="319">Incorrent value.</Sentence>
-      <Sentence ID="321">newAttribute18</Sentence>
-      <Sentence ID="322">newAttribute19</Sentence>
-      <Sentence ID="323">newAttribute20</Sentence>
-      <Sentence ID="324">newAttribute21</Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -462,10 +402,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="124"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -484,10 +420,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
-      <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="224"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -506,10 +438,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="324"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -608,10 +536,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="117"></Sentence>
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="124"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -630,10 +554,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="217"></Sentence>
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
-      <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="224"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -652,10 +572,6 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="317"></Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="324"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -991,7 +907,7 @@ class VDOM_formbutton(VDOM_object):
 
 		result = u"""<style type="text/css">{css}</style>
 						<input {debug_info} id="{id}" name="{name}" style="{style}" type="{type}"
-								tabindex="{tabind}" value="{label}" class="{clname} vdom_formbutton" />
+								tabindex="{tabind}" value="{label}" class="vdom_formbutton {clname}" />
 			""".format(
 					debug_info = debug_info,
 					css = self.style % {"id": id},
@@ -1004,10 +920,16 @@ class VDOM_formbutton(VDOM_object):
 					clname = self.classname)
 			
 		return VDOM_object.render(self, contents=result)
+
+	def regex(self, obj):
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
 	
 	def wysiwyg(self, contents=""):
-		width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
+		width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
 		
+		self.width = int(width) if width else 90
+		self.height = int(height) if height else 25
 		label = u"<![CDATA[%s%s]>" % (self.label, "]")
 		result = \
 			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
@@ -1020,13 +942,14 @@ class VDOM_formbutton(VDOM_object):
 			""".format(
 					id = self.id, vis = self.visible, zind = self.zindex, name = self.name, 
 					hierarchy = self.hierarchy, order = self.order, 
-					top = top, left = left, width = width, height = height,
-					rec_wid = width-1, rec_hei = height-1,
-					txt_top = height/2-9, txt_wid = width-4, label = label,
+					top = self.top, left = self.left, width = self.width, height = self.height,
+					rec_wid = int(self.width)-1, rec_hei = int(self.height)-1,
+					txt_top = int(self.height)/2-9, txt_wid = int(self.width)-4, label = label,
 					contents = contents)
 				
 		return VDOM_object.wysiwyg(self, contents=result)
-
+		
+# def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
 
 	pro_suite = """#%(id)s {
@@ -1074,7 +997,15 @@ border:1px solid #a8a8a8;
 
 }
 """
-
+	# o = application.objects.search(object_id)
+		
+	# set attributes
+	
+	# if "skin" in param:
+	# 	if param["skin"]["value"] == "1":
+	# 		o.set_attributes({"style": pro_suite})
+	# if "style" in param and param["style"]["value"] and o.attributes.style != pro_suite:
+	# 	o.set_attributes({"skin": 0}) 
 	skin_mapping = {
 		"0": users,
 		"1": pro_suite,
@@ -1092,36 +1023,20 @@ border:1px solid #a8a8a8;
 		attributes.update(skin="0")
 		
 	o = object
-	mods = {}
+	modifications = {}
 	
-	for attr in ["left", "width", "height", "top"]:
+	for attr in ["left", "top", "width", "height"]:
 		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				mods[attr] = attr_value + "px"
-				mods["ide_"+ attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				mods[attr] = attr_value.rstrip("px") + "px"
-				mods["ide_"+ attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				mods[attr] = attr_value if "px" in attr_value else obj_value
-				mods["ide_"+ attr] = attr_value.rstrip("px")
-			else:
-				mods[attr] = attr_value
-			
-	attributes.update(mods)
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
+			if new_value.isnumeric():
+				new_value = new_value + unit
+								
+			modifications[attr] = new_value
+	attributes.update(modifications)
 	
-	return ""
-	
-def on_compile(object, attributes):
-	for attr in ["left", "width", "height", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value.rstrip("px") + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
+	return ""]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_formbutton  {
