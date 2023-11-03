@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.100</Version>
+    <Version>1.105.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
@@ -80,10 +80,10 @@
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
@@ -92,10 +92,10 @@
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
@@ -104,10 +104,10 @@
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -116,10 +116,10 @@
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>multiline</Name>
@@ -242,91 +242,91 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>customname</Name>
+      <Name>positioning</Name>
       <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>absolute</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(417)|absolute)|(#Lang(418)|relative)|(#Lang(419)|fixed)|(#Lang(421)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>required</Name>
+      <Name>margins</Name>
       <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>pattern</Name>
+      <Name>paddings</Name>
       <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>titlepattern</Name>
+      <Name>customname</Name>
       <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100)</CodeInterface>
+      <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>maxlength</Name>
+      <Name>required</Name>
       <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>minlength</Name>
+      <Name>pattern</Name>
       <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>MultiLine(100)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>inputtype</Name>
+      <Name>titlepattern</Name>
       <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue>text</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|checkbox)|(#Lang(420)|color)|(#Lang(421)|date)|(#Lang(422)|datetime-local)|(#Lang(423)|email)|(#Lang(424)|hidden)|(#Lang(425)|image)|(#Lang(426)|month)|(#Lang(427)|number)|(#Lang(428)|password)|(#Lang(429)|radio)|(#Lang(430)|range)|(#Lang(431)|search)|(#Lang(432)|tel)|(#Lang(433)|text)|(#Lang(434)|time)|(#Lang(435)|url)|(#Lang(436)|week))</CodeInterface>
+      <CodeInterface>MultiLine(100)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>maxvalue</Name>
+      <Name>maxlength</Name>
       <DisplayName>#Lang(128)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -338,7 +338,7 @@
       <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>minvalue</Name>
+      <Name>minlength</Name>
       <DisplayName>#Lang(129)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -347,6 +347,42 @@
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>inputtype</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue>text</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(424)|checkbox)|(#Lang(425)|color)|(#Lang(426)|date)|(#Lang(427)|datetime-local)|(#Lang(428)|email)|(#Lang(429)|hidden)|(#Lang(431)|image)|(#Lang(432)|month)|(#Lang(433)|number)|(#Lang(434)|password)|(#Lang(435)|radio)|(#Lang(436)|range)|(#Lang(437)|search)|(#Lang(438)|tel)|(#Lang(439)|text)|(#Lang(441)|time)|(#Lang(442)|url)|(#Lang(443)|week))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>maxvalue</Name>
+      <DisplayName>#Lang(132)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(232)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+      <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>minvalue</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
       <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -373,15 +409,18 @@
       <Sentence ID="117">TabIndex</Sentence>
       <Sentence ID="118">CSS Class</Sentence>
       <Sentence ID="119">Border</Sentence>
-      <Sentence ID="121">Custom name</Sentence>
-      <Sentence ID="122">Required</Sentence>
-      <Sentence ID="123">Pattern</Sentence>
-      <Sentence ID="124">Pattern message</Sentence>
-      <Sentence ID="125">Max length</Sentence>
-      <Sentence ID="126">Min length</Sentence>
-      <Sentence ID="127">Input type</Sentence>
-      <Sentence ID="128">Max input value</Sentence>
-      <Sentence ID="129">Min input value</Sentence>
+      <Sentence ID="121">Position</Sentence>
+      <Sentence ID="122">Margins</Sentence>
+      <Sentence ID="123">Paddings</Sentence>
+      <Sentence ID="124">Custom name</Sentence>
+      <Sentence ID="125">Required</Sentence>
+      <Sentence ID="126">Pattern</Sentence>
+      <Sentence ID="127">Pattern message</Sentence>
+      <Sentence ID="128">Max length</Sentence>
+      <Sentence ID="129">Min length</Sentence>
+      <Sentence ID="131">Input type</Sentence>
+      <Sentence ID="132">Max input value</Sentence>
+      <Sentence ID="133">Min input value</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
@@ -400,15 +439,18 @@
       <Sentence ID="217">Index number of switching the elements on pressing the tab key</Sentence>
       <Sentence ID="218">CSS class name</Sentence>
       <Sentence ID="219">Define if the border is visible or not</Sentence>
-      <Sentence ID="221">custom name for input</Sentence>
-      <Sentence ID="222">When present, it specifies that field must be filled out before submitting the form</Sentence>
-      <Sentence ID="223">Pattern for validating an entered parameter</Sentence>
-      <Sentence ID="224">Message when pattern is violated</Sentence>
-      <Sentence ID="225">The maximum length of the input value</Sentence>
-      <Sentence ID="226">The minimum length of the input value</Sentence>
-      <Sentence ID="227">Specifies the type of the input element</Sentence>
-      <Sentence ID="228">The maximum value of the input value</Sentence>
-      <Sentence ID="229">The minimum value of the input value</Sentence>
+      <Sentence ID="221">newAttribute27</Sentence>
+      <Sentence ID="222">newAttribute28</Sentence>
+      <Sentence ID="223">newAttribute29</Sentence>
+      <Sentence ID="224">custom name for input</Sentence>
+      <Sentence ID="225">When present, it specifies that field must be filled out before submitting the form</Sentence>
+      <Sentence ID="226">Pattern for validating an entered parameter</Sentence>
+      <Sentence ID="227">Message when pattern is violated</Sentence>
+      <Sentence ID="228">The maximum length of the input value</Sentence>
+      <Sentence ID="229">The minimum length of the input value</Sentence>
+      <Sentence ID="231">Specifies the type of the input element</Sentence>
+      <Sentence ID="232">The maximum value of the input value</Sentence>
+      <Sentence ID="233">The minimum value of the input value</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -427,15 +469,18 @@
       <Sentence ID="317">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="318">Names of CSS classes</Sentence>
       <Sentence ID="319">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="321">invalid custom name for input</Sentence>
-      <Sentence ID="322">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="323">Incorrect value</Sentence>
-      <Sentence ID="324">Incorrect value</Sentence>
-      <Sentence ID="325">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="325">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324">invalid custom name for input</Sentence>
+      <Sentence ID="325">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="326">Incorrect value</Sentence>
       <Sentence ID="327">Incorrect value</Sentence>
       <Sentence ID="328">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="329">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331">Incorrect value</Sentence>
+      <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -451,36 +496,40 @@
       <Sentence ID="414">On</Sentence>
       <Sentence ID="415">Invisible</Sentence>
       <Sentence ID="416">Visible</Sentence>
-      <Sentence ID="417">No</Sentence>
-      <Sentence ID="418">Yes</Sentence>
-      <Sentence ID="419">checkbox</Sentence>
-      <Sentence ID="420">color</Sentence>
-      <Sentence ID="421">date</Sentence>
-      <Sentence ID="422">datetime-local</Sentence>
-      <Sentence ID="423">email</Sentence>
-      <Sentence ID="424">hidden</Sentence>
-      <Sentence ID="425">image</Sentence>
-      <Sentence ID="426">month</Sentence>
-      <Sentence ID="427">number</Sentence>
-      <Sentence ID="428">password</Sentence>
-      <Sentence ID="429">radio</Sentence>
-      <Sentence ID="430">range</Sentence>
-      <Sentence ID="431">search</Sentence>
-      <Sentence ID="432">tel</Sentence>
-      <Sentence ID="433">text</Sentence>
-      <Sentence ID="434">time</Sentence>
-      <Sentence ID="435">url</Sentence>
-      <Sentence ID="436">week</Sentence>
+      <Sentence ID="417">Absolute</Sentence>
+      <Sentence ID="418">Relative</Sentence>
+      <Sentence ID="419">Fixed</Sentence>
+      <Sentence ID="421">Static</Sentence>
+      <Sentence ID="422">No</Sentence>
+      <Sentence ID="423">Yes</Sentence>
+      <Sentence ID="424">checkbox</Sentence>
+      <Sentence ID="425">color</Sentence>
+      <Sentence ID="426">date</Sentence>
+      <Sentence ID="427">datetime-local</Sentence>
+      <Sentence ID="428">email</Sentence>
+      <Sentence ID="429">hidden</Sentence>
+      <Sentence ID="431">image</Sentence>
+      <Sentence ID="432">month</Sentence>
+      <Sentence ID="433">number</Sentence>
+      <Sentence ID="434">password</Sentence>
+      <Sentence ID="435">radio</Sentence>
+      <Sentence ID="436">range</Sentence>
+      <Sentence ID="437">search</Sentence>
+      <Sentence ID="438">tel</Sentence>
+      <Sentence ID="439">text</Sentence>
+      <Sentence ID="441">time</Sentence>
+      <Sentence ID="442">url</Sentence>
+      <Sentence ID="443">week</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="503">Move the object to a new position</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
-      <Sentence ID="505">Set focus on the object</Sentence>
-      <Sentence ID="506">Set new text value</Sentence>
-      <Sentence ID="507">Move the object to a new position</Sentence>
-      <Sentence ID="508">Set new CSS style of the object</Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Set focus on the object</Sentence>
+      <Sentence ID="507">Set new CSS style of the object</Sentence>
+      <Sentence ID="508">Set new text value</Sentence>
+      <Sentence ID="509">Show the object</Sentence>
+      <Sentence ID="511">Toggle CSS class</Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
@@ -491,35 +540,39 @@
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
       <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
       <Sentence ID="604">Hide</Sentence>
-      <Sentence ID="605">setFocus</Sentence>
-      <Sentence ID="606">setValue</Sentence>
-      <Sentence ID="607">moveTo</Sentence>
-      <Sentence ID="608">setStyle</Sentence>
-      <Sentence ID="609"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606">setFocus</Sentence>
+      <Sentence ID="607">setStyle</Sentence>
+      <Sentence ID="608">setValue</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="611">toggleClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="705">Value</Sentence>
-      <Sentence ID="706">newX</Sentence>
-      <Sentence ID="707">newY</Sentence>
-      <Sentence ID="708">Effect</Sentence>
-      <Sentence ID="709">cssStyleValue</Sentence>
-      <Sentence ID="711"></Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708">cssStyleValue</Sentence>
+      <Sentence ID="709">Value</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712">className</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="805">New text value</Sentence>
-      <Sentence ID="806">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="807">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="808">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="809">CSS style value</Sentence>
-      <Sentence ID="811"></Sentence>
+      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808">CSS style value</Sentence>
+      <Sentence ID="809">New text value</Sentence>
+      <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="812">Name of CSS class</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -563,12 +616,17 @@
       <Sentence ID="118">Class</Sentence>
       <Sentence ID="119">Bordure</Sentence>
       <Sentence ID="121"></Sentence>
-      <Sentence ID="122">Obligatoire</Sentence>
-      <Sentence ID="123">Motif</Sentence>
-      <Sentence ID="124">Modèle de message</Sentence>
-      <Sentence ID="125">Longueur maximale</Sentence>
-      <Sentence ID="126">Longueur minimale</Sentence>
-      <Sentence ID="127">Type d'entrée</Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125">Obligatoire</Sentence>
+      <Sentence ID="126">Motif</Sentence>
+      <Sentence ID="127">Modèle de message</Sentence>
+      <Sentence ID="128">Longueur maximale</Sentence>
+      <Sentence ID="129">Longueur minimale</Sentence>
+      <Sentence ID="131">Type d'entrée</Sentence>
+      <Sentence ID="132">Max input value</Sentence>
+      <Sentence ID="133">Min input value</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -588,12 +646,17 @@
       <Sentence ID="218">CSS class name</Sentence>
       <Sentence ID="219">Afficher ou masquer la bordure</Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222">Lorsqu'il est présent, il précise que le champ doit être rempli avant de soumettre le formulaire</Sentence>
-      <Sentence ID="223">Modèle de validation d'un paramètre saisi</Sentence>
-      <Sentence ID="224">Message lorsque le modèle est violé</Sentence>
-      <Sentence ID="225">Longueur d'entrée maximale</Sentence>
-      <Sentence ID="226">Longueur d'entrée minimale</Sentence>
-      <Sentence ID="227">Spécifie le type de l'élément d'entrée</Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">Lorsqu'il est présent, il précise que le champ doit être rempli avant de soumettre le formulaire</Sentence>
+      <Sentence ID="226">Modèle de validation d'un paramètre saisi</Sentence>
+      <Sentence ID="227">Message lorsque le modèle est violé</Sentence>
+      <Sentence ID="228">Longueur d'entrée maximale</Sentence>
+      <Sentence ID="229">Longueur d'entrée minimale</Sentence>
+      <Sentence ID="231">Spécifie le type de l'élément d'entrée</Sentence>
+      <Sentence ID="232">The maximum value of the input value</Sentence>
+      <Sentence ID="233">The minimum value of the input value</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -613,12 +676,17 @@
       <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="319">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322">Valeur incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="323">Valeur incorrecte</Sentence>
-      <Sentence ID="324">Valeur incorrecte</Sentence>
-      <Sentence ID="325">Valeur incorrecte</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325">Valeur incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="326">Valeur incorrecte</Sentence>
       <Sentence ID="327">Valeur incorrecte</Sentence>
+      <Sentence ID="328">Valeur incorrecte</Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331">Valeur incorrecte</Sentence>
+      <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -634,35 +702,39 @@
       <Sentence ID="414">On</Sentence>
       <Sentence ID="415">Invisible</Sentence>
       <Sentence ID="416">Visible</Sentence>
-      <Sentence ID="417">Non</Sentence>
-      <Sentence ID="418">Oui</Sentence>
-      <Sentence ID="419">checkbox</Sentence>
-      <Sentence ID="420">color</Sentence>
-      <Sentence ID="421">date</Sentence>
-      <Sentence ID="422">datetime-local</Sentence>
-      <Sentence ID="423">email</Sentence>
-      <Sentence ID="424">hidden</Sentence>
-      <Sentence ID="425">image</Sentence>
-      <Sentence ID="426">month</Sentence>
-      <Sentence ID="427">number</Sentence>
-      <Sentence ID="428">password</Sentence>
-      <Sentence ID="429">radio</Sentence>
-      <Sentence ID="430">range</Sentence>
-      <Sentence ID="431">search</Sentence>
-      <Sentence ID="432">tel</Sentence>
-      <Sentence ID="433">text</Sentence>
-      <Sentence ID="434">time</Sentence>
-      <Sentence ID="435">url</Sentence>
-      <Sentence ID="436">week</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422">Non</Sentence>
+      <Sentence ID="423">Oui</Sentence>
+      <Sentence ID="424">checkbox</Sentence>
+      <Sentence ID="425">color</Sentence>
+      <Sentence ID="426">date</Sentence>
+      <Sentence ID="427">datetime-local</Sentence>
+      <Sentence ID="428">email</Sentence>
+      <Sentence ID="429">hidden</Sentence>
+      <Sentence ID="431">image</Sentence>
+      <Sentence ID="432">month</Sentence>
+      <Sentence ID="433">number</Sentence>
+      <Sentence ID="434">password</Sentence>
+      <Sentence ID="435">radio</Sentence>
+      <Sentence ID="436">range</Sentence>
+      <Sentence ID="437">search</Sentence>
+      <Sentence ID="438">tel</Sentence>
+      <Sentence ID="439">text</Sentence>
+      <Sentence ID="441">time</Sentence>
+      <Sentence ID="442">url</Sentence>
+      <Sentence ID="443">week</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
-      <Sentence ID="502">Show the object</Sentence>
-      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="502">Hide the object</Sentence>
+      <Sentence ID="503">Move object to selected point</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
-      <Sentence ID="505">Set focus to the object</Sentence>
-      <Sentence ID="506">Set new text</Sentence>
-      <Sentence ID="507">Move object to selected point</Sentence>
-      <Sentence ID="508">Set new CSS style</Sentence>
-      <Sentence ID="509"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Set focus to the object</Sentence>
+      <Sentence ID="507">Set new CSS style</Sentence>
+      <Sentence ID="508">Set new text</Sentence>
+      <Sentence ID="509">Show the object</Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
@@ -674,35 +746,39 @@
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
       <Sentence ID="601">Hide</Sentence>
-      <Sentence ID="602">Show</Sentence>
-      <Sentence ID="603">Hide</Sentence>
+      <Sentence ID="602">Hide</Sentence>
+      <Sentence ID="603">moveTo</Sentence>
       <Sentence ID="604">Hide</Sentence>
-      <Sentence ID="605">setFocus</Sentence>
-      <Sentence ID="606">setValue</Sentence>
-      <Sentence ID="607">moveTo</Sentence>
-      <Sentence ID="608">setStyle</Sentence>
-      <Sentence ID="609"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606">setFocus</Sentence>
+      <Sentence ID="607">setStyle</Sentence>
+      <Sentence ID="608">setValue</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="705">Value</Sentence>
-      <Sentence ID="706">newX</Sentence>
-      <Sentence ID="707">newY</Sentence>
-      <Sentence ID="708">Effect</Sentence>
-      <Sentence ID="709">cssStyleValue</Sentence>
-      <Sentence ID="711"></Sentence>
+      <Sentence ID="703">newX</Sentence>
+      <Sentence ID="704">newY</Sentence>
+      <Sentence ID="705">Effect</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708">cssStyleValue</Sentence>
+      <Sentence ID="709">Value</Sentence>
+      <Sentence ID="711">Fade</Sentence>
+      <Sentence ID="712"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="803">Fade time</Sentence>
-      <Sentence ID="804">Fade time</Sentence>
-      <Sentence ID="805">New text</Sentence>
-      <Sentence ID="806">X-coordinate of new point</Sentence>
-      <Sentence ID="807">Y-coordinate of new point</Sentence>
-      <Sentence ID="808">Visual effect by moving</Sentence>
-      <Sentence ID="809">New CSS style value</Sentence>
-      <Sentence ID="811"></Sentence>
+      <Sentence ID="802">Fade time</Sentence>
+      <Sentence ID="803">X-coordinate of new point</Sentence>
+      <Sentence ID="804">Y-coordinate of new point</Sentence>
+      <Sentence ID="805">Visual effect by moving</Sentence>
+      <Sentence ID="806">Fade time</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808">New CSS style value</Sentence>
+      <Sentence ID="809">New text</Sentence>
+      <Sentence ID="811">Time of appearance</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -746,12 +822,17 @@
       <Sentence ID="118">Класс CSS</Sentence>
       <Sentence ID="119">Граница</Sentence>
       <Sentence ID="121"></Sentence>
-      <Sentence ID="122">Обязательное поле</Sentence>
-      <Sentence ID="123">Паттерн</Sentence>
-      <Sentence ID="124">Сообщение паттерна</Sentence>
-      <Sentence ID="125">Максимальная длинна</Sentence>
-      <Sentence ID="126">Минимальная длинна</Sentence>
-      <Sentence ID="127">Тип ввода</Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125">Обязательное поле</Sentence>
+      <Sentence ID="126">Паттерн</Sentence>
+      <Sentence ID="127">Сообщение паттерна</Sentence>
+      <Sentence ID="128">Максимальная длинна</Sentence>
+      <Sentence ID="129">Минимальная длинна</Sentence>
+      <Sentence ID="131">Тип ввода</Sentence>
+      <Sentence ID="132">Max input value</Sentence>
+      <Sentence ID="133">Min input value</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -771,12 +852,17 @@
       <Sentence ID="218">Имя класса CSS</Sentence>
       <Sentence ID="219">Отображение границы</Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222">Когда он присутствует, он указывает, что поле ввода должно быть заполнено перед отправкой формы</Sentence>
-      <Sentence ID="223">Паттерн для валидации введенного параметра</Sentence>
-      <Sentence ID="224">Сообщение, выводимое при нарушении паттерна</Sentence>
-      <Sentence ID="225">Максимальная длинна вводимого значения</Sentence>
-      <Sentence ID="226">Минимальная длинна вводимого значения</Sentence>
-      <Sentence ID="227">Определяет тип элемента ввода</Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">Когда он присутствует, он указывает, что поле ввода должно быть заполнено перед отправкой формы</Sentence>
+      <Sentence ID="226">Паттерн для валидации введенного параметра</Sentence>
+      <Sentence ID="227">Сообщение, выводимое при нарушении паттерна</Sentence>
+      <Sentence ID="228">Максимальная длинна вводимого значения</Sentence>
+      <Sentence ID="229">Минимальная длинна вводимого значения</Sentence>
+      <Sentence ID="231">Определяет тип элемента ввода</Sentence>
+      <Sentence ID="232">The maximum value of the input value</Sentence>
+      <Sentence ID="233">The minimum value of the input value</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -796,12 +882,17 @@
       <Sentence ID="318">Неправильное значение</Sentence>
       <Sentence ID="319">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322">Неправильное значение: допустимы цифры 0 и 1</Sentence>
-      <Sentence ID="323">Неправильное значение</Sentence>
-      <Sentence ID="324">Неправильное значение</Sentence>
-      <Sentence ID="325">Неправильное значение</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325">Неправильное значение: допустимы цифры 0 и 1</Sentence>
       <Sentence ID="326">Неправильное значение</Sentence>
       <Sentence ID="327">Неправильное значение</Sentence>
+      <Sentence ID="328">Неправильное значение</Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331">Неправильное значение</Sentence>
+      <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -817,35 +908,39 @@
       <Sentence ID="414">Включен</Sentence>
       <Sentence ID="415">Невидимая</Sentence>
       <Sentence ID="416">Видимая</Sentence>
-      <Sentence ID="417">Нет</Sentence>
-      <Sentence ID="418">Да</Sentence>
-      <Sentence ID="419">checkbox</Sentence>
-      <Sentence ID="420">color</Sentence>
-      <Sentence ID="421">date</Sentence>
-      <Sentence ID="422">datetime-local</Sentence>
-      <Sentence ID="423">email</Sentence>
-      <Sentence ID="424">hidden</Sentence>
-      <Sentence ID="425">image</Sentence>
-      <Sentence ID="426">month</Sentence>
-      <Sentence ID="427">number</Sentence>
-      <Sentence ID="428">password</Sentence>
-      <Sentence ID="429">radio</Sentence>
-      <Sentence ID="430">range</Sentence>
-      <Sentence ID="431">search</Sentence>
-      <Sentence ID="432">tel</Sentence>
-      <Sentence ID="433">text</Sentence>
-      <Sentence ID="434">time</Sentence>
-      <Sentence ID="435">url</Sentence>
-      <Sentence ID="436">week</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422">Нет</Sentence>
+      <Sentence ID="423">Да</Sentence>
+      <Sentence ID="424">checkbox</Sentence>
+      <Sentence ID="425">color</Sentence>
+      <Sentence ID="426">date</Sentence>
+      <Sentence ID="427">datetime-local</Sentence>
+      <Sentence ID="428">email</Sentence>
+      <Sentence ID="429">hidden</Sentence>
+      <Sentence ID="431">image</Sentence>
+      <Sentence ID="432">month</Sentence>
+      <Sentence ID="433">number</Sentence>
+      <Sentence ID="434">password</Sentence>
+      <Sentence ID="435">radio</Sentence>
+      <Sentence ID="436">range</Sentence>
+      <Sentence ID="437">search</Sentence>
+      <Sentence ID="438">tel</Sentence>
+      <Sentence ID="439">text</Sentence>
+      <Sentence ID="441">time</Sentence>
+      <Sentence ID="442">url</Sentence>
+      <Sentence ID="443">week</Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
-      <Sentence ID="502">Показать объект</Sentence>
-      <Sentence ID="503">Скрыть объект</Sentence>
+      <Sentence ID="502">Скрыть объект</Sentence>
+      <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
       <Sentence ID="504">Скрыть объект</Sentence>
-      <Sentence ID="505">Установить фокус на объекте</Sentence>
-      <Sentence ID="506">Установить новый текст</Sentence>
-      <Sentence ID="507">Сдвинуть объект в заданную точку</Sentence>
-      <Sentence ID="508">Установить новый стиль CSS</Sentence>
-      <Sentence ID="509"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Установить фокус на объекте</Sentence>
+      <Sentence ID="507">Установить новый стиль CSS</Sentence>
+      <Sentence ID="508">Установить новый текст</Sentence>
+      <Sentence ID="509">Показать объект</Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
@@ -857,35 +952,39 @@
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
       <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
-      <Sentence ID="602">Показать</Sentence>
-      <Sentence ID="603">Скрыть</Sentence>
+      <Sentence ID="602">Скрыть</Sentence>
+      <Sentence ID="603">Сдвинуть</Sentence>
       <Sentence ID="604">Скрыть</Sentence>
-      <Sentence ID="605">Установить фокус</Sentence>
-      <Sentence ID="606">Установить текст</Sentence>
-      <Sentence ID="607">Сдвинуть</Sentence>
-      <Sentence ID="608">Установить стиль</Sentence>
-      <Sentence ID="609"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606">Установить фокус</Sentence>
+      <Sentence ID="607">Установить стиль</Sentence>
+      <Sentence ID="608">Установить текст</Sentence>
+      <Sentence ID="609">Показать</Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
-      <Sentence ID="702">Появление</Sentence>
-      <Sentence ID="703">Исчезновение</Sentence>
-      <Sentence ID="704">Исчезновение</Sentence>
-      <Sentence ID="705">Текст</Sentence>
-      <Sentence ID="706">Координата по оси X</Sentence>
-      <Sentence ID="707">Координата по оси Y</Sentence>
-      <Sentence ID="708">Эффект</Sentence>
-      <Sentence ID="709">Стиль CSS</Sentence>
-      <Sentence ID="711"></Sentence>
+      <Sentence ID="702">Исчезновение</Sentence>
+      <Sentence ID="703">Координата по оси X</Sentence>
+      <Sentence ID="704">Координата по оси Y</Sentence>
+      <Sentence ID="705">Эффект</Sentence>
+      <Sentence ID="706">Исчезновение</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708">Стиль CSS</Sentence>
+      <Sentence ID="709">Текст</Sentence>
+      <Sentence ID="711">Появление</Sentence>
+      <Sentence ID="712"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="802">Время появления в миллисекундах</Sentence>
-      <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="805">Новый текст</Sentence>
-      <Sentence ID="806">Координата новой точки по оси X</Sentence>
-      <Sentence ID="807">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="808">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="809">Новое значение стиля</Sentence>
-      <Sentence ID="811"></Sentence>
+      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808">Новое значение стиля</Sentence>
+      <Sentence ID="809">Новый текст</Sentence>
+      <Sentence ID="811">Время появления в миллисекундах</Sentence>
+      <Sentence ID="812"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -980,10 +1079,15 @@
 			4xXxkhQTnVfCUHvYTUIAJcJnYR9EiVS0qP/ZFRFFRBFRRBQRRaSDiPwSYADhkDD4eb9xIQAAAABJ
 			RU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[class VDOM_formtext(VDOM_object):
+  <SourceCode><![CDATA[import re
+
+class VDOM_formtext(VDOM_object):
+	
+	def check_unit(self, value):
+		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
-		display = u"display: none;" if self.visible == "0" else u""
+		display = u"none" if self.visible == "0" else u""
 
 		if self.mode == "1":
 			mode = u"""readonly="readonly" """
@@ -998,10 +1102,10 @@
 		id = u"o_%s" % clean_id
 
 		# for doctype xhtml 1.0 - width|height depends on padding
-		fixw = int(self.width) - 10
-		fixh = int(self.height) - 4
+		# fixw = int(self.width) - 10
+		# fixh = int(self.height) - 4
 
-		border = u"border-width: 0px;" if self.multiline == "0" and self.border == "0" else u""
+		border = u"0px" if self.multiline == "0" and self.border == "0" else u""
 		
 		required = 'required' if self.required=='1' else u''
 
@@ -1013,11 +1117,24 @@
 		inputtype = self.inputtype
 		maxvalue = u'max="{}"'.format(self.maxvalue) if self.minlength else ""
 		minvalue = u'min="{}"'.format(self.minvalue) if self.minlength else ""
-
-		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px; width: {width}px; height: {height}px;
-					padding: 2px 5px; {display} {border} font: 14px tahoma
-				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
-						width = fixw, height = fixh, display = display, border = border)
+		
+		styles = {
+			"width": self.check_unit(self.width),
+			"height": self.check_unit(self.height),
+			"margin": self.margins,
+			"padding": self.paddings,
+			"top": self.check_unit(self.top),
+			"left": self.check_unit(self.left),
+			"z-index": self.zindex,
+			"position": self.positioning,
+			"display": display,
+			"border-width": border
+		}
+		if self.positioning == "static":
+			styles["top"] = styles["left"] = ""
+			styles["position"] = ""
+			
+		styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
 		if self.title == "":
 			title = u""
@@ -1038,12 +1155,12 @@
 			result = u"""
 				<input {debug_info} {required} id="{id}" name="{name}" 
 					style="{style}" tabindex="{tabind}" 
-					value="{value}" class="{classn}" autocomplete="{auto}" 
+					value="{value}" class="vdom_formtext {classn}" autocomplete="{auto}" 
 					type="{inputtype}" {maxvalue} {minvalue} {pattern} {maxlength} {minlength} 
 					{mode} {title} {placeholder} 
 				/>
 			""".format(
-				id=id, name=self.customname or self.name, style=style, 
+				id=id, name=self.customname or self.name, style=styles_str, 
 				tabind=self.tabindex, debug_info=debug_info,
 				value=unicode(self.value).replace('"', '&quot;'), 
 				classn=self.classname, auto=auto, mode=mode, 
@@ -1055,14 +1172,14 @@
 		else:
 			result = u"""
 				<textarea {debug_info} {required} id="{id}" name="{name}" 
-					tabindex="{tabind}" style="{style}" class="{classn}" 
+					tabindex="{tabind}" style="{style}" class="vdom_formtext {classn}" 
 					type="{inputtype}" {pattern} {maxlength} 
 					{minlength} {mode} {title} {placeholder} 
           {maxvalue} {minvalue} 
 				>{value}</textarea>
 			""".format(
 				id=id, name=self.customname or self.name, tabind=self.tabindex, 
-				debug_info=debug_info, style=style, classn=self.classname, 
+				debug_info=debug_info, style=styles_str, classn=self.classname, 
 				mode=mode, value=self.value, placeholder=placeholder, title=title,
 				required=required, pattern=pattern,
 				maxlength=maxlength, minlength=minlength,
@@ -1085,7 +1202,15 @@ $(document).ready(function(){
 
 		return VDOM_object.render(self, contents=result)
 
+	def regex(self, obj):
+		match = re.search(r'\d+', obj)
+		return int(match.group()) if match else ""
+	
 	def wysiwyg(self, contents=""):
+		width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
+		
+		self.width = int(width) if width else 130
+		self.height = int(height) if height else 22
 		
 		disabled = u""" disabled="disabled" """ if self.mode=="2" else u""
 		border = u"border-width:0;" if self.multiline == "0" and self.border == "0" else u""
@@ -1131,84 +1256,95 @@ $(document).ready(function(){
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
-	# o = application.objects.search(object_id)
+	
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "top", "width", "height"]:
+		if attr in attributes:
+			new_value = attributes.get(attr)
+			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
+			unit = unit[0] if unit and unit[0]!="auto" else "px"
+			if new_value.isnumeric():
+				new_value = new_value + unit
+				
+				if attr == "width" and int(new_value.rstrip(unit)) < 10:
+					new_value = "10" + unit
+				elif attr == "height" and int(new_value.rstrip(unit)) < 4:
+					new_value = "4" + unit
+				
+			modifications[attr] = new_value
+	attributes.update(modifications)
+	
+	return ""]]></SourceCode>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_formtext  {
+              
+       }
 
-	# if "width" in param:
-	if "width" in attributes:
-		# width = param["width"]["value"]
-		width = attributes["width"]
-		if int(width) < 10:
-			# o.set_attributes({"width": "10"})
-			attributes["width"] = "10"
-
-	# if "height" in param:
-	if "height" in attributes:
-		# height = param["height"]["value"]
-		height = attributes["height"]
-		if int(height) < 4:
-			# o.set_attributes({"height": "4"})
-			attributes["height"] = "4"]]></SourceCode>
-  <Libraries></Libraries>
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseout" Help="#Lang(511)">
+        <Event Name="mouseout" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="focus" Help="#Lang(512)">
+        <Event Name="focus" Help="#Lang(513)">
           <Parameters/>
         </Event>
-        <Event Name="mouseup" Help="#Lang(513)">
+        <Event Name="mouseup" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(514)">
+        <Event Name="mousemove" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="valuechange" Help="#Lang(515)">
+        <Event Name="valuechange" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="itemValue" Order="0" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(516)">
+        <Event Name="mousedown" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="blur" Help="#Lang(517)">
+        <Event Name="blur" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="itemValue" Order="0" VbType="" Help="#Lang(911)"/>
             <Parameter Name="charCount" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(518)">
+        <Event Name="ctrlclick" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(519)">
+        <Event Name="mouseover" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(521)">
+        <Event Name="click" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(522)">
+        <Event Name="dblclick" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
@@ -1218,59 +1354,65 @@ def on_update(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="removeClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="className" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="addClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="className" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setFocus">
-          <Parameters/>
-          <SourceCode><![CDATA[jQuery(this.domCont).focus();]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setValue">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_evt_setvalue(this, value);]]></SourceCode>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newX" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newY" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="Effect" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setStyle">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="cssStyleValue" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="className" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="className" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).attr('class',className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setFocus">
+          <Parameters/>
+          <SourceCode><![CDATA[jQuery(this.domCont).focus();]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setStyle">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="cssStyleValue" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[var t=$q(this.domCont);t.attr('style', t.attr('style') + ';' + cssStyleValue);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setValue">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="value" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).attr('class',className);]]></SourceCode>
+          <SourceCode><![CDATA[vdom_evt_setvalue(this, value);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="fade" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="toggleClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="className" Help="#Lang(812)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

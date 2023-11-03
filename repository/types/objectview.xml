@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.82.8389</Version>
+    <Version>1.87.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, flexcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata, sensetive</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers/>
+    <Handlers>on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -74,52 +74,76 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <DefaultValue>static</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(234)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(430)|absolute)|(#Lang(431)|relative)|(#Lang(432)|fixed)|(#Lang(433)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>400</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>250</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(434)|block)|(#Lang(435)|inline)|(#Lang(436)|flex)|(#Lang(437)|inline-block)|(#Lang(438)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>vdomclassid</Name>
@@ -148,14 +172,14 @@
     <Attribute>
       <Name>layout</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1)|(#Lang(407)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1)|(#Lang(407)|2)|(#Lang(439)|))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[012]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>draggable</Name>
@@ -220,14 +244,14 @@
     <Attribute>
       <Name>overflow</Name>
       <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1)|(#Lang(417)|2)|(#Lang(418)|3))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1)|(#Lang(417)|2)|(#Lang(418)|3)|(#Lang(419)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[0123]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>classname</Name>
@@ -248,7 +272,7 @@
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|1)|(#Lang(421)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(421)|1)|(#Lang(422)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -284,7 +308,7 @@
       <Visible>0</Visible>
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -320,10 +344,58 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(424)|0)|(#Lang(425)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(427)|0)|(#Lang(428)|1)|(#Lang(440)|2))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(132)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(232)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -361,6 +433,12 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="125">Items count</Sentence>
       <Sentence ID="126">Items count</Sentence>
       <Sentence ID="127">Dynamic render</Sentence>
+      <Sentence ID="128">Style</Sentence>
+      <Sentence ID="129">Skin</Sentence>
+      <Sentence ID="131">Margins</Sentence>
+      <Sentence ID="132">Paddings</Sentence>
+      <Sentence ID="133">Display</Sentence>
+      <Sentence ID="134">Position</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -393,6 +471,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="226">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="227">as a replacement for dynamicloading. now dynamicloading is not use.</Sentence>
+      <Sentence ID="228">newAttribute26</Sentence>
+      <Sentence ID="229">newAttribute25</Sentence>
+      <Sentence ID="231">newAttribute28</Sentence>
+      <Sentence ID="232">newAttribute27</Sentence>
+      <Sentence ID="233">newAttribute29</Sentence>
+      <Sentence ID="234">newAttribute30</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
@@ -418,6 +502,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325">Incorrect value</Sentence>
       <Sentence ID="326">Incorrect value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
+      <Sentence ID="328">newAttribute26</Sentence>
+      <Sentence ID="329">newAttribute25</Sentence>
+      <Sentence ID="331">newAttribute28</Sentence>
+      <Sentence ID="332">newAttribute27</Sentence>
+      <Sentence ID="333">newAttribute29</Sentence>
+      <Sentence ID="334">newAttribute30</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -435,12 +525,26 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="416">Hidden</Sentence>
       <Sentence ID="417">Scroll</Sentence>
       <Sentence ID="418">Visible</Sentence>
-      <Sentence ID="419">Yes</Sentence>
-      <Sentence ID="421">No</Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421">Yes</Sentence>
       <Sentence ID="422">No</Sentence>
-      <Sentence ID="423">Yes</Sentence>
-      <Sentence ID="424">No</Sentence>
-      <Sentence ID="425">Yes</Sentence>
+      <Sentence ID="423">No</Sentence>
+      <Sentence ID="424">Yes</Sentence>
+      <Sentence ID="425">No</Sentence>
+      <Sentence ID="426">Yes</Sentence>
+      <Sentence ID="427">User defined</Sentence>
+      <Sentence ID="428">Empty</Sentence>
+      <Sentence ID="430">Absolute</Sentence>
+      <Sentence ID="431">Relative</Sentence>
+      <Sentence ID="432">Fixed</Sentence>
+      <Sentence ID="433">Static</Sentence>
+      <Sentence ID="434">Block</Sentence>
+      <Sentence ID="435">Inline</Sentence>
+      <Sentence ID="436">Flex</Sentence>
+      <Sentence ID="437">Inline-block</Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="440">Default</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Load the items of the object on scrolling to them.</Sentence>
@@ -560,6 +664,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
@@ -585,6 +695,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="303">Incorrect value, must be 0 or 1</Sentence>
@@ -610,6 +726,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -633,6 +755,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="430"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="440"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Show the items of the object</Sentence>
@@ -752,6 +888,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Отображение объекта</Sentence>
@@ -777,6 +919,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -802,6 +950,12 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -825,6 +979,20 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="430"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="440"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Показать элементы объекта</Sentence>
@@ -1325,10 +1493,7 @@ JS_DYNAMIC = u"""
     window.setTimeout('vdom_ov_markShow("%(woid)s")', 2000);
 """
 
-JS = u"""<style type='text/css'>
-#%(id)s .loading { background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; }
-#%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
-</style>
+JS = u"""
 <script type="text/javascript">
 %(js_loading)s
 
@@ -1429,7 +1594,18 @@ if ($j.trim(ovtmp.html()) != '') {
     vdom_ov_markShow("%(woid)s");
 }
 """
+OVERFLOW = {
+    "0": "auto",
+    "1": "hidden",
+    "2": "scroll",
+    "3": "visible"
+}
 
+LAYOUT = {
+    "0": "clear: both",
+    "1": "float: left;",
+    "2": "width: 100% !important; clear: both;",
+}
 
 def xml_escape(value):
     global xml_escape
@@ -1456,6 +1632,9 @@ def xml_escape(value):
 
 
 class VDOM_objectview(VDOM_object):
+	
+    def check_unit(self, value):
+        return value + "px" if value.isdigit() else value
 
     def render_items(self, items, div_only, bindings):
         if not self.vdomclassid:
@@ -1602,55 +1781,40 @@ class VDOM_objectview(VDOM_object):
                     js = E2VDOM_RENDER_JAVASCRIPT % {"id": id4js, "tmp_id": tmp_id, "woid": woid}
 
             return VDOM_object.render(self, contents=u"""<noreplace/>
-<div id="%(tmp_id)s" style="display:none">%(contents)s</div>
+<div id="%(tmp_id)s" style="display: none">%(contents)s</div>
 <script type='text/javascript'>
     %(js)s
 </script>""" % {"js": js, "contents": items_contents, "tmp_id": tmp_id})
         else:
             # initial render
             e2vdom.process(self, self.parent.id if self.parent else None)
-
-            if self.overflow == "1":
-                overflow = u"hidden"
-            elif self.overflow == "2":
-                overflow = u"scroll"
-            elif self.overflow == "3":
-                overflow = u"visible"
-            else:
-                overflow = u"auto"
-
-            classes = (
-                u"display:none;" if self.visible == "0" else None,
-                u"z-index: {zindex}; position: {pos}; top: {top}px; left: {left}px; "
-                "width: {width}px; height: %spx; overflow: {overflow};".format(
-                    zindex=self.zindex,
-                    pos=self.position,
-                    top=self.top,
-                    left=self.left,
-                    width=self.width,
-                    height=self.height,
-                    overflow=overflow)
-            )
-            style = " ".join(filter(None, classes))
-
-            classname = u"""class="%s" """ % self.classname if self.classname else u""
+            
+            styles = {
+                "width": self.check_unit(self.width),
+                "height": self.check_unit(self.height),
+                "margin": self.margins,
+                "padding": self.paddings,
+                "top": self.check_unit(self.top),
+                "left": self.check_unit(self.left),
+                "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+                "position": self.positioning,
+                "display": u"none" if self.visible == "0" else self.displaying,
+                "overflow": OVERFLOW.get(self.overflow, "")
+            }
+            if self.positioning == "static":
+            	styles["top"] = styles["left"] = ""
+            	styles["position"] = ""
+            	
+            style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
             classname_item = 'ov' if self.classname == '' else (self.classname).replace(' ', '')
-
-            # items layout
-
-            if self.layout == "1":
-                layout = u"float: left;"
-            elif self.layout == "0":
-                layout = u"clear: both;"
-            else:
-                layout = u"width: 100% !important; clear: both;"
+            css = u"<style>\n" + self.style % {"id": id4js} + u"</style>" if self.style else u""
 
             style_items = u"""<style type="text/css">
 #%(id)s .%(class)s-item {
 %(layout)s
 }
-</style>""" % {"id": id4js, "class": classname_item, "layout": layout}
+</style>""" % {"id": id4js, "class": classname_item, "layout": LAYOUT.get(self.layout, "")}
 
             if self.loading == "0":
                 js_loading_call = u""
@@ -1681,51 +1845,115 @@ class VDOM_objectview(VDOM_object):
             else:
                 debug_info = u""
 
-            result = u"""
-                <div {debug_info} id="{id}" style="{style}" {classname}>
+            result = u"""{css}
+                <div {debug_info} id="{id}" style="{style}" class="vdom_objectview {classname}">
                     {style_items}
                     <div class='ov-content'>
                         {contents}
-                        <span class='ov-eoi' style='display:block;clear:both'></span>
+                        <span class='ov-eoi' style='display: block; clear: both'></span>
                     </div>
                 </div>
                 {js}
                 """.format(
                 js=js,
+                css=css,
                 id=id4js,
                 debug_info=debug_info,
                 style=style,
                 style_items=style_items,
-                classname=classname,
+                classname=self.classname,
                 contents=items_contents
             )
 
             return VDOM_object.render(self, contents=result)
 
+    def regex(self, obj):
+        match = re.search(r'\d+', obj)
+        return int(match.group()) if match else ""
+    
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
+
+        self.width = int(width) if width else 400
+        self.height = int(height) if height else 250
         result = get_empty_wysiwyg_value(self, "cc72f740-5527-4dab-3c59-16b7fccb0032")
-        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
+        return VDOM_object.wysiwyg(self, contents=result)
+        
+def on_update(object, attributes):
+    
+    modifications = {}
+    
+    for attr in ["left", "top", "width", "height"]:
+    	if attr in attributes:
+    		new_value = attributes.get(attr)
+    		unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
+    		unit = unit[0] if unit and unit[0]!="auto" else "px"
+    		
+    		if new_value is not None and new_value.isdigit():
+    			new_value = new_value + unit
+    		modifications[attr] = new_value
+    
+    attributes.update(modifications)
+    
+    empty = ""
+    
+    default = """\
+#%(id)s .loading { 
+    background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; 
+}
+#%(id)s .not-loaded { 
+    background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; 
+}
+"""
+    
+    users = """\
+#%(id)s {
+
+}
+
+"""
+
+    skin_mapping = {
+        "0": users,
+        "1": empty,
+        "2": default
+    }
+    
+    if "skin" in attributes:
+    	skin = attributes["skin"]
+    	if skin in skin_mapping:
+    		attributes.update(style=skin_mapping[skin])
+    	else:
+    		attributes.update(skin="0")
+    		
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+    	attributes.update(skin="0")
+
+    return ""]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<script type="text/javascript" src="/e0cc0355-d598-33f6-92e9-731bed2c78eb.res"></script>]]></Library>
     <Library Target="html"><![CDATA[<script type='text/javascript' src="/6fc7a62f-9482-4cfe-a625-75810735a9de.js"></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_objectview {
+            
+        }
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="itemsselected" Help="#Lang(519)">
+        <Event Name="dragstart" Help="#Lang(526)">
           <Parameters>
-            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseover" Help="#Lang(521)">
-          <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(902)"/>
-          </Parameters>
+        <Event Name="endscroll" Help="#Lang(528)">
+          <Parameters/>
         </Event>
-        <Event Name="itemmouseout" Help="#Lang(522)">
+        <Event Name="itemclick" Help="#Lang(524)">
           <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
         <Event Name="itemdblclick" Help="#Lang(523)">
@@ -1733,9 +1961,20 @@ class VDOM_objectview(VDOM_object):
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(524)">
+        <Event Name="itemmouseout" Help="#Lang(522)">
           <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemmouseover" Help="#Lang(521)">
+          <Parameters>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemsort" Help="#Lang(529)">
+          <Parameters>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="position" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
         <Event Name="itemsrequest" Help="#Lang(525)">
@@ -1743,24 +1982,15 @@ class VDOM_objectview(VDOM_object):
             <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart" Help="#Lang(526)">
+        <Event Name="itemsselected" Help="#Lang(519)">
           <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
         <Event Name="mouseover" Help="#Lang(527)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
-          </Parameters>
-        </Event>
-        <Event Name="endscroll" Help="#Lang(528)">
-          <Parameters/>
-        </Event>
-        <Event Name="itemsort" Help="#Lang(529)">
-          <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="position" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
