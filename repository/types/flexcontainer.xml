@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.1275.8389</Version>
+    <Version>1.1277.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, flexcontainer, tablecell, form, accordeon, tabview, dialog_2, vdomclass, desktopapplication, desktopshared, smartfolderdata</Containers>
@@ -261,9 +261,9 @@
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$|^inherit$|^$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
@@ -285,9 +285,9 @@
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$|^inherit$|^$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>right</Name>
@@ -347,7 +347,7 @@
       <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$|^inherit$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
@@ -371,7 +371,7 @@
       <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)|^inherit$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$|^inherit$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>lockposition</Name>
@@ -408,6 +408,30 @@
       <Colorgroup>0</Colorgroup>
       <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(150)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(350)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(250)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(149)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(349)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(493)|0)|(#Lang(494)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(249)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -603,6 +627,8 @@
       <Sentence ID="146">Size</Sentence>
       <Sentence ID="147">Auto height</Sentence>
       <Sentence ID="148">Stateful</Sentence>
+      <Sentence ID="149">Skin</Sentence>
+      <Sentence ID="150">Style</Sentence>
       <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">newAttribute39</Sentence>
       <Sentence ID="203">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
@@ -647,6 +673,8 @@
       <Sentence ID="246">Define if the height sets automatically or not (Off, On). If the Auto height attribute is off, the height will be the same as it is indicated in the Height attribute, and those objects which  can not be seen in the WYSIWYG mode will not be displayed. If the Auto height attribute is on, the  whole content of the Container will be displayed.</Sentence>
       <Sentence ID="247">Define if the height sets automatically or not (Off, On). If the Auto height attribute is off, the height will be the same as it is indicated in the Height attribute, and those objects which  can not be seen in the WYSIWYG mode will not be displayed. If the Auto height attribute is on, the  whole content of the Container will be displayed.</Sentence>
       <Sentence ID="248">newAttribute43</Sentence>
+      <Sentence ID="249"></Sentence>
+      <Sentence ID="250">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">newAttribute39</Sentence>
       <Sentence ID="303">Incorrect value.</Sentence>
@@ -691,6 +719,8 @@
       <Sentence ID="346">Incorrect value.</Sentence>
       <Sentence ID="347">Incorrect value.</Sentence>
       <Sentence ID="348">newAttribute43</Sentence>
+      <Sentence ID="349">If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="350">newAttribute45</Sentence>
       <Sentence ID="401">Fit X</Sentence>
       <Sentence ID="402">Fit Y</Sentence>
       <Sentence ID="403">Cover</Sentence>
@@ -774,6 +804,8 @@
       <Sentence ID="489">On</Sentence>
       <Sentence ID="491">0</Sentence>
       <Sentence ID="492">1</Sentence>
+      <Sentence ID="493">User defined</Sentence>
+      <Sentence ID="494">Empty</Sentence>
       <Sentence ID="501">Start dragging the object</Sentence>
       <Sentence ID="502">Stop drag action</Sentence>
       <Sentence ID="503">Start dragging the object</Sentence>
@@ -925,6 +957,8 @@
       <Sentence ID="146">Автовысота</Sentence>
       <Sentence ID="147"></Sentence>
       <Sentence ID="148"></Sentence>
+      <Sentence ID="149"></Sentence>
+      <Sentence ID="150"></Sentence>
       <Sentence ID="201">Имя класса CSS</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
@@ -969,6 +1003,8 @@
       <Sentence ID="246">Высота определяется содержимым контейнера</Sentence>
       <Sentence ID="247"></Sentence>
       <Sentence ID="248"></Sentence>
+      <Sentence ID="249"></Sentence>
+      <Sentence ID="250"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value.</Sentence>
@@ -1013,6 +1049,8 @@
       <Sentence ID="346">Неправильное значение</Sentence>
       <Sentence ID="347"></Sentence>
       <Sentence ID="348"></Sentence>
+      <Sentence ID="349"></Sentence>
+      <Sentence ID="350"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -1096,6 +1134,8 @@
       <Sentence ID="489"></Sentence>
       <Sentence ID="491"></Sentence>
       <Sentence ID="492"></Sentence>
+      <Sentence ID="493"></Sentence>
+      <Sentence ID="494"></Sentence>
       <Sentence ID="501">Начать операцию перетаскивания</Sentence>
       <Sentence ID="502">Закончить операцию перетаскивания</Sentence>
       <Sentence ID="503">Начать операцию перетаскивания</Sentence>
@@ -1247,6 +1287,8 @@
       <Sentence ID="146">Auto height</Sentence>
       <Sentence ID="147"></Sentence>
       <Sentence ID="148"></Sentence>
+      <Sentence ID="149"></Sentence>
+      <Sentence ID="150"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">The color of the background of the object (can be set as a hexadecimal number or as a word, for example, "olive", "blue").</Sentence>
@@ -1291,6 +1333,8 @@
       <Sentence ID="246">Height resizes by container's content</Sentence>
       <Sentence ID="247"></Sentence>
       <Sentence ID="248"></Sentence>
+      <Sentence ID="249"></Sentence>
+      <Sentence ID="250"></Sentence>
       <Sentence ID="301">Valeur Incorrecte</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value.</Sentence>
@@ -1335,6 +1379,8 @@
       <Sentence ID="346">Valeur Incorrecte</Sentence>
       <Sentence ID="347"></Sentence>
       <Sentence ID="348"></Sentence>
+      <Sentence ID="349"></Sentence>
+      <Sentence ID="350"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -1418,6 +1464,8 @@
       <Sentence ID="489"></Sentence>
       <Sentence ID="491"></Sentence>
       <Sentence ID="492"></Sentence>
+      <Sentence ID="493"></Sentence>
+      <Sentence ID="494"></Sentence>
       <Sentence ID="501">Start drag action</Sentence>
       <Sentence ID="502">Stop drag action</Sentence>
       <Sentence ID="503">Start drag action</Sentence>
@@ -1897,7 +1945,7 @@ class VDOM_flexcontainer(VDOM_object):
 
 		id = u"o_" + (self.id).replace('-', '_')
 		footer = u"""rel="footer" """ if self.footer == "1" else u""
-		classname = u"""class="%s" """ % self.classname if self.classname else u""
+		classname = u"%s" % self.classname if self.classname else u""
 
 		if self.titlewrap == "0":
 			title_tag = u""
@@ -1908,15 +1956,18 @@ class VDOM_flexcontainer(VDOM_object):
 			cont_tag = u"""<div class="content">%s</div>""" % contents
 
 
+		css = u"<style>\n" + (self.style % {"id": id}) + u"</style>" if self.style else u""
+		
 		debug_info = u""
 		if VDOM_CONFIG_1["DEBUG"] == "1":
 			debug_info = u"objtype='container' objname='%s'" % ( self.name )
 
 		# Compound DIV
 
-		result = u"""<div {debug_info} {footer} data-display='{display_style}' id="{id}" style="{style}" {classname}>{title_tag}{cont_tag}</div>"""\
+		result = u"""{css}
+		         <div {debug_info} {footer} data-display='{display_style}' id="{id}" style="{style}" class="vdom_flexcontainer {classname}">{title_tag}{cont_tag}</div>"""\
 				.format(debug_info = debug_info, footer =  footer, id = id, style = style, classname = classname,
-							title_tag = title_tag, cont_tag = cont_tag, display_style = display_style)
+						css = css, title_tag = title_tag, cont_tag = cont_tag, display_style = display_style)
 
 		return VDOM_object.render(self, contents=result)
 
@@ -1972,8 +2023,7 @@ class VDOM_flexcontainer(VDOM_object):
 		overflow_num = self.overflow if self.overflow else "0"
 		overflow = overflow_dict[overflow_num]
 		
-
-			
+				
 		result = \
 			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
 					top="{top}" left="{left}" width="{width}" height="{height}" overflow="{overflow}">
@@ -2047,9 +2097,40 @@ def on_update(object, attributes):
 		if 'px' in superheight.lower():
 			modifications.update(height = int(superheight[0:superheight.find("px")]))
 	attributes.update(modifications)
+	
+	empty = ""
+	
+	users = """\
+#%(id)s {
+
+}
+"""
+    
+	skin_mapping = {
+		"0": users,
+		"1": empty
+	}
+    
+	if "skin" in attributes:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+    		
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+		attributes.update(skin="0")
+	
 	return ""
 ]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_flexcontainer {
+            
+        }
+
+</style>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
