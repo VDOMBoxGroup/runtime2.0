@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.331.6201</Version>
+    <Version>1.366.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_create, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -290,6 +290,66 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>alignself</Name>
+      <DisplayName>#Lang(153)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(353)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(454)|flex-start)|(#Lang(455)|flex-end)|(#Lang(456)|center)|(#Lang(457)|stretch)|(#Lang(458)|auto)|(#Lang(459)|))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(253)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>flexgrow</Name>
+      <DisplayName>#Lang(149)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(349)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(249)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>flexbasis</Name>
+      <DisplayName>#Lang(150)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(350)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(6)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(250)</ErrorValidationMessage>
+      <RegularExpressionValidation>(\d{1,4}(px)|\d{1,4}(em)|\d{1,4}(%))|^auto$|^$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>orderchild</Name>
+      <DisplayName>#Lang(151)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(351)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(251)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>flexshrink</Name>
+      <DisplayName>#Lang(152)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(352)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(3)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(252)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,3}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>margins</Name>
       <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue/>
@@ -316,21 +376,7 @@
     <Attribute>
       <Name>style</Name>
       <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue>#%(id)s {
-
-}
-#%(id)s .vdom_button {
-
-}
-#%(id)s .vdom_button.link {
-
-}
-#%(id)s .vdom_button.button {
-
-}
-#%(id)s .vdom_button.image {
-
-}</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
@@ -342,7 +388,7 @@
     <Attribute>
       <Name>skin</Name>
       <DisplayName>#Lang(128)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>2</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
@@ -454,10 +500,10 @@
       <Visible>1</Visible>
       <Help>#Lang(238)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(431)|bold)|(#Lang(432)|normal)|(#Lang(433)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(431)|)|(#Lang(432)|100)|(#Lang(433)|200)|(#Lang(434)|300)|(#Lang(435)|500)|(#Lang(436)|600)|(#Lang(437)|800)|(#Lang(438)|900)|(#Lang(439)|normal)|(#Lang(441)|bold)|(#Lang(442)|bolder)|(#Lang(443)|lighter))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(338)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(normal|bold|)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(|normal|bold|bolder|lighter|100|200|300|500|600|800|900)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textdecoration</Name>
@@ -466,7 +512,7 @@
       <Visible>1</Visible>
       <Help>#Lang(239)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(434)|underline)|(#Lang(435)|none)|(#Lang(436)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(444)|underline)|(#Lang(445)|none)|(#Lang(446)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(339)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|none|)$</RegularExpressionValidation>
@@ -490,7 +536,7 @@
       <Visible>1</Visible>
       <Help>#Lang(242)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(437)|left)|(#Lang(438)|center)|(#Lang(439)|right)|(#Lang(441)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(447)|left)|(#Lang(448)|center)|(#Lang(449)|right)|(#Lang(451)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(342)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right|)$</RegularExpressionValidation>
@@ -514,10 +560,58 @@
       <Visible>1</Visible>
       <Help>#Lang(244)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(442)|0)|(#Lang(443)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(452)|0)|(#Lang(453)|1))</CodeInterface>
       <Colorgroup>0</Colorgroup>
       <ErrorValidationMessage>#Lang(344)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(145)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(245)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(345)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(146)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(246)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(346)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(147)</DisplayName>
+      <DefaultValue>150</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(247)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(347)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(148)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(248)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(348)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -566,6 +660,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="142">Alignment</Sentence>
       <Sentence ID="143">Form</Sentence>
       <Sentence ID="144"></Sentence>
+      <Sentence ID="145">IDE_left</Sentence>
+      <Sentence ID="146">IDE_top</Sentence>
+      <Sentence ID="147">IDE_width</Sentence>
+      <Sentence ID="148">IDE_height</Sentence>
+      <Sentence ID="149">Flex-grow</Sentence>
+      <Sentence ID="150">Flex-basis</Sentence>
+      <Sentence ID="151">Order</Sentence>
+      <Sentence ID="152">Flex-shrink</Sentence>
+      <Sentence ID="153">Align-self</Sentence>
       <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">newAttribute36</Sentence>
@@ -606,6 +709,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="242">The text alignment.</Sentence>
       <Sentence ID="243">newAttribute31</Sentence>
       <Sentence ID="244"></Sentence>
+      <Sentence ID="245">newAttribute40</Sentence>
+      <Sentence ID="246">newAttribute41</Sentence>
+      <Sentence ID="247">newAttribute42</Sentence>
+      <Sentence ID="248">newAttribute43</Sentence>
+      <Sentence ID="249">Incorrect value</Sentence>
+      <Sentence ID="250">Incorrect value</Sentence>
+      <Sentence ID="251">Incorrect value</Sentence>
+      <Sentence ID="252">Incorrect value</Sentence>
+      <Sentence ID="253">Incorrect value</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">newAttribute36</Sentence>
@@ -646,6 +758,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="342">Incorrect value.</Sentence>
       <Sentence ID="343">newAttribute31</Sentence>
       <Sentence ID="344"></Sentence>
+      <Sentence ID="345">newAttribute40</Sentence>
+      <Sentence ID="346">newAttribute41</Sentence>
+      <Sentence ID="347">newAttribute42</Sentence>
+      <Sentence ID="348">newAttribute43</Sentence>
+      <Sentence ID="349">newAttribute44</Sentence>
+      <Sentence ID="350">newAttribute45</Sentence>
+      <Sentence ID="351">newAttribute46</Sentence>
+      <Sentence ID="352">newAttribute47</Sentence>
+      <Sentence ID="353">newAttribute48</Sentence>
       <Sentence ID="401">Button</Sentence>
       <Sentence ID="402">Link</Sentence>
       <Sentence ID="403">Image</Sentence>
@@ -673,18 +794,33 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="427">Normal</Sentence>
       <Sentence ID="428">Oblique</Sentence>
       <Sentence ID="429"></Sentence>
-      <Sentence ID="431">Bold</Sentence>
-      <Sentence ID="432">Normal</Sentence>
-      <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Underline</Sentence>
-      <Sentence ID="435">None</Sentence>
-      <Sentence ID="436"></Sentence>
-      <Sentence ID="437">Left</Sentence>
-      <Sentence ID="438">Center</Sentence>
-      <Sentence ID="439">Right</Sentence>
-      <Sentence ID="441"></Sentence>
-      <Sentence ID="442"></Sentence>
-      <Sentence ID="443"></Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432">100</Sentence>
+      <Sentence ID="433">200</Sentence>
+      <Sentence ID="434">300</Sentence>
+      <Sentence ID="435">500</Sentence>
+      <Sentence ID="436">600</Sentence>
+      <Sentence ID="437">800</Sentence>
+      <Sentence ID="438">900</Sentence>
+      <Sentence ID="439">Normal</Sentence>
+      <Sentence ID="441">Bold</Sentence>
+      <Sentence ID="442">Bolder</Sentence>
+      <Sentence ID="443">Lighter</Sentence>
+      <Sentence ID="444">Underline</Sentence>
+      <Sentence ID="445">None</Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447">Left</Sentence>
+      <Sentence ID="448">Center</Sentence>
+      <Sentence ID="449">Right</Sentence>
+      <Sentence ID="451"></Sentence>
+      <Sentence ID="452"></Sentence>
+      <Sentence ID="453"></Sentence>
+      <Sentence ID="454">Flex-start</Sentence>
+      <Sentence ID="455">Flex-end</Sentence>
+      <Sentence ID="456">Center</Sentence>
+      <Sentence ID="457">Stretch</Sentence>
+      <Sentence ID="458">Auto</Sentence>
+      <Sentence ID="459"></Sentence>
       <Sentence ID="501">Add new CSS class</Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
@@ -810,6 +946,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="142">Alignment</Sentence>
       <Sentence ID="143"></Sentence>
       <Sentence ID="144"></Sentence>
+      <Sentence ID="145"></Sentence>
+      <Sentence ID="146"></Sentence>
+      <Sentence ID="147"></Sentence>
+      <Sentence ID="148"></Sentence>
+      <Sentence ID="149"></Sentence>
+      <Sentence ID="150"></Sentence>
+      <Sentence ID="151"></Sentence>
+      <Sentence ID="152"></Sentence>
+      <Sentence ID="153"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203"></Sentence>
@@ -850,6 +995,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="242">Alignement du texte</Sentence>
       <Sentence ID="243"></Sentence>
       <Sentence ID="244"></Sentence>
+      <Sentence ID="245"></Sentence>
+      <Sentence ID="246"></Sentence>
+      <Sentence ID="247"></Sentence>
+      <Sentence ID="248"></Sentence>
+      <Sentence ID="249"></Sentence>
+      <Sentence ID="250"></Sentence>
+      <Sentence ID="251"></Sentence>
+      <Sentence ID="252"></Sentence>
+      <Sentence ID="253"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303"></Sentence>
@@ -890,6 +1044,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="342">Valeur Incorrecte</Sentence>
       <Sentence ID="343"></Sentence>
       <Sentence ID="344"></Sentence>
+      <Sentence ID="345"></Sentence>
+      <Sentence ID="346"></Sentence>
+      <Sentence ID="347"></Sentence>
+      <Sentence ID="348"></Sentence>
+      <Sentence ID="349"></Sentence>
+      <Sentence ID="350"></Sentence>
+      <Sentence ID="351"></Sentence>
+      <Sentence ID="352"></Sentence>
+      <Sentence ID="353"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -917,18 +1080,33 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="427">Normal</Sentence>
       <Sentence ID="428"></Sentence>
       <Sentence ID="429"></Sentence>
-      <Sentence ID="431">Gras</Sentence>
-      <Sentence ID="432">Normal</Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
       <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Souligné</Sentence>
-      <Sentence ID="435">Aucune</Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
       <Sentence ID="436"></Sentence>
-      <Sentence ID="437">Gauche</Sentence>
-      <Sentence ID="438">Centrer</Sentence>
-      <Sentence ID="439">Droite</Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
       <Sentence ID="441"></Sentence>
       <Sentence ID="442"></Sentence>
       <Sentence ID="443"></Sentence>
+      <Sentence ID="444">Souligné</Sentence>
+      <Sentence ID="445">Aucune</Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447">Gauche</Sentence>
+      <Sentence ID="448">Centrer</Sentence>
+      <Sentence ID="449">Droite</Sentence>
+      <Sentence ID="451"></Sentence>
+      <Sentence ID="452"></Sentence>
+      <Sentence ID="453"></Sentence>
+      <Sentence ID="454"></Sentence>
+      <Sentence ID="455"></Sentence>
+      <Sentence ID="456"></Sentence>
+      <Sentence ID="457"></Sentence>
+      <Sentence ID="458"></Sentence>
+      <Sentence ID="459"></Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Show the object</Sentence>
@@ -1054,6 +1232,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="142">Выравнивание</Sentence>
       <Sentence ID="143"></Sentence>
       <Sentence ID="144"></Sentence>
+      <Sentence ID="145"></Sentence>
+      <Sentence ID="146"></Sentence>
+      <Sentence ID="147"></Sentence>
+      <Sentence ID="148"></Sentence>
+      <Sentence ID="149"></Sentence>
+      <Sentence ID="150"></Sentence>
+      <Sentence ID="151"></Sentence>
+      <Sentence ID="152"></Sentence>
+      <Sentence ID="153"></Sentence>
       <Sentence ID="201">Имя класса CSS</Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203"></Sentence>
@@ -1094,6 +1281,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="242">Выравнивание текста</Sentence>
       <Sentence ID="243"></Sentence>
       <Sentence ID="244"></Sentence>
+      <Sentence ID="245"></Sentence>
+      <Sentence ID="246"></Sentence>
+      <Sentence ID="247"></Sentence>
+      <Sentence ID="248"></Sentence>
+      <Sentence ID="249"></Sentence>
+      <Sentence ID="250"></Sentence>
+      <Sentence ID="251"></Sentence>
+      <Sentence ID="252"></Sentence>
+      <Sentence ID="253"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303"></Sentence>
@@ -1134,6 +1330,15 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="342">Неправильное значение</Sentence>
       <Sentence ID="343"></Sentence>
       <Sentence ID="344"></Sentence>
+      <Sentence ID="345"></Sentence>
+      <Sentence ID="346"></Sentence>
+      <Sentence ID="347"></Sentence>
+      <Sentence ID="348"></Sentence>
+      <Sentence ID="349"></Sentence>
+      <Sentence ID="350"></Sentence>
+      <Sentence ID="351"></Sentence>
+      <Sentence ID="352"></Sentence>
+      <Sentence ID="353"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -1161,18 +1366,33 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="427">Обычный</Sentence>
       <Sentence ID="428"></Sentence>
       <Sentence ID="429"></Sentence>
-      <Sentence ID="431">Полужирный</Sentence>
-      <Sentence ID="432">Обычный</Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
       <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Подчеркнутый</Sentence>
-      <Sentence ID="435">Обычный</Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
       <Sentence ID="436"></Sentence>
-      <Sentence ID="437">Слева</Sentence>
-      <Sentence ID="438">По центру</Sentence>
-      <Sentence ID="439">Справа</Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
       <Sentence ID="441"></Sentence>
       <Sentence ID="442"></Sentence>
       <Sentence ID="443"></Sentence>
+      <Sentence ID="444">Подчеркнутый</Sentence>
+      <Sentence ID="445">Обычный</Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447">Слева</Sentence>
+      <Sentence ID="448">По центру</Sentence>
+      <Sentence ID="449">Справа</Sentence>
+      <Sentence ID="451"></Sentence>
+      <Sentence ID="452"></Sentence>
+      <Sentence ID="453"></Sentence>
+      <Sentence ID="454"></Sentence>
+      <Sentence ID="455"></Sentence>
+      <Sentence ID="456"></Sentence>
+      <Sentence ID="457"></Sentence>
+      <Sentence ID="458"></Sentence>
+      <Sentence ID="459"></Sentence>
       <Sentence ID="501">Добавить объекту класс CSS</Sentence>
       <Sentence ID="502">Показать объект</Sentence>
       <Sentence ID="503">Показать объект</Sentence>
@@ -1473,7 +1693,7 @@ class VDOM_button(VDOM_object):
             clname = u"""class="%s" """ % self.classname if self.classname else u""
             donot = u""
 
-        return u"""<a style="display: block; text-decoration: none; {height} {bgimage}" href="{link}" title="{hint}" {classname} {donot} {tabindex}>
+        return u"""<a style="{height} {bgimage}" href="{link}" title="{hint}" {classname} {donot} {tabindex}>
                 """.format(
                         tabindex = "" if int(self.tabindex) <= 0 else u'tabindex="%s"' % self.tabindex,
                         bgimage = bgimg, height = height, link = link,
@@ -1509,6 +1729,16 @@ class VDOM_button(VDOM_object):
 
         top_style = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
         left_style = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
+        
+        flex_styles = {
+            "align-self": self.alignself,
+            "flex-grow": self.flexgrow,
+            "flex-basis": self.flexbasis,
+            "order": self.orderchild,
+            "flex-shrink": self.flexshrink
+        }
+        flex_style = " ".join(["{}: {};".format(key, value) for key, value in flex_styles.items() if value])
+        
         clname = self.classname if self.classname else u""
         if self.disabled == "0":
             disabled_html = u""
@@ -1522,16 +1752,16 @@ class VDOM_button(VDOM_object):
                                 left=left_style, top=top_style, position=position,
                                 margin=margin_in, padding=padding_in)
     
-        overcss = u"<style>\n" + self.style % {"id": id_out} + u"</style>" if self.style else u""
+        overcss = u"<style>\n" + (self.style % {"id": id_out}) + u"</style>" if self.style else u""
         disablecss = u""
         representation = u""
         render_mode = self.rendermode.lower() if self.rendermode else "default"
         style_zindex = u"z-index: %s;" % self.zindex if int(self.zindex) != 0 else u""
-        style = u"""{zindex} {position} {left} {top} {margin} {padding} {wstyle} {hstyle} {align} {border}"""\
+        style = u"""{zindex} {position} {left} {top} {margin} {padding} {wstyle} {hstyle} {align} {border} {flex}"""\
             .format(
                 zindex=style_zindex, left=left_style, top=top_style, position=position,
                 wstyle=width_style, hstyle=height_style, align=text_align, border=border_style,
-                margin=margin_in, padding=padding_in)
+                margin=margin_in, padding=padding_in, flex=flex_style)
     
         display = u"display: none; " if self.visible == "0" else u"display: {disp}; ".format
         if self.visible == "0":
@@ -1547,10 +1777,10 @@ class VDOM_button(VDOM_object):
             debug_info = ""
             
         spstyle = StringIO.StringIO()
-        if self.fontweight == "bold":
-        	spstyle.write(u"font-weight: bold; ")
-        if self.fontstyle == "italic":
-        	spstyle.write(u"font-style: italic; ")
+        if self.fontweight:
+        	spstyle.write(u"font-weight: {}; ".format(self.fontweight))
+        if self.fontstyle:
+        	spstyle.write(u"font-style: {}; ".format(self.fontstyle))
         if self.fontsize:
         	spstyle.write(u"font-size: %s; " % self.check_unit(self.fontsize))
         if self.fontfamily:
@@ -1580,8 +1810,7 @@ class VDOM_button(VDOM_object):
                     
                     if self.ishover == "0":
                         representation = \
-                            u"""<img src="{image}" width={width} height={height} 
-                                    style="text-decoration: none; border: 0" title="{hint}" />
+                            u"""<img src="{image}" width={width} height={height} title="{hint}" />
                             """.format(
                                 image=hover_link, width=width_img, height=height_img, hint=self.hint)
                     else:
@@ -1628,7 +1857,7 @@ class VDOM_button(VDOM_object):
                 def_image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
     
                 representation = \
-                    u"""<img src="/{image}.res" width={width} height={height} style="text-decoration: none; border: 0" title="{hint}" />
+                    u"""<img src="/{image}.res" width={width} height={height} title="{hint}" />
                     """.format(
                         image=def_image_id, width=self.width,
                         height=self.height, hint=self.hint)
@@ -1659,21 +1888,21 @@ class VDOM_button(VDOM_object):
         elif render_mode == "link":
 
             return u"""{ocss}
-            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" class="vdom_button link {classname}">
+            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" title="{hint}" class="vdom_button link {classname}">
                             {text}
                         </a>
                     """.format(
                             text=self.text, debug_info=debug_info, id=id_out, style=style, ocss=overcss,
-                            disp=display, link=self.link, classname=clname, text_style=text_style)
+                            disp=display, link=self.link, classname=clname, text_style=text_style, hint=self.hint)
     
         else:  # render_mode == "button"
             if self.link:
                 return u"""{ocss}
-                			<div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button button {classname}">
+                			<div {debug_info} id="{id}" style="{style}{disp}" title="{hint}" class="vdom_button button {classname}">
                                 <a style="{text_style}" href="{link}">{text}</a>
                             </div>
                         """.format(
-                    			debug_info=debug_info, id=id_out, style=style, ocss=overcss,
+                    			debug_info=debug_info, id=id_out, style=style, ocss=overcss, hint=self.hint,
                     			disp=display, link=self.link, classname=clname, text=self.text, text_style=text_style)
             else:
                 return u"""{ocss}
@@ -1689,17 +1918,14 @@ class VDOM_button(VDOM_object):
 		return int(match.group()) if match else ""
 	
     def wysiwyg(self, contents=""):
-        width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
-        
-        self.width = int(width) if width else 150
-        self.height = int(height) if height else 20
+        width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
         
         self.border = self.regex(self.border)
         deffamily = "Tahoma, 'Geneva CY', geneva, sans-serif".replace('"', '').replace("'", '')
         
         if self.border and self.border != "0":
             bw = int(self.border)
-            minsize = min(int(self.width), int(self.height))
+            minsize = min(width, height)
             if (bw > minsize / 2):
                 bw = minsize / 2
             border_string = u""" stroke="#000000" stroke-width="%s" """ % bw
@@ -1730,7 +1956,7 @@ class VDOM_button(VDOM_object):
                 	""".format(
             				id = self.id, vis = self.visible, zind = self.zindex,
             				hierarchy = self.hierarchy, order = self.order,
-            				top = self.top, left = self.left, out_wid = self.width, out_hei = self.height,
+            				top = top, left = left, out_wid = width, out_hei = height,
             				img_id = image_id, name = self.name, contents = contents)
                 
                 return VDOM_object.wysiwyg(self, contents=result)
@@ -1752,9 +1978,9 @@ class VDOM_button(VDOM_object):
             		""".format(
             				id = self.id, vis = self.visible, zind = self.zindex,
             				hierarchy = self.hierarchy, order = self.order,
-            				top = self.top, left = self.left, width = width, height = height,
+            				top = top, left = left, width = width, height = height,
             				image = self.finalimage, contents = contents,
-            				rleft = bw/2, rtop = bw/2, rwid = int(self.width)-bw, rhei = int(self.height)-bw, bord = border_string,
+            				rleft = bw/2, rtop = bw/2, rwid = width-bw, rhei = height-bw, bord = border_string,
             				name = self.name)
                 
                 return VDOM_object.wysiwyg(self, contents=result)
@@ -1776,10 +2002,10 @@ class VDOM_button(VDOM_object):
         		""".format(
         				id = self.id, vis = self.visible, zind = self.zindex, 
         				hierarchy = self.hierarchy, order = self.order, 
-        				top = self.top, left = self.left, width = self.width, height = self.height, 
-        				rec_left = bw/2, rec_top = bw/2, rec_wid = int(self.width)-bw, rec_hei = int(self.height)-bw,
+        				top = top, left = left, width = width, height = height, 
+        				rec_left = bw/2, rec_top = bw/2, rec_wid = width-bw, rec_hei = height-bw,
         				bord = border_string,
-        				txt_top = bw, txt_left = bw, txt_wid = int(self.width)-2-2*bw,
+        				txt_top = bw, txt_left = bw, txt_wid = width-2-2*bw,
         				align = self.align, color = self.color, fstyle = self.fontstyle, 
         				txt_decor = self.textdecoration,
         				fweight = self.fontweight, ffamily = self.fontfamily.replace('"', '').replace("'", ''),
@@ -1793,22 +2019,27 @@ def on_update(object, attributes):
     o = object
     modifications = {}
     
-    for attr in ["left", "top", "width", "height"]:
+    for attr in ["left", "width", "height", "top"]:
     	if attr in attributes:
-    		new_value = attributes.get(attr, '')
-    		obj_value = o.attributes.get(attr, '')
+    		attr_value = attributes[attr]
+    		obj_value = o.attributes.get(attr, '').lower()
     		
-    		if 'px' in obj_value.lower() and new_value.isdigit():
-    			new_value = str(new_value) + "px"
-    		elif new_value.isdigit():
-    			new_value = obj_value
+    		if obj_value.isdigit() and attr_value.isdigit():
+    			modifications[attr] = attr_value + "px"
+    			modifications["ide_"+ attr] = attr_value
+    		elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+    			modifications[attr] = attr_value.rstrip("px") + "px"
+    			modifications["ide_"+ attr] = attr_value.rstrip("px")
+    		elif attr_value.isdigit() or "px" in attr_value:
+    			modifications[attr] = attr_value if "px" in attr_value else obj_value
+    			modifications["ide_"+ attr] = attr_value.rstrip("px")
+    		else:
+    			modifications[attr] = attr_value
     			
-    		modifications[attr] = new_value
-    		
     attributes.update(modifications)
     
     # if "image" in param and not "width" in param and not "height" in param:
-    if "image" in attributes and not "width" in attributes and not "height" in attributes:
+    if "image" in attributes and not "ide_width" in attributes and not "ide_height" in attributes:
         # res_id = param["image"]["value"]
         res_id = attributes["image"]
         ro = application.resources.get(res_id)
@@ -1826,23 +2057,20 @@ def on_update(object, attributes):
         # set attributes
         # if o.attributes.width != width or o.attributes.height != height:
         #     o.set_attributes({"width": width, "height": height})
-        if o.attributes["width"] != width or o.attributes["height"] != height:
-            attributes.update(width=str(width), height=str(height))
+        if o.attributes["ide_width"] != width or o.attributes["ide_height"] != height:
+            attributes.update(ide_width=str(width), ide_height=str(height))
 
     users = """\
 #%(id)s {
 
 }
-#%(id)s .vdom_button {
+#%(id)s .link {
 
 }
-#%(id)s .vdom_button.link {
+#%(id)s .button {
 
 }
-#%(id)s .vdom_button.button {
-
-}
-#%(id)s .vdom_button.image {
+#%(id)s .image {
 
 }
 """
@@ -1919,26 +2147,29 @@ color: #999 !important;
     # if "style" in param and param["style"]["value"] and o.attributes.style != pro_suite:        
     #     o.set_attributes({"skin": 0})
     		
-    return ""]]></SourceCode>
+    return ""
+    
+def on_create(object):
+	for attr in ["left", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
+			
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_button {
-            font-size: 12px;
-            font-family: Tahoma, "Geneva CY", geneva, sans-serif;
-            text-align: left;
-            color: #000000;
-            text-decoration: none;
-            background-color: #d1d1d1;
-            overflow: hidden;
-            display: inline-block;
-            padding: 12px 20px;
-            border-radius: 5px;
+            
         }
-        
-        .vdom_button.link {
-           text-decoration: underline;
-           background-color: transparent;
-        }
+
 </style>]]></Library>
   </Libraries>
   <E2vdom>

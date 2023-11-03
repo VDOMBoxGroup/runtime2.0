@@ -14,12 +14,12 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.345.6720</Version>
+    <Version>1.391.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update, on_insert</Handlers>
+    <Handlers>on_create, on_update, on_insert, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -100,7 +100,7 @@
     <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>px</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -112,7 +112,7 @@
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>px</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
@@ -146,69 +146,67 @@
       <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>#%(id)s .vdom_tabview {
-
-}</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(409)|block)|(#Lang(411)|inline)|(#Lang(412)|flex)|(#Lang(413)|inline-block)|(#Lang(414)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(1000000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>currenttab</Name>
       <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>showtabs</Name>
+      <Name>currenttab</Name>
       <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1))</CodeInterface>
+      <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>showtabs</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
       <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -217,6 +215,66 @@
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>50</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
@@ -235,12 +293,17 @@
       <Sentence ID="108">Left</Sentence>
       <Sentence ID="109">Height</Sentence>
       <Sentence ID="111">Width</Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="113">Skin</Sentence>
-      <Sentence ID="114">currenttab</Sentence>
-      <Sentence ID="115">Show tabs</Sentence>
-      <Sentence ID="116">Margins</Sentence>
-      <Sentence ID="117">Paddings</Sentence>
+      <Sentence ID="112">Display</Sentence>
+      <Sentence ID="113">Style</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">currenttab</Sentence>
+      <Sentence ID="116">Show tabs</Sentence>
+      <Sentence ID="117">Margins</Sentence>
+      <Sentence ID="118">Paddings</Sentence>
+      <Sentence ID="119">IDE_top</Sentence>
+      <Sentence ID="121">IDE_left</Sentence>
+      <Sentence ID="122">IDE_height</Sentence>
+      <Sentence ID="123">IDE_width</Sentence>
       <Sentence ID="201">Incorrect value</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Order of rendering the object on the page</Sentence>
@@ -251,12 +314,17 @@
       <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
       <Sentence ID="209">Height of the object in pixels.</Sentence>
       <Sentence ID="211">Width of the object in pixels.</Sentence>
-      <Sentence ID="212">CSS style of the object</Sentence>
-      <Sentence ID="213">Visual appearance of the object</Sentence>
-      <Sentence ID="214">The sequence number of the current inserted element</Sentence>
-      <Sentence ID="215">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="216">newAttribute14</Sentence>
-      <Sentence ID="217">newAttribute15</Sentence>
+      <Sentence ID="212">newAttribute20</Sentence>
+      <Sentence ID="213">CSS style of the object</Sentence>
+      <Sentence ID="214">Visual appearance of the object</Sentence>
+      <Sentence ID="215">The sequence number of the current inserted element</Sentence>
+      <Sentence ID="216">Define if the tabs are shown or not</Sentence>
+      <Sentence ID="217">newAttribute14</Sentence>
+      <Sentence ID="218">newAttribute15</Sentence>
+      <Sentence ID="219">newAttribute17</Sentence>
+      <Sentence ID="221">newAttribute16</Sentence>
+      <Sentence ID="222">newAttribute19</Sentence>
+      <Sentence ID="223">newAttribute18</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
@@ -269,10 +337,15 @@
       <Sentence ID="311">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="314">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316">newAttribute14</Sentence>
-      <Sentence ID="317">newAttribute15</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317">newAttribute14</Sentence>
+      <Sentence ID="318">newAttribute15</Sentence>
+      <Sentence ID="319">newAttribute17</Sentence>
+      <Sentence ID="321">newAttribute16</Sentence>
+      <Sentence ID="322">newAttribute19</Sentence>
+      <Sentence ID="323">newAttribute18</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -281,10 +354,15 @@
       <Sentence ID="406">Relative</Sentence>
       <Sentence ID="407">Fixed</Sentence>
       <Sentence ID="408">Static</Sentence>
-      <Sentence ID="409">User defined</Sentence>
-      <Sentence ID="411">Empty</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="409">Block</Sentence>
+      <Sentence ID="411">Inline</Sentence>
+      <Sentence ID="412">Flex</Sentence>
+      <Sentence ID="413">Inline-block</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">User defined</Sentence>
+      <Sentence ID="416">Empty</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">Yes</Sentence>
       <Sentence ID="501">Tab is activated</Sentence>
       <Sentence ID="502">Toggle CSS class</Sentence>
       <Sentence ID="503"></Sentence>
@@ -336,12 +414,17 @@
       <Sentence ID="108">Gauche</Sentence>
       <Sentence ID="109"></Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="113">Skin</Sentence>
-      <Sentence ID="114">currentTab</Sentence>
-      <Sentence ID="115">Show tabs</Sentence>
-      <Sentence ID="116"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Style</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">currentTab</Sentence>
+      <Sentence ID="116">Show tabs</Sentence>
       <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -352,12 +435,17 @@
       <Sentence ID="208">Distance from the left edge of the parent object in pixels</Sentence>
       <Sentence ID="209"></Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212">CSS style of the object</Sentence>
-      <Sentence ID="213">Visual appearance of the object</Sentence>
-      <Sentence ID="214">Current tab</Sentence>
-      <Sentence ID="215">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="216"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">CSS style of the object</Sentence>
+      <Sentence ID="214">Visual appearance of the object</Sentence>
+      <Sentence ID="215">Current tab</Sentence>
+      <Sentence ID="216">Define if the tabs are shown or not</Sentence>
       <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -370,10 +458,15 @@
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="314">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="315"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="316"></Sentence>
       <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -382,10 +475,15 @@
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">User defined</Sentence>
-      <Sentence ID="411">Custom</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">User defined</Sentence>
+      <Sentence ID="416">Custom</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">Yes</Sentence>
       <Sentence ID="501">activate tab</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -437,12 +535,17 @@
       <Sentence ID="108">Слева</Sentence>
       <Sentence ID="109"></Sentence>
       <Sentence ID="111"></Sentence>
-      <Sentence ID="112">Стиль</Sentence>
-      <Sentence ID="113">Оформление</Sentence>
-      <Sentence ID="114">Текущая вкладка</Sentence>
-      <Sentence ID="115">Показывать вкладки</Sentence>
-      <Sentence ID="116"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Стиль</Sentence>
+      <Sentence ID="114">Оформление</Sentence>
+      <Sentence ID="115">Текущая вкладка</Sentence>
+      <Sentence ID="116">Показывать вкладки</Sentence>
       <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
@@ -453,12 +556,17 @@
       <Sentence ID="208">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="209"></Sentence>
       <Sentence ID="211"></Sentence>
-      <Sentence ID="212">CSS стиль объекта</Sentence>
-      <Sentence ID="213">Визуальное оформление объекта</Sentence>
-      <Sentence ID="214">Порядковый номер текущей вкладки</Sentence>
-      <Sentence ID="215">Определяет, будут ли отображаться вкладки</Sentence>
-      <Sentence ID="216"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">CSS стиль объекта</Sentence>
+      <Sentence ID="214">Визуальное оформление объекта</Sentence>
+      <Sentence ID="215">Порядковый номер текущей вкладки</Sentence>
+      <Sentence ID="216">Определяет, будут ли отображаться вкладки</Sentence>
       <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -471,10 +579,15 @@
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
-      <Sentence ID="314">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="315"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="316"></Sentence>
       <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -483,10 +596,15 @@
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">Определено пользователем</Sentence>
-      <Sentence ID="411">Пользовательский</Sentence>
-      <Sentence ID="412">Нет</Sentence>
-      <Sentence ID="413">Да</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Определено пользователем</Sentence>
+      <Sentence ID="416">Пользовательский</Sentence>
+      <Sentence ID="417">Нет</Sentence>
+      <Sentence ID="418">Да</Sentence>
       <Sentence ID="501">Активировать вкладку</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -735,7 +853,7 @@
   </Resources>
   <SourceCode><![CDATA[from scripting import e2vdom
 import re
-
+import pdb
 class VDOM_tabview(VDOM_object):
 	
 	def check_unit(self, value):
@@ -746,7 +864,7 @@ class VDOM_tabview(VDOM_object):
 
 	def render(self, contents=""):
 		from collections import OrderedDict
-		display = u"display: none; " if self.visible == "0" else u""
+		display = u"display: none; " if self.visible == "0" else self.displaying
 		zindex = u"z-index: %s; " if self.zindex != "0" else u""
 
 		e2vdom.process(self)
@@ -856,16 +974,10 @@ var tabview_children_%(id)s = %(arr)s;
 			tabs=tabs, cont_tag=cont_tag, js=js)
 
 		return VDOM_object.render(self, contents=result)
-	
-	def regex(self, obj):
-		match = re.search(r'\d+', obj)
-		return int(match.group()) if match else ""
 
 	def wysiwyg(self, contents=""):
 
-		width, height, top, left = map(self.regex, (self.width, self.height, self.top, self.left))
-		width = int(width) if width else 200
-		height = int(height) if height else 200
+		width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 
 		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
 		result = \
@@ -912,21 +1024,21 @@ def on_update(object, attributes):
 	# 		obj.set_attribute_ex("height", height)
 	o = object
 
-	width = attributes.get("width")
+	width = attributes.get("ide_width")
 	if width is not None:
 		width = int(width)
 		if width > 0:
 			width = str(width - 2)
 		else:
-			attributes["width"] = width = "200"
+			attributes["ide_width"] = width = "200"
 
-	height = attributes.get("height")
+	height = attributes.get("ide_height")
 	if height is not None:
 		height = int(height)
 		if height > 0:
 			height = str(height - 20)
 		else:
-			attributes["height"] = height = "200"
+			attributes["ide_height"] = height = "200"
 
 	# childs = obj.objects
 	# for key in childs:
@@ -959,7 +1071,7 @@ def on_update(object, attributes):
 			child.attributes.update(height=height)
 
 	users = u"""\
-#%(id)s .vdom_tabview {
+#%(id)s {
 
 }
 """
@@ -983,17 +1095,22 @@ def on_update(object, attributes):
 	# return ""
 	modifications = {}
 	
-	for attr in ["left", "top", "width", "height"]:
+	for attr in ["left", "width", "height", "top"]:
 		if attr in attributes:
-			new_value = attributes.get(attr, '')
-			obj_value = o.attributes.get(attr, '')
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
 			
-			if 'px' in obj_value.lower() and new_value.isdigit():
-				new_value = str(new_value) + "px"
-			elif new_value.isdigit():
-				new_value = obj_value
-				
-			modifications[attr] = new_value
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_" + attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
 			
 	attributes.update(modifications)
 	
@@ -1021,8 +1138,8 @@ def on_insert(parent, object):
 
 	# width_container = int(object.parent.attributes.width) - 2
 	# height_container = int(object.parent.attributes.height) - 20
-	width_container = int(parent.attributes["width"]) - 2
-	height_container = int(parent.attributes["height"]) - 20
+	width_container = int(parent.attributes["ide_width"]) - 2
+	height_container = int(parent.attributes["ide_height"]) - 22
 
 	# object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})
 	object.attributes.update(width=width_container, height=height_container, lockposition="1")
@@ -1057,11 +1174,27 @@ def on_insert(parent, object):
 		elif parent.attributes["currenttab"] != child.attributes["hierarchy"] and object.attributes["zindex"] != "0":
 			object.attributes.update(zindex="0")
 
-	# return ""]]></SourceCode>
+	# return ""
+	
+def on_create(object):
+	for attr in ["left", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
+			
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_tabview {
-            border: none;
+            
         }
 
 </style>]]></Library>
