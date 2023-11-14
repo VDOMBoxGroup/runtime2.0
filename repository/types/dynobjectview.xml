@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.25.2</Version>
+    <Version>1.30.2</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -176,7 +176,7 @@
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1)|(#Lang(417)|2)|(#Lang(447)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1)|(#Lang(417)|2)|(#Lang(418)|))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^[012]*$</RegularExpressionValidation>
@@ -409,6 +409,54 @@
       <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(136)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(336)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(236)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(137)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(337)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(237)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(138)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(338)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(238)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(139)</DisplayName>
+      <DefaultValue>250</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(339)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(239)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -452,6 +500,10 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="133">Dynamic Loading</Sentence>
       <Sentence ID="134">Insert method</Sentence>
       <Sentence ID="135">Active item</Sentence>
+      <Sentence ID="136">IDE_top</Sentence>
+      <Sentence ID="137">IDE_left</Sentence>
+      <Sentence ID="138">IDE_width</Sentence>
+      <Sentence ID="139">IDE_height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Visibility of the object.</Sentence>
@@ -491,6 +543,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="233">Dynamic Loading</Sentence>
       <Sentence ID="234">Insert Method</Sentence>
       <Sentence ID="235">Active item</Sentence>
+      <Sentence ID="236">newAttribute32</Sentence>
+      <Sentence ID="237">newAttribute33</Sentence>
+      <Sentence ID="238">newAttribute34</Sentence>
+      <Sentence ID="239">newAttribute35</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
@@ -523,6 +579,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="333">Invalid value</Sentence>
       <Sentence ID="334">Invalid value</Sentence>
       <Sentence ID="335">Invalid value</Sentence>
+      <Sentence ID="336">newAttribute32</Sentence>
+      <Sentence ID="337">newAttribute33</Sentence>
+      <Sentence ID="338">newAttribute34</Sentence>
+      <Sentence ID="339">newAttribute35</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -539,6 +599,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="415">Vertical</Sentence>
       <Sentence ID="416">Horizontal</Sentence>
       <Sentence ID="417">Vertical wide</Sentence>
+      <Sentence ID="418"></Sentence>
       <Sentence ID="419">No</Sentence>
       <Sentence ID="421">Yes</Sentence>
       <Sentence ID="422">No</Sentence>
@@ -564,7 +625,6 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="444">Yes</Sentence>
       <Sentence ID="445">Insert before the first element</Sentence>
       <Sentence ID="446">Insert after the last element</Sentence>
-      <Sentence ID="447"></Sentence>
       <Sentence ID="501">Add CSS class</Sentence>
       <Sentence ID="502">Catch child event</Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -799,6 +859,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="133">Dynamic Loading</Sentence>
       <Sentence ID="134">Insert method</Sentence>
       <Sentence ID="135">Active item</Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
@@ -831,6 +895,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="233">Dynamic Loading</Sentence>
       <Sentence ID="234">Insert Method</Sentence>
       <Sentence ID="235">Active item</Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="303">Incorrect value, must be 0 or 1</Sentence>
@@ -863,6 +931,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="333">Invalid value</Sentence>
       <Sentence ID="334">Invalid value</Sentence>
       <Sentence ID="335">Invalid value</Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -879,6 +951,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="415">Vertical</Sentence>
       <Sentence ID="416">Horizontal</Sentence>
       <Sentence ID="417">Vertical wide</Sentence>
+      <Sentence ID="418"></Sentence>
       <Sentence ID="419">No</Sentence>
       <Sentence ID="421">Yes</Sentence>
       <Sentence ID="422"></Sentence>
@@ -904,7 +977,6 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="444">Yes</Sentence>
       <Sentence ID="445">Insert before the first element</Sentence>
       <Sentence ID="446">Insert after the last element</Sentence>
-      <Sentence ID="447"></Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -1139,6 +1211,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="133">Dynamic Loading</Sentence>
       <Sentence ID="134">Insert method</Sentence>
       <Sentence ID="135">Active item</Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Отображение объекта</Sentence>
@@ -1171,6 +1247,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="233">Dynamic Loading</Sentence>
       <Sentence ID="234">Insert Method</Sentence>
       <Sentence ID="235">Active item</Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -1203,6 +1283,10 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="333">Invalid value</Sentence>
       <Sentence ID="334">Invalid value</Sentence>
       <Sentence ID="335">Invalid value</Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -1219,6 +1303,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="415">Вертикальный</Sentence>
       <Sentence ID="416">Горизонтальный</Sentence>
       <Sentence ID="417">Ширина по вертикали</Sentence>
+      <Sentence ID="418"></Sentence>
       <Sentence ID="419">Нет</Sentence>
       <Sentence ID="421">Да</Sentence>
       <Sentence ID="422"></Sentence>
@@ -1244,7 +1329,6 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="444">Yes</Sentence>
       <Sentence ID="445">Insert before the first element</Sentence>
       <Sentence ID="446">Insert after the last element</Sentence>
-      <Sentence ID="447"></Sentence>
       <Sentence ID="501"></Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503">Скрыть объект</Sentence>
@@ -2551,17 +2635,13 @@ $(document).ready(function(){{
             )
 
             return super(DynamicObjectView, self).render(contents=contents)
-
-    def regex(self, obj):
-    	match = re.search(r'\d+', obj)
-    	return int(match.group()) if match else ""
     
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
-        width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
-
-        self.width = int(width) if width else 400
-        self.height = int(height) if height else 250
+        self.width, self.height, self.top, self.left = [
+            int(self.ide_width), int(self.ide_height), 
+            int(self.ide_top), int(self.ide_left)
+        ]
    
         image_id = "76bfc7be-dbe3-46e3-8d11-cc78a576b63a"
         result = get_empty_wysiwyg_value(self, image_id)
@@ -2569,21 +2649,27 @@ $(document).ready(function(){{
         
 def on_update(object, attributes):
     
+    o = object
     modifications = {}
     
-    for attr in ["left", "top", "width", "height"]:
+    for attr in ["left", "width", "height", "top"]:
     	if attr in attributes:
-    		new_value = attributes.get(attr)
-    		unit = re.findall("[a-z%]+", object.attributes.get(attr, ""))
-    		unit = unit[0] if unit and unit[0]!="auto" else "px"
+    		attr_value = attributes[attr]
+    		obj_value = o.attributes.get(attr, '').lower()
     		
-    		if new_value is not None and new_value.isdigit():
-    			new_value = new_value + unit
-    		modifications[attr] = new_value
-    
+    		if obj_value.isdigit() and attr_value.isdigit():
+    			modifications[attr] = attr_value + "px"
+    			modifications["ide_"+ attr] = attr_value
+    		elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+    			modifications[attr] = attr_value.rstrip("px") + "px"
+    			modifications["ide_"+ attr] = attr_value.rstrip("px")
+    		elif attr_value.isdigit() or "px" in attr_value:
+    			modifications[attr] = attr_value if "px" in attr_value else obj_value
+    			modifications["ide_"+ attr] = attr_value.rstrip("px")
+    		else:
+    			modifications[attr] = attr_value
     attributes.update(modifications)
     
-    empty = ""
     
     users = """\
 #%(id)s {
@@ -2603,7 +2689,7 @@ def on_update(object, attributes):
 
     skin_mapping = {
         "0": users,
-        "1": empty,
+        "1": "",
         "2": default
     }
     
@@ -2617,13 +2703,21 @@ def on_update(object, attributes):
     if "css" in attributes and attributes.get("css") not in skin_mapping.values():
     	attributes.update(skin="0")
 
-    return ""]]></SourceCode>
+    return ""
+    
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<script type="text/javascript" src="/883d23d7-d98f-4552-b0cc-0b14122a14d1.res"></script>
 <script type="text/javascript" src="/4d2f9168-d9c9-45b4-8969-50732ba9fd80.res"></script>]]></Library>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_dynobjectview {
-            
+         
         }
 </style>]]></Library>
   </Libraries>

@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.200.8389</Version>
+    <Version>1.211.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -147,138 +147,126 @@
     </Attribute>
     <Attribute>
       <Name>displaying</Name>
-      <DisplayName>#Lang(124)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(324)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|block)|(#Lang(420)|inline)|(#Lang(421)|flex)|(#Lang(422)|inline-block)|(#Lang(423)|))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>data</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
+      <CodeInterface>DropDown((#Lang(409)|block)|(#Lang(411)|inline)|(#Lang(412)|flex)|(#Lang(413)|inline-block)|(#Lang(414)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>selectedrows</Name>
+      <Name>data</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10000)</CodeInterface>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>selectionmode</Name>
+      <Name>selectedrows</Name>
       <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
+      <CodeInterface>TextField(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>layout</Name>
+      <Name>selectionmode</Name>
       <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>selecteditem</Name>
+      <Name>layout</Name>
       <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue/>
+      <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selecteditem</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>dragdrop</Name>
-      <DisplayName>#Lang(117)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|0)|(#Lang(415)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>clickclass</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>style</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>skin</Name>
+      <Name>style</Name>
       <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>2</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(416)|0)|(#Lang(417)|1)|(#Lang(418)|2))</CodeInterface>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>2</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1)|(#Lang(424)|2))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
       <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -288,6 +276,66 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(224)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(225)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(126)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(226)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue>150</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -305,18 +353,22 @@
       <Sentence ID="108">Left</Sentence>
       <Sentence ID="109">Width</Sentence>
       <Sentence ID="111">Height</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="113">Selected rows</Sentence>
-      <Sentence ID="114">Selection mode</Sentence>
-      <Sentence ID="115">Layout</Sentence>
-      <Sentence ID="116">Selected item</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="118">Click on</Sentence>
-      <Sentence ID="119">Style</Sentence>
-      <Sentence ID="121">Skin</Sentence>
-      <Sentence ID="122">Margins</Sentence>
-      <Sentence ID="123">Paddings</Sentence>
-      <Sentence ID="124">Display</Sentence>
+      <Sentence ID="112">Display</Sentence>
+      <Sentence ID="113">Data</Sentence>
+      <Sentence ID="114">Selected rows</Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="116">Layout</Sentence>
+      <Sentence ID="117">Selected item</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119">Click on</Sentence>
+      <Sentence ID="121">Style</Sentence>
+      <Sentence ID="122">Skin</Sentence>
+      <Sentence ID="123">Margins</Sentence>
+      <Sentence ID="124">Paddings</Sentence>
+      <Sentence ID="125">IDE_top</Sentence>
+      <Sentence ID="126">IDE_left</Sentence>
+      <Sentence ID="127">IDE_width</Sentence>
+      <Sentence ID="128">IDE_height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
       <Sentence ID="203">The necessary CSS code applied to all objects within the container.</Sentence>
@@ -327,18 +379,22 @@
       <Sentence ID="208">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
       <Sentence ID="209">The width of the object in pixels.</Sentence>
       <Sentence ID="211">The height of the object in pixels.</Sentence>
-      <Sentence ID="212">The data in JSON (JavaScript Object Notation) format.</Sentence>
-      <Sentence ID="213">The list of keys displayed as checked, specified by the 'Data' attribute.</Sentence>
-      <Sentence ID="214">The mode of selecting the rows.</Sentence>
-      <Sentence ID="215">The way of items disposition inside the object.</Sentence>
-      <Sentence ID="216">The key displayed as selected and specified in the 'Data' attribute.</Sentence>
-      <Sentence ID="217">The dragability of the object's items. If it is set to 'No', the records are not draggable, if 'Yes'---the records can be dragged and dropped.</Sentence>
-      <Sentence ID="218">CSS class name, mouse click will be binded on element which contains this class</Sentence>
-      <Sentence ID="219">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
-      <Sentence ID="221">The skin of the object.</Sentence>
-      <Sentence ID="222">newAttribute18</Sentence>
-      <Sentence ID="223">newAttribute19</Sentence>
-      <Sentence ID="224"></Sentence>
+      <Sentence ID="212">newAttribute21</Sentence>
+      <Sentence ID="213">The data in JSON (JavaScript Object Notation) format.</Sentence>
+      <Sentence ID="214">The list of keys displayed as checked, specified by the 'Data' attribute.</Sentence>
+      <Sentence ID="215">The mode of selecting the rows.</Sentence>
+      <Sentence ID="216">The way of items disposition inside the object.</Sentence>
+      <Sentence ID="217">The key displayed as selected and specified in the 'Data' attribute.</Sentence>
+      <Sentence ID="218">The dragability of the object's items. If it is set to 'No', the records are not draggable, if 'Yes'---the records can be dragged and dropped.</Sentence>
+      <Sentence ID="219">CSS class name, mouse click will be binded on element which contains this class</Sentence>
+      <Sentence ID="221">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
+      <Sentence ID="222">The skin of the object.</Sentence>
+      <Sentence ID="223">newAttribute18</Sentence>
+      <Sentence ID="224">newAttribute19</Sentence>
+      <Sentence ID="225">newAttribute22</Sentence>
+      <Sentence ID="226">newAttribute23</Sentence>
+      <Sentence ID="227">newAttribute24</Sentence>
+      <Sentence ID="228">newAttribute25</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value</Sentence>
@@ -349,18 +405,22 @@
       <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="314">Incorrect value</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
       <Sentence ID="318">Incorrect value</Sentence>
       <Sentence ID="319">Incorrect value</Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322">newAttribute18</Sentence>
-      <Sentence ID="323">newAttribute19</Sentence>
-      <Sentence ID="324">newAttribute21</Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">newAttribute18</Sentence>
+      <Sentence ID="324">newAttribute19</Sentence>
+      <Sentence ID="325">newAttribute22</Sentence>
+      <Sentence ID="326">newAttribute23</Sentence>
+      <Sentence ID="327">newAttribute24</Sentence>
+      <Sentence ID="328">newAttribute25</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">No</Sentence>
@@ -369,20 +429,20 @@
       <Sentence ID="406">Fixed</Sentence>
       <Sentence ID="407">Relative</Sentence>
       <Sentence ID="408">Static</Sentence>
-      <Sentence ID="409">Single</Sentence>
-      <Sentence ID="411">Multi</Sentence>
-      <Sentence ID="412">Vertical</Sentence>
-      <Sentence ID="413">Horizontal</Sentence>
-      <Sentence ID="414">No</Sentence>
-      <Sentence ID="415">Yes</Sentence>
-      <Sentence ID="416">User defined</Sentence>
-      <Sentence ID="417">Default</Sentence>
-      <Sentence ID="418">Empty</Sentence>
-      <Sentence ID="419">Block</Sentence>
-      <Sentence ID="420">Inline</Sentence>
-      <Sentence ID="421">Flex</Sentence>
-      <Sentence ID="422">Inline-block</Sentence>
-      <Sentence ID="423"></Sentence>
+      <Sentence ID="409">Block</Sentence>
+      <Sentence ID="411">Inline</Sentence>
+      <Sentence ID="412">Flex</Sentence>
+      <Sentence ID="413">Inline-block</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Single</Sentence>
+      <Sentence ID="416">Multi</Sentence>
+      <Sentence ID="417">Vertical</Sentence>
+      <Sentence ID="418">Horizontal</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">User defined</Sentence>
+      <Sentence ID="423">Default</Sentence>
+      <Sentence ID="424">Empty</Sentence>
       <Sentence ID="501">The test action.</Sentence>
       <Sentence ID="502">Hide the object.</Sentence>
       <Sentence ID="503">Select all rows.</Sentence>
@@ -440,18 +500,22 @@
       <Sentence ID="108">Left</Sentence>
       <Sentence ID="109">Width</Sentence>
       <Sentence ID="111">Height</Sentence>
-      <Sentence ID="112">Data</Sentence>
-      <Sentence ID="113">Selected rows</Sentence>
-      <Sentence ID="114">Selection mode</Sentence>
-      <Sentence ID="115">Layout</Sentence>
-      <Sentence ID="116">Selected item</Sentence>
-      <Sentence ID="117">Drag-and-drop</Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119">Style</Sentence>
-      <Sentence ID="121">Skin</Sentence>
-      <Sentence ID="122"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Data</Sentence>
+      <Sentence ID="114">Selected rows</Sentence>
+      <Sentence ID="115">Selection mode</Sentence>
+      <Sentence ID="116">Layout</Sentence>
+      <Sentence ID="117">Selected item</Sentence>
+      <Sentence ID="118">Drag-and-drop</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121">Style</Sentence>
+      <Sentence ID="122">Skin</Sentence>
       <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Names of CSS classes</Sentence>
@@ -462,18 +526,22 @@
       <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
       <Sentence ID="209">Width of the object in pixels</Sentence>
       <Sentence ID="211">Height of the object in pixels</Sentence>
-      <Sentence ID="212">Data in JSON format</Sentence>
-      <Sentence ID="213">Rows which should be checked</Sentence>
-      <Sentence ID="214">Mode of row selecting</Sentence>
-      <Sentence ID="215">Way of displaying the list</Sentence>
-      <Sentence ID="216">Set class "active" to item with this identifier</Sentence>
-      <Sentence ID="217">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219">CSS style of the object</Sentence>
-      <Sentence ID="221">Define the skin of the object</Sentence>
-      <Sentence ID="222"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Data in JSON format</Sentence>
+      <Sentence ID="214">Rows which should be checked</Sentence>
+      <Sentence ID="215">Mode of row selecting</Sentence>
+      <Sentence ID="216">Way of displaying the list</Sentence>
+      <Sentence ID="217">Set class "active" to item with this identifier</Sentence>
+      <Sentence ID="218">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221">CSS style of the object</Sentence>
+      <Sentence ID="222">Define the skin of the object</Sentence>
       <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value</Sentence>
@@ -484,18 +552,22 @@
       <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value</Sentence>
       <Sentence ID="314">Incorrect value</Sentence>
       <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317">Incorrect value</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Incorrect value</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
       <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">No</Sentence>
@@ -504,20 +576,20 @@
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">Single</Sentence>
-      <Sentence ID="411">Multi</Sentence>
-      <Sentence ID="412">Vertical</Sentence>
-      <Sentence ID="413">Horizontal</Sentence>
-      <Sentence ID="414">No</Sentence>
-      <Sentence ID="415">Yes</Sentence>
-      <Sentence ID="416">User defined</Sentence>
-      <Sentence ID="417">Default</Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
-      <Sentence ID="421"></Sentence>
-      <Sentence ID="422"></Sentence>
-      <Sentence ID="423"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Single</Sentence>
+      <Sentence ID="416">Multi</Sentence>
+      <Sentence ID="417">Vertical</Sentence>
+      <Sentence ID="418">Horizontal</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">User defined</Sentence>
+      <Sentence ID="423">Default</Sentence>
+      <Sentence ID="424"></Sentence>
       <Sentence ID="501">toggle</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
       <Sentence ID="503">Select all the rows</Sentence>
@@ -575,18 +647,22 @@
       <Sentence ID="108">Слева</Sentence>
       <Sentence ID="109">Ширина</Sentence>
       <Sentence ID="111">Высота</Sentence>
-      <Sentence ID="112">Данные</Sentence>
-      <Sentence ID="113">Выбранные ряды</Sentence>
-      <Sentence ID="114">Режим выбора</Sentence>
-      <Sentence ID="115">Слой</Sentence>
-      <Sentence ID="116">Выбранные элементы</Sentence>
-      <Sentence ID="117">Перетаскивание</Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119">Стиль</Sentence>
-      <Sentence ID="121">Оформление</Sentence>
-      <Sentence ID="122"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Данные</Sentence>
+      <Sentence ID="114">Выбранные ряды</Sentence>
+      <Sentence ID="115">Режим выбора</Sentence>
+      <Sentence ID="116">Слой</Sentence>
+      <Sentence ID="117">Выбранные элементы</Sentence>
+      <Sentence ID="118">Перетаскивание</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121">Стиль</Sentence>
+      <Sentence ID="122">Оформление</Sentence>
       <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Отображение объекта</Sentence>
       <Sentence ID="203">Имена классов CSS</Sentence>
@@ -597,18 +673,22 @@
       <Sentence ID="208">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="209">Ширина объекта в пикселях</Sentence>
       <Sentence ID="211">Высота объекта в пикселях</Sentence>
-      <Sentence ID="212">Данные в формате JSON</Sentence>
-      <Sentence ID="213">Ряды</Sentence>
-      <Sentence ID="214">Режим выборки рядов</Sentence>
-      <Sentence ID="215">Способ отображения списка</Sentence>
-      <Sentence ID="216">Set class "active" to item with this identifier</Sentence>
-      <Sentence ID="217">Использование перемещения</Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219">Стиль CSS</Sentence>
-      <Sentence ID="221">Оформление объекта</Sentence>
-      <Sentence ID="222"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Данные в формате JSON</Sentence>
+      <Sentence ID="214">Ряды</Sentence>
+      <Sentence ID="215">Режим выборки рядов</Sentence>
+      <Sentence ID="216">Способ отображения списка</Sentence>
+      <Sentence ID="217">Set class "active" to item with this identifier</Sentence>
+      <Sentence ID="218">Использование перемещения</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221">Стиль CSS</Sentence>
+      <Sentence ID="222">Оформление объекта</Sentence>
       <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -619,18 +699,22 @@
       <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="312">Неправильное значение</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Неправильное значение</Sentence>
       <Sentence ID="314">Неправильное значение</Sentence>
       <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317">Неправильное значение</Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
-      <Sentence ID="321"></Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318">Неправильное значение</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Неправильное значение</Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
       <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Нет</Sentence>
@@ -639,20 +723,20 @@
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">Одиночный</Sentence>
-      <Sentence ID="411">Множественный</Sentence>
-      <Sentence ID="412">Вертикальный</Sentence>
-      <Sentence ID="413">Горизонтальный</Sentence>
-      <Sentence ID="414">Нет</Sentence>
-      <Sentence ID="415">Да</Sentence>
-      <Sentence ID="416">Определено пользователем</Sentence>
-      <Sentence ID="417">По умолчанию</Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
-      <Sentence ID="421"></Sentence>
-      <Sentence ID="422"></Sentence>
-      <Sentence ID="423"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Одиночный</Sentence>
+      <Sentence ID="416">Множественный</Sentence>
+      <Sentence ID="417">Вертикальный</Sentence>
+      <Sentence ID="418">Горизонтальный</Sentence>
+      <Sentence ID="419">Нет</Sentence>
+      <Sentence ID="421">Да</Sentence>
+      <Sentence ID="422">Определено пользователем</Sentence>
+      <Sentence ID="423">По умолчанию</Sentence>
+      <Sentence ID="424"></Sentence>
       <Sentence ID="501">Переключение</Sentence>
       <Sentence ID="502">Скрыть объект</Sentence>
       <Sentence ID="503">Выбрать все ряды</Sentence>
@@ -844,7 +928,6 @@
 			U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
   </Resources>
   <SourceCode><![CDATA[import collections, json, StringIO
-import re
 
 class VDOM_list(VDOM_object):
 	
@@ -1030,12 +1113,9 @@ $j(function(){
 
 		return VDOM_object.render(self, contents=result)
 
-	
-	def regex(self, obj):
-		match = re.search(r'\d+', obj)
-		return int(match.group()) if match else ""
 		
 	def __get_error_wysiwyg_obj (self, error_text):
+		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 		
 		result = \
 			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
@@ -1055,10 +1135,7 @@ $j(function(){
 			
 	def wysiwyg(self, contents=""):
 		incorrect_data_text = u"Incorrect value in data:\n{data}".format(data = self.data)
-		width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
-		
-		self.width = int(width) if width else 150
-		self.height = int(height) if height else 200
+		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 		
 		if self.data:
 			try:
@@ -1124,14 +1201,23 @@ def on_update(object, attributes):
 	o = object
 	modifications = {}
 	
-	for attr in ["left", "top", "width", "height"]:
+	for attr in ["left", "width", "height", "top"]:
 		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-			if new_value is not None and new_value.isdigit():
-				new_value = new_value + unit
-			modifications[attr] = new_value
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+    			
 	attributes.update(modifications)
 	
 	empty = ""
@@ -1166,7 +1252,15 @@ def on_update(object, attributes):
 	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
 		attributes.update(skin="0")
 	
-	return ""]]></SourceCode>
+	return ""
+			
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_list {
