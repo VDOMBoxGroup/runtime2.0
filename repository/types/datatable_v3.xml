@@ -1,729 +1,929 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-	<Information>
-		<ID>a2240af9-66d1-8841-0c58-ff687f3d2b3c</ID>
-		<Name>datatable_v3</Name>
-		<DisplayName>#Lang(001)</DisplayName>
-		<ClassName>VDOM_datatable_v3</ClassName>
-		<Description>#Lang(002)</Description>
-		<Version>3.153.8389</Version>
-		<Category>Table</Category>
-		<InterfaceType>1</InterfaceType>
-		<Icon>#Res(f7e008b4-3eef-3269-b004-089c613a538b)</Icon>
-		<EditorIcon>#Res(5a36a105-aea5-cf81-2586-089c91dadd01)</EditorIcon>
-		<StructureIcon>#Res(0d869c7d-68a9-382b-a622-089cbf6cde2b)</StructureIcon>
-		<Dynamic>1</Dynamic>
-		<Moveable>1</Moveable>
-		<Resizable>3</Resizable>
-		<OptimizationPriority>1</OptimizationPriority>
-		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
-		<Handlers>on_update</Handlers>
-		<Languages>en_US, fr_FR, ru_RU</Languages>
-	</Information>
-	<Attributes>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>width</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<Description>#Lang(207)</Description>
-			<DefaultValue>200</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>height</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<Description>#Lang(208)</Description>
-			<DefaultValue>100</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>title</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<Description>#Lang(209)</Description>
-			<DefaultValue>table</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>header</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>showheader</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>data</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(100000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>key</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>hiddenfields</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>rowactive</Name>
-			<DisplayName>#Lang(116)</DisplayName>
-			<Description>#Lang(216)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectedrows</Name>
-			<DisplayName>#Lang(117)</DisplayName>
-			<Description>#Lang(217)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectionmode</Name>
-			<DisplayName>#Lang(118)</DisplayName>
-			<Description>#Lang(218)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>draggable</Name>
-			<DisplayName>#Lang(119)</DisplayName>
-			<Description>#Lang(219)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>style</Name>
-			<DisplayName>#Lang(121)</DisplayName>
-			<Description>#Lang(221)</Description>
-			<DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(100000)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>skin</Name>
-			<DisplayName>#Lang(122)</DisplayName>
-			<Description>#Lang(222)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1)|(#Lang(414)|2)|(#Lang(415)|3))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>cssclass</Name>
-			<DisplayName>#Lang(123)</DisplayName>
-			<Description>#Lang(223)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(100)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>nocellclick</Name>
-			<DisplayName>#Lang(124)</DisplayName>
-			<Description>#Lang(224)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>3</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>tristate</Name>
-			<DisplayName>#Lang(125)</DisplayName>
-			<Description>#Lang(225)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(416)|1)|(#Lang(417)|0))</CodeInterface>
-			<ColorGroup>3</ColorGroup>
-		</Attribute>
-	</Attributes>
-	<Languages>
-		<Language Code="en_US">
-			<Sentence ID="001">Datatable v3</Sentence>
-			<Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The &apos;Header&apos; attribute defines the names of columns to display, the data are set as an array or dictionary in the &apos;Data&apos; attribute. This type supports single- and multi-selection of table lines.</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visibility</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Top</Sentence>
-			<Sentence ID="106">Left</Sentence>
-			<Sentence ID="107">Width</Sentence>
-			<Sentence ID="108">Height</Sentence>
-			<Sentence ID="109">Title</Sentence>
-			<Sentence ID="111">Header</Sentence>
-			<Sentence ID="112">Show header</Sentence>
-			<Sentence ID="113">Data</Sentence>
-			<Sentence ID="114">Key</Sentence>
-			<Sentence ID="115">Hidden fields</Sentence>
-			<Sentence ID="116">Active row</Sentence>
-			<Sentence ID="117">Selected rows</Sentence>
-			<Sentence ID="118">Selection mode</Sentence>
-			<Sentence ID="119">Drag-and-drop</Sentence>
-			<Sentence ID="121">Style</Sentence>
-			<Sentence ID="122">Skin</Sentence>
-			<Sentence ID="123">CSS Class</Sentence>
-			<Sentence ID="124">No cellClick</Sentence>
-			<Sentence ID="125">Tri state</Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203">Visibility of the object</Sentence>
-			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-			<Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-			<Sentence ID="207">Width of the object in pixels</Sentence>
-			<Sentence ID="208">Height of the object in pixels</Sentence>
-			<Sentence ID="209">Title of the object to display</Sentence>
-			<Sentence ID="211">Header of the table, described in the array</Sentence>
-			<Sentence ID="212">Define if the header is shown or not</Sentence>
-			<Sentence ID="213">Table data described in the array or dictionary</Sentence>
-			<Sentence ID="214">Key field which identifies the entry</Sentence>
-			<Sentence ID="215">Fields which should be hidden</Sentence>
-			<Sentence ID="216">Row with class &apos;active&apos;</Sentence>
-			<Sentence ID="217">Rows which should be checked</Sentence>
-			<Sentence ID="218">Mode of row selecting</Sentence>
-			<Sentence ID="219">Define is drag-and-drop is used or not</Sentence>
-			<Sentence ID="221">CSS style of the object</Sentence>
-			<Sentence ID="222">Skin of the object</Sentence>
-			<Sentence ID="223">Names of CSS classes</Sentence>
-			<Sentence ID="224">List (comma separated) of columns, which haven&apos;t cellclick.</Sentence>
-			<Sentence ID="225">Use 3 states for checkboxes in multiselect mode</Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311">Incorrect value, must be array</Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313">Incorrect value, must be array or dictionary</Sentence>
-			<Sentence ID="314">Error, attribute must be in header</Sentence>
-			<Sentence ID="315">Error, attributes must be in header</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Incorrect value</Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323"></Sentence>
-			<Sentence ID="324">Incorrect value</Sentence>
-			<Sentence ID="325">Incorrect value</Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">No</Sentence>
-			<Sentence ID="404">Yes</Sentence>
-			<Sentence ID="405">No</Sentence>
-			<Sentence ID="406">Yes</Sentence>
-			<Sentence ID="407">Single</Sentence>
-			<Sentence ID="408">Multi</Sentence>
-			<Sentence ID="409">No</Sentence>
-			<Sentence ID="411">Yes</Sentence>
-			<Sentence ID="412">User defined</Sentence>
-			<Sentence ID="413">Default</Sentence>
-			<Sentence ID="414">EOF</Sentence>
-			<Sentence ID="415">ProSuite</Sentence>
-			<Sentence ID="416">Yes</Sentence>
-			<Sentence ID="417">No</Sentence>
-			<Sentence ID="501">Hide the object</Sentence>
-			<Sentence ID="502">Show the object</Sentence>
-			<Sentence ID="503">Select all the rows</Sentence>
-			<Sentence ID="504">Deselect all the rows</Sentence>
-			<Sentence ID="505">Deselect all the rows</Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="511"></Sentence>
-			<Sentence ID="512"></Sentence>
-			<Sentence ID="513"></Sentence>
-			<Sentence ID="514"></Sentence>
-			<Sentence ID="515"></Sentence>
-			<Sentence ID="516"></Sentence>
-			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="601"></Sentence>
-			<Sentence ID="602"></Sentence>
-			<Sentence ID="603"></Sentence>
-			<Sentence ID="604"></Sentence>
-			<Sentence ID="605"></Sentence>
-			<Sentence ID="701">fade</Sentence>
-			<Sentence ID="702"></Sentence>
-			<Sentence ID="703"></Sentence>
-			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="901">cellData</Sentence>
-			<Sentence ID="902">cellData</Sentence>
-			<Sentence ID="903">cellData</Sentence>
-			<Sentence ID="904">cellData</Sentence>
-			<Sentence ID="905">cellData</Sentence>
-			<Sentence ID="906">cellData</Sentence>
-			<Sentence ID="907">cellData</Sentence>
-			<Sentence ID="908">cellData</Sentence>
-			<Sentence ID="909">cellData</Sentence>
-			<Sentence ID="911">cellData</Sentence>
-			<Sentence ID="912">cellData</Sentence>
-			<Sentence ID="913">cellData</Sentence>
-			<Sentence ID="914">cellData</Sentence>
-			<Sentence ID="915">cellData</Sentence>
-			<Sentence ID="916">cellData</Sentence>
-			<Sentence ID="917">cellData</Sentence>
-			<Sentence ID="918">cellData</Sentence>
-			<Sentence ID="919">cellData</Sentence>
-			<Sentence ID="921">cellData</Sentence>
-			<Sentence ID="922">cellData</Sentence>
-			<Sentence ID="923">cellData</Sentence>
-			<Sentence ID="924">cellData</Sentence>
-		</Language>
-		<Language Code="fr_FR">
-			<Sentence ID="001">Datatable v3</Sentence>
-			<Sentence ID="002">Represents the data in the datasheet view</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visibility</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Top</Sentence>
-			<Sentence ID="106">Left</Sentence>
-			<Sentence ID="107">Width</Sentence>
-			<Sentence ID="108">Height</Sentence>
-			<Sentence ID="109">Title</Sentence>
-			<Sentence ID="111">Header</Sentence>
-			<Sentence ID="112">Show header</Sentence>
-			<Sentence ID="113">Data</Sentence>
-			<Sentence ID="114">Key</Sentence>
-			<Sentence ID="115">Hidden fields</Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117">Selected rows</Sentence>
-			<Sentence ID="118">Selection mode</Sentence>
-			<Sentence ID="119">Drag-and-drop</Sentence>
-			<Sentence ID="121">Style</Sentence>
-			<Sentence ID="122">Skin</Sentence>
-			<Sentence ID="123">CSS Class</Sentence>
-			<Sentence ID="124"></Sentence>
-			<Sentence ID="125"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203">Visibility of the object</Sentence>
-			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-			<Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-			<Sentence ID="207">Width of the object in pixels</Sentence>
-			<Sentence ID="208">Height of the object in pixels</Sentence>
-			<Sentence ID="209">Title of the object to display</Sentence>
-			<Sentence ID="211">Header of the table, described in the array</Sentence>
-			<Sentence ID="212">Define if the header is shown or not</Sentence>
-			<Sentence ID="213">Table data described in the array or dictionary</Sentence>
-			<Sentence ID="214">Key field which identifies the entry</Sentence>
-			<Sentence ID="215">Fields which should be hidden</Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217">Rows which should be checked</Sentence>
-			<Sentence ID="218">Mode of row selecting</Sentence>
-			<Sentence ID="219">Define is drag-and-drop is used or not</Sentence>
-			<Sentence ID="221">CSS style of the object</Sentence>
-			<Sentence ID="222">Skin of the object</Sentence>
-			<Sentence ID="223">Names of CSS classes</Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311">Incorrect value, must be array</Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313">Incorrect value, must be array or dictionary</Sentence>
-			<Sentence ID="314">Error, attribute must be in header</Sentence>
-			<Sentence ID="315">Error, attributes must be in header</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Incorrect value</Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323"></Sentence>
-			<Sentence ID="324"></Sentence>
-			<Sentence ID="325"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">No</Sentence>
-			<Sentence ID="404">Yes</Sentence>
-			<Sentence ID="405">No</Sentence>
-			<Sentence ID="406">Yes</Sentence>
-			<Sentence ID="407">Single</Sentence>
-			<Sentence ID="408">Multi</Sentence>
-			<Sentence ID="409">No</Sentence>
-			<Sentence ID="411">Yes</Sentence>
-			<Sentence ID="412">User defined</Sentence>
-			<Sentence ID="413">Default</Sentence>
-			<Sentence ID="414">EOF</Sentence>
-			<Sentence ID="415">ProSuite</Sentence>
-			<Sentence ID="416"></Sentence>
-			<Sentence ID="417"></Sentence>
-			<Sentence ID="501">Hide the object</Sentence>
-			<Sentence ID="502">Show the object</Sentence>
-			<Sentence ID="503">Select all the rows</Sentence>
-			<Sentence ID="504">Deselect all the rows</Sentence>
-			<Sentence ID="505">Deselect all the rows</Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="511"></Sentence>
-			<Sentence ID="512"></Sentence>
-			<Sentence ID="513"></Sentence>
-			<Sentence ID="514"></Sentence>
-			<Sentence ID="515"></Sentence>
-			<Sentence ID="516"></Sentence>
-			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="601"></Sentence>
-			<Sentence ID="602"></Sentence>
-			<Sentence ID="603"></Sentence>
-			<Sentence ID="604"></Sentence>
-			<Sentence ID="605"></Sentence>
-			<Sentence ID="701">fade</Sentence>
-			<Sentence ID="702"></Sentence>
-			<Sentence ID="703"></Sentence>
-			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="901">cellData</Sentence>
-			<Sentence ID="902">cellData</Sentence>
-			<Sentence ID="903">cellData</Sentence>
-			<Sentence ID="904">cellData</Sentence>
-			<Sentence ID="905">cellData</Sentence>
-			<Sentence ID="906">cellData</Sentence>
-			<Sentence ID="907">cellData</Sentence>
-			<Sentence ID="908">cellData</Sentence>
-			<Sentence ID="909">cellData</Sentence>
-			<Sentence ID="911">cellData</Sentence>
-			<Sentence ID="912">cellData</Sentence>
-			<Sentence ID="913">cellData</Sentence>
-			<Sentence ID="914">cellData</Sentence>
-			<Sentence ID="915">cellData</Sentence>
-			<Sentence ID="916">cellData</Sentence>
-			<Sentence ID="917">cellData</Sentence>
-			<Sentence ID="918">cellData</Sentence>
-			<Sentence ID="919">cellData</Sentence>
-			<Sentence ID="921">cellData</Sentence>
-			<Sentence ID="922">cellData</Sentence>
-			<Sentence ID="923">cellData</Sentence>
-			<Sentence ID="924">cellData</Sentence>
-		</Language>
-		<Language Code="ru_RU">
-			<Sentence ID="001">Таблица данных v3</Sentence>
-			<Sentence ID="002">Представление данных в виде таблицы</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103">Отображение</Sentence>
-			<Sentence ID="104">Позиция</Sentence>
-			<Sentence ID="105">Сверху</Sentence>
-			<Sentence ID="106">Слева</Sentence>
-			<Sentence ID="107">Ширина</Sentence>
-			<Sentence ID="108">Высота</Sentence>
-			<Sentence ID="109">Заголовок</Sentence>
-			<Sentence ID="111">Заголовок</Sentence>
-			<Sentence ID="112">Отобразить заголовок</Sentence>
-			<Sentence ID="113">Данные</Sentence>
-			<Sentence ID="114">Ключ</Sentence>
-			<Sentence ID="115">Скрытые поля</Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117">Выбранные ряды</Sentence>
-			<Sentence ID="118">Режим выбора</Sentence>
-			<Sentence ID="119">Перемещение</Sentence>
-			<Sentence ID="121">Стиль</Sentence>
-			<Sentence ID="122">Оформление</Sentence>
-			<Sentence ID="123">Класс CSS</Sentence>
-			<Sentence ID="124"></Sentence>
-			<Sentence ID="125"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-			<Sentence ID="203">Режим отображения объекта</Sentence>
-			<Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="207">Ширина объекта в пикселях</Sentence>
-			<Sentence ID="208">Высота объекта в пикселях</Sentence>
-			<Sentence ID="209">Заголовок объекта</Sentence>
-			<Sentence ID="211">Заголовок таблицы, описанный в виде массива</Sentence>
-			<Sentence ID="212">Показывать заголовок или нет</Sentence>
-			<Sentence ID="213">Данные таблицы, описанные в виде словаря или массива</Sentence>
-			<Sentence ID="214">Ключевое поле, определяющее ввод данных</Sentence>
-			<Sentence ID="215">Поля, которые нужно скрыть</Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217">Строки, которые необходимо проверить</Sentence>
-			<Sentence ID="218">Режим выбора строк</Sentence>
-			<Sentence ID="219">Использовать перетаскивание или нет</Sentence>
-			<Sentence ID="221">Стиль CSS</Sentence>
-			<Sentence ID="222">Оформление объекта</Sentence>
-			<Sentence ID="223">Имена классов CSS</Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
-			<Sentence ID="303"></Sentence>
-			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311">Неправильное значение, должен быть массив</Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313">Неправильное значение, должен быть массив или словарь</Sentence>
-			<Sentence ID="314">Ошибка, данный атрибут должен быть в заголовке</Sentence>
-			<Sentence ID="315">Ошибка, данные атрибуты должны быть в заголовке</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Неправильное значение</Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323"></Sentence>
-			<Sentence ID="324"></Sentence>
-			<Sentence ID="325"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Нет</Sentence>
-			<Sentence ID="404">Да</Sentence>
-			<Sentence ID="405">Нет</Sentence>
-			<Sentence ID="406">Да</Sentence>
-			<Sentence ID="407">Одиночное</Sentence>
-			<Sentence ID="408">Множественное</Sentence>
-			<Sentence ID="409">Нет</Sentence>
-			<Sentence ID="411">Да</Sentence>
-			<Sentence ID="412">Определено пользователем</Sentence>
-			<Sentence ID="413">По умолчанию</Sentence>
-			<Sentence ID="414">EOF</Sentence>
-			<Sentence ID="415">ProSuite</Sentence>
-			<Sentence ID="416"></Sentence>
-			<Sentence ID="417"></Sentence>
-			<Sentence ID="501">Скрыть объект</Sentence>
-			<Sentence ID="502">Отобразить объект</Sentence>
-			<Sentence ID="503">Выделить все строки</Sentence>
-			<Sentence ID="504">Снять выделение всех строк</Sentence>
-			<Sentence ID="505">Снять выделение всех строк</Sentence>
-			<Sentence ID="506"></Sentence>
-			<Sentence ID="507"></Sentence>
-			<Sentence ID="508"></Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="511"></Sentence>
-			<Sentence ID="512"></Sentence>
-			<Sentence ID="513"></Sentence>
-			<Sentence ID="514"></Sentence>
-			<Sentence ID="515"></Sentence>
-			<Sentence ID="516"></Sentence>
-			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="601"></Sentence>
-			<Sentence ID="602"></Sentence>
-			<Sentence ID="603"></Sentence>
-			<Sentence ID="604"></Sentence>
-			<Sentence ID="605"></Sentence>
-			<Sentence ID="701">Исчезновение</Sentence>
-			<Sentence ID="702"></Sentence>
-			<Sentence ID="703"></Sentence>
-			<Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="901">cellData</Sentence>
-			<Sentence ID="902">cellData</Sentence>
-			<Sentence ID="903">cellData</Sentence>
-			<Sentence ID="904">cellData</Sentence>
-			<Sentence ID="905">cellData</Sentence>
-			<Sentence ID="906">cellData</Sentence>
-			<Sentence ID="907">cellData</Sentence>
-			<Sentence ID="908">cellData</Sentence>
-			<Sentence ID="909">cellData</Sentence>
-			<Sentence ID="911">cellData</Sentence>
-			<Sentence ID="912">cellData</Sentence>
-			<Sentence ID="913">cellData</Sentence>
-			<Sentence ID="914">cellData</Sentence>
-			<Sentence ID="915">cellData</Sentence>
-			<Sentence ID="916">cellData</Sentence>
-			<Sentence ID="917">cellData</Sentence>
-			<Sentence ID="918">cellData</Sentence>
-			<Sentence ID="919">cellData</Sentence>
-			<Sentence ID="921">cellData</Sentence>
-			<Sentence ID="922">cellData</Sentence>
-			<Sentence ID="923">cellData</Sentence>
-			<Sentence ID="924">cellData</Sentence>
-		</Language>
-	</Languages>
-	<Resources>
-		<Resource ID="0d869c7d-68a9-382b-a622-089cbf6cde2b" Type="jpg" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+  <Information>
+    <Name>datatable_v3</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_datatable_v3</ClassName>
+    <ID>a2240af9-66d1-8841-0c58-ff687f3d2b3c</ID>
+    <Icon>#Res(f7e008b4-3eef-3269-b004-089c613a538b)</Icon>
+    <EditorIcon>#Res(5a36a105-aea5-cf81-2586-089c91dadd01)</EditorIcon>
+    <StructureIcon>#Res(0d869c7d-68a9-382b-a622-089cbf6cde2b)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Table</Category>
+    <Dynamic>1</Dynamic>
+    <Version>3.157.8389</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
+    <Handlers>on_update, on_compile</Handlers>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>cssclass</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue>static</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|absolute)|(#Lang(406)|fixed)|(#Lang(407)|relative)|(#Lang(408)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}(px|em|rem|vh|vw|%)?|auto</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}(px|em|rem|vh|vw|%)?|auto</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}(px|em|rem|vh|vw|%)?|auto</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}(px|em|rem|vh|vw|%)?|auto</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(409)|block)|(#Lang(411)|inline)|(#Lang(412)|flex)|(#Lang(413)|inline-block)|(#Lang(414)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>title</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue>table</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>header</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>showheader</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>data</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>key</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hiddenfields</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>rowactive</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectedrows</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>selectionmode</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>draggable</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(224)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue>4</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(225)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1)|(#Lang(424)|2)|(#Lang(425)|3)|(#Lang(426)|4))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(126)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(226)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>nocellclick</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>tristate</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(427)|1)|(#Lang(428)|0))</CodeInterface>
+      <Colorgroup>3</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(130)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(330)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(230)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(331)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(231)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(132)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(332)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(232)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue>100</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(333)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(233)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Datatable v3</Sentence>
+      <Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The 'Header' attribute defines the names of columns to display, the data are set as an array or dictionary in the 'Data' attribute. This type supports single- and multi-selection of table lines.</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Visibility</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="105">CSS Class</Sentence>
+      <Sentence ID="106">Position</Sentence>
+      <Sentence ID="107">Top</Sentence>
+      <Sentence ID="108">Left</Sentence>
+      <Sentence ID="109">Width</Sentence>
+      <Sentence ID="111">Height</Sentence>
+      <Sentence ID="112">Display</Sentence>
+      <Sentence ID="113">Title</Sentence>
+      <Sentence ID="114">Header</Sentence>
+      <Sentence ID="115">Show header</Sentence>
+      <Sentence ID="116">Data</Sentence>
+      <Sentence ID="117">Key</Sentence>
+      <Sentence ID="118">Hidden fields</Sentence>
+      <Sentence ID="119">Active row</Sentence>
+      <Sentence ID="121">Selected rows</Sentence>
+      <Sentence ID="122">Selection mode</Sentence>
+      <Sentence ID="123">Drag-and-drop</Sentence>
+      <Sentence ID="124">Style</Sentence>
+      <Sentence ID="125">Skin</Sentence>
+      <Sentence ID="126">Margins</Sentence>
+      <Sentence ID="127">Paddings</Sentence>
+      <Sentence ID="128">No cellClick</Sentence>
+      <Sentence ID="129">Tri state</Sentence>
+      <Sentence ID="130">IDE_top</Sentence>
+      <Sentence ID="131">IDE_left</Sentence>
+      <Sentence ID="132">IDE_width</Sentence>
+      <Sentence ID="133">IDE_height</Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">Order of rendering the object on the page</Sentence>
+      <Sentence ID="203">Visibility of the object</Sentence>
+      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="205">Names of CSS classes</Sentence>
+      <Sentence ID="206">newAttribute23</Sentence>
+      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="209">Width of the object in pixels</Sentence>
+      <Sentence ID="211">Height of the object in pixels</Sentence>
+      <Sentence ID="212">newAttribute24</Sentence>
+      <Sentence ID="213">Title of the object to display</Sentence>
+      <Sentence ID="214">Header of the table, described in the array</Sentence>
+      <Sentence ID="215">Define if the header is shown or not</Sentence>
+      <Sentence ID="216">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="217">Key field which identifies the entry</Sentence>
+      <Sentence ID="218">Fields which should be hidden</Sentence>
+      <Sentence ID="219">Row with class 'active'</Sentence>
+      <Sentence ID="221">Rows which should be checked</Sentence>
+      <Sentence ID="222">Mode of row selecting</Sentence>
+      <Sentence ID="223">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="224">CSS style of the object</Sentence>
+      <Sentence ID="225">Skin of the object</Sentence>
+      <Sentence ID="226">newAttribute25</Sentence>
+      <Sentence ID="227">newAttribute26</Sentence>
+      <Sentence ID="228">List (comma separated) of columns, which haven't cellclick.</Sentence>
+      <Sentence ID="229">Use 3 states for checkboxes in multiselect mode</Sentence>
+      <Sentence ID="230">newAttribute27</Sentence>
+      <Sentence ID="231">newAttribute28</Sentence>
+      <Sentence ID="232">newAttribute29</Sentence>
+      <Sentence ID="233">newAttribute30</Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306">newAttribute23</Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Incorrect value, must be array</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="317">Error, attribute must be in header</Sentence>
+      <Sentence ID="318">Error, attributes must be in header</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327">newAttribute26</Sentence>
+      <Sentence ID="328">Incorrect value</Sentence>
+      <Sentence ID="329">Incorrect value</Sentence>
+      <Sentence ID="330">newAttribute27</Sentence>
+      <Sentence ID="331">newAttribute28</Sentence>
+      <Sentence ID="332">newAttribute29</Sentence>
+      <Sentence ID="333">newAttribute30</Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="405">Absolute</Sentence>
+      <Sentence ID="406">Fixed</Sentence>
+      <Sentence ID="407">Relative</Sentence>
+      <Sentence ID="408">Static</Sentence>
+      <Sentence ID="409">Block</Sentence>
+      <Sentence ID="411">Inline</Sentence>
+      <Sentence ID="412">Flex</Sentence>
+      <Sentence ID="413">Inline-block</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">No</Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417">Single</Sentence>
+      <Sentence ID="418">Multi</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">User defined</Sentence>
+      <Sentence ID="423">Default</Sentence>
+      <Sentence ID="424">EOF</Sentence>
+      <Sentence ID="425">ProSuite</Sentence>
+      <Sentence ID="426">Empty</Sentence>
+      <Sentence ID="427">Yes</Sentence>
+      <Sentence ID="428">No</Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="503">Select all the rows</Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Deselect all the rows</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="901">cellData</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">cellData</Sentence>
+      <Sentence ID="904">cellData</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">cellData</Sentence>
+      <Sentence ID="907">cellData</Sentence>
+      <Sentence ID="908">cellData</Sentence>
+      <Sentence ID="909">cellData</Sentence>
+      <Sentence ID="911">cellData</Sentence>
+      <Sentence ID="912">cellData</Sentence>
+      <Sentence ID="913">cellData</Sentence>
+      <Sentence ID="914">cellData</Sentence>
+      <Sentence ID="915">cellData</Sentence>
+      <Sentence ID="916">cellData</Sentence>
+      <Sentence ID="917">cellData</Sentence>
+      <Sentence ID="918">cellData</Sentence>
+      <Sentence ID="919">cellData</Sentence>
+      <Sentence ID="921">cellData</Sentence>
+      <Sentence ID="922">cellData</Sentence>
+      <Sentence ID="923">cellData</Sentence>
+      <Sentence ID="924">cellData</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Datatable v3</Sentence>
+      <Sentence ID="002">Represents the data in the datasheet view</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Visibility</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="105">CSS Class</Sentence>
+      <Sentence ID="106"></Sentence>
+      <Sentence ID="107">Top</Sentence>
+      <Sentence ID="108">Left</Sentence>
+      <Sentence ID="109">Width</Sentence>
+      <Sentence ID="111">Height</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Title</Sentence>
+      <Sentence ID="114">Header</Sentence>
+      <Sentence ID="115">Show header</Sentence>
+      <Sentence ID="116">Data</Sentence>
+      <Sentence ID="117">Key</Sentence>
+      <Sentence ID="118">Hidden fields</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121">Selected rows</Sentence>
+      <Sentence ID="122">Selection mode</Sentence>
+      <Sentence ID="123">Drag-and-drop</Sentence>
+      <Sentence ID="124">Style</Sentence>
+      <Sentence ID="125">Skin</Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="130"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">Order of rendering the object on the page</Sentence>
+      <Sentence ID="203">Visibility of the object</Sentence>
+      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="205">Names of CSS classes</Sentence>
+      <Sentence ID="206"></Sentence>
+      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="209">Width of the object in pixels</Sentence>
+      <Sentence ID="211">Height of the object in pixels</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Title of the object to display</Sentence>
+      <Sentence ID="214">Header of the table, described in the array</Sentence>
+      <Sentence ID="215">Define if the header is shown or not</Sentence>
+      <Sentence ID="216">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="217">Key field which identifies the entry</Sentence>
+      <Sentence ID="218">Fields which should be hidden</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221">Rows which should be checked</Sentence>
+      <Sentence ID="222">Mode of row selecting</Sentence>
+      <Sentence ID="223">Define is drag-and-drop is used or not</Sentence>
+      <Sentence ID="224">CSS style of the object</Sentence>
+      <Sentence ID="225">Skin of the object</Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="230"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Incorrect value, must be array</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="317">Error, attribute must be in header</Sentence>
+      <Sentence ID="318">Error, attributes must be in header</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Incorrect value</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="330"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">No</Sentence>
+      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">No</Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417">Single</Sentence>
+      <Sentence ID="418">Multi</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422">User defined</Sentence>
+      <Sentence ID="423">Default</Sentence>
+      <Sentence ID="424">EOF</Sentence>
+      <Sentence ID="425">ProSuite</Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
+      <Sentence ID="502">Show the object</Sentence>
+      <Sentence ID="503">Select all the rows</Sentence>
+      <Sentence ID="504">Deselect all the rows</Sentence>
+      <Sentence ID="505">Deselect all the rows</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="701">fade</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="901">cellData</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">cellData</Sentence>
+      <Sentence ID="904">cellData</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">cellData</Sentence>
+      <Sentence ID="907">cellData</Sentence>
+      <Sentence ID="908">cellData</Sentence>
+      <Sentence ID="909">cellData</Sentence>
+      <Sentence ID="911">cellData</Sentence>
+      <Sentence ID="912">cellData</Sentence>
+      <Sentence ID="913">cellData</Sentence>
+      <Sentence ID="914">cellData</Sentence>
+      <Sentence ID="915">cellData</Sentence>
+      <Sentence ID="916">cellData</Sentence>
+      <Sentence ID="917">cellData</Sentence>
+      <Sentence ID="918">cellData</Sentence>
+      <Sentence ID="919">cellData</Sentence>
+      <Sentence ID="921">cellData</Sentence>
+      <Sentence ID="922">cellData</Sentence>
+      <Sentence ID="923">cellData</Sentence>
+      <Sentence ID="924">cellData</Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Таблица данных v3</Sentence>
+      <Sentence ID="002">Представление данных в виде таблицы</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Иерархия</Sentence>
+      <Sentence ID="103">Отображение</Sentence>
+      <Sentence ID="104">Позиция</Sentence>
+      <Sentence ID="105">Класс CSS</Sentence>
+      <Sentence ID="106"></Sentence>
+      <Sentence ID="107">Сверху</Sentence>
+      <Sentence ID="108">Слева</Sentence>
+      <Sentence ID="109">Ширина</Sentence>
+      <Sentence ID="111">Высота</Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113">Заголовок</Sentence>
+      <Sentence ID="114">Заголовок</Sentence>
+      <Sentence ID="115">Отобразить заголовок</Sentence>
+      <Sentence ID="116">Данные</Sentence>
+      <Sentence ID="117">Ключ</Sentence>
+      <Sentence ID="118">Скрытые поля</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121">Выбранные ряды</Sentence>
+      <Sentence ID="122">Режим выбора</Sentence>
+      <Sentence ID="123">Перемещение</Sentence>
+      <Sentence ID="124">Стиль</Sentence>
+      <Sentence ID="125">Оформление</Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="130"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="203">Режим отображения объекта</Sentence>
+      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="205">Имена классов CSS</Sentence>
+      <Sentence ID="206"></Sentence>
+      <Sentence ID="207">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="208">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="209">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="211">Высота объекта в пикселях</Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213">Заголовок объекта</Sentence>
+      <Sentence ID="214">Заголовок таблицы, описанный в виде массива</Sentence>
+      <Sentence ID="215">Показывать заголовок или нет</Sentence>
+      <Sentence ID="216">Данные таблицы, описанные в виде словаря или массива</Sentence>
+      <Sentence ID="217">Ключевое поле, определяющее ввод данных</Sentence>
+      <Sentence ID="218">Поля, которые нужно скрыть</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221">Строки, которые необходимо проверить</Sentence>
+      <Sentence ID="222">Режим выбора строк</Sentence>
+      <Sentence ID="223">Использовать перетаскивание или нет</Sentence>
+      <Sentence ID="224">Стиль CSS</Sentence>
+      <Sentence ID="225">Оформление объекта</Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="230"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305"></Sentence>
+      <Sentence ID="306"></Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314">Неправильное значение, должен быть массив</Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Неправильное значение, должен быть массив или словарь</Sentence>
+      <Sentence ID="317">Ошибка, данный атрибут должен быть в заголовке</Sentence>
+      <Sentence ID="318">Ошибка, данные атрибуты должны быть в заголовке</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321">Неправильное значение</Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="330"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">Нет</Sentence>
+      <Sentence ID="404">Да</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Нет</Sentence>
+      <Sentence ID="416">Да</Sentence>
+      <Sentence ID="417">Одиночное</Sentence>
+      <Sentence ID="418">Множественное</Sentence>
+      <Sentence ID="419">Нет</Sentence>
+      <Sentence ID="421">Да</Sentence>
+      <Sentence ID="422">Определено пользователем</Sentence>
+      <Sentence ID="423">По умолчанию</Sentence>
+      <Sentence ID="424">EOF</Sentence>
+      <Sentence ID="425">ProSuite</Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
+      <Sentence ID="502">Отобразить объект</Sentence>
+      <Sentence ID="503">Выделить все строки</Sentence>
+      <Sentence ID="504">Снять выделение всех строк</Sentence>
+      <Sentence ID="505">Снять выделение всех строк</Sentence>
+      <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603"></Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="701">Исчезновение</Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="901">cellData</Sentence>
+      <Sentence ID="902">cellData</Sentence>
+      <Sentence ID="903">cellData</Sentence>
+      <Sentence ID="904">cellData</Sentence>
+      <Sentence ID="905">cellData</Sentence>
+      <Sentence ID="906">cellData</Sentence>
+      <Sentence ID="907">cellData</Sentence>
+      <Sentence ID="908">cellData</Sentence>
+      <Sentence ID="909">cellData</Sentence>
+      <Sentence ID="911">cellData</Sentence>
+      <Sentence ID="912">cellData</Sentence>
+      <Sentence ID="913">cellData</Sentence>
+      <Sentence ID="914">cellData</Sentence>
+      <Sentence ID="915">cellData</Sentence>
+      <Sentence ID="916">cellData</Sentence>
+      <Sentence ID="917">cellData</Sentence>
+      <Sentence ID="918">cellData</Sentence>
+      <Sentence ID="919">cellData</Sentence>
+      <Sentence ID="921">cellData</Sentence>
+      <Sentence ID="922">cellData</Sentence>
+      <Sentence ID="923">cellData</Sentence>
+      <Sentence ID="924">cellData</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="0d869c7d-68a9-382b-a622-089cbf6cde2b" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -749,15 +949,11 @@
 			E5PZtaiIbcrso5DuYLyP49Agx7PqHixMvQuNxEzPZ9+cxK3SJ5NdMxJ+xEB0wIRvqdNMRBJ0bXo0
 			mLvumLawNVFoZd0uqjOq7WE0gxR+bu4yxrr2YRquSMYStJfuLx7D/h1ryPfVcXDgV9fKirLmt/0B
 			S3OUMiv43hzCjeLbnuwK95bP4WaxEg4RGUrEwyRtlRmL/X0qu0Rbfjxx+j41tAxFUrvDaM/+F2AA
-			3tc//lMhXzcAAAAASUVORK5CYII=
-		</Resource>
-		<Resource ID="168eab1b-d9e1-9d79-01ce-0211fc938fbf" Type="png" Name="picture">
-			iVBORw0KGgoAAAANSUhEUgAAAAcAAAAbCAIAAAA/JAJkAAAAXklEQVR42o3KtxHAIADAQHv/Uck5
-			gwewClT+6T3nPL9e1r33ta61QOecoGOMa+29g7bWQGutoKUU0JwzaEoJNMYIGkIA9d6DOudArbWg
-			xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==
-		</Resource>
-		<Resource ID="5a36a105-aea5-cf81-2586-089c91dadd01" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+			3tc//lMhXzcAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="168eab1b-d9e1-9d79-01ce-0211fc938fbf" Name="picture" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAAcAAAAbCAIAAAA/JAJkAAAAXklEQVR42o3KtxHAIADAQHv/Uck5
+      gwewClT+6T3nPL9e1r33ta61QOecoGOMa+29g7bWQGutoKUU0JwzaEoJNMYIGkIA9d6DOudArbWg
+      xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="5a36a105-aea5-cf81-2586-089c91dadd01" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 			jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
 			ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
 			IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
@@ -800,10 +996,8 @@
 			M5kRxGMOyyqCRCqKZCqBdCaBlpYsqylEa3szmppTdDuNbC6JXDbD/DQhw1sqHrORSseRTMd4PoZE
 			IoJYPIIo1x3qNiUhqUQbkvFWxDmS8TakUq1IJdv4TyOOMm+0WCSHFNfjIhft4LwdmTgvmcBi+Uq9
 			L0cqJjpa9DNNPRmueQyT4fs+wydMuBTd+qUtIbBsB9euXmYsN8IlO5pCI1qsfjEVSgUsLsyjs7Nb
-			N5b8IZB7XAeSsrbj4F/Ogv5DfozoYQAAAABJRU5ErkJggg==
-		</Resource>
-		<Resource ID="f7e008b4-3eef-3269-b004-089c613a538b" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			N5b8IZB7XAeSsrbj4F/Ogv5DfozoYQAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="f7e008b4-3eef-3269-b004-089c613a538b" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -902,26 +1096,40 @@
 			JVJDV+VsMW0g3nqoVh5J/azL9aNjZwSobxq07kwNTNgD5JNvKEjiY/Fx2OhLAQGeliSAKylQwc4C
 			k5S8fQfg5MhpPSsvqoHtdrTvnUDZhvWbCEDHeHKyYxlm37jwFun+zQvLnrVDjMlWb2de+mYtrNYT
 			kUOE7326Z19JAoGDwXkAnqvEpNOpv2OLtIjF+Q2IoLlS0hyK6WcdB9QT3udhq3TjiZm+hiDHRa0V
-			bPf9uKqeNn/On5xWnfDIN8K//xNgALXUswPk8JjmAAAAAElFTkSuQmCC
-		</Resource>
-	</Resources>
-	<SourceCode>
-<![CDATA[import json
-
+			bPf9uKqeNn/On5xWnfDIN8K//xNgALXUswPk8JjmAAAAAElFTkSuQmCC]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[import json
 
 class VDOM_datatable_v3(VDOM_object):
+	
+	def check_unit(self, value):
+		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
 
 		idn = (self.id).replace('-', '_')
 		id = u'o_' + idn
+		zindex = u"z-index: %s;" % self.zindex if int(self.zindex) != 0 else u""
+		display = u"none" if self.visible == "0" else self.displaying
+		position = u"{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+		
+		styles = {
+			"z-index": zindex,
+			"display": display,
+			"position": position,
+			"width": self.check_unit(self.width),
+			"height": self.check_unit(self.height),
+			"margin": self.margins,
+			"padding": self.paddings,
+			"top": self.check_unit(self.top),
+			"left": self.check_unit(self.left)
+		}
+		if self.positioning == "static":
+			styles["top"] = styles["left"] = ""
+		
+		styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-		display = u" display:none; " if self.visible == "0" else u""
-
-		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
-			.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
-
-		cssclass = u'class="datatablev3 {usercss} {multiselect} {tristate}"'.format(
+		cssclass = u'class="vdom_datatablev3 {usercss} {multiselect} {tristate}"'.format(
 				usercss     = (self.cssclass).replace('"', '') if self.cssclass else "",
 				multiselect = u"multiselect" if self.selectionmode == "1" else "",
 				tristate    = u"tristate" if self.tristate == "1" else "" )
@@ -1321,7 +1529,7 @@ $j('#%(id)s tr').draggable({
 				"js_headerselect": js_headerselect,
 				"id":              id,
 				"idn":             idn,
-				"style":           style,
+				"style":           styles_str,
 				"selfstyle":       self.style % {"id": id},
 				"cssclass":        cssclass,
 				"title":           self.title,
@@ -1329,10 +1537,13 @@ $j('#%(id)s tr').draggable({
 				"tdata":           tdata }
 
 		return VDOM_object.render(self, contents=result)
-
-
+	
 	def wysiwyg(self, contents=""):
 		from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+		self.width, self.height, self.top, self.left = [
+    		int(self.ide_width), int(self.ide_height), 
+    		int(self.ide_top), int(self.ide_left)
+    	]
 
 		# parse data
 		try:
@@ -1423,7 +1634,36 @@ $j('#%(id)s tr').draggable({
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
+	
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "width", "height", "top"]:
+		if attr in attributes:
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+	attributes.update(modifications)
 
+	empty = ""
+    
+	users = """\
+#%(id)s {
+
+}
+"""
+	
 	eof_style = """
 #%(id)s caption
 {
@@ -1601,20 +1841,34 @@ def on_update(object, attributes):
 	# 		o.set_attributes({"style": pro_suite})
 	# if "style" in param and param["style"]["value"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:
 	# 	o.set_attributes({"skin": 0})
+	skin_mapping = {
+		"0": users,
+		"1": css,
+		"2": eof_style,
+		"3": pro_suite,
+		"4": empty
+	}
 	if "skin" in attributes:
-		if attributes["skin"] == "1":
-			attributes.update(skin=css)
-		elif attributes["skin"] == "2":
-			attributes.update(skin=eof_style)
-		elif attributes["skin"] == "3":
-			attributes.update(skin=pro_suite)
-	if "style" in attributes and attributes["style"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+			
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
 		attributes.update(skin="0")
 
-	return ""]]>
-	</SourceCode>
-	<Libraries>
-		<Library Target="html"><![CDATA[<script type='text/javascript'>
+	return ""
+	
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
+  <Libraries>
+    <Library Target="html"><![CDATA[<script type='text/javascript'>
 
 function vdom_dtv3_triBoxClick(t) {
 	$(t).siblings('em').hide(0);
@@ -1636,146 +1890,107 @@ $(function(){
 </script>
 
 <style type="text/css">
+    .vdom_datatablev3 {
 
-.datatablev3.multiselect.tristate div.tri {
-	position: relative;
-	height: 20px;
-}
-
-.datatablev3.multiselect.tristate div.tri input {
-	z-index: 10;  
-	display: block;
-	position: absolute;
-	top: 0;
-	left: 0;
-	background: transparent;
-	opacity: 0.7;
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
-	-moz-opacity: 0.7;
-	-khtml-opacity: 0.7;
-}
-
-.datatablev3.multiselect.tristate div.tri em {
-	z-index: 1;
-	background: #6c6;
-	width: 7px;
-	height: 8px;
-	display: block;
-	position: absolute;
-	top: 5px;
-	left: 7px;
-	overflow: hidden;
-	padding: 0;
-	margin: 0;
-}
-
-.lt-ie9 .datatablev3.multiselect.tristate div.tri em {
-	left: 6px;
-}
-
-.lt-ie8 .datatablev3.multiselect.tristate div.tri em {
-	left: 7px;
-	top: 7px;
-}
+    }
+    .vdom_datatablev3.multiselect.tristate div.tri {
+	
+    }
 
 </style>]]></Library>
-	</Libraries>
-	<E2VDOM>
-		<Events>
-			<UserInterfaceEvents>
-				<Event Name="rowsselected" Description="#Lang(506)">
-					<Parameters>
-						<Parameter Name="keyList" Description="#Lang(901)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="load" Description="#Lang(507)">
-					<Parameters>
-						<Parameter Name="width" Description="#Lang(902)" Order="0"/>
-						<Parameter Name="height" Description="#Lang(903)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="cellclick" Description="#Lang(508)">
-					<Parameters>
-						<Parameter Name="keyField" Description="#Lang(904)" Order="0"/>
-						<Parameter Name="cellData" Description="#Lang(905)" Order="0"/>
-						<Parameter Name="headerData" Description="#Lang(906)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseout" Description="#Lang(509)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(907)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(908)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseup" Description="#Lang(511)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(909)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(911)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="mousemove" Description="#Lang(512)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(912)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(913)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="headerselected" Description="#Lang(513)">
-					<Parameters>
-						<Parameter Name="headername" Description="#Lang(914)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="mousedown" Description="#Lang(514)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(915)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(916)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="dragstart" Description="#Lang(515)">
-					<Parameters>
-						<Parameter Name="params" Description="#Lang(917)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="mouseover" Description="#Lang(516)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(918)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(919)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="custom" Description="#Lang(517)">
-					<Parameters>
-						<Parameter Name="params" Description="#Lang(921)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="celldblclick" Description="#Lang(518)">
-					<Parameters>
-						<Parameter Name="keyField" Description="#Lang(922)" Order="0"/>
-						<Parameter Name="cellData" Description="#Lang(923)" Order="0"/>
-						<Parameter Name="headerData" Description="#Lang(924)" Order="0"/>
-					</Parameters>
-				</Event>
-			</UserInterfaceEvents>
-		</Events>
-		<Actions>
-			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-				<Action Name="hide" DisplayName="#Lang(601)" Description="#Lang(501)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation="^\d+$" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="show" DisplayName="#Lang(602)" Description="#Lang(502)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation="^\d+$" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_show(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="selectAll" DisplayName="#Lang(603)" Description="#Lang(503)">
-					<SourceCode>
-<![CDATA[var id = this.domCont.id;
+  </Libraries>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="rowsselected" Help="#Lang(506)">
+          <Parameters>
+            <Parameter Name="keyList" Order="0" VbType="" Help="#Lang(901)"/>
+          </Parameters>
+        </Event>
+        <Event Name="load" Help="#Lang(507)">
+          <Parameters>
+            <Parameter Name="width" Order="0" VbType="" Help="#Lang(902)"/>
+            <Parameter Name="height" Order="0" VbType="" Help="#Lang(903)"/>
+          </Parameters>
+        </Event>
+        <Event Name="cellclick" Help="#Lang(508)">
+          <Parameters>
+            <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseout" Help="#Lang(509)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseup" Help="#Lang(511)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousemove" Help="#Lang(512)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
+          </Parameters>
+        </Event>
+        <Event Name="headerselected" Help="#Lang(513)">
+          <Parameters>
+            <Parameter Name="headername" Order="0" VbType="" Help="#Lang(914)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mousedown" Help="#Lang(514)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
+          </Parameters>
+        </Event>
+        <Event Name="dragstart" Help="#Lang(515)">
+          <Parameters>
+            <Parameter Name="params" Order="0" VbType="" Help="#Lang(917)"/>
+          </Parameters>
+        </Event>
+        <Event Name="mouseover" Help="#Lang(516)">
+          <Parameters>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(918)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(919)"/>
+          </Parameters>
+        </Event>
+        <Event Name="custom" Help="#Lang(517)">
+          <Parameters>
+            <Parameter Name="params" Order="0" VbType="" Help="#Lang(921)"/>
+          </Parameters>
+        </Event>
+        <Event Name="celldblclick" Help="#Lang(518)">
+          <Parameters>
+            <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(922)"/>
+            <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(923)"/>
+            <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(924)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^\d+$"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectAll">
+          <Parameters/>
+          <SourceCode><![CDATA[var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
 eval('var tristate = window.tristate_'+id+';');
 if (selectionmode == 'multi') {
@@ -1794,20 +2009,17 @@ if (selectionmode == 'multi') {
 	} else {
 		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
 	}
-}]]>
-					</SourceCode>
-				</Action>
-				<Action Name="selectItems" DisplayName="#Lang(604)" Description="#Lang(504)">
-					<Parameters>
-						<Parameter Name="idlist" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="[]" RegularExpressionValidation="^.*$" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[/* todo */]]>
-					</SourceCode>
-				</Action>
-				<Action Name="selectNone" DisplayName="#Lang(605)" Description="#Lang(505)">
-					<SourceCode>
-<![CDATA[var id = this.domCont.id;
+}]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="selectItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(703)" ScriptName="idlist" Help="#Lang(803)" RegularExpressionValidation="^.*$"/>
+          </Parameters>
+          <SourceCode><![CDATA[/* todo */]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectNone">
+          <Parameters/>
+          <SourceCode><![CDATA[var id = this.domCont.id;
 eval('var selectionmode = window.selectionmode_'+id+';');
 eval('var tristate = window.tristate_'+id+';');
 if (selectionmode == 'multi') {
@@ -1820,10 +2032,9 @@ if (selectionmode == 'multi') {
 	} else {
 		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
 	}
-}]]>
-					</SourceCode>
-				</Action>
-			</Container>
-		</Actions>
-	</E2VDOM>
+}]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
 </Type>
