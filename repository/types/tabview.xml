@@ -14,12 +14,12 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.391.6720</Version>
+    <Version>1.408.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_create, on_update, on_insert, on_compile</Handlers>
+    <Handlers>on_update, on_insert, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -233,7 +233,7 @@
       <Name>ide_top</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -245,7 +245,7 @@
       <Name>ide_left</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -257,7 +257,7 @@
       <Name>ide_height</Name>
       <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -269,7 +269,7 @@
       <Name>ide_width</Name>
       <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -864,7 +864,7 @@ class VDOM_tabview(VDOM_object):
 
 	def render(self, contents=""):
 		from collections import OrderedDict
-		display = u"display: none; " if self.visible == "0" else self.displaying
+		display = u"display: none; " if self.visible == "0" else u"display: {};".format(self.displaying) if self.displaying else u""
 		zindex = u"z-index: %s; " if self.zindex != "0" else u""
 
 		e2vdom.process(self)
@@ -977,7 +977,13 @@ var tabview_children_%(id)s = %(arr)s;
 
 	def wysiwyg(self, contents=""):
 
-		width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
+		top, left = [int(self.ide_top), int(self.ide_left)]
+		object_width = 200
+		object_height = 200
+		if self.ide_width and self.ide_width > 0:
+			object_width = int(self.ide_width)
+		if self.ide_height and self.ide_height > 0:
+			object_height = int(self.ide_height)
 
 		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
 		result = \
@@ -995,11 +1001,11 @@ var tabview_children_%(id)s = %(arr)s;
 			""".format(
 					id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
 					hierarchy = self.hierarchy, top = top, left = left,
-					width = width + 2,
-					height = height + 2, 
-					panel_width = width - 140,
-					container_height = height - 20,
-					container_width = width, 
+					width = object_width + 2,
+					height = object_height + 2, 
+					panel_width = object_width - 140,
+					container_height = object_height - 20,
+					container_width = object_width, 
 					img_id = image_id,
 					contents = contents)
 
@@ -1023,6 +1029,26 @@ def on_update(object, attributes):
 	# 	if obj.attributes.height != height:
 	# 		obj.set_attribute_ex("height", height)
 	o = object
+	modifications = {}
+	
+	for attr in ["left", "width", "height", "top"]:
+		if attr in attributes:
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_" + attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_" + attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+			
+	attributes.update(modifications)
 
 	width = attributes.get("ide_width")
 	if width is not None:
@@ -1066,9 +1092,9 @@ def on_update(object, attributes):
 		# 		height = 200			
 		# 	child.set_attribute_ex("height", height)
 		if width is not None:
-			child.attributes.update(width=width)
+			child.attributes.update(ide_width=width)
 		if height is not None:
-			child.attributes.update(height=height)
+			child.attributes.update(ide_height=height)
 
 	users = u"""\
 #%(id)s {
@@ -1093,26 +1119,6 @@ def on_update(object, attributes):
 	# 	attributes["skin"] = "0"
 
 	# return ""
-	modifications = {}
-	
-	for attr in ["left", "width", "height", "top"]:
-		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				modifications[attr] = attr_value + "px"
-				modifications["ide_" + attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				modifications[attr] = attr_value.rstrip("px") + "px"
-				modifications["ide_" + attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				modifications[attr] = attr_value if "px" in attr_value else obj_value
-				modifications["ide_" + attr] = attr_value.rstrip("px")
-			else:
-				modifications[attr] = attr_value
-			
-	attributes.update(modifications)
 	
 	skin_mapping = {
 		"0": users,
@@ -1139,10 +1145,11 @@ def on_insert(parent, object):
 	# width_container = int(object.parent.attributes.width) - 2
 	# height_container = int(object.parent.attributes.height) - 20
 	width_container = int(parent.attributes["ide_width"]) - 2
-	height_container = int(parent.attributes["ide_height"]) - 22
+	height_container = int(parent.attributes["ide_height"]) - 20
+	#pdb.set_trace()
 
 	# object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})
-	object.attributes.update(width=width_container, height=height_container, lockposition="1")
+	object.attributes.update(ide_width=width_container, ide_height=height_container, top=20, left=1, lockposition="1")
 
 	# childs = object.parent.objects
 	container_hierarchy = []
@@ -1175,14 +1182,6 @@ def on_insert(parent, object):
 			object.attributes.update(zindex="0")
 
 	# return ""
-	
-def on_create(object):
-	for attr in ["left", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
 			
 def on_compile(object, attributes):
 	for attr in ["left", "width", "height", "top"]:
