@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.172.8393</Version>
+    <Version>3.174.8393</Version>
     <InterfaceType>4</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update, on_create, on_compile</Handlers>
+    <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -1327,7 +1327,7 @@ class VDOM_image(VDOM_object):
         else:
             link = ""
 
-        visible = u"display: none;" if self.visible == "0" else self.displaying
+        visible = u"none" if self.visible == "0" else self.displaying
         positioning_map = {
             "0": "",
             "1": "absolute",
@@ -1352,7 +1352,7 @@ class VDOM_image(VDOM_object):
             title = u"""title="{hint}" """.format(hint = self.hint)
 
         iw = self.width if self.width else "0px"
-        iw = self.height if self.height else "0px"
+        ih = self.height if self.height else "0px"
             
         style_properties = [
             ('height', self.height),
@@ -1364,6 +1364,7 @@ class VDOM_image(VDOM_object):
             ('bottom', self.bottom),
             ('background-position', self.backgroundposition),
             ('background-repeat', self.backgroundrepeat),
+            ('display', visible),
             ('position', position),
             ('float', self.float),
             ('clear', clear),
@@ -1384,11 +1385,10 @@ class VDOM_image(VDOM_object):
         result = ""
         if self.render_mode == "0":
             result = \
-				u"""<img id="{id}" objname={name} class="vdom_image image {classname}" src="{link}" tabindex="{tabindex}" style="{visible} {styles}" {title} />
+				u"""<img id="{id}" objname={name} class="vdom_image image {classname}" src="{link}" tabindex="{tabindex}" style="{styles}" {title} />
 				""".format(
 						id = id,
 						name= self.name,
-						visible = visible,
 						link = link,
 						tabindex = self.tabindex,
 						classname = self.classname, 
@@ -1402,11 +1402,10 @@ class VDOM_image(VDOM_object):
 				)
 				
             result = \
-				u"""<div objname={name} class="vdom_image background_image {classname}" {width} {height} id="{id}" style="{visible} {styles} {bgimage}"></div>
+				u"""<div objname={name} class="vdom_image background_image {classname}" {width} {height} id="{id}" style="{styles} {bgimage}"></div>
 				""".format(
 						id = id,
 						name= self.name,
-						visible = visible,
 						link = link,
 						width = self.get_css_style('width', iw),
 						height = self.get_css_style('height', ih),
@@ -1418,13 +1417,12 @@ class VDOM_image(VDOM_object):
 
         if self.render_mode == "2":
             result = \
-				u"""<div objname={name} class="vdom_image div_image {classname}" id="{id}" style="{visible} {styles}">
+				u"""<div objname={name} class="vdom_image div_image {classname}" id="{id}" style="{styles}">
 						<img src="{link}" tabindex="{tabindex}" {title} />
 					</div>
 				""".format(
 						id = id,
 						name= self.name,
-						visible = visible,
 						link = link,
 						tabindex = self.tabindex,
 						classname = self.classname, 
@@ -1599,14 +1597,6 @@ def on_update(object, attributes):
 #         if "height" in attributes and attributes["height"] != '' and int(attributes["height"]) > 2500:
 #             attributes["height"] = "2500"
     return ""
-    
-def on_create(object):
-	for attr in ["left", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
 			
 def on_compile(object, attributes):
 	for attr in ["left", "width", "height", "top"]:

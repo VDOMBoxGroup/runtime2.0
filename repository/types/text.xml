@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.189.6720</Version>
+    <Version>3.190.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_create, on_update, on_compile</Handlers>
+    <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -308,63 +308,63 @@
       <Visible>1</Visible>
       <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(432)|bold)|(#Lang(433)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(432)|)|(#Lang(433)|100)|(#Lang(434)|200)|(#Lang(435)|300)|(#Lang(436)|500)|(#Lang(437)|600)|(#Lang(438)|800)|(#Lang(439)|900)|(#Lang(441)|normal)|(#Lang(442)|bold)|(#Lang(443)|bolder)|(#Lang(444)|lighter))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^(bold|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>align</Name>
+      <Name>texttransform</Name>
       <DisplayName>#Lang(127)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(434)|left)|(#Lang(435)|center)|(#Lang(436)|right)|(#Lang(437)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(445)|)|(#Lang(446)|capitalize)|(#Lang(447)|uppercase)|(#Lang(448)|lowercase)|(#Lang(458)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>align</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(452)|left)|(#Lang(453)|center)|(#Lang(454)|right)|(#Lang(455)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>alpha</Name>
-      <DisplayName>#Lang(128)</DisplayName>
+      <DisplayName>#Lang(129)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(228)</Help>
+      <Help>#Lang(229)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>Number(0, 100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^(100|\d{1,2})$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>textdecoration</Name>
-      <DisplayName>#Lang(129)</DisplayName>
+      <DisplayName>#Lang(131)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(229)</Help>
+      <Help>#Lang(231)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(438)|underline)|(#Lang(439)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(456)|underline)|(#Lang(457)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|)</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>ide_top</Name>
-      <DisplayName>#Lang(131)</DisplayName>
-      <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(231)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_left</Name>
       <DisplayName>#Lang(132)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>50</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(232)</Help>
       <InterfaceType>0</InterfaceType>
@@ -374,15 +374,27 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>ide_width</Name>
+      <Name>ide_left</Name>
       <DisplayName>#Lang(133)</DisplayName>
-      <DefaultValue>400</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(233)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField()</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(234)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
@@ -416,12 +428,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="124">FontSize</Sentence>
       <Sentence ID="125">FontStyle</Sentence>
       <Sentence ID="126">FontWeight</Sentence>
-      <Sentence ID="127">Alignment</Sentence>
-      <Sentence ID="128">Alpha</Sentence>
-      <Sentence ID="129">Text-decoration</Sentence>
-      <Sentence ID="131">IDE_top</Sentence>
-      <Sentence ID="132">IDE_left</Sentence>
-      <Sentence ID="133">IDE_width</Sentence>
+      <Sentence ID="127">Text-transform</Sentence>
+      <Sentence ID="128">Alignment</Sentence>
+      <Sentence ID="129">Alpha</Sentence>
+      <Sentence ID="131">Text-decoration</Sentence>
+      <Sentence ID="132">IDE_top</Sentence>
+      <Sentence ID="133">IDE_left</Sentence>
+      <Sentence ID="134">IDE_width</Sentence>
       <Sentence ID="201">Names of CSS classes.</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
@@ -446,12 +459,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="224">Font size of the object in points.</Sentence>
       <Sentence ID="225">Font style.</Sentence>
       <Sentence ID="226">Font weight.</Sentence>
-      <Sentence ID="227">Text alignment.</Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229">Text decoration.</Sentence>
-      <Sentence ID="231">newAttribute27</Sentence>
-      <Sentence ID="232">newAttribute28</Sentence>
-      <Sentence ID="233">newAttribute29</Sentence>
+      <Sentence ID="227">newAttribute30</Sentence>
+      <Sentence ID="228">Text alignment.</Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231">Text decoration.</Sentence>
+      <Sentence ID="232">newAttribute27</Sentence>
+      <Sentence ID="233">newAttribute28</Sentence>
+      <Sentence ID="234">newAttribute29</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Incorrect value, must be even integer from 0 to 99.</Sentence>
@@ -476,12 +490,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="324">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="325">Incorrect value.</Sentence>
       <Sentence ID="326">Incorrect value.</Sentence>
-      <Sentence ID="327">Incorrect value.</Sentence>
+      <Sentence ID="327">newAttribute30</Sentence>
       <Sentence ID="328">Incorrect value.</Sentence>
       <Sentence ID="329">Incorrect value.</Sentence>
-      <Sentence ID="331">newAttribute27</Sentence>
-      <Sentence ID="332">newAttribute28</Sentence>
-      <Sentence ID="333">newAttribute29</Sentence>
+      <Sentence ID="331">Incorrect value.</Sentence>
+      <Sentence ID="332">newAttribute27</Sentence>
+      <Sentence ID="333">newAttribute28</Sentence>
+      <Sentence ID="334">newAttribute29</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -510,14 +525,29 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="428">Empty</Sentence>
       <Sentence ID="429">Italic</Sentence>
       <Sentence ID="431"></Sentence>
-      <Sentence ID="432">Bold</Sentence>
-      <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Left</Sentence>
-      <Sentence ID="435">Center</Sentence>
-      <Sentence ID="436">Right</Sentence>
-      <Sentence ID="437"></Sentence>
-      <Sentence ID="438">Underline</Sentence>
-      <Sentence ID="439"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433">100</Sentence>
+      <Sentence ID="434">200</Sentence>
+      <Sentence ID="435">300</Sentence>
+      <Sentence ID="436">500</Sentence>
+      <Sentence ID="437">600</Sentence>
+      <Sentence ID="438">800</Sentence>
+      <Sentence ID="439">900</Sentence>
+      <Sentence ID="441">Normal</Sentence>
+      <Sentence ID="442">Bold</Sentence>
+      <Sentence ID="443">Bolder</Sentence>
+      <Sentence ID="444">Lighter</Sentence>
+      <Sentence ID="445"></Sentence>
+      <Sentence ID="446">Capitalize</Sentence>
+      <Sentence ID="447">Uppercase</Sentence>
+      <Sentence ID="448">Lowercase</Sentence>
+      <Sentence ID="452">Left</Sentence>
+      <Sentence ID="453">Center</Sentence>
+      <Sentence ID="454">Right</Sentence>
+      <Sentence ID="455"></Sentence>
+      <Sentence ID="456">Underline</Sentence>
+      <Sentence ID="457"></Sentence>
+      <Sentence ID="458">None</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -645,12 +675,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="124">Taille</Sentence>
       <Sentence ID="125">Style</Sentence>
       <Sentence ID="126">Graisse</Sentence>
-      <Sentence ID="127">Alignement</Sentence>
-      <Sentence ID="128">Alpha</Sentence>
-      <Sentence ID="129">Text-decoration</Sentence>
-      <Sentence ID="131"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128">Alignement</Sentence>
+      <Sentence ID="129">Alpha</Sentence>
+      <Sentence ID="131">Text-decoration</Sentence>
       <Sentence ID="132"></Sentence>
       <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -675,12 +706,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="224">Taille de la police</Sentence>
       <Sentence ID="225">Style de la police</Sentence>
       <Sentence ID="226">Graisse de la police</Sentence>
-      <Sentence ID="227">Alignement du texte</Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229">Texte decoration</Sentence>
-      <Sentence ID="231"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228">Alignement du texte</Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231">Texte decoration</Sentence>
       <Sentence ID="232"></Sentence>
       <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -705,12 +737,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="324">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="325">Valeur Incorrecte</Sentence>
       <Sentence ID="326">Valeur Incorrecte</Sentence>
-      <Sentence ID="327">Valeur Incorrecte</Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="328">Valeur Incorrecte</Sentence>
       <Sentence ID="329">Valeur Incorrecte</Sentence>
-      <Sentence ID="331"></Sentence>
+      <Sentence ID="331">Valeur Incorrecte</Sentence>
       <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -739,14 +772,29 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="428"></Sentence>
       <Sentence ID="429">Italic</Sentence>
       <Sentence ID="431">Normal</Sentence>
-      <Sentence ID="432">Gras</Sentence>
-      <Sentence ID="433">Normal</Sentence>
-      <Sentence ID="434">Gauche</Sentence>
-      <Sentence ID="435">Centrer</Sentence>
-      <Sentence ID="436">Droite</Sentence>
+      <Sentence ID="432">Normal</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="437"></Sentence>
-      <Sentence ID="438">Souligné</Sentence>
-      <Sentence ID="439">Aucun</Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447"></Sentence>
+      <Sentence ID="448"></Sentence>
+      <Sentence ID="452">Gauche</Sentence>
+      <Sentence ID="453">Centrer</Sentence>
+      <Sentence ID="454">Droite</Sentence>
+      <Sentence ID="455"></Sentence>
+      <Sentence ID="456">Souligné</Sentence>
+      <Sentence ID="457">Aucun</Sentence>
+      <Sentence ID="458"></Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -874,12 +922,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="124">Размер шрифта</Sentence>
       <Sentence ID="125">Стиль шрифта</Sentence>
       <Sentence ID="126">Выделение</Sentence>
-      <Sentence ID="127">Выравнивание</Sentence>
-      <Sentence ID="128">Прозрачность</Sentence>
-      <Sentence ID="129">Оформление текста</Sentence>
-      <Sentence ID="131"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128">Выравнивание</Sentence>
+      <Sentence ID="129">Прозрачность</Sentence>
+      <Sentence ID="131">Оформление текста</Sentence>
       <Sentence ID="132"></Sentence>
       <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
       <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202"></Sentence>
       <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
@@ -904,12 +953,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="224">Размер шрифта</Sentence>
       <Sentence ID="225">Стиль шрифта</Sentence>
       <Sentence ID="226">Выделение шрифта</Sentence>
-      <Sentence ID="227">Выравнивание текста</Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229">Определяет, использовать подчеркивание или нет</Sentence>
-      <Sentence ID="231"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228">Выравнивание текста</Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231">Определяет, использовать подчеркивание или нет</Sentence>
       <Sentence ID="232"></Sentence>
       <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302"></Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -934,12 +984,13 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="324">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="325">Неправильное значение</Sentence>
       <Sentence ID="326">Неправильное значение</Sentence>
-      <Sentence ID="327">Неправильное значение</Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="328">Неправильное значение</Sentence>
       <Sentence ID="329">Неправильное значение</Sentence>
-      <Sentence ID="331"></Sentence>
+      <Sentence ID="331">Неправильное значение</Sentence>
       <Sentence ID="332"></Sentence>
       <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -968,14 +1019,29 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="428"></Sentence>
       <Sentence ID="429">Курсив</Sentence>
       <Sentence ID="431">Обычный</Sentence>
-      <Sentence ID="432">Полужирный</Sentence>
-      <Sentence ID="433">Обычный</Sentence>
-      <Sentence ID="434">По левому краю</Sentence>
-      <Sentence ID="435">По центру</Sentence>
-      <Sentence ID="436">По правому краю</Sentence>
+      <Sentence ID="432">Обычный</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="437"></Sentence>
-      <Sentence ID="438">Подчеркнутый</Sentence>
-      <Sentence ID="439">Обычный</Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447"></Sentence>
+      <Sentence ID="448"></Sentence>
+      <Sentence ID="452">По левому краю</Sentence>
+      <Sentence ID="453">По центру</Sentence>
+      <Sentence ID="454">По правому краю</Sentence>
+      <Sentence ID="455"></Sentence>
+      <Sentence ID="456">Подчеркнутый</Sentence>
+      <Sentence ID="457">Обычный</Sentence>
+      <Sentence ID="458"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать объект</Sentence>
       <Sentence ID="503">Скрыть объект</Sentence>
@@ -1263,6 +1329,7 @@ class VDOM_text(VDOM_object):
             "font-family": "%s" % self.fontfamily.replace('"', "'") or None,
             "font-style": "%s" % self.fontstyle or None,
             "font-weight": "%s" % self.fontweight or None,
+            "text-transform": "%s" % self.texttransform or None,
             "color": "#%s" % self.color if self.color else None,
             "text-decoration": "%s" % self.textdecoration or "",
             "margin": "%s" % self.margins if self.margins else None,
@@ -1396,14 +1463,6 @@ def on_update(object, attributes):
 	# 	o.attributes.update(skin=0)
 
 	return ""
-	
-def on_create(object):
-	for attr in ["left", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")
 			
 def on_compile(object, attributes):
 	for attr in ["left", "width", "top"]:
