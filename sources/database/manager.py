@@ -27,7 +27,16 @@ class VDOM_database_manager(object):
             remove_list = []
             is_dirty_index = False
             for id in self.__index:  # check for not existing or temporary resources
-                database = self.__index[id]
+                #Cheking if working with JSON file
+                if isinstance(self.__index[id], VDOM_database_object):
+                    database = self.__index[id]
+                else:
+                    database = VDOM_database_object(self.__index[id]["owner"], self.__index[id]["id"])
+                    database.name = self.__index[id]["name"]
+                    database.filename = self.__index[id]["filename"]
+                    database.data = self.__index[id]["data"]
+                    database.tables_index = self.__index[id]["tables_index"]
+                    database.is_ready = self.__index[id]["is_ready"]
                 try:
                     database.set_wal_mode()
                 except Exception:
@@ -42,7 +51,12 @@ class VDOM_database_manager(object):
                 is_dirty_index = True
 
             if is_dirty_index:
-                managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"], self.__index)
+                if isinstance(self.__index[id], VDOM_database_object):
+                    managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],
+                                                        self.__index)
+                else:
+                    managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"],
+                                                        self.__database_by_name)
         else:
             #self.remove_databases()
             pass
@@ -216,8 +230,12 @@ class VDOM_database_manager(object):
         """listing of all resources of application"""
         result = {}
         for key in self.__index:
-            if self.__index[key].owner_id == owner_id:
-                result[key] = self.__index[key].name
+            if (hasattr(self.__index[key], "owner_id") and self.__index[key].owner_id == owner_id) or \
+                    self.__index[key]['owner_id'] == owner_id:
+                if hasattr(self.__index[key], "name"):
+                    result[key] = self.__index[key].name
+                else:
+                    result[key] = self.__index[key]["name"]
         return result
 
     def list_names(self, owner_id):
@@ -236,8 +254,12 @@ class VDOM_database_manager(object):
         if self.__index:
             for key in self.__index:
                 database = self.__index[key]
-                if database.owner_id == owner_id and (db_id is None or db_id == database.id):
-                    self.__database_by_name.pop((database.owner_id, database.name), None)
+
+                db_owner_id = database.owner_id if hasattr(database, "owner_id") else database["owner_id"]
+                db_idd = database.filename if hasattr(database, "filename") else database["filename"]
+                db_name = database.name if hasattr(database, "name") else database["name"]
+                if db_owner_id == owner_id and (db_id is None or db_id == db_idd):
+                    self.__database_by_name.pop((db_owner_id, db_name), None)
                     remove_list.append(key)
 
             is_dirty_index = False

@@ -4,11 +4,12 @@ import sqlite3
 import cPickle
 import traceback
 
+import json
 from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 from utils.mutex import VDOM_named_mutex_auto
-import settings
 from daemon import VDOM_storage_writer
+import settings
 
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
 #__update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
@@ -266,7 +267,6 @@ class VDOM_storage(object):
         return ret
 
 ###### object interface ############################################################################
-
     def read_object(self, key):
         """read object from the storage"""
         data = self.read(key)
@@ -275,6 +275,14 @@ class VDOM_storage(object):
         try:
             data = cPickle.loads(str(data))
             return data
+        except cPickle.UnpicklingError:
+            try:
+                data = json.loads(data)
+                return data
+            except Exception, e:
+                debug("Error reading object '%s' from the storage" % str(key))
+                debug(str(e))
+                return None
         except Exception, e:
             debug("Error reading object '%s' from the storage" % str(key))
             debug(str(e))
@@ -284,7 +292,7 @@ class VDOM_storage(object):
         """save object to the storage"""
         data = None
         try:
-            data = cPickle.dumps(object)
+            data = json.dumps(object, default=vars)
         except Exception, e:
             debug("Error writing object '%s' to the storage" % str(key))
             debug(str(e))
@@ -295,7 +303,7 @@ class VDOM_storage(object):
         """save object to the storage"""
         data = None
         try:
-            data = cPickle.dumps(object)
+            data = json.dumps(object, default=vars)
         except Exception, e:
             debug("Error writing object '%s' to the storage" % str(key))
             debug(str(e))

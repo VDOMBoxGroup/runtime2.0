@@ -49,6 +49,8 @@ class VDOM_vhosting:
 	def get_def_site(self):
 		if 0 in self.__vhosting_data:
 			return self.__vhosting_data[0]
+		elif '0' in self.__vhosting_data:
+			return self.__vhosting_data['0']
 		return None
 
 	def get_app_names(self, appid):
