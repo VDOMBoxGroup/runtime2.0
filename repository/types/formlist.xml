@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.225.6200</Version>
+    <Version>1.231.6200</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, container</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -52,7 +52,7 @@
     <Attribute>
       <Name>zindex</Name>
       <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
@@ -88,50 +88,50 @@
     <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>130</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue>22</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>displaying</Name>
@@ -242,28 +242,100 @@
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>margins</Name>
+      <Name>style</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>paddings</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(225)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(126)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(226)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue>130</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue>22</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -289,8 +361,14 @@
       <Sentence ID="117">TabIndex</Sentence>
       <Sentence ID="118">Disabled</Sentence>
       <Sentence ID="119">Disabled values</Sentence>
-      <Sentence ID="121">Margins</Sentence>
-      <Sentence ID="122">Paddings</Sentence>
+      <Sentence ID="121">Style</Sentence>
+      <Sentence ID="122">Skin</Sentence>
+      <Sentence ID="123">Margins</Sentence>
+      <Sentence ID="124">Paddings</Sentence>
+      <Sentence ID="125">IDE_top</Sentence>
+      <Sentence ID="126">IDE_left</Sentence>
+      <Sentence ID="127">IDE_width</Sentence>
+      <Sentence ID="128">IDE_height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Visibility of the object</Sentence>
       <Sentence ID="203">Position in visual hierarchy of objects</Sentence>
@@ -309,8 +387,14 @@
       <Sentence ID="217">Index number of switching the elements on pressing the tab key</Sentence>
       <Sentence ID="218">Define if the object is disabled or not</Sentence>
       <Sentence ID="219">List of disabled values keys or single key</Sentence>
-      <Sentence ID="221">newAttribute15</Sentence>
-      <Sentence ID="222">newAttribute16</Sentence>
+      <Sentence ID="221">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="222">newAttribute21</Sentence>
+      <Sentence ID="223">newAttribute15</Sentence>
+      <Sentence ID="224">newAttribute16</Sentence>
+      <Sentence ID="225">newAttribute22</Sentence>
+      <Sentence ID="226">newAttribute23</Sentence>
+      <Sentence ID="227">newAttribute24</Sentence>
+      <Sentence ID="228">newAttribute25</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -329,8 +413,14 @@
       <Sentence ID="317">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="318">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="319">Incorrect value</Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
+      <Sentence ID="321">Incorrect value.</Sentence>
+      <Sentence ID="322">newAttribute21</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
+      <Sentence ID="324">Incorrect value.</Sentence>
+      <Sentence ID="325">newAttribute22</Sentence>
+      <Sentence ID="326">newAttribute23</Sentence>
+      <Sentence ID="327">newAttribute24</Sentence>
+      <Sentence ID="328">newAttribute25</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -348,6 +438,8 @@
       <Sentence ID="416">Multi</Sentence>
       <Sentence ID="417">No</Sentence>
       <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="419">User defined</Sentence>
+      <Sentence ID="421">Empty</Sentence>
       <Sentence ID="501">Add new item</Sentence>
       <Sentence ID="502">Add new item</Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -455,6 +547,12 @@
       <Sentence ID="119">Disabled values or single key</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="203">Niveau de superposition de l'objet par rapport aux autres</Sentence>
@@ -475,6 +573,12 @@
       <Sentence ID="219">List of disabled values keys</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être compris entre 0 et 99</Sentence>
@@ -495,6 +599,12 @@
       <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -512,6 +622,8 @@
       <Sentence ID="416">Multi</Sentence>
       <Sentence ID="417">No</Sentence>
       <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Add item to list</Sentence>
       <Sentence ID="502">Add item to list</Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -619,6 +731,12 @@
       <Sentence ID="119">Disabled values</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Режим отображения объекта</Sentence>
       <Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
@@ -639,6 +757,12 @@
       <Sentence ID="219">List of disabled values keys or single key</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -659,6 +783,12 @@
       <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -676,6 +806,8 @@
       <Sentence ID="416">Групповой</Sentence>
       <Sentence ID="417">Нет</Sentence>
       <Sentence ID="418">Да</Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="421"></Sentence>
       <Sentence ID="501">Добавить элемент к списку</Sentence>
       <Sentence ID="502">Добавить элемент к списку</Sentence>
       <Sentence ID="503">Спрятать объект</Sentence>
@@ -959,9 +1091,9 @@ class VDOM_formlist(VDOM_object):
     	return value + "px" if value.isdigit() else value
     
     def render(self, contents=""):
-        display = u"display:none; " if self.visible == "0" else self.displaying
-        
-        position = u"position: {pos};".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+        display = u"none" if self.visible == "0" else self.displaying
+        zindex = self.zindex if int(self.zindex) != 0 else u""
+        position = self.positioning if self.positioning and self.positioning != "static" else u""
         
         styles = {
             "width": self.check_unit(self.width),
@@ -969,23 +1101,15 @@ class VDOM_formlist(VDOM_object):
             "margin": self.margins,
             "padding": self.paddings,
             "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left)
+            "left": self.check_unit(self.left),
+            "position": position,
+            "display": display,
+            "z-index": zindex
         }
         if self.positioning == "static":
         	styles["top"] = styles["left"] = ""
         	
-        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
-        
-        style = u"""{display} {position} z-index: {zind}; {styles} font: 14px tahoma""".format(
-            zind = self.zindex,
-            top = self.top,
-            left = self.left, 
-            width = self.width,
-            height = self.height,
-            position = position,
-            styles = styles_str,
-            display = display
-        )
+        style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
         id = u"o_" + (self.id).replace('-', '_')
         
@@ -1036,19 +1160,12 @@ class VDOM_formlist(VDOM_object):
 
         result = u"{}{}</select>".format(select, result)
         return VDOM_object.render(self, contents=result)
-    
-    def regex(self, obj):
-		match = re.search(r'\d+', obj)
-		return int(match.group()) if match else ""
-    
+        
     def wysiwyg(self, contents=""):
-        width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
+        width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
         
-        self.width = int(width) if width else 130
-        self.height = int(height) if height else 22
-        
-        rect_width = int(self.width)-1 if int(self.width)>1 else int(self.width)
-        rect_height = int(self.height)-1 if int(self.height)>1 else int(self.height)
+        rect_width = width-1 if width>1 else width
+        rect_height = height-1 if height>1 else height
         
         btn_width = 15 if rect_width > 15 else rect_width
         btn_height = rect_height
@@ -1095,8 +1212,8 @@ class VDOM_formlist(VDOM_object):
                 </container>
             """.format(id = self.id, vis = self.visible, zind = self.zindex, 
                     hierarchy = self.hierarchy, order = self.order,
-                    top = self.top, left = self.left, name = self.name,
-                    width = self.width, height = self.height,
+                    top = top, left = left, name = self.name,
+                    width = width, height = height,
                     rect_width = rect_width, rect_height = rect_height, 
                     btn = btn,
                     text_x = 7,
@@ -1107,21 +1224,59 @@ class VDOM_formlist(VDOM_object):
         return VDOM_object.wysiwyg(self, contents=result)
 
 def on_update(object, attributes):
-	o = object
-	modifications = {}
+
+	users = """
+#%(id)s {
+
+}
+"""
+
+	skin_mapping = {
+		"0": users,
+		"1": ""
+	}
 	
-	for attr in ["left", "top", "width", "height"]:
+	if "skin" in attributes:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+			
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+		attributes.update(skin="0")
+		
+	o = object
+	mods = {}
+	
+	for attr in ["left", "width", "height", "top"]:
 		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-			if new_value is not None and new_value.isdigit():
-				new_value = new_value + unit
-			modifications[attr] = new_value
-	attributes.update(modifications)
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				mods[attr] = attr_value + "px"
+				mods["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				mods[attr] = attr_value.rstrip("px") + "px"
+				mods["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				mods[attr] = attr_value if "px" in attr_value else obj_value
+				mods["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				mods[attr] = attr_value
+			
+	attributes.update(mods)
 	
 	return ""
-]]></SourceCode>
+	
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_formlist {
