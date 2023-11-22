@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.391</Version>
+    <Version>1.398.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, accordeon, tabview, dialog_2, vdomclass</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers/>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -74,52 +74,64 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(318)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>250</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>100</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>value</Name>
@@ -169,6 +181,54 @@
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(314)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(315)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(215)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>250</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(316)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>100</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(317)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -187,18 +247,28 @@
       <Sentence ID="111">Syntax</Sentence>
       <Sentence ID="112">readonly</Sentence>
       <Sentence ID="113">Custom name</Sentence>
+      <Sentence ID="114">IDE_top</Sentence>
+      <Sentence ID="115">IDE_left</Sentence>
+      <Sentence ID="116">IDE_width</Sentence>
+      <Sentence ID="117">IDE_height</Sentence>
+      <Sentence ID="118">CSS Class</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
       <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the top edge of the container and the object</Sentence>
+      <Sentence ID="206">Spacing between the left edge of the container and the object</Sentence>
+      <Sentence ID="207">Width of the object</Sentence>
+      <Sentence ID="208">Height of the object</Sentence>
       <Sentence ID="209">Text to display</Sentence>
       <Sentence ID="211">Syntax</Sentence>
       <Sentence ID="212">Toggle readonly mode</Sentence>
       <Sentence ID="213">custom name for input</Sentence>
+      <Sentence ID="214">newAttribute12</Sentence>
+      <Sentence ID="215">newAttribute13</Sentence>
+      <Sentence ID="216">newAttribute14</Sentence>
+      <Sentence ID="217">newAttribute15</Sentence>
+      <Sentence ID="218">Names of CSS classes</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -211,6 +281,11 @@
       <Sentence ID="311">Incorrect value</Sentence>
       <Sentence ID="312">newAttribute11</Sentence>
       <Sentence ID="313">invalid custom name for input</Sentence>
+      <Sentence ID="314">newAttribute12</Sentence>
+      <Sentence ID="315">newAttribute13</Sentence>
+      <Sentence ID="316">newAttribute14</Sentence>
+      <Sentence ID="317">newAttribute15</Sentence>
+      <Sentence ID="318">CSS class name</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -289,6 +364,11 @@
       <Sentence ID="111"></Sentence>
       <Sentence ID="112"></Sentence>
       <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -301,6 +381,11 @@
       <Sentence ID="211"></Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -313,6 +398,11 @@
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -391,6 +481,11 @@
       <Sentence ID="111"></Sentence>
       <Sentence ID="112"></Sentence>
       <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -403,6 +498,11 @@
       <Sentence ID="211"></Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -415,6 +515,11 @@
       <Sentence ID="311"></Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -2770,18 +2875,22 @@
 			EpDKmdXJ6wq3VG8V5ClrMOi0es1uXxIAOw==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[class VDOM_codeeditor(VDOM_object):
+	def check_unit(self, value):
+		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
 		id = u"o_" + (self.id).replace('-', '_')
 
 		display = u"display:none;" if self.visible == "0" else u"display:block;"
+		width = u"width: {};".format(self.check_unit(self.width)) if self.width else u""
+		height = u"height: {};".format(self.check_unit(self.height)) if self.height else u""
+		top = u"top: {};".format(self.check_unit(self.top)) if self.top else u""
+		left = u"left: {};".format(self.check_unit(self.left)) if self.left else u""
 
-		style = u"""z-index: {zind}; top: {top}px; left: {left}px; overflow: visible; position: absolute;
-			width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
-			""".format(zind = self.zindex, top = self.top, left = self.left,
-					width = self.width, height = self.height, display = display)
-
-		style_area = u"""width:{width}px; height:{height}px""".format(width = self.width, height = self.height)
+		style = u"""z-index: {zind}; {top} {left} overflow: visible; position: absolute;
+			{width} {height} padding: 2px 5px 2px 5px; {display} font: 14px tahoma
+			""".format(zind = self.zindex, top = top, left = left,
+					width = width, height = height, display = display)
 
 		if VDOM_CONFIG_1["DEBUG"] == "1":
 			debug_info = u"objtype='codeeditor' objname='%s' ver='%s'" % (self.name, self.type.version)
@@ -2792,10 +2901,10 @@
 
 		result = u"""
 <style type="text/css">
-#%(id)s .CodeMirror-scroll { height: %(height)spx; }
+#%(id)s .CodeMirror-scroll { %(height)s }
 </style>
-<div id="%(id)s" style="%(style)s" %(debug_info)s>
-	<textarea name="%(name)s" style='%(style_area)s'>%(value)s</textarea>
+<div id="%(id)s" style="%(style)s" %(debug_info)s class="vdom_codeeditor %(classname)s">
+	<textarea name="%(name)s" style='%(height)s %(width)s'>%(value)s</textarea>
 </div>
 <script type="text/javascript">
 $(document).ready(() => {
@@ -2834,12 +2943,12 @@ $(document).ready(() => {
 				"id":         id,
 				"name":       self.customname or self.name,
 				"style":      style,
-				"style_area": style_area,
 				"value":      unicode(self.value).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'),
-				"width":      self.width,
-				"height":     self.height,
+				"width":      width,
+				"height":     height,
 				"debug_info": debug_info,
-				"is_readonly": is_readonly
+				"is_readonly": is_readonly,
+				"classname": self.classname
 			}
 
 		return VDOM_object.render(self, contents=result)
@@ -2875,6 +2984,7 @@ $(document).ready(() => {
 		return lines
 		
 	def wysiwyg(self, contents=""):
+		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 		
 		text_width = int(self.width) - 38
 		text_height = int(self.height) - 2
@@ -2900,28 +3010,56 @@ $(document).ready(() => {
 					value = self.value, name = self.name,
 					lines = self.get_lines_text(self.value, text_height))
 
-		return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
+		return VDOM_object.wysiwyg(self, contents=result)
+		
+		
+def on_update(object, attributes):
+    o = object
+    mods = {}
+	
+    for attr in ["left", "width", "height", "top"]:
+        if attr in attributes:
+            attr_value = attributes[attr]
+            obj_value = o.attributes.get(attr, '').lower()
+			
+            if obj_value.isdigit() and attr_value.isdigit():
+                mods[attr] = attr_value + "px"
+                mods["ide_"+ attr] = attr_value
+            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+                mods[attr] = attr_value.rstrip("px") + "px"
+                mods["ide_"+ attr] = attr_value.rstrip("px")
+            elif attr_value.isdigit() or "px" in attr_value:
+                mods[attr] = attr_value if "px" in attr_value else obj_value
+                mods["ide_"+ attr] = attr_value.rstrip("px")
+            else:
+                mods[attr] = attr_value
+    attributes.update(mods)
+    	
+    return ""
+    
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"]]></SourceCode>
   <Libraries>
-	<!-- CODE MIRROR LIB -->
     <Library Target="html"><![CDATA[<script type="text/javascript" src="/064add91-8595-0f40-10ea-09d38022edee.js"></script>]]></Library>
-    <!-- search cursor addon -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/0116ae12-49d8-4389-bb9d-fd74e73890bb.js'></script>]]></Library>
-	<!-- vscript syntax -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/95be4415-7ccb-b87b-f50f-77c8485f6bd9.js'></script>]]></Library>
-	<!-- Code mirror css -->
     <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/9cc0dd1e-ae9c-4028-b77a-cd3dddc81b10.css" />]]></Library>
-	<!-- dialog css -->
     <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/25634bc0-f478-460c-bdcd-29c38d0c3f6c.css" />]]></Library>
-	<!-- dialog js addon -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/4aa2cd26-287d-4f83-b2f8-927b5593693e.js'></script>]]></Library>
-	<!-- serach addon -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/f63a7b6c-28bc-42a7-9142-9446b5dd9ac3.js'></script>]]></Library>
-	<!-- jump to line addon -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/69646baf-4138-4033-8aec-8bf48e467c62.js'></script>]]></Library>
-	<!-- match-highlighter.js -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/dd098de4-af7a-473b-bd3a-8087be9fc197.js'></script>]]></Library>
-	<!-- active line addon -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/618a76f6-eb25-4afe-bde0-f1b991b914e4.js'></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_codeeditor {
+
+       }
+
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>

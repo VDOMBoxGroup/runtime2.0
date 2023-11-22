@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.38.6200</Version>
+    <Version>1.39.6200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -50,6 +50,18 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>visible</Name>
       <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>1</DefaultValue>
@@ -74,69 +86,9 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(206)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>width</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>130</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
-      <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>100</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>positioning</Name>
       <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
@@ -146,28 +98,64 @@
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(112)</DisplayName>
+      <Name>top</Name>
+      <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
+      <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <Name>left</Name>
+      <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
+      <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(319)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(414)|)|(#Lang(415)|block)|(#Lang(416)|inline)|(#Lang(417)|flex)|(#Lang(418)|inline-block))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>value</Name>
@@ -229,6 +217,102 @@
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(120)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(320)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(220)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(321)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(221)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(322)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(222)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(323)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(223)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue>130</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(324)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue>100</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(325)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(225)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -252,14 +336,21 @@
       <Sentence ID="116">Custom name</Sentence>
       <Sentence ID="117">Focused</Sentence>
       <Sentence ID="118">Required</Sentence>
+      <Sentence ID="119">Display</Sentence>
+      <Sentence ID="120">Style</Sentence>
+      <Sentence ID="121">Skin</Sentence>
+      <Sentence ID="122">IDE_top</Sentence>
+      <Sentence ID="123">IDE_left</Sentence>
+      <Sentence ID="124">IDE_width</Sentence>
+      <Sentence ID="125">IDE_height</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
       <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the top edge of the container and the object</Sentence>
+      <Sentence ID="206">Spacing between the left edge of the container and the object</Sentence>
+      <Sentence ID="207">Width of the object</Sentence>
+      <Sentence ID="208">Height of the object</Sentence>
       <Sentence ID="209">CSS class name</Sentence>
       <Sentence ID="211">newAttribute14</Sentence>
       <Sentence ID="212">newAttribute15</Sentence>
@@ -269,6 +360,13 @@
       <Sentence ID="216">custom name for input</Sentence>
       <Sentence ID="217">Define if the focus is set there after rendering the page or not</Sentence>
       <Sentence ID="218">When present, it specifies that field must be filled out before submitting the form</Sentence>
+      <Sentence ID="219">newAttribute17</Sentence>
+      <Sentence ID="220">Incorrect value.</Sentence>
+      <Sentence ID="221">newAttribute19</Sentence>
+      <Sentence ID="222">newAttribute20</Sentence>
+      <Sentence ID="223">newAttribute21</Sentence>
+      <Sentence ID="224">newAttribute22</Sentence>
+      <Sentence ID="225">newAttribute23</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -286,6 +384,13 @@
       <Sentence ID="316">invalid custom name for input</Sentence>
       <Sentence ID="317">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="318">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="319">newAttribute17</Sentence>
+      <Sentence ID="320">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="321">newAttribute19</Sentence>
+      <Sentence ID="322">newAttribute20</Sentence>
+      <Sentence ID="323">newAttribute21</Sentence>
+      <Sentence ID="324">newAttribute22</Sentence>
+      <Sentence ID="325">newAttribute23</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -298,6 +403,15 @@
       <Sentence ID="411">Yes</Sentence>
       <Sentence ID="412">No</Sentence>
       <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Block</Sentence>
+      <Sentence ID="416">Inline</Sentence>
+      <Sentence ID="417">Flex</Sentence>
+      <Sentence ID="418">Inline-block</Sentence>
+      <Sentence ID="419">User defined</Sentence>
+      <Sentence ID="420">Empty</Sentence>
+      <Sentence ID="421">User defined</Sentence>
+      <Sentence ID="422">Empty</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
       <Sentence ID="503">Move the object to a new position</Sentence>
@@ -388,6 +502,13 @@
       <Sentence ID="116"></Sentence>
       <Sentence ID="117">Focused</Sentence>
       <Sentence ID="118">Obligatoire</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="120"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -405,6 +526,13 @@
       <Sentence ID="216"></Sentence>
       <Sentence ID="217">Define if the focus is set there after rendering the page or not</Sentence>
       <Sentence ID="218">Lorsqu'il est présent, il précise que le champ doit être rempli avant de soumettre le formulaire</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="220"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -422,6 +550,13 @@
       <Sentence ID="316"></Sentence>
       <Sentence ID="317">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="318">Valeur incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="320"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -434,6 +569,15 @@
       <Sentence ID="411">Yes</Sentence>
       <Sentence ID="412">Non</Sentence>
       <Sentence ID="413">Oui</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="420"></Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
       <Sentence ID="503">Move object to selected point</Sentence>
@@ -524,6 +668,13 @@
       <Sentence ID="116"></Sentence>
       <Sentence ID="117">Focused</Sentence>
       <Sentence ID="118">Обязательное поле</Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="120"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123"></Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Режим отображения объекта</Sentence>
@@ -541,6 +692,13 @@
       <Sentence ID="216"></Sentence>
       <Sentence ID="217">Define if the focus is set there after rendering the page or not</Sentence>
       <Sentence ID="218">Когда он присутствует, он указывает, что поле ввода должно быть заполнено перед отправкой формы</Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="220"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223"></Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -558,6 +716,13 @@
       <Sentence ID="316"></Sentence>
       <Sentence ID="317">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="318">Неправильное значение: допустимы цифры 0 и 1</Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="320"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -570,6 +735,15 @@
       <Sentence ID="411">Yes</Sentence>
       <Sentence ID="412">Нет</Sentence>
       <Sentence ID="413">Да</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419"></Sentence>
+      <Sentence ID="420"></Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Скрыть объект</Sentence>
       <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
@@ -767,18 +941,18 @@
 			pl+lPsDB50nJFglTOuWvLU3+2jKKBAlkmHEwDhKJROAnFm52UK/DpqChUAj/Ao7pSLvHckUwAAAA
 			AElFTkSuQmCC]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[import re
-
+  <SourceCode><![CDATA[
 class VDOM_formtextarea(VDOM_object):
 	
 	def check_unit(self, value):
 		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
-		display = u"none" if self.visible == "0" else u""
+		display = u"none" if self.visible == "0" else self.displaying
 		clean_id = (self.id).replace('-', '_')
 		id = u"o_" + (self.id).replace('-', '_')
 		required = 'required' if self.required=='1' else u''
+		css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
 		
 		styles = {
 			"width": self.check_unit(self.width),
@@ -787,7 +961,7 @@ class VDOM_formtextarea(VDOM_object):
 			"padding": self.paddings,
 			"top": self.check_unit(self.top),
 			"left": self.check_unit(self.left),
-			"z-index": self.zindex,
+			"z-index": self.zindex if int(self.zindex) != 0 else u"",
 			"position": self.positioning,
 			"display": display
 		}
@@ -800,12 +974,12 @@ class VDOM_formtextarea(VDOM_object):
 		result = u"""
 			<textarea {required} id="{id}" name="{name}" tabindex="{tabind}"
 				style="{style}" class="vdom_formtextarea {classname}"
-			>{value}</textarea>
+			>{value}</textarea> {css}
 		""".format(
 			id=id, name=self.customname or self.name, 
 			tabind=self.tabindex, style=styles_str, 
 			value=self.value, required=required,
-			classname = self.classname
+			classname = self.classname, css = css
 		)
 		
 		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
@@ -824,15 +998,8 @@ $(document).ready(function(){
 
 		return VDOM_object.render(self, contents=result)
 
-	def regex(self, obj):
-		match = re.search(r'\d+', obj)
-		return int(match.group()) if match else ""
-	
 	def wysiwyg(self, contents=""):
-		width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
-		
-		self.width = int(width) if width else 130
-		self.height = int(height) if height else 100
+		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 		
 		result = \
 			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
@@ -853,20 +1020,54 @@ $(document).ready(function(){
 		return VDOM_object.wysiwyg(self, contents=result)
 		
 def on_update(object, attributes):
-	o = object
-	modifications = {}
+    o = object
+    mods = {}
 	
-	for attr in ["left", "top", "width", "height"]:
-		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-			if new_value is not None and new_value.isdigit():
-				new_value = new_value + unit
-			modifications[attr] = new_value
-	attributes.update(modifications)
+    for attr in ["left", "width", "height", "top"]:
+        if attr in attributes:
+            attr_value = attributes[attr]
+            obj_value = o.attributes.get(attr, '').lower()
+			
+            if obj_value.isdigit() and attr_value.isdigit():
+                mods[attr] = attr_value + "px"
+                mods["ide_"+ attr] = attr_value
+            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+                mods[attr] = attr_value.rstrip("px") + "px"
+                mods["ide_"+ attr] = attr_value.rstrip("px")
+            elif attr_value.isdigit() or "px" in attr_value:
+                mods[attr] = attr_value if "px" in attr_value else obj_value
+                mods["ide_"+ attr] = attr_value.rstrip("px")
+            else:
+                mods[attr] = attr_value
+    attributes.update(mods)
+
+    users = """
+#%(id)s {
+
+}
+"""
+    skin_mapping = {
+        "0": users,
+        "1": ""
+    }
+    if "skin" in attributes:
+    	skin = attributes["skin"]
+    	if skin in skin_mapping:
+    		attributes.update(style=skin_mapping[skin])
+    	else:
+    		attributes.update(skin="0")
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+    	attributes.update(skin="0")
 	
-	return ""]]></SourceCode>
+    return ""
+    
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_formtextarea  {

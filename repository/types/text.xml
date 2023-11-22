@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>3.190.6720</Version>
+    <Version>3.191.6720</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -296,10 +296,10 @@
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(429)|italic)|(#Lang(431)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(429)|italic)|(#Lang(431)|normal)|(#Lang(457)|oblique)|(#Lang(458)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(italic|)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(normal|italic|oblique|)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>fontweight</Name>
@@ -311,7 +311,7 @@
       <CodeInterface>DropDown((#Lang(432)|)|(#Lang(433)|100)|(#Lang(434)|200)|(#Lang(435)|300)|(#Lang(436)|500)|(#Lang(437)|600)|(#Lang(438)|800)|(#Lang(439)|900)|(#Lang(441)|normal)|(#Lang(442)|bold)|(#Lang(443)|bolder)|(#Lang(444)|lighter))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(bold|)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(|normal|bold|bolder|lighter|100|200|300|500|600|800|900)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>texttransform</Name>
@@ -320,7 +320,7 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(445)|)|(#Lang(446)|capitalize)|(#Lang(447)|uppercase)|(#Lang(448)|lowercase)|(#Lang(458)|none))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(445)|)|(#Lang(446)|capitalize)|(#Lang(447)|uppercase)|(#Lang(448)|lowercase)|(#Lang(449)|none))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation/>
@@ -332,7 +332,7 @@
       <Visible>1</Visible>
       <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(452)|left)|(#Lang(453)|center)|(#Lang(454)|right)|(#Lang(455)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(451)|left)|(#Lang(452)|center)|(#Lang(453)|right)|(#Lang(454)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right|)$</RegularExpressionValidation>
@@ -356,7 +356,7 @@
       <Visible>1</Visible>
       <Help>#Lang(231)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(456)|underline)|(#Lang(457)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(455)|underline)|(#Lang(456)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
       <RegularExpressionValidation>^(underline|)</RegularExpressionValidation>
@@ -524,7 +524,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="427">User defined</Sentence>
       <Sentence ID="428">Empty</Sentence>
       <Sentence ID="429">Italic</Sentence>
-      <Sentence ID="431"></Sentence>
+      <Sentence ID="431">Normal</Sentence>
       <Sentence ID="432"></Sentence>
       <Sentence ID="433">100</Sentence>
       <Sentence ID="434">200</Sentence>
@@ -541,13 +541,15 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="446">Capitalize</Sentence>
       <Sentence ID="447">Uppercase</Sentence>
       <Sentence ID="448">Lowercase</Sentence>
-      <Sentence ID="452">Left</Sentence>
-      <Sentence ID="453">Center</Sentence>
-      <Sentence ID="454">Right</Sentence>
-      <Sentence ID="455"></Sentence>
-      <Sentence ID="456">Underline</Sentence>
-      <Sentence ID="457"></Sentence>
-      <Sentence ID="458">None</Sentence>
+      <Sentence ID="449">None</Sentence>
+      <Sentence ID="451">Left</Sentence>
+      <Sentence ID="452">Center</Sentence>
+      <Sentence ID="453">Right</Sentence>
+      <Sentence ID="454"></Sentence>
+      <Sentence ID="455">Underline</Sentence>
+      <Sentence ID="456"></Sentence>
+      <Sentence ID="457">Oblique</Sentence>
+      <Sentence ID="458"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the object</Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -788,12 +790,14 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="446"></Sentence>
       <Sentence ID="447"></Sentence>
       <Sentence ID="448"></Sentence>
-      <Sentence ID="452">Gauche</Sentence>
-      <Sentence ID="453">Centrer</Sentence>
-      <Sentence ID="454">Droite</Sentence>
-      <Sentence ID="455"></Sentence>
-      <Sentence ID="456">Souligné</Sentence>
-      <Sentence ID="457">Aucun</Sentence>
+      <Sentence ID="449"></Sentence>
+      <Sentence ID="451">Gauche</Sentence>
+      <Sentence ID="452">Centrer</Sentence>
+      <Sentence ID="453">Droite</Sentence>
+      <Sentence ID="454"></Sentence>
+      <Sentence ID="455">Souligné</Sentence>
+      <Sentence ID="456">Aucun</Sentence>
+      <Sentence ID="457"></Sentence>
       <Sentence ID="458"></Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
@@ -1035,12 +1039,14 @@ All changes of attributes are applied to the whole text. You cannot change the s
       <Sentence ID="446"></Sentence>
       <Sentence ID="447"></Sentence>
       <Sentence ID="448"></Sentence>
-      <Sentence ID="452">По левому краю</Sentence>
-      <Sentence ID="453">По центру</Sentence>
-      <Sentence ID="454">По правому краю</Sentence>
-      <Sentence ID="455"></Sentence>
-      <Sentence ID="456">Подчеркнутый</Sentence>
-      <Sentence ID="457">Обычный</Sentence>
+      <Sentence ID="449"></Sentence>
+      <Sentence ID="451">По левому краю</Sentence>
+      <Sentence ID="452">По центру</Sentence>
+      <Sentence ID="453">По правому краю</Sentence>
+      <Sentence ID="454"></Sentence>
+      <Sentence ID="455">Подчеркнутый</Sentence>
+      <Sentence ID="456">Обычный</Sentence>
+      <Sentence ID="457"></Sentence>
       <Sentence ID="458"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать объект</Sentence>

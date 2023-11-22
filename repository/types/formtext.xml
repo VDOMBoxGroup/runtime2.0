@@ -14,12 +14,12 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.105.0</Version>
+    <Version>1.110.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, container</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update</Handlers>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
@@ -50,6 +50,18 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>visible</Name>
       <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>1</DefaultValue>
@@ -74,52 +86,64 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>static</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(417)|absolute)|(#Lang(418)|relative)|(#Lang(419)|fixed)|(#Lang(421)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(auto|\d{0,4}(px)?|\d{0,4}(%))$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>130</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>22</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|^$|\d{0,4}(%)</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>multiline</Name>
@@ -218,16 +242,16 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(118)</DisplayName>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(140)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
+      <Help>#Lang(340)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(446)|)|(#Lang(447)|block)|(#Lang(448)|inline)|(#Lang(449)|flex)|(#Lang(450)|inline-block))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(240)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>border</Name>
@@ -242,16 +266,28 @@
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>positioning</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
+      <Name>style</Name>
+      <DisplayName>#Lang(138)</DisplayName>
+      <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(338)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|absolute)|(#Lang(418)|relative)|(#Lang(419)|fixed)|(#Lang(421)|static))</CodeInterface>
+      <CodeInterface>MultiLine()</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+      <ErrorValidationMessage>#Lang(238)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(139)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(339)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(444)|0)|(#Lang(445)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(239)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
@@ -385,6 +421,54 @@
       <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
       <RegularExpressionValidation>^([0-9]+|\s*)$</RegularExpressionValidation>
     </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(334)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(234)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(135)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(335)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(235)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(136)</DisplayName>
+      <DefaultValue>130</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(336)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(236)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(137)</DisplayName>
+      <DefaultValue>22</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(337)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(237)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
@@ -421,6 +505,13 @@
       <Sentence ID="131">Input type</Sentence>
       <Sentence ID="132">Max input value</Sentence>
       <Sentence ID="133">Min input value</Sentence>
+      <Sentence ID="134">IDE_top</Sentence>
+      <Sentence ID="135">IDE_left</Sentence>
+      <Sentence ID="136">IDE_width</Sentence>
+      <Sentence ID="137">IDE_height</Sentence>
+      <Sentence ID="138">Style</Sentence>
+      <Sentence ID="139">Skin</Sentence>
+      <Sentence ID="140">Display</Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">Visibility of the object</Sentence>
@@ -451,6 +542,13 @@
       <Sentence ID="231">Specifies the type of the input element</Sentence>
       <Sentence ID="232">The maximum value of the input value</Sentence>
       <Sentence ID="233">The minimum value of the input value</Sentence>
+      <Sentence ID="234">newAttribute30</Sentence>
+      <Sentence ID="235">newAttribute31</Sentence>
+      <Sentence ID="236">newAttribute32</Sentence>
+      <Sentence ID="237">newAttribute33</Sentence>
+      <Sentence ID="238">Incorrect value.</Sentence>
+      <Sentence ID="239">Incorrect value.</Sentence>
+      <Sentence ID="240">newAttribute36</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -470,8 +568,8 @@
       <Sentence ID="318">Names of CSS classes</Sentence>
       <Sentence ID="319">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323"></Sentence>
+      <Sentence ID="322">Incorrect value.</Sentence>
+      <Sentence ID="323">Incorrect value.</Sentence>
       <Sentence ID="324">invalid custom name for input</Sentence>
       <Sentence ID="325">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="326">Incorrect value</Sentence>
@@ -481,6 +579,13 @@
       <Sentence ID="331">Incorrect value</Sentence>
       <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="334">newAttribute30</Sentence>
+      <Sentence ID="335">newAttribute31</Sentence>
+      <Sentence ID="336">newAttribute32</Sentence>
+      <Sentence ID="337">newAttribute33</Sentence>
+      <Sentence ID="338">newAttribute34</Sentence>
+      <Sentence ID="339">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="340">newAttribute36</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -520,6 +625,13 @@
       <Sentence ID="441">time</Sentence>
       <Sentence ID="442">url</Sentence>
       <Sentence ID="443">week</Sentence>
+      <Sentence ID="444">User defined</Sentence>
+      <Sentence ID="445">Empty</Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447">Block</Sentence>
+      <Sentence ID="448">Inline</Sentence>
+      <Sentence ID="449">Flex</Sentence>
+      <Sentence ID="450">Inline-block</Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
       <Sentence ID="503">Move the object to a new position</Sentence>
@@ -627,6 +739,13 @@
       <Sentence ID="131">Type d'entrée</Sentence>
       <Sentence ID="132">Max input value</Sentence>
       <Sentence ID="133">Min input value</Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135"></Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="140"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Afficher ou cacher l'objet</Sentence>
@@ -657,6 +776,13 @@
       <Sentence ID="231">Spécifie le type de l'élément d'entrée</Sentence>
       <Sentence ID="232">The maximum value of the input value</Sentence>
       <Sentence ID="233">The minimum value of the input value</Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235"></Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="240"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -687,6 +813,13 @@
       <Sentence ID="331">Valeur incorrecte</Sentence>
       <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
+      <Sentence ID="340"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -726,6 +859,13 @@
       <Sentence ID="441">time</Sentence>
       <Sentence ID="442">url</Sentence>
       <Sentence ID="443">week</Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447"></Sentence>
+      <Sentence ID="448"></Sentence>
+      <Sentence ID="449"></Sentence>
+      <Sentence ID="450"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
       <Sentence ID="503">Move object to selected point</Sentence>
@@ -833,6 +973,13 @@
       <Sentence ID="131">Тип ввода</Sentence>
       <Sentence ID="132">Max input value</Sentence>
       <Sentence ID="133">Min input value</Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135"></Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="140"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -863,6 +1010,13 @@
       <Sentence ID="231">Определяет тип элемента ввода</Sentence>
       <Sentence ID="232">The maximum value of the input value</Sentence>
       <Sentence ID="233">The minimum value of the input value</Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235"></Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="240"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение</Sentence>
@@ -893,6 +1047,13 @@
       <Sentence ID="331">Неправильное значение</Sentence>
       <Sentence ID="332">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="333">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
+      <Sentence ID="339"></Sentence>
+      <Sentence ID="340"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -932,6 +1093,13 @@
       <Sentence ID="441">time</Sentence>
       <Sentence ID="442">url</Sentence>
       <Sentence ID="443">week</Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
+      <Sentence ID="446"></Sentence>
+      <Sentence ID="447"></Sentence>
+      <Sentence ID="448"></Sentence>
+      <Sentence ID="449"></Sentence>
+      <Sentence ID="450"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Скрыть объект</Sentence>
       <Sentence ID="503">Сдвинуть объект в заданную точку</Sentence>
@@ -1079,15 +1247,14 @@
 			4xXxkhQTnVfCUHvYTUIAJcJnYR9EiVS0qP/ZFRFFRBFRRBQRRaSDiPwSYADhkDD4eb9xIQAAAABJ
 			RU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[import re
-
+  <SourceCode><![CDATA[
 class VDOM_formtext(VDOM_object):
 	
 	def check_unit(self, value):
 		return value + "px" if value.isdigit() else value
 
 	def render(self, contents=""):
-		display = u"none" if self.visible == "0" else u""
+		display = u"none" if self.visible == "0" else self.displaying
 
 		if self.mode == "1":
 			mode = u"""readonly="readonly" """
@@ -1118,6 +1285,8 @@ class VDOM_formtext(VDOM_object):
 		maxvalue = u'max="{}"'.format(self.maxvalue) if self.minlength else ""
 		minvalue = u'min="{}"'.format(self.minvalue) if self.minlength else ""
 		
+		usercss = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
+		
 		styles = {
 			"width": self.check_unit(self.width),
 			"height": self.check_unit(self.height),
@@ -1125,7 +1294,7 @@ class VDOM_formtext(VDOM_object):
 			"padding": self.paddings,
 			"top": self.check_unit(self.top),
 			"left": self.check_unit(self.left),
-			"z-index": self.zindex,
+			"z-index": self.zindex if int(self.zindex) !=0 else u"",
 			"position": self.positioning,
 			"display": display,
 			"border-width": border
@@ -1187,7 +1356,9 @@ class VDOM_formtext(VDOM_object):
 			)
 
 		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
-
+		
+		result += u"{css}".format(css = usercss)
+		
 		result += u"""<script type='text/javascript'>
 $(document).ready(function(){
 	$('#%(id)s').blur(function(){
@@ -1201,16 +1372,9 @@ $(document).ready(function(){
 });</script>""" % { "id": id, "clean_id": clean_id, "focused": focused }
 
 		return VDOM_object.render(self, contents=result)
-
-	def regex(self, obj):
-		match = re.search(r'\d+', obj)
-		return int(match.group()) if match else ""
 	
 	def wysiwyg(self, contents=""):
-		width, height, self.top, self.left = map(self.regex, (self.width, self.height, self.top, self.left))
-		
-		self.width = int(width) if width else 130
-		self.height = int(height) if height else 22
+		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 		
 		disabled = u""" disabled="disabled" """ if self.mode=="2" else u""
 		border = u"border-width:0;" if self.multiline == "0" and self.border == "0" else u""
@@ -1256,27 +1420,54 @@ $(document).ready(function(){
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
-	
 	o = object
-	modifications = {}
+	mods = {}
 	
-	for attr in ["left", "top", "width", "height"]:
+	for attr in ["left", "width", "height", "top"]:
 		if attr in attributes:
-			new_value = attributes.get(attr)
-			unit = re.findall("[a-z%]+", o.attributes.get(attr, ""))
-			unit = unit[0] if unit and unit[0]!="auto" else "px"
-			if new_value.isnumeric():
-				new_value = new_value + unit
-				
-				if attr == "width" and int(new_value.rstrip(unit)) < 10:
-					new_value = "10" + unit
-				elif attr == "height" and int(new_value.rstrip(unit)) < 4:
-					new_value = "4" + unit
-				
-			modifications[attr] = new_value
-	attributes.update(modifications)
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				mods[attr] = attr_value + "px"
+				mods["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				mods[attr] = attr_value.rstrip("px") + "px"
+				mods["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				mods[attr] = attr_value if "px" in attr_value else obj_value
+				mods["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				mods[attr] = attr_value
+	attributes.update(mods)
 	
-	return ""]]></SourceCode>
+	users = """
+#%(id)s {
+
+}
+"""
+	skin_mapping = {
+		"0": users,
+		"1": ""
+	}
+	if "skin" in attributes:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+		attributes.update(skin="0")
+		
+	return ""
+    
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_formtext  {
