@@ -134,30 +134,6 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|0)|(#Lang(415)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>text</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue>Button</DefaultValue>
@@ -552,6 +528,30 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(348)</ErrorValidationMessage>
       <RegularExpressionValidation>^(left|center|right|)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(414)|0)|(#Lang(415)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>form</Name>
@@ -1913,7 +1913,7 @@ class VDOM_button(VDOM_object):
                 scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
     
             return u"""{ocss}
-                        <div {debug_info} id="{id}" style="{style}{disp}" class="vdom_button image {classname}">
+                        <div {debug_info} id="{id}" style="{style}{disp}" class="{classname} vdom_button image">
                             {anchor}{repr}</a>
                         </div>{disabled}{styleblk}{scriptblk}{disablecss}
                     """.format(
@@ -1926,7 +1926,7 @@ class VDOM_button(VDOM_object):
         elif render_mode == "link":
 
             return u"""{ocss}
-            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" title="{hint}" class="vdom_button link {classname}">
+            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" title="{hint}" class="{classname} vdom_button link">
                             {text}
                         </a>
                     """.format(
@@ -1936,7 +1936,7 @@ class VDOM_button(VDOM_object):
         else:  # render_mode == "button"
             if self.link:
                 return u"""{ocss}
-                			<div {debug_info} id="{id}" style="{style}{disp}" title="{hint}" class="vdom_button button {classname}">
+                			<div {debug_info} id="{id}" style="{style}{disp}" title="{hint}" class="{classname} vdom_button button">
                                 <a style="{text_style}" href="{link}">{text}</a>
                             </div>
                         """.format(
@@ -1944,7 +1944,7 @@ class VDOM_button(VDOM_object):
                     			disp=display, link=self.link, classname=clname, text=self.text, text_style=text_style)
             else:
                 return u"""{ocss}
-                			<div {debug_info} id="{id}" style="{style}{disp}{text_style}" class="vdom_button button {classname}">
+                			<div {debug_info} id="{id}" style="{style}{disp}{text_style}" class="{classname} vdom_button button">
                                 {text}
                             </div>
                         """.format(

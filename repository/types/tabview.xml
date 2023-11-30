@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.408.6720</Version>
+    <Version>1.412.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
@@ -32,22 +32,10 @@
       <Visible>1</Visible>
       <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
+      <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>stateful</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -60,30 +48,6 @@
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
@@ -100,7 +64,7 @@
     <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>px</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
@@ -112,7 +76,7 @@
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>px</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
@@ -227,13 +191,13 @@
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>ide_top</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -245,7 +209,7 @@
       <Name>ide_left</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>50</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -257,7 +221,7 @@
       <Name>ide_height</Name>
       <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
@@ -269,13 +233,49 @@
       <Name>ide_width</Name>
       <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>200</DefaultValue>
-      <Visible>1</Visible>
+      <Visible>0</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -310,10 +310,10 @@
       <Sentence ID="204">Visibility of the object</Sentence>
       <Sentence ID="205">Position in visual hierarchy of objects</Sentence>
       <Sentence ID="206">newAttribute13</Sentence>
-      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="209">Height of the object in pixels.</Sentence>
-      <Sentence ID="211">Width of the object in pixels.</Sentence>
+      <Sentence ID="207">Spacing between the top edge of the container and the object</Sentence>
+      <Sentence ID="208">Spacing between the left edge of the container and the object</Sentence>
+      <Sentence ID="209">Height of the object.</Sentence>
+      <Sentence ID="211">Width of the object.</Sentence>
       <Sentence ID="212">newAttribute20</Sentence>
       <Sentence ID="213">CSS style of the object</Sentence>
       <Sentence ID="214">Visual appearance of the object</Sentence>
@@ -340,8 +340,8 @@
       <Sentence ID="314"></Sentence>
       <Sentence ID="315">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="316"></Sentence>
-      <Sentence ID="317">newAttribute14</Sentence>
-      <Sentence ID="318">newAttribute15</Sentence>
+      <Sentence ID="317">Incorrect value.</Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
       <Sentence ID="319">newAttribute17</Sentence>
       <Sentence ID="321">newAttribute16</Sentence>
       <Sentence ID="322">newAttribute19</Sentence>
@@ -963,7 +963,7 @@ var tabview_children_%(id)s = %(arr)s;
 
 		result = u"""\
 {css}
-<div {debug_info} id="{id}" class="vdom_tabview {withtabs} {classname}" style="{style}">
+<div {debug_info} id="{id}" class="{classname} vdom_tabview {withtabs}" style="{style}">
     {tabs}
     {cont_tag}
 </div>
