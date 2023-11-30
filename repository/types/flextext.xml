@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.77.6720</Version>
+    <Version>2.78.6720</Version>
     <InterfaceType>2</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass,flexcontainer</Containers>
@@ -36,6 +36,18 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>displaying</Name>
@@ -338,18 +350,6 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(129)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(229)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>stateful</Name>
       <DisplayName>#Lang(131)</DisplayName>
       <DefaultValue>0</DefaultValue>
@@ -426,8 +426,8 @@
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="303">Incorrect value.</Sentence>
-      <Sentence ID="304"></Sentence>
-      <Sentence ID="305"></Sentence>
+      <Sentence ID="304">Incorrect value.</Sentence>
+      <Sentence ID="305">Incorrect value.</Sentence>
       <Sentence ID="306"></Sentence>
       <Sentence ID="307"></Sentence>
       <Sentence ID="308"></Sentence>
@@ -485,7 +485,7 @@
       <Sentence ID="502">Move the object to a new position.</Sentence>
       <Sentence ID="503">Resize the object's width and height.</Sentence>
       <Sentence ID="504">Show the object.</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="505">Toggle CSS class</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -493,7 +493,7 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
-      <Sentence ID="514">Toggle CSS class</Sentence>
+      <Sentence ID="514"></Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -506,7 +506,7 @@
       <Sentence ID="705">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="706">Incorrect value, must be 0 or 1</Sentence>
       <Sentence ID="707">Incorrect value</Sentence>
-      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="708">className</Sentence>
       <Sentence ID="801">Name of CSS class</Sentence>
       <Sentence ID="802">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="803">Incorrect value, must be either 0 or 1</Sentence>
@@ -514,7 +514,7 @@
       <Sentence ID="805">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="806">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="807">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="808">className</Sentence>
+      <Sentence ID="808">Name of CSS class</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Top</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -654,7 +654,7 @@
       <Sentence ID="502">Переместить объект в заданное место</Sentence>
       <Sentence ID="503">Изменить размер объекта</Sentence>
       <Sentence ID="504">Отображение объекта</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="505">Toggle CSS class</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -662,7 +662,7 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
-      <Sentence ID="514">Toggle CSS class</Sentence>
+      <Sentence ID="514"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
@@ -675,7 +675,7 @@
       <Sentence ID="705">Неправильное значение</Sentence>
       <Sentence ID="706">Неправильное значение</Sentence>
       <Sentence ID="707">Неправильное значение</Sentence>
-      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="708">className</Sentence>
       <Sentence ID="801">Неправильное значение</Sentence>
       <Sentence ID="802">Неправильное значение</Sentence>
       <Sentence ID="803">Неправильное значение</Sentence>
@@ -683,7 +683,7 @@
       <Sentence ID="805">Неправильное значение</Sentence>
       <Sentence ID="806">Неправильное значение</Sentence>
       <Sentence ID="807">Неправильное значение</Sentence>
-      <Sentence ID="808">className</Sentence>
+      <Sentence ID="808">Name of CSS class</Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Сверху</Sentence>
       <Sentence ID="903">Слева</Sentence>
@@ -823,7 +823,7 @@
       <Sentence ID="502">Visibilité</Sentence>
       <Sentence ID="503">Resize the object width and height</Sentence>
       <Sentence ID="504">Visibilité</Sentence>
-      <Sentence ID="505"></Sentence>
+      <Sentence ID="505">Toggle CSS class</Sentence>
       <Sentence ID="506"></Sentence>
       <Sentence ID="507"></Sentence>
       <Sentence ID="508"></Sentence>
@@ -831,7 +831,7 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
-      <Sentence ID="514">Toggle CSS class</Sentence>
+      <Sentence ID="514"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -844,7 +844,7 @@
       <Sentence ID="705">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="706">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="707">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="708">className</Sentence>
       <Sentence ID="801">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="802">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="803">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -852,7 +852,7 @@
       <Sentence ID="805">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="806">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="807">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="808">className</Sentence>
+      <Sentence ID="808">Name of CSS class</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Haut</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -895,9 +895,9 @@ class VDOM_flextext(VDOM_object):
 		# class
 		
 		if self.classname == "":
-			classname = ""
+			classname = "class=' vdom_flextext ' "
 		else:
-			classname = " class='%s' " % ( self.classname )
+			classname = " class='%s vdom_flextext ' " % ( self.classname )
 		the_value = self.value
 
 		# ID
@@ -1178,49 +1178,49 @@ def on_update(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="click" Help="#Lang(505)">
+        <Event Name="click" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(506)">
+        <Event Name="ctrlclick" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(507)">
+        <Event Name="dblclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(508)">
+        <Event Name="mousedown" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(509)">
+        <Event Name="mousemove" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(511)">
+        <Event Name="mouseout" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(512)">
+        <Event Name="mouseover" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(914)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(513)">
+        <Event Name="mouseup" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="" VbType="" Help="#Lang(916)"/>
             <Parameter Name="Y" Order="" VbType="" Help="#Lang(917)"/>
@@ -1265,9 +1265,9 @@ vdom_ui_resizeTo(this.domCont, width, height);
 vdom_ui_show(this.domCont, fade);
 					]]></SourceCode>
         </Action>
-        <Action Help="#Lang(514)" InterfaceName="#Lang(605)" MethodName="toggleClass">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
