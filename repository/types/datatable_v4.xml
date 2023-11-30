@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>4.27.1</Version>
+    <Version>4.38.1</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
@@ -26,16 +26,16 @@
   </Information>
   <Attributes>
     <Attribute>
-      <Name>stateful</Name>
+      <Name>cssclass</Name>
       <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -50,55 +50,55 @@
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>visible</Name>
+      <Name>positioning</Name>
       <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|relative)|(#Lang(403)|fixed)|(#Lang(404)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>zindex</Name>
+      <Name>top</Name>
       <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(16)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>cssclass</Name>
+      <Name>left</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>positioning</Name>
+      <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>static</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|absolute)|(#Lang(406)|relative)|(#Lang(407)|fixed)|(#Lang(408)|static))</CodeInterface>
+      <CodeInterface>TextField(16)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>top</Name>
+      <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -110,87 +110,51 @@
       <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>left</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|)|(#Lang(406)|block)|(#Lang(407)|flex)|(#Lang(408)|inline)|(#Lang(409)|inline-block))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>width</Name>
+      <Name>title</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>height</Name>
+      <Name>header</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(139)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(339)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(433)|)|(#Lang(434)|block)|(#Lang(435)|flex)|(#Lang(436)|inline)|(#Lang(437)|inline-block))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(239)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>title</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>header</Name>
+      <Name>data</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>data</Name>
-      <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
-      <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -200,7 +164,7 @@
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|true)|(#Lang(411)|false))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(416)|true)|(#Lang(417)|false))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -224,7 +188,7 @@
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(418)|0)|(#Lang(419)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
@@ -236,7 +200,7 @@
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(414)|1)|(#Lang(415)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(421)|1)|(#Lang(422)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -248,7 +212,7 @@
       <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(416)|1)|(#Lang(417)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|1)|(#Lang(424)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -272,7 +236,7 @@
       <Visible>1</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(418)|1)|(#Lang(419)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(425)|1)|(#Lang(426)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -284,7 +248,7 @@
       <Visible>1</Visible>
       <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(421)|1)|(#Lang(422)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(427)|1)|(#Lang(428)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -308,10 +272,22 @@
       <Visible>1</Visible>
       <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(429)|0)|(#Lang(431)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skindata</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>2</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1)|(#Lang(415)|2)|(#Lang(444)|3))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>style</Name>
@@ -332,7 +308,7 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1)|(#Lang(427)|2)|(#Lang(428)|3)|(#Lang(429)|4))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(432)|0)|(#Lang(433)|1)|(#Lang(434)|2)|(#Lang(435)|3)|(#Lang(436)|4))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -405,7 +381,7 @@
       <Visible>1</Visible>
       <Help>#Lang(234)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(431)|1)|(#Lang(432)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(437)|1)|(#Lang(438)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -415,11 +391,11 @@
       <DisplayName>#Lang(135)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(335)</Help>
+      <Help>#Lang(235)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(235)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
@@ -427,11 +403,11 @@
       <DisplayName>#Lang(136)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(336)</Help>
+      <Help>#Lang(236)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(236)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
@@ -439,11 +415,11 @@
       <DisplayName>#Lang(137)</DisplayName>
       <DefaultValue>200</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(337)</Help>
+      <Help>#Lang(237)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(237)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
@@ -451,12 +427,48 @@
       <DisplayName>#Lang(138)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(338)</Help>
+      <Help>#Lang(238)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(238)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(338)</ErrorValidationMessage>
       <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(139)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(239)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(339)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(141)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(241)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(439)|0)|(#Lang(441)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(341)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(142)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(242)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(442)|0)|(#Lang(443)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(342)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -464,19 +476,18 @@
       <Sentence ID="001">Datatable v4</Sentence>
       <Sentence ID="002">The Datatable v4 type produces an object that represents some data in the datasheet view. The 'Header' attribute defines the names of columns to display, the data are set as an array or dictionary in the 'Data' attribute. This type supports single- and multi-selection of table lines.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">CSS Class</Sentence>
-      <Sentence ID="106">Position</Sentence>
-      <Sentence ID="107">Top</Sentence>
-      <Sentence ID="108">Left</Sentence>
-      <Sentence ID="109">Width</Sentence>
-      <Sentence ID="111">Height</Sentence>
-      <Sentence ID="112">Title</Sentence>
-      <Sentence ID="113">Header</Sentence>
-      <Sentence ID="114">Data</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Display</Sentence>
+      <Sentence ID="109">Title</Sentence>
+      <Sentence ID="111">Header</Sentence>
+      <Sentence ID="113">Data</Sentence>
+      <Sentence ID="114">Skin Data</Sentence>
       <Sentence ID="115">Auto width columns</Sentence>
       <Sentence ID="116">Key</Sentence>
       <Sentence ID="117">Show header</Sentence>
@@ -499,20 +510,21 @@
       <Sentence ID="136">IDE_left</Sentence>
       <Sentence ID="137">IDE_width</Sentence>
       <Sentence ID="138">IDE_height</Sentence>
-      <Sentence ID="139">Display</Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="139">Z-Index</Sentence>
+      <Sentence ID="141">Visibility</Sentence>
+      <Sentence ID="142"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Names of CSS classes</Sentence>
-      <Sentence ID="206">newAttribute28</Sentence>
-      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="209">Width of the object in pixels</Sentence>
-      <Sentence ID="211">Height of the object in pixels</Sentence>
-      <Sentence ID="212">Title of the object to display</Sentence>
-      <Sentence ID="213">Header of the table, described in the array</Sentence>
-      <Sentence ID="214">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="203">newAttribute28</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">newAttribute35</Sentence>
+      <Sentence ID="209">Title of the object to display</Sentence>
+      <Sentence ID="211">Header of the table, described in the array</Sentence>
+      <Sentence ID="213">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="214">newAttribute37</Sentence>
       <Sentence ID="215">Table data described in the array or dictionary</Sentence>
       <Sentence ID="216">Key field which identifies the entry</Sentence>
       <Sentence ID="217">Define if the header is shown or not</Sentence>
@@ -535,20 +547,21 @@
       <Sentence ID="236">newAttribute32</Sentence>
       <Sentence ID="237">newAttribute33</Sentence>
       <Sentence ID="238">newAttribute34</Sentence>
-      <Sentence ID="239"></Sentence>
+      <Sentence ID="239">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="241">Visibility of the object</Sentence>
+      <Sentence ID="242"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="305"></Sentence>
-      <Sentence ID="306"></Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer | auto</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer | auto</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer | auto</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="309">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="311">Incorrect value, must be positive integer | auto</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Incorrect value, must be array</Sentence>
-      <Sentence ID="314">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Incorrect value, must be array</Sentence>
+      <Sentence ID="313">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="314">newAttribute37</Sentence>
       <Sentence ID="315">Incorrect value, must be array or dictionary</Sentence>
       <Sentence ID="316">Error, attribute must be in header</Sentence>
       <Sentence ID="317"></Sentence>
@@ -561,8 +574,8 @@
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
-      <Sentence ID="328">newAttribute29</Sentence>
-      <Sentence ID="329"></Sentence>
+      <Sentence ID="328">Incorrect value</Sentence>
+      <Sentence ID="329">Incorrect value</Sentence>
       <Sentence ID="331">Error in custom parameters</Sentence>
       <Sentence ID="332">Error in custom functions</Sentence>
       <Sentence ID="333">Error in custom columns</Sentence>
@@ -571,41 +584,49 @@
       <Sentence ID="336">newAttribute32</Sentence>
       <Sentence ID="337">newAttribute33</Sentence>
       <Sentence ID="338">newAttribute34</Sentence>
-      <Sentence ID="339">newAttribute35</Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Absolute</Sentence>
-      <Sentence ID="406">Relative</Sentence>
-      <Sentence ID="407">Fixed</Sentence>
-      <Sentence ID="408">Static</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="413">Yes</Sentence>
-      <Sentence ID="414">Yes</Sentence>
-      <Sentence ID="415">No</Sentence>
+      <Sentence ID="339">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
+      <Sentence ID="401">Absolute</Sentence>
+      <Sentence ID="402">Relative</Sentence>
+      <Sentence ID="403">Fixed</Sentence>
+      <Sentence ID="404">Static</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406">Block</Sentence>
+      <Sentence ID="407">Flex</Sentence>
+      <Sentence ID="408">Inline</Sentence>
+      <Sentence ID="409">Inline-block</Sentence>
+      <Sentence ID="411">Preset 1</Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413">Array</Sentence>
+      <Sentence ID="414">Dictionary</Sentence>
+      <Sentence ID="415"></Sentence>
       <Sentence ID="416">Yes</Sentence>
       <Sentence ID="417">No</Sentence>
-      <Sentence ID="418">Yes</Sentence>
-      <Sentence ID="419">No</Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
       <Sentence ID="421">Yes</Sentence>
       <Sentence ID="422">No</Sentence>
-      <Sentence ID="423">Single</Sentence>
-      <Sentence ID="424">Multi</Sentence>
-      <Sentence ID="425">User defined</Sentence>
-      <Sentence ID="426">Default</Sentence>
-      <Sentence ID="427">EOF</Sentence>
-      <Sentence ID="428">ProSuite</Sentence>
-      <Sentence ID="429">Empty</Sentence>
-      <Sentence ID="431">Yes</Sentence>
-      <Sentence ID="432">No</Sentence>
-      <Sentence ID="433"></Sentence>
-      <Sentence ID="434">Block</Sentence>
-      <Sentence ID="435">Flex</Sentence>
-      <Sentence ID="436">Inline</Sentence>
-      <Sentence ID="437">Inline-block</Sentence>
+      <Sentence ID="423">Yes</Sentence>
+      <Sentence ID="424">No</Sentence>
+      <Sentence ID="425">Yes</Sentence>
+      <Sentence ID="426">No</Sentence>
+      <Sentence ID="427">Yes</Sentence>
+      <Sentence ID="428">No</Sentence>
+      <Sentence ID="429">Single</Sentence>
+      <Sentence ID="431">Multi</Sentence>
+      <Sentence ID="432">User defined</Sentence>
+      <Sentence ID="433">Default</Sentence>
+      <Sentence ID="434">EOF</Sentence>
+      <Sentence ID="435">ProSuite</Sentence>
+      <Sentence ID="436">Empty</Sentence>
+      <Sentence ID="437">Yes</Sentence>
+      <Sentence ID="438">No</Sentence>
+      <Sentence ID="439">No</Sentence>
+      <Sentence ID="441">Yes</Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
+      <Sentence ID="444">User data</Sentence>
       <Sentence ID="501">For custom function</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -678,19 +699,18 @@
       <Sentence ID="001">Datatable v3</Sentence>
       <Sentence ID="002">Represents the data in the datasheet view</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">CSS Class</Sentence>
-      <Sentence ID="106"></Sentence>
-      <Sentence ID="107">Top</Sentence>
-      <Sentence ID="108">Left</Sentence>
-      <Sentence ID="109">Width</Sentence>
-      <Sentence ID="111">Height</Sentence>
-      <Sentence ID="112">Title</Sentence>
-      <Sentence ID="113">Header</Sentence>
-      <Sentence ID="114">Data</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109">Title</Sentence>
+      <Sentence ID="111">Header</Sentence>
+      <Sentence ID="113">Data</Sentence>
+      <Sentence ID="114"></Sentence>
       <Sentence ID="115">Auto width columns</Sentence>
       <Sentence ID="116">Key</Sentence>
       <Sentence ID="117">Show header</Sentence>
@@ -713,20 +733,21 @@
       <Sentence ID="136"></Sentence>
       <Sentence ID="137"></Sentence>
       <Sentence ID="138"></Sentence>
-      <Sentence ID="139"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="139">Z-Index</Sentence>
+      <Sentence ID="141">Visibility</Sentence>
+      <Sentence ID="142"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Names of CSS classes</Sentence>
-      <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="208">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="209">Width of the object in pixels</Sentence>
-      <Sentence ID="211">Height of the object in pixels</Sentence>
-      <Sentence ID="212">Title of the object to display</Sentence>
-      <Sentence ID="213">Header of the table, described in the array</Sentence>
-      <Sentence ID="214">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209">Title of the object to display</Sentence>
+      <Sentence ID="211">Header of the table, described in the array</Sentence>
+      <Sentence ID="213">Table data described in the array or dictionary</Sentence>
+      <Sentence ID="214"></Sentence>
       <Sentence ID="215">Table data described in the array or dictionary</Sentence>
       <Sentence ID="216">Key field which identifies the entry</Sentence>
       <Sentence ID="217">Define if the header is shown or not</Sentence>
@@ -749,20 +770,21 @@
       <Sentence ID="236"></Sentence>
       <Sentence ID="237"></Sentence>
       <Sentence ID="238"></Sentence>
-      <Sentence ID="239"></Sentence>
+      <Sentence ID="239">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="241">Visibility of the object</Sentence>
+      <Sentence ID="242"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303"></Sentence>
       <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="305"></Sentence>
-      <Sentence ID="306"></Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Incorrect value, must be array</Sentence>
-      <Sentence ID="314">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Incorrect value, must be array</Sentence>
+      <Sentence ID="313">Incorrect value, must be array or dictionary</Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="315">Incorrect value, must be array or dictionary</Sentence>
       <Sentence ID="316">Error, attribute must be in header</Sentence>
       <Sentence ID="317"></Sentence>
@@ -785,41 +807,49 @@
       <Sentence ID="336"></Sentence>
       <Sentence ID="337"></Sentence>
       <Sentence ID="338"></Sentence>
-      <Sentence ID="339"></Sentence>
+      <Sentence ID="339">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="405"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
       <Sentence ID="414"></Sentence>
       <Sentence ID="415"></Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421">Yes</Sentence>
-      <Sentence ID="422">No</Sentence>
-      <Sentence ID="423">Single</Sentence>
-      <Sentence ID="424">Multi</Sentence>
-      <Sentence ID="425">User defined</Sentence>
-      <Sentence ID="426">Default</Sentence>
-      <Sentence ID="427">EOF</Sentence>
-      <Sentence ID="428">ProSuite</Sentence>
-      <Sentence ID="429"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
-      <Sentence ID="433"></Sentence>
-      <Sentence ID="434"></Sentence>
-      <Sentence ID="435"></Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423"></Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427">Yes</Sentence>
+      <Sentence ID="428">No</Sentence>
+      <Sentence ID="429">Single</Sentence>
+      <Sentence ID="431">Multi</Sentence>
+      <Sentence ID="432">User defined</Sentence>
+      <Sentence ID="433">Default</Sentence>
+      <Sentence ID="434">EOF</Sentence>
+      <Sentence ID="435">ProSuite</Sentence>
       <Sentence ID="436"></Sentence>
       <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439">No</Sentence>
+      <Sentence ID="441">Yes</Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
+      <Sentence ID="444"></Sentence>
       <Sentence ID="501">For custom function</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -892,19 +922,18 @@
       <Sentence ID="001">Таблица данных v3</Sentence>
       <Sentence ID="002">Представление данных в виде таблицы</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
       <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103">Отображение</Sentence>
-      <Sentence ID="104">Позиция</Sentence>
-      <Sentence ID="105">Класс CSS</Sentence>
-      <Sentence ID="106"></Sentence>
-      <Sentence ID="107">Сверху</Sentence>
-      <Sentence ID="108">Слева</Sentence>
-      <Sentence ID="109">Ширина</Sentence>
-      <Sentence ID="111">Высота</Sentence>
-      <Sentence ID="112">Заголовок</Sentence>
-      <Sentence ID="113">Заголовок</Sentence>
-      <Sentence ID="114">Данные</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109">Заголовок</Sentence>
+      <Sentence ID="111">Заголовок</Sentence>
+      <Sentence ID="113">Данные</Sentence>
+      <Sentence ID="114"></Sentence>
       <Sentence ID="115">Auto width columns</Sentence>
       <Sentence ID="116">Ключ</Sentence>
       <Sentence ID="117">Отобразить заголовок</Sentence>
@@ -927,20 +956,21 @@
       <Sentence ID="136"></Sentence>
       <Sentence ID="137"></Sentence>
       <Sentence ID="138"></Sentence>
-      <Sentence ID="139"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="139">Позиция</Sentence>
+      <Sentence ID="141">Отображение</Sentence>
+      <Sentence ID="142"></Sentence>
+      <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="203">Режим отображения объекта</Sentence>
-      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="205">Имена классов CSS</Sentence>
-      <Sentence ID="206"></Sentence>
-      <Sentence ID="207">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="208">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="209">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="211">Высота объекта в пикселях</Sentence>
-      <Sentence ID="212">Заголовок объекта</Sentence>
-      <Sentence ID="213">Заголовок таблицы, описанный в виде массива</Sentence>
-      <Sentence ID="214">Данные таблицы, описанные в виде словаря или массива</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209">Заголовок объекта</Sentence>
+      <Sentence ID="211">Заголовок таблицы, описанный в виде массива</Sentence>
+      <Sentence ID="213">Данные таблицы, описанные в виде словаря или массива</Sentence>
+      <Sentence ID="214"></Sentence>
       <Sentence ID="215">Данные таблицы, описанные в виде словаря или массива</Sentence>
       <Sentence ID="216">Ключевое поле, определяющее ввод данных</Sentence>
       <Sentence ID="217">Показывать заголовок или нет</Sentence>
@@ -963,20 +993,21 @@
       <Sentence ID="236"></Sentence>
       <Sentence ID="237"></Sentence>
       <Sentence ID="238"></Sentence>
-      <Sentence ID="239"></Sentence>
+      <Sentence ID="239">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="241">Режим отображения объекта</Sentence>
+      <Sentence ID="242"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303"></Sentence>
       <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="305"></Sentence>
-      <Sentence ID="306"></Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Неправильное значение, должен быть массив</Sentence>
-      <Sentence ID="314">Неправильное значение, должен быть массив или словарь</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">Неправильное значение, должен быть массив</Sentence>
+      <Sentence ID="313">Неправильное значение, должен быть массив или словарь</Sentence>
+      <Sentence ID="314"></Sentence>
       <Sentence ID="315">Неправильное значение, должен быть массив или словарь</Sentence>
       <Sentence ID="316">Ошибка, данный атрибут должен быть в заголовке</Sentence>
       <Sentence ID="317"></Sentence>
@@ -999,41 +1030,49 @@
       <Sentence ID="336"></Sentence>
       <Sentence ID="337"></Sentence>
       <Sentence ID="338"></Sentence>
-      <Sentence ID="339"></Sentence>
+      <Sentence ID="339">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="341"></Sentence>
+      <Sentence ID="342"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Нет</Sentence>
-      <Sentence ID="404">Да</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="405"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
       <Sentence ID="408"></Sentence>
-      <Sentence ID="409">Да</Sentence>
-      <Sentence ID="411">Нет</Sentence>
-      <Sentence ID="412">Нет</Sentence>
-      <Sentence ID="413">Да</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
       <Sentence ID="414"></Sentence>
       <Sentence ID="415"></Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421">Да</Sentence>
-      <Sentence ID="422">Нет</Sentence>
-      <Sentence ID="423">Одиночное</Sentence>
-      <Sentence ID="424">Множественное</Sentence>
-      <Sentence ID="425">Определено пользователем</Sentence>
-      <Sentence ID="426">По умолчанию</Sentence>
-      <Sentence ID="427">EOF</Sentence>
-      <Sentence ID="428">ProSuite</Sentence>
-      <Sentence ID="429"></Sentence>
-      <Sentence ID="431"></Sentence>
-      <Sentence ID="432"></Sentence>
-      <Sentence ID="433"></Sentence>
-      <Sentence ID="434"></Sentence>
-      <Sentence ID="435"></Sentence>
+      <Sentence ID="416">Да</Sentence>
+      <Sentence ID="417">Нет</Sentence>
+      <Sentence ID="418">Нет</Sentence>
+      <Sentence ID="419">Да</Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423"></Sentence>
+      <Sentence ID="424"></Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426"></Sentence>
+      <Sentence ID="427">Да</Sentence>
+      <Sentence ID="428">Нет</Sentence>
+      <Sentence ID="429">Одиночное</Sentence>
+      <Sentence ID="431">Множественное</Sentence>
+      <Sentence ID="432">Определено пользователем</Sentence>
+      <Sentence ID="433">По умолчанию</Sentence>
+      <Sentence ID="434">EOF</Sentence>
+      <Sentence ID="435">ProSuite</Sentence>
       <Sentence ID="436"></Sentence>
       <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439">Нет</Sentence>
+      <Sentence ID="441">Да</Sentence>
+      <Sentence ID="442"></Sentence>
+      <Sentence ID="443"></Sentence>
+      <Sentence ID="444"></Sentence>
       <Sentence ID="501">For custom function</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503"></Sentence>
@@ -1325,7 +1364,7 @@ class VDOM_datatable_v4(VDOM_object):
       
     styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-    cssclass = u'class="vdom_datatablev4 {usercss} {multiselect} {tristate}"'.format(
+    cssclass = u'class="{usercss} vdom_datatablev4 {multiselect} {tristate}"'.format(
         usercss     = (self.cssclass).replace('"', '') if self.cssclass else "",
         multiselect = u"multiselect" if self.selectionmode == "1" else "",
         tristate    = u"tristate" if self.tristate == "1" else "" )
@@ -1911,6 +1950,38 @@ def on_update(object, attributes):
       else:
         modif[attr] = attr_value
   attributes.update(modif)
+  
+  header1 = """[ "ID", "Name", "Price", "Author" ]"""
+    	
+  arraydata = """\
+[
+    [1, "CF-Card", "123.12", "user1"], 
+    [2, "VdomBox", "23.4", "user2"] 
+]"""
+
+  dictdata = """\
+[
+    {"ID":1, "Name": "CF-Card", "Price": "123.12", "Author": "user1"},
+    {"ID":2, "Name": "VDOMBox", "Price": "23.4", "Author": "user2"}
+]"""
+
+  data_map = {
+    "0": arraydata,
+    "1": dictdata,
+    "2": u"",
+    "3": header1
+  }
+    
+  if "skindata" in attributes:
+    skindata = attributes["skindata"]
+    if skindata in ["0", "1"]:
+      attributes.update(data=data_map[skindata], header=header1)
+    else:
+      attributes.update(data=u"", header=u"")
+      
+  if any(key in attributes for key in ["data", "header"]):
+    if any(attributes.get(key) not in data_map.values() for key in ["data", "header"]):
+      attributes.update(skindata="3")
 
   return ""
   
