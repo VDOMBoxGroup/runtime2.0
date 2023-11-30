@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.231.6200</Version>
+    <Version>1.232.6200</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, container</Containers>
@@ -26,42 +26,6 @@
   </Information>
   <Attributes>
     <Attribute>
-      <Name>stateful</Name>
-      <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>classname</Name>
       <DisplayName>#Lang(104)</DisplayName>
       <DefaultValue/>
@@ -72,6 +36,18 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
@@ -144,18 +120,6 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>value</Name>
@@ -336,6 +300,42 @@
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -1117,7 +1117,7 @@ class VDOM_formlist(VDOM_object):
         multi = u""" multiple="multiple\"""" if self.multiselect and self.multiselect == "1" else u""
         size = u""" size="%s" """ % self.size if self.size else u""
 
-        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="vdom_formlist {classname}" style="{style}" {size}{multi}{disabled}>"""\
+        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="{classname} vdom_formlist" style="{style}" {size}{multi}{disabled}>"""\
                 .format(
                     disabled = disabled,
                     id = id,

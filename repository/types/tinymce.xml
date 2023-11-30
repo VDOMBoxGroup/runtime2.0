@@ -14,17 +14,29 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>0.44.0</Version>
+    <Version>0.48.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, flexcontainer, form</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
-    <Handlers/>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
   <Attributes>
+    <Attribute>
+      <Name>cssclass</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
       <DisplayName>#Lang(101)</DisplayName>
@@ -38,21 +50,9 @@
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|1)|(#Lang(402)|0))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>positioning1</Name>
       <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
@@ -62,64 +62,64 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>top</Name>
       <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
       <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
       <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>300</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(207)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>200</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
+      <CodeInterface>TextField(10)</CodeInterface>
       <Colorgroup>1</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(313)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(213)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>paddings</Name>
@@ -134,18 +134,6 @@
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>cssclass</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>value</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
@@ -156,6 +144,78 @@
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|1)|(#Lang(402)|0))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(314)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(315)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(215)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>300</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(316)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(317)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -174,6 +234,11 @@
       <Sentence ID="109">Padding</Sentence>
       <Sentence ID="111">Css class</Sentence>
       <Sentence ID="112">Value</Sentence>
+      <Sentence ID="113">Margins</Sentence>
+      <Sentence ID="114">IDE_top</Sentence>
+      <Sentence ID="115">IDE_left</Sentence>
+      <Sentence ID="116">IDE_width</Sentence>
+      <Sentence ID="117">IDE_height</Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -185,6 +250,11 @@
       <Sentence ID="209">Default help field</Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
+      <Sentence ID="213">Incorrect value.</Sentence>
+      <Sentence ID="214">newAttribute12</Sentence>
+      <Sentence ID="215">newAttribute13</Sentence>
+      <Sentence ID="216">newAttribute14</Sentence>
+      <Sentence ID="217">newAttribute15</Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -196,6 +266,11 @@
       <Sentence ID="309">Default validation message</Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
+      <Sentence ID="313">newAttribute11</Sentence>
+      <Sentence ID="314">newAttribute12</Sentence>
+      <Sentence ID="315">newAttribute13</Sentence>
+      <Sentence ID="316">newAttribute14</Sentence>
+      <Sentence ID="317">newAttribute15</Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -234,6 +309,11 @@
       <Sentence ID="109">Padding</Sentence>
       <Sentence ID="111">Css class</Sentence>
       <Sentence ID="112">Value</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -245,6 +325,11 @@
       <Sentence ID="209">Default help field</Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -256,6 +341,11 @@
       <Sentence ID="309">Default validation message</Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -294,6 +384,11 @@
       <Sentence ID="109">Padding</Sentence>
       <Sentence ID="111">Css class</Sentence>
       <Sentence ID="112">Value</Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -305,6 +400,11 @@
       <Sentence ID="209">Default help field</Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -316,6 +416,11 @@
       <Sentence ID="309">Default validation message</Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -382,7 +487,7 @@ class VDOM_tinymce(VDOM_object):
         )
 
         DISPLAY_CONVERT = lambda v: "none" if v == "0" else None
-        SIZE_CONVERT = lambda v: str(v) + "px"
+        SIZE_CONVERT = lambda v: str(v) + "px" if v.isdigit() else v
         STYLES = {
             "display": DISPLAY_CONVERT(self.visible),
             "position": self.positioning1,
@@ -391,10 +496,11 @@ class VDOM_tinymce(VDOM_object):
             "left": SIZE_CONVERT(self.left),
             "width": SIZE_CONVERT(self.width),
             "height": SIZE_CONVERT(self.height),
+            "margin": self.margins,
             "padding": self.paddings,
         }
         STYLES_STRING_FORMAT = ";".join(
-            ["{}:{}".format(key, value) for key, value in STYLES.items() if value is not None]
+            ["{}:{}".format(key, value) for key, value in STYLES.items() if value]
         )
         STYLES_STRING = """
         <style>
@@ -495,7 +601,7 @@ class VDOM_tinymce(VDOM_object):
         )
 
         RESULT = """
-        <div {debug_string} class='{id} {classname}'>
+        <div {debug_string} class='{classname} vdom_tinymce {id}'>
             {styles}
             {html}
             {script}
@@ -513,17 +619,56 @@ class VDOM_tinymce(VDOM_object):
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 
         image_id = "188c34ad-1869-4bf2-91ef-95f1e53e3f94"
         result = get_empty_wysiwyg_value(self, image_id)
 
         return VDOM_object.wysiwyg(self, contents=result)
-    ]]></SourceCode>
+    
+    
+def on_update(object, attributes):
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "width", "height", "top"]:
+		if attr in attributes:
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+
+	attributes.update(modifications)
+	
+	return ""
+        
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/2b079cad-0d3d-46f0-8855-5c54bd5ec0ea.css" />]]></Library>
     <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/83a15133-3af1-10d8-be80-f76d0461cf6b.css" />]]></Library>
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/ed5f035a-f239-4e3b-b4af-bd049d6e49b4.js'></script>]]></Library>
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/5eef28ac-fce2-407e-9a47-0568b1e626bc.js'></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_tinymce {
+            
+        }
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
