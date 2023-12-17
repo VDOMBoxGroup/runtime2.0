@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.18.0</Version>
+    <Version>1.21.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, flexcontainer</Containers>
@@ -932,12 +932,16 @@ TEMPLATE = u"""{libraries}
 <div objname="{name}" id="{id}" style="{style}" class="{classes} vdom_dynamicvdom">{contents}
 </div>
 <script type='text/javascript'>
-$('body').on('DOMNodeInserted', '#{id}', (el) => {{
-	const $this = $(el.target);
-	if ($this.attr('objname') == 'dynamicvdom') {{
-		window.dynamicObjectLoading = true;
-	}}
+const observer_{id} = new MutationObserver((mutationsList) => {{
+  for (const mutation of mutationsList) {{
+    const target = mutation.target;
+    if (target.getAttribute('objname') === 'dynamicvdom') {{
+      window.dynamicObjectLoading = true;
+    }}
+  }}
 }});
+
+observer_{id}.observe(document.body, {{ childList: true, subtree: true }});
 {declarations}
 </script>
 {dynlibraries}"""
