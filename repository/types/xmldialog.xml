@@ -3650,7 +3650,7 @@ class VDOM_xmldialog(VDOM_object):
         }
     });
     
-    $("#%(id)s form.xml-dialog-form").live('submit',function(e){
+    $("#%(id)s form.xml-dialog-form").on('submit',function(e){
         function escapeXml(s) {
             return s.replace(/[<>&'"]/g, function (c) {
                 switch (c) {
