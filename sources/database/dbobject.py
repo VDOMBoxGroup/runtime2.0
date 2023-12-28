@@ -78,8 +78,11 @@ class VDOM_database_object:
         return tables
 
     def backup_data(self, tgt_connection):
-        import sqlitebck
-        sqlitebck.copy(self.get_connection(), tgt_connection)
+        try:
+            import sqlitebck
+            sqlitebck.copy(self.get_connection(), tgt_connection)
+        except ImportError:
+            print ("ERROR: No module sqlitebck - databases could not be exported")
 
 
 class VDOM_database_table:
