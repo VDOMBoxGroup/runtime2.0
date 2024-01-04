@@ -337,3 +337,26 @@ Action:
     watch debugging
     watch debugging --showpagedebug enable
     watch debugging --showpagedebug disable
+
+### Unload server resources
+
+This command unloads resources copy to the destined folder from server. 
+
+There are two switch keys, one responsible for outputting files with their real name 
+(i.e. instead of `4968d3de-dc60-c927-365d-5b6c252d631c` there will be something like `logo.png`)
+and the other will load all types resources from server.
+
+Action:
+
+    offload <appid> <location>
+    offload <appid> <location> --by_name
+    offload <appid> <location> --types
+    offload <appid> <location> --by_name --types
+
+Example:
+
+    offload "4f498469-2e2b-45a8-b0ce-5619137c18e8" "path/to/output/folder"
+    offload "4f498469-2e2b-45a8-b0ce-5619137c18e8" "path/to/output/folder" --by_name
+    offload "4f498469-2e2b-45a8-b0ce-5619137c18e8" "path/to/output/folder" --types
+    offload "4f498469-2e2b-45a8-b0ce-5619137c18e8" "path/to/output/folder" --by_name --types
+    
