@@ -9,13 +9,15 @@ from cgi import FieldStorage
 from environment import VDOM_environment
 from headers import VDOM_headers
 from arguments import VDOM_request_arguments
-from Cookie import BaseCookie
+from Cookie import BaseCookie, Morsel
 #from memory.interface import MemoryInterface
 import managers
 from utils.file_argument import File_argument
 import tempfile
 from utils.properties import weak
+import settings
 
+Morsel._reserved["samesite"] = "SameSite"
 
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
@@ -111,6 +113,9 @@ class VDOM_request(object):
 
         #if sid not in args.get('sid', []):
         self.__response_cookies["sid"] = sid
+        if settings.SAME_SITE_NONE:
+            self.__response_cookies["sid"]["secure"] = True
+            self.__response_cookies["sid"]["samesite"] = "None"
         args["sid"] = sid
         self.__session = managers.session_manager[sid]
         self.__arguments = VDOM_request_arguments(args)

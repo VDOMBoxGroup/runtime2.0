@@ -65,6 +65,10 @@ AUTOSAVE_APPLICATIONS = True  # periodically save application
 
 SESSION_LIFETIME = 1200  # life time for web sessions
 
+# cookies
+
+SAME_SITE_NONE = False
+
 # timeouts
 
 SCRIPT_TIMEOUT = 30.1  # default termination timeout for arbitrary actions
