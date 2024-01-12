@@ -1,239 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-	<Information>
-		<ID>5c1b98df-8609-4660-83b2-44ec7b2e7611</ID>
-		<Name>copy</Name>
-		<DisplayName>#Lang(001)</DisplayName>
-		<ClassName>VDOM_copy</ClassName>
-		<Description>#Lang(002)</Description>
-		<Version>1.61.8389</Version>
-		<Category>Standard</Category>
-		<InterfaceType>1</InterfaceType>
-		<Icon>#Res(4d6060c5-5acd-bd35-8f4c-0888ae0306f0)</Icon>
-		<EditorIcon>#Res(767b4073-ad36-95eb-2ac6-088903b15a9b)</EditorIcon>
-		<StructureIcon>#Res(4b5fe60d-f570-eddf-278c-0889362f18e3)</StructureIcon>
-		<Dynamic>1</Dynamic>
-		<Moveable>1</Moveable>
-		<Resizable>1</Resizable>
-		<OptimizationPriority>1</OptimizationPriority>
-		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, container, tablecell</Containers>
-		<Handlers>on_startup, on_create, on_delete, on_update, on_compile, flexcontainer</Handlers>
-		<Languages>en_US, ru_RU, fr_FR</Languages>
-	</Information>
-	<Attributes>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(199)</DisplayName>
-			<Description>#Lang(299)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(399)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(499)|0)|(#Lang(499)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>designcolor</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue>EEEEEE</DefaultValue>
-			<RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>Color()</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>source_object</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<Description>#Lang(207)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>ObjectList()</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>source_object_cache</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<Description>#Lang(208)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>ObjectList()</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-	</Attributes>
-	<Languages>
-		<Language Code="en_US">
-			<Sentence ID="001">Copy</Sentence>
-			<Sentence ID="002">The Copy type produces an object displayed as the identical copy of some associated object specified by the &apos;Source&apos; attribute. Different Copy objects can use one and the same source object. After specifying a new source object the Copy object&apos;s position (Left and Top attributes) becomes exactly the same as that of the source object. The Copy object&apos;s position can be changed manually (without affecting the source object&apos;s position). All changes made to the source object are applied to all Copy objects associated with it. If you want to set an action on the object inserted into the Copy object, you must set the action on the source object, since the Copy object only reflects the appearance of the source object and can not have any actions.
+  <Information>
+    <Name>copy</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_copy</ClassName>
+    <ID>5c1b98df-8609-4660-83b2-44ec7b2e7611</ID>
+    <Icon>#Res(4d6060c5-5acd-bd35-8f4c-0888ae0306f0)</Icon>
+    <EditorIcon>#Res(767b4073-ad36-95eb-2ac6-088903b15a9b)</EditorIcon>
+    <StructureIcon>#Res(4b5fe60d-f570-eddf-278c-0889362f18e3)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>1</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1.63.8389</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, container, tablecell</Containers>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
+    <Handlers>on_startup, on_create, on_delete, on_update, on_compile, flexcontainer</Handlers>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>designcolor</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>EEEEEE</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>Color()</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(4)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>source_object</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>source_object_cache</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>0</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>ObjectList()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Copy</Sentence>
+      <Sentence ID="002">The Copy type produces an object displayed as the identical copy of some associated object specified by the 'Source' attribute. Different Copy objects can use one and the same source object. After specifying a new source object the Copy object's position (Left and Top attributes) becomes exactly the same as that of the source object. The Copy object's position can be changed manually (without affecting the source object's position). All changes made to the source object are applied to all Copy objects associated with it. If you want to set an action on the object inserted into the Copy object, you must set the action on the source object, since the Copy object only reflects the appearance of the source object and can not have any actions.
 The Copy type does not make the copies of:
 - the top-level containers;
 - the objects situated on the same page as the Copy object;
 - the objects situated on the pages with other Copy objects.
 Such restriction is introduced in order to avoid the recursion problems. To avoid these problems, the Copy object should be placed on some other web page which does not contain any Copy object.</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">Color in WYSIWYG</Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visibility</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Top</Sentence>
-			<Sentence ID="106">Left</Sentence>
-			<Sentence ID="107">Source object</Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="201">The background color of the object in the WYSIWYG mode of VDOM IDE. It helps to navigate the objects of the page if there are too many of them.</Sentence>
-			<Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-			<Sentence ID="203">Visibility of the object.</Sentence>
-			<Sentence ID="204">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-			<Sentence ID="205">Spacing between the top edge of the container and the object in pixels.</Sentence>
-			<Sentence ID="206">Spacing between the left edge of the container and the object in pixels.</Sentence>
-			<Sentence ID="207">The object which is copied by the current Сopy object.</Sentence>
-			<Sentence ID="208">Cashed target object</Sentence>
-			<Sentence ID="301">Incorrect value.</Sentence>
-			<Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-			<Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
-			<Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-			<Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-			<Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-			<Sentence ID="307">Incorrect object.</Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-		</Language>
-		<Language Code="fr_FR">
-			<Sentence ID="001">Copie d&apos;objet</Sentence>
-			<Sentence ID="002">Copie d&apos;objet</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">Color in WYSIWYG</Sentence>
-			<Sentence ID="102">Hiérarchie</Sentence>
-			<Sentence ID="103">Visibilité</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Haut</Sentence>
-			<Sentence ID="106">Gauche</Sentence>
-			<Sentence ID="107">Objet Source</Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="201">Color in design mode</Sentence>
-			<Sentence ID="202">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
-			<Sentence ID="203">Afficher ou cacher l&apos;objet</Sentence>
-			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="205">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="206">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="207">Objet source qui sera copié</Sentence>
-			<Sentence ID="208">Cashed target object</Sentence>
-			<Sentence ID="301">Incorrect value</Sentence>
-			<Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-			<Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="307">Object Incorrect</Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="401">Invisible</Sentence>
-			<Sentence ID="402">Visible</Sentence>
-		</Language>
-		<Language Code="ru_RU">
-			<Sentence ID="001">Копия</Sentence>
-			<Sentence ID="002">Используется для создания копии объекта</Sentence>
-			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">Цвет в WYSIWYG</Sentence>
-			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103">Отображение</Sentence>
-			<Sentence ID="104">Позиция</Sentence>
-			<Sentence ID="105">Сверху</Sentence>
-			<Sentence ID="106">Слева</Sentence>
-			<Sentence ID="107">Исходный объект</Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="201">Цвет в режиме редактирования</Sentence>
-			<Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
-			<Sentence ID="203">Режим отображения объекта</Sentence>
-			<Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="207">Целевой объект для копирования</Sentence>
-			<Sentence ID="208">Копия целевого объекта в кэше</Sentence>
-			<Sentence ID="301">Неправильное значение</Sentence>
-			<Sentence ID="302">Неправильное значение</Sentence>
-			<Sentence ID="303">Неправильное значение</Sentence>
-			<Sentence ID="304">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
-			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="307">Неправильный объект</Sentence>
-			<Sentence ID="308"></Sentence>
-			<Sentence ID="401">Не отображать</Sentence>
-			<Sentence ID="402">Отображать</Sentence>
-		</Language>
-	</Languages>
-	<Resources>
-		<Resource ID="4b5fe60d-f570-eddf-278c-0889362f18e3" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Color in WYSIWYG</Sentence>
+      <Sentence ID="103">Hierarchy</Sentence>
+      <Sentence ID="104">Visibility</Sentence>
+      <Sentence ID="105">Z-Index</Sentence>
+      <Sentence ID="106">Top</Sentence>
+      <Sentence ID="107">Left</Sentence>
+      <Sentence ID="108">Source object</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">The background color of the object in the WYSIWYG mode of VDOM IDE. It helps to navigate the objects of the page if there are too many of them.</Sentence>
+      <Sentence ID="203">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="204">Visibility of the object.</Sentence>
+      <Sentence ID="205">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="206">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="207">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="208">The object which is copied by the current Сopy object.</Sentence>
+      <Sentence ID="209">Cashed target object</Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Incorrect value.</Sentence>
+      <Sentence ID="303">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="304">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="307">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="308">Incorrect object.</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">Invisible</Sentence>
+      <Sentence ID="404">Visible</Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Copie d'objet</Sentence>
+      <Sentence ID="002">Copie d'objet</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Color in WYSIWYG</Sentence>
+      <Sentence ID="103">Hiérarchie</Sentence>
+      <Sentence ID="104">Visibilité</Sentence>
+      <Sentence ID="105">Z-Index</Sentence>
+      <Sentence ID="106">Haut</Sentence>
+      <Sentence ID="107">Gauche</Sentence>
+      <Sentence ID="108">Objet Source</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">Color in design mode</Sentence>
+      <Sentence ID="203">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="204">Afficher ou cacher l'objet</Sentence>
+      <Sentence ID="205">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="206">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="207">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="208">Objet source qui sera copié</Sentence>
+      <Sentence ID="209">Cashed target object</Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Incorrect value</Sentence>
+      <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="308">Object Incorrect</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">Invisible</Sentence>
+      <Sentence ID="404">Visible</Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Копия</Sentence>
+      <Sentence ID="002">Используется для создания копии объекта</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101"></Sentence>
+      <Sentence ID="102">Цвет в WYSIWYG</Sentence>
+      <Sentence ID="103">Иерархия</Sentence>
+      <Sentence ID="104">Отображение</Sentence>
+      <Sentence ID="105">Позиция</Sentence>
+      <Sentence ID="106">Сверху</Sentence>
+      <Sentence ID="107">Слева</Sentence>
+      <Sentence ID="108">Исходный объект</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="201"></Sentence>
+      <Sentence ID="202">Цвет в режиме редактирования</Sentence>
+      <Sentence ID="203">Приоритет в потоке гипертекста</Sentence>
+      <Sentence ID="204">Режим отображения объекта</Sentence>
+      <Sentence ID="205">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="206">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="207">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="208">Целевой объект для копирования</Sentence>
+      <Sentence ID="209">Копия целевого объекта в кэше</Sentence>
+      <Sentence ID="301"></Sentence>
+      <Sentence ID="302">Неправильное значение</Sentence>
+      <Sentence ID="303">Неправильное значение</Sentence>
+      <Sentence ID="304">Неправильное значение</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть целое число от 0 до 99</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308">Неправильный объект</Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403">Не отображать</Sentence>
+      <Sentence ID="404">Отображать</Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="4b5fe60d-f570-eddf-278c-0889362f18e3" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -254,10 +271,8 @@ Such restriction is introduced in order to avoid the recursion problems. To avoi
 			vwacDj74lrauH1vLCDVeAcnogUc7QyD5gKzMm6ereH3nxEFiZ3u2YvqR0OtLH4JCOvq34SoDbAbd
 			29PxRqMxqHRAlEH+M+HFuRcHSAEAng/ig2qAzcGkb2X3wj5bFydkp4v3m+0KQG7AfCXz+5fEEqgE
 			OzDBAQIihhqVQEQdYPmQsvTdC6M1L3MASXSzOgD4DDI+RN81dBcjkRej+tbgV4ABAEJ1vyb9qSGJ
-			AAAAAElFTkSuQmCC
-		</Resource>
-		<Resource ID="4d6060c5-5acd-bd35-8f4c-0888ae0306f0" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			AAAAAElFTkSuQmCC]]></Resource>
+    <Resource ID="4d6060c5-5acd-bd35-8f4c-0888ae0306f0" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -315,10 +330,8 @@ Such restriction is introduced in order to avoid the recursion problems. To avoi
 			A4IIe9HVU+noSeQKK6RBFdvz3NuUrjLQ1LaJ4ufFKrQXOVBW79jCeP0pWi/aKRxfYnuVUiIqVUFl
 			1UUROieKjsCvoPfPYL8LwV7A6EzYVagoJQm+0SCoTllUkcrbOH6bnejQnmLvTHH8GPeAIus7fR/h
 			jCLYywg+JiLgWNDsnapc9KBQQPcgB8q9kajwn5kk2ij7BzMa28ifw2T1o4wuIdjbLAdklaG06OlC
-			uXSALxyUG2z/E2AAg3qcnbqLE6YAAAAASUVORK5CYII=
-		</Resource>
-		<Resource ID="767b4073-ad36-95eb-2ac6-088903b15a9b" Type="jpg" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			uXSALxyUG2z/E2AAg3qcnbqLE6YAAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="767b4073-ad36-95eb-2ac6-088903b15a9b" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -340,11 +353,9 @@ Such restriction is introduced in order to avoid the recursion problems. To avoi
 			efJAQi/kt0qCcv4mJQzyKfmfneD4Yzj9PDg5jPHrLR49hK7XCbgKksE9n/IHhfQHJHU+ezyMZpe3
 			Q3tzPZ5j+p7Qy3MPbJe+2fw7KjJE5nB9sjuca7XumtQERDkUXyNuKAzAgkoIcN4C2s0QWUCWvlYq
 			ylF4DK2I5KR4rRM3QIoMss9keh/asYJ6jJVkVgkCItooKiiiHyJ5cXn6ZprFjGlVEO2osn4I8E5y
-			Xqy53arQgoQBoPBDbk93VMsZgIS/2rcAAwClyMj+lNgSvwAAAABJRU5ErkJggg==
-		</Resource>
-	</Resources>
-	<SourceCode>
-<![CDATA[def on_startup(object):
+			Xqy53arQgoQBoPBDbk93VMsZgIS/2rcAAwClyMj+lNgSvwAAAABJRU5ErkJggg==]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[def on_startup(object):
     source_object = object.application.objects.catalog.get(object.attributes["source_object"])
     if source_object:
         source_object.attach(object)
@@ -509,6 +520,12 @@ class VDOM_copy(VDOM_object):
         else:
             result = self.empty_copy()
 
-        return VDOM_object.wysiwyg(self, contents=result)]]>
-	</SourceCode>
+        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
+  <Libraries/>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents/>
+    </Events>
+    <Actions/>
+  </E2vdom>
 </Type>
