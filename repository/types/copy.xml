@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.63.8389</Version>
+    <Version>1.106.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell</Containers>
@@ -355,7 +355,9 @@ Such restriction is introduced in order to avoid the recursion problems. To avoi
 			ylF4DK2I5KR4rRM3QIoMss9keh/asYJ6jJVkVgkCItooKiiiHyJ5cXn6ZprFjGlVEO2osn4I8E5y
 			Xqy53arQgoQBoPBDbk93VMsZgIS/2rcAAwClyMj+lNgSvwAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[def on_startup(object):
+  <SourceCode><![CDATA[import re
+
+def on_startup(object):
     source_object = object.application.objects.catalog.get(object.attributes["source_object"])
     if source_object:
         source_object.attach(object)
@@ -469,24 +471,50 @@ class VDOM_copy(VDOM_object):
 
         if self.source_object:
             object = application.objects.search(self.source_object)
-
+            
             if object:
-                # top = self.top if self.top else object.get_attributes()["top"].value
-                top = self.top if self.top else object.attributes["top"]
-                # left = self.left if self.left else object.get_attributes()["left"].value
-                left = self.left if self.left else object.attributes["left"]
-                # width = object.get_attributes()["width"].value
-                width = object.attributes["width"]
+                height = height1 = height2 = ""
+                
+                if "ide_top" in object.attributes and object.attributes["ide_top"]:
+                    top = self.top if self.top else object.attributes["ide_top"]
+                    print("top: ", top)
+                    if "ide_left" in object.attributes:
+                        left = self.left if self.left else object.attributes["ide_left"]
+                        print("left: ", left)
+                    if object.attributes.get("ide_width"):
+                        width = object.attributes["ide_width"]
+                    
+                    if "ide_height" in object.attributes:
+                        height = object.attributes["ide_height"]
+                        height1 = u"""height="%s" """ % height
+                        height2 = u"""height="%s" """ % str(int(height) + 2)
+                        
+                else:
+                    top = self.top if self.top else re.sub(r"\D", "", object.attributes["top"])
+                    left = self.left if self.left else re.sub(r"\D", "", object.attributes["left"])
+                    
+                    width = re.sub(r"\D", "", object.attributes["width"])
+                    
+                    if "height" in object.attributes:
+                        height = re.sub(r"\D", "", object.attributes["height"])
+                        height1 = u"""height="%s" """ % height
+                        height2 = u"""height="%s" """ % str(int(height) + 2)
 
-                height1 = height2 = u""
-                # if "height" in object.get_attributes():
-                if "height" in object.attributes:
-                    # height = object.get_attributes()["height"].value
-                    height = object.attributes["height"]
-                    height1 = u"""height="%s" """ % height
-                    height2 = u"""height="%s" """ % str(int(height) + 2)
 
                 zindex = self.zindex
+                
+                contents_str = contents
+                
+                container_match = re.search(r'<container(.*?)</container>', contents_str, re.DOTALL)
+                if container_match:
+                    container_str = container_match.group(0)
+                    
+                    new_container_str = re.sub(r'top="(.*?)"', 'top="0"', container_str, count=1)
+                    new_container_str = re.sub(r'left="(.*?)"', 'left="0"', new_container_str, count=1)
+                    new_contents_str = re.sub(re.escape(container_str), new_container_str, contents_str, count=1)
+                    
+                    contents = new_contents_str
+
                 # if "zindex" in object.get_attributes():
                 if "zindex" in object.attributes:
                     # zindex = object.get_attributes()["zindex"].value
