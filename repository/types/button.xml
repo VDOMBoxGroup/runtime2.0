@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.371.6201</Version>
+    <Version>1.378.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
@@ -156,6 +156,18 @@
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>alt</Name>
+      <DisplayName>#Lang(157)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(357)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(150)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(257)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>link</Name>
@@ -695,6 +707,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="154">IDE_top</Sentence>
       <Sentence ID="155">IDE_width</Sentence>
       <Sentence ID="156">IDE_height</Sentence>
+      <Sentence ID="157">Alt</Sentence>
       <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">newAttribute36</Sentence>
@@ -746,6 +759,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="254">newAttribute41</Sentence>
       <Sentence ID="255">newAttribute42</Sentence>
       <Sentence ID="256">newAttribute43</Sentence>
+      <Sentence ID="257">newAttribute51</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">newAttribute36</Sentence>
@@ -797,6 +811,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="354">newAttribute41</Sentence>
       <Sentence ID="355">newAttribute42</Sentence>
       <Sentence ID="356">newAttribute43</Sentence>
+      <Sentence ID="357">Alternative text is used in HTML to provide a text replacement for images or other multimedia elements when they cannot be loaded or accessed. The attribute is also important for search engine optimization (SEO).</Sentence>
       <Sentence ID="401">Button</Sentence>
       <Sentence ID="402">Link</Sentence>
       <Sentence ID="403">Image</Sentence>
@@ -992,6 +1007,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="154"></Sentence>
       <Sentence ID="155"></Sentence>
       <Sentence ID="156"></Sentence>
+      <Sentence ID="157"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203"></Sentence>
@@ -1043,6 +1059,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="254"></Sentence>
       <Sentence ID="255"></Sentence>
       <Sentence ID="256"></Sentence>
+      <Sentence ID="257"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303"></Sentence>
@@ -1094,6 +1111,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="354"></Sentence>
       <Sentence ID="355"></Sentence>
       <Sentence ID="356"></Sentence>
+      <Sentence ID="357"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -1289,6 +1307,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="154"></Sentence>
       <Sentence ID="155"></Sentence>
       <Sentence ID="156"></Sentence>
+      <Sentence ID="157"></Sentence>
       <Sentence ID="201">Имя класса CSS</Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203"></Sentence>
@@ -1340,6 +1359,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="254"></Sentence>
       <Sentence ID="255"></Sentence>
       <Sentence ID="256"></Sentence>
+      <Sentence ID="257"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303"></Sentence>
@@ -1391,6 +1411,7 @@ There are the following ways of displaying the Button object: if the 'Text' attr
       <Sentence ID="354"></Sentence>
       <Sentence ID="355"></Sentence>
       <Sentence ID="356"></Sentence>
+      <Sentence ID="357"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -1768,11 +1789,13 @@ class VDOM_button(VDOM_object):
         id_out = u"o_%s" % (self.id).replace('-', '_')
         styleblock = u""
         scriptblock = u""
+        alt = u"""alt="{}" """.format(self.alt) if self.alt else ""
+        
         border_style = u"border: {border} {bdcolor};".format(
                           border = self.check_unit(self.border), bdcolor = self.bordercolor
                        ) if self.border else ""
         text_align = u"text-align: {align};".format(align = self.align) if self.align else ""
-
+        
         width_style = u"width: {width};".format(width = self.check_unit(self.width)) if self.width else ""
         height_style = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
 
@@ -1866,7 +1889,7 @@ class VDOM_button(VDOM_object):
                 if self.rollover:
                     rover_link = id2link1(self.finalrollover)
                     overcss = u"""<style>#%(id)s a:hover {background-image: url("%(image)s")!important}</style>
-                                    <div style="display: none"><img src="%(image)s" /></div>
+                                    <div style="display: none"><img src="%(image)s"/></div>
                                 """ % {"id": id_out, "image": rover_link}
                 else:
                     hover_link = id2link1(self.finalimage)
@@ -1875,9 +1898,9 @@ class VDOM_button(VDOM_object):
                     
                     if self.ishover == "0":
                         representation = \
-                            u"""<img src="{image}" width={width} height={height} title="{hint}" />
+                            u"""<img src="{image}" width={width} height={height} title="{hint}" {alt}/>
                             """.format(
-                                image=hover_link, width=width_img, height=height_img, hint=self.hint)
+                                image=hover_link, width=width_img, height=height_img, hint=self.hint, alt=alt)
                     else:
                         if not self.classname:
                             self.classname = "imagebtn"
@@ -1916,15 +1939,15 @@ class VDOM_button(VDOM_object):
                         #------------------------
                 if self.disabledimg:
                     disablecss = u"""<style>#%(id)s .disabled {background-image:url("%(image)s")!important}</style>
-                                        <div style="display:none"><img src="%(image)s" /></div>
+                                        <div style="display:none"><img src="%(image)s"/></div>
                                 """ % {"id": id_out, "image": id2link1(self.finaldisabledimg)}
             else:
                 def_image_id = u"e6017485-3493-484c-6a86-0867a82288fe"
     
                 representation = \
-                    u"""<img src="/{image}.res" width={width} height={height} title="{hint}" />
+                    u"""<img src="/{image}.res" width={width} height={height} title="{hint}" {alt}/>
                     """.format(
-                        image=def_image_id, width=self.width,
+                        image=def_image_id, width=self.width, alt=alt,
                         height=self.height, hint=self.hint)
     
             if self.link:
