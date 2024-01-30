@@ -954,6 +954,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                     s = 'Outgoing SOAP'
                     SOAPpy.debugHeader(s)
                     debug(resp)
+                    import time
+                    with open("dumpSOAPOut%d.txt" % int(time.time()), "wb") as f:
+                        f.write(resp)
 
                     SOAPpy.debugFooter(s)
                 except:
