@@ -443,14 +443,8 @@
       <Sentence ID="808">value must be in quotes</Sentence>
       <Sentence ID="809">value must be in quotes</Sentence>
       <Sentence ID="811">Name of CSS class</Sentence>
-      <Sentence ID="901">Current Y-value</Sentence>
-      <Sentence ID="902">Current Y-value</Sentence>
-      <Sentence ID="903">Current Y-value</Sentence>
       <Sentence ID="904">Current Y-value</Sentence>
       <Sentence ID="905">Current Y-value</Sentence>
-      <Sentence ID="906">Current Y-value</Sentence>
-      <Sentence ID="907">Current Y-value</Sentence>
-      <Sentence ID="908">Current Y-value</Sentence>
       <Sentence ID="909">Current Y-value</Sentence>
       <Sentence ID="911">Current Y-value</Sentence>
       <Sentence ID="912">cellData</Sentence>
@@ -608,14 +602,8 @@
       <Sentence ID="808">la valeur doit être entre guillemets</Sentence>
       <Sentence ID="809"></Sentence>
       <Sentence ID="811"></Sentence>
-      <Sentence ID="901">Current Y-value</Sentence>
-      <Sentence ID="902">Current Y-value</Sentence>
-      <Sentence ID="903">Current Y-value</Sentence>
       <Sentence ID="904">Current Y-value</Sentence>
       <Sentence ID="905">Current Y-value</Sentence>
-      <Sentence ID="906">Current Y-value</Sentence>
-      <Sentence ID="907">Current Y-value</Sentence>
-      <Sentence ID="908">Current Y-value</Sentence>
       <Sentence ID="909">Current Y-value</Sentence>
       <Sentence ID="911">Current Y-value</Sentence>
       <Sentence ID="912"></Sentence>
@@ -773,14 +761,8 @@
       <Sentence ID="808">значение должно быть в кавычках</Sentence>
       <Sentence ID="809"></Sentence>
       <Sentence ID="811"></Sentence>
-      <Sentence ID="901">Текущее значение Y</Sentence>
-      <Sentence ID="902">Текущее значение Y</Sentence>
-      <Sentence ID="903">Текущее значение Y</Sentence>
       <Sentence ID="904">Текущее значение Y</Sentence>
       <Sentence ID="905">Текущее значение Y</Sentence>
-      <Sentence ID="906">Текущее значение Y</Sentence>
-      <Sentence ID="907">Текущее значение Y</Sentence>
-      <Sentence ID="908">Текущее значение Y</Sentence>
       <Sentence ID="909">Текущее значение Y</Sentence>
       <Sentence ID="911">Текущее значение Y</Sentence>
       <Sentence ID="912"></Sentence>
@@ -1007,11 +989,14 @@ def on_update(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="border" Help="#Lang(509)">
+        <Event Name="restart" Help="#Lang(522)">
           <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(926)"/>
+          </Parameters>
+        </Event>
+        <Event Name="custom" Help="#Lang(514)">
+          <Parameters>
+            <Parameter Name="params" Order="" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
         <Event Name="click" Help="#Lang(511)">
@@ -1020,11 +1005,10 @@ def on_update(object, attributes):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="corner" Help="#Lang(512)">
+        <Event Name="dblclick" Help="#Lang(515)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(906)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="pos" Order="0" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
         <Event Name="ctrlclick" Help="#Lang(513)">
@@ -1033,15 +1017,10 @@ def on_update(object, attributes):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="custom" Help="#Lang(514)">
+        <Event Name="mouseup" Help="#Lang(521)">
           <Parameters>
-            <Parameter Name="paramы" Order="" VbType="" Help="#Lang(912)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick" Help="#Lang(515)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(925)"/>
           </Parameters>
         </Event>
         <Event Name="mousedown" Help="#Lang(516)">
@@ -1068,47 +1047,15 @@ def on_update(object, attributes):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(521)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(924)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(925)"/>
-          </Parameters>
-        </Event>
-        <Event Name="restart" Help="#Lang(522)">
-          <Parameters>
-            <Parameter Name="params" Order="" VbType="" Help="#Lang(926)"/>
-          </Parameters>
-        </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="cursorType" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[this.domCont.style.cursor = cursorType;]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="dragStart">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStop">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
-        </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setTransparency">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="value" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var nn = parseInt(value,10) / 100;
-$q(this.domCont).css('opacity', nn);]]></SourceCode>
         </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
           <Parameters>
@@ -1131,6 +1078,27 @@ $q(this.domCont).css('opacity', nn);]]></SourceCode>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="cursorType" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[this.domCont.style.cursor = cursorType;]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="dragStart">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="dragStop">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setTransparency">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="value" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[var nn = parseInt(value,10) / 100;
+$q(this.domCont).css('opacity', nn);]]></SourceCode>
         </Action>
       </Container>
     </Actions>
