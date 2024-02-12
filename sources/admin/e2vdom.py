@@ -221,7 +221,7 @@ def run(request):
 
                 rr = StringIO()
                 for key in r:
-                    rr.write("""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"), r[key][2], r[key][3], r[key][0]))
+                    rr.write("""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"), r[key][2], r[key][3], r[key][0].replace("]"+"]>", "]]"+"]]><![CD"+"ATA[>")))
                 request.write("<ACTIONS>%s</ACTIONS>" % rr.getvalue().encode("utf-8"))
                 request.write("<SV>%s</SV>" % json.dumps(request.shared_variables).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'))
 
