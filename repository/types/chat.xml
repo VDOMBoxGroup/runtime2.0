@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.356.6201</Version>
+    <Version>1.360.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -218,6 +218,18 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
+      <Name>externalurl</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(327)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(227)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
       <Name>agent_name</Name>
       <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue/>
@@ -343,6 +355,7 @@
       <Sentence ID="124">Z-Index</Sentence>
       <Sentence ID="125">Visibility</Sentence>
       <Sentence ID="126"></Sentence>
+      <Sentence ID="127">External URL</Sentence>
       <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Spacing from the top edge of the parent object to the current object.</Sentence>
@@ -367,6 +380,7 @@
       <Sentence ID="224">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
       <Sentence ID="225">Visibility of the object</Sentence>
       <Sentence ID="226"></Sentence>
+      <Sentence ID="227">Incorrect value</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
@@ -391,6 +405,7 @@
       <Sentence ID="324">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="325">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="326"></Sentence>
+      <Sentence ID="327">The URL of the image located somewhere on the Internet.</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402">Preset 1</Sentence>
       <Sentence ID="403">Preset 2</Sentence>
@@ -505,6 +520,7 @@
       <Sentence ID="124">Z-Index</Sentence>
       <Sentence ID="125">Visibilité</Sentence>
       <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
       <Sentence ID="203">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
@@ -529,6 +545,7 @@
       <Sentence ID="224">Niveau de superposition de l'objet par rapport aux autres</Sentence>
       <Sentence ID="225">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -553,6 +570,7 @@
       <Sentence ID="324">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="325">Valeur Incorrecte, must be 0 or 1</Sentence>
       <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -667,6 +685,7 @@
       <Sentence ID="124">Позиция</Sentence>
       <Sentence ID="125">Отображение</Sentence>
       <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
       <Sentence ID="201"></Sentence>
       <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
       <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
@@ -691,6 +710,7 @@
       <Sentence ID="224">Положение в визуальной иерархии объектов</Sentence>
       <Sentence ID="225">Режим отображения объекта</Sentence>
       <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
@@ -715,6 +735,7 @@
       <Sentence ID="324">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="325">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -853,8 +874,9 @@ class VDOM_chat(VDOM_object):
         except ValueError:
         	print("Invalid JSON format")
         
-        if self.avatar:
-        	html_ava = u"""<div class="avatar"><img class="avatar_image" src="{link}" /></div>""".format(link = id2link1(self.avatar))
+        if self.avatar or self.externalurl:
+        	link = id2link1(self.avatar) if self.avatar else self.externalurl
+        	html_ava = u"""<div class="avatar"><img class="avatar_image" src="{url}" /></div>""".format(url=link)
         else:
         	html_ava = u"""<div class="avatar"></div>"""
         
