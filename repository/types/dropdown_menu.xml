@@ -1,0 +1,1055 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+  <Information>
+    <Name>dropdown_menu</Name>
+    <DisplayName>#Lang(001)</DisplayName>
+    <Description>#Lang(002)</Description>
+    <ClassName>VDOM_dropdown_menu</ClassName>
+    <ID>18c33696-247c-3e7d-9678-7de73a17c8a3</ID>
+    <Icon>#Res(8da56bee-32be-1c85-8d90-a81ab646275e)</Icon>
+    <EditorIcon>#Res(74347937-8125-bbce-bb27-a81b72255fac)</EditorIcon>
+    <StructureIcon>#Res(c4bdaeb3-d0ba-0b75-ad69-a81c349ee858)</StructureIcon>
+    <Moveable>1</Moveable>
+    <Resizable>3</Resizable>
+    <Container>1</Container>
+    <Category>Standard</Category>
+    <Dynamic>1</Dynamic>
+    <Version>1.222.1</Version>
+    <InterfaceType>1</InterfaceType>
+    <OptimizationPriority>1</OptimizationPriority>
+    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
+    <Languages>en_US ,fr_FR ,ru_RU</Languages>
+    <Handlers>on_compile, on_update</Handlers>
+    <RemoteMethods/>
+    <WCAG/>
+    <XMLScriptName/>
+  </Information>
+  <Attributes>
+    <Attribute>
+      <Name>classname</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(1000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue>static</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>data</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>btn_label</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>Открыть</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>btn_image</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(212)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>File()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>button_svg</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>alt</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(214)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>skindata</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(215)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1)|(#Lang(413)|2))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(217)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(414)|0)|(#Lang(415)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(219)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>show_clicked</Name>
+      <DisplayName>#Lang(121)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(416)|0)|(#Lang(417)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(418)|0)|(#Lang(419)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(224)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(125)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(225)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(126)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(226)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(127)</DisplayName>
+      <DefaultValue>120</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(227)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue>160</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+  </Attributes>
+  <Languages>
+    <Language Code="en_US">
+      <Sentence ID="001">Dropdown menu</Sentence>
+      <Sentence ID="002">The List type produces an object displayed as a horizontal or vertical list.</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">CSS class</Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Top</Sentence>
+      <Sentence ID="104">Left</Sentence>
+      <Sentence ID="105">Width</Sentence>
+      <Sentence ID="106">Height</Sentence>
+      <Sentence ID="107">Position</Sentence>
+      <Sentence ID="108">Display</Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="111">Label</Sentence>
+      <Sentence ID="112">Image</Sentence>
+      <Sentence ID="113">SVG Image</Sentence>
+      <Sentence ID="114">Alt</Sentence>
+      <Sentence ID="115">Skin Data</Sentence>
+      <Sentence ID="116">Style</Sentence>
+      <Sentence ID="117">Skin</Sentence>
+      <Sentence ID="118">Margins</Sentence>
+      <Sentence ID="119">Paddings</Sentence>
+      <Sentence ID="121">Show clicked</Sentence>
+      <Sentence ID="122">Z-Index</Sentence>
+      <Sentence ID="123">Visibility</Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125">IDE_top</Sentence>
+      <Sentence ID="126">IDE_left</Sentence>
+      <Sentence ID="127">IDE_width</Sentence>
+      <Sentence ID="128">IDE_height</Sentence>
+      <Sentence ID="201">The necessary CSS code applied to all objects within the container.</Sentence>
+      <Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="203">Spacing between the object and the top border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="204">Spacing between the object and the left border of the container, in which the object is situated.</Sentence>
+      <Sentence ID="205">The width of the object.</Sentence>
+      <Sentence ID="206">The height of the object.</Sentence>
+      <Sentence ID="207">newAttribute22</Sentence>
+      <Sentence ID="208">newAttribute21</Sentence>
+      <Sentence ID="209">The data in JSON (JavaScript Object Notation) format.</Sentence>
+      <Sentence ID="211">newAttribute21</Sentence>
+      <Sentence ID="212">newAttribute25</Sentence>
+      <Sentence ID="213">newAttribute25</Sentence>
+      <Sentence ID="214">newAttribute20</Sentence>
+      <Sentence ID="215">newAttribute25</Sentence>
+      <Sentence ID="216">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
+      <Sentence ID="217">newAttribute26</Sentence>
+      <Sentence ID="218">newAttribute24</Sentence>
+      <Sentence ID="219">newAttribute23</Sentence>
+      <Sentence ID="221">newAttribute25</Sentence>
+      <Sentence ID="222">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+      <Sentence ID="223">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225">newAttribute21</Sentence>
+      <Sentence ID="226">newAttribute22</Sentence>
+      <Sentence ID="227">newAttribute23</Sentence>
+      <Sentence ID="228">newAttribute24</Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307">newAttribute22</Sentence>
+      <Sentence ID="308">newAttribute21</Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311">newAttribute21</Sentence>
+      <Sentence ID="312">newAttribute25</Sentence>
+      <Sentence ID="313">newAttribute25</Sentence>
+      <Sentence ID="314">newAttribute20</Sentence>
+      <Sentence ID="315">newAttribute25</Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317">newAttribute26</Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
+      <Sentence ID="319">Incorrect value.</Sentence>
+      <Sentence ID="321">newAttribute25</Sentence>
+      <Sentence ID="322">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325">newAttribute21</Sentence>
+      <Sentence ID="326">newAttribute22</Sentence>
+      <Sentence ID="327">newAttribute23</Sentence>
+      <Sentence ID="328">newAttribute24</Sentence>
+      <Sentence ID="401">Absolute</Sentence>
+      <Sentence ID="402">Fixed</Sentence>
+      <Sentence ID="403">Relative</Sentence>
+      <Sentence ID="404">Static</Sentence>
+      <Sentence ID="405">Block</Sentence>
+      <Sentence ID="406">Inline</Sentence>
+      <Sentence ID="407">Flex</Sentence>
+      <Sentence ID="408">Inline-block</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412">Example</Sentence>
+      <Sentence ID="413">User data</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">User defined</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">Yes</Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Hide the object.</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Show the object.</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601">addItems</Sentence>
+      <Sentence ID="602">clearMenu</Sentence>
+      <Sentence ID="603">hide</Sentence>
+      <Sentence ID="604">newData</Sentence>
+      <Sentence ID="605">methodName4</Sentence>
+      <Sentence ID="606">show</Sentence>
+      <Sentence ID="701">menuItems</Sentence>
+      <Sentence ID="702">fade</Sentence>
+      <Sentence ID="703">menuItems</Sentence>
+      <Sentence ID="704">itemIDs</Sentence>
+      <Sentence ID="705">length</Sentence>
+      <Sentence ID="706">start</Sentence>
+      <Sentence ID="707">fade</Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+    </Language>
+    <Language Code="fr_FR">
+      <Sentence ID="001">Dropdown menu</Sentence>
+      <Sentence ID="002">Used to insert horizontal or vertical list</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">CSS class</Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Top</Sentence>
+      <Sentence ID="104">Left</Sentence>
+      <Sentence ID="105">Width</Sentence>
+      <Sentence ID="106">Height</Sentence>
+      <Sentence ID="107"></Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109">Data</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Style</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122">Z-Index</Sentence>
+      <Sentence ID="123">Visibility</Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
+      <Sentence ID="202">Order of rendering the object on the page</Sentence>
+      <Sentence ID="203">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="204">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Width of the object in pixels</Sentence>
+      <Sentence ID="206">Height of the object in pixels</Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209">Data in JSON format</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">CSS style of the object</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="223">Visibility of the object</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="303">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="307"></Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Incorrect value</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Incorrect value</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322">Incorrect value, must be even integer from 0 to 99</Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418">No</Sentence>
+      <Sentence ID="419">Yes</Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Hide the object</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Show the object</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603">hide</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606">show</Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702">fade</Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
+      <Sentence ID="705"></Sentence>
+      <Sentence ID="706"></Sentence>
+      <Sentence ID="707">fade</Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+    </Language>
+    <Language Code="ru_RU">
+      <Sentence ID="001">Выпадающий список</Sentence>
+      <Sentence ID="002">Используется для добавления горизонтальных или вертикальных списков</Sentence>
+      <Sentence ID="003"></Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
+      <Sentence ID="102">Иерархия</Sentence>
+      <Sentence ID="103">Сверху</Sentence>
+      <Sentence ID="104">Слева</Sentence>
+      <Sentence ID="105">Ширина</Sentence>
+      <Sentence ID="106">Высота</Sentence>
+      <Sentence ID="107"></Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109">Данные</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116">Стиль</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119"></Sentence>
+      <Sentence ID="121"></Sentence>
+      <Sentence ID="122">Позиция</Sentence>
+      <Sentence ID="123">Отображение</Sentence>
+      <Sentence ID="124"></Sentence>
+      <Sentence ID="125"></Sentence>
+      <Sentence ID="126"></Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="201">Имена классов CSS</Sentence>
+      <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="204">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="206">Высота объекта в пикселях</Sentence>
+      <Sentence ID="207"></Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209">Данные в формате JSON</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216">Стиль CSS</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219"></Sentence>
+      <Sentence ID="221"></Sentence>
+      <Sentence ID="222">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="223">Отображение объекта</Sentence>
+      <Sentence ID="224"></Sentence>
+      <Sentence ID="225"></Sentence>
+      <Sentence ID="226"></Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="307"></Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309">Неправильное значение</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316">Неправильное значение</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319"></Sentence>
+      <Sentence ID="321"></Sentence>
+      <Sentence ID="322">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="323"></Sentence>
+      <Sentence ID="324"></Sentence>
+      <Sentence ID="325"></Sentence>
+      <Sentence ID="326"></Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="401"></Sentence>
+      <Sentence ID="402"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="412"></Sentence>
+      <Sentence ID="413"></Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415"></Sentence>
+      <Sentence ID="416"></Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418">Нет</Sentence>
+      <Sentence ID="419">Да</Sentence>
+      <Sentence ID="421"></Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Скрыть объект</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Показать объект</Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603">Скрыть</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606">Показать</Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702">Исчезновение</Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
+      <Sentence ID="705"></Sentence>
+      <Sentence ID="706"></Sentence>
+      <Sentence ID="707">Исчезновение</Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="903"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
+      <Sentence ID="906"></Sentence>
+      <Sentence ID="907"></Sentence>
+      <Sentence ID="908"></Sentence>
+      <Sentence ID="909"></Sentence>
+      <Sentence ID="911"></Sentence>
+    </Language>
+  </Languages>
+  <Resources>
+    <Resource ID="c4bdaeb3-d0ba-0b75-ad69-a81c349ee858" Name="structure drop-down-menu.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAHXAAAB1wGMkghoAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAhlJREFUOE99k89r02AYx79vmrSsXqzFUyUgtNRWqFAcrliUngpFL97cxWNbL4KIV/8B8WAPBe+7TMrYYeYknopD7PCgs2wUL5WWVtfS30maxOdNsoGu8QNfQr5Jnjy/XpZMJmvZbPaBZVngWoXP54M6HWHv4Ah9eR0wBUAUwQ6UfVYqlaxqteq+6o02/I2NF29wKF3BbekEx+YltN/vgEI5qKrqKc5kNoOqGbjws4nyxS7kX99hLU0Ii8UCy+XSfum0jH+l60sYuo41ScDJ3Yd4/M2P/RubYMEgWCKReJbJZPKCIOh2lBXQM2izifnuy5GvJ99cgxRkMA0Bn5RDFgqFnobD4XXTND0DMGKhqlK/3a5pwK5r8/IXLJfLWeVyGdPp1LFX4Pf70e/3UalU9lqt1j3XthE0TTPH4zEmkwn41Uv8OfWDN0t0PnVgkiQ9oj/coiwpO08YlSjRRN4ahvHB9WxYLBbbSqfTV2kSpuudQ6SlGY1GrNFo1Hq93ivXthGj0ehmsVi006QsXPtveA+63S6ofp0CvCbLmTshkvGjXq+HKD0qcfUq8wwGgwHm8/kx3RqO68B/eZ90h/TfHpB487ZJn7lxCkulUl/z+fxlPg3XOwcdJjYcDgVFUbY7nc4Tss6yECORyPVCoWCPyYtAIGD3gEq9RgH4Ap0FYLIsf4zH4xs67boX/DjzRWs2my8pk+dkuc0C/gA9fiJLuhwa5wAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="8da56bee-32be-1c85-8d90-a81ab646275e" Name="drop-down-menu.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADoAAAA6CAYAAADhu0ooAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAHXAAAB1wGMkghoAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAABt5JREFUaEPtWn9MVVUc/9zHjwe9l6IopqgIKMvpXOb8UZZMmWTq/LG56o8c5Mg1m2tOY4swtdRq/qLQXGv9WGsqZm64aRKj1i8j54QkIw0YKg8FQfHle8J7vHf7fO97D6nM3EXHAf1sH9/xnnMv53PPOd8f51wE8RhZRF4j9V7EJnIbadf4z1Ryb0RExOCEhATNarVC16VN98LPPrS3++C8cgWNjQ3A/bFA/3hWtAdb3AR+HzRvO3T3FcB1yQfd/64ILaK49MWLF2PFihWIiYmB3+8P3NCNcLd50HjZiQP792HTmxuA9KWwLNnMjrcEW/wHNAvnpQua4xz0U6XwF3FArzY3i9BrI0eOjCosLMTo0aPR1tYWuKGb4WptQwOFfr7rM6zNzQHmvgTLsjx2mqsrLByIiACo6V/wke6r0GqrgPM18O9eCf1irdE0SqarjKTH44HP51OKHbNL568ULRTp4pQsK4b+3T7oP+wP8PsvDKL2l0B7WaK8n+vQ+J/xTmRNygNVWJs3BTWi5Tz8Bevgz8+Cvi0T+paMALeSec8Z13FkH6cwJ6tM4yBuNPjqIpKD+nMhcGgHUmw+zJv5OBbOSsWCJ6Zh0Zw0pE15CDFnjsF/IA/6hRq2twZv7GlCpbdcdzId02fPw7b8Hcjf+T7ytr+HnR98iFfXrMPQpFF0KnWA8yJHNCxwH9GzhNKzaCmT6BX748uDB3CFric+Ph50i4iNjcXx48dRU3sGGDUBiEvkGvUGb+xpQukQtMnzgSkLUH3WgTWrc3HxIkeOKCkpwaaN6+G2REObkQFtYALgve5BepZQQXgELAuzgeHjcOjgIRQU7EF1dTW2bN6Mhkv0selLoE2cR5ES5F1HzxIqTqHdAzyQDG3BSvjCrHj7jXV4jSN7uIgR7INToc1+kaq4NsW1dIIhVKMptlh6iGZxgT4PtKmLoM1airomJ3bt3kPxSYZ4bXAyR7M12Pg6RB3dZ8CP9hixEkRwcLSncqAt2QTMp8Dn8zll5zDOcwcbEaJH/Ckh9vdZr9fbPzExEZMmTUJkZKQajIqCV9fw+8mTKCnmtByTCi11JrtLZ8p6IwS026GNnwLt0XRow+hWxJ1YeV2LguZy0c2cg//EYaD1T4/IXUbuGDZsGNLS0tCnTx8lIiQv15j7mgenT1Wi9MiPQNJ4aOOms4Jr9G8IjFgA7LeMoIdu5aoTaKyBfqZMrO83UhtNvk5KWiAKexvLycmh18HxxlgyibST0kAVSB/FeHQeuluFJN6/kVU3ulk1i3RbkmMRKgZJVjlNFpjGGxmdCpC+SV9OkHvJc6RpyMMyyO3h4eF2yUtVgbg7yUeZI8sy+pqUfjqkzgxE6GmbzTZqxowZGD58+PVEt5shAXtzczMqKytx9uxZGdmV5DtGpQmIUF0ygJycHMO1qCK0paUFDocDZWVlKC4ulkubyZelYAYdhkcEtre3K8PQVsrt8ukdQpXfRukiVHMldwx3n9CwsDDQxShF6ZOkkEF0FMxAbr4QExMzKCMjAykpKYYBUAGXL19GXV0dSktLUVFRIZdeId+SghmI0I18a6siAlDGKIVyZKaQ8iu70kvJo0alCYhQGylv60mSiZ5SEKcu0VAe+ZVcMIt/znvZC1fFz0jfbuHo7NYQEnofOSb4q5pDrSerAkXzEKEJ5FpyGtmHVCMGDPRNXrqI/Ij8mDTdN3nYJxaLJUPi3bi4OGVi3dbWVrjdbjQ0NEhZEuhnyBKj0gREqHvAgAHRWVlZGDJkiDLuRYL6+vp6I6g/duyYXNpA5krBDIzpMXToUOTm5sJutyszopKmiR8tLy9HkWxOA1vIVVIwAyMyEp8lh8Dis1RiKIsJoktG8l5Q39tgCJXAORRAq8ZOxyRiT0xDnuKXtSBfo0RFRSlDibtFZKevZLpkJeUtHbFarY9MnDgRYn1Vsboul8vIYKqqqtDY2ChH11nkp0alSaSRv5Ji1VSkiMwnB5KmEZr3D5MTSDmOUAniW2Tj+lvykly4h/9BaESnk3PJ/qQaMWCgbzJ1ZXuhgLxAmoY87Gkyj6Z8EF1MSHi3Q6K14C6DfHUhSfcLpGmxIqwiOjp6bGpqKkaMGKGM1XU6nWhqajKOJBwOh8yy5eROo9IERKifWYuWnZ2Nfv36KSNUXIscSUhQL98QEV0+kuCsDURGoemiAu9EZGTgRn9MFQbRUTCDDqG9HXeX0NAalfWgEkPrNIguDYo8pYnWNjYzMxPJycnKHUkcPXoUJ07IZwxYTa6XghmI0K18a8v79u0bbrPZOi/+boWkjrKdwixG93g8f/BSJvmTUWkSEshvJWVLUVSqRHHqpeRssgsA/gK29F1Btvm/WQAAAABJRU5ErkJggg==]]></Resource>
+    <Resource ID="74347937-8125-bbce-bb27-a81b72255fac" Name="editor drop-down-menu.png" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAHXAAAB1wGMkghoAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAuNJREFUSEudVl1IU2EYfr7vzOPcDwxK56gZXowIuqqL7kLoIilSGHQhIlEYEd6F4KXVbkQqL7roT0iipAjJm1gtCCGwmw3C3UlYRlHb2HKbbW7Ond7326Q2tHb2wLPznvc738/7+00AGPH5fLecTqe+tbVFr41BCAEhBX4mk/icygHuA4C08ABgGMD6GhBbuSdocSMcDsPhcGBzc7M6/f/gDXRdx9NHMxh4sghcuQ+sfARyWWCvB1o2h/J4DySdXC1eKpVoY8MUGeppbQNezeDo42H0Lk7g4PQQjA9vAZsLkt3CJy+Xy2DZFMuGmgcpga+f4D92CMG5ZziypxXl5HflLkngH3Uas2A3KWxsAGdHcfv9KkYHzuB5YR/EiSHSr0MWi0W0tLTAarXCbrc3TJvNBooxHHYH7UBu6nLix+AN3Mz7UBqegmxzgsyDoEDd8fv951wul1TmmoDUNGNleVmGlr/pOHwcQtNh6K0QxTyQiFMcXr+r2ojTRJ1obgfag0j+QYLI87fB63IWRAW55kF3d3ePxWKhhKimRuOQsVgsl0gkRkl+U1HVQni9XiMQCKgXMy5ShUYMhUKYnZ2dIdX5ykgtJJ1cBZiLplkSdq1QuUEpFo/HkUqlkKSyN8t0Ol1damcIqoHLVMkn6dl4I/oDmc/nc4VCYYrkcEVVC472fiJnUTMbaETqanhBLLKiHoLy/0tfX59X0zTTQWZEo1FEIpFrJF5VijoISlFjcnJSNa1msigYDOIhgVQXKiO1UE1o++Nm+S+wi1b7+/u7OF2bcdHS0hLoPrlO4rhS1IG/6iL2Es1WMYM9kCHOEXcOMqXnCFlxioNMMN0qstnsL6qlCZIjFVUthMfjMcbGxpTJzbhoYWEB8/Pz0yReVIo6SG4Tbrcb7e3tptnR0QGyntfZ1XLJdzFfOvzkq7NRbn/Pcwn0d2JnCLrN7nZ2dl7ia9N8t6YyXltLZzKZQRJfVjR/A/gNHxyZottctD4AAAAASUVORK5CYII=]]></Resource>
+    <Resource ID="f726b106-d4a5-7375-bdfa-7e36eea8248e" Name="chatbox.js" Type="js"><![CDATA[bGV0IHNvY2tldDsNCmxldCBzY2VuYXJpb0d1aWQ7DQpsZXQgaG9zdFVybDsNCmxldCB1c2VyRW1haWw7DQpsZXQgdXNlclZhcmlhYmxlczsNCmxldCB0cmlnZ2VyOw0KbGV0IG5ld191cmk7DQpsZXQgaXNGaXJzdFN0YXJ0ID0gdHJ1ZTsNCg0KZnVuY3Rpb24gc3RhcnQod3Nfc2VydmVyLCB1cmwsIGd1aWQsIGVtYWlsLCB2YXJpYWJsZXMpIHsNCg0KICAgIGlmICh3c19zZXJ2ZXIpIHsNCiAgICAgICAgbmV3X3VyaSA9IHdzX3NlcnZlcjsNCiAgICB9DQogICAgaWYgKHVybCkgew0KICAgICAgICBob3N0VXJsID0gdXJsOw0KICAgIH0NCiAgICBpZiAoZ3VpZCkgew0KICAgICAgICBzY2VuYXJpb0d1aWQgPSBndWlkOw0KICAgIH0NCiAgICBpZiAoZW1haWwpIHsNCiAgICAgICAgdXNlckVtYWlsID0gZW1haWw7DQogICAgfQ0KICAgIGlmICh2YXJpYWJsZXMpIHsNCiAgICAgICAgdXNlclZhcmlhYmxlcyA9IHZhcmlhYmxlczsNCiAgICB9DQogICAgY29uc3QgY2hhdCA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoIi52ZG9tX2NoYXQiKTsNCiAgICBpZiAoIW5ld191cmkgfHwgIWhvc3RVcmwgfHwgIXNjZW5hcmlvR3VpZCB8fCAhdXNlckVtYWlsIHx8ICF1c2VyVmFyaWFibGVzKSB7DQogICAgICAgIGlmICghaXNGaXJzdFN0YXJ0KSB7DQogICAgICAgICAgICBjb25zb2xlLndhcm4oIk5vdCBhbGwgcGFyYW1ldGVycyBhcmUgcGFzc2VkIHRvIGNyZWF0ZSB0aGUgc29ja2V0LiIpOw0KICAgICAgICB9DQogICAgICAgIGlzRmlyc3RTdGFydCA9IGZhbHNlOw0KICAgICAgICBjaGF0LmNsYXNzTGlzdC5hZGQoImluYWN0aXZlIik7IA0KICAgICAgICByZXR1cm47DQogICAgfSBlbHNlIHsNCiAgICAgICAgY2hhdC5jbGFzc0xpc3QucmVtb3ZlKCJpbmFjdGl2ZSIpOyANCiAgICB9DQoNCiAgICBpZiAoc29ja2V0ICYmIHNvY2tldC5yZWFkeVN0YXRlID09PSBXZWJTb2NrZXQuT1BFTikgew0KICAgICAgICBzb2NrZXQub25jbG9zZSA9IGZ1bmN0aW9uICgpIHt9Ow0KICAgICAgICBzb2NrZXQuY2xvc2UoKTsNCiAgICB9DQogICAgY29uc3QgY2hhdGJveCA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJjaGF0Ym94Iik7DQogICAgY2hhdGJveC5pbm5lckhUTUwgPSAiIjsNCiAgICBpc0ZpcnN0U3RhcnQgPSBmYWxzZTsNCiAgICANCiAgICBjb25zdCBsb2NhbGl6YXRpb25fZnIgPSB7DQogICAgICAgICJOTyI6ICJOT04iLA0KICAgICAgICAiWUVTIjogIk9VSSIsDQogICAgICAgICJDQU5DRUwiOiAiQU5OVUxFUiINCiAgICB9Ow0KDQogICAgdXNlclZhcmlhYmxlcyA9IGlzQWxyZWFkeUVuY29kZWQodXNlclZhcmlhYmxlcykgPyB1c2VyVmFyaWFibGVzIDogZW5jb2RlVVJJQ29tcG9uZW50KHVzZXJWYXJpYWJsZXMpOw0KDQogICAgc29ja2V0ID0gbmV3IFdlYlNvY2tldChgJHtuZXdfdXJpfT9zY2VuYXJpb19ndWlkPSR7c2NlbmFyaW9HdWlkfSZlbWFpbD0ke3VzZXJFbWFpbH0maG9zdD0ke2hvc3RVcmx9JnZhcmlhYmxlcz0ke3VzZXJWYXJpYWJsZXN9YCk7DQogICAgc29ja2V0Lm9ubWVzc2FnZSA9IGZ1bmN0aW9uKGV2ZW50KSB7DQogICAgICAgIGxldCBkYXRhID0gSlNPTi5wYXJzZShldmVudC5kYXRhKTsNCiAgICAgICAgbGV0IGZvcm1Db250YWluZXIgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiZm9ybV9jb250YWluZXIiKTsNCiAgICAgICAgbGV0IHR5cGluZ19tZXNzYWdlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInR5cGluZ19tZXNzYWdlIik7DQoNCiAgICAgICAgZm9ybUNvbnRhaW5lci5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJva19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJjYW5jZWxfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgieWVzX2J0biIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm5vX2J0biIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgZm9ybUNvbnRhaW5lci5pbm5lckhUTUwgPSAiIjsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQoNCiAgICAgICAgaWYgKGRhdGEubGVuZ3RoID4gMikgew0KICAgICAgICAgICAgdHJpZ2dlciA9IGRhdGFbMF07DQogICAgICAgICAgICBzd2l0Y2ggKHRyaWdnZXIpIHsNCiAgICAgICAgICAgICAgICBjYXNlICJwcm9tcHQiOg0KICAgICAgICAgICAgICAgICAgICBjaGF0Ym94LmlubmVySFRNTCArPSAiPGRpdiBjbGFzcz0nbWVzc2FnZSBhZ2VudCc+IiArIGRhdGFbMV0gKyAiPC9kaXY+IjsNCiAgICAgICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBicmVhazsNCg0KICAgICAgICAgICAgICAgIGNhc2UgImFsZXJ0IjoNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm9rX2J0biIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGNoYXRib3guaW5uZXJIVE1MICs9ICI8ZGl2IGNsYXNzPSdtZXNzYWdlIGFnZW50Jz4iICsgZGF0YVsxXSArICI8L2Rpdj4iOw0KICAgICAgICAgICAgICAgICAgICB0eXBpbmdfbWVzc2FnZS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGJyZWFrOw0KDQogICAgICAgICAgICAgICAgY2FzZSAiYWxlcnRZTiI6DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ5ZXNfYnRuIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgibm9fYnRuIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgKz0gIjxkaXYgY2xhc3M9J21lc3NhZ2UgYWdlbnQnPiIgKyBkYXRhWzFdICsgIjwvZGl2PiI7DQogICAgICAgICAgICAgICAgICAgIHR5cGluZ19tZXNzYWdlLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQoNCiAgICAgICAgICAgICAgICBjYXNlICJhbGVydE9DIjoNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm9rX2J0biIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImNhbmNlbF9idG4iKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBjaGF0Ym94LmlubmVySFRNTCArPSAiPGRpdiBjbGFzcz0nbWVzc2FnZSBhZ2VudCc+IiArIGRhdGFbMV0gKyAiPC9kaXY+IjsNCiAgICAgICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBicmVhazsNCg0KICAgICAgICAgICAgICAgIGNhc2UgImRpYWxvZyI6DQogICAgICAgICAgICAgICAgY2FzZSAiY2FuY2VsYWJsZURpYWxvZyI6DQogICAgICAgICAgICAgICAgICAgIGxldCBmb3JtID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZm9ybSIpOw0KICAgICAgICAgICAgICAgICAgICBsZXQgZm9ybV9oZWFkZXJfd3JhcHBlciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImRpdiIpOw0KICAgICAgICAgICAgICAgICAgICBmb3JtX2hlYWRlcl93cmFwcGVyLmNsYXNzTmFtZSA9ICJmb3JtX2dyb3VwIjsNCiAgICAgICAgICAgICAgICAgICAgbGV0IGgxID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiaDEiKTsNCiAgICAgICAgICAgICAgICAgICAgaDEudGV4dENvbnRlbnQgPSBkYXRhWzFdOw0KDQogICAgICAgICAgICAgICAgICAgIGZvcm1faGVhZGVyX3dyYXBwZXIuYXBwZW5kQ2hpbGQoaDEpOw0KICAgICAgICAgICAgICAgICAgICBmb3JtLmFwcGVuZENoaWxkKGZvcm1faGVhZGVyX3dyYXBwZXIpOw0KDQogICAgICAgICAgICAgICAgICAgIGRhdGEuc2xpY2UoMiwgLTEpLmZvckVhY2goZnVuY3Rpb24oZmllbGREYXRhKXsNCiAgICAgICAgICAgICAgICAgICAgICAgIGxldCBmaWVsZEVsZW1lbnQgPSBjcmVhdGVGb3JtRmllbGQoZmllbGREYXRhKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGZvcm0uYXBwZW5kQ2hpbGQoZmllbGRFbGVtZW50KTsNCiAgICAgICAgICAgICAgICAgICAgfSk7DQoNCiAgICAgICAgICAgICAgICAgICAgbGV0IGZvcm1fYnV0dG9uc19jb250YWluZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgICAgICAgICAgICAgZm9ybV9idXR0b25zX2NvbnRhaW5lci5jbGFzc05hbWUgPSAid2luX2J1dHRvbnMiOw0KICAgICAgICAgICAgICAgICAgICBsZXQgc3VibWl0QnV0dG9uID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiYnV0dG9uIik7DQogICAgICAgICAgICAgICAgICAgIHN1Ym1pdEJ1dHRvbi50eXBlID0gInN1Ym1pdCI7DQogICAgICAgICAgICAgICAgICAgIHN1Ym1pdEJ1dHRvbi5jbGFzc05hbWUgPSAic2VuZF9mb3JtX2J0biI7DQogICAgICAgICAgICAgICAgICAgIHN1Ym1pdEJ1dHRvbi50ZXh0Q29udGVudCA9ICJPSyI7DQoNCiAgICAgICAgICAgICAgICAgICAgZm9ybV9idXR0b25zX2NvbnRhaW5lci5hcHBlbmRDaGlsZChzdWJtaXRCdXR0b24pOw0KDQogICAgICAgICAgICAgICAgICAgIGlmICh0cmlnZ2VyID09PSAiY2FuY2VsYWJsZURpYWxvZyIpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIGxldCBjYW5jZWxCdXR0b24gPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJidXR0b24iKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNhbmNlbEJ1dHRvbi5jbGFzc05hbWUgPSAiY2FuY2VsX2Zvcm1fYnRuIjsNCiAgICAgICAgICAgICAgICAgICAgICAgIGNhbmNlbEJ1dHRvbi50ZXh0Q29udGVudCA9ICJDYW5jZWwiOw0KICAgICAgICAgICAgICAgICAgICAgICAgZm9ybV9idXR0b25zX2NvbnRhaW5lci5hcHBlbmRDaGlsZChjYW5jZWxCdXR0b24pOw0KDQogICAgICAgICAgICAgICAgICAgICAgICBjYW5jZWxCdXR0b24uYWRkRXZlbnRMaXN0ZW5lcigiY2xpY2siLGZ1bmN0aW9uKGV2ZW50KXsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBldmVudC5wcmV2ZW50RGVmYXVsdCgpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGlmIChzb2NrZXQpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFyIG1zZyA9IHsibWVzc2FnZSI6IFsiRm9ybV9jYW5jZWxlZCJdLCAidHJpZ2dlciI6IHRyaWdnZXIsICJidXR0b24iOiAiQ0FOQ0VMIn07DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNvY2tldC5zZW5kKEpTT04uc3RyaW5naWZ5KG1zZykpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1Db250YWluZXIuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1Db250YWluZXIuaW5uZXJIVE1MID0gIiI7DQogICAgICAgICAgICAgICAgICAgICAgICB9KTsNCiAgICAgICAgICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAgICAgICAgIGZvcm0uYXBwZW5kQ2hpbGQoZm9ybV9idXR0b25zX2NvbnRhaW5lcik7DQoNCiAgICAgICAgICAgICAgICAgICAgZm9ybS5hZGRFdmVudExpc3RlbmVyKCdzdWJtaXQnLCBmdW5jdGlvbihldmVudCkgew0KICAgICAgICAgICAgICAgICAgICAgICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGxldCBmb3JtRGF0YSA9IG5ldyBGb3JtRGF0YShmb3JtKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGxldCBmb3JtX3ZhbHVlcyA9IFtdOw0KICAgICAgICAgICAgICAgICAgICAgICAgZm9ybURhdGEuZm9yRWFjaChmdW5jdGlvbihmaWVsZFZhbHVlKSB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgZm9ybV92YWx1ZXMucHVzaChmaWVsZFZhbHVlKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIH0pOw0KICAgICAgICAgICAgICAgICAgICAgICAgaWYgKHNvY2tldCkgew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhciBtc2cgPSB7Im1lc3NhZ2UiOiBmb3JtX3ZhbHVlcywgInRyaWdnZXIiOiB0cmlnZ2VyLCAiYnV0dG9uIjogIk9LIn07DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgICAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1Db250YWluZXIuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgICAgICBmb3JtQ29udGFpbmVyLmlubmVySFRNTCA9ICIiOw0KICAgICAgICAgICAgICAgICAgICB9KTsNCg0KICAgICAgICAgICAgICAgICAgICBmb3JtQ29udGFpbmVyLmFwcGVuZENoaWxkKGZvcm0pOw0KDQogICAgICAgICAgICAgICAgICAgIHR5cGluZ19tZXNzYWdlLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgZm9ybUNvbnRhaW5lci5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBicmVhazsNCiAgICAgICAgICAgIH0NCg0KICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgaWYgKGRhdGFbMV0gPT09IDApIHsNCiAgICAgICAgICAgICAgICBsZXQgdXNlcl9tZXNzYWdlOw0KICAgICAgICAgICAgICAgIGlmIChkYXRhWzBdIGluIGxvY2FsaXphdGlvbl9mcikgew0KICAgICAgICAgICAgICAgICAgICB1c2VyX21lc3NhZ2UgPSBsb2NhbGl6YXRpb25fZnJbZGF0YVswXV07DQogICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgdXNlcl9tZXNzYWdlID0gZGF0YVswXTsNCiAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICBpZiAodXNlcl9tZXNzYWdlWzBdID09PSAiWyIpIHsNCiAgICAgICAgICAgICAgICAgICAgbGV0IHVzZXJNZXNzYWdlV3JhcHBlciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImRpdiIpOw0KICAgICAgICAgICAgICAgICAgICB1c2VyTWVzc2FnZVdyYXBwZXIuY2xhc3NOYW1lID0gIm1lc3NhZ2UgdXNlciI7DQogICAgICAgICAgICAgICAgICAgIGxldCBzcG9pbGVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgICAgICAgICAgICAgIHNwb2lsZXIuY2xhc3NOYW1lID0gInNwb2lsZXIiOw0KICAgICAgICAgICAgICAgICAgICBzcG9pbGVyLnRleHRDb250ZW50ID0gIkRvbm7DqWVzIGR1IGZvcm11bGFpcmUgdHJhc21pcyAoKykiOw0KICAgICAgICAgICAgICAgICAgICBsZXQgdXNlck1lc3NhZ2UgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgICAgICAgICAgICAgdXNlck1lc3NhZ2UuY2xhc3NOYW1lID0gIm1lc3NhZ2VfdGV4dCBoaWRlIjsNCiAgICAgICAgICAgICAgICAgICAgdXNlck1lc3NhZ2UudGV4dENvbnRlbnQgPSB1c2VyX21lc3NhZ2U7DQoNCiAgICAgICAgICAgICAgICAgICAgdXNlck1lc3NhZ2VXcmFwcGVyLmFwcGVuZENoaWxkKHNwb2lsZXIpOw0KICAgICAgICAgICAgICAgICAgICB1c2VyTWVzc2FnZVdyYXBwZXIuYXBwZW5kQ2hpbGQodXNlck1lc3NhZ2UpOw0KICAgICAgICAgICAgICAgICAgICBjaGF0Ym94LmFwcGVuZENoaWxkKHVzZXJNZXNzYWdlV3JhcHBlcik7DQoNCiAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICBjaGF0Ym94LmlubmVySFRNTCArPSAiPGRpdiBjbGFzcz0nbWVzc2FnZSB1c2VyJz4iICsgdXNlcl9tZXNzYWdlICsgIjwvZGl2PiI7DQogICAgICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KDQogICAgICAgICAgICB9IGVsc2UgaWYgKGRhdGFbMV0gPT09IDEpIHsNCiAgICAgICAgICAgICAgICBjaGF0Ym94LmlubmVySFRNTCArPSAiPGRpdiBjbGFzcz0nbWVzc2FnZSBhZ2VudCc+IiArIGRhdGFbMF0gKyAiPC9kaXY+IjsNCiAgICAgICAgICAgICAgICB0eXBpbmdfbWVzc2FnZS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQoNCiAgICAgICAgICAgIH0gZWxzZSBpZiAoZGF0YVsxXSA9PT0gLTEpIHsNCiAgICAgICAgICAgICAgICB0eXBpbmdfbWVzc2FnZS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICB9DQogICAgICAgIH07DQoNCiAgICAgICAgY2hhdGJveC5zY3JvbGxUb3AgPSBjaGF0Ym94LnNjcm9sbEhlaWdodDsNCiAgICB9Ow0KDQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm1lc3NhZ2UiKS5hZGRFdmVudExpc3RlbmVyKCJrZXlwcmVzcyIsIGZ1bmN0aW9uKGV2ZW50KSB7DQogICAgICAgIGlmIChldmVudC53aGljaCA9PT0gMTMpIHsNCiAgICAgICAgICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KCk7DQogICAgICAgICAgICBzZW5kTWVzc2FnZSgpOw0KICAgICAgICB9Ow0KICAgIH0pOw0KfQ0KDQpmdW5jdGlvbiBzZW5kTWVzc2FnZSgpIHsNCiAgICBjb25zdCBtZXNzYWdlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm1lc3NhZ2UiKS52YWx1ZTsNCg0KICAgIGlmIChzb2NrZXQgJiYgbWVzc2FnZSkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogbWVzc2FnZSwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJtZXNzYWdlIikudmFsdWUgPSAiIjsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIGNsaWNrT0tCdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIk9LIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJva19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgIH0NCn0NCg0KZnVuY3Rpb24gY2xpY2tDYW5jZWxCdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIkNBTkNFTCIsICJ0cmlnZ2VyIjogdHJpZ2dlcn07DQogICAgICAgIHNvY2tldC5zZW5kKEpTT04uc3RyaW5naWZ5KG1zZykpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY2FuY2VsX2J0biIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgfQ0KfQ0KDQpmdW5jdGlvbiBjbGlja1llc0J1dHRvbigpIHsNCiAgICBpZiAoc29ja2V0KSB7DQogICAgICAgIGxldCBtc2cgPSB7Im1lc3NhZ2UiOiAiWUVTIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJub19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ5ZXNfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIGNsaWNrTm9CdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIk5PIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJub19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ5ZXNfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIuc2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIHNob3dSZXN0YXJ0RGlhbG9nKCkgew0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJkaWFsb2dfcmVzdGFydF9jaGF0IikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KfQ0KDQpmdW5jdGlvbiBjbGlja1Jlc3RhcnRCdXR0b24oaWQpIHsNCiAgICBpZiAoc29ja2V0KSB7DQogICAgICAgIGNvbnN0IGNoYXRib3ggPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnY2hhdGJveCcpOw0KICAgICAgICBjaGF0Ym94LmlubmVySFRNTCA9ICcnOw0KDQogICAgICAgIGV4ZWNFdmVudEJpbmRlZChpZCwgInJlc3RhcnQiLCB7DQogICAgICAgICAgICB3c19zZXJ2ZXI6IG5ld191cmksDQogICAgICAgICAgICBndWlkOiBzY2VuYXJpb0d1aWQsDQogICAgICAgICAgICBlbWFpbDogdXNlckVtYWlsLA0KICAgICAgICAgICAgdXJsOiBob3N0VXJsLA0KICAgICAgICAgICAgdmFyaWFibGVzOiB1c2VyVmFyaWFibGVzDQogICAgICAgIH0pOw0KICAgICAgICANCiAgICAgICAgaGlkZVJlc3RhcnRDaGF0RGlhbG9nKCk7DQogICAgfQ0KfQ0KDQpmdW5jdGlvbiBoaWRlUmVzdGFydENoYXREaWFsb2coKSB7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImRpYWxvZ19yZXN0YXJ0X2NoYXQiKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQp9DQoNCmZ1bmN0aW9uIHRvZ2dsZVNwb2lsZXIodXNlck1lc3NhZ2UpIHsNCiAgICB1c2VyTWVzc2FnZS5jbGFzc0xpc3QudG9nZ2xlKCJoaWRlIik7DQp9DQoNCmZ1bmN0aW9uIGNyZWF0ZUZvcm1GaWVsZChmaWVsZERhdGEpIHsNCiAgICB2YXIgZmllbGRXcmFwcGVyOw0KICAgIHZhciBsYWJlbCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImxhYmVsIik7DQogICAgbGFiZWwuc2V0QXR0cmlidXRlKCJjbGFzcyIsICJncm91cF9sYWJlbCIpOw0KICAgIGxhYmVsLnRleHRDb250ZW50ID0gZmllbGREYXRhWzFdOw0KDQogICAgaWYgKGZpZWxkRGF0YVswXSA9PT0gInJhZGlvQnV0dG9ucyIpIHsNCiAgICAgICAgZmllbGRXcmFwcGVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgIGZpZWxkV3JhcHBlci5zZXRBdHRyaWJ1dGUoImNsYXNzIiwgImZvcm1fZ3JvdXAgZm9ybV9yYWRpbyIpOw0KICAgICAgICBmaWVsZFdyYXBwZXIuYXBwZW5kQ2hpbGQobGFiZWwpOw0KDQogICAgICAgIGZpZWxkRGF0YVsyXS5mb3JFYWNoKGZ1bmN0aW9uKHZhbHVlKSB7DQogICAgICAgICAgICB2YXIgcmFkaW9XcmFwcGVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgICAgICByYWRpb1dyYXBwZXIuc2V0QXR0cmlidXRlKCJjbGFzcyIsICJyYWRpb2J1dHRvbiIpOw0KDQogICAgICAgICAgICB2YXIgcmFkaW9JbnB1dCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImlucHV0Iik7DQogICAgICAgICAgICByYWRpb0lucHV0LnNldEF0dHJpYnV0ZSgidHlwZSIsIHZhbHVlLnR5cGUpOw0KICAgICAgICAgICAgcmFkaW9JbnB1dC5zZXRBdHRyaWJ1dGUoInZhbHVlIiwgdmFsdWUudmFsdWUpOw0KICAgICAgICAgICAgcmFkaW9JbnB1dC5zZXRBdHRyaWJ1dGUoIm5hbWUiLCB2YWx1ZS5uYW1lKTsNCiAgICAgICAgICAgIHJhZGlvSW5wdXQuc2V0QXR0cmlidXRlKCJpZCIsIHZhbHVlLmlkKTsNCiAgICAgICAgICAgIGlmICh2YWx1ZS5zZWxlY3RlZCkgew0KICAgICAgICAgICAgICAgIHJhZGlvSW5wdXQuc2V0QXR0cmlidXRlKCJjaGVja2VkIiwgImNoZWNrZWQiKTsNCiAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgdmFyIHJhZGlvTGFiZWwgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJsYWJlbCIpOw0KICAgICAgICAgICAgcmFkaW9MYWJlbC5zZXRBdHRyaWJ1dGUoImZvciIsIHZhbHVlLmlkKTsNCiAgICAgICAgICAgIHJhZGlvTGFiZWwudGV4dENvbnRlbnQgPSAiICAiICsgdmFsdWUubGFiZWw7DQoNCiAgICAgICAgICAgIHJhZGlvV3JhcHBlci5hcHBlbmRDaGlsZChyYWRpb0lucHV0KTsNCiAgICAgICAgICAgIHJhZGlvV3JhcHBlci5hcHBlbmRDaGlsZChyYWRpb0xhYmVsKTsNCiAgICAgICAgICAgIGZpZWxkV3JhcHBlci5hcHBlbmRDaGlsZChyYWRpb1dyYXBwZXIpOw0KICAgICAgICB9KTsNCiAgICB9IGVsc2Ugew0KICAgICAgICBmaWVsZFdyYXBwZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgZmllbGRXcmFwcGVyLnNldEF0dHJpYnV0ZSgiY2xhc3MiLCAiZm9ybV9ncm91cCBmb3JtX2lucHV0Iik7DQoNCiAgICAgICAgdmFyIGlucHV0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiaW5wdXQiKTsNCiAgICAgICAgaW5wdXQuc2V0QXR0cmlidXRlKCJ0eXBlIiwgZmllbGREYXRhWzBdKTsNCiAgICAgICAgaW5wdXQuc2V0QXR0cmlidXRlKCJ2YWx1ZSIsIGZpZWxkRGF0YVsyXSk7DQogICAgICAgIGlucHV0LnNldEF0dHJpYnV0ZSgibmFtZSIsIGZpZWxkRGF0YVszXSk7DQoNCiAgICAgICAgZmllbGRXcmFwcGVyLmFwcGVuZENoaWxkKGxhYmVsKTsNCiAgICAgICAgZmllbGRXcmFwcGVyLmFwcGVuZENoaWxkKGlucHV0KTsNCiAgICB9DQoNCiAgICByZXR1cm4gZmllbGRXcmFwcGVyOw0KfQ0KDQpmdW5jdGlvbiBpc0FscmVhZHlFbmNvZGVkKHN0cikgew0KICAgIHRyeSB7DQogICAgICAgIGNvbnN0IGRlY29kZWQgPSBkZWNvZGVVUklDb21wb25lbnQoc3RyKTsNCiAgICAgICAgcmV0dXJuIGRlY29kZWQgIT09IHN0cjsNCiAgICB9IGNhdGNoIChlKSB7DQogICAgICAgIHJldHVybiBmYWxzZTsNCiAgICB9DQp9]]></Resource>
+    <Resource ID="5913b3a5-b5dc-7047-4459-833db519122b" Name="chatbox.js" Type="js"><![CDATA[bGV0IHNvY2tldDsNCmxldCBzY2VuYXJpb0d1aWQ7DQpsZXQgaG9zdFVybDsNCmxldCB1c2VyRW1haWw7DQpsZXQgdXNlclZhcmlhYmxlczsNCmxldCB1c2VyVXJpOw0KbGV0IHRyaWdnZXI7DQpsZXQgaXNGaXJzdFN0YXJ0ID0gdHJ1ZTsNCmxldCBjaGF0SWQ7DQoNCmZ1bmN0aW9uIHN0YXJ0KHdzX3NlcnZlciwgdXJsLCBndWlkLCBlbWFpbCwgdmFyaWFibGVzKSB7DQoNCiAgICBpZiAoIXdzX3NlcnZlcikgew0KICAgICAgICB3c19zZXJ2ZXIgPSB1c2VyVXJpOw0KICAgIH0NCiAgICBpZiAoIXVybCkgew0KICAgICAgICB1cmwgPSBob3N0VXJsOw0KICAgIH0NCiAgICBpZiAoIWd1aWQpIHsNCiAgICAgICAgZ3VpZCA9IHNjZW5hcmlvR3VpZDsNCiAgICB9DQogICAgaWYgKCFlbWFpbCkgew0KICAgICAgICBlbWFpbCA9IHVzZXJFbWFpbDsNCiAgICB9DQogICAgaWYgKCF2YXJpYWJsZXMpIHsNCiAgICAgICAgdmFyaWFibGVzID0gdXNlclZhcmlhYmxlczsNCiAgICB9DQoNCiAgICBjb25zdCBjaGF0ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcigiLnZkb21fY2hhdCIpOw0KICAgIA0KICAgIGlmICghd3Nfc2VydmVyIHx8ICF1cmwgfHwgIWd1aWQgfHwgIWVtYWlsIHx8ICF2YXJpYWJsZXMpIHsNCiAgICAgICAgaWYgKCFpc0ZpcnN0U3RhcnQpIHsNCiAgICAgICAgICAgIGNvbnNvbGUud2FybigiTm90IGFsbCBwYXJhbWV0ZXJzIGFyZSBwYXNzZWQgdG8gY3JlYXRlIHRoZSBzb2NrZXQuIik7DQogICAgICAgIH0NCiAgICAgICAgaXNGaXJzdFN0YXJ0ID0gZmFsc2U7DQogICAgICAgIGNoYXQuY2xhc3NMaXN0LmFkZCgiaW5hY3RpdmUiKTsgDQogICAgICAgIHJldHVybjsNCiAgICB9IGVsc2Ugew0KICAgICAgICBjaGF0LmNsYXNzTGlzdC5yZW1vdmUoImluYWN0aXZlIik7IA0KICAgIH0NCg0KICAgIGlmIChzb2NrZXQgJiYgc29ja2V0LnJlYWR5U3RhdGUgPT09IFdlYlNvY2tldC5PUEVOKSB7DQogICAgICAgIHNvY2tldC5vbmNsb3NlID0gZnVuY3Rpb24gKCkge307DQogICAgICAgIHNvY2tldC5jbG9zZSgpOw0KICAgIH0NCiAgICBjb25zdCBjaGF0Ym94ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImNoYXRib3giKTsNCiAgICBjaGF0Ym94LmlubmVySFRNTCA9ICIiOw0KICAgIGlzRmlyc3RTdGFydCA9IGZhbHNlOw0KICAgIA0KICAgIGNvbnN0IGxvY2FsaXphdGlvbl9mciA9IHsNCiAgICAgICAgIk5PIjogIk5PTiIsDQogICAgICAgICJZRVMiOiAiT1VJIiwNCiAgICAgICAgIkNBTkNFTCI6ICJBTk5VTEVSIg0KICAgIH07DQoNCiAgICB2YXJpYWJsZXMgPSBpc0FscmVhZHlFbmNvZGVkKHZhcmlhYmxlcykgPyB2YXJpYWJsZXMgOiBlbmNvZGVVUklDb21wb25lbnQodmFyaWFibGVzKTsNCg0KICAgIHNvY2tldCA9IG5ldyBXZWJTb2NrZXQoYCR7d3Nfc2VydmVyfT9zY2VuYXJpb19ndWlkPSR7Z3VpZH0mZW1haWw9JHtlbWFpbH0maG9zdD0ke3VybH0mdmFyaWFibGVzPSR7dmFyaWFibGVzfWApOw0KICAgIHNvY2tldC5vbm1lc3NhZ2UgPSBmdW5jdGlvbihldmVudCkgew0KICAgICAgICBsZXQgZGF0YSA9IEpTT04ucGFyc2UoZXZlbnQuZGF0YSk7DQogICAgICAgIGxldCBmb3JtQ29udGFpbmVyID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImZvcm1fY29udGFpbmVyIik7DQogICAgICAgIGxldCB0eXBpbmdfbWVzc2FnZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ0eXBpbmdfbWVzc2FnZSIpOw0KDQogICAgICAgIGZvcm1Db250YWluZXIuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgib2tfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY2FuY2VsX2J0biIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInllc19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJub19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGZvcm1Db250YWluZXIuaW5uZXJIVE1MID0gIiI7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KDQogICAgICAgIGlmIChkYXRhLmxlbmd0aCA+IDIpIHsNCiAgICAgICAgICAgIHRyaWdnZXIgPSBkYXRhWzBdOw0KICAgICAgICAgICAgc3dpdGNoICh0cmlnZ2VyKSB7DQogICAgICAgICAgICAgICAgY2FzZSAicHJvbXB0IjoNCiAgICAgICAgICAgICAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgKz0gIjxkaXYgY2xhc3M9J21lc3NhZ2UgYWdlbnQnPiIgKyBkYXRhWzFdICsgIjwvZGl2PiI7DQogICAgICAgICAgICAgICAgICAgIHR5cGluZ19tZXNzYWdlLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQoNCiAgICAgICAgICAgICAgICBjYXNlICJhbGVydCI6DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJva19idG4iKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBjaGF0Ym94LmlubmVySFRNTCArPSAiPGRpdiBjbGFzcz0nbWVzc2FnZSBhZ2VudCc+IiArIGRhdGFbMV0gKyAiPC9kaXY+IjsNCiAgICAgICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBicmVhazsNCg0KICAgICAgICAgICAgICAgIGNhc2UgImFsZXJ0WU4iOg0KICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgieWVzX2J0biIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm5vX2J0biIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGNoYXRib3guaW5uZXJIVE1MICs9ICI8ZGl2IGNsYXNzPSdtZXNzYWdlIGFnZW50Jz4iICsgZGF0YVsxXSArICI8L2Rpdj4iOw0KICAgICAgICAgICAgICAgICAgICB0eXBpbmdfbWVzc2FnZS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGJyZWFrOw0KDQogICAgICAgICAgICAgICAgY2FzZSAiYWxlcnRPQyI6DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJva19idG4iKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJjYW5jZWxfYnRuIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgKz0gIjxkaXYgY2xhc3M9J21lc3NhZ2UgYWdlbnQnPiIgKyBkYXRhWzFdICsgIjwvZGl2PiI7DQogICAgICAgICAgICAgICAgICAgIHR5cGluZ19tZXNzYWdlLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQoNCiAgICAgICAgICAgICAgICBjYXNlICJkaWFsb2ciOg0KICAgICAgICAgICAgICAgIGNhc2UgImNhbmNlbGFibGVEaWFsb2ciOg0KICAgICAgICAgICAgICAgICAgICBsZXQgZm9ybSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImZvcm0iKTsNCiAgICAgICAgICAgICAgICAgICAgbGV0IGZvcm1faGVhZGVyX3dyYXBwZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgICAgICAgICAgICAgZm9ybV9oZWFkZXJfd3JhcHBlci5jbGFzc05hbWUgPSAiZm9ybV9ncm91cCI7DQogICAgICAgICAgICAgICAgICAgIGxldCBoMSA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImgxIik7DQogICAgICAgICAgICAgICAgICAgIGgxLnRleHRDb250ZW50ID0gZGF0YVsxXTsNCg0KICAgICAgICAgICAgICAgICAgICBmb3JtX2hlYWRlcl93cmFwcGVyLmFwcGVuZENoaWxkKGgxKTsNCiAgICAgICAgICAgICAgICAgICAgZm9ybS5hcHBlbmRDaGlsZChmb3JtX2hlYWRlcl93cmFwcGVyKTsNCg0KICAgICAgICAgICAgICAgICAgICBkYXRhLnNsaWNlKDIsIC0xKS5mb3JFYWNoKGZ1bmN0aW9uKGZpZWxkRGF0YSl7DQogICAgICAgICAgICAgICAgICAgICAgICBsZXQgZmllbGRFbGVtZW50ID0gY3JlYXRlRm9ybUZpZWxkKGZpZWxkRGF0YSk7DQogICAgICAgICAgICAgICAgICAgICAgICBmb3JtLmFwcGVuZENoaWxkKGZpZWxkRWxlbWVudCk7DQogICAgICAgICAgICAgICAgICAgIH0pOw0KDQogICAgICAgICAgICAgICAgICAgIGxldCBmb3JtX2J1dHRvbnNfY29udGFpbmVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgICAgICAgICAgICAgIGZvcm1fYnV0dG9uc19jb250YWluZXIuY2xhc3NOYW1lID0gIndpbl9idXR0b25zIjsNCiAgICAgICAgICAgICAgICAgICAgbGV0IHN1Ym1pdEJ1dHRvbiA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImJ1dHRvbiIpOw0KICAgICAgICAgICAgICAgICAgICBzdWJtaXRCdXR0b24udHlwZSA9ICJzdWJtaXQiOw0KICAgICAgICAgICAgICAgICAgICBzdWJtaXRCdXR0b24uY2xhc3NOYW1lID0gInNlbmRfZm9ybV9idG4iOw0KICAgICAgICAgICAgICAgICAgICBzdWJtaXRCdXR0b24udGV4dENvbnRlbnQgPSAiT0siOw0KDQogICAgICAgICAgICAgICAgICAgIGZvcm1fYnV0dG9uc19jb250YWluZXIuYXBwZW5kQ2hpbGQoc3VibWl0QnV0dG9uKTsNCg0KICAgICAgICAgICAgICAgICAgICBpZiAodHJpZ2dlciA9PT0gImNhbmNlbGFibGVEaWFsb2ciKSB7DQogICAgICAgICAgICAgICAgICAgICAgICBsZXQgY2FuY2VsQnV0dG9uID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiYnV0dG9uIik7DQogICAgICAgICAgICAgICAgICAgICAgICBjYW5jZWxCdXR0b24uY2xhc3NOYW1lID0gImNhbmNlbF9mb3JtX2J0biI7DQogICAgICAgICAgICAgICAgICAgICAgICBjYW5jZWxCdXR0b24udGV4dENvbnRlbnQgPSAiQ2FuY2VsIjsNCiAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1fYnV0dG9uc19jb250YWluZXIuYXBwZW5kQ2hpbGQoY2FuY2VsQnV0dG9uKTsNCg0KICAgICAgICAgICAgICAgICAgICAgICAgY2FuY2VsQnV0dG9uLmFkZEV2ZW50TGlzdGVuZXIoImNsaWNrIixmdW5jdGlvbihldmVudCl7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgZXZlbnQucHJldmVudERlZmF1bHQoKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBpZiAoc29ja2V0KSB7DQogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhciBtc2cgPSB7Im1lc3NhZ2UiOiBbIkZvcm1fY2FuY2VsZWQiXSwgInRyaWdnZXIiOiB0cmlnZ2VyLCAiYnV0dG9uIjogIkNBTkNFTCJ9Ow0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzb2NrZXQuc2VuZChKU09OLnN0cmluZ2lmeShtc2cpKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9DQoNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb3JtQ29udGFpbmVyLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBmb3JtQ29udGFpbmVyLmlubmVySFRNTCA9ICIiOw0KICAgICAgICAgICAgICAgICAgICAgICAgfSk7DQogICAgICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgICAgICBmb3JtLmFwcGVuZENoaWxkKGZvcm1fYnV0dG9uc19jb250YWluZXIpOw0KDQogICAgICAgICAgICAgICAgICAgIGZvcm0uYWRkRXZlbnRMaXN0ZW5lcignc3VibWl0JywgZnVuY3Rpb24oZXZlbnQpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KCk7DQogICAgICAgICAgICAgICAgICAgICAgICBsZXQgZm9ybURhdGEgPSBuZXcgRm9ybURhdGEoZm9ybSk7DQogICAgICAgICAgICAgICAgICAgICAgICBsZXQgZm9ybV92YWx1ZXMgPSBbXTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1EYXRhLmZvckVhY2goZnVuY3Rpb24oZmllbGRWYWx1ZSkgew0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIGZvcm1fdmFsdWVzLnB1c2goZmllbGRWYWx1ZSk7DQogICAgICAgICAgICAgICAgICAgICAgICB9KTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGlmIChzb2NrZXQpIHsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YXIgbXNnID0geyJtZXNzYWdlIjogZm9ybV92YWx1ZXMsICJ0cmlnZ2VyIjogdHJpZ2dlciwgImJ1dHRvbiI6ICJPSyJ9Ow0KICAgICAgICAgICAgICAgICAgICAgICAgICAgIHNvY2tldC5zZW5kKEpTT04uc3RyaW5naWZ5KG1zZykpOw0KICAgICAgICAgICAgICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICAgICAgICAgICAgICBmb3JtQ29udGFpbmVyLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICAgICAgZm9ybUNvbnRhaW5lci5pbm5lckhUTUwgPSAiIjsNCiAgICAgICAgICAgICAgICAgICAgfSk7DQoNCiAgICAgICAgICAgICAgICAgICAgZm9ybUNvbnRhaW5lci5hcHBlbmRDaGlsZChmb3JtKTsNCg0KICAgICAgICAgICAgICAgICAgICB0eXBpbmdfbWVzc2FnZS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgICAgICAgICAgICAgIGZvcm1Db250YWluZXIuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgICAgICAgICAgICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQoNCiAgICAgICAgICAgICAgICBjYXNlICJkaXNwbGF5IjoNCiAgICAgICAgICAgICAgICAgICAgbGV0IFZET01YTUwgPSBkYXRhWzFdOw0KICAgICAgICAgICAgICAgICAgICBsZXQgRTJWRE9NID0gZGF0YVsyXTsNCiAgICAgICAgICAgICAgICAgICAgbGV0IGRpc2N1c3Npb25fZ3VpZCA9IGRhdGFbM107DQogICAgICAgICAgICAgICAgICAgIA0KICAgICAgICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoY2hhdElkLCAiY3VzdG9tIiwgew0KICAgICAgICAgICAgICAgICAgICAgICAgdHJpZ2dlcjogdHJpZ2dlciwNCiAgICAgICAgICAgICAgICAgICAgICAgIHZkb214bWw6IFZET01YTUwsDQogICAgICAgICAgICAgICAgICAgICAgICBlMnZkb206IEUyVkRPTSwNCiAgICAgICAgICAgICAgICAgICAgICAgIGRpc2N1c3Npb25fZ3VpZDogZGlzY3Vzc2lvbl9ndWlkDQogICAgICAgICAgICAgICAgICAgIH0pOw0KICAgICAgICAgICAgfQ0KDQogICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICBpZiAoZGF0YVsxXSA9PT0gMCkgew0KICAgICAgICAgICAgICAgIGxldCB1c2VyX21lc3NhZ2U7DQogICAgICAgICAgICAgICAgaWYgKGRhdGFbMF0gaW4gbG9jYWxpemF0aW9uX2ZyKSB7DQogICAgICAgICAgICAgICAgICAgIHVzZXJfbWVzc2FnZSA9IGxvY2FsaXphdGlvbl9mcltkYXRhWzBdXTsNCiAgICAgICAgICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgICAgICAgICB1c2VyX21lc3NhZ2UgPSBkYXRhWzBdOw0KICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgIGlmICh1c2VyX21lc3NhZ2VbMF0gPT09ICJbIikgew0KICAgICAgICAgICAgICAgICAgICBsZXQgdXNlck1lc3NhZ2VXcmFwcGVyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgICAgICAgICAgICAgIHVzZXJNZXNzYWdlV3JhcHBlci5jbGFzc05hbWUgPSAibWVzc2FnZSB1c2VyIjsNCiAgICAgICAgICAgICAgICAgICAgbGV0IHNwb2lsZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgICAgICAgICAgICAgc3BvaWxlci5jbGFzc05hbWUgPSAic3BvaWxlciI7DQogICAgICAgICAgICAgICAgICAgIHNwb2lsZXIudGV4dENvbnRlbnQgPSAiRG9ubsOpZXMgZHUgZm9ybXVsYWlyZSB0cmFzbWlzICgrKSI7DQogICAgICAgICAgICAgICAgICAgIHNwb2lsZXIuc2V0QXR0cmlidXRlKCJvbmNsaWNrIiwgInRvZ2dsZVNwb2lsZXIodGhpcykiKTsNCiAgICAgICAgICAgICAgICAgICAgbGV0IHVzZXJNZXNzYWdlID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiZGl2Iik7DQogICAgICAgICAgICAgICAgICAgIHVzZXJNZXNzYWdlLmNsYXNzTmFtZSA9ICJtZXNzYWdlX3RleHQgaGlkZSI7DQogICAgICAgICAgICAgICAgICAgIHVzZXJNZXNzYWdlLnRleHRDb250ZW50ID0gdXNlcl9tZXNzYWdlOw0KDQogICAgICAgICAgICAgICAgICAgIHVzZXJNZXNzYWdlV3JhcHBlci5hcHBlbmRDaGlsZChzcG9pbGVyKTsNCiAgICAgICAgICAgICAgICAgICAgdXNlck1lc3NhZ2VXcmFwcGVyLmFwcGVuZENoaWxkKHVzZXJNZXNzYWdlKTsNCiAgICAgICAgICAgICAgICAgICAgY2hhdGJveC5hcHBlbmRDaGlsZCh1c2VyTWVzc2FnZVdyYXBwZXIpOw0KDQogICAgICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgKz0gIjxkaXYgY2xhc3M9J21lc3NhZ2UgdXNlcic+IiArIHVzZXJfbWVzc2FnZSArICI8L2Rpdj4iOw0KICAgICAgICAgICAgICAgIH0NCg0KICAgICAgICAgICAgICAgIHR5cGluZ19tZXNzYWdlLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCg0KICAgICAgICAgICAgfSBlbHNlIGlmIChkYXRhWzFdID09PSAxKSB7DQogICAgICAgICAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgKz0gIjxkaXYgY2xhc3M9J21lc3NhZ2UgYWdlbnQnPiIgKyBkYXRhWzBdICsgIjwvZGl2PiI7DQogICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KDQogICAgICAgICAgICB9IGVsc2UgaWYgKGRhdGFbMV0gPT09IC0xKSB7DQogICAgICAgICAgICAgICAgdHlwaW5nX21lc3NhZ2UuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9Ow0KDQogICAgICAgIGNoYXRib3guc2Nyb2xsVG9wID0gY2hhdGJveC5zY3JvbGxIZWlnaHQ7DQogICAgfTsNCg0KICAgIGN1cnJlbnRXUyA9IHdzX3NlcnZlcjsNCiAgICBjdXJyZW50VXJsID0gdXJsOw0KICAgIGN1cnJlbnRHdWlkID0gZ3VpZDsNCiAgICBjdXJyZW50RW1haWwgPSBlbWFpbDsNCiAgICBjdXJyZW50VmFyaWFibGVzID0gdmFyaWFibGVzOw0KDQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm1lc3NhZ2UiKS5hZGRFdmVudExpc3RlbmVyKCJrZXlwcmVzcyIsIGZ1bmN0aW9uKGV2ZW50KSB7DQogICAgICAgIGlmIChldmVudC53aGljaCA9PT0gMTMpIHsNCiAgICAgICAgICAgIGV2ZW50LnByZXZlbnREZWZhdWx0KCk7DQogICAgICAgICAgICBzZW5kTWVzc2FnZSgpOw0KICAgICAgICB9Ow0KICAgIH0pOw0KfQ0KDQpmdW5jdGlvbiBzZW5kTWVzc2FnZSgpIHsNCiAgICBjb25zdCBtZXNzYWdlID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoIm1lc3NhZ2UiKS52YWx1ZTsNCg0KICAgIGlmIChzb2NrZXQgJiYgbWVzc2FnZSkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogbWVzc2FnZSwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJtZXNzYWdlIikudmFsdWUgPSAiIjsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIGNsaWNrT0tCdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIk9LIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJva19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzZW5kaW5nX21lc3NhZ2VfaG9sZGVyIikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KICAgIH0NCn0NCg0KZnVuY3Rpb24gY2xpY2tDYW5jZWxCdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIkNBTkNFTCIsICJ0cmlnZ2VyIjogdHJpZ2dlcn07DQogICAgICAgIHNvY2tldC5zZW5kKEpTT04uc3RyaW5naWZ5KG1zZykpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgiY2FuY2VsX2J0biIpLmNsYXNzTGlzdC5hZGQoImhpZGUiKTsNCiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoInNlbmRpbmdfbWVzc2FnZV9ob2xkZXIiKS5jbGFzc0xpc3QucmVtb3ZlKCJoaWRlIik7DQogICAgfQ0KfQ0KDQpmdW5jdGlvbiBjbGlja1llc0J1dHRvbigpIHsNCiAgICBpZiAoc29ja2V0KSB7DQogICAgICAgIGxldCBtc2cgPSB7Im1lc3NhZ2UiOiAiWUVTIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJub19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ5ZXNfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgic2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIGNsaWNrTm9CdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBsZXQgbXNnID0geyJtZXNzYWdlIjogIk5PIiwgInRyaWdnZXIiOiB0cmlnZ2VyfTsNCiAgICAgICAgc29ja2V0LnNlbmQoSlNPTi5zdHJpbmdpZnkobXNnKSk7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJub19idG4iKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQogICAgICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJ5ZXNfYnRuIikuY2xhc3NMaXN0LmFkZCgiaGlkZSIpOw0KICAgICAgICBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCIuc2VuZGluZ19tZXNzYWdlX2hvbGRlciIpLmNsYXNzTGlzdC5yZW1vdmUoImhpZGUiKTsNCiAgICB9DQp9DQoNCmZ1bmN0aW9uIHNob3dSZXN0YXJ0RGlhbG9nKCkgew0KICAgIGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJkaWFsb2dfcmVzdGFydF9jaGF0IikuY2xhc3NMaXN0LnJlbW92ZSgiaGlkZSIpOw0KfQ0KDQpmdW5jdGlvbiBjbGlja1Jlc3RhcnRCdXR0b24oKSB7DQogICAgaWYgKHNvY2tldCkgew0KICAgICAgICBjb25zdCBjaGF0Ym94ID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2NoYXRib3gnKTsNCiAgICAgICAgY2hhdGJveC5pbm5lckhUTUwgPSAnJzsNCg0KICAgICAgICBleGVjRXZlbnRCaW5kZWQoY2hhdElkLCAicmVzdGFydCIsIHsNCiAgICAgICAgICAgIHdzX3NlcnZlcjogY3VycmVudFdTLA0KICAgICAgICAgICAgZ3VpZDogY3VycmVudEd1aWQsDQogICAgICAgICAgICBlbWFpbDogY3VycmVudEVtYWlsLA0KICAgICAgICAgICAgdXJsOiBjdXJyZW50VXJsLA0KICAgICAgICAgICAgdmFyaWFibGVzOiBjdXJyZW50VmFyaWFibGVzDQogICAgICAgIH0pOw0KICAgICAgICANCiAgICAgICAgaGlkZVJlc3RhcnRDaGF0RGlhbG9nKCk7DQogICAgfQ0KfQ0KDQpmdW5jdGlvbiBoaWRlUmVzdGFydENoYXREaWFsb2coKSB7DQogICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoImRpYWxvZ19yZXN0YXJ0X2NoYXQiKS5jbGFzc0xpc3QuYWRkKCJoaWRlIik7DQp9DQoNCmZ1bmN0aW9uIHRvZ2dsZVNwb2lsZXIoc3BvaWxlcikgew0KICAgIGxldCBuZXh0RWxlbWVudCA9IHNwb2lsZXIubmV4dEVsZW1lbnRTaWJsaW5nOw0KICAgIG5leHRFbGVtZW50LmNsYXNzTGlzdC50b2dnbGUoImhpZGUiKTsNCn0NCg0KZnVuY3Rpb24gY3JlYXRlRm9ybUZpZWxkKGZpZWxkRGF0YSkgew0KICAgIHZhciBmaWVsZFdyYXBwZXI7DQogICAgdmFyIGxhYmVsID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgibGFiZWwiKTsNCiAgICBsYWJlbC5zZXRBdHRyaWJ1dGUoImNsYXNzIiwgImdyb3VwX2xhYmVsIik7DQogICAgbGFiZWwudGV4dENvbnRlbnQgPSBmaWVsZERhdGFbMV07DQoNCiAgICBpZiAoZmllbGREYXRhWzBdID09PSAicmFkaW9CdXR0b25zIikgew0KICAgICAgICBmaWVsZFdyYXBwZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgZmllbGRXcmFwcGVyLnNldEF0dHJpYnV0ZSgiY2xhc3MiLCAiZm9ybV9ncm91cCBmb3JtX3JhZGlvIik7DQogICAgICAgIGZpZWxkV3JhcHBlci5hcHBlbmRDaGlsZChsYWJlbCk7DQoNCiAgICAgICAgZmllbGREYXRhWzJdLmZvckVhY2goZnVuY3Rpb24odmFsdWUpIHsNCiAgICAgICAgICAgIHZhciByYWRpb1dyYXBwZXIgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJkaXYiKTsNCiAgICAgICAgICAgIHJhZGlvV3JhcHBlci5zZXRBdHRyaWJ1dGUoImNsYXNzIiwgInJhZGlvYnV0dG9uIik7DQoNCiAgICAgICAgICAgIHZhciByYWRpb0lucHV0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgiaW5wdXQiKTsNCiAgICAgICAgICAgIHJhZGlvSW5wdXQuc2V0QXR0cmlidXRlKCJ0eXBlIiwgdmFsdWUudHlwZSk7DQogICAgICAgICAgICByYWRpb0lucHV0LnNldEF0dHJpYnV0ZSgidmFsdWUiLCB2YWx1ZS52YWx1ZSk7DQogICAgICAgICAgICByYWRpb0lucHV0LnNldEF0dHJpYnV0ZSgibmFtZSIsIHZhbHVlLm5hbWUpOw0KICAgICAgICAgICAgcmFkaW9JbnB1dC5zZXRBdHRyaWJ1dGUoImlkIiwgdmFsdWUuaWQpOw0KICAgICAgICAgICAgaWYgKHZhbHVlLnNlbGVjdGVkKSB7DQogICAgICAgICAgICAgICAgcmFkaW9JbnB1dC5zZXRBdHRyaWJ1dGUoImNoZWNrZWQiLCAiY2hlY2tlZCIpOw0KICAgICAgICAgICAgfQ0KDQogICAgICAgICAgICB2YXIgcmFkaW9MYWJlbCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImxhYmVsIik7DQogICAgICAgICAgICByYWRpb0xhYmVsLnNldEF0dHJpYnV0ZSgiZm9yIiwgdmFsdWUuaWQpOw0KICAgICAgICAgICAgcmFkaW9MYWJlbC50ZXh0Q29udGVudCA9ICIgICIgKyB2YWx1ZS5sYWJlbDsNCg0KICAgICAgICAgICAgcmFkaW9XcmFwcGVyLmFwcGVuZENoaWxkKHJhZGlvSW5wdXQpOw0KICAgICAgICAgICAgcmFkaW9XcmFwcGVyLmFwcGVuZENoaWxkKHJhZGlvTGFiZWwpOw0KICAgICAgICAgICAgZmllbGRXcmFwcGVyLmFwcGVuZENoaWxkKHJhZGlvV3JhcHBlcik7DQogICAgICAgIH0pOw0KICAgIH0gZWxzZSB7DQogICAgICAgIGZpZWxkV3JhcHBlciA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoImRpdiIpOw0KICAgICAgICBmaWVsZFdyYXBwZXIuc2V0QXR0cmlidXRlKCJjbGFzcyIsICJmb3JtX2dyb3VwIGZvcm1faW5wdXQiKTsNCg0KICAgICAgICB2YXIgaW5wdXQgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KCJpbnB1dCIpOw0KICAgICAgICBpbnB1dC5zZXRBdHRyaWJ1dGUoInR5cGUiLCBmaWVsZERhdGFbMF0pOw0KICAgICAgICBpbnB1dC5zZXRBdHRyaWJ1dGUoInZhbHVlIiwgZmllbGREYXRhWzJdKTsNCiAgICAgICAgaW5wdXQuc2V0QXR0cmlidXRlKCJuYW1lIiwgZmllbGREYXRhWzNdKTsNCg0KICAgICAgICBmaWVsZFdyYXBwZXIuYXBwZW5kQ2hpbGQobGFiZWwpOw0KICAgICAgICBmaWVsZFdyYXBwZXIuYXBwZW5kQ2hpbGQoaW5wdXQpOw0KICAgIH0NCg0KICAgIHJldHVybiBmaWVsZFdyYXBwZXI7DQp9DQoNCmZ1bmN0aW9uIGlzQWxyZWFkeUVuY29kZWQoc3RyKSB7DQogICAgdHJ5IHsNCiAgICAgICAgY29uc3QgZGVjb2RlZCA9IGRlY29kZVVSSUNvbXBvbmVudChzdHIpOw0KICAgICAgICByZXR1cm4gZGVjb2RlZCAhPT0gc3RyOw0KICAgIH0gY2F0Y2ggKGUpIHsNCiAgICAgICAgcmV0dXJuIGZhbHNlOw0KICAgIH0NCn0=]]></Resource>
+    <Resource ID="1dbf4a70-9448-66e4-da69-cff4990df991" Name="DropdownMenu.js" Type="js"><![CDATA[KGZ1bmN0aW9uICgkKSB7DQoNCiAgJC5mbi5kcm9wZG93bl9tZW51ID0gZnVuY3Rpb24gKG1ldGhvZCkgew0KICAgIGlmIChtZXRob2RzW21ldGhvZF0pIHsNCiAgICAgIHJldHVybiBtZXRob2RzW21ldGhvZF0uYXBwbHkoDQogICAgICAgIHRoaXMsDQogICAgICAgIEFycmF5LnByb3RvdHlwZS5zbGljZS5jYWxsKGFyZ3VtZW50cywgMSkNCiAgICAgICk7DQogICAgfSBlbHNlIGlmICh0eXBlb2YgbWV0aG9kID09ICJvYmplY3QiIHx8ICFtZXRob2QpIHsNCiAgICAgIHJldHVybiBtZXRob2RzLmluaXQuYXBwbHkodGhpcywgYXJndW1lbnRzKTsNCiAgICB9IGVsc2Ugew0KICAgICAgJC5lcnJvcigiVkRPTSBEcm9wZG93bk1lbnU6IHVua25vd24gbWV0aG9kICIgKyBtZXRob2QpOw0KICAgIH0NCiAgfTsNCg0KICBmdW5jdGlvbiBnZXRPYmpJRChvYmopIHsNCiAgICB2YXIgaWQgPSBvYmouYXR0cigiaWQiKTsNCiAgICByZXR1cm4gaWQuc3Vic3RyaW5nKDIsIGlkLmxlbmd0aCk7DQogIH0NCg0KICBmdW5jdGlvbiByYWlzZUNsaWNrRXZlbnQoZXZ0LCBkcm9wZG93bl9tZW51LCBvYmosIGlzX2RibCkgew0KICAgIHZhciBsaV9vYmogPSBvYmouY2xvc2VzdCgibGlbaXRlbWlkXSIpOw0KICAgIHZhciBpdGVtX2lkID0gbGlfb2JqLmF0dHIoIml0ZW1pZCIpOw0KICAgIHZhciBldnRfbmFtZSA9ICJpdGVtIiArIChpc19kYmwgPyAiZGJsIiA6ICIiKSArICJjbGljayI7DQoNCiAgICBkcm9wZG93bl9tZW51LmRyb3Bkb3duX21lbnUoIm1hcmtBc0FjdGl2ZSIsIGl0ZW1faWQpOw0KICAgIGV4ZWNFdmVudEJpbmRlZChnZXRPYmpJRChkcm9wZG93bl9tZW51KSwgZXZ0X25hbWUsIHsNCiAgICAgIGl0ZW1pZDogaXRlbV9pZCwNCiAgICAgIHNlbGVjdGVkOiBbaXRlbV9pZF0sDQogICAgICBYOiBldnQucGFnZVgsDQogICAgICBZOiBldnQucGFnZVkNCiAgICB9KTsNCiAgfQ0KICAvKg0KICAgIGZ1bmN0aW9uIHByZWxvYWRJbWFnZXNBbmRBZGRJdGVtcyhtZW51TGlzdCwgbmV3RGF0YSkgew0KICAgICAgdmFyIGltYWdlc1RvUHJlbG9hZCA9IFtdOw0KICAgICAgdmFyIGltYWdlc0xvYWRlZCA9IDA7DQogICAgICB2YXIgdG90YWxJbWFnZXMgPSAwOw0KICANCiAgICAgICQuZWFjaChuZXdEYXRhLCBmdW5jdGlvbiAoa2V5LCB2YWx1ZSkgew0KICAgICAgICB2YXIgJHRlbXBEaXYgPSAkKCc8ZGl2PjwvZGl2PicpLmh0bWwodmFsdWUpOw0KICAgICAgICB2YXIgaW1ncyA9ICR0ZW1wRGl2LmZpbmQoJ2ltZycpOw0KICANCiAgICAgICAgaW1ncy5lYWNoKGZ1bmN0aW9uICgpIHsNCiAgICAgICAgICB2YXIgaW1hZ2VVcmwgPSAkKHRoaXMpLmF0dHIoJ3NyYycpOw0KICAgICAgICAgIGlmIChpbWFnZVVybCkgew0KICAgICAgICAgICAgdmFyIGltYWdlID0gbmV3IEltYWdlKCk7DQogICAgICAgICAgICBpbWFnZS5zcmMgPSBpbWFnZVVybDsNCiAgICAgICAgICAgIGltYWdlc1RvUHJlbG9hZC5wdXNoKGltYWdlKTsNCiAgICAgICAgICAgIHRvdGFsSW1hZ2VzKys7DQogIA0KICAgICAgICAgICAgaW1hZ2Uub25sb2FkID0gaW1hZ2Uub25lcnJvciA9IGZ1bmN0aW9uICgpIHsNCiAgICAgICAgICAgICAgaW1hZ2VzTG9hZGVkKys7DQogIA0KICAgICAgICAgICAgICBpZiAoaW1hZ2VzTG9hZGVkID09PSB0b3RhbEltYWdlcykgew0KICAgICAgICAgICAgICAgICQuZWFjaChuZXdEYXRhLCBmdW5jdGlvbiAoa2V5LCB2YWx1ZSkgew0KICAgICAgICAgICAgICAgICAgdmFyIG1lbnVJdGVtID0gJCgiPGxpPiIpLmF0dHIoImRhdGEtdmFsdWUiLCBrZXkpLmh0bWwodmFsdWUpOw0KICAgICAgICAgICAgICAgICAgbWVudUxpc3QuYXBwZW5kKG1lbnVJdGVtKTsNCiAgICAgICAgICAgICAgICB9KTsNCiAgICAgICAgICAgICAgfQ0KICAgICAgICAgICAgfTsNCiAgICAgICAgICB9DQogICAgICAgIH0pOw0KICAgICAgfSk7DQogIA0KICAgICAgaWYgKHRvdGFsSW1hZ2VzID09PSAwKSB7DQogICAgICAgICQuZWFjaChuZXdEYXRhLCBmdW5jdGlvbiAoa2V5LCB2YWx1ZSkgew0KICAgICAgICAgIHZhciBtZW51SXRlbSA9ICQoIjxsaT4iKS5hdHRyKCJkYXRhLXZhbHVlIiwga2V5KS5odG1sKHZhbHVlKTsNCiAgICAgICAgICBtZW51TGlzdC5hcHBlbmQobWVudUl0ZW0pOw0KICAgICAgICB9KTsNCiAgICAgIH0NCiAgICB9DQogIA0KICAgIHZhciBtZXRob2RzID0gew0KICAgICAgcmVSZW5kZXJNZW51OiBmdW5jdGlvbiAobmV3RGF0YSkgew0KICAgICAgICBjb25zdCBjb21wb25lbnRFbGVtZW50ID0gJCh0aGlzKTsNCiAgDQogICAgICAgIGlmIChjb21wb25lbnRFbGVtZW50Lmxlbmd0aCkgew0KICAgICAgICAgIGNvbnN0IG1lbnVMaXN0ID0gY29tcG9uZW50RWxlbWVudC5maW5kKCJ1bCIpOw0KICANCiAgICAgICAgICBpZiAobWVudUxpc3QubGVuZ3RoKSB7DQogICAgICAgICAgICBtZW51TGlzdC5lbXB0eSgpOw0KICAgICAgICAgICAgcHJlbG9hZEltYWdlc0FuZEFkZEl0ZW1zKG1lbnVMaXN0LCBuZXdEYXRhKTsNCiAgICAgICAgICB9DQogICAgICAgIH0NCiAgICAgIH0sDQogIA0KICAgICAgYWRkSXRlbXNNZW51OiBmdW5jdGlvbiAobmV3RGF0YSkgew0KICAgICAgICB2YXIgbWVudUxpc3QgPSAkKHRoaXMpLmZpbmQoInVsIik7DQogIA0KICAgICAgICBpZiAobWVudUxpc3QubGVuZ3RoKSB7DQogICAgICAgICAgcHJlbG9hZEltYWdlc0FuZEFkZEl0ZW1zKG1lbnVMaXN0LCBuZXdEYXRhKTsNCiAgICAgICAgfQ0KICAgICAgfSwqLw0KICBmdW5jdGlvbiBhZGRJdGVtc1RvTGlzdChtZW51TGlzdCwgZGF0YSkgew0KICAgIHZhciBrZXlzSW5PcmRlciA9IE9iamVjdC5rZXlzKGRhdGEpOw0KICAgIHZhciBpdGVtc1RvQWRkID0gW107DQoNCiAgICBrZXlzSW5PcmRlci5mb3JFYWNoKGZ1bmN0aW9uIChrZXkpIHsNCiAgICAgIHZhciBpdGVtID0gZGF0YVtrZXldOw0KICAgICAgdmFyICR0ZW1wRGl2ID0gJCgnPGRpdj48L2Rpdj4nKS5odG1sKGl0ZW0pOw0KICAgICAgdmFyIGltZyA9ICR0ZW1wRGl2LmZpbmQoJ2ltZycpOw0KDQogICAgICBpZiAoaW1nLmxlbmd0aCA+IDApIHsNCiAgICAgICAgaW1nLm9uKCdsb2FkJywgZnVuY3Rpb24gKCkgew0KICAgICAgICAgIHZhciAkbGkgPSAkKCI8bGk+IikuYXR0cigiZGF0YS12YWx1ZSIsIGtleSkuaHRtbChpdGVtKTsNCiAgICAgICAgICBpdGVtc1RvQWRkW2tleXNJbk9yZGVyLmluZGV4T2Yoa2V5KV0gPSAkbGk7DQoNCiAgICAgICAgICBpZiAoaXRlbXNUb0FkZC5maWx0ZXIoQm9vbGVhbikubGVuZ3RoID09PSBrZXlzSW5PcmRlci5sZW5ndGgpIHsNCiAgICAgICAgICAgIGl0ZW1zVG9BZGQuZm9yRWFjaChmdW5jdGlvbiAobWVudUl0ZW0pIHsNCiAgICAgICAgICAgICAgbWVudUxpc3QuYXBwZW5kKG1lbnVJdGVtKTsNCiAgICAgICAgICAgIH0pOw0KICAgICAgICAgIH0NCiAgICAgICAgfSk7DQogICAgICB9IGVsc2Ugew0KICAgICAgICB2YXIgJGxpID0gJCgiPGxpPiIpLmF0dHIoImRhdGEtdmFsdWUiLCBrZXkpLmh0bWwoaXRlbSk7DQogICAgICAgIGl0ZW1zVG9BZGRba2V5c0luT3JkZXIuaW5kZXhPZihrZXkpXSA9ICRsaTsNCg0KICAgICAgICBpZiAoaXRlbXNUb0FkZC5maWx0ZXIoQm9vbGVhbikubGVuZ3RoID09PSBrZXlzSW5PcmRlci5sZW5ndGgpIHsNCiAgICAgICAgICBpdGVtc1RvQWRkLmZvckVhY2goZnVuY3Rpb24gKG1lbnVJdGVtKSB7DQogICAgICAgICAgICBtZW51TGlzdC5hcHBlbmQobWVudUl0ZW0pOw0KICAgICAgICAgIH0pOw0KICAgICAgICB9DQogICAgICB9DQogICAgfSk7DQogIH0NCg0KICB2YXIgbWV0aG9kcyA9IHsNCiAgICByZVJlbmRlck1lbnU6IGZ1bmN0aW9uIChuZXdEYXRhKSB7DQogICAgICBjb25zdCBjb21wb25lbnRFbGVtZW50ID0gJCh0aGlzKTsNCiAgICAgIGNvbnN0IG1lbnVMaXN0ID0gY29tcG9uZW50RWxlbWVudC5maW5kKCJ1bCIpOw0KDQogICAgICBpZiAobWVudUxpc3QubGVuZ3RoKSB7DQogICAgICAgIG1lbnVMaXN0LmVtcHR5KCk7DQogICAgICAgIGFkZEl0ZW1zVG9MaXN0KG1lbnVMaXN0LCBuZXdEYXRhKTsNCiAgICAgIH0NCiAgICB9LA0KDQogICAgYWRkSXRlbXNNZW51OiBmdW5jdGlvbiAobmV3RGF0YSkgew0KICAgICAgdmFyIG1lbnVMaXN0ID0gJCh0aGlzKS5maW5kKCJ1bCIpOw0KDQogICAgICBpZiAobWVudUxpc3QubGVuZ3RoKSB7DQogICAgICAgIGFkZEl0ZW1zVG9MaXN0KG1lbnVMaXN0LCBuZXdEYXRhKTsNCiAgICAgIH0NCiAgICB9LA0KDQogICAgcmVtb3ZlSXRlbXNNZW51OiBmdW5jdGlvbiAoaXRlbUlEcywgc3RhcnQsIGxlbmd0aCkgew0KICAgICAgaWYgKCghaXRlbUlEcyB8fCBpdGVtSURzLmxlbmd0aCA9PT0gMCkgJiYgdHlwZW9mIHN0YXJ0ID09PSAidW5kZWZpbmVkIikgew0KICAgICAgICByZXR1cm47DQogICAgICB9DQoNCiAgICAgIGNvbnN0IG1lbnVMaXN0ID0gJCh0aGlzKS5maW5kKCJ1bCIpOw0KDQogICAgICBpZiAoaXRlbUlEcykgew0KICAgICAgICBmb3IgKHZhciBpID0gMDsgaSA8IGl0ZW1JRHMubGVuZ3RoOyBpKyspIHsNCiAgICAgICAgICBtZW51TGlzdC5maW5kKGBsaVtkYXRhLXZhbHVlPSIke2l0ZW1JRHNbaV19Il1gKS5yZW1vdmUoKTsNCiAgICAgICAgfQ0KICAgICAgfSBlbHNlIGlmICh0eXBlb2Ygc3RhcnQgIT09ICJ1bmRlZmluZWQiKSB7DQogICAgICAgIGxlbmd0aCA9IGxlbmd0aCB8fCAxOw0KICAgICAgICBtZW51TGlzdC5maW5kKCJsaSIpLnNsaWNlKHN0YXJ0LCBzdGFydCArIGxlbmd0aCkucmVtb3ZlKCk7DQogICAgICB9IGVsc2Ugew0KICAgICAgICBtZW51TGlzdC5maW5kKCJsaSIpLnJlbW92ZSgpOw0KICAgICAgfQ0KICAgIH0sDQoNCiAgICBjbGVhckRyb3Bkb3duTWVudTogZnVuY3Rpb24gKCkgew0KICAgICAgJCgiPiB1bCIsIHRoaXMpLmVtcHR5KCk7DQogICAgfSwNCg0KICAgIG1hcmtBc0FjdGl2ZTogZnVuY3Rpb24gKGl0ZW1pZCkgew0KICAgICAgJCgidWwgPiBsaVtpdGVtaWRdLmFjdGl2ZSIsIHRoaXMpLnJlbW92ZUNsYXNzKCJhY3RpdmUiKTsNCiAgICAgICQoJ3VsID4gbGlbaXRlbWlkPSInICsgaXRlbWlkICsgJyJdJywgdGhpcykuYWRkQ2xhc3MoImFjdGl2ZSIpOw0KICAgIH0sDQoNCiAgICBpbml0OiBmdW5jdGlvbiAoKSB7DQogICAgICB2YXIgZHJvcGRvd25fbWVudSA9IHRoaXM7DQogICAgICB2YXIgc2VsZWN0b3JzID0gWyJ1bCA+IGxpIl07DQoNCiAgICAgICQodGhpcykub24oImNsaWNrIGRibGNsaWNrIiwgc2VsZWN0b3JzLmpvaW4oIiwiKSwgZnVuY3Rpb24gKGUpIHsNCiAgICAgICAgZS5wcmV2ZW50RGVmYXVsdCgpOw0KDQogICAgICAgIHZhciAkdGhpcyA9ICQoZS50YXJnZXQpOw0KDQogICAgICAgIGlmIChlLnR5cGUgPT0gImRibGNsaWNrIikgew0KICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCBkcm9wZG93bl9tZW51LCAkdGhpcywgdHJ1ZSk7DQogICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7DQogICAgICAgICAgICBpZiAoJHRoaXMuZGF0YSgiaXNTaW5nbGVDbGljayIpKSB7DQogICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCBkcm9wZG93bl9tZW51LCAkdGhpcywgZmFsc2UpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgIH0sIDIwMCk7DQogICAgICAgICAgJHRoaXMuZGF0YSgiaXNTaW5nbGVDbGljayIsIHRydWUpOw0KICAgICAgICB9DQogICAgICAgIHJldHVybiBmYWxzZTsNCiAgICAgIH0pOw0KICAgIH0sDQogIH07DQoNCn0pKGpRdWVyeSk7]]></Resource>
+  </Resources>
+  <SourceCode><![CDATA[import collections
+import json
+from scripting.legacy.id import id2link1
+
+class VDOM_dropdown_menu(VDOM_object):
+
+    def parse_property(self, pname, ptype, *args, **kwargs):
+        prop = getattr(self, pname)
+        if not prop:
+            return ptype()
+
+        try:
+            value = json.loads(prop, *args, **kwargs)
+        except Exception as ex:
+            if prop:
+                raise Exception(u"Can't parse '%s'. It must be '%s'" % (pname, ptype.__name__))
+            value = ptype()
+
+        return value
+
+    def check_unit(self, value):
+        return value + "px" if value.isdigit() else value
+    
+    def render(self, contents=""):
+        obj_id = self.id.replace('-', '_')
+        
+        zindex = u"%s" % self.zindex if int(self.zindex) != 0 else u""
+        display = u"none" if self.visible == "0" else self.displaying
+        position = u"{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+        
+        styles = {
+            "z-index": zindex,
+            "display": display,
+            "position": position,
+            "width": self.check_unit(self.width),
+            "height": self.check_unit(self.height),
+            "margin": self.margins,
+            "padding": self.paddings,
+            "top": self.check_unit(self.top),
+            "left": self.check_unit(self.left)
+        }
+        if self.positioning == "static":
+        	styles["top"] = styles["left"] = ""
+        
+        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+
+        result = []
+        onclick = ""
+        html_image = ""
+        items = self.parse_property("data", dict, object_pairs_hook=collections.OrderedDict)
+        
+        if self.btn_image:
+        	alt = u"alt='{}'".format(self.alt) if self.alt else ""
+        	html_image = u"<img class='buttonIcon' src='{link}' {alt}>".format(link=id2link1(self.btn_image), alt=alt)
+        elif self.button_svg:
+        	html_image = self.button_svg
+        
+        if self.show_clicked == "1":
+        	onclick = u"""
+    $("#o_{id}").on("click", "ul li", function() {{
+        var selectedItemHtml = $(this).html();
+        $("#o_{id} .menuButton").html(selectedItemHtml);
+        $(".menuList", "#o_{id}").hide();
+    }});""".format(id=obj_id)
+        
+        usercss = "<style type='text/css'>"
+        if self.style:
+        	usercss += self.style % {"id": "o_" + obj_id}
+        usercss += "</style>"
+
+        for key, value in items.iteritems():
+            result.append(u"""<li itemid="{key}" class="">{content}</li>""".format(
+                key=key,
+                content=value
+            ))
+        	
+        output = u"""
+{css}
+<div id="o_{id}" name="{name}" objtype="dropdown_menu" style="{styles}" class="{css_class} vdom_dropdown_menu">
+	<div class="menuButton">
+		{html_image}
+		<span class="buttonLabel">{label}</span>
+	</div>
+	<ul class="menuList" style="display: none;">{content}</ul>
+</div>
+<script>
+$(document).ready(function() {{
+
+    $("#o_{id} .menuButton").click(function() {{
+        var dropdownMenu = $(this).closest('.vdom_dropdown_menu');
+        $(".menuList", dropdownMenu).toggle();
+    }});
+    {show_clicked}
+    $("#o_{id}").dropdown_menu();
+}});
+</script>
+""".format(
+        content="".join(result),
+        id=obj_id,
+        name=self.name,
+        label=self.btn_label,
+        styles=styles_str,
+        css_class=self.classname,
+        css=usercss,
+        html_image=html_image,
+        show_clicked=onclick if onclick else ""
+    )
+
+        contents += output
+        
+        return VDOM_object.render(self, contents=contents)        
+            
+    def wysiwyg(self, contents=""):
+        from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        self.width, self.height, self.top, self.left = [
+    		int(self.ide_width), int(self.ide_height), 
+    		int(self.ide_top), int(self.ide_left)
+    	]
+        image_id = "8da56bee-32be-1c85-8d90-a81ab646275e"
+        result = get_empty_wysiwyg_value(self, image_id)
+        return VDOM_object.wysiwyg(self, contents=result)
+
+def on_update(object, attributes):
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "width", "height", "top"]:
+		if attr in attributes:
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+
+	attributes.update(modifications)
+
+	users = u"""\
+#%(id)s {
+
+}
+"""
+	
+	skin_mapping = {
+		"0": "",
+		"1": users
+	}
+	if "skin" in attributes:
+		skin = attributes["skin"]
+		if skin in skin_mapping:
+			attributes.update(style=skin_mapping[skin])
+		else:
+			attributes.update(skin="0")
+			
+	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+		attributes.update(skin="0")
+		
+	data_example = u"""\
+{"item1": "value 1", "item2": "<p>Value 2</p>", "item3": "<div>Value3</div><img style='background-color: green; width: 40px;' src=''/>"}
+"""
+
+	data_map = {
+		"data_ex": data_example,
+		"empty": u""
+	}
+	
+	if "skindata" in attributes:
+		skindata = attributes["skindata"]
+		if skindata == "1":
+			attributes.update(data=data_example)
+		else:
+			attributes.update(data=u"")
+	
+	if "data" in attributes:
+		if attributes.get("data") not in data_map.values():
+			attributes.update(skindata="2")
+	
+	return ""
+			
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
+  <Libraries>
+    <Library Target="html"><![CDATA[<script defer type="text/javascript" src="/1dbf4a70-9448-66e4-da69-cff4990df991.js"></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_drop {
+            
+        }
+
+</style>]]></Library>
+  </Libraries>
+  <E2vdom>
+    <Events>
+      <Userinterfaceevents>
+        <Event Name="custom" Help="#Lang(507)">
+          <Parameters>
+            <Parameter Name="param" Order="0" VbType="" Help="#Lang(901)"/>
+          </Parameters>
+        </Event>
+        <Event Name="drop" Help="#Lang(508)">
+          <Parameters>
+            <Parameter Name="params" Order="0" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemclick" Help="#Lang(509)">
+          <Parameters>
+            <Parameter Name="itemid" Order="0" VbType="" Help="#Lang(903)"/>
+            <Parameter Name="selected" Order="0" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
+          </Parameters>
+        </Event>
+        <Event Name="itemdblclick" Help="#Lang(511)">
+          <Parameters>
+            <Parameter Name="itemid" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="selected" Order="0" VbType="" Help="#Lang(908)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
+          </Parameters>
+        </Event>
+      </Userinterfaceevents>
+    </Events>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addItems">
+          <Parameters>
+            <Parameter DefaultValue="{}" Interface="" InterfaceName="#Lang(701)" ScriptName="menuItems" Help="#Lang(801)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$("#" + this.domCont.id).dropdown_menu("addItemsMenu", menuItems);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="clearMenu">
+          <Parameters/>
+          <SourceCode><![CDATA[$("#" + this.domCont.id).dropdown_menu("clearDropdownMenu");]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="newData">
+          <Parameters>
+            <Parameter DefaultValue="{}" Interface="" InterfaceName="#Lang(703)" ScriptName="menuItems" Help="#Lang(803)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$("#" + this.domCont.id).dropdown_menu("reRenderMenu", menuItems);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="removeItems">
+          <Parameters>
+            <Parameter DefaultValue="[]" Interface="" InterfaceName="#Lang(704)" ScriptName="IDs" Help="#Lang(804)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="length" Help="#Lang(805)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="start" Help="#Lang(806)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$("#" + this.domCont.id).dropdown_menu("removeItemsMenu", IDs, start, length);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
+  </E2vdom>
+</Type>
