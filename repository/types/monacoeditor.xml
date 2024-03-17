@@ -4,7 +4,7 @@
     <Name>monacoeditor</Name>
     <DisplayName>#Lang(001)</DisplayName>
     <Description>#Lang(002)</Description>
-    <ClassName>VDOM_monacoeditor</ClassName> 
+    <ClassName>VDOM_monacoeditor</ClassName>
     <ID>d1ba1896-36ce-4fda-82e5-61e292723535</ID>
     <Icon>#Res(30b2054e-61bc-46dc-8f7b-263540d8eaaa)</Icon>
     <EditorIcon>#Res(9eac030e-29c7-448e-9f7c-777be6f49713)</EditorIcon>
@@ -14,213 +14,453 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>0.0.3</Version>
+    <Version>0.7.3</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, flexcontainer</Containers>
-    <Languages>en_US, ru_RU, fr_FR</Languages>
-    <Handlers/>
+    <Languages>en_US ,ru_RU ,fr_FR</Languages>
+    <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
   <Attributes>
     <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(003)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(004)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(005)|1)|(#Lang(006)|0))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>positioning1</Name>
-      <DisplayName>#Lang(008)</DisplayName>
-      <DefaultValue>absolute</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(009)|absolute)|(#Lang(010)|static)|(#Lang(011)|relative)|(#Lang(012)|fixed))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(013)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(014)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
-      <DisplayName>#Lang(015)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>width</Name>
-      <DisplayName>#Lang(016)</DisplayName>
-      <DefaultValue>300</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
-      <DisplayName>#Lang(017)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(018)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(000)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(007)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>value</Name>
       <DisplayName>#Lang(109)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(209)</Help>
       <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>hierarchy</Name>
+      <DisplayName>#Lang(101)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(201)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>positioning1</Name>
+      <DisplayName>#Lang(103)</DisplayName>
+      <DefaultValue>static</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(203)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(403)|absolute)|(#Lang(404)|static)|(#Lang(405)|relative)|(#Lang(406)|fixed))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>top</Name>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(205)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(206)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>width</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>height</Name>
+      <DisplayName>#Lang(108)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(208)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(316)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(407)|)|(#Lang(408)|block)|(#Lang(409)|inline)|(#Lang(410)|flex)|(#Lang(411)|inline-block))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(216)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>value</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(117)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(317)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(217)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(318)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(102)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(202)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(401)|1)|(#Lang(402)|0))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(112)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(312)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(212)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(313)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(213)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(114)</DisplayName>
+      <DefaultValue>300</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(314)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(115)</DisplayName>
+      <DefaultValue>200</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(315)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(215)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
     <Language Code="en_US">
-      <Sentence ID="000">Default help field</Sentence>
       <Sentence ID="001">Monaco editor</Sentence>
       <Sentence ID="002">Type desctiption</Sentence>
       <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="004">Visibility</Sentence>
-      <Sentence ID="005">Yes</Sentence>
-      <Sentence ID="006">No</Sentence>
-      <Sentence ID="007">Default validation message</Sentence>
-      <Sentence ID="008">Position</Sentence>
-      <Sentence ID="009">absolute</Sentence>
-      <Sentence ID="010">static</Sentence>
-      <Sentence ID="011">relative</Sentence>
-      <Sentence ID="012">fixed</Sentence>
-      <Sentence ID="013">Z-Index</Sentence>
-      <Sentence ID="014">Top</Sentence>
-      <Sentence ID="015">Left</Sentence>
-      <Sentence ID="016">Width</Sentence>
-      <Sentence ID="017">Height</Sentence>
-      <Sentence ID="018">Css class</Sentence>
-      <Sentence ID="019">hide</Sentence>
-      <Sentence ID="020">show</Sentence>
-      <Sentence ID="021">Fade</Sentence>
-      <Sentence ID="022">Value</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="105">Top</Sentence>
+      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="107">Width</Sentence>
+      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="109">Css class</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">IDE_left</Sentence>
+      <Sentence ID="113">IDE_top</Sentence>
+      <Sentence ID="114">IDE_width</Sentence>
+      <Sentence ID="115">IDE_height</Sentence>
+      <Sentence ID="116">Display</Sentence>
+      <Sentence ID="117">Margins</Sentence>
+      <Sentence ID="118">Paddings</Sentence>
+      <Sentence ID="201">Default help field</Sentence>
+      <Sentence ID="202">Default help field</Sentence>
+      <Sentence ID="203">Default help field</Sentence>
+      <Sentence ID="204">Default help field</Sentence>
+      <Sentence ID="205">Default help field</Sentence>
+      <Sentence ID="206">Default help field</Sentence>
+      <Sentence ID="207">Default help field</Sentence>
+      <Sentence ID="208">Default help field</Sentence>
+      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">newAttribute10</Sentence>
+      <Sentence ID="213">newAttribute11</Sentence>
+      <Sentence ID="214">newAttribute12</Sentence>
+      <Sentence ID="215">newAttribute13</Sentence>
+      <Sentence ID="216">newAttribute14</Sentence>
+      <Sentence ID="217">newAttribute15</Sentence>
+      <Sentence ID="218">newAttribute16</Sentence>
+      <Sentence ID="301">Default validation message</Sentence>
+      <Sentence ID="302">Default validation message</Sentence>
+      <Sentence ID="303">Default validation message</Sentence>
+      <Sentence ID="304">Default validation message</Sentence>
+      <Sentence ID="305">Default validation message</Sentence>
+      <Sentence ID="306">Default validation message</Sentence>
+      <Sentence ID="307">Default validation message</Sentence>
+      <Sentence ID="308">Default validation message</Sentence>
+      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">newAttribute10</Sentence>
+      <Sentence ID="313">newAttribute11</Sentence>
+      <Sentence ID="314">newAttribute12</Sentence>
+      <Sentence ID="315">newAttribute13</Sentence>
+      <Sentence ID="316">newAttribute14</Sentence>
+      <Sentence ID="317">newAttribute15</Sentence>
+      <Sentence ID="318">newAttribute16</Sentence>
+      <Sentence ID="401">Yes</Sentence>
+      <Sentence ID="402">No</Sentence>
+      <Sentence ID="403">absolute</Sentence>
+      <Sentence ID="404">static</Sentence>
+      <Sentence ID="405">relative</Sentence>
+      <Sentence ID="406">fixed</Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408">Block</Sentence>
+      <Sentence ID="409">Inline</Sentence>
+      <Sentence ID="410">Flex</Sentence>
+      <Sentence ID="411">Inline-block</Sentence>
+      <Sentence ID="501">Default help field</Sentence>
+      <Sentence ID="502">Default help field</Sentence>
+      <Sentence ID="503">Default help field</Sentence>
+      <Sentence ID="601">hide</Sentence>
+      <Sentence ID="602">show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="801">Default help field</Sentence>
+      <Sentence ID="802">Default help field</Sentence>
+      <Sentence ID="901">Default help field</Sentence>
     </Language>
     <Language Code="ru_RU">
-      <Sentence ID="000">Default help field</Sentence>
       <Sentence ID="001">Monaco editor</Sentence>
       <Sentence ID="002">Type desctiption</Sentence>
       <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="004">Visibility</Sentence>
-      <Sentence ID="005">Yes</Sentence>
-      <Sentence ID="006">No</Sentence>
-      <Sentence ID="007">Default validation message</Sentence>
-      <Sentence ID="008">Position</Sentence>
-      <Sentence ID="009">absolute</Sentence>
-      <Sentence ID="010">static</Sentence>
-      <Sentence ID="011">relative</Sentence>
-      <Sentence ID="012">fixed</Sentence>
-      <Sentence ID="013">Z-Index</Sentence>
-      <Sentence ID="014">Top</Sentence>
-      <Sentence ID="015">Left</Sentence>
-      <Sentence ID="016">Width</Sentence>
-      <Sentence ID="017">Height</Sentence>
-      <Sentence ID="018">Css class</Sentence>
-      <Sentence ID="019">hide</Sentence>
-      <Sentence ID="020">show</Sentence>
-      <Sentence ID="021">Fade</Sentence>
-      <Sentence ID="022">Value</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="105">Top</Sentence>
+      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="107">Width</Sentence>
+      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="109">Css class</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="201">Default help field</Sentence>
+      <Sentence ID="202">Default help field</Sentence>
+      <Sentence ID="203">Default help field</Sentence>
+      <Sentence ID="204">Default help field</Sentence>
+      <Sentence ID="205">Default help field</Sentence>
+      <Sentence ID="206">Default help field</Sentence>
+      <Sentence ID="207">Default help field</Sentence>
+      <Sentence ID="208">Default help field</Sentence>
+      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="301">Default validation message</Sentence>
+      <Sentence ID="302">Default validation message</Sentence>
+      <Sentence ID="303">Default validation message</Sentence>
+      <Sentence ID="304">Default validation message</Sentence>
+      <Sentence ID="305">Default validation message</Sentence>
+      <Sentence ID="306">Default validation message</Sentence>
+      <Sentence ID="307">Default validation message</Sentence>
+      <Sentence ID="308">Default validation message</Sentence>
+      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="401">Yes</Sentence>
+      <Sentence ID="402">No</Sentence>
+      <Sentence ID="403">absolute</Sentence>
+      <Sentence ID="404">static</Sentence>
+      <Sentence ID="405">relative</Sentence>
+      <Sentence ID="406">fixed</Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="410"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="501">Default help field</Sentence>
+      <Sentence ID="502">Default help field</Sentence>
+      <Sentence ID="503">Default help field</Sentence>
+      <Sentence ID="601">hide</Sentence>
+      <Sentence ID="602">show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="801">Default help field</Sentence>
+      <Sentence ID="802">Default help field</Sentence>
+      <Sentence ID="901">Default help field</Sentence>
     </Language>
     <Language Code="fr_FR">
-      <Sentence ID="000">Default help field</Sentence>
       <Sentence ID="001">Monaco editor</Sentence>
       <Sentence ID="002">Type desctiption</Sentence>
       <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="004">Visibility</Sentence>
-      <Sentence ID="005">Yes</Sentence>
-      <Sentence ID="006">No</Sentence>
-      <Sentence ID="007">Default validation message</Sentence>
-      <Sentence ID="008">Position</Sentence>
-      <Sentence ID="009">absolute</Sentence>
-      <Sentence ID="010">static</Sentence>
-      <Sentence ID="011">relative</Sentence>
-      <Sentence ID="012">fixed</Sentence>
-      <Sentence ID="013">Z-Index</Sentence>
-      <Sentence ID="014">Top</Sentence>
-      <Sentence ID="015">Left</Sentence>
-      <Sentence ID="016">Width</Sentence>
-      <Sentence ID="017">Height</Sentence>
-      <Sentence ID="018">Css class</Sentence>
-      <Sentence ID="019">hide</Sentence>
-      <Sentence ID="020">show</Sentence>
-      <Sentence ID="021">Fade</Sentence>
-      <Sentence ID="022">Value</Sentence>
+      <Sentence ID="101">Hierarchy</Sentence>
+      <Sentence ID="102">Visibility</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Z-Index</Sentence>
+      <Sentence ID="105">Top</Sentence>
+      <Sentence ID="106">Left</Sentence>
+      <Sentence ID="107">Width</Sentence>
+      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="109">Css class</Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112"></Sentence>
+      <Sentence ID="113"></Sentence>
+      <Sentence ID="114"></Sentence>
+      <Sentence ID="115"></Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="201">Default help field</Sentence>
+      <Sentence ID="202">Default help field</Sentence>
+      <Sentence ID="203">Default help field</Sentence>
+      <Sentence ID="204">Default help field</Sentence>
+      <Sentence ID="205">Default help field</Sentence>
+      <Sentence ID="206">Default help field</Sentence>
+      <Sentence ID="207">Default help field</Sentence>
+      <Sentence ID="208">Default help field</Sentence>
+      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212"></Sentence>
+      <Sentence ID="213"></Sentence>
+      <Sentence ID="214"></Sentence>
+      <Sentence ID="215"></Sentence>
+      <Sentence ID="216"></Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="301">Default validation message</Sentence>
+      <Sentence ID="302">Default validation message</Sentence>
+      <Sentence ID="303">Default validation message</Sentence>
+      <Sentence ID="304">Default validation message</Sentence>
+      <Sentence ID="305">Default validation message</Sentence>
+      <Sentence ID="306">Default validation message</Sentence>
+      <Sentence ID="307">Default validation message</Sentence>
+      <Sentence ID="308">Default validation message</Sentence>
+      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312"></Sentence>
+      <Sentence ID="313"></Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="401">Yes</Sentence>
+      <Sentence ID="402">No</Sentence>
+      <Sentence ID="403">absolute</Sentence>
+      <Sentence ID="404">static</Sentence>
+      <Sentence ID="405">relative</Sentence>
+      <Sentence ID="406">fixed</Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="410"></Sentence>
+      <Sentence ID="411"></Sentence>
+      <Sentence ID="501">Default help field</Sentence>
+      <Sentence ID="502">Default help field</Sentence>
+      <Sentence ID="503">Default help field</Sentence>
+      <Sentence ID="601">hide</Sentence>
+      <Sentence ID="602">show</Sentence>
+      <Sentence ID="701">Fade</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="801">Default help field</Sentence>
+      <Sentence ID="802">Default help field</Sentence>
+      <Sentence ID="901">Default help field</Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -237,9 +477,11 @@
       Ly8g0JTQvtCx0LDQstC40YLRjCDQu9C10L3QuNCy0YPQsSDQt9Cw0LPRgNGD0LfQutGDINC80L7QtNC10LvQtdC5DQovLyDQlNC10LvQsNC10Lwg0L3QsNC00L/QuNGB0Ywg0LvQvtCw0LnQtNC40L3QsyDQv9C+0LrQsCDRgtCw0Lwg0LfQsNC/0YDQvtGBINCz0YPQu9GP0LXRgiDQt9CwINGE0LDQudC70L7QvA0KLy8gKyDQtNC10LvQsNC10Lwg0LzQvtC00LXQu9GMINGA0LjQtNC+0L3Qu9C4DQoNCmNsYXNzIE1vbmFjb0VkaXRvciB7DQogIGNvbnN0cnVjdG9yKGNvbnRhaW5lciwgY29uZmlnID0ge30pIHsNCiAgICBkb2N1bWVudC5mb250cy5yZWFkeS50aGVuKCgpID0+IHsNCiAgICAgIHRoaXMuaW5pdChjb250YWluZXIsIGNvbmZpZyk7DQogICAgfSk7DQogIH0NCg0KICBhc3luYyBpbml0KGNvbnRhaW5lciwgY29uZmlnKSB7DQogICAgdGhpcy5jb250YWluZXIgPSBjb250YWluZXI7DQogICAgdGhpcy4kY29udGFpbmVyID0gJChjb250YWluZXIpOw0KICAgIHRoaXMuY29uZmlnID0geyAuLi5jb25maWcgfTsNCiAgICB0aGlzLmNvbmZpZy5hdXRvbWF0aWNMYXlvdXQgPSB0cnVlOw0KICAgIHRoaXMuY29uZmlnLnVzZVNoYWRvd0RPTSA9IGZhbHNlOw0KICAgIGRlbGV0ZSB0aGlzLmNvbmZpZy52YWx1ZTsNCiAgICB0aGlzLmNvbmZpZy5sYW5ndWFnZSA9IE1vbmFjb0VkaXRvci52YWxpZGF0ZUxhbmd1YWdlKHRoaXMuY29uZmlnPy5sYW5ndWFnZSk7DQogICAgdGhpcy5jb25maWcudGhlbWUgPSBNb25hY29FZGl0b3IudmFsaWRhdGVUaGVtZSh0aGlzLmNvbmZpZz8udGhlbWUpOw0KICAgIHRoaXMuZWRpdG9yID0gbW9uYWNvLmVkaXRvci5jcmVhdGUodGhpcy5jb250YWluZXIsIHRoaXMuY29uZmlnKTsNCiAgICB0aGlzLmNvbmZpZy52YWx1ZXMgPSBhd2FpdCB0aGlzLnZhbGlkYXRlQ29uZmlnVmFsdWVzKHRoaXMuY29uZmlnPy52YWx1ZXMpOw0KDQogICAgLy8gQWRkIGlucHV0IGZvciBzdWJtaXQNCiAgICB0aGlzLmluaXRUZXh0QXJlYSgpOw0KDQogICAgLy8gbG9hZGluZyBmaWxlcyBieSB1cmwgYW5kIGNyZWF0ZSBtb2RlbHM7DQoNCiAgICBmb3IgKGNvbnN0IFtrZXksIHZhbHVlXSBvZiBPYmplY3QuZW50cmllcyh0aGlzLmNvbmZpZy52YWx1ZXMpKSB7DQogICAgICB0aGlzLmNvbmZpZy52YWx1ZXNba2V5XSA9IGF3YWl0IHRoaXMucHJvY2Vzc1ZhbHVlKHZhbHVlKTsNCiAgICB9DQogICAgdGhpcy5tb2RlbCA9IHRoaXMuYWN0aXZlTW9kZWxLZXk7DQogIH0NCg0KICBhc3luYyBwcm9jZXNzVmFsdWUodmFsdWUpIHsNCiAgICAvLyBjcmVhdGUgbW9kZWwgYW5kIGdldCB0ZXh0IGJ5IHZhbHVlIHVybA0KICAgIGlmICh2YWx1ZSA9PT0gdW5kZWZpbmVkIHx8IHZhbHVlID09PSBudWxsKSB7DQogICAgICB2YWx1ZSA9IHt9Ow0KICAgIH0NCg0KICAgIGxldCBtb2RlbCA9IHZhbHVlPy5tb2RlbCB8fCBudWxsOw0KICAgIGNvbnN0IHVybCA9IHZhbHVlPy51cmwgfHwgbnVsbDsNCiAgICBjb25zdCBsYW5ndWFnZSA9IE1vbmFjb0VkaXRvci52YWxpZGF0ZUxhbmd1YWdlKHZhbHVlPy5sYW5ndWFnZSB8fCBudWxsKTsNCiAgICBjb25zdCBhY3RpdmUgPSB2YWx1ZT8uYWN0aXZlIHx8IGZhbHNlOw0KICAgIGxldCB0ZXh0ID0gIiI7DQoNCiAgICBpZiAobW9kZWwgPT09IG51bGwpIHsNCiAgICAgIHRyeSB7DQogICAgICAgIHRleHQgPSB1cmwgPyBhd2FpdCAkLmFqYXgodXJsLCB7IGRhdGFUeXBlOiAidGV4dCIsIGNhY2hlOiBmYWxzZSB9KSA6ICIiOw0KICAgICAgfSBjYXRjaCAoZXJyb3IpIHsNCiAgICAgICAgY29uc29sZS5lcnJvcihgRXJyb3Igd2hlbiBsb2FkaW5nICR7dXJsfSBmaWxlLmApOw0KICAgICAgfQ0KICAgICAgbW9kZWwgPSBtb25hY28uZWRpdG9yLmNyZWF0ZU1vZGVsKHRleHQsIGxhbmd1YWdlKTsNCiAgICB9DQogICAgdGhpcy5pbml0T25DaGFuZ2VFdmVudExpc3RlbmVyKG1vZGVsKTsNCiAgICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUpID0+IHsNCiAgICAgIHJlc29sdmUoeyBtb2RlbCwgdXJsLCBsYW5ndWFnZSwgYWN0aXZlLCBzdGF0ZTogbnVsbCB9KTsNCiAgICB9KTsNCiAgfQ0KDQogIHNldCBtb2RlbChtb2RlbEtleSkgew0KICAgIHRoaXMuc2F2ZUN1cnJlbnRNb2RlbFZpZXdTdGF0ZSgpOw0KICAgIGNvbnN0IG5ld1ZhbHVlID0gdGhpcy5jb25maWcudmFsdWVzW21vZGVsS2V5XTsNCiAgICB0aGlzLnNldE1vZGVsKG5ld1ZhbHVlLm1vZGVsKTsNCiAgICB0aGlzLnJlc3RvcmVWaWV3U3RhdGUobmV3VmFsdWUuc3RhdGUpOw0KICAgIHRoaXMuZm9jdXMoKTsNCg0KICAgIHRoaXMuYWN0aXZlTW9kZWxLZXkgPSBtb2RlbEtleTsNCg0KICAgIHRoaXMuc2V0VGV4dEFyZWFWYWx1ZSh0aGlzLnZhbHVlKTsNCiAgfQ0KDQogIHNhdmVDdXJyZW50TW9kZWxWaWV3U3RhdGUoKSB7DQogICAgY29uc3QgY3VycmVudFZhbHVlID0gdGhpcy5jb25maWcudmFsdWVzW3RoaXMuYWN0aXZlTW9kZWxLZXldOw0KICAgIGN1cnJlbnRWYWx1ZS5zdGF0ZSA9IHRoaXMuc2F2ZVZpZXdTdGF0ZSgpOw0KICB9DQoNCiAgc2F2ZVZpZXdTdGF0ZSgpIHsNCiAgICByZXR1cm4gdGhpcy5lZGl0b3Iuc2F2ZVZpZXdTdGF0ZSgpOw0KICB9DQoNCiAgc2V0TW9kZWwobW9kZWwpIHsNCiAgICB0aGlzLmVkaXRvci5zZXRNb2RlbChtb2RlbCk7DQogIH0NCg0KICByZXN0b3JlVmlld1N0YXRlKHN0YXRlKSB7DQogICAgdGhpcy5lZGl0b3IucmVzdG9yZVZpZXdTdGF0ZShzdGF0ZSk7DQogIH0NCg0KICBmb2N1cygpIHsNCiAgICB0aGlzLmVkaXRvci5mb2N1cygpOw0KICB9DQoNCiAgZ2V0IHZhbHVlKCkgew0KICAgIHJldHVybiB0aGlzLmVkaXRvci5nZXRWYWx1ZSgpOw0KICB9DQoNCiAgaW5pdE9uQ2hhbmdlRXZlbnRMaXN0ZW5lcihtb2RlbCkgew0KICAgIG1vZGVsLm9uRGlkQ2hhbmdlQ29udGVudCgoKSA9PiB7DQogICAgICB0aGlzLnNldFRleHRBcmVhVmFsdWUodGhpcy52YWx1ZSk7DQogICAgfSk7DQogIH0NCg0KICBzZXRUZXh0QXJlYVZhbHVlKHZhbHVlKSB7DQogICAgdGhpcy4kdGV4dEFyZWEudmFsKHZhbHVlKTsNCiAgfQ0KDQogIGluaXRUZXh0QXJlYSgpIHsNCiAgICB0aGlzLiR0ZXh0QXJlYSA9ICQoYDx0ZXh0YXJlYT48L3RleHRhcmVhPmApOw0KICAgIHRoaXMuJHRleHRBcmVhLmF0dHIoIm5hbWUiLCB0aGlzLmNvbmZpZy50ZXh0QXJlYU5hbWUpOw0KICAgIHRoaXMuJHRleHRBcmVhLmNzcygiZGlzcGxheSIsICJub25lIik7DQogICAgdGhpcy4kY29udGFpbmVyLnByZXBlbmQodGhpcy4kdGV4dEFyZWEpOw0KICB9DQoNCiAgZ2V0IGFjdGl2ZU1vZGVsS2V5KCkgew0KICAgIGNvbnN0IHZhbHVlc0VudHJpZXMgPSBPYmplY3QuZW50cmllcyh0aGlzLmNvbmZpZy52YWx1ZXMpOw0KICAgIGZvciAoY29uc3QgW2tleSwgdmFsdWVdIG9mIHZhbHVlc0VudHJpZXMpIHsNCiAgICAgIGlmICh2YWx1ZT8uYWN0aXZlKSByZXR1cm4ga2V5Ow0KICAgIH0NCiAgICBjb25zdCBhY3RpdmVLZXkgPSB2YWx1ZXNFbnRyaWVzWzBdWzBdOw0KICAgIHRoaXMuY29uZmlnLnZhbHVlc1thY3RpdmVLZXldLmFjdGl2ZSA9IHRydWU7DQogICAgcmV0dXJuIGFjdGl2ZUtleTsNCiAgfQ0KDQogIHNldCBhY3RpdmVNb2RlbEtleSh2YWx1ZSkgew0KICAgIGZvciAoY29uc3Qga2V5IG9mIE9iamVjdC5rZXlzKHRoaXMuY29uZmlnLnZhbHVlcykpIHsNCiAgICAgIHRoaXMuY29uZmlnLnZhbHVlc1trZXldLmFjdGl2ZSA9IGZhbHNlOw0KICAgIH0NCiAgICB0aGlzLmNvbmZpZy52YWx1ZXNbdmFsdWVdLmFjdGl2ZSA9IHRydWU7DQogIH0NCg0KICBhc3luYyBhZGRNb2RlbChpZCwgdmFsdWUpIHsNCiAgICBpZiAoaWQgaW4gdGhpcy5jb25maWcudmFsdWVzKSByZXR1cm47DQogICAgdGhpcy5jb25maWcudmFsdWVzW2lkXSA9IGF3YWl0IHRoaXMucHJvY2Vzc1ZhbHVlKHZhbHVlKTsNCiAgfQ0KDQogIGFzeW5jIHJlbW92ZU1vZGVsKG1vZGVsS2V5KSB7DQogICAgdGhpcy5jb25maWcudmFsdWVzW21vZGVsS2V5XS5tb2RlbC5kaXNwb3NlKCk7DQogICAgZGVsZXRlIHRoaXMuY29uZmlnLnZhbHVlc1ttb2RlbEtleV07DQogIH0NCg0KICBhc3luYyB2YWxpZGF0ZUNvbmZpZ1ZhbHVlcyh2YWx1ZXMpIHsNCiAgICByZXR1cm4gbmV3IFByb21pc2UoKHJlc29sdmUpID0+IHsNCiAgICAgIGlmICh2YWx1ZXMgPT09IHVuZGVmaW5lZCB8fCB2YWx1ZXMgPT0gbnVsbCB8fCAkLmlzRW1wdHlPYmplY3QodmFsdWVzKSkgew0KICAgICAgICB0aGlzLnByb2Nlc3NWYWx1ZShudWxsKS50aGVuKChkYXRhKSA9PiByZXNvbHZlKHsgIi0xIjogZGF0YSB9KSk7DQogICAgICB9IGVsc2Ugew0KICAgICAgICByZXNvbHZlKHZhbHVlcyk7DQogICAgICB9DQogICAgfSk7DQogIH0NCg0KICBzdGF0aWMgdmFsaWRhdGVUaGVtZSh0aGVtZSkgew0KICAgIGNvbnN0IGFsbG93ZWQgPSBbInZzIiwgInZzLWRhcmsiLCAiaGMtYmxhY2siXTsNCiAgICByZXR1cm4gYWxsb3dlZC5pbmNsdWRlcyh0aGVtZSkgPyB0aGVtZSA6IGFsbG93ZWRbMF07DQogIH0NCg0KICBzdGF0aWMgdmFsaWRhdGVMYW5ndWFnZShsYW5nKSB7DQogICAgY29uc3QgYWxsb3dlZCA9IFsNCiAgICAgICJhYmFwIiwNCiAgICAgICJhZXMiLA0KICAgICAgImFwZXgiLA0KICAgICAgImF6Y2xpIiwNCiAgICAgICJiYXQiLA0KICAgICAgImJpY2VwIiwNCiAgICAgICJjIiwNCiAgICAgICJjYW1lbGlnbyIsDQogICAgICAiY2xvanVyZSIsDQogICAgICAiY29mZmVlc2NyaXB0IiwNCiAgICAgICJjcHAiLA0KICAgICAgImNzaGFycCIsDQogICAgICAiY3NwIiwNCiAgICAgICJjc3MiLA0KICAgICAgImRhcnQiLA0KICAgICAgImRvY2tlcmZpbGUiLA0KICAgICAgImVjbCIsDQogICAgICAiZWxpeGlyIiwNCiAgICAgICJmbG93OSIsDQogICAgICAiZnNoYXJwIiwNCiAgICAgICJnbyIsDQogICAgICAiZ3JhcGhxbCIsDQogICAgICAiaGFuZGxlYmFycyIsDQogICAgICAiaGNsIiwNCiAgICAgICJodG1sIiwNCiAgICAgICJpbmkiLA0KICAgICAgImphdmEiLA0KICAgICAgImphdmFzY3JpcHQiLA0KICAgICAgImpzb24iLA0KICAgICAgImp1bGlhIiwNCiAgICAgICJrb3RsaW4iLA0KICAgICAgImxlc3MiLA0KICAgICAgImxleG9uIiwNCiAgICAgICJsaXF1aWQiLA0KICAgICAgImx1YSIsDQogICAgICAibTMiLA0KICAgICAgIm1hcmtkb3duIiwNCiAgICAgICJtaXBzIiwNCiAgICAgICJtc2RheCIsDQogICAgICAibXlzcWwiLA0KICAgICAgIm9iamVjdGl2ZS1jIiwNCiAgICAgICJwYXNjYWwiLA0KICAgICAgInBhc2NhbGlnbyIsDQogICAgICAicGVybCIsDQogICAgICAicGdzcWwiLA0KICAgICAgInBocCIsDQogICAgICAicGxhIiwNCiAgICAgICJwbGFpbnRleHQiLA0KICAgICAgInBvc3RpYXRzIiwNCiAgICAgICJwb3dlcnF1ZXJ5IiwNCiAgICAgICJwb3dlcnNoZWxsIiwNCiAgICAgICJwcm90byIsDQogICAgICAicHVnIiwNCiAgICAgICJweXRob24iLA0KICAgICAgInFzaGFycCIsDQogICAgICAiciIsDQogICAgICAicmF6b3IiLA0KICAgICAgInJlZGlzIiwNCiAgICAgICJyZWRzaGlmdCIsDQogICAgICAicmVzdHJ1Y3R1cmVkdGV4dCIsDQogICAgICAicnVieSIsDQogICAgICAicnVzdCIsDQogICAgICAic2IiLA0KICAgICAgInNjYWxhIiwNCiAgICAgICJzY2hlbWUiLA0KICAgICAgInNjc3MiLA0KICAgICAgInNoZWxsIiwNCiAgICAgICJzb2wiLA0KICAgICAgInNwYXJxbCIsDQogICAgICAic3FsIiwNCiAgICAgICJzdCIsDQogICAgICAic3dpZnQiLA0KICAgICAgInN5c3RlbXZlcmlsb2ciLA0KICAgICAgInRjbCIsDQogICAgICAidHdpZyIsDQogICAgICAidHlwZXNjcmlwdCIsDQogICAgICAidmIiLA0KICAgICAgInZlcmlsb2ciLA0KICAgICAgInhtbCIsDQogICAgICAieWFtbCIsDQogICAgXTsNCiAgICByZXR1cm4gYWxsb3dlZC5pbmNsdWRlcyhsYW5nKSA/IGxhbmcgOiAiIjsNCiAgfQ0KfQ0K
     ]]></Resource>
   </Resources>
-  <SourceCode>
-    <![CDATA[
+  <SourceCode><![CDATA[
 class VDOM_monacoeditor(VDOM_object):
+    def check_unit(self, value):
+		return value + "px" if value.isdigit() else value
+    
     def render(self, contents=""):
         """
             Args:
@@ -257,29 +499,33 @@ class VDOM_monacoeditor(VDOM_object):
         debug_info_string = " ".join(
             ["{}='{}'".format(key, value) for key, value in DEBUG_INFO.items()]
         )
-
-        DISPLAY_CONVERT = lambda v: "none" if v == "0" else None
-        SIZE_CONVERT = lambda v: str(v) + "px"
-        STYLES = {
-            "display": DISPLAY_CONVERT(self.visible),
-            "position": self.positioning1,
-            "z-index": self.zindex,
-            "top": SIZE_CONVERT(self.top),
-            "left": SIZE_CONVERT(self.left),
-            "width": SIZE_CONVERT(self.width),
-            "height": SIZE_CONVERT(self.height),
+        
+        display = u"none" if self.visible == "0" else self.displaying
+        position = u"{pos}".format(pos=self.positioning1) if self.positioning1 and self.positioning1 != "static" else u""
+        
+        styles = {
+            "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+            "display": display,
+            "position": position,
+            "width": self.check_unit(self.width),
+            "height": self.check_unit(self.height),
+            "margin": self.margins,
+            "padding": self.paddings,
+            "top": self.check_unit(self.top),
+            "left": self.check_unit(self.left)
         }
-        STYLES_STRING_FORMAT = ";".join(
-            ["{}:{}".format(key, value) for key, value in STYLES.items() if value is not None]
-        )
+        if self.positioning1 == "static":
+        	styles["top"] = styles["left"] = ""
+        
+        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+
         STYLES_STRING = u"""
         <style>
             .%(id)s {
                 %(styles)s
             }
         </style>
-        """ % { "id": ID, "styles": STYLES_STRING_FORMAT }
-        STYLES_STRING = STYLES_STRING.replace(" ", "")
+        """ % { "id": ID, "styles": styles_str }
 
         script = u"""
         <script defer>
@@ -332,7 +578,7 @@ class VDOM_monacoeditor(VDOM_object):
         }
 
         RESULT = u"""
-        <div {debug_string} class='{id} {classname}'>
+        <div {debug_string} class='{id} {classname} vdom_monacoeditor'>
             {styles}
             {script}
         </div>
@@ -348,43 +594,75 @@ class VDOM_monacoeditor(VDOM_object):
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 
         image_id = "30b2054e-61bc-46dc-8f7b-263540d8eaaa"
         result = get_empty_wysiwyg_value(self, image_id)
 
         return VDOM_object.wysiwyg(self, contents=result)
-    ]]>
-  </SourceCode>
+    
+def on_update(object, attributes):
+	o = object
+	modifications = {}
+	
+	for attr in ["left", "width", "height", "top"]:
+		if attr in attributes:
+			attr_value = attributes[attr]
+			obj_value = o.attributes.get(attr, '').lower()
+			
+			if obj_value.isdigit() and attr_value.isdigit():
+				modifications[attr] = attr_value + "px"
+				modifications["ide_"+ attr] = attr_value
+			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+				modifications[attr] = attr_value.rstrip("px") + "px"
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			elif attr_value.isdigit() or "px" in attr_value:
+				modifications[attr] = attr_value if "px" in attr_value else obj_value
+				modifications["ide_"+ attr] = attr_value.rstrip("px")
+			else:
+				modifications[attr] = attr_value
+
+	attributes.update(modifications)
+	
+	return ""
+        
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs/loader.min.js'></script>]]></Library>
-    <!-- <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="???" />]]></Library> -->
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/866978ca-daf7-481a-b98d-3143c1175ef0.js'></script>]]></Library>
-
-    <!-- local development -->
-    <!-- <Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="http://172.24.24.13:8080/styles.css" />]]></Library> -->
-    <!-- <Library Target="html"><![CDATA[<script type='text/javascript' src='http://192.168.3.4:8080/monacoEditor.js'></script>]]></Library> -->
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_monacoeditor {
+            
+        }
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="load" Help="#Lang(000)">
+        <Event Name="load" Help="#Lang(503)">
           <Parameters>
-            <Parameter Name="param" Order="0" VbType="" Help="#Lang(000)"/>
+            <Parameter Name="param" Order="0" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(000)" InterfaceName="#Lang(019)" MethodName="hide">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(021)" ScriptName="fade" Help="#Lang(000)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).hide(fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(000)" InterfaceName="#Lang(020)" MethodName="show">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(021)" ScriptName="fade" Help="#Lang(000)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).show(fade);]]></SourceCode>
         </Action>
