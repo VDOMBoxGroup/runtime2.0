@@ -14,10 +14,10 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.414.6720</Version>
+    <Version>1.417.6720</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, vdomclass</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_update, on_insert, on_compile</Handlers>
     <RemoteMethods/>
@@ -931,8 +931,8 @@ class VDOM_tabview(VDOM_object):
 var tabview_children_%(id)s = %(arr)s;
 $(document).ready(function($){
     $("#ul_%(id)s a").click(function(){
-        $("#%(id)s>div.tabContent>div").fadeOut(100);
-        $("#%(id)s>div.tabContent>div").filter(this.hash).fadeIn(100);
+        $("#%(id)s>div.tabContent>div").hide();
+        $("#%(id)s>div.tabContent>div").filter(this.hash).show();
         $("#ul_%(id)s li").removeClass('active');
         $(this).parent('li').addClass('active');
         $("#ul_%(id)s a").removeClass('active');
