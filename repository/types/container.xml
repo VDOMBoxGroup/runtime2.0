@@ -14,7 +14,7 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.600.9</Version>
+    <Version>1.602.9</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer,dialog,dialog_3,container,tablecell,tabview,form,accordeon,dialog_2,vdomclass,desktopapplication,desktopshared,smartfolderdata,flexcontainer</Containers>
@@ -236,7 +236,7 @@
       <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(16)</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
@@ -245,10 +245,10 @@
       <Name>paddings</Name>
       <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue/>
-      <Visible>0</Visible>
+      <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField()</CodeInterface>
+      <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
@@ -1373,6 +1373,7 @@ class VDOM_container(VDOM_object):
             cont_tag = u"""<div class="content">%s</div>""" % contents
 
 
+        classname = ' '.join([self.classname, 'vdom_container']).strip()
         css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
         debug_info = u""
         if VDOM_CONFIG_1["DEBUG"] == "1":
@@ -1380,10 +1381,10 @@ class VDOM_container(VDOM_object):
 
 
         result = u"""{css}\
-                    <{wrap} {debug_info} {footer} id="{id}" style="{style}" class="{classname} vdom_container">
+                    <{wrap} {debug_info} {footer} id="{id}" style="{style}" class="{classname}">
         				{title_tag}{cont_tag}
         			</{wrap}>"""\
-                .format(debug_info = debug_info, footer =  footer, id = id, style = styles_str, classname = self.classname,
+                .format(debug_info = debug_info, footer =  footer, id = id, style = styles_str, classname = classname,
                             title_tag = title_tag, cont_tag = cont_tag, css = css, wrap = self.wrapper)
 
         return VDOM_object.render(self, contents=result)

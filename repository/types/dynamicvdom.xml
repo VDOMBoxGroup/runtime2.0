@@ -14,10 +14,10 @@
     <Container>2</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.21.0</Version>
+    <Version>1.23.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -929,7 +929,7 @@ def exception_trace():
 WYSIWYG_IMAGE_UUID = "76bfc87a-dbe3-46e3-8d11-cc78a576b63a"
 TEMPLATE = u"""{libraries}
 {css}
-<div objname="{name}" id="{id}" style="{style}" class="{classes} vdom_dynamicvdom">{contents}
+<div objname="{name}" id="{id}" style="{style}" class="{classes}">{contents}
 </div>
 <script type='text/javascript'>
 const observer_{id} = new MutationObserver((mutationsList) => {{
@@ -1014,7 +1014,7 @@ class VDOM_DynamicObject(VDOM_object):
             css=css,
             id=id,
             style=style,
-            classes=self.classname,
+            classes=' '.join([self.classname, 'vdom_dynamicvdom']).strip(),
             contents=inner,
             libraries=libraries,
             declarations=declarations,

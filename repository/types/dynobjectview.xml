@@ -17,7 +17,7 @@
     <Version>1.63.2</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -2645,7 +2645,7 @@ $(document).ready(function(){{
             object_style, element_style = self.compile_style()
             result = u"""
 {element_style}
-<div objname="{name}" id="{id4js}" style="{object_style}" class="{classes} vdom_dynobjectview">
+<div objname="{name}" id="{id4js}" style="{object_style}" class="{classes}">
 <div class='dov-content'>
 {contents}
 <span class='dov-eoi' style='display: block; clear: both'></span>
@@ -2659,7 +2659,7 @@ $(document).ready(function(){{
                 element_style=element_style,
                 id4js=id4js,
                 object_style=object_style,
-                classes=self.classname,
+                classes=' '.join([self.classname, 'vdom_dynobjectview']).strip(),
                 contents=layoutcontent,
                 options=json.dumps(options)
             )
