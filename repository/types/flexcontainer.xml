@@ -14,10 +14,10 @@
     <Container>2</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.1284.8389</Version>
+    <Version>1.1286.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, flexcontainer, tablecell, form, accordeon, dialog_2, vdomclass, desktopapplication, desktopshared, smartfolderdata</Containers>
+    <Containers>htmlcontainer, dialog, container, flexcontainer, tablecell, form, accordeon, dialog_2, dialog_3, vdomclass, desktopapplication, desktopshared, smartfolderdata</Containers>
     <Languages>en_US ,ru_RU ,fr_FR</Languages>
     <Handlers>on_update</Handlers>
     <RemoteMethods/>
@@ -2002,7 +2002,7 @@ class VDOM_flexcontainer(VDOM_object):
 
 		id = u"o_" + (self.id).replace('-', '_')
 		footer = u"""rel="footer" """ if self.footer == "1" else u""
-		classname = u"%s" % self.classname if self.classname else u""
+		classname = ' '.join([self.classname, 'vdom_flexcontainer']).strip()
 		
 		custom_attributes = ""
 		custom_attr_json = json.loads(self.custom_attributes) if self.custom_attributes else ""
@@ -2025,7 +2025,7 @@ class VDOM_flexcontainer(VDOM_object):
 			debug_info = u"objtype='container' objname='%s'" % ( self.name )
 
 		result = u"""{css}
-		         <{wrap} {debug_info} {footer} data-display='{display_style}' id="{id}" style="{style}" class="{classname} vdom_flexcontainer" {custom_attr}>{title_tag}{cont_tag}</{wrap}>"""\
+		         <{wrap} {debug_info} {footer} data-display='{display_style}' id="{id}" style="{style}" class="{classname}" {custom_attr}>{title_tag}{cont_tag}</{wrap}>"""\
 				.format(debug_info = debug_info, footer =  footer, id = id, style = style, classname = classname, custom_attr = custom_attributes,
 							css = css, title_tag = title_tag, cont_tag = cont_tag, display_style = display_style, wrap = self.render_mode)
 

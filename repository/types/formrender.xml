@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.42.0</Version>
+    <Version>1.54.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form</Containers>
@@ -1002,7 +1002,7 @@ class VDOM_formrender(VDOM_object):
         	
         style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-        classname = u"""class='%s vdom_formrender'""" % self.classname
+        classname = u"""class='%s'""" % ' '.join([self.classname, 'vdom_formrender']).strip()
         css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
 
         if VDOM_CONFIG_1["DEBUG"] == "1":
@@ -1019,11 +1019,13 @@ class VDOM_formrender(VDOM_object):
               }}
               {id}.formData = {contents};
               jQuery(function($) {{
-                $('#{id}').formRender({{fields: $.formRenderModules.fields, templates: $.formRenderModules.templates ,dataType: '{datatype}',formData: {id}.formData, i18n: {{
+                $('#{id}').formRender({{fields: $.formRenderModules.fields, disableInjectedStyle:"bootstrap", templates: $.formRenderModules.templates ,dataType: '{datatype}',formData: {id}.formData, i18n: {{
                   locale: '{language}',
                   location: '/',
                   extension: '.lang',
                 }}}});
+                
+                $('.formBuilder-injected-style').remove();
 
                 //fix rerender(for example onchange VDOM attrs)
                 $('body').off("change", "#{id} input, #{id} select");

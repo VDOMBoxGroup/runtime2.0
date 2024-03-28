@@ -17,7 +17,7 @@
     <Version>0.14.7</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
@@ -1135,7 +1135,7 @@ class VDOM_tabulator(VDOM_object):
           """.format(id=id[1:])
 
         result = u"""
-		<div %(debug_info)s id='%(id)s' style='%(style)s' class='%(cssclass)s vdom_tabulator'>
+		<div %(debug_info)s id='%(id)s' style='%(style)s' class='%(cssclass)s'>
 			%(search_field)s
 			<div id="%(id_tabulator)s" style="width: 100%%; height: 100%%"></div>
 		</div>
@@ -1217,7 +1217,7 @@ $(document).ready(() => {
             "id_tabulator": id_tabulator,
             "style": object_style,
             "selfstyle": self.style % {"id": id},
-            "cssclass": self.cssclass,
+            "cssclass": ' '.join([self.cssclass, 'vdom_tabulator']).strip(),
             "params": '\n'.join(params),
             "data": self.data,
             "columns": self.columns,

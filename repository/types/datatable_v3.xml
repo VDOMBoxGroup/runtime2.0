@@ -14,10 +14,10 @@
     <Container>1</Container>
     <Category>Table</Category>
     <Dynamic>1</Dynamic>
-    <Version>3.166.8389</Version>
+    <Version>3.167.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
@@ -1129,10 +1129,13 @@ class VDOM_datatable_v3(VDOM_object):
 		
 		styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-		cssclass = u'class="{usercss} vdom_datatablev3 {multiselect} {tristate}"'.format(
-				usercss     = (self.cssclass).replace('"', '') if self.cssclass else "",
-				multiselect = u"multiselect" if self.selectionmode == "1" else "",
-				tristate    = u"tristate" if self.tristate == "1" else "" )
+		cssclasses = ' '.join([param.strip() for param in [self.cssclass, 'vdom_datatablev3'] if param.strip()])
+		multiselect = 'multiselect' if self.selectionmode == "1" else ''
+		tristate = 'tristate' if self.tristate == "1" else ''
+		
+		classes = [param for param in [cssclasses, multiselect, tristate] if param]
+
+		cssclass = 'class="{}"'.format(' '.join(classes))
 
 		if self.header:
 			try:

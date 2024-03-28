@@ -17,7 +17,7 @@
     <Version>1.28.8388</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, form</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, dialog_3, vdomclass, form</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers/>
     <RemoteMethods/>
@@ -293,14 +293,14 @@
       <Sentence ID="405">User defined</Sentence>
       <Sentence ID="406">Default</Sentence>
       <Sentence ID="501">Make the object disabled.</Sentence>
-      <Sentence ID="502">Hide the object.</Sentence>
-      <Sentence ID="503">Show the object.</Sentence>
-      <Sentence ID="504">Set new value of the 'Z-Index' attribute.</Sentence>
-      <Sentence ID="505">Make the object enabled.</Sentence>
-      <Sentence ID="506">Move the object to a new position.</Sentence>
-      <Sentence ID="507">Resize the object's width and height.</Sentence>
-      <Sentence ID="508">Load the data.</Sentence>
-      <Sentence ID="509">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="502">Make the object enabled.</Sentence>
+      <Sentence ID="503">Hide the object.</Sentence>
+      <Sentence ID="504">Load the data.</Sentence>
+      <Sentence ID="505">Move the object to a new position.</Sentence>
+      <Sentence ID="506">Set new value of the 'Z-Index' attribute.</Sentence>
+      <Sentence ID="507">Load the items of the object on scrolling to them.</Sentence>
+      <Sentence ID="508">Resize the object's width and height.</Sentence>
+      <Sentence ID="509">Show the object.</Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
@@ -1474,41 +1474,41 @@ function vdom_sfd_init(woid,page,per,sel){
           <Parameters/>
           <SourceCode><![CDATA[vdom_sfd_disable(this.domCont.id);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="enable">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="enable">
           <Parameters/>
           <SourceCode><![CDATA[vdom_sfd_enable(this.domCont.id);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="loadMeta">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="loadMeta">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="data" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="data" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_sfd_load(this.domCont.id, data);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveTo">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newX" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newY" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="Effect" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newZindex" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="refresh">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="refresh">
           <Parameters/>
           <SourceCode><![CDATA[vdom_sfd_refresh(this.domCont.id);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="resizeTo">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="width" Help="#Lang(807)" RegularExpressionValidation=".*"/>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="height" Help="#Lang(808)" RegularExpressionValidation=".*"/>
@@ -1516,9 +1516,9 @@ function vdom_sfd_init(woid,page,per,sel){
           <SourceCode><![CDATA[this.domCont.style.width = parseInt(width,10);
 this.domCont.style.height = parseInt(height,10);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="fade" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>

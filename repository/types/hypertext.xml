@@ -14,10 +14,10 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.131.8389</Version>
+    <Version>1.133.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, dialog_3, vdomclass, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -961,7 +961,7 @@ class VDOM_hypertext(VDOM_object):
             	
             styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-            classname = u'class="%s vdom_hypertext"' % self.classname
+            classname = u'class="%s"' % ' '.join([self.classname, 'vdom_hypertext']).strip()
             css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
 
             if VDOM_CONFIG_1["DEBUG"] == "1":

@@ -17,7 +17,7 @@
     <Version>1.101.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, vdomclass, smartfolderdata, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, container, tablecell, accordeon, dialog_2, dialog_3, vdomclass, smartfolderdata, flexcontainer</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -27,42 +27,54 @@
   <Attributes>
     <Attribute>
       <Name>classname</Name>
-      <DisplayName>#Lang(103)</DisplayName>
+      <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(500)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
-      <DisplayName>#Lang(109)</DisplayName>
+      <DisplayName>#Lang(102)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
+      <Help>#Lang(202)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
-      <DisplayName>#Lang(104)</DisplayName>
+      <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
+      <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|absolute)|(#Lang(406)|fixed)|(#Lang(407)|relative)|(#Lang(408)|static))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -74,7 +86,7 @@
       <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>left</Name>
+      <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -86,7 +98,7 @@
       <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>width</Name>
+      <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -98,153 +110,177 @@
       <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>height</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>displaying</Name>
+      <Name>style</Name>
+      <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine()</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(111)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(211)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>target</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|block)|(#Lang(411)|inline)|(#Lang(412)|flex)|(#Lang(413)|inline-block)|(#Lang(414)|))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>PageLink()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>enctype</Name>
       <DisplayName>#Lang(113)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine()</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(413)|application/x-www-form-urlencoded)|(#Lang(414)|multipart/form-data)|(#Lang(415)|text/plain)|(#Lang(416)|))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>skin</Name>
+      <Name>meth</Name>
       <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>post</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(417)|post)|(#Lang(418)|get)|(#Lang(419)|event))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>target</Name>
+      <Name>submitonce</Name>
       <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>enctype</Name>
+      <Name>overflow</Name>
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|application/x-www-form-urlencoded)|(#Lang(418)|multipart/form-data)|(#Lang(419)|text/plain)|(#Lang(421)|))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1)|(#Lang(425)|2)|(#Lang(426)|3)|(#Lang(427)|))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>meth</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>post</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(422)|post)|(#Lang(423)|get)|(#Lang(424)|event))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>submitonce</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>overflow</Name>
-      <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(427)|0)|(#Lang(428)|1)|(#Lang(429)|2)|(#Lang(431)|3)|(#Lang(432)|))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^[0123]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(117)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>paddings</Name>
-      <DisplayName>#Lang(122)</DisplayName>
+      <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>reportvalidity</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(433)|0)|(#Lang(434)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(428)|0)|(#Lang(429)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>ide_top</Name>
-      <DisplayName>#Lang(124)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(221)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(124)</DisplayName>
+      <DefaultValue>200</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
@@ -254,75 +290,39 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>ide_left</Name>
+      <Name>zindex</Name>
       <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(225)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_width</Name>
-      <DisplayName>#Lang(126)</DisplayName>
-      <DefaultValue>400</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(226)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_height</Name>
-      <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(227)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(102)</DisplayName>
+      <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
+      <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(431)|0)|(#Lang(432)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>stateful</Name>
-      <DisplayName>#Lang(101)</DisplayName>
+      <DisplayName>#Lang(127)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
+      <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(433)|0)|(#Lang(434)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -331,112 +331,112 @@
       <Sentence ID="001">Form</Sentence>
       <Sentence ID="002">The Form type produces an object that serves as a container for other form objects. Together they make up a form used for exchanging the data between the client and VDOM server. The form data can be sent by the 'POST', 'GET' or 'event' method selected in the 'Method' attribute, where the 'event' method means that the data will be sent as a parameter of the 'submit' event.</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Visibility</Sentence>
-      <Sentence ID="103">Class CSS</Sentence>
-      <Sentence ID="104">Positioning</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">Hierarchy</Sentence>
-      <Sentence ID="111">Z-Index</Sentence>
-      <Sentence ID="112">Display</Sentence>
-      <Sentence ID="113">Style</Sentence>
-      <Sentence ID="114">Skin</Sentence>
-      <Sentence ID="115">Target</Sentence>
-      <Sentence ID="116">Enctype</Sentence>
-      <Sentence ID="117">Method</Sentence>
-      <Sentence ID="118">Submit once</Sentence>
-      <Sentence ID="119">Overflow</Sentence>
-      <Sentence ID="121">Margins</Sentence>
-      <Sentence ID="122">Paddings</Sentence>
-      <Sentence ID="123">Report validity</Sentence>
-      <Sentence ID="124">IDE_top</Sentence>
-      <Sentence ID="125">IDE_left</Sentence>
-      <Sentence ID="126">IDE_width</Sentence>
-      <Sentence ID="127">IDE_height</Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Visibility of the object.</Sentence>
-      <Sentence ID="203">Names of CSS classes.</Sentence>
-      <Sentence ID="204">newAttribute15</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels.</Sentence>
-      <Sentence ID="209">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="211">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="212">newAttribute20</Sentence>
-      <Sentence ID="213">CSS style of the object</Sentence>
-      <Sentence ID="214">newAttribute19</Sentence>
-      <Sentence ID="215">The top-level container where the form data are sent to on submit action. If no container is selected, the form data is to the same page (where the form is situated).</Sentence>
-      <Sentence ID="216">Tthe type of data encoding using the Multipurpose Internet Mail Extensions (MIME): none -  defaults to an application/x-www-form-urlencoded; application/x-www-form-urlencoded - used if you do not know the type of data encoding; multipart/form-data - used if there is an Uploader object in the form, and some files will be sent by this form; text/plain - used if the plain text is sent by the form.</Sentence>
-      <Sentence ID="217">The request method, defines how the data will be sent: post - the encoded form data are sent separately, user does not see it; get - the encoded form data are sent in the URL string; event - the encoded form data are sent without reloading the page as the parameter of the event.</Sentence>
-      <Sentence ID="218">Submit once.</Sentence>
-      <Sentence ID="219">The overflow control mode: Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown; Hidden - if the content does not fit in the object' borders - it will be cropped within the borders; Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not; Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
-      <Sentence ID="221">newAttribute16</Sentence>
-      <Sentence ID="222">newAttribute17</Sentence>
-      <Sentence ID="223">Reports form controls validity</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
-      <Sentence ID="225">newAttribute22</Sentence>
-      <Sentence ID="226">newAttribute23</Sentence>
-      <Sentence ID="227">newAttribute24</Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="303">Incorrect value.</Sentence>
-      <Sentence ID="304">newAttribute15</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="101">Class CSS</Sentence>
+      <Sentence ID="102">Hierarchy</Sentence>
+      <Sentence ID="103">Positioning</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Display</Sentence>
+      <Sentence ID="109">Style</Sentence>
+      <Sentence ID="111">Skin</Sentence>
+      <Sentence ID="112">Target</Sentence>
+      <Sentence ID="113">Enctype</Sentence>
+      <Sentence ID="114">Method</Sentence>
+      <Sentence ID="115">Submit once</Sentence>
+      <Sentence ID="116">Overflow</Sentence>
+      <Sentence ID="117">Margins</Sentence>
+      <Sentence ID="118">Paddings</Sentence>
+      <Sentence ID="119">Report validity</Sentence>
+      <Sentence ID="121">IDE_top</Sentence>
+      <Sentence ID="122">IDE_left</Sentence>
+      <Sentence ID="123">IDE_width</Sentence>
+      <Sentence ID="124">IDE_height</Sentence>
+      <Sentence ID="125">Z-Index</Sentence>
+      <Sentence ID="126">Visibility</Sentence>
+      <Sentence ID="127"></Sentence>
+      <Sentence ID="201">Names of CSS classes.</Sentence>
+      <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+      <Sentence ID="203">newAttribute15</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
+      <Sentence ID="208">newAttribute20</Sentence>
+      <Sentence ID="209">CSS style of the object</Sentence>
+      <Sentence ID="211">newAttribute19</Sentence>
+      <Sentence ID="212">The top-level container where the form data are sent to on submit action. If no container is selected, the form data is to the same page (where the form is situated).</Sentence>
+      <Sentence ID="213">Tthe type of data encoding using the Multipurpose Internet Mail Extensions (MIME): none -  defaults to an application/x-www-form-urlencoded; application/x-www-form-urlencoded - used if you do not know the type of data encoding; multipart/form-data - used if there is an Uploader object in the form, and some files will be sent by this form; text/plain - used if the plain text is sent by the form.</Sentence>
+      <Sentence ID="214">The request method, defines how the data will be sent: post - the encoded form data are sent separately, user does not see it; get - the encoded form data are sent in the URL string; event - the encoded form data are sent without reloading the page as the parameter of the event.</Sentence>
+      <Sentence ID="215">Submit once.</Sentence>
+      <Sentence ID="216">The overflow control mode: Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown; Hidden - if the content does not fit in the object' borders - it will be cropped within the borders; Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not; Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
+      <Sentence ID="217">newAttribute16</Sentence>
+      <Sentence ID="218">newAttribute17</Sentence>
+      <Sentence ID="219">Reports form controls validity</Sentence>
+      <Sentence ID="221">newAttribute21</Sentence>
+      <Sentence ID="222">newAttribute22</Sentence>
+      <Sentence ID="223">newAttribute23</Sentence>
+      <Sentence ID="224">newAttribute24</Sentence>
+      <Sentence ID="225">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="226">Visibility of the object.</Sentence>
+      <Sentence ID="227"></Sentence>
+      <Sentence ID="301">Incorrect value.</Sentence>
+      <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+      <Sentence ID="303">newAttribute15</Sentence>
+      <Sentence ID="304">Incorrect value, must be even positive integer.</Sentence>
+      <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="309">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="311">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314">newAttribute19</Sentence>
-      <Sentence ID="315">Incorrect value, must be valid URL.</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311">newAttribute19</Sentence>
+      <Sentence ID="312">Incorrect value, must be valid URL.</Sentence>
+      <Sentence ID="313">Incorrect value.</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
+      <Sentence ID="315">Incorrect value, must be either 0 or 1.</Sentence>
       <Sentence ID="316">Incorrect value.</Sentence>
       <Sentence ID="317">Incorrect value.</Sentence>
-      <Sentence ID="318">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
-      <Sentence ID="321">Incorrect value.</Sentence>
-      <Sentence ID="322">Incorrect value.</Sentence>
-      <Sentence ID="323">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="324">newAttribute21</Sentence>
-      <Sentence ID="325">newAttribute22</Sentence>
-      <Sentence ID="326">newAttribute23</Sentence>
-      <Sentence ID="327">newAttribute24</Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">Absolute</Sentence>
-      <Sentence ID="406">Fixed</Sentence>
-      <Sentence ID="407">Relative</Sentence>
-      <Sentence ID="408">Static</Sentence>
-      <Sentence ID="409">Block</Sentence>
-      <Sentence ID="411">Inline</Sentence>
-      <Sentence ID="412">Flex</Sentence>
-      <Sentence ID="413">Inline-block</Sentence>
-      <Sentence ID="414"></Sentence>
-      <Sentence ID="415">User defined</Sentence>
-      <Sentence ID="416">Empty</Sentence>
-      <Sentence ID="417">Application/x-www-form-urlencoded</Sentence>
-      <Sentence ID="418">Multipart/form-data</Sentence>
-      <Sentence ID="419">text/plain</Sentence>
-      <Sentence ID="421">None</Sentence>
-      <Sentence ID="422">post</Sentence>
-      <Sentence ID="423">get</Sentence>
-      <Sentence ID="424">event</Sentence>
-      <Sentence ID="425">No</Sentence>
-      <Sentence ID="426">Yes</Sentence>
-      <Sentence ID="427">Auto</Sentence>
-      <Sentence ID="428">Hidden</Sentence>
-      <Sentence ID="429">Scroll</Sentence>
-      <Sentence ID="431">Visible</Sentence>
-      <Sentence ID="432"></Sentence>
-      <Sentence ID="433">No</Sentence>
-      <Sentence ID="434">Yes</Sentence>
+      <Sentence ID="318">Incorrect value.</Sentence>
+      <Sentence ID="319">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="321">newAttribute21</Sentence>
+      <Sentence ID="322">newAttribute22</Sentence>
+      <Sentence ID="323">newAttribute23</Sentence>
+      <Sentence ID="324">newAttribute24</Sentence>
+      <Sentence ID="325">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="326">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="327"></Sentence>
+      <Sentence ID="401">Absolute</Sentence>
+      <Sentence ID="402">Fixed</Sentence>
+      <Sentence ID="403">Relative</Sentence>
+      <Sentence ID="404">Static</Sentence>
+      <Sentence ID="405">Block</Sentence>
+      <Sentence ID="406">Inline</Sentence>
+      <Sentence ID="407">Flex</Sentence>
+      <Sentence ID="408">Inline-block</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">User defined</Sentence>
+      <Sentence ID="412">Empty</Sentence>
+      <Sentence ID="413">Application/x-www-form-urlencoded</Sentence>
+      <Sentence ID="414">Multipart/form-data</Sentence>
+      <Sentence ID="415">text/plain</Sentence>
+      <Sentence ID="416">None</Sentence>
+      <Sentence ID="417">post</Sentence>
+      <Sentence ID="418">get</Sentence>
+      <Sentence ID="419">event</Sentence>
+      <Sentence ID="421">No</Sentence>
+      <Sentence ID="422">Yes</Sentence>
+      <Sentence ID="423">Auto</Sentence>
+      <Sentence ID="424">Hidden</Sentence>
+      <Sentence ID="425">Scroll</Sentence>
+      <Sentence ID="426">Visible</Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428">No</Sentence>
+      <Sentence ID="429">Yes</Sentence>
+      <Sentence ID="431">Invisible</Sentence>
+      <Sentence ID="432">Visible</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
       <Sentence ID="501">Hide the object.</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503">Hide the object.</Sentence>
@@ -514,86 +514,86 @@
       <Sentence ID="001">Formulaire</Sentence>
       <Sentence ID="002">Formulaire</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Visibilité</Sentence>
-      <Sentence ID="103">Class</Sentence>
-      <Sentence ID="104"></Sentence>
-      <Sentence ID="105">Haut</Sentence>
-      <Sentence ID="106">Gauche</Sentence>
-      <Sentence ID="107">Largeur</Sentence>
-      <Sentence ID="108">Hauteur</Sentence>
-      <Sentence ID="109">Hiérarchie</Sentence>
-      <Sentence ID="111">Z-Index</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Cible</Sentence>
-      <Sentence ID="116">Enctype</Sentence>
-      <Sentence ID="117">Method</Sentence>
-      <Sentence ID="118">Submit once</Sentence>
-      <Sentence ID="119">Overflow</Sentence>
+      <Sentence ID="101">Class</Sentence>
+      <Sentence ID="102">Hiérarchie</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Haut</Sentence>
+      <Sentence ID="105">Gauche</Sentence>
+      <Sentence ID="106">Largeur</Sentence>
+      <Sentence ID="107">Hauteur</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Cible</Sentence>
+      <Sentence ID="113">Enctype</Sentence>
+      <Sentence ID="114">Method</Sentence>
+      <Sentence ID="115">Submit once</Sentence>
+      <Sentence ID="116">Overflow</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119">Validité du rapport
+Validité du rapport</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
-      <Sentence ID="123">Validité du rapport
-Validité du rapport</Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
-      <Sentence ID="125"></Sentence>
-      <Sentence ID="126"></Sentence>
+      <Sentence ID="125">Z-Index</Sentence>
+      <Sentence ID="126">Visibilité</Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="203">CSS class name</Sentence>
-      <Sentence ID="204"></Sentence>
-      <Sentence ID="205">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
-      <Sentence ID="206">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
-      <Sentence ID="207">Largeur de l'objet en pixels</Sentence>
-      <Sentence ID="208">Hauteur de l'objet en pixels</Sentence>
-      <Sentence ID="209">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="211">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215">URL cible du formulaire</Sentence>
-      <Sentence ID="216">MIME enctype</Sentence>
-      <Sentence ID="217">Send method</Sentence>
-      <Sentence ID="218">Submit once</Sentence>
-      <Sentence ID="219">Overflow mode</Sentence>
+      <Sentence ID="201">CSS class name</Sentence>
+      <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
+      <Sentence ID="205">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
+      <Sentence ID="206">Largeur de l'objet en pixels</Sentence>
+      <Sentence ID="207">Hauteur de l'objet en pixels</Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">URL cible du formulaire</Sentence>
+      <Sentence ID="213">MIME enctype</Sentence>
+      <Sentence ID="214">Send method</Sentence>
+      <Sentence ID="215">Submit once</Sentence>
+      <Sentence ID="216">Overflow mode</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219">Le formulaire de rapports contrôle la validité</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
-      <Sentence ID="223">Le formulaire de rapports contrôle la validité</Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
-      <Sentence ID="225"></Sentence>
-      <Sentence ID="226"></Sentence>
+      <Sentence ID="225">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="226">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Valeur Incorrecte</Sentence>
-      <Sentence ID="303">Incorrect value</Sentence>
-      <Sentence ID="304"></Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
+      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="311">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Valeur Incorrecte, doit être une URL valide</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Valeur Incorrecte, doit être une URL valide</Sentence>
+      <Sentence ID="313">Valeur Incorrecte</Sentence>
+      <Sentence ID="314">Valeur Incorrecte</Sentence>
+      <Sentence ID="315">Valeur Incorrecte</Sentence>
       <Sentence ID="316">Valeur Incorrecte</Sentence>
-      <Sentence ID="317">Valeur Incorrecte</Sentence>
-      <Sentence ID="318">Valeur Incorrecte</Sentence>
-      <Sentence ID="319">Valeur Incorrecte</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319">Valeur incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
-      <Sentence ID="323">Valeur incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="324"></Sentence>
-      <Sentence ID="325"></Sentence>
-      <Sentence ID="326"></Sentence>
+      <Sentence ID="325">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="326">Valeur Incorrecte</Sentence>
       <Sentence ID="327"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="405"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
@@ -601,26 +601,26 @@ Validité du rapport</Sentence>
       <Sentence ID="409"></Sentence>
       <Sentence ID="411"></Sentence>
       <Sentence ID="412"></Sentence>
-      <Sentence ID="413"></Sentence>
-      <Sentence ID="414"></Sentence>
-      <Sentence ID="415"></Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417">Application/x-www-form-urlencoded</Sentence>
-      <Sentence ID="418">Multipart/form-data</Sentence>
-      <Sentence ID="419">text/plain</Sentence>
-      <Sentence ID="421">None</Sentence>
-      <Sentence ID="422">post</Sentence>
-      <Sentence ID="423">get</Sentence>
-      <Sentence ID="424">event</Sentence>
-      <Sentence ID="425">No</Sentence>
-      <Sentence ID="426">Yes</Sentence>
-      <Sentence ID="427">Auto</Sentence>
-      <Sentence ID="428">Hidden</Sentence>
-      <Sentence ID="429">Scroll</Sentence>
-      <Sentence ID="431">Visible</Sentence>
-      <Sentence ID="432"></Sentence>
-      <Sentence ID="433">Non</Sentence>
-      <Sentence ID="434">Oui</Sentence>
+      <Sentence ID="413">Application/x-www-form-urlencoded</Sentence>
+      <Sentence ID="414">Multipart/form-data</Sentence>
+      <Sentence ID="415">text/plain</Sentence>
+      <Sentence ID="416">None</Sentence>
+      <Sentence ID="417">post</Sentence>
+      <Sentence ID="418">get</Sentence>
+      <Sentence ID="419">event</Sentence>
+      <Sentence ID="421">No</Sentence>
+      <Sentence ID="422">Yes</Sentence>
+      <Sentence ID="423">Auto</Sentence>
+      <Sentence ID="424">Hidden</Sentence>
+      <Sentence ID="425">Scroll</Sentence>
+      <Sentence ID="426">Visible</Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428">Non</Sentence>
+      <Sentence ID="429">Oui</Sentence>
+      <Sentence ID="431">Invisible</Sentence>
+      <Sentence ID="432">Visible</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503">Hide the object</Sentence>
@@ -698,85 +698,85 @@ Validité du rapport</Sentence>
       <Sentence ID="001">Форма</Sentence>
       <Sentence ID="002">Добавить форму на страницу</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Отображение</Sentence>
-      <Sentence ID="103">Класс CSS</Sentence>
-      <Sentence ID="104"></Sentence>
-      <Sentence ID="105">Сверху</Sentence>
-      <Sentence ID="106">Слева</Sentence>
-      <Sentence ID="107">Ширина</Sentence>
-      <Sentence ID="108">Высота</Sentence>
-      <Sentence ID="109">Иерархия</Sentence>
-      <Sentence ID="111">Позиция</Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113"></Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115">Ссылка</Sentence>
-      <Sentence ID="116">MIME-тип</Sentence>
-      <Sentence ID="117">Метод</Sentence>
-      <Sentence ID="118">Отправить один раз</Sentence>
-      <Sentence ID="119">Переполнение</Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
+      <Sentence ID="102">Иерархия</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108"></Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111"></Sentence>
+      <Sentence ID="112">Ссылка</Sentence>
+      <Sentence ID="113">MIME-тип</Sentence>
+      <Sentence ID="114">Метод</Sentence>
+      <Sentence ID="115">Отправить один раз</Sentence>
+      <Sentence ID="116">Переполнение</Sentence>
+      <Sentence ID="117"></Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119">Сообщить о проблеме проверки</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
-      <Sentence ID="123">Сообщить о проблеме проверки</Sentence>
+      <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
-      <Sentence ID="125"></Sentence>
-      <Sentence ID="126"></Sentence>
+      <Sentence ID="125">Позиция</Sentence>
+      <Sentence ID="126">Отображение</Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Режим отображения объекта</Sentence>
-      <Sentence ID="203">Имена классов CSS</Sentence>
-      <Sentence ID="204"></Sentence>
-      <Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="207">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="208">Высота объекта в пикселях</Sentence>
-      <Sentence ID="209">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="211">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213"></Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215">Ссылка на страницу</Sentence>
-      <Sentence ID="216">MIME-тип</Sentence>
-      <Sentence ID="217">Метод запроса</Sentence>
-      <Sentence ID="218">Отправить форму только один раз до перезагрузки страницы</Sentence>
-      <Sentence ID="219">Режим при переполнении</Sentence>
+      <Sentence ID="201">Имена классов CSS</Sentence>
+      <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208"></Sentence>
+      <Sentence ID="209"></Sentence>
+      <Sentence ID="211"></Sentence>
+      <Sentence ID="212">Ссылка на страницу</Sentence>
+      <Sentence ID="213">MIME-тип</Sentence>
+      <Sentence ID="214">Метод запроса</Sentence>
+      <Sentence ID="215">Отправить форму только один раз до перезагрузки страницы</Sentence>
+      <Sentence ID="216">Режим при переполнении</Sentence>
+      <Sentence ID="217"></Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219">Сообщает о проблемы проверки</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
-      <Sentence ID="223">Сообщает о проблемы проверки</Sentence>
+      <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
-      <Sentence ID="225"></Sentence>
-      <Sentence ID="226"></Sentence>
+      <Sentence ID="225">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="226">Режим отображения объекта</Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="303">Неправильное значение</Sentence>
-      <Sentence ID="304"></Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
+      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="303"></Sentence>
+      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="309">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="311">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Неправильное значение, должна быть ссылка</Sentence>
+      <Sentence ID="308"></Sentence>
+      <Sentence ID="309"></Sentence>
+      <Sentence ID="311"></Sentence>
+      <Sentence ID="312">Неправильное значение, должна быть ссылка</Sentence>
+      <Sentence ID="313">Неправильное значение</Sentence>
+      <Sentence ID="314">Неправильное значение</Sentence>
+      <Sentence ID="315">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="316">Неправильное значение</Sentence>
-      <Sentence ID="317">Неправильное значение</Sentence>
-      <Sentence ID="318">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="319">Неправильное значение</Sentence>
+      <Sentence ID="317"></Sentence>
+      <Sentence ID="318"></Sentence>
+      <Sentence ID="319">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
-      <Sentence ID="323">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="323"></Sentence>
       <Sentence ID="324"></Sentence>
-      <Sentence ID="325"></Sentence>
-      <Sentence ID="326"></Sentence>
+      <Sentence ID="325">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="326">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="327"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Невидимый</Sentence>
-      <Sentence ID="404">Видимый</Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
       <Sentence ID="405"></Sentence>
       <Sentence ID="406"></Sentence>
       <Sentence ID="407"></Sentence>
@@ -784,26 +784,26 @@ Validité du rapport</Sentence>
       <Sentence ID="409"></Sentence>
       <Sentence ID="411"></Sentence>
       <Sentence ID="412"></Sentence>
-      <Sentence ID="413"></Sentence>
-      <Sentence ID="414"></Sentence>
-      <Sentence ID="415"></Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417">Application/x-www-form-urlencoded</Sentence>
-      <Sentence ID="418">Multipart/form-data</Sentence>
-      <Sentence ID="419">text/plain</Sentence>
-      <Sentence ID="421">None</Sentence>
-      <Sentence ID="422">post</Sentence>
-      <Sentence ID="423">get</Sentence>
-      <Sentence ID="424">event</Sentence>
-      <Sentence ID="425">Нет</Sentence>
-      <Sentence ID="426">Да</Sentence>
-      <Sentence ID="427">Автовыбор</Sentence>
-      <Sentence ID="428">Скрытый</Sentence>
-      <Sentence ID="429">Прокрутка</Sentence>
-      <Sentence ID="431">Видимый</Sentence>
-      <Sentence ID="432"></Sentence>
-      <Sentence ID="433">Нет</Sentence>
-      <Sentence ID="434">Да</Sentence>
+      <Sentence ID="413">Application/x-www-form-urlencoded</Sentence>
+      <Sentence ID="414">Multipart/form-data</Sentence>
+      <Sentence ID="415">text/plain</Sentence>
+      <Sentence ID="416">None</Sentence>
+      <Sentence ID="417">post</Sentence>
+      <Sentence ID="418">get</Sentence>
+      <Sentence ID="419">event</Sentence>
+      <Sentence ID="421">Нет</Sentence>
+      <Sentence ID="422">Да</Sentence>
+      <Sentence ID="423">Автовыбор</Sentence>
+      <Sentence ID="424">Скрытый</Sentence>
+      <Sentence ID="425">Прокрутка</Sentence>
+      <Sentence ID="426">Видимый</Sentence>
+      <Sentence ID="427"></Sentence>
+      <Sentence ID="428">Нет</Sentence>
+      <Sentence ID="429">Да</Sentence>
+      <Sentence ID="431">Невидимый</Sentence>
+      <Sentence ID="432">Видимый</Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502"></Sentence>
       <Sentence ID="503">Скрыть объект</Sentence>
@@ -1139,14 +1139,15 @@ class VDOM_form(VDOM_object):
 		        {css}
 			    <form {debug_info} id="{id}" style="{style}" 
 					name="{name}" method="{method}" action="{target}" 
-					{enctype} {submitonce} class="{classname} vdom_form">
+					{enctype} {submitonce} class="{classname}">
 					{contents}
 					{csrftoken}
 				</form> {submitjs} 
 			""".format(
 					debug_info = debug_info, id = id, display = display, style = styles_str, name = self.name, 
 					method = self.meth, target = target, enctype = enctype, submitonce = submitonce, css = css,
-					contents = contents, csrftoken=csrftoken, submitjs = submitjs, classname = self.classname )
+					contents = contents, csrftoken=csrftoken, submitjs = submitjs,
+					classname = ' '.join([self.classname, 'vdom_form']).strip() )
 
 		return VDOM_object.render(self, contents=result)
 

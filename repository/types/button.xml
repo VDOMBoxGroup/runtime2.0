@@ -14,10 +14,10 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.378.6201</Version>
+    <Version>1.402.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer, dialog_3</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -188,7 +188,7 @@
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>PageLink()</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -1780,15 +1780,13 @@ class VDOM_button(VDOM_object):
                         classname = clname, donot = donot)
 
     def check_unit(self, value):
-	    if value.isdigit():
-	    	return value + "px"
-	    else:
-	    	return value
+	    return str(value) + "px" if isinstance(value, (int, str)) else value
 	    
     def render(self, contents=""):
         id_out = u"o_%s" % (self.id).replace('-', '_')
         styleblock = u""
         scriptblock = u""
+        text_style = u""
         alt = u"""alt="{}" """.format(self.alt) if self.alt else ""
         
         border_style = u"border: {border} {bdcolor};".format(
@@ -1825,7 +1823,14 @@ class VDOM_button(VDOM_object):
         if custom_attr_json:
         	custom_attributes = " ".join(['{}="{}"'.format(key, value) for key, value in custom_attr_json.items()])
         
-        clname = self.classname if self.classname else u""
+        clname = ' '.join(filter(None, [self.classname, 'vdom_button'])).strip()
+        if self.classname:
+            classes = self.classname.split()
+            holder_classes = [u"{}_holder".format(classname) for classname in classes]
+            clname_holder = ' '.join(filter(None, holder_classes + ['vdom_button'])).strip()
+        else:
+            clname_holder = "vdom_button"
+        
         if self.disabled == "0":
             disabled_html = u""
         else:
@@ -1963,43 +1968,33 @@ class VDOM_button(VDOM_object):
                 scriptblock = u'<script type="text/javascript">%s</script>' % scriptblock
     
             return u"""{ocss}
-                        <div {debug_info} id="{id}" style="{style}{disp}" class="{classname} vdom_button image" {custom_attr}>
+                        <div {debug_info} id="{id}" style="{style}{disp}" class="{classname} image" {custom_attr}>
                             {anchor}{repr}</a>
                         </div>{disabled}{styleblk}{scriptblk}{disablecss}
                     """.format(
                 repr=representation, custom_attr = custom_attributes,
                 debug_info=debug_info, ocss=overcss, id=id_out,
                 style=style, disp=display, disabled=disabled_html,
-                classname=clname, anchor=anchor,
-                styleblk=styleblock, scriptblk=scriptblock, disablecss=disablecss)
+                classname=clname_holder, anchor=anchor,
+                styleblk=styleblock, scriptblk=scriptblock, disablecss=disablecss).strip()
     
         elif render_mode == "link":
-
+            link_html = 'href="{}"'.format(self.link) if self.link else ''
+            
             return u"""{ocss}
-            			<a {debug_info} id="{id}" style="{style}{disp}{text_style}" href="{link}" title="{hint}" class="{classname} vdom_button link" {custom_attr}>
-                            {text}
-                        </a>
-                    """.format(
-                            text=self.text, debug_info=debug_info, id=id_out, style=style, ocss=overcss, custom_attr = custom_attributes,
-                            disp=display, link=self.link, classname=clname, text_style=text_style, hint=self.hint)
-    
-        else:  # render_mode == "button"
-            if self.link:
-                return u"""{ocss}
-                			<div {debug_info} id="{id}" style="{style}{disp}" title="{hint}" class="{classname} vdom_button button" {custom_attr}>
-                                <a style="{text_style}" href="{link}">{text}</a>
-                            </div>
-                        """.format(
-                    			debug_info=debug_info, id=id_out, style=style, ocss=overcss, hint=self.hint, custom_attr = custom_attributes,
-                    			disp=display, link=self.link, classname=clname, text=self.text, text_style=text_style)
-            else:
-                return u"""{ocss}
-                			<div {debug_info} id="{id}" style="{style}{disp}{text_style}" class="{classname} vdom_button button" {custom_attr}>
-                                {text}
-                            </div>
-                        """.format(
-                    			debug_info=debug_info, id=id_out, style=style, text_style=text_style, custom_attr = custom_attributes,
-                    			disp=display, link=self.link, classname=clname, text=self.text, ocss=overcss)
+<a {debug_info} id="{id}" style="{style}{disp}{text_style}" {link_html} title="{hint}" class="{clname} link" {custom_attr}>{text}</a>
+                """.strip().format(
+                        text=self.text, debug_info=debug_info, id=id_out, style=style, ocss=overcss, custom_attr=custom_attributes,
+                        disp=display, link_html=link_html, clname=clname, text_style=text_style, hint=self.hint)
+
+        elif render_mode == "div":
+            inner_html = u"""<a style="{}" {}>{}</a>""".format(text_style, u'href="{}"'.format(self.link) if self.link else '', self.text)
+            
+            return u"""{ocss}
+<div {debug_info} id="{id}" style="{style}{disp}" title="{hint}" class="{clname} button" {custom_attr}>{inner_html}</div>
+                """.format(
+                        debug_info=debug_info, id=id_out, style=style, ocss=overcss, custom_attr=custom_attributes,
+                        disp=display, link=self.link, clname=clname, inner_html=inner_html, hint=self.hint)
         
     def regex(self, obj):
 		match = re.search(r'\d+', obj)

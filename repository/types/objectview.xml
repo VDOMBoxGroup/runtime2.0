@@ -17,7 +17,7 @@
     <Version>1.107.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, flexcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata, sensetive</Containers>
+    <Containers>htmlcontainer, flexcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, smartfolderdata, sensetive</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
@@ -1963,7 +1963,7 @@ class VDOM_objectview(VDOM_object):
                 debug_info = u""
 
             result = u"""{css}
-                <div {debug_info} id="{id}" style="{style}" class="{classname} vdom_objectview">
+                <div {debug_info} id="{id}" style="{style}" class="{classname}">
                     {style_items}
                     <div class='ov-content'>
                         {contents}
@@ -1978,7 +1978,7 @@ class VDOM_objectview(VDOM_object):
                 debug_info=debug_info,
                 style=style,
                 style_items=style_items,
-                classname=self.classname,
+                classname=' '.join([self.classname, 'vdom_objectview']).strip(),
                 contents=items_contents
             )
 
