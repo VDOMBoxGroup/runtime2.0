@@ -963,14 +963,15 @@ var tabview_children_%(id)s = %(arr)s;
 
 		result = u"""\
 {css}
-<div {debug_info} id="{id}" class="{classname} vdom_tabview {withtabs}" style="{style}">
+<div {debug_info} id="{id}" class="{classname}" style="{style}">
     {tabs}
     {cont_tag}
 </div>
 {js}
 			""".format(
-			debug_info=debug_info, classname=self.classname if self.classname else "",
-			css=outcss, id=id, style=style, withtabs = tabclass,
+			debug_info=debug_info, 
+			classname=' '.join(list(filter(None, [self.classname, 'vdom_tabview', tabclass]))),
+			css=outcss, id=id, style=style,
 			tabs=tabs, cont_tag=cont_tag, js=js)
 
 		return VDOM_object.render(self, contents=result)

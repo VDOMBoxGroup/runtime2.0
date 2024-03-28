@@ -17,7 +17,7 @@
     <Version>1.75.9200</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass</Containers>
+    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -27,14 +27,14 @@
   <Attributes>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(121)</DisplayName>
+      <DisplayName>#Lang(101)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
+      <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
@@ -51,18 +51,30 @@
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
-      <DisplayName>#Lang(127)</DisplayName>
+      <DisplayName>#Lang(103)</DisplayName>
       <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(327)</Help>
+      <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|absolute)|(#Lang(418)|fixed)|(#Lang(419)|relative)|(#Lang(420)|static))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(227)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>top</Name>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(204)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>left</Name>
       <DisplayName>#Lang(105)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -74,7 +86,7 @@
       <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>left</Name>
+      <Name>width</Name>
       <DisplayName>#Lang(106)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -86,7 +98,7 @@
       <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>width</Name>
+      <Name>height</Name>
       <DisplayName>#Lang(107)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -98,27 +110,15 @@
       <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>height</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(108)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(405)|)|(#Lang(406)|block)|(#Lang(407)|flex)|(#Lang(408)|inline)|(#Lang(409)|inline-block))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(128)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(328)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(421)|)|(#Lang(422)|block)|(#Lang(423)|flex)|(#Lang(424)|inline)|(#Lang(425)|inline-block))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(228)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
@@ -188,7 +188,7 @@
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|1)|(#Lang(406)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(411)|1)|(#Lang(412)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -200,7 +200,7 @@
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(407)|1)|(#Lang(408)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(413)|1)|(#Lang(414)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -212,7 +212,7 @@
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(409)|1)|(#Lang(411)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|1)|(#Lang(416)|0))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
@@ -236,129 +236,129 @@
       <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(412)|0)|(#Lang(416)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
-      <DisplayName>#Lang(129)</DisplayName>
+      <DisplayName>#Lang(121)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(329)</Help>
+      <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(32)</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(229)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>paddings</Name>
-      <DisplayName>#Lang(130)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(330)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(230)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>custom</Name>
       <DisplayName>#Lang(122)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(222)</Help>
       <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>custom</Name>
+      <DisplayName>#Lang(123)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(223)</Help>
+      <InterfaceType>0</InterfaceType>
       <CodeInterface>MultiLine(10000)</CodeInterface>
       <Colorgroup>3</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>ide_top</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(323)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(223)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>ide_left</Name>
-      <DisplayName>#Lang(124)</DisplayName>
+      <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(324)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(224)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>ide_width</Name>
-      <DisplayName>#Lang(125)</DisplayName>
+      <DisplayName>#Lang(126)</DisplayName>
       <DefaultValue>200</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(325)</Help>
+      <Help>#Lang(226)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(225)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>ide_height</Name>
-      <DisplayName>#Lang(126)</DisplayName>
+      <DisplayName>#Lang(127)</DisplayName>
       <DefaultValue>100</DefaultValue>
       <Visible>0</Visible>
-      <Help>#Lang(326)</Help>
+      <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(8)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(226)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>zindex</Name>
-      <DisplayName>#Lang(104)</DisplayName>
+      <DisplayName>#Lang(128)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
+      <Help>#Lang(228)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(103)</DisplayName>
+      <DisplayName>#Lang(129)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
+      <Help>#Lang(229)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>stateful</Name>
-      <DisplayName>#Lang(101)</DisplayName>
+      <DisplayName>#Lang(131)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
+      <Help>#Lang(231)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -367,14 +367,14 @@
       <Sentence ID="001">TreeGrid</Sentence>
       <Sentence ID="002">DHtmlX TreeGreed</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Display</Sentence>
       <Sentence ID="109">Columns</Sentence>
       <Sentence ID="111">Data</Sentence>
       <Sentence ID="112">key</Sentence>
@@ -385,24 +385,24 @@
       <Sentence ID="117">Columns auto width</Sentence>
       <Sentence ID="118">Style</Sentence>
       <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
-      <Sentence ID="122">Custom</Sentence>
-      <Sentence ID="123">IDE_top</Sentence>
-      <Sentence ID="124">IDE_left</Sentence>
-      <Sentence ID="125">IDE_width</Sentence>
-      <Sentence ID="126">IDE_height</Sentence>
-      <Sentence ID="127">Position</Sentence>
-      <Sentence ID="128">Display</Sentence>
-      <Sentence ID="129">Margins</Sentence>
-      <Sentence ID="130">Paddings</Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="121">Margins</Sentence>
+      <Sentence ID="122">Paddings</Sentence>
+      <Sentence ID="123">Custom</Sentence>
+      <Sentence ID="124">IDE_top</Sentence>
+      <Sentence ID="125">IDE_left</Sentence>
+      <Sentence ID="126">IDE_width</Sentence>
+      <Sentence ID="127">IDE_height</Sentence>
+      <Sentence ID="128">Z-Index</Sentence>
+      <Sentence ID="129">Visibility</Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
+      <Sentence ID="203">newAttribute24</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208">newAttribute25</Sentence>
       <Sentence ID="209">Header of the table, described in the array</Sentence>
       <Sentence ID="211">Table data described in the array or dictionary</Sentence>
       <Sentence ID="212">key</Sentence>
@@ -413,24 +413,24 @@
       <Sentence ID="217">Set columns to auto width</Sentence>
       <Sentence ID="218">CSS style of the object</Sentence>
       <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
-      <Sentence ID="222">Write custom parameters for treegrid</Sentence>
-      <Sentence ID="223">newAttribute20</Sentence>
-      <Sentence ID="224">newAttribute21</Sentence>
-      <Sentence ID="225">newAttribute22</Sentence>
-      <Sentence ID="226">newAttribute23</Sentence>
-      <Sentence ID="227">newAttribute24</Sentence>
-      <Sentence ID="228">newAttribute25</Sentence>
-      <Sentence ID="229">Incorrect value.</Sentence>
-      <Sentence ID="230">Incorrect value.</Sentence>
+      <Sentence ID="221">newAttribute26</Sentence>
+      <Sentence ID="222">newAttribute27</Sentence>
+      <Sentence ID="223">Write custom parameters for treegrid</Sentence>
+      <Sentence ID="224">newAttribute20</Sentence>
+      <Sentence ID="225">newAttribute21</Sentence>
+      <Sentence ID="226">newAttribute22</Sentence>
+      <Sentence ID="227">newAttribute23</Sentence>
+      <Sentence ID="228">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="229">Visibility of the object</Sentence>
+      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="303">newAttribute24</Sentence>
+      <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308">newAttribute25</Sentence>
       <Sentence ID="309">Incorrect value, must be array</Sentence>
       <Sentence ID="311">Incorrect value, must be array or dictionary</Sentence>
       <Sentence ID="312">key</Sentence>
@@ -441,44 +441,44 @@
       <Sentence ID="317">Error in columns_auto_width</Sentence>
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322">Error in custom</Sentence>
-      <Sentence ID="323">newAttribute20</Sentence>
-      <Sentence ID="324">newAttribute21</Sentence>
-      <Sentence ID="325">newAttribute22</Sentence>
-      <Sentence ID="326">newAttribute23</Sentence>
-      <Sentence ID="327">newAttribute24</Sentence>
-      <Sentence ID="328">newAttribute25</Sentence>
-      <Sentence ID="329">newAttribute26</Sentence>
-      <Sentence ID="330">newAttribute27</Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Yes</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">User defined</Sentence>
-      <Sentence ID="416">Empty</Sentence>
-      <Sentence ID="417">Absolute</Sentence>
-      <Sentence ID="418">Fixed</Sentence>
-      <Sentence ID="419">Relative</Sentence>
-      <Sentence ID="420">Static</Sentence>
-      <Sentence ID="421"></Sentence>
-      <Sentence ID="422">Block</Sentence>
-      <Sentence ID="423">Flex</Sentence>
-      <Sentence ID="424">Inline</Sentence>
-      <Sentence ID="425">Inline-block</Sentence>
+      <Sentence ID="321">Incorrect value.</Sentence>
+      <Sentence ID="322">Incorrect value.</Sentence>
+      <Sentence ID="323">Error in custom</Sentence>
+      <Sentence ID="324">newAttribute20</Sentence>
+      <Sentence ID="325">newAttribute21</Sentence>
+      <Sentence ID="326">newAttribute22</Sentence>
+      <Sentence ID="327">newAttribute23</Sentence>
+      <Sentence ID="328">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="401">Absolute</Sentence>
+      <Sentence ID="402">Fixed</Sentence>
+      <Sentence ID="403">Relative</Sentence>
+      <Sentence ID="404">Static</Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406">Block</Sentence>
+      <Sentence ID="407">Flex</Sentence>
+      <Sentence ID="408">Inline</Sentence>
+      <Sentence ID="409">Inline-block</Sentence>
+      <Sentence ID="411">Yes</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="414">No</Sentence>
+      <Sentence ID="415">Yes</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">User defined</Sentence>
+      <Sentence ID="418">Empty</Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
+      <Sentence ID="422"></Sentence>
+      <Sentence ID="423"></Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">For custom function</Sentence>
       <Sentence ID="504">Hide the object</Sentence>
       <Sentence ID="505">Set new data for treegrid</Sentence>
       <Sentence ID="506">Show the object</Sentence>
-      <Sentence ID="507"></Sentence>
+      <Sentence ID="507">Toggle CSS class</Sentence>
       <Sentence ID="508"></Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
@@ -490,7 +490,7 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
-      <Sentence ID="520">Toggle CSS class</Sentence>
+      <Sentence ID="521"></Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -507,7 +507,7 @@
       <Sentence ID="707">fade</Sentence>
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709">fade</Sentence>
-      <Sentence ID="710">Name of CSS class</Sentence>
+      <Sentence ID="711">className</Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803">scriptName0</Sentence>
@@ -517,7 +517,7 @@
       <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="810">className</Sentence>
+      <Sentence ID="811">Name of CSS class</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -545,14 +545,14 @@
       <Sentence ID="001">TreeGrid</Sentence>
       <Sentence ID="002">DHtmlX TreeGreed</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108"></Sentence>
       <Sentence ID="109">Header</Sentence>
       <Sentence ID="111">Data</Sentence>
       <Sentence ID="112">key</Sentence>
@@ -563,24 +563,24 @@
       <Sentence ID="117">Columns auto width</Sentence>
       <Sentence ID="118">Style</Sentence>
       <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="121">CSS Class</Sentence>
+      <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="128"></Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="130"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="128">Z-Index</Sentence>
+      <Sentence ID="129">Visibility</Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208"></Sentence>
       <Sentence ID="209">Header of the table, described in the array</Sentence>
       <Sentence ID="211">Table data described in the array or dictionary</Sentence>
       <Sentence ID="212">key</Sentence>
@@ -591,16 +591,16 @@
       <Sentence ID="217">Set columns to auto width</Sentence>
       <Sentence ID="218">CSS style of the object</Sentence>
       <Sentence ID="219">Skin of the object</Sentence>
-      <Sentence ID="221">Names of CSS classes</Sentence>
+      <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="230"></Sentence>
+      <Sentence ID="228">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="229">Visibility of the object</Sentence>
+      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303"></Sentence>
@@ -608,7 +608,7 @@
       <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
       <Sentence ID="309">Incorrect value, must be array</Sentence>
       <Sentence ID="311">Incorrect value, must be array or dictionary</Sentence>
       <Sentence ID="312">key</Sentence>
@@ -626,30 +626,30 @@
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
-      <Sentence ID="328"></Sentence>
+      <Sentence ID="328">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="329"></Sentence>
-      <Sentence ID="330"></Sentence>
+      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">No</Sentence>
-      <Sentence ID="404">Yes</Sentence>
-      <Sentence ID="405">Yes</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">User defined</Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Yes</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="414">No</Sentence>
+      <Sentence ID="415">Yes</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">User defined</Sentence>
       <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
-      <Sentence ID="421"></Sentence>
+      <Sentence ID="419">No</Sentence>
+      <Sentence ID="421">Yes</Sentence>
       <Sentence ID="422"></Sentence>
       <Sentence ID="423"></Sentence>
-      <Sentence ID="424"></Sentence>
-      <Sentence ID="425"></Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">For custom function</Sentence>
@@ -668,7 +668,7 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
-      <Sentence ID="520"></Sentence>
+      <Sentence ID="521"></Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -685,7 +685,7 @@
       <Sentence ID="707">fade</Sentence>
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709"></Sentence>
-      <Sentence ID="710"></Sentence>
+      <Sentence ID="711"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
@@ -695,7 +695,7 @@
       <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="810"></Sentence>
+      <Sentence ID="811"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -723,14 +723,14 @@
       <Sentence ID="001">TreeGrid</Sentence>
       <Sentence ID="002">DHtmlX TreeGreed</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
       <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103">Отображение</Sentence>
-      <Sentence ID="104">Позиция</Sentence>
-      <Sentence ID="105">Сверху</Sentence>
-      <Sentence ID="106">Слева</Sentence>
-      <Sentence ID="107">Ширина</Sentence>
-      <Sentence ID="108">Высота</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108"></Sentence>
       <Sentence ID="109">Заголовок</Sentence>
       <Sentence ID="111">Данные</Sentence>
       <Sentence ID="112">key</Sentence>
@@ -741,24 +741,24 @@
       <Sentence ID="117">Columns auto width</Sentence>
       <Sentence ID="118">Стиль</Sentence>
       <Sentence ID="119">Оформление</Sentence>
-      <Sentence ID="121">Класс CSS</Sentence>
+      <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
       <Sentence ID="124"></Sentence>
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="128"></Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="130"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="128">Позиция</Sentence>
+      <Sentence ID="129">Отображение</Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="203">Режим отображения объекта</Sentence>
-      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="207">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="208">Высота объекта в пикселях</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208"></Sentence>
       <Sentence ID="209">Заголовок таблицы, описанный в виде массива</Sentence>
       <Sentence ID="211">Данные таблицы, описанные в виде словаря или массива</Sentence>
       <Sentence ID="212">key</Sentence>
@@ -769,16 +769,16 @@
       <Sentence ID="217">Set columns to auto width</Sentence>
       <Sentence ID="218">Стиль CSS</Sentence>
       <Sentence ID="219">Оформление объекта</Sentence>
-      <Sentence ID="221">Имена классов CSS</Sentence>
+      <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
       <Sentence ID="224"></Sentence>
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="228"></Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="230"></Sentence>
+      <Sentence ID="228">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="229">Режим отображения объекта</Sentence>
+      <Sentence ID="231"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303"></Sentence>
@@ -786,7 +786,7 @@
       <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308"></Sentence>
       <Sentence ID="309">Неправильное значение, должен быть массив</Sentence>
       <Sentence ID="311">Неправильное значение, должен быть массив или словарь</Sentence>
       <Sentence ID="312">key</Sentence>
@@ -804,30 +804,30 @@
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
-      <Sentence ID="328"></Sentence>
+      <Sentence ID="328">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="329"></Sentence>
-      <Sentence ID="330"></Sentence>
+      <Sentence ID="331"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Нет</Sentence>
-      <Sentence ID="404">Да</Sentence>
-      <Sentence ID="405">Yes</Sentence>
-      <Sentence ID="406">No</Sentence>
-      <Sentence ID="407">Yes</Sentence>
-      <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">Определено пользователем</Sentence>
-      <Sentence ID="416"></Sentence>
-      <Sentence ID="417"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Yes</Sentence>
+      <Sentence ID="412">No</Sentence>
+      <Sentence ID="413">Yes</Sentence>
+      <Sentence ID="414">No</Sentence>
+      <Sentence ID="415">Yes</Sentence>
+      <Sentence ID="416">No</Sentence>
+      <Sentence ID="417">Определено пользователем</Sentence>
       <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="420"></Sentence>
-      <Sentence ID="421"></Sentence>
+      <Sentence ID="419">Нет</Sentence>
+      <Sentence ID="421">Да</Sentence>
       <Sentence ID="422"></Sentence>
       <Sentence ID="423"></Sentence>
-      <Sentence ID="424"></Sentence>
-      <Sentence ID="425"></Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">For custom function</Sentence>
@@ -846,7 +846,7 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
-      <Sentence ID="520"></Sentence>
+      <Sentence ID="521"></Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -863,7 +863,7 @@
       <Sentence ID="707">Исчезновение</Sentence>
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709"></Sentence>
-      <Sentence ID="710"></Sentence>
+      <Sentence ID="711"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802">scriptName2</Sentence>
       <Sentence ID="803"></Sentence>
@@ -873,7 +873,7 @@
       <Sentence ID="807">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="810"></Sentence>
+      <Sentence ID="811"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -1143,7 +1143,7 @@ class VDOM_treegrid(VDOM_object):
 			debug_info = u""
 
 		result = u"""
-		<div %(debug_info)s id='%(id)s' style='%(style)s' class="%(cssclass)s vdom_treegrid">
+		<div %(debug_info)s id='%(id)s' style='%(style)s' class="%(cssclass)s">
         	<div id="%(id_treegrid)s" style="width:100%%; height:100%%;"></div>
 		</div>
 	<style type="text/css">
@@ -1193,7 +1193,7 @@ class VDOM_treegrid(VDOM_object):
 				"id_treegrid":     id_treegrid,
 				"style":           style,
 				"selfstyle":       self.style % {"id": id},
-				"cssclass":        self.cssclass,
+				"cssclass":        ' '.join([self.cssclass, 'vdom_treegrid']).strip(),
                 "params":          '\n'.join(params),
 				"data":            self.data,
 				"columns":         self.columns,
@@ -1278,72 +1278,72 @@ def on_compile(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="cellclick" Help="#Lang(507)">
+        <Event Name="cellclick" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(902)"/>
             <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="celldblclick" Help="#Lang(508)">
+        <Event Name="celldblclick" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(904)"/>
             <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="custom" Help="#Lang(509)">
+        <Event Name="custom" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="params" Order="0" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart" Help="#Lang(511)">
+        <Event Name="dragstart" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="params" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="headerselected" Help="#Lang(512)">
+        <Event Name="headerselected" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="headername" Order="0" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="load" Help="#Lang(513)">
+        <Event Name="load" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="width" Order="0" VbType="" Help="#Lang(911)"/>
             <Parameter Name="height" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(514)">
+        <Event Name="mousedown" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(913)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(515)">
+        <Event Name="mousemove" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(516)">
+        <Event Name="mouseout" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(517)">
+        <Event Name="mouseover" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(518)">
+        <Event Name="mouseup" Help="#Lang(519)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(922)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
-        <Event Name="rowsselected" Help="#Lang(519)">
+        <Event Name="rowsselected" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="keyList" Order="0" VbType="" Help="#Lang(924)"/>
           </Parameters>
@@ -1397,9 +1397,9 @@ window[treeGrid].data.parse(data);]]></SourceCode>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(520)" InterfaceName="#Lang(607)" MethodName="toggleClass">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(810)" ScriptName="className" Help="#Lang(710)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>

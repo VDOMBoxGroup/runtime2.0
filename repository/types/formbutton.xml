@@ -17,7 +17,7 @@
     <Version>1.35.6201</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>form, password, dialog_2, container</Containers>
+    <Containers>form, password, dialog_2, dialog_3, container</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
     <Handlers>on_compile, on_update</Handlers>
     <RemoteMethods/>
@@ -135,78 +135,66 @@
     </Attribute>
     <Attribute>
       <Name>alt</Name>
-      <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(325)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(150)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(225)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
       <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(404)|)|(#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>TextField(150)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>style</Name>
+      <Name>displaying</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(404)|)|(#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(113)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(213)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>skin</Name>
-      <DisplayName>#Lang(113)</DisplayName>
+      <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>2</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1)|(#Lang(412)|2))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>positioning</Name>
-      <DisplayName>#Lang(114)</DisplayName>
+      <DisplayName>#Lang(115)</DisplayName>
       <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
+      <Help>#Lang(215)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(413)|absolute)|(#Lang(414)|relative)|(#Lang(415)|fixed)|(#Lang(416)|static))</CodeInterface>
       <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
       <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>margins</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
       <DisplayName>#Lang(116)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
@@ -218,19 +206,19 @@
       <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>ide_top</Name>
+      <Name>paddings</Name>
       <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
+      <DefaultValue/>
+      <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>ide_left</Name>
+      <Name>ide_top</Name>
       <DisplayName>#Lang(118)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
@@ -242,9 +230,9 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>ide_width</Name>
+      <Name>ide_left</Name>
       <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue>90</DefaultValue>
+      <DefaultValue>0</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
@@ -254,9 +242,9 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>ide_height</Name>
+      <Name>ide_width</Name>
       <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>25</DefaultValue>
+      <DefaultValue>90</DefaultValue>
       <Visible>0</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
@@ -266,39 +254,51 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>zindex</Name>
+      <Name>ide_height</Name>
       <DisplayName>#Lang(122)</DisplayName>
+      <DefaultValue>25</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(222)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(123)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
+      <Help>#Lang(223)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(2)</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
       <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>visible</Name>
-      <DisplayName>#Lang(123)</DisplayName>
+      <DisplayName>#Lang(124)</DisplayName>
       <DefaultValue>1</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
+      <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>stateful</Name>
-      <DisplayName>#Lang(124)</DisplayName>
+      <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(224)</Help>
+      <Help>#Lang(225)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -316,20 +316,20 @@
       <Sentence ID="107">Type</Sentence>
       <Sentence ID="108">TabIndex</Sentence>
       <Sentence ID="109">Label</Sentence>
-      <Sentence ID="111">Display</Sentence>
-      <Sentence ID="112">Style</Sentence>
-      <Sentence ID="113">Skin</Sentence>
-      <Sentence ID="114">Position</Sentence>
-      <Sentence ID="115">Margins</Sentence>
-      <Sentence ID="116">Paddings</Sentence>
-      <Sentence ID="117">IDE_top</Sentence>
-      <Sentence ID="118">IDE_left</Sentence>
-      <Sentence ID="119">IDE_width</Sentence>
-      <Sentence ID="121">IDE_height</Sentence>
-      <Sentence ID="122">Z-Index</Sentence>
-      <Sentence ID="123">Visibility</Sentence>
-      <Sentence ID="124"></Sentence>
-      <Sentence ID="125">Alt</Sentence>
+      <Sentence ID="111">Alt</Sentence>
+      <Sentence ID="112">Display</Sentence>
+      <Sentence ID="113">Style</Sentence>
+      <Sentence ID="114">Skin</Sentence>
+      <Sentence ID="115">Position</Sentence>
+      <Sentence ID="116">Margins</Sentence>
+      <Sentence ID="117">Paddings</Sentence>
+      <Sentence ID="118">IDE_top</Sentence>
+      <Sentence ID="119">IDE_left</Sentence>
+      <Sentence ID="121">IDE_width</Sentence>
+      <Sentence ID="122">IDE_height</Sentence>
+      <Sentence ID="123">Z-Index</Sentence>
+      <Sentence ID="124">Visibility</Sentence>
+      <Sentence ID="125"></Sentence>
       <Sentence ID="201">The names of CSS classes divided by spaces.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">Spacing between the top edge of the container and the object in pixels.</Sentence>
@@ -342,20 +342,20 @@ Reset - reset all the filled fields;
 Submit - send the from data using the request method selected in the Method attribute of the Form object.</Sentence>
       <Sentence ID="208">The index number of switching the elements on pressing the Tab key. If the TabIndex is the same for all elements, they will be switched in the order they are written in the XML file of the application. If you want to switch the elements in a definite order, set the TabIndex attribute so that each next element's TabIndex was more then the previous one.</Sentence>
       <Sentence ID="209">The label of the object.</Sentence>
-      <Sentence ID="211">newAttribute17</Sentence>
-      <Sentence ID="212">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
-      <Sentence ID="213">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
-      <Sentence ID="214">newAttribute14</Sentence>
-      <Sentence ID="215">newAttribute15</Sentence>
-      <Sentence ID="216">newAttribute16</Sentence>
-      <Sentence ID="217">newAttribute18</Sentence>
-      <Sentence ID="218">newAttribute19</Sentence>
-      <Sentence ID="219">newAttribute20</Sentence>
-      <Sentence ID="221">newAttribute21</Sentence>
-      <Sentence ID="222">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="223">Visibility of the object.</Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="225">newAttribute22</Sentence>
+      <Sentence ID="211">Alternative text is used in HTML to provide a text replacement for images or other multimedia elements when they cannot be loaded or accessed. The attribute is also important for search engine optimization (SEO).</Sentence>
+      <Sentence ID="212">newAttribute17</Sentence>
+      <Sentence ID="213">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the "User defined".</Sentence>
+      <Sentence ID="214">The visual appearance of the object. If you select any skin, the CSS is copied to the Style attribute, so if you want to switch skin back to the User defined, you will have to delete everything from the Style attribute.</Sentence>
+      <Sentence ID="215">newAttribute14</Sentence>
+      <Sentence ID="216">newAttribute15</Sentence>
+      <Sentence ID="217">newAttribute16</Sentence>
+      <Sentence ID="218">newAttribute18</Sentence>
+      <Sentence ID="219">newAttribute19</Sentence>
+      <Sentence ID="221">newAttribute20</Sentence>
+      <Sentence ID="222">newAttribute21</Sentence>
+      <Sentence ID="223">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="224">Visibility of the object.</Sentence>
+      <Sentence ID="225"></Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
       <Sentence ID="303">Incorrect value. Valid formats: number with optional unit modifier or auto.</Sentence>
@@ -365,20 +365,20 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="307">Incorrect value, must be either 0, 1 or 2.</Sentence>
       <Sentence ID="308">Incorrect value, must be even positive integer.</Sentence>
       <Sentence ID="309">Incorrect value.</Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Incorrect value.</Sentence>
+      <Sentence ID="311">newAttribute22</Sentence>
+      <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value.</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Incorrent value.</Sentence>
+      <Sentence ID="314">Incorrect value.</Sentence>
+      <Sentence ID="315"></Sentence>
       <Sentence ID="316">Incorrent value.</Sentence>
-      <Sentence ID="317">newAttribute18</Sentence>
-      <Sentence ID="318">newAttribute19</Sentence>
-      <Sentence ID="319">newAttribute20</Sentence>
-      <Sentence ID="321">newAttribute21</Sentence>
-      <Sentence ID="322">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="323">Incorrect value, must be either 0 or 1.</Sentence>
-      <Sentence ID="324"></Sentence>
-      <Sentence ID="325">Alternative text is used in HTML to provide a text replacement for images or other multimedia elements when they cannot be loaded or accessed. The attribute is also important for search engine optimization (SEO).</Sentence>
+      <Sentence ID="317">Incorrent value.</Sentence>
+      <Sentence ID="318">newAttribute18</Sentence>
+      <Sentence ID="319">newAttribute19</Sentence>
+      <Sentence ID="321">newAttribute20</Sentence>
+      <Sentence ID="322">newAttribute21</Sentence>
+      <Sentence ID="323">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="324">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="325"></Sentence>
       <Sentence ID="401">Submit</Sentence>
       <Sentence ID="402">Reset</Sentence>
       <Sentence ID="403">Common</Sentence>
@@ -478,9 +478,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
       <Sentence ID="121"></Sentence>
-      <Sentence ID="122">Z-Index</Sentence>
-      <Sentence ID="123">Visibilité</Sentence>
-      <Sentence ID="124"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123">Z-Index</Sentence>
+      <Sentence ID="124">Visibilité</Sentence>
       <Sentence ID="125"></Sentence>
       <Sentence ID="201">CSS class name</Sentence>
       <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
@@ -501,9 +501,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="223">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="224"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223">Niveau de superposition de l'objet par rapport aux autres</Sentence>
+      <Sentence ID="224">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="225"></Sentence>
       <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
@@ -524,9 +524,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="323">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="324"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">Valeur Incorrecte, doit être positive</Sentence>
+      <Sentence ID="324">Valeur Incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="325"></Sentence>
       <Sentence ID="401">Submit</Sentence>
       <Sentence ID="402">Reset</Sentence>
@@ -627,9 +627,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="118"></Sentence>
       <Sentence ID="119"></Sentence>
       <Sentence ID="121"></Sentence>
-      <Sentence ID="122">Позиция</Sentence>
-      <Sentence ID="123">Отображение</Sentence>
-      <Sentence ID="124"></Sentence>
+      <Sentence ID="122"></Sentence>
+      <Sentence ID="123">Позиция</Sentence>
+      <Sentence ID="124">Отображение</Sentence>
       <Sentence ID="125"></Sentence>
       <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
@@ -650,9 +650,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="218"></Sentence>
       <Sentence ID="219"></Sentence>
       <Sentence ID="221"></Sentence>
-      <Sentence ID="222">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="223">Режим отображения объекта</Sentence>
-      <Sentence ID="224"></Sentence>
+      <Sentence ID="222"></Sentence>
+      <Sentence ID="223">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="224">Режим отображения объекта</Sentence>
       <Sentence ID="225"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
@@ -673,9 +673,9 @@ Submit - send the from data using the request method selected in the Method attr
       <Sentence ID="318"></Sentence>
       <Sentence ID="319"></Sentence>
       <Sentence ID="321"></Sentence>
-      <Sentence ID="322">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="323">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="324"></Sentence>
+      <Sentence ID="322"></Sentence>
+      <Sentence ID="323">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+      <Sentence ID="324">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="325"></Sentence>
       <Sentence ID="401">Подтверждение</Sentence>
       <Sentence ID="402">Сброс</Sentence>
@@ -1013,7 +1013,7 @@ class VDOM_formbutton(VDOM_object):
 
 		result = u"""<style type="text/css">{css}</style>
 						<input {debug_info} id="{id}" name="{name}" style="{style}" type="{type}" {alt}
-								tabindex="{tabind}" value="{label}" class="{clname} vdom_formbutton" />
+								tabindex="{tabind}" value="{label}" class="{clname}" />
 			""".format(
 					debug_info = debug_info,
 					css = self.style % {"id": id},
@@ -1023,7 +1023,7 @@ class VDOM_formbutton(VDOM_object):
 					type = type,
 					tabind = self.tabindex,
 					label = self.label,
-					clname = self.classname,
+					clname = ' '.join([self.classname, 'vdom_formbutton']).strip(),
 					alt = alt)
 			
 		return VDOM_object.render(self, contents=result)
