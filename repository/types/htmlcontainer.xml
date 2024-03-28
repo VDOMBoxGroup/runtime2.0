@@ -14,7 +14,7 @@
     <Container>3</Container>
     <Category>Standard</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.141.9203</Version>
+    <Version>2.147.9203</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers/>
@@ -154,7 +154,7 @@
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
+      <CodeInterface>PageLink()</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
       <RegularExpressionValidation>^.*$</RegularExpressionValidation>
@@ -182,6 +182,18 @@
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>page_wrapper</Name>
+      <DisplayName>#Lang(138)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(338)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(437)|0)|(#Lang(438)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(238)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>testfunctions</Name>
@@ -475,6 +487,7 @@
       <Sentence ID="135">Z-index</Sentence>
       <Sentence ID="136">Visibility</Sentence>
       <Sentence ID="137"></Sentence>
+      <Sentence ID="138">Page-Wrapper</Sentence>
       <Sentence ID="201">The names of CSS classes. The names can consist only of Latin characters, may include hyphen (-) and underscore (_).</Sentence>
       <Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
       <Sentence ID="203">The title of the object to display, may be in HTML format. In some objects the title is not displayed if the Title appearance attribute is set to 'Title off'.</Sentence>
@@ -509,6 +522,7 @@
       <Sentence ID="235">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the Z-Index indicates the order of their displaying. The larger Z-Index is, the upper the object is situated.</Sentence>
       <Sentence ID="236">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
       <Sentence ID="237"></Sentence>
+      <Sentence ID="238">newAttribute34</Sentence>
       <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value.</Sentence>
       <Sentence ID="303">Incorrect value, must be positive integer.</Sentence>
@@ -543,6 +557,7 @@
       <Sentence ID="335">Incorrect value, must be positive integer.</Sentence>
       <Sentence ID="336">Incorrect value, must be string.</Sentence>
       <Sentence ID="337"></Sentence>
+      <Sentence ID="338">newAttribute34</Sentence>
       <Sentence ID="401">Repeat</Sentence>
       <Sentence ID="402">No-repeat</Sentence>
       <Sentence ID="403">Repeat-X</Sentence>
@@ -576,6 +591,8 @@
       <Sentence ID="434">Visible</Sentence>
       <Sentence ID="435"></Sentence>
       <Sentence ID="436"></Sentence>
+      <Sentence ID="437">No</Sentence>
+      <Sentence ID="438">Yes</Sentence>
       <Sentence ID="501">Visibility</Sentence>
       <Sentence ID="502">browserZoom</Sentence>
       <Sentence ID="503">Visibility</Sentence>
@@ -725,6 +742,7 @@
       <Sentence ID="135">Z-index</Sentence>
       <Sentence ID="136">Visibilité</Sentence>
       <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
       <Sentence ID="201">CSS classes for body</Sentence>
       <Sentence ID="202">Afficher ou cacher l'objet</Sentence>
       <Sentence ID="203">Distance depuis le bord gauche de l'objet parent en pixels</Sentence>
@@ -759,6 +777,7 @@
       <Sentence ID="235">Distance depuis le bord haut de l'objet parent en pixels</Sentence>
       <Sentence ID="236">Titre du conteneur</Sentence>
       <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
       <Sentence ID="301">Valeur Incorrecte</Sentence>
       <Sentence ID="302">Incorrect value</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
@@ -793,6 +812,7 @@
       <Sentence ID="335">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="336">Valeur Incorrecte, doit être une chaîne de caractères</Sentence>
       <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
       <Sentence ID="401">Répéter</Sentence>
       <Sentence ID="402">Ne pas répéter</Sentence>
       <Sentence ID="403">Répéter-horizontal</Sentence>
@@ -826,6 +846,8 @@
       <Sentence ID="434">Visible</Sentence>
       <Sentence ID="435"></Sentence>
       <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
       <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">browserZoom</Sentence>
       <Sentence ID="503">Visibilité</Sentence>
@@ -975,6 +997,7 @@
       <Sentence ID="135">Верх</Sentence>
       <Sentence ID="136">Z-Индекс</Sentence>
       <Sentence ID="137"></Sentence>
+      <Sentence ID="138"></Sentence>
       <Sentence ID="201">CSS classes for body</Sentence>
       <Sentence ID="202">Отображается объект или нет</Sentence>
       <Sentence ID="203">Заголовок контейнера</Sentence>
@@ -1009,6 +1032,7 @@
       <Sentence ID="235">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
       <Sentence ID="236">Заголовок контейнера</Sentence>
       <Sentence ID="237"></Sentence>
+      <Sentence ID="238"></Sentence>
       <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение</Sentence>
       <Sentence ID="303">Неправильное значение, должна быть строка</Sentence>
@@ -1043,6 +1067,7 @@
       <Sentence ID="335">Неправильное значение, должно быть целое положительное число</Sentence>
       <Sentence ID="336">Неправильное значение, должна быть строка</Sentence>
       <Sentence ID="337"></Sentence>
+      <Sentence ID="338"></Sentence>
       <Sentence ID="401">Повторять</Sentence>
       <Sentence ID="402">Не повторять</Sentence>
       <Sentence ID="403">Повторять по X</Sentence>
@@ -1076,6 +1101,8 @@
       <Sentence ID="434">Отображается</Sentence>
       <Sentence ID="435"></Sentence>
       <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
       <Sentence ID="501">Z-Индекс</Sentence>
       <Sentence ID="502">browserZoom</Sentence>
       <Sentence ID="503">Z-Индекс</Sentence>
@@ -1880,8 +1907,7 @@ TEMPLATE = u"""{doctype}
 <body id="{element_name}" style="{style} {font_style}"{inline_style}{inline_class}>
 {cookiewarning}
 {noscript}
-{contents}
-{javascript}
+{content}
 <div id='e2vdomindicator' style='z-index:99999;width:1px;height:1px;position:absolute;position:fixed;left:0;top:0;display:none'></div>
 <script type="text/javascript" src="/6cdc7eef-c7d2-bc99-b202-98b2d9052836.res"></script>
 <script type="text/javascript">
@@ -1988,6 +2014,10 @@ class VDOM_htmlcontainer(VDOM_object):
         else:
             noscript = ""
 
+        content = u"""{contents}{javascript}"""
+        if self.page_wrapper == '1':
+            content = u"""<div id='container'>{contents}{javascript}</div>"""
+
         cookie_name = 'cookiewarning'
         cookiewarning = ""
         if self.cookiewarning == "1":
@@ -2024,9 +2054,8 @@ class VDOM_htmlcontainer(VDOM_object):
             font_style=font_style,
             inline_class=" class='%s'" % classname if classname else "",
             cookiewarning=cookiewarning,
+            content=content.format(contents=contents, javascript=javascript),
             noscript=noscript,
-            contents=contents,
-            javascript=javascript,
             center=center,
             bgcolor=self.bgcolor,
             id4code=id4code)
