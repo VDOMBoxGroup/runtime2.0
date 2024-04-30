@@ -528,48 +528,55 @@ class VDOM_monacoeditor(VDOM_object):
         """ % { "id": ID, "styles": styles_str }
 
         script = u"""
-        <script defer>
-            {
+        <script type="text/javascript">
+            const loadMonacoEditor = (url, callback) => {
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = url;
+                script.onload = callback;
+                
+                document.head.appendChild(script);
+            };
+            
+            const doNothing = () => {};
+            
+            loadMonacoEditor('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js', () => {
                 /*
-                * @function generateEvent  This function generate E2VDOM event.
-                * @param    {String} name           name of event.
-                * @param    {Object} payload        payload of event.
-                * @return   {null}                  return nothing
-                */
+                 * @function generateEvent  This function generate E2VDOM event.
+                 * @param    {String} name           name of event.
+                 * @param    {Object} payload        payload of event.
+                 * @return   {null}                  return nothing
+                 */
                 function generateEvent(name, payload) {
-                  execEventBinded("%(woid)s", name, payload);
+                    execEventBinded("%(woid)s", name, payload);
                 }
-
-
-                require.config({
-                  paths: { vs: "https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs" },
-                });
+                
+                require.config({ paths: { 'vs': 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs' }});
                 window.MonacoEnvironment = { getWorkerUrl: () => proxy };
-                const proxy = URL.createObjectURL(
-                  new Blob(
-                    [
-                      `
-                      self.MonacoEnvironment = { baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/' };
-                      importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs/base/worker/workerMain.js');
-                      `,
-                    ],
-                    { type: "text/javascript" }
-                  )
-                );
-
-                require(["vs/editor/editor.main"], () => {
-                  const config = {
+                
+                let proxy = URL.createObjectURL(new Blob(
+                    [`
+                        self.MonacoEnvironment = { baseUrl: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/' };
+                        importScripts('https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/base/worker/workerMain.js');
+                    `],
+                    { type: 'text/javascript' }
+                )
+            );
+            
+            require(["vs/editor/editor.main"], () => {
+                const config = {
                     values: JSON.parse(`%(values)s` || '{}'),
                     theme: "vb", // ["vs", "vs-dark", "hc-black"]
                     textAreaName: "%(name)s",
                     hover: {delay: 3000, enabled: true}
-                  }
-                  window.monacoEditor = new MonacoEditor(document.getElementById("%(id)s"), config);
-                });
-
-                generateEvent("load", {param: "I am loaded"});
-            }
+                }
+                window.monacoEditor = new MonacoEditor(document.getElementById("%(id)s"), config);
+            });
+            
+            generateEvent("load", {param: "I am loaded"});
+        });
         </script>
+
         """ % {
           "id": ID,
           "woid": WOID,
@@ -634,7 +641,6 @@ def on_compile(object, attributes):
 			object.attributes[attr] = obj_value.rstrip("px") + "px"
 			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
-    <Library Target="html"><![CDATA[<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.31.1/min/vs/loader.min.js'></script>]]></Library>
     <Library Target="html"><![CDATA[<script type='text/javascript' src='/866978ca-daf7-481a-b98d-3143c1175ef0.js'></script>]]></Library>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_monacoeditor {
