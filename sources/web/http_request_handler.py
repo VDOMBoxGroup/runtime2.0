@@ -325,9 +325,10 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             return
         f = self.on_request("post")
         if f:
-            sys.setswitchinterval(0.05)
+            original_switchinterval = sys.getswitchinterval()  # Save the original switch interval
+            sys.setswitchinterval(1e-6)  # Use a very small interval instead of 0
             shutil.copyfileobj(f, self.wfile)
-            sys.setswitchinterval(100)
+            sys.setswitchinterval(original_switchinterval)
             # self.copyfile(f, self.wfile)
             f.close()
 

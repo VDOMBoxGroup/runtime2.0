@@ -1,6 +1,8 @@
 from __future__ import absolute_import
 from Crypto import Random
 from Crypto.Hash import SHA256
+from Crypto.Random import get_random_bytes
+import binascii
 
 import managers
 from .exception import VDOM_exception
@@ -34,13 +36,12 @@ def get_csrf_secret():
 
 
 def create_csrf_token(salt=''):
-	"""Generate csrf token based on existing/new csrf secret and
-	provided/new salt"""
-	if not salt:
-		salt = Random.new().read(csrf_salt_len).encode('hex')
-	h = SHA256.new()
-	h.update(get_csrf_secret() + salt)
-	return h.hexdigest() + salt
+    """Generate csrf token based on existing/new csrf secret and provided/new salt"""
+    if not salt:
+        salt = binascii.hexlify(get_random_bytes(csrf_salt_len)).decode('utf-8')
+    h = SHA256.new()
+    h.update(get_csrf_secret() + salt.encode('utf-8'))
+    return h.hexdigest() + salt
 
 
 def verify_csrf_token(token=''):

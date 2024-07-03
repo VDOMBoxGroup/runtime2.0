@@ -445,7 +445,6 @@ class MemoryApplication(MemoryApplicationSketch):
                                                     mode="w", encoding="utf8") as file:
                         self.compose(file=file, shorter=True)
                 except Exception as e:  # noqa
-                    print(f"{e}") # noqa
                     managers.file_manager.delete(file_access.APPLICATION, self._id, new_filename)
                     raise
                 else:

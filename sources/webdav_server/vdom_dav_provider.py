@@ -130,7 +130,7 @@ class VDOM_resource(_DAVResource):
 		#xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		#ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		#if ret:
-		#	res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
+		#	res = self.provider.get_resource_inst(util.joinUri(self.path, name), self.environ)
 		#	if res:
 		#		#get_properties.invalidate(self._app_id, self._obj_id, self.path)
 		#		return res
@@ -143,7 +143,7 @@ class VDOM_resource(_DAVResource):
 		xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
 		ret = managers.dispatcher.dispatch_action(self._app_id, self._obj_id, func_name, "",xml_data)
 		if ret:
-			res = self.provider.getResourceInst(util.joinUri(self.path, name), self.environ)
+			res = self.provider.get_resource_inst(util.joinUri(self.path, name), self.environ)
 			if res:
 				#get_properties.invalidate(self._app_id, self._obj_id, self.path)
 				return res
@@ -152,7 +152,7 @@ class VDOM_resource(_DAVResource):
 
 	def getMember(self, name, preloaded = None):
 		assert self.isCollection
-		return self.provider.getResourceInst(util.joinUri(self.path, name), 
+		return self.provider.get_resource_inst(util.joinUri(self.path, name), 
 		                                     self.environ,preloaded)	
 
 	def getMemberNames(self):
@@ -291,12 +291,12 @@ class VDOM_Provider(DAVProvider):
 #		return r
 
 
-	def getResourceInst(self, path, environ,preloaded = None):
+	def get_resource_inst(self, path, environ,preloaded = None):
 		"""Return info dictionary for path.
 
-		See DAVProvider.getResourceInst()
+		See DAVProvider.get_resource_inst()
 		"""
-		self._count_getResourceInst += 1
+		self._count_get_resource_inst += 1
 		path = posixpath.normpath(path or "/")
 		try:
 			if self.application and self.obj:
@@ -306,7 +306,7 @@ class VDOM_Provider(DAVProvider):
 					try:
 						res = get_properties(self.application.id, self.obj.id, path)
 					except Exception as e:
-						debug("getResourceInst error: %s"%e)
+						debug("get_resource_inst error: %s"%e)
 						raise DAVError(HTTP_REQUEST_TIMEOUT)
 
 				if not res or res[0]==None:
@@ -316,12 +316,12 @@ class VDOM_Provider(DAVProvider):
 					return VDOM_resource(path, isCollection, environ, self.application.id, self.obj.id,res[0])
 
 		except Exception as e:
-			debug("getResourceInst error: %s"%e)
+			debug("get_resource_inst error: %s"%e)
 			raise DAVError(HTTP_FORBIDDEN)
 		return None
 	
 	def createResourceInst(self, parent, name, environ):
-		self._count_getResourceInst += 1
+		self._count_get_resource_inst += 1
 		try:
 			res = VDOM_resource(util.joinUri(parent, name), False, environ, self.application.id, self.obj.id,None)
 			res.name = name

@@ -15,8 +15,8 @@ class VDOM_webdav_request_server(RequestServer):
 		"""
 		srcPath = environ["PATH_INFO"]
 		provider = self._davProvider
-		srcRes = provider.getResourceInst(srcPath, environ)
-		srcParentRes = provider.getResourceInst(util.getUriParent(srcPath), environ)
+		srcRes = provider.get_resource_inst(srcPath, environ)
+		srcParentRes = provider.get_resource_inst(util.getUriParent(srcPath), environ)
 	
 		# --- Check source -----------------------------------------------------
 	
@@ -89,10 +89,10 @@ class VDOM_webdav_request_server(RequestServer):
 	
 		# destPath is now relative to current mount/share starting with '/'
 	
-		destRes = provider.getResourceInst(destPath, environ)
+		destRes = provider.get_resource_inst(destPath, environ)
 		destExists = destRes is not None
 	
-		destParentRes = provider.getResourceInst(util.getUriParent(destPath), environ)
+		destParentRes = provider.get_resource_inst(util.getUriParent(destPath), environ)
 	
 		if not destParentRes or not destParentRes.isCollection:
 			self._fail(HTTP_CONFLICT, "Destination parent must be a collection.")

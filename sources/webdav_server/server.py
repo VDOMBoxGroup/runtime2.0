@@ -21,21 +21,24 @@ class VDOM_webdav_manager(object):
 
     def __init__(self):
         self.__config = DEFAULT_CONFIG.copy()
-        self.__config.update({"host": VDOM_CONFIG["SERVER-ADDRESS"],
-                              "port": VDOM_CONFIG["SERVER-PORT"],
-                              "propsmanager": True,
-                              "provider_mapping": {},
-                              "acceptbasic": True,  # Allow basic authentication, True or False
-                              "acceptdigest": True,  # Allow digest authentication, True or False
-                              "defaultdigest": True,
-                              "verbose": 0,
-                              "middleware_stack": [
-                                  WsgiDavDirBrowser,
-                                      VDOM_HTTPAuthenticator,
-                                      ErrorPrinter,
-                                      WsgiDavDebugFilter,
-                              ]
-                              })
+        self.__config.update({
+            "host": VDOM_CONFIG["SERVER-ADDRESS"],
+            "port": VDOM_CONFIG["SERVER-PORT"],
+            "property_manager": True,  # Updated property manager configuration
+            "provider_mapping": {},
+            "http_authenticator": {
+                "accept_basic": True,  # Allow basic authentication, True or False
+                "accept_digest": True,  # Allow digest authentication, True or False
+                "default_to_digest": True,  # Updated to use new key
+            },
+            "verbose": 0,
+            "middleware_stack": [
+                WsgiDavDirBrowser,
+                VDOM_HTTPAuthenticator,
+                ErrorPrinter,
+                WsgiDavDebugFilter,
+            ]
+        })
         self.__index = {}
         self.__path_index = {}
         for app in managers.memory.applications.values():
@@ -44,11 +47,11 @@ class VDOM_webdav_manager(object):
     def load_webdav(self, appid):
         start_dav = False
         __conf = self.__config.copy()
-        __conf["domaincontroller"] = VDOM_domain_controller(appid)
+        __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(appid)
         app = managers.memory.applications[appid]
         for objid, obj in app.objects.items():
             if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
-                __conf["provider_mapping"]["/" + obj.name.encode('utf8')] = VDOM_Provider(appid, obj.id)
+                __conf["provider_mapping"]["/" + obj.name] = VDOM_Provider(appid, obj.id)
                 if not self.__index.get(appid):
                     self.__index[appid] = {obj.id : '/%s'%obj.name}
                     self.__path_index[(appid,obj.name)] = self.__index[appid]
@@ -57,14 +60,19 @@ class VDOM_webdav_manager(object):
                     self.__path_index[(appid, obj.name)] = self.__index[appid]
                 start_dav = True
 
-        if start_dav: app.wsgidav_app = WsgiDAVApp(__conf)
+        if start_dav:
+            try:
+                app.wsgidav_app = WsgiDAVApp(__conf)
+            except Exception as e:
+                print(f"{e}")
 
     def add_webdav(self, appid, objid, sharePath):
         app = managers.memory.applications.get(appid)
         __conf = {}
         if not hasattr(app, "wsgidav_app"):
             __conf = self.__config.copy()
-            __conf["domaincontroller"] = VDOM_domain_controller(appid)
+            __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(appid)
+            #TODO: There could be problems with utf encoding, check later
             __conf["provider_mapping"][sharePath.encode('utf8')] = VDOM_Provider(appid, objid)
             app.wsgidav_app = WsgiDAVApp(__conf)
         else:

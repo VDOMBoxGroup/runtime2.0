@@ -167,7 +167,7 @@ class Executable(object):
                 raise Exception(message)
         except (RenderTermination, CompilationError, RequirePrecompileError):
             raise
-        except Exception:
+        except Exception as e:
             show_exception_trace(caption="Unhandled exception in %s" % self, locals=True)
             raise
         finally:
