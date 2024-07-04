@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.402.6201</Version>
+    <Version>1.422.6201</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, vdomclass, accordeon, flexcontainer, dialog_3</Containers>
@@ -1714,10 +1714,18 @@ class VDOM_button(VDOM_object):
         self.finalrollover = self.rollover
         self.finaldisabledimg = self.disabledimg
         
-        deffamily = "Tahoma, 'Geneva CY', geneva, sans-serif".replace('"', '').replace("'", '')
+        deffamily = "tahoma"
         fontsize = self.regex(str(self.fontsize)) or "12"
         fontstyle = self.fontstyle# or "normal"
-        fontfamily = self.fontfamily.replace('"', '').replace("'", '') or deffamily
+        fontfamily = self.fontfamily.split(",")[0]
+        
+        if len(fontfamily) > 0:
+        	fontfamily = fontfamily.strip().lower()
+        	if len(fontfamily) > len(self.fontfamily.split(" ")[0].strip().lower()):
+        		fontfamily = self.fontfamily.split(" ")[0].strip().lower().replace('"', '').replace("'", '')
+        else:
+        	fontfamily = deffamily
+        
         fontweight = self.fontweight# or "normal"
         textdecor = self.textdecoration or "none"
         color = self.color or "000000"
