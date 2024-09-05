@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>0.14.7</Version>
+    <Version>0.19.7</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass</Containers>
@@ -290,6 +290,18 @@
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
+      <Name>toggle_tree_by_click_row</Name>
+      <DisplayName>#Lang(137)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(337)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(435)|0)|(#Lang(436)|1))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(237)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
       <Name>displaying</Name>
       <DisplayName>#Lang(125)</DisplayName>
       <DefaultValue/>
@@ -460,6 +472,7 @@
       <Sentence ID="134">IDE_left</Sentence>
       <Sentence ID="135">IDE_width</Sentence>
       <Sentence ID="136">IDE_height</Sentence>
+      <Sentence ID="137">Toggle tree by click row</Sentence>
       <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203">newAttribute24</Sentence>
@@ -493,6 +506,7 @@
       <Sentence ID="234">newAttribute29</Sentence>
       <Sentence ID="235">newAttribute30</Sentence>
       <Sentence ID="236">newAttribute31</Sentence>
+      <Sentence ID="237">Error in toggle_tree_by_click_row</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303"></Sentence>
@@ -526,6 +540,7 @@
       <Sentence ID="334">newAttribute29</Sentence>
       <Sentence ID="335">newAttribute30</Sentence>
       <Sentence ID="336">newAttribute31</Sentence>
+      <Sentence ID="337">Expand/Collapse a tree by click on a row</Sentence>
       <Sentence ID="401">Absolute</Sentence>
       <Sentence ID="402">Relative</Sentence>
       <Sentence ID="403">Fixed</Sentence>
@@ -557,6 +572,8 @@
       <Sentence ID="432">Yes</Sentence>
       <Sentence ID="433"></Sentence>
       <Sentence ID="434"></Sentence>
+      <Sentence ID="435">No</Sentence>
+      <Sentence ID="436">Yes</Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">Clear filter</Sentence>
@@ -611,12 +628,10 @@
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="811">New data for tabulator</Sentence>
       <Sentence ID="812">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="901">cellData</Sentence>
-      <Sentence ID="902">cellData</Sentence>
-      <Sentence ID="903">headerData</Sentence>
-      <Sentence ID="904">cellData</Sentence>
-      <Sentence ID="905">cellData</Sentence>
-      <Sentence ID="906">headerData</Sentence>
+      <Sentence ID="901"></Sentence>
+      <Sentence ID="902"></Sentence>
+      <Sentence ID="904"></Sentence>
+      <Sentence ID="905"></Sentence>
       <Sentence ID="907">cellData</Sentence>
       <Sentence ID="908">cellData</Sentence>
       <Sentence ID="909">cellData</Sentence>
@@ -632,7 +647,10 @@
       <Sentence ID="921">cellData</Sentence>
       <Sentence ID="922">cellData</Sentence>
       <Sentence ID="923">cellData</Sentence>
-      <Sentence ID="924">cellData</Sentence>
+      <Sentence ID="924">rows keys</Sentence>
+      <Sentence ID="925">list of dictionaries, where the key is the column name and the value is the cell value</Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927">this is a json-dict where the key is the column name and the value is the cell value</Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">tabulator</Sentence>
@@ -671,6 +689,7 @@
       <Sentence ID="134"></Sentence>
       <Sentence ID="135"></Sentence>
       <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
       <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
       <Sentence ID="203"></Sentence>
@@ -704,6 +723,7 @@
       <Sentence ID="234"></Sentence>
       <Sentence ID="235"></Sentence>
       <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="303"></Sentence>
@@ -737,6 +757,7 @@
       <Sentence ID="334"></Sentence>
       <Sentence ID="335"></Sentence>
       <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -768,6 +789,8 @@
       <Sentence ID="432">Yes</Sentence>
       <Sentence ID="433"></Sentence>
       <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">Clear filter</Sentence>
@@ -824,10 +847,8 @@
       <Sentence ID="812">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
-      <Sentence ID="903">headerData</Sentence>
       <Sentence ID="904">cellData</Sentence>
       <Sentence ID="905">cellData</Sentence>
-      <Sentence ID="906">headerData</Sentence>
       <Sentence ID="907">cellData</Sentence>
       <Sentence ID="908">cellData</Sentence>
       <Sentence ID="909">cellData</Sentence>
@@ -843,7 +864,10 @@
       <Sentence ID="921">cellData</Sentence>
       <Sentence ID="922">cellData</Sentence>
       <Sentence ID="923">cellData</Sentence>
-      <Sentence ID="924">cellData</Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">tabulator</Sentence>
@@ -882,6 +906,7 @@
       <Sentence ID="134"></Sentence>
       <Sentence ID="135"></Sentence>
       <Sentence ID="136"></Sentence>
+      <Sentence ID="137"></Sentence>
       <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
       <Sentence ID="203"></Sentence>
@@ -915,6 +940,7 @@
       <Sentence ID="234"></Sentence>
       <Sentence ID="235"></Sentence>
       <Sentence ID="236"></Sentence>
+      <Sentence ID="237"></Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
       <Sentence ID="303"></Sentence>
@@ -948,6 +974,7 @@
       <Sentence ID="334"></Sentence>
       <Sentence ID="335"></Sentence>
       <Sentence ID="336"></Sentence>
+      <Sentence ID="337"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403"></Sentence>
@@ -979,6 +1006,8 @@
       <Sentence ID="432">Да</Sentence>
       <Sentence ID="433"></Sentence>
       <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
       <Sentence ID="501">Add css class to cell</Sentence>
       <Sentence ID="502">Add css class to row</Sentence>
       <Sentence ID="503">Clear filter</Sentence>
@@ -1035,10 +1064,8 @@
       <Sentence ID="812">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
-      <Sentence ID="903">headerData</Sentence>
       <Sentence ID="904">cellData</Sentence>
       <Sentence ID="905">cellData</Sentence>
-      <Sentence ID="906">headerData</Sentence>
       <Sentence ID="907">cellData</Sentence>
       <Sentence ID="908">cellData</Sentence>
       <Sentence ID="909">cellData</Sentence>
@@ -1054,7 +1081,10 @@
       <Sentence ID="921">cellData</Sentence>
       <Sentence ID="922">cellData</Sentence>
       <Sentence ID="923">cellData</Sentence>
-      <Sentence ID="924">cellData</Sentence>
+      <Sentence ID="924"></Sentence>
+      <Sentence ID="925"></Sentence>
+      <Sentence ID="926"></Sentence>
+      <Sentence ID="927"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1118,6 +1148,11 @@ class VDOM_tabulator(VDOM_object):
         	params.append(u'pagination: "{}",'.format(self.pagging))
         	params.append(u'paginationSize: {},'.format(self.pagelength))
 
+        if self.toggle_tree_by_click_row == "1":
+        	toggle_tree_by_click_row = "row.treeToggle();"
+        else:
+        	toggle_tree_by_click_row = ""
+        
         if self.custom:
             params.append(self.custom)
 
@@ -1151,44 +1186,36 @@ $(document).ready(() => {
         click_prevent: false
     };
 
-    function singleClick(e, row) {
-        const isSelected = row.isSelected();
-        row.deselect();
-        clickInfo.click_timer = setTimeout(() => {
-            if (!clickInfo.click_prevent) {
-                execEventBinded('%(idn)s', 'cellclick', {
-                    keyField: row.getData().%(keyField)s,
-                    cellData: JSON.stringify(row.getData()),
-                    headerData: $(e.path[0]).closest(".tabulator-cell").attr("tabulator-field")
-                });
-                if (!isSelected) {
-                  row.deselect();
-                } else {
-                  row.select();
-                }
-            }
-            clickInfo.click_prevent = false;
-            }, clickInfo.click_delay);
+    function rowClick(e, row) {
+    	%(toggle_tree_by_click_row)s
+    	execEventBinded('%(idn)s', 'rowclick', {
+    			rowKeyValue: row.getData().%(keyField)s,
+    			rowData: JSON.stringify(row.getData())
+    	});
     }
 
     function selectionChange(data, rows) {
-    const keys = data.map(({ %(keyField)s }) => %(keyField)s);
-
-    execEventBinded('%(idn)s', 'rowsselected', {
-            keyList: keys
-        }
-    );
+    	const keys = data.map(({ %(keyField)s }) => %(keyField)s);
+    	
+    	execEventBinded('%(idn)s', 'rowsselectionchanged', {
+    			rowsKeysList: keys,
+    			rowsDataList: data
+    	});
+    }
+    
+    function rowSelect(row) {
+    	execEventBinded('%(idn)s', 'rowselect', {
+			rowKeyValue: row.getData().%(keyField)s,
+			rowData: JSON.stringify(row.getData())
+        });
     }
 
-    function doubleClick(e, row) {
-        clearTimeout(clickInfo.click_timer);
-        clickInfo.click_prevent = true;
-        execEventBinded('%(idn)s', 'celldblclick', {
-                keyField: row.getData().%(keyField)s,
-                cellData: JSON.stringify(row.getData()),
-                headerData: $(e.path[0]).closest(".tabulator-cell").attr("tabulator-field")
-            }
-        );
+
+    function rowDoubleClick(e, row) {
+        execEventBinded('%(idn)s', 'rowdoubleclick', {
+			rowKeyValue: row.getData().%(keyField)s,
+			rowData: JSON.stringify(row.getData())
+		});
     }
 
     window.%(id_tabulator)s = new Tabulator("#%(id_tabulator)s", {
@@ -1199,9 +1226,10 @@ $(document).ready(() => {
       columns: %(columns)s,
       responsiveLayout: "hide",
       placeholder:"No Data Available",
-      rowClick: singleClick,
-      rowDblClick: doubleClick,
+      rowClick: rowClick,
+      rowDblClick: rowDoubleClick,
       rowSelectionChanged: selectionChange,
+      rowSelected: rowSelect,
       %(params)s
     });
 
@@ -1225,7 +1253,8 @@ $(document).ready(() => {
             "hidden_fields_styles": hidden_fields_styles,
             "hidden_columns": hidden_columns,
             "data_tree_start_expanded": 'true' if self.datatreestartexpanded == "1" else 'false',
-            "search_field": search_field
+            "search_field": search_field,
+            "toggle_tree_by_click_row": toggle_tree_by_click_row
         }
 
         return VDOM_object.render(self, contents=result)
@@ -1354,20 +1383,6 @@ def on_compile(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="cellclick" Help="#Lang(512)">
-          <Parameters>
-            <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(902)"/>
-            <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(903)"/>
-          </Parameters>
-        </Event>
-        <Event Name="celldblclick" Help="#Lang(513)">
-          <Parameters>
-            <Parameter Name="keyField" Order="0" VbType="" Help="#Lang(904)"/>
-            <Parameter Name="cellData" Order="0" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="headerData" Order="0" VbType="" Help="#Lang(906)"/>
-          </Parameters>
-        </Event>
         <Event Name="custom" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="params" Order="0" VbType="" Help="#Lang(907)"/>
@@ -1419,9 +1434,28 @@ def on_compile(object, attributes):
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
-        <Event Name="rowsselected" Help="#Lang(524)">
+        <Event Name="rowclick" Help="#Lang(512)">
           <Parameters>
-            <Parameter Name="keyList" Order="0" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="rowKeyValue" Order="" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="rowData" Order="" VbType="" Help="#Lang(902)"/>
+          </Parameters>
+        </Event>
+        <Event Name="rowdoubleclick" Help="#Lang(513)">
+          <Parameters>
+            <Parameter Name="rowKeyValue" Order="" VbType="" Help="#Lang(904)"/>
+            <Parameter Name="rowData" Order="" VbType="" Help="#Lang(905)"/>
+          </Parameters>
+        </Event>
+        <Event Name="rowselect" Help="">
+          <Parameters>
+            <Parameter Name="rowKeyValue" Order="" VbType="" Help="#Lang(926)"/>
+            <Parameter Name="rowData" Order="" VbType="" Help="#Lang(927)"/>
+          </Parameters>
+        </Event>
+        <Event Name="rowsselectionchanged" Help="#Lang(524)">
+          <Parameters>
+            <Parameter Name="rowsKeysList" Order="" VbType="" Help="#Lang(924)"/>
+            <Parameter Name="rowsDataList" Order="" VbType="" Help="#Lang(925)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>

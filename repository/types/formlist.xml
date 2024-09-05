@@ -1117,7 +1117,7 @@ class VDOM_formlist(VDOM_object):
         multi = u""" multiple="multiple\"""" if self.multiselect and self.multiselect == "1" else u""
         size = u""" size="%s" """ % self.size if self.size else u""
 
-        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="{classname} vdom_formlist" style="{style}" {size}{multi}{disabled}>"""\
+        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="{classname}" style="{style}" {size}{multi}{disabled}>"""\
                 .format(
                     disabled = disabled,
                     id = id,
@@ -1126,7 +1126,7 @@ class VDOM_formlist(VDOM_object):
                     style = style,
                     size = size,
                     multi = multi,
-                    classname = self.classname
+                    classname = ' '.join([self.classname, 'vdom_formlist']).strip()
                 )
 
         try:
@@ -1385,7 +1385,7 @@ def on_compile(object, attributes):
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="itemId" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'selected');]]></SourceCode>
+          <SourceCode><![CDATA[jQuery('#'+this.domCont.id).val(itemId);]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setClass">
           <Parameters>
