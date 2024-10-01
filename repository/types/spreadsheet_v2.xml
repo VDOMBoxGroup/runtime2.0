@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>2.23.0</Version>
+    <Version>2.41.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, flexcontainer</Containers>
@@ -122,8 +122,20 @@
       <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>data</Name>
+      <Name>url</Name>
       <DisplayName>#Lang(109)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(209)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine()</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>data</Name>
+      <DisplayName>#Lang(111)</DisplayName>
       <DefaultValue>[
           {
               "name":"Food Order",
@@ -746,27 +758,15 @@
           }
         ]</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>3</InterfaceType>
-      <CodeInterface>MultiLine(100000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>columns_count</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>20</DefaultValue>
-      <Visible>1</Visible>
       <Help>#Lang(211)</Help>
       <InterfaceType>3</InterfaceType>
-      <CodeInterface>Number(1,99999)</CodeInterface>
+      <CodeInterface>MultiLine(100000)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>rows_count</Name>
+      <Name>columns_count</Name>
       <DisplayName>#Lang(112)</DisplayName>
       <DefaultValue>20</DefaultValue>
       <Visible>1</Visible>
@@ -778,57 +778,57 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>toolbar</Name>
+      <Name>rows_count</Name>
       <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>false</DefaultValue>
+      <DefaultValue>20</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>3</InterfaceType>
-      <CodeInterface>DropDown((#Lang(406)|true)|(#Lang(407)|false))</CodeInterface>
+      <CodeInterface>Number(1,99999)</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>sheetsbar</Name>
+      <Name>toolbar</Name>
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>false</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>3</InterfaceType>
-      <CodeInterface>DropDown((#Lang(408)|true)|(#Lang(409)|false))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(406)|true)|(#Lang(407)|false))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>editable</Name>
+      <Name>sheetsbar</Name>
       <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>true</DefaultValue>
+      <DefaultValue>false</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(215)</Help>
+      <InterfaceType>3</InterfaceType>
+      <CodeInterface>DropDown((#Lang(408)|true)|(#Lang(409)|false))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>editable</Name>
+      <DisplayName>#Lang(116)</DisplayName>
+      <DefaultValue>true</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(411)|false)|(#Lang(412)|true))</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>cssclass</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>filename</Name>
       <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>Workbook</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(217)</Help>
       <InterfaceType>0</InterfaceType>
@@ -836,6 +836,30 @@
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
       <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>filename</Name>
+      <DisplayName>#Lang(118)</DisplayName>
+      <DefaultValue>Workbook</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(218)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+      <RegularExpressionValidation>.*</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>listname</Name>
+      <DisplayName>#Lang(119)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(319)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(100)</CodeInterface>
+      <Colorgroup>2</Colorgroup>
+      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
   <Languages>
@@ -851,14 +875,16 @@
       <Sentence ID="106">Left</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">data</Sentence>
-      <Sentence ID="111">Columns count</Sentence>
-      <Sentence ID="112">Rows count</Sentence>
-      <Sentence ID="113">Show toolbar</Sentence>
-      <Sentence ID="114">Show sheetsbar</Sentence>
-      <Sentence ID="115">Editable</Sentence>
-      <Sentence ID="116">Css class</Sentence>
-      <Sentence ID="117">Save filename</Sentence>
+      <Sentence ID="109">Url</Sentence>
+      <Sentence ID="111">data</Sentence>
+      <Sentence ID="112">Columns count</Sentence>
+      <Sentence ID="113">Rows count</Sentence>
+      <Sentence ID="114">Show toolbar</Sentence>
+      <Sentence ID="115">Show sheetsbar</Sentence>
+      <Sentence ID="116">Editable</Sentence>
+      <Sentence ID="117">Css class</Sentence>
+      <Sentence ID="118">Save filename</Sentence>
+      <Sentence ID="119">List name</Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -867,14 +893,16 @@
       <Sentence ID="206">Default help field</Sentence>
       <Sentence ID="207">Default help field</Sentence>
       <Sentence ID="208">Default help field</Sentence>
-      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="209">newAttribute16</Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
       <Sentence ID="213">Default help field</Sentence>
       <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215">newAttribute15</Sentence>
-      <Sentence ID="216">Default help field</Sentence>
+      <Sentence ID="215">Default help field</Sentence>
+      <Sentence ID="216">newAttribute15</Sentence>
       <Sentence ID="217">Default help field</Sentence>
+      <Sentence ID="218">Default help field</Sentence>
+      <Sentence ID="219">newAttribute17</Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -883,14 +911,16 @@
       <Sentence ID="306">Default validation message</Sentence>
       <Sentence ID="307">Default validation message</Sentence>
       <Sentence ID="308">Default validation message</Sentence>
-      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="309">newAttribute16</Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
       <Sentence ID="313">Default validation message</Sentence>
       <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315">newAttribute15</Sentence>
-      <Sentence ID="316">Default validation message</Sentence>
+      <Sentence ID="315">Default validation message</Sentence>
+      <Sentence ID="316">newAttribute15</Sentence>
       <Sentence ID="317">Default validation message</Sentence>
+      <Sentence ID="318">Default validation message</Sentence>
+      <Sentence ID="319">newAttribute17</Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -933,14 +963,16 @@
       <Sentence ID="106">Left</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">data</Sentence>
-      <Sentence ID="111">Columns count</Sentence>
-      <Sentence ID="112">Rows count</Sentence>
-      <Sentence ID="113">Show toolbar</Sentence>
-      <Sentence ID="114">Show sheetsbar</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Css class</Sentence>
-      <Sentence ID="117">Save filename</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111">data</Sentence>
+      <Sentence ID="112">Columns count</Sentence>
+      <Sentence ID="113">Rows count</Sentence>
+      <Sentence ID="114">Show toolbar</Sentence>
+      <Sentence ID="115">Show sheetsbar</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117">Css class</Sentence>
+      <Sentence ID="118">Save filename</Sentence>
+      <Sentence ID="119"></Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -949,14 +981,16 @@
       <Sentence ID="206">Default help field</Sentence>
       <Sentence ID="207">Default help field</Sentence>
       <Sentence ID="208">Default help field</Sentence>
-      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="209"></Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
       <Sentence ID="213">Default help field</Sentence>
       <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Default help field</Sentence>
+      <Sentence ID="215">Default help field</Sentence>
+      <Sentence ID="216"></Sentence>
       <Sentence ID="217">Default help field</Sentence>
+      <Sentence ID="218">Default help field</Sentence>
+      <Sentence ID="219"></Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -965,14 +999,16 @@
       <Sentence ID="306">Default validation message</Sentence>
       <Sentence ID="307">Default validation message</Sentence>
       <Sentence ID="308">Default validation message</Sentence>
-      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
       <Sentence ID="313">Default validation message</Sentence>
       <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Default validation message</Sentence>
+      <Sentence ID="315">Default validation message</Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="317">Default validation message</Sentence>
+      <Sentence ID="318">Default validation message</Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -1015,14 +1051,16 @@
       <Sentence ID="106">Left</Sentence>
       <Sentence ID="107">Width</Sentence>
       <Sentence ID="108">Height</Sentence>
-      <Sentence ID="109">data</Sentence>
-      <Sentence ID="111">Columns count</Sentence>
-      <Sentence ID="112">Rows count</Sentence>
-      <Sentence ID="113">Show toolbar</Sentence>
-      <Sentence ID="114">Show sheetsbar</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116">Css class</Sentence>
-      <Sentence ID="117">Save filename</Sentence>
+      <Sentence ID="109"></Sentence>
+      <Sentence ID="111">data</Sentence>
+      <Sentence ID="112">Columns count</Sentence>
+      <Sentence ID="113">Rows count</Sentence>
+      <Sentence ID="114">Show toolbar</Sentence>
+      <Sentence ID="115">Show sheetsbar</Sentence>
+      <Sentence ID="116"></Sentence>
+      <Sentence ID="117">Css class</Sentence>
+      <Sentence ID="118">Save filename</Sentence>
+      <Sentence ID="119"></Sentence>
       <Sentence ID="201">Default help field</Sentence>
       <Sentence ID="202">Default help field</Sentence>
       <Sentence ID="203">Default help field</Sentence>
@@ -1031,14 +1069,16 @@
       <Sentence ID="206">Default help field</Sentence>
       <Sentence ID="207">Default help field</Sentence>
       <Sentence ID="208">Default help field</Sentence>
-      <Sentence ID="209">Default help field</Sentence>
+      <Sentence ID="209"></Sentence>
       <Sentence ID="211">Default help field</Sentence>
       <Sentence ID="212">Default help field</Sentence>
       <Sentence ID="213">Default help field</Sentence>
       <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216">Default help field</Sentence>
+      <Sentence ID="215">Default help field</Sentence>
+      <Sentence ID="216"></Sentence>
       <Sentence ID="217">Default help field</Sentence>
+      <Sentence ID="218">Default help field</Sentence>
+      <Sentence ID="219"></Sentence>
       <Sentence ID="301">Default validation message</Sentence>
       <Sentence ID="302">Default validation message</Sentence>
       <Sentence ID="303">Default validation message</Sentence>
@@ -1047,14 +1087,16 @@
       <Sentence ID="306">Default validation message</Sentence>
       <Sentence ID="307">Default validation message</Sentence>
       <Sentence ID="308">Default validation message</Sentence>
-      <Sentence ID="309">Default validation message</Sentence>
+      <Sentence ID="309"></Sentence>
       <Sentence ID="311">Default validation message</Sentence>
       <Sentence ID="312">Default validation message</Sentence>
       <Sentence ID="313">Default validation message</Sentence>
       <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316">Default validation message</Sentence>
+      <Sentence ID="315">Default validation message</Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="317">Default validation message</Sentence>
+      <Sentence ID="318">Default validation message</Sentence>
+      <Sentence ID="319"></Sentence>
       <Sentence ID="401">Yes</Sentence>
       <Sentence ID="402">No</Sentence>
       <Sentence ID="403">absolute</Sentence>
@@ -1157,6 +1199,25 @@ class VDOM_spreadsheet_v2(VDOM_object):
           	let %(id)s = null
           }
             $(function () {
+              let dataSource;
+              const dataUrl = '%(url)s';
+              
+              if(dataUrl) {
+              	fetch(dataUrl)
+            			.then(response => {
+                			return response.json();
+                		})
+                		.then(data => {
+                			dataSource = data;
+                			initializeSpreadsheet(dataSource);
+                		})
+                		.catch(error => {
+                			console.error("Error loading data:", error);
+                		});
+              } else {
+              	dataSource = JSON.parse(%(data)s);
+              }
+            function initializeSpreadsheet(dataSource) {
               $("#%(id)s").kendoSpreadsheet({
                   columns: %(columns_count)s,
                   rows: %(rows_count)s,
@@ -1168,24 +1229,27 @@ class VDOM_spreadsheet_v2(VDOM_object):
                     fileName: '%(filename)s'
                   },
                   sheetsbar: %(sheetsbar)s,
-                  sheets: JSON.parse(%(data)s)
+                  sheets: dataSource
               }).data("kendoSpreadsheet").one("render", function (e) {
                          e.sender.sheets().forEach(function (sheet) {
                              sheet.range(0, 0, sheet._rows._count, sheet._columns._count).enable(%(editable)s);
                          })
                   }).refresh();
+                }
               });
               %(id)s = $("#%(id)s").data("kendoSpreadsheet");
           </script>
         """ % {
           "id": ID,
+          "url": self.url if self.url else '',
           "data": json.dumps(self.data),
           "columns_count": self.columns_count,
           "rows_count": self.rows_count,
           "show_toolbar": self.toolbar,
           "sheetsbar": self.sheetsbar,
           "filename": self.filename if self.filename else "Workbook",
-          "editable": self.editable
+          "editable": self.editable,
+          "listname": self.listname
         }
 
         HTML = """
