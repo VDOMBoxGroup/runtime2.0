@@ -854,11 +854,11 @@
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(319)</Help>
+      <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>TextField(100)</CodeInterface>
       <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(219)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
       <RegularExpressionValidation/>
     </Attribute>
   </Attributes>
@@ -1216,6 +1216,7 @@ class VDOM_spreadsheet_v2(VDOM_object):
                 		});
               } else {
               	dataSource = JSON.parse(%(data)s);
+              	initializeSpreadsheet(dataSource);
               }
             function initializeSpreadsheet(dataSource) {
               $("#%(id)s").kendoSpreadsheet({
