@@ -539,6 +539,8 @@
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
+      <Sentence ID="532">Add new CSS class</Sentence>
+      <Sentence ID="533">Remove CSS class</Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">toggle</Sentence>
       <Sentence ID="603">hide</Sentence>
@@ -556,6 +558,8 @@
       <Sentence ID="616">toggle</Sentence>
       <Sentence ID="617"></Sentence>
       <Sentence ID="618"></Sentence>
+      <Sentence ID="619">addClass</Sentence>
+      <Sentence ID="620">removeClass</Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">id</Sentence>
       <Sentence ID="703">fade</Sentence>
@@ -579,6 +583,8 @@
       <Sentence ID="723">id</Sentence>
       <Sentence ID="724">id</Sentence>
       <Sentence ID="725">id</Sentence>
+      <Sentence ID="726">Name of CSS class</Sentence>
+      <Sentence ID="727">Name of CSS class</Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">id</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
@@ -602,6 +608,8 @@
       <Sentence ID="823">id</Sentence>
       <Sentence ID="824">id</Sentence>
       <Sentence ID="825">id</Sentence>
+      <Sentence ID="826">className</Sentence>
+      <Sentence ID="827">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -794,6 +802,8 @@
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
+      <Sentence ID="532"></Sentence>
+      <Sentence ID="533"></Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">toggle</Sentence>
       <Sentence ID="603">hide</Sentence>
@@ -811,6 +821,8 @@
       <Sentence ID="616">toggle</Sentence>
       <Sentence ID="617"></Sentence>
       <Sentence ID="618"></Sentence>
+      <Sentence ID="619"></Sentence>
+      <Sentence ID="620"></Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">id</Sentence>
       <Sentence ID="703">fade</Sentence>
@@ -834,6 +846,8 @@
       <Sentence ID="723">id</Sentence>
       <Sentence ID="724">id</Sentence>
       <Sentence ID="725">id</Sentence>
+      <Sentence ID="726"></Sentence>
+      <Sentence ID="727"></Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">id</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
@@ -857,6 +871,8 @@
       <Sentence ID="823">id</Sentence>
       <Sentence ID="824">id</Sentence>
       <Sentence ID="825">id</Sentence>
+      <Sentence ID="826"></Sentence>
+      <Sentence ID="827"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -1049,6 +1065,8 @@
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
+      <Sentence ID="532"></Sentence>
+      <Sentence ID="533"></Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">toggle</Sentence>
       <Sentence ID="603">Скрыть</Sentence>
@@ -1066,6 +1084,8 @@
       <Sentence ID="616">toggle</Sentence>
       <Sentence ID="617"></Sentence>
       <Sentence ID="618"></Sentence>
+      <Sentence ID="619"></Sentence>
+      <Sentence ID="620"></Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">id</Sentence>
       <Sentence ID="703">Исчезновение</Sentence>
@@ -1089,6 +1109,8 @@
       <Sentence ID="723">id</Sentence>
       <Sentence ID="724">id</Sentence>
       <Sentence ID="725">id</Sentence>
+      <Sentence ID="726"></Sentence>
+      <Sentence ID="727"></Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">id</Sentence>
       <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
@@ -1112,6 +1134,8 @@
       <Sentence ID="823">id</Sentence>
       <Sentence ID="824">id</Sentence>
       <Sentence ID="825">id</Sentence>
+      <Sentence ID="826"></Sentence>
+      <Sentence ID="827"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -1649,6 +1673,12 @@ def on_compile(object, attributes):
           </Parameters>
           <SourceCode><![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsActive", item);]]></SourceCode>
         </Action>
+        <Action Help="#Lang(532)" InterfaceName="#Lang(619)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(826)" ScriptName="className" Help="#Lang(726)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="deactivateItem">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="item" Help="#Lang(802)" RegularExpressionValidation=".*"/>
@@ -1672,6 +1702,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="true" Interface="" InterfaceName="#Lang(705)" ScriptName="raiseEvent" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$("#" + this.domCont.id).vdomList_v2("removeItems", undefined, undefined, undefined, raiseEvent);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(533)" InterfaceName="#Lang(620)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(827)" ScriptName="className" Help="#Lang(727)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="removeItem">
           <Parameters>

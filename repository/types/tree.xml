@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>2.64.0</Version>
+    <Version>2.100.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, flexcontainer</Containers>
@@ -408,7 +408,7 @@
       <Sentence ID="212">The animation effects.</Sentence>
       <Sentence ID="213">The title appearance attribute. The title to display is set in the 'Title' attribute.</Sentence>
       <Sentence ID="214">The title of the object to display, may be in the HTML format. In some objects the title is not displayed if the 'Title appearance' attribute is set to 'Title off'.</Sentence>
-      <Sentence ID="215">The data to display in the HTML format. For example:</Sentence>
+      <Sentence ID="215">The data to display in the HTML format. The &lt;li&gt; elements must contain the 'id' attribute.</Sentence>
       <Sentence ID="216">The Ajax options used to initialize the tree structure, which define the way of uploading the data. If it is defined, the object will be created with the data specified here, and the 'Data' attribute will be ignored.</Sentence>
       <Sentence ID="217">Using checkboxes in order to select several items. If it is set to 'Yes' - the checkboxes will be displayed at each item, if 'No' - there will be no checkboxes.</Sentence>
       <Sentence ID="218">Supporting the keyboard navigation.</Sentence>
@@ -477,16 +477,16 @@
       <Sentence ID="426">Yes</Sentence>
       <Sentence ID="427"></Sentence>
       <Sentence ID="428"></Sentence>
-      <Sentence ID="501">Show the object.</Sentence>
-      <Sentence ID="502">Hide the object.</Sentence>
-      <Sentence ID="503">Upload new value of the 'Data' attribute in the HTML format.</Sentence>
-      <Sentence ID="504">Resize the object's width and height.</Sentence>
-      <Sentence ID="505">Show the object.</Sentence>
-      <Sentence ID="506">Toggle CSS class</Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
+      <Sentence ID="501">Activate node by id</Sentence>
+      <Sentence ID="502">Add new CSS class</Sentence>
+      <Sentence ID="503">Show the object.</Sentence>
+      <Sentence ID="504">Deactivate node by id</Sentence>
+      <Sentence ID="505">Hide the object.</Sentence>
+      <Sentence ID="506">Upload new value of the 'Data' attribute in the HTML format.</Sentence>
+      <Sentence ID="507">Remove CSS class</Sentence>
+      <Sentence ID="508">Resize the object's width and height.</Sentence>
+      <Sentence ID="509">Show the object.</Sentence>
+      <Sentence ID="511">Toggle CSS class</Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
@@ -501,28 +501,44 @@
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
       <Sentence ID="526"></Sentence>
-      <Sentence ID="601">Show</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">loadHTMLData</Sentence>
-      <Sentence ID="604">resizeTo</Sentence>
-      <Sentence ID="605">Show</Sentence>
-      <Sentence ID="606">toggleClass</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="601">activateNode</Sentence>
+      <Sentence ID="602">addClass</Sentence>
+      <Sentence ID="603">Show</Sentence>
+      <Sentence ID="604">deactivateNode</Sentence>
+      <Sentence ID="605">Hide</Sentence>
+      <Sentence ID="606">loadHTMLData</Sentence>
+      <Sentence ID="607">removeClass</Sentence>
+      <Sentence ID="608">resizeTo</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="611">toggleClass</Sentence>
+      <Sentence ID="701">nodeKey</Sentence>
+      <Sentence ID="702">className</Sentence>
       <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">HTMLdata</Sentence>
-      <Sentence ID="705">Width</Sentence>
-      <Sentence ID="706">Height</Sentence>
-      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705">nodeKey</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">HTMLdata</Sentence>
       <Sentence ID="708">className</Sentence>
-      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="709">Width</Sentence>
+      <Sentence ID="711">Height</Sentence>
+      <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="713">className</Sentence>
+      <Sentence ID="801">scriptName0</Sentence>
+      <Sentence ID="802">Name of CSS class</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="804">Data in HTML format</Sentence>
-      <Sentence ID="805">New value of width</Sentence>
-      <Sentence ID="806">New value of height</Sentence>
-      <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="805">scriptName0</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="807">Data in HTML format</Sentence>
       <Sentence ID="808">Name of CSS class</Sentence>
+      <Sentence ID="809">New value of width</Sentence>
+      <Sentence ID="811">New value of height</Sentence>
+      <Sentence ID="812">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="813">Name of CSS class</Sentence>
       <Sentence ID="901">Is folder</Sentence>
       <Sentence ID="902">Is folder</Sentence>
       <Sentence ID="903">Is folder</Sentence>
@@ -533,7 +549,6 @@
       <Sentence ID="908">Is folder</Sentence>
       <Sentence ID="909">Is folder</Sentence>
       <Sentence ID="911">Is folder</Sentence>
-      <Sentence ID="912">Is folder</Sentence>
       <Sentence ID="913">Is folder</Sentence>
       <Sentence ID="914">Is folder</Sentence>
       <Sentence ID="915">Is folder</Sentence>
@@ -551,6 +566,9 @@
       <Sentence ID="928">Is folder</Sentence>
       <Sentence ID="929">Is folder</Sentence>
       <Sentence ID="931">Is folder</Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934"></Sentence>
     </Language>
     <Language Code="fr_FR">
       <Sentence ID="001">Show title</Sentence>
@@ -666,15 +684,15 @@
       <Sentence ID="426">Oui</Sentence>
       <Sentence ID="427"></Sentence>
       <Sentence ID="428"></Sentence>
-      <Sentence ID="501">Show the object</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Load HTML data</Sentence>
-      <Sentence ID="504">Change size of the object</Sentence>
-      <Sentence ID="505">Show the object</Sentence>
-      <Sentence ID="506"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505">Hide the object</Sentence>
+      <Sentence ID="506">Load HTML data</Sentence>
       <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
+      <Sentence ID="508">Change size of the object</Sentence>
+      <Sentence ID="509">Show the object</Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
@@ -690,28 +708,44 @@
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
       <Sentence ID="526"></Sentence>
-      <Sentence ID="601">Show</Sentence>
-      <Sentence ID="602">Hide</Sentence>
-      <Sentence ID="603">loadHTMLData</Sentence>
-      <Sentence ID="604">resizeTo</Sentence>
-      <Sentence ID="605">Show</Sentence>
-      <Sentence ID="606"></Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603">Show</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605">Hide</Sentence>
+      <Sentence ID="606">loadHTMLData</Sentence>
+      <Sentence ID="607"></Sentence>
+      <Sentence ID="608">resizeTo</Sentence>
+      <Sentence ID="609">Show</Sentence>
+      <Sentence ID="611"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702"></Sentence>
       <Sentence ID="703">Fade</Sentence>
-      <Sentence ID="704">HTMLdata</Sentence>
-      <Sentence ID="705">Width</Sentence>
-      <Sentence ID="706">Height</Sentence>
-      <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="704">Fade</Sentence>
+      <Sentence ID="705"></Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">HTMLdata</Sentence>
       <Sentence ID="708"></Sentence>
-      <Sentence ID="801">Time of appearance</Sentence>
-      <Sentence ID="802">Time of appearance</Sentence>
-      <Sentence ID="803">Fade time</Sentence>
-      <Sentence ID="804">New HTML data</Sentence>
-      <Sentence ID="805">New width value</Sentence>
-      <Sentence ID="806">New height value</Sentence>
-      <Sentence ID="807">Time of appearance</Sentence>
+      <Sentence ID="709">Width</Sentence>
+      <Sentence ID="711">Height</Sentence>
+      <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802"></Sentence>
+      <Sentence ID="803">Time of appearance</Sentence>
+      <Sentence ID="804">Time of appearance</Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="806">Fade time</Sentence>
+      <Sentence ID="807">New HTML data</Sentence>
       <Sentence ID="808"></Sentence>
+      <Sentence ID="809">New width value</Sentence>
+      <Sentence ID="811">New height value</Sentence>
+      <Sentence ID="812">Time of appearance</Sentence>
+      <Sentence ID="813"></Sentence>
       <Sentence ID="901">Is folder</Sentence>
       <Sentence ID="902">Is folder</Sentence>
       <Sentence ID="903">Is folder</Sentence>
@@ -722,7 +756,6 @@
       <Sentence ID="908">Is folder</Sentence>
       <Sentence ID="909">Is folder</Sentence>
       <Sentence ID="911">Is folder</Sentence>
-      <Sentence ID="912">Is folder</Sentence>
       <Sentence ID="913">Is folder</Sentence>
       <Sentence ID="914">Is folder</Sentence>
       <Sentence ID="915">Is folder</Sentence>
@@ -740,6 +773,9 @@
       <Sentence ID="928">Is folder</Sentence>
       <Sentence ID="929">Is folder</Sentence>
       <Sentence ID="931">Is folder</Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934"></Sentence>
     </Language>
     <Language Code="ru_RU">
       <Sentence ID="001">Дерево</Sentence>
@@ -855,15 +891,15 @@
       <Sentence ID="426">Да</Sentence>
       <Sentence ID="427"></Sentence>
       <Sentence ID="428"></Sentence>
-      <Sentence ID="501">Показать объект</Sentence>
-      <Sentence ID="502">Скрыть объект</Sentence>
-      <Sentence ID="503">Загрузка HTML данных</Sentence>
-      <Sentence ID="504">Изменить размеры объекта</Sentence>
-      <Sentence ID="505">Показать объект</Sentence>
-      <Sentence ID="506"></Sentence>
+      <Sentence ID="501"></Sentence>
+      <Sentence ID="502"></Sentence>
+      <Sentence ID="503">Показать объект</Sentence>
+      <Sentence ID="504"></Sentence>
+      <Sentence ID="505">Скрыть объект</Sentence>
+      <Sentence ID="506">Загрузка HTML данных</Sentence>
       <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
+      <Sentence ID="508">Изменить размеры объекта</Sentence>
+      <Sentence ID="509">Показать объект</Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
@@ -879,28 +915,44 @@
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
       <Sentence ID="526"></Sentence>
-      <Sentence ID="601">Показать</Sentence>
-      <Sentence ID="602">Спрятать</Sentence>
-      <Sentence ID="603">Загрузка HTML данных</Sentence>
-      <Sentence ID="604">Изменить размеры</Sentence>
-      <Sentence ID="605">Показать</Sentence>
-      <Sentence ID="606"></Sentence>
-      <Sentence ID="701">Задержка</Sentence>
-      <Sentence ID="702">Задержка</Sentence>
-      <Sentence ID="703">Исчезновение</Sentence>
-      <Sentence ID="704">Данные HTML</Sentence>
-      <Sentence ID="705">Ширина</Sentence>
-      <Sentence ID="706">Высота</Sentence>
-      <Sentence ID="707">Задержка</Sentence>
+      <Sentence ID="527"></Sentence>
+      <Sentence ID="528"></Sentence>
+      <Sentence ID="529"></Sentence>
+      <Sentence ID="531"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="603">Показать</Sentence>
+      <Sentence ID="604"></Sentence>
+      <Sentence ID="605">Спрятать</Sentence>
+      <Sentence ID="606">Загрузка HTML данных</Sentence>
+      <Sentence ID="607"></Sentence>
+      <Sentence ID="608">Изменить размеры</Sentence>
+      <Sentence ID="609">Показать</Sentence>
+      <Sentence ID="611"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="703">Задержка</Sentence>
+      <Sentence ID="704">Задержка</Sentence>
+      <Sentence ID="705"></Sentence>
+      <Sentence ID="706">Исчезновение</Sentence>
+      <Sentence ID="707">Данные HTML</Sentence>
       <Sentence ID="708"></Sentence>
-      <Sentence ID="801">Время появления в миллисекундах</Sentence>
-      <Sentence ID="802">Время появления в миллисекундах</Sentence>
-      <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="804">Новые HTML данные</Sentence>
-      <Sentence ID="805">Новое значение ширины</Sentence>
-      <Sentence ID="806">Новое значение высоты</Sentence>
-      <Sentence ID="807">Время появления в миллисекундах</Sentence>
+      <Sentence ID="709">Ширина</Sentence>
+      <Sentence ID="711">Высота</Sentence>
+      <Sentence ID="712">Задержка</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802"></Sentence>
+      <Sentence ID="803">Время появления в миллисекундах</Sentence>
+      <Sentence ID="804">Время появления в миллисекундах</Sentence>
+      <Sentence ID="805"></Sentence>
+      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="807">Новые HTML данные</Sentence>
       <Sentence ID="808"></Sentence>
+      <Sentence ID="809">Новое значение ширины</Sentence>
+      <Sentence ID="811">Новое значение высоты</Sentence>
+      <Sentence ID="812">Время появления в миллисекундах</Sentence>
+      <Sentence ID="813"></Sentence>
       <Sentence ID="901">Папка или нет</Sentence>
       <Sentence ID="902">Папка или нет</Sentence>
       <Sentence ID="903">Папка или нет</Sentence>
@@ -911,7 +963,6 @@
       <Sentence ID="908">Папка или нет</Sentence>
       <Sentence ID="909">Папка или нет</Sentence>
       <Sentence ID="911">Папка или нет</Sentence>
-      <Sentence ID="912">Папка или нет</Sentence>
       <Sentence ID="913">Папка или нет</Sentence>
       <Sentence ID="914">Папка или нет</Sentence>
       <Sentence ID="915">Папка или нет</Sentence>
@@ -929,6 +980,9 @@
       <Sentence ID="928">Папка или нет</Sentence>
       <Sentence ID="929">Папка или нет</Sentence>
       <Sentence ID="931">Папка или нет</Sentence>
+      <Sentence ID="932"></Sentence>
+      <Sentence ID="933"></Sentence>
+      <Sentence ID="934"></Sentence>
     </Language>
   </Languages>
   <Resources>
@@ -1561,7 +1615,6 @@ class VDOM_tree(VDOM_object):
 
     result_s = u"""</div>
 <script type='text/javascript' charset="UTF-8">
-
 function in_array(needle, haystack, strict) {
   var found = false, key, strict = !!strict;
   for (key in haystack) {
@@ -1574,6 +1627,7 @@ function in_array(needle, haystack, strict) {
 }
 
 jQuery(document).ready(function($){
+
   $q('#%(id)s').dynatree({
     title: %(title)s,
     checkbox: %(checkbox)s,
@@ -1582,7 +1636,12 @@ jQuery(document).ready(function($){
     children: %(children)s,
     selectMode: %(selectMode)s,
     fx: %(fx)s,
+    generateIds: true,
+    idPrefix: "dynatree-id-",
+    //clickFolderMode: 2,
     debugLevel: 0,
+    activeVisible: false,
+    
     onActivate: function(node) {
       execEventBinded("%(woid)s", "activate", {
         title: node.data.title,
@@ -1596,6 +1655,11 @@ jQuery(document).ready(function($){
       });
     },
     onDeactivate: (node) => {
+      execEventBinded("%(woid)s", "deactivate", {
+        title: node.data.title,
+        key: node.data.key,
+        isFolder: node.data.isFolder
+      });
     },
     onSelect: (flag, node) => {
       const keyList = [];
@@ -1889,112 +1953,129 @@ def on_compile(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="activate" Help="#Lang(507)">
+        <Event Name="activate" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="key" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="isFolder" Order="0" VbType="" Help="#Lang(902)"/>
             <Parameter Name="title" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="blur" Help="#Lang(508)">
+        <Event Name="blur" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(509)">
+        <Event Name="click" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(511)">
+        <Event Name="ctrlclick" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(512)">
+        <Event Name="dblclick" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="deactivate" Help="#Lang(513)">
+        <Event Name="deactivate" Help="#Lang(517)">
           <Parameters>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="key" Order="" VbType="" Help="#Lang(932)"/>
+            <Parameter Name="isFolder" Order="" VbType="" Help="#Lang(933)"/>
+            <Parameter Name="title" Order="" VbType="" Help="#Lang(934)"/>
           </Parameters>
         </Event>
-        <Event Name="drop" Help="#Lang(514)">
+        <Event Name="drop" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="params" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="expand" Help="#Lang(515)">
+        <Event Name="expand" Help="#Lang(519)">
           <Parameters/>
         </Event>
-        <Event Name="focus" Help="#Lang(516)">
+        <Event Name="focus" Help="#Lang(521)">
           <Parameters>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(517)">
+        <Event Name="itemclick" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="key" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="isFolder" Order="0" VbType="" Help="#Lang(916)"/>
             <Parameter Name="title" Order="0" VbType="" Help="#Lang(917)"/>
           </Parameters>
         </Event>
-        <Event Name="lazyLoad" Help="#Lang(518)">
+        <Event Name="lazyLoad" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="nodeKey" Order="0" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(519)">
+        <Event Name="mousedown" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(919)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(921)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(521)">
+        <Event Name="mousemove" Help="#Lang(525)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(922)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(522)">
+        <Event Name="mouseout" Help="#Lang(526)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(924)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(925)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(523)">
+        <Event Name="mouseover" Help="#Lang(527)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(926)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(927)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseup" Help="#Lang(524)">
+        <Event Name="mouseup" Help="#Lang(528)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(928)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(929)"/>
           </Parameters>
         </Event>
-        <Event Name="select" Help="#Lang(525)">
+        <Event Name="select" Help="#Lang(529)">
           <Parameters>
             <Parameter Name="keyList" Order="0" VbType="" Help="#Lang(931)"/>
           </Parameters>
         </Event>
-        <Event Name="unselectedall" Help="#Lang(526)">
+        <Event Name="unselectedall" Help="#Lang(531)">
           <Parameters/>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addNode">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateNode">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="childs" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="targetNodeKey" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="nodeKey" Help="#Lang(801)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[var node = $(this.domCont).dynatree("getTree").getNodeByKey(nodeKey);
+    if (node) {
+        node.activate();
+    }]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="className" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="addNode">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="childs" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="targetNodeKey" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[
 							const node = $(this.domCont).dynatree("getTree").getNodeByKey(targetNodeKey);
@@ -2004,34 +2085,49 @@ def on_compile(object, attributes):
 							}
 						]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="deactivateNode">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="nodeKey" Help="#Lang(805)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[var node =$(this.domCont).dynatree("getTree").getNodeByKey(nodeKey);
+    if (node) {
+        node.deactivate();
+    }]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).fadeOut(fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="loadHTMLData">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="loadHTMLData">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="HTMLdata" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="HTMLdata" Help="#Lang(807)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).html(HTMLdata)]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="resizeTo">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="width" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="height" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(709)" ScriptName="width" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="height" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(712)" ScriptName="fade" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).fadeIn(fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="toggleClass">
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="className" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(713)" ScriptName="className" Help="#Lang(813)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>

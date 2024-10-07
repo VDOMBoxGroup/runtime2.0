@@ -475,6 +475,8 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516">Remove CSS class</Sentence>
+      <Sentence ID="517">Add new CSS class</Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">hide</Sentence>
       <Sentence ID="603">show</Sentence>
@@ -484,6 +486,8 @@
       <Sentence ID="607">toggle</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
       <Sentence ID="609">toggle</Sentence>
+      <Sentence ID="610">removeClass</Sentence>
+      <Sentence ID="611">addClass</Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">fade</Sentence>
       <Sentence ID="703">id</Sentence>
@@ -491,6 +495,8 @@
       <Sentence ID="705">id</Sentence>
       <Sentence ID="706">className</Sentence>
       <Sentence ID="707">id</Sentence>
+      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="709">Name of CSS class</Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">id</Sentence>
@@ -498,6 +504,8 @@
       <Sentence ID="805">id</Sentence>
       <Sentence ID="806">Name of CSS class</Sentence>
       <Sentence ID="807">id</Sentence>
+      <Sentence ID="808">className</Sentence>
+      <Sentence ID="809">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -628,6 +636,8 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">hide</Sentence>
       <Sentence ID="603">show</Sentence>
@@ -637,6 +647,8 @@
       <Sentence ID="607">toggle</Sentence>
       <Sentence ID="608"></Sentence>
       <Sentence ID="609">toggle</Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">fade</Sentence>
       <Sentence ID="703">id</Sentence>
@@ -644,6 +656,8 @@
       <Sentence ID="705">id</Sentence>
       <Sentence ID="706"></Sentence>
       <Sentence ID="707">id</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">id</Sentence>
@@ -651,6 +665,8 @@
       <Sentence ID="805">id</Sentence>
       <Sentence ID="806"></Sentence>
       <Sentence ID="807">id</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -781,6 +797,8 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">toggle</Sentence>
       <Sentence ID="602">Скрыть</Sentence>
       <Sentence ID="603">Показать</Sentence>
@@ -790,6 +808,8 @@
       <Sentence ID="607">toggle</Sentence>
       <Sentence ID="608"></Sentence>
       <Sentence ID="609">toggle</Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">id</Sentence>
       <Sentence ID="702">Исчезновение</Sentence>
       <Sentence ID="703">id</Sentence>
@@ -797,6 +817,8 @@
       <Sentence ID="705">id</Sentence>
       <Sentence ID="706"></Sentence>
       <Sentence ID="707">id</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">id</Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="803">id</Sentence>
@@ -804,6 +826,8 @@
       <Sentence ID="805">id</Sentence>
       <Sentence ID="806"></Sentence>
       <Sentence ID="807">id</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -1357,11 +1381,23 @@ if (item){
   t.find('li[itemid="'+item+'"]').addClass("active");
 }]]></SourceCode>
         </Action>
+        <Action Help="#Lang(517)" InterfaceName="#Lang(611)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(516)" InterfaceName="#Lang(610)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(809)" ScriptName="className" Help="#Lang(709)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectAll">
           <Parameters/>

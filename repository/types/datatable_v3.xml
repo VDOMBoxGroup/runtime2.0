@@ -539,17 +539,25 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519">Add new CSS class</Sentence>
+      <Sentence ID="520">Remove CSS class</Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
       <Sentence ID="605"></Sentence>
+      <Sentence ID="606">addClass</Sentence>
+      <Sentence ID="607">removeClass</Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
+      <Sentence ID="704">Name of CSS class</Sentence>
+      <Sentence ID="705">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="804">className</Sentence>
+      <Sentence ID="805">className</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -713,17 +721,25 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
       <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">fade</Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
+      <Sentence ID="705"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -887,17 +903,25 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
       <Sentence ID="604"></Sentence>
       <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
+      <Sentence ID="705"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="804"></Sentence>
+      <Sentence ID="805"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -1979,17 +2003,23 @@ $(function(){
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(519)" InterfaceName="#Lang(606)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(804)" ScriptName="className" Help="#Lang(704)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+        <Action Help="#Lang(520)" InterfaceName="#Lang(607)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(805)" ScriptName="className" Help="#Lang(705)" RegularExpressionValidation=""/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectAll">
           <Parameters/>
@@ -2036,6 +2066,12 @@ if (selectionmode == 'multi') {
 		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
 	}
 }]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
       </Container>
     </Actions>
