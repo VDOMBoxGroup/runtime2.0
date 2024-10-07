@@ -401,6 +401,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519">Add new CSS class</Sentence>
+      <Sentence ID="520">Remove CSS class</Sentence>
       <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
@@ -409,6 +411,8 @@
       <Sentence ID="606">Visibility</Sentence>
       <Sentence ID="607">Visibility</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="609">addClass</Sentence>
+      <Sentence ID="610">removeClass</Sentence>
       <Sentence ID="701">Incorrect value</Sentence>
       <Sentence ID="702">Incorrect value</Sentence>
       <Sentence ID="703">Incorrect value</Sentence>
@@ -420,6 +424,8 @@
       <Sentence ID="709">Incorrect value</Sentence>
       <Sentence ID="711">Incorrect value</Sentence>
       <Sentence ID="712">className</Sentence>
+      <Sentence ID="713">Name of CSS class</Sentence>
+      <Sentence ID="714">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -431,6 +437,8 @@
       <Sentence ID="809">Code in HTML format</Sentence>
       <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="812">Name of CSS class</Sentence>
+      <Sentence ID="813">className</Sentence>
+      <Sentence ID="814">className</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Left</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -559,6 +567,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
@@ -567,6 +577,8 @@
       <Sentence ID="606">Visibilité</Sentence>
       <Sentence ID="607">Visibilité</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="609"></Sentence>
+      <Sentence ID="610"></Sentence>
       <Sentence ID="701">Valeur Incorrecte</Sentence>
       <Sentence ID="702">Valeur Incorrecte</Sentence>
       <Sentence ID="703">Valeur Incorrecte</Sentence>
@@ -578,6 +590,8 @@
       <Sentence ID="709">Incorrect value</Sentence>
       <Sentence ID="711">Valeur Incorrecte</Sentence>
       <Sentence ID="712">className</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -589,6 +603,8 @@
       <Sentence ID="809">Code in HTML format</Sentence>
       <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="812">Name of CSS class</Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Gauche</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -717,6 +733,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
@@ -725,6 +743,8 @@
       <Sentence ID="606">Отображение</Sentence>
       <Sentence ID="607">Отображение</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="609"></Sentence>
+      <Sentence ID="610"></Sentence>
       <Sentence ID="701">Неправильное значение</Sentence>
       <Sentence ID="702">Неправильное значение</Sentence>
       <Sentence ID="703">Неправильное значение</Sentence>
@@ -736,6 +756,8 @@
       <Sentence ID="709">Неправильное значение</Sentence>
       <Sentence ID="711">Неправильное значение</Sentence>
       <Sentence ID="712">className</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="803">Координата новой точки по оси X</Sentence>
@@ -747,6 +769,8 @@
       <Sentence ID="809">Код в формате HTML</Sentence>
       <Sentence ID="811">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="812">Name of CSS class</Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Слева</Sentence>
       <Sentence ID="903">Слева</Sentence>
@@ -1136,6 +1160,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(519)" InterfaceName="#Lang(609)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(813)" ScriptName="className" Help="#Lang(713)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addHTML">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="value" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1161,6 +1191,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(520)" InterfaceName="#Lang(610)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(814)" ScriptName="className" Help="#Lang(714)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="resizeTo">
           <Parameters>

@@ -406,6 +406,8 @@
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
       <Sentence ID="532"></Sentence>
+      <Sentence ID="533">Add new CSS class</Sentence>
+      <Sentence ID="534">Remove CSS class</Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -420,6 +422,8 @@
       <Sentence ID="613"></Sentence>
       <Sentence ID="614"></Sentence>
       <Sentence ID="615"></Sentence>
+      <Sentence ID="616">addClass</Sentence>
+      <Sentence ID="617">removeClass</Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
@@ -434,6 +438,8 @@
       <Sentence ID="713"></Sentence>
       <Sentence ID="714"></Sentence>
       <Sentence ID="715"></Sentence>
+      <Sentence ID="716">Name of CSS class</Sentence>
+      <Sentence ID="717">Name of CSS class</Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
@@ -448,6 +454,8 @@
       <Sentence ID="813"></Sentence>
       <Sentence ID="814"></Sentence>
       <Sentence ID="815"></Sentence>
+      <Sentence ID="816">className</Sentence>
+      <Sentence ID="817">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -575,6 +583,8 @@
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
       <Sentence ID="532"></Sentence>
+      <Sentence ID="533"></Sentence>
+      <Sentence ID="534"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -589,6 +599,8 @@
       <Sentence ID="613"></Sentence>
       <Sentence ID="614"></Sentence>
       <Sentence ID="615"></Sentence>
+      <Sentence ID="616"></Sentence>
+      <Sentence ID="617"></Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
@@ -603,6 +615,8 @@
       <Sentence ID="713"></Sentence>
       <Sentence ID="714"></Sentence>
       <Sentence ID="715"></Sentence>
+      <Sentence ID="716"></Sentence>
+      <Sentence ID="717"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
@@ -617,6 +631,8 @@
       <Sentence ID="813"></Sentence>
       <Sentence ID="814"></Sentence>
       <Sentence ID="815"></Sentence>
+      <Sentence ID="816"></Sentence>
+      <Sentence ID="817"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -744,6 +760,8 @@
       <Sentence ID="529"></Sentence>
       <Sentence ID="531"></Sentence>
       <Sentence ID="532"></Sentence>
+      <Sentence ID="533"></Sentence>
+      <Sentence ID="534"></Sentence>
       <Sentence ID="601"></Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603"></Sentence>
@@ -758,6 +776,8 @@
       <Sentence ID="613"></Sentence>
       <Sentence ID="614"></Sentence>
       <Sentence ID="615"></Sentence>
+      <Sentence ID="616"></Sentence>
+      <Sentence ID="617"></Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703"></Sentence>
@@ -772,6 +792,8 @@
       <Sentence ID="713"></Sentence>
       <Sentence ID="714"></Sentence>
       <Sentence ID="715"></Sentence>
+      <Sentence ID="716"></Sentence>
+      <Sentence ID="717"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
@@ -786,6 +808,8 @@
       <Sentence ID="813"></Sentence>
       <Sentence ID="814"></Sentence>
       <Sentence ID="815"></Sentence>
+      <Sentence ID="816"></Sentence>
+      <Sentence ID="817"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -2230,19 +2254,17 @@ function vdom_sf_load(id,path, total, data){
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="resizeTo">
+        <Action Help="#Lang(533)" InterfaceName="#Lang(616)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="width" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="height" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(816)" ScriptName="className" Help="#Lang(716)" RegularExpressionValidation=""/>
           </Parameters>
-          <SourceCode><![CDATA[this.domCont.style.width = parseInt(width,10);
-this.domCont.style.height = parseInt(height,10);]]></SourceCode>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="changeColor">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="NewColor" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+          <SourceCode><![CDATA[this.domCont.style.backgroundColor = NewColor;]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="changeCursor">
           <Parameters>
@@ -2250,25 +2272,33 @@ this.domCont.style.height = parseInt(height,10);]]></SourceCode>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.cursor = cursorType;]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
-        </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="disable">
           <Parameters/>
           <SourceCode><![CDATA[vdom_sf_disable(this.domCont.id);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
+        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="dragStart">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="dragStop">
+          <Parameters/>
+          <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="enable">
           <Parameters/>
           <SourceCode><![CDATA[vdom_sf_enable(this.domCont.id);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="goto">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(715)" ScriptName="path" Help="#Lang(815)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_sf_goto(this.domCont.id,path);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="loadData">
           <Parameters>
@@ -2286,29 +2316,35 @@ this.domCont.style.height = parseInt(height,10);]]></SourceCode>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(511)" InterfaceName="#Lang(611)" MethodName="dragStart">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_dragStart(this.domCont);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(512)" InterfaceName="#Lang(612)" MethodName="dragStop">
-          <Parameters/>
-          <SourceCode><![CDATA[vdom_ui_dragStop();]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(613)" MethodName="changeColor">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(714)" ScriptName="NewColor" Help="#Lang(814)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[this.domCont.style.backgroundColor = NewColor;]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(514)" InterfaceName="#Lang(614)" MethodName="goto">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(715)" ScriptName="path" Help="#Lang(815)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_sf_goto(this.domCont.id,path);]]></SourceCode>
+          <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
         </Action>
         <Action Help="#Lang(515)" InterfaceName="#Lang(615)" MethodName="refresh">
           <Parameters/>
           <SourceCode><![CDATA[vdom_sf_refresh(this.domCont.id);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(534)" InterfaceName="#Lang(617)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(817)" ScriptName="className" Help="#Lang(717)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="resizeTo">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="width" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="height" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[this.domCont.style.width = parseInt(width,10);
+this.domCont.style.height = parseInt(height,10);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="fade" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

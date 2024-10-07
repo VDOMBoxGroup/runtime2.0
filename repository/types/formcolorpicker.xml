@@ -439,11 +439,15 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516">Add new CSS class</Sentence>
+      <Sentence ID="517">Remove CSS class</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="604">setValue</Sentence>
       <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606">addClass</Sentence>
+      <Sentence ID="607">removeClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Effect</Sentence>
       <Sentence ID="703">Координата по оси X</Sentence>
@@ -451,6 +455,8 @@
       <Sentence ID="705">cssStyleValue</Sentence>
       <Sentence ID="706">Value</Sentence>
       <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="709">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Visual effect of moving, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -458,6 +464,8 @@
       <Sentence ID="805">CSS style value</Sentence>
       <Sentence ID="806">New text value</Sentence>
       <Sentence ID="807">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="808">className</Sentence>
+      <Sentence ID="809">className</Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -588,11 +596,15 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">moveTo</Sentence>
       <Sentence ID="603">setStyle</Sentence>
       <Sentence ID="604">setValue</Sentence>
       <Sentence ID="605">Show</Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Effect</Sentence>
       <Sentence ID="703">newX</Sentence>
@@ -600,6 +612,8 @@
       <Sentence ID="705">cssStyleValue</Sentence>
       <Sentence ID="706">Value</Sentence>
       <Sentence ID="707">Fade</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="802">Visual effect by moving</Sentence>
       <Sentence ID="803">X-coordinate of new point</Sentence>
@@ -607,6 +621,8 @@
       <Sentence ID="805">New CSS style value</Sentence>
       <Sentence ID="806">New text</Sentence>
       <Sentence ID="807">Time of appearance</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -737,11 +753,15 @@
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
       <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
+      <Sentence ID="517"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Сдвинуть</Sentence>
       <Sentence ID="603">Установить стиль</Sentence>
       <Sentence ID="604">Установить текст</Sentence>
       <Sentence ID="605">Показать</Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Эффект</Sentence>
       <Sentence ID="703">Координата по оси X</Sentence>
@@ -749,6 +769,8 @@
       <Sentence ID="705">Стиль</Sentence>
       <Sentence ID="706">Текст</Sentence>
       <Sentence ID="707">Появление</Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Визуальный эффект при перетаскивании</Sentence>
       <Sentence ID="803">Координата новой точки по оси X</Sentence>
@@ -756,6 +778,8 @@
       <Sentence ID="805">Новое значение стиля CSS</Sentence>
       <Sentence ID="806">Установить новый текст</Sentence>
       <Sentence ID="807">Время появления в миллисекундах</Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901">Текущее значение Y</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение Y</Sentence>
@@ -1216,6 +1240,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(516)" InterfaceName="#Lang(606)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1229,6 +1259,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(517)" InterfaceName="#Lang(607)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(809)" ScriptName="className" Help="#Lang(709)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setStyle">
           <Parameters>

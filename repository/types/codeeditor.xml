@@ -311,6 +311,8 @@
       <Sentence ID="512">Show the object</Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
+      <Sentence ID="515">Add new CSS class</Sentence>
+      <Sentence ID="516">Remove CSS class</Sentence>
       <Sentence ID="601">setValue</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -322,6 +324,8 @@
       <Sentence ID="609">Show</Sentence>
       <Sentence ID="611">setValue</Sentence>
       <Sentence ID="612">Show</Sentence>
+      <Sentence ID="613">addClass</Sentence>
+      <Sentence ID="614">removeClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">newX</Sentence>
       <Sentence ID="703">newY</Sentence>
@@ -333,6 +337,8 @@
       <Sentence ID="709">Fade</Sentence>
       <Sentence ID="711">Value</Sentence>
       <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="713">Name of CSS class</Sentence>
+      <Sentence ID="714">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
       <Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
@@ -344,6 +350,8 @@
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="811">New text value</Sentence>
       <Sentence ID="812">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="813">className</Sentence>
+      <Sentence ID="814">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -428,6 +436,8 @@
       <Sentence ID="512">Show the object</Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">setValue</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">moveTo</Sentence>
@@ -439,6 +449,8 @@
       <Sentence ID="609">Show</Sentence>
       <Sentence ID="611">setValue</Sentence>
       <Sentence ID="612">Show</Sentence>
+      <Sentence ID="613"></Sentence>
+      <Sentence ID="614"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">newX</Sentence>
       <Sentence ID="703">newY</Sentence>
@@ -450,6 +462,8 @@
       <Sentence ID="709">Fade</Sentence>
       <Sentence ID="711">Value</Sentence>
       <Sentence ID="712">Fade</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="802">X-coordinate of new point</Sentence>
       <Sentence ID="803">Y-coordinate of new point</Sentence>
@@ -461,6 +475,8 @@
       <Sentence ID="809">Time of appearance</Sentence>
       <Sentence ID="811">New text</Sentence>
       <Sentence ID="812">Time of appearance</Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -545,6 +561,8 @@
       <Sentence ID="512">Показать объект</Sentence>
       <Sentence ID="513"></Sentence>
       <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
+      <Sentence ID="516"></Sentence>
       <Sentence ID="601">Установить текст</Sentence>
       <Sentence ID="602">Скрыть</Sentence>
       <Sentence ID="603">Сдвинуть</Sentence>
@@ -556,6 +574,8 @@
       <Sentence ID="609">Показать</Sentence>
       <Sentence ID="611">Установить текст</Sentence>
       <Sentence ID="612">Показать</Sentence>
+      <Sentence ID="613"></Sentence>
+      <Sentence ID="614"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Координата по оси X</Sentence>
       <Sentence ID="703">Координата по оси X</Sentence>
@@ -567,6 +587,8 @@
       <Sentence ID="709">Появление</Sentence>
       <Sentence ID="711">Текст</Sentence>
       <Sentence ID="712">Появление</Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Координата новой точки по оси X</Sentence>
       <Sentence ID="803">Координата новой точки по оси Y</Sentence>
@@ -578,6 +600,8 @@
       <Sentence ID="809">Время появления в миллисекундах</Sentence>
       <Sentence ID="811">Новый текст</Sentence>
       <Sentence ID="812">Время появления в миллисекундах</Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -3079,6 +3103,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(515)" InterfaceName="#Lang(613)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(813)" ScriptName="className" Help="#Lang(713)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="getValue">
           <Parameters/>
           <SourceCode><![CDATA[eval('var x='+this.domCont.id+"_codeeditor.getValue(value);");
@@ -3101,6 +3131,12 @@ def on_compile(object, attributes):
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="refresh">
           <Parameters/>
           <SourceCode><![CDATA[eval(this.domCont.id+"_codeeditor.refresh();");]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(516)" InterfaceName="#Lang(614)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(814)" ScriptName="className" Help="#Lang(714)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="resizeTo">
           <Parameters>

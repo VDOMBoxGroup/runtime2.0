@@ -429,20 +429,28 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514">Add new CSS class</Sentence>
+      <Sentence ID="515">Remove CSS class</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Load Data</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
+      <Sentence ID="605">addClass</Sentence>
+      <Sentence ID="606">removeClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">JSON</Sentence>
       <Sentence ID="703">Width</Sentence>
       <Sentence ID="704">Height</Sentence>
       <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="706">Name of CSS class</Sentence>
+      <Sentence ID="707">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">JSON</Sentence>
       <Sentence ID="803">New value of width</Sentence>
       <Sentence ID="804">New value of height</Sentence>
       <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">className</Sentence>
+      <Sentence ID="807">className</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -574,20 +582,28 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Load Data</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">JSON</Sentence>
       <Sentence ID="703">Width</Sentence>
       <Sentence ID="704">Height</Sentence>
       <Sentence ID="705">Fade</Sentence>
+      <Sentence ID="706"></Sentence>
+      <Sentence ID="707"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="802">JSON</Sentence>
       <Sentence ID="803">New width value</Sentence>
       <Sentence ID="804">New height value</Sentence>
       <Sentence ID="805">Time of appearance</Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -719,20 +735,28 @@
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
       <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="515"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Загрузка данных</Sentence>
       <Sentence ID="603">Изменить размеры</Sentence>
       <Sentence ID="604">Показать</Sentence>
+      <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">JSON</Sentence>
       <Sentence ID="703">Ширина</Sentence>
       <Sentence ID="704">Высота</Sentence>
       <Sentence ID="705">Исчезновение</Sentence>
+      <Sentence ID="706"></Sentence>
+      <Sentence ID="707"></Sentence>
       <Sentence ID="801">Время исчезновения</Sentence>
       <Sentence ID="802">JSON</Sentence>
       <Sentence ID="803">Новое значение ширины</Sentence>
       <Sentence ID="804">Новое значение высоты</Sentence>
       <Sentence ID="805">Время появления</Sentence>
+      <Sentence ID="806"></Sentence>
+      <Sentence ID="807"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -2087,6 +2111,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(514)" InterfaceName="#Lang(605)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(806)" ScriptName="className" Help="#Lang(706)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -2098,6 +2128,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="jsondata" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[eval('$q.plot($q(this.domCont),jsondata,$q(this.domCont).data("opt"));');]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(515)" InterfaceName="#Lang(606)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(807)" ScriptName="className" Help="#Lang(707)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>

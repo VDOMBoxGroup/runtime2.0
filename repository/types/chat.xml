@@ -552,6 +552,8 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
+      <Sentence ID="520">Add new CSS class</Sentence>
+      <Sentence ID="521">Remove CSS class</Sentence>
       <Sentence ID="601">changeCursor</Sentence>
       <Sentence ID="602">dragStart</Sentence>
       <Sentence ID="603">dragStop</Sentence>
@@ -560,6 +562,8 @@
       <Sentence ID="606">Show</Sentence>
       <Sentence ID="607">start</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="609">addClass</Sentence>
+      <Sentence ID="610">removeClass</Sentence>
       <Sentence ID="701">cursorType</Sentence>
       <Sentence ID="702">Fade</Sentence>
       <Sentence ID="703">Transparency</Sentence>
@@ -571,6 +575,8 @@
       <Sentence ID="709">ws_server</Sentence>
       <Sentence ID="711">project_guid</Sentence>
       <Sentence ID="712">className</Sentence>
+      <Sentence ID="713">Name of CSS class</Sentence>
+      <Sentence ID="714">Name of CSS class</Sentence>
       <Sentence ID="801">New cursor type</Sentence>
       <Sentence ID="802">Fade time</Sentence>
       <Sentence ID="803">The value of transparency</Sentence>
@@ -582,6 +588,8 @@
       <Sentence ID="809">value must be in quotes</Sentence>
       <Sentence ID="811">value must be in quotes</Sentence>
       <Sentence ID="812">Name of CSS class</Sentence>
+      <Sentence ID="813">className</Sentence>
+      <Sentence ID="814">className</Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -742,6 +750,8 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
+      <Sentence ID="521"></Sentence>
       <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">dragStart</Sentence>
       <Sentence ID="603">dragStop</Sentence>
@@ -750,6 +760,8 @@
       <Sentence ID="606">Show</Sentence>
       <Sentence ID="607">start</Sentence>
       <Sentence ID="608"></Sentence>
+      <Sentence ID="609"></Sentence>
+      <Sentence ID="610"></Sentence>
       <Sentence ID="701">Valeur Incorrecte, must be 0 or 1</Sentence>
       <Sentence ID="702">Fade</Sentence>
       <Sentence ID="703">Transparency</Sentence>
@@ -761,6 +773,8 @@
       <Sentence ID="709"></Sentence>
       <Sentence ID="711"></Sentence>
       <Sentence ID="712"></Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Valeur Incorrecte, must be 0 or 1</Sentence>
       <Sentence ID="802">Fade time</Sentence>
       <Sentence ID="803">New transparency value</Sentence>
@@ -772,6 +786,8 @@
       <Sentence ID="809"></Sentence>
       <Sentence ID="811"></Sentence>
       <Sentence ID="812"></Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901">Current Y-value</Sentence>
       <Sentence ID="902">Current Y-value</Sentence>
       <Sentence ID="903">Current Y-value</Sentence>
@@ -932,6 +948,8 @@
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
+      <Sentence ID="521"></Sentence>
       <Sentence ID="601">Изменить курсор</Sentence>
       <Sentence ID="602">Начать перетаскивание</Sentence>
       <Sentence ID="603">Закончить перетаскивание</Sentence>
@@ -940,6 +958,8 @@
       <Sentence ID="606">Показать</Sentence>
       <Sentence ID="607">start</Sentence>
       <Sentence ID="608"></Sentence>
+      <Sentence ID="609"></Sentence>
+      <Sentence ID="610"></Sentence>
       <Sentence ID="701">Изменить тип курсора</Sentence>
       <Sentence ID="702">Исчезновение</Sentence>
       <Sentence ID="703">Прозрачность</Sentence>
@@ -951,6 +971,8 @@
       <Sentence ID="709"></Sentence>
       <Sentence ID="711"></Sentence>
       <Sentence ID="712"></Sentence>
+      <Sentence ID="713"></Sentence>
+      <Sentence ID="714"></Sentence>
       <Sentence ID="801">Новый тип курсора</Sentence>
       <Sentence ID="802">Время исчезновения</Sentence>
       <Sentence ID="803">Новое значение прозрачности</Sentence>
@@ -962,6 +984,8 @@
       <Sentence ID="809"></Sentence>
       <Sentence ID="811"></Sentence>
       <Sentence ID="812"></Sentence>
+      <Sentence ID="813"></Sentence>
+      <Sentence ID="814"></Sentence>
       <Sentence ID="901">Текущее значение Y</Sentence>
       <Sentence ID="902">Текущее значение Y</Sentence>
       <Sentence ID="903">Текущее значение Y</Sentence>
@@ -1304,6 +1328,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(520)" InterfaceName="#Lang(609)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(813)" ScriptName="className" Help="#Lang(713)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="changeCursor">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="cursorType" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1323,6 +1353,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(521)" InterfaceName="#Lang(610)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(814)" ScriptName="className" Help="#Lang(714)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setTransparency">
           <Parameters>

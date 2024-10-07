@@ -424,8 +424,8 @@
       <Sentence ID="417">Hidden</Sentence>
       <Sentence ID="418">Scroll</Sentence>
       <Sentence ID="419">Visible</Sentence>
-      <Sentence ID="501"></Sentence>
-      <Sentence ID="502"></Sentence>
+      <Sentence ID="501">Add new CSS class</Sentence>
+      <Sentence ID="502">Remove CSS class</Sentence>
       <Sentence ID="503"></Sentence>
       <Sentence ID="504"></Sentence>
       <Sentence ID="505"></Sentence>
@@ -435,6 +435,14 @@
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="601">addClass</Sentence>
+      <Sentence ID="602">removeClass</Sentence>
+      <Sentence ID="701">className</Sentence>
+      <Sentence ID="702">className</Sentence>
+      <Sentence ID="801">Name of CSS class</Sentence>
+      <Sentence ID="802">Name of CSS class</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -566,6 +574,14 @@
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -697,6 +713,14 @@
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
+      <Sentence ID="513"></Sentence>
+      <Sentence ID="514"></Sentence>
+      <Sentence ID="601"></Sentence>
+      <Sentence ID="602"></Sentence>
+      <Sentence ID="701"></Sentence>
+      <Sentence ID="702"></Sentence>
+      <Sentence ID="801"></Sentence>
+      <Sentence ID="802"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -3333,7 +3357,7 @@ x.draggable(x.getSelector('#%(id)s div[dataid]'), {
 
         js = u"""
 <script type="text/javascript">
-$(document).ready(function(){
+(function(){
 
 	var ourConnector = {
 		margin:          0,
@@ -3483,7 +3507,7 @@ $(document).ready(function(){
 
 	});
 
-});
+})();
 </script>""" % {
             "id": id,
             "woid": woid,
@@ -3611,74 +3635,89 @@ $(document).ready(function(){
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="beforeDetach" Help="#Lang(501)">
+        <Event Name="beforeDetach" Help="#Lang(503)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="connection" Help="#Lang(502)">
+        <Event Name="connection" Help="#Lang(504)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(903)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="connectionClick" Help="#Lang(503)">
+        <Event Name="connectionClick" Help="#Lang(505)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="connectionDblClick" Help="#Lang(504)">
+        <Event Name="connectionDblClick" Help="#Lang(506)">
           <Parameters>
             <Parameter Name="event" Order="0" VbType="" Help="#Lang(907)"/>
             <Parameter Name="connection" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="connectionDetached" Help="#Lang(505)">
+        <Event Name="connectionDetached" Help="#Lang(507)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(909)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="connectionDrag" Help="#Lang(506)">
+        <Event Name="connectionDrag" Help="#Lang(508)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(912)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="connectionDragStop" Help="#Lang(507)">
+        <Event Name="connectionDragStop" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="source" Order="0" VbType="" Help="#Lang(914)"/>
             <Parameter Name="target" Order="0" VbType="" Help="#Lang(915)"/>
           </Parameters>
         </Event>
-        <Event Name="itemDragStart" Help="#Lang(508)">
+        <Event Name="itemDragStart" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="item_id" Order="0" VbType="" Help="#Lang(916)"/>
             <Parameter Name="x" Order="0" VbType="" Help="#Lang(917)"/>
             <Parameter Name="y" Order="0" VbType="" Help="#Lang(918)"/>
           </Parameters>
         </Event>
-        <Event Name="itemDragStop" Help="#Lang(509)">
+        <Event Name="itemDragStop" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="item_id" Order="0" VbType="" Help="#Lang(919)"/>
             <Parameter Name="x" Order="0" VbType="" Help="#Lang(921)"/>
             <Parameter Name="y" Order="0" VbType="" Help="#Lang(922)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(511)">
+        <Event Name="itemclick" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(923)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblclick" Help="#Lang(512)">
+        <Event Name="itemdblclick" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="id" Order="" VbType="" Help="#Lang(924)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
-    <Actions/>
+    <Actions>
+      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="className" Help="#Lang(802)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
+      </Container>
+    </Actions>
   </E2vdom>
 </Type>

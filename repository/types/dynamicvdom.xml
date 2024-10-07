@@ -455,11 +455,15 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505">Toggle CSS class</Sentence>
       <Sentence ID="506"></Sentence>
+      <Sentence ID="507">Add new CSS class</Sentence>
+      <Sentence ID="508">Remove CSS class</Sentence>
       <Sentence ID="601">Catch Event</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="605">toggleClass</Sentence>
+      <Sentence ID="606">addClass</Sentence>
+      <Sentence ID="607">removeClass</Sentence>
       <Sentence ID="701">Custom name</Sentence>
       <Sentence ID="702">VDOM Event reference</Sentence>
       <Sentence ID="703">Fade</Sentence>
@@ -467,6 +471,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="705">Height</Sentence>
       <Sentence ID="706">Fade</Sentence>
       <Sentence ID="707">className</Sentence>
+      <Sentence ID="708">Name of CSS class</Sentence>
+      <Sentence ID="709">Remove CSS class</Sentence>
       <Sentence ID="801">Custom name</Sentence>
       <Sentence ID="802">VDOM Event reference</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
@@ -474,6 +480,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="805">New value of height</Sentence>
       <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="807">Name of CSS class</Sentence>
+      <Sentence ID="808">className</Sentence>
+      <Sentence ID="809">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
     </Language>
@@ -593,11 +601,15 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505"></Sentence>
       <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
       <Sentence ID="601">Catch Event</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">Custom name</Sentence>
       <Sentence ID="702">VDOM Event reference</Sentence>
       <Sentence ID="703">Fade</Sentence>
@@ -605,6 +617,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="705">Height</Sentence>
       <Sentence ID="706">Fade</Sentence>
       <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">Custom name</Sentence>
       <Sentence ID="802">VDOM Event reference</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
@@ -612,6 +626,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="805">New value of height</Sentence>
       <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
     </Language>
@@ -731,11 +747,15 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="504">Show the object</Sentence>
       <Sentence ID="505"></Sentence>
       <Sentence ID="506"></Sentence>
+      <Sentence ID="507"></Sentence>
+      <Sentence ID="508"></Sentence>
       <Sentence ID="601">Catch Event</Sentence>
       <Sentence ID="602">Hide</Sentence>
       <Sentence ID="603">resizeTo</Sentence>
       <Sentence ID="604">Show</Sentence>
       <Sentence ID="605"></Sentence>
+      <Sentence ID="606"></Sentence>
+      <Sentence ID="607"></Sentence>
       <Sentence ID="701">Custom name</Sentence>
       <Sentence ID="702">VDOM Event reference</Sentence>
       <Sentence ID="703">Fade</Sentence>
@@ -743,6 +763,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="705">Height</Sentence>
       <Sentence ID="706">Fade</Sentence>
       <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709"></Sentence>
       <Sentence ID="801">Custom name</Sentence>
       <Sentence ID="802">VDOM Event reference</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
@@ -750,6 +772,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="805">New value of height</Sentence>
       <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
     </Language>
@@ -1104,6 +1128,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(606)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="catchEvent">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="customName" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1122,6 +1152,12 @@ execEventBinded(id.substring(2, id.length), "eventcaught", {"customName": custom
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(607)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(809)" ScriptName="className" Help="#Lang(709)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="resizeTo">
           <Parameters>

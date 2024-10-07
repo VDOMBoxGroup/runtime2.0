@@ -438,6 +438,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519">Remove CSS class</Sentence>
+      <Sentence ID="520">Add new CSS class</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">selectItem</Sentence>
       <Sentence ID="603">Add Item</Sentence>
@@ -447,6 +449,8 @@
       <Sentence ID="607">Remove Item</Sentence>
       <Sentence ID="608">Show</Sentence>
       <Sentence ID="609">setStyle</Sentence>
+      <Sentence ID="610">removeClass</Sentence>
+      <Sentence ID="611">addClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">itemId</Sentence>
       <Sentence ID="703">Item</Sentence>
@@ -460,6 +464,8 @@
       <Sentence ID="712">itemValue</Sentence>
       <Sentence ID="713">Fade</Sentence>
       <Sentence ID="714">cssStyleValue</Sentence>
+      <Sentence ID="715">Name of CSS class</Sentence>
+      <Sentence ID="716">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Identifying item value to select</Sentence>
       <Sentence ID="803">New item to add</Sentence>
@@ -473,6 +479,8 @@
       <Sentence ID="812">Identifying item value to remove</Sentence>
       <Sentence ID="813">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="814">CSS style value</Sentence>
+      <Sentence ID="815">className</Sentence>
+      <Sentence ID="816">className</Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -601,6 +609,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603">Add Item</Sentence>
@@ -610,6 +620,8 @@
       <Sentence ID="607">Remove Item</Sentence>
       <Sentence ID="608">Show</Sentence>
       <Sentence ID="609">setStyle</Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702"></Sentence>
       <Sentence ID="703">Item</Sentence>
@@ -623,6 +635,8 @@
       <Sentence ID="712">itemValue</Sentence>
       <Sentence ID="713">Fade</Sentence>
       <Sentence ID="714">cssStyleValue</Sentence>
+      <Sentence ID="715"></Sentence>
+      <Sentence ID="716"></Sentence>
       <Sentence ID="801">Fade time</Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803">New item to display</Sentence>
@@ -636,6 +650,8 @@
       <Sentence ID="812">Identifying item value to remove</Sentence>
       <Sentence ID="813">Time of appearance</Sentence>
       <Sentence ID="814">New CSS style value</Sentence>
+      <Sentence ID="815"></Sentence>
+      <Sentence ID="816"></Sentence>
       <Sentence ID="901">Current X-value</Sentence>
       <Sentence ID="902">Current X-value</Sentence>
       <Sentence ID="903">Current X-value</Sentence>
@@ -764,6 +780,8 @@
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
       <Sentence ID="518"></Sentence>
+      <Sentence ID="519"></Sentence>
+      <Sentence ID="520"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Выбрать</Sentence>
       <Sentence ID="603">Добавить элемент</Sentence>
@@ -773,6 +791,8 @@
       <Sentence ID="607">Удалить элемент</Sentence>
       <Sentence ID="608">Показать</Sentence>
       <Sentence ID="609">Установить стиль</Sentence>
+      <Sentence ID="610"></Sentence>
+      <Sentence ID="611"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">itemId</Sentence>
       <Sentence ID="703">Элемент</Sentence>
@@ -786,6 +806,8 @@
       <Sentence ID="712">Идентификатор</Sentence>
       <Sentence ID="713">Появление</Sentence>
       <Sentence ID="714">Стиль CSS</Sentence>
+      <Sentence ID="715"></Sentence>
+      <Sentence ID="716"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Идентифицирующее значение элемента</Sentence>
       <Sentence ID="803">Отображаемое значение элемента</Sentence>
@@ -799,6 +821,8 @@
       <Sentence ID="812">Идентифицирующее значение удаляемого элемента</Sentence>
       <Sentence ID="813">Время появления в миллисекундах</Sentence>
       <Sentence ID="814">Новое значение стиля CSS</Sentence>
+      <Sentence ID="815"></Sentence>
+      <Sentence ID="816"></Sentence>
       <Sentence ID="901">Текущее значение X</Sentence>
       <Sentence ID="902">Текущее значение X</Sentence>
       <Sentence ID="903">Текущее значение X</Sentence>
@@ -1194,17 +1218,11 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
+        <Action Help="#Lang(520)" InterfaceName="#Lang(611)" MethodName="addClass">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(815)" ScriptName="className" Help="#Lang(715)" RegularExpressionValidation=""/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectItem">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="itemId" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'selected');]]></SourceCode>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="addItem">
           <Parameters>
@@ -1218,11 +1236,11 @@ def on_compile(object, attributes):
           <Parameters/>
           <SourceCode><![CDATA[jQuery('option',this.domCont).remove();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="sortItem">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="sort" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_ui_sortItem(this.domCont, sort);]]></SourceCode>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
         <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="moveTo">
           <Parameters>
@@ -1232,6 +1250,12 @@ def on_compile(object, attributes):
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
+        <Action Help="#Lang(519)" InterfaceName="#Lang(610)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(816)" ScriptName="className" Help="#Lang(716)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="removeItem">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="item" Help="#Lang(811)" RegularExpressionValidation=".*"/>
@@ -1239,17 +1263,29 @@ def on_compile(object, attributes):
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_removeItem(this.domCont, item, itemValue);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="selectItem">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="fade" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="itemId" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+          <SourceCode><![CDATA[jQuery('#'+this.domCont.id+' option[value="'+itemId+'"]').attr('selected', 'selected');]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setStyle">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(714)" ScriptName="cssStyleValue" Help="#Lang(814)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[jQuery(this).attr('style', cssStyleValue);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(713)" ScriptName="fade" Help="#Lang(813)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="sortItem">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="sort" Help="#Lang(806)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_sortItem(this.domCont, sort);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

@@ -647,6 +647,8 @@
       <Sentence ID="523"></Sentence>
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
+      <Sentence ID="526">Add new CSS class</Sentence>
+      <Sentence ID="527">Remove CSS class</Sentence>
       <Sentence ID="601">custom</Sentence>
       <Sentence ID="602">Export as excel</Sentence>
       <Sentence ID="603">Export as PDF</Sentence>
@@ -657,18 +659,24 @@
       <Sentence ID="608">setData</Sentence>
       <Sentence ID="609">show</Sentence>
       <Sentence ID="611">toggleClass</Sentence>
+      <Sentence ID="612">addClass</Sentence>
+      <Sentence ID="613">removeClass</Sentence>
       <Sentence ID="701">Incorrect value, must be string</Sentence>
       <Sentence ID="702">fade</Sentence>
       <Sentence ID="703">idlist</Sentence>
       <Sentence ID="704">data</Sentence>
       <Sentence ID="705">fade</Sentence>
       <Sentence ID="706">className</Sentence>
+      <Sentence ID="707">Name of CSS class</Sentence>
+      <Sentence ID="708">Name of CSS class</Sentence>
       <Sentence ID="801">Incorrect value, must be string</Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="804">New data for table</Sentence>
       <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="806">Name of CSS class</Sentence>
+      <Sentence ID="807">className</Sentence>
+      <Sentence ID="808">className</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -867,6 +875,8 @@
       <Sentence ID="523"></Sentence>
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
+      <Sentence ID="526"></Sentence>
+      <Sentence ID="527"></Sentence>
       <Sentence ID="601">custom</Sentence>
       <Sentence ID="602">Export as excel</Sentence>
       <Sentence ID="603">Export as PDF</Sentence>
@@ -877,18 +887,24 @@
       <Sentence ID="608">setData</Sentence>
       <Sentence ID="609">show</Sentence>
       <Sentence ID="611"></Sentence>
+      <Sentence ID="612"></Sentence>
+      <Sentence ID="613"></Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702">fade</Sentence>
       <Sentence ID="703"></Sentence>
       <Sentence ID="704">data</Sentence>
       <Sentence ID="705"></Sentence>
       <Sentence ID="706"></Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="804">New data for table</Sentence>
       <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="806"></Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -1087,6 +1103,8 @@
       <Sentence ID="523"></Sentence>
       <Sentence ID="524"></Sentence>
       <Sentence ID="525"></Sentence>
+      <Sentence ID="526"></Sentence>
+      <Sentence ID="527"></Sentence>
       <Sentence ID="601">custom</Sentence>
       <Sentence ID="602">Export as excel</Sentence>
       <Sentence ID="603">Export as PDF</Sentence>
@@ -1097,18 +1115,24 @@
       <Sentence ID="608">setData</Sentence>
       <Sentence ID="609">show</Sentence>
       <Sentence ID="611"></Sentence>
+      <Sentence ID="612"></Sentence>
+      <Sentence ID="613"></Sentence>
       <Sentence ID="701"></Sentence>
       <Sentence ID="702">Исчезновение</Sentence>
       <Sentence ID="703"></Sentence>
       <Sentence ID="704">data</Sentence>
       <Sentence ID="705"></Sentence>
       <Sentence ID="706"></Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="804">New data for table</Sentence>
       <Sentence ID="805">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="806"></Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">cellData</Sentence>
@@ -2120,6 +2144,12 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(526)" InterfaceName="#Lang(612)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(807)" ScriptName="className" Help="#Lang(707)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="custom">
           <Parameters>
             <Parameter DefaultValue="" Interface="custom" InterfaceName="#Lang(701)" ScriptName="custom" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -2139,6 +2169,12 @@ def on_compile(object, attributes):
             <Parameter DefaultValue="0" Interface="fade" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(527)" InterfaceName="#Lang(613)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectAll">
           <Parameters/>
