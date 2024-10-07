@@ -939,16 +939,24 @@
       <Sentence ID="505">Default help field</Sentence>
       <Sentence ID="506">Default help field</Sentence>
       <Sentence ID="507">Default help field</Sentence>
+      <Sentence ID="508">Remove CSS class</Sentence>
+      <Sentence ID="509">Add new CSS class</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">refresh</Sentence>
       <Sentence ID="603">saveAsExcel</Sentence>
       <Sentence ID="604">saveAsPDF</Sentence>
       <Sentence ID="605">Show</Sentence>
       <Sentence ID="606">triggerGetJSON</Sentence>
+      <Sentence ID="607">removeClass</Sentence>
+      <Sentence ID="608">addClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703">Name of CSS class</Sentence>
+      <Sentence ID="704">Name of CSS class</Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
+      <Sentence ID="803">className</Sentence>
+      <Sentence ID="804">className</Sentence>
       <Sentence ID="901">Default help field</Sentence>
     </Language>
     <Language Code="ru_RU">
@@ -1027,16 +1035,24 @@
       <Sentence ID="505">Default help field</Sentence>
       <Sentence ID="506">Default help field</Sentence>
       <Sentence ID="507">Default help field</Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603">saveAsExcel</Sentence>
       <Sentence ID="604">saveAsPDF</Sentence>
       <Sentence ID="605">Show</Sentence>
       <Sentence ID="606">triggerGetJSON</Sentence>
+      <Sentence ID="607"></Sentence>
+      <Sentence ID="608"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
       <Sentence ID="901">Default help field</Sentence>
     </Language>
     <Language Code="fr_FR">
@@ -1115,16 +1131,24 @@
       <Sentence ID="505">Default help field</Sentence>
       <Sentence ID="506">Default help field</Sentence>
       <Sentence ID="507">Default help field</Sentence>
+      <Sentence ID="508"></Sentence>
+      <Sentence ID="509"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602"></Sentence>
       <Sentence ID="603">saveAsExcel</Sentence>
       <Sentence ID="604">saveAsPDF</Sentence>
       <Sentence ID="605">Show</Sentence>
       <Sentence ID="606">triggerGetJSON</Sentence>
+      <Sentence ID="607"></Sentence>
+      <Sentence ID="608"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703"></Sentence>
+      <Sentence ID="704"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
+      <Sentence ID="803"></Sentence>
+      <Sentence ID="804"></Sentence>
       <Sentence ID="901">Default help field</Sentence>
     </Language>
   </Languages>
@@ -1289,6 +1313,12 @@ class VDOM_spreadsheet_v2(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(608)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(803)" ScriptName="className" Help="#Lang(703)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1298,6 +1328,12 @@ class VDOM_spreadsheet_v2(VDOM_object):
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="refresh">
           <Parameters/>
           <SourceCode><![CDATA[$(`#${this.domCont.id}`).data("kendoSpreadsheet").refresh();]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(607)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(804)" ScriptName="className" Help="#Lang(704)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="saveAsExcel">
           <Parameters/>

@@ -491,6 +491,8 @@
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
+      <Sentence ID="522">Add new CSS class</Sentence>
+      <Sentence ID="523">Remove CSS class</Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -498,6 +500,8 @@
       <Sentence ID="605">setData</Sentence>
       <Sentence ID="606">show</Sentence>
       <Sentence ID="607">toggleClass</Sentence>
+      <Sentence ID="608">addClass</Sentence>
+      <Sentence ID="609">removeClass</Sentence>
       <Sentence ID="701">columnId</Sentence>
       <Sentence ID="702">cssClass</Sentence>
       <Sentence ID="703">rowId</Sentence>
@@ -508,6 +512,8 @@
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709">fade</Sentence>
       <Sentence ID="711">className</Sentence>
+      <Sentence ID="712">Name of CSS class</Sentence>
+      <Sentence ID="713">Name of CSS class</Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803">scriptName0</Sentence>
@@ -518,6 +524,8 @@
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="811">Name of CSS class</Sentence>
+      <Sentence ID="812">className</Sentence>
+      <Sentence ID="813">className</Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -669,6 +677,8 @@
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -676,6 +686,8 @@
       <Sentence ID="605">setData</Sentence>
       <Sentence ID="606">show</Sentence>
       <Sentence ID="607"></Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="609"></Sentence>
       <Sentence ID="701">columnId</Sentence>
       <Sentence ID="702">cssClass</Sentence>
       <Sentence ID="703">rowId</Sentence>
@@ -686,6 +698,8 @@
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709"></Sentence>
       <Sentence ID="711"></Sentence>
+      <Sentence ID="712"></Sentence>
+      <Sentence ID="713"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802"></Sentence>
       <Sentence ID="803"></Sentence>
@@ -696,6 +710,8 @@
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="811"></Sentence>
+      <Sentence ID="812"></Sentence>
+      <Sentence ID="813"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -847,6 +863,8 @@
       <Sentence ID="518"></Sentence>
       <Sentence ID="519"></Sentence>
       <Sentence ID="521"></Sentence>
+      <Sentence ID="522"></Sentence>
+      <Sentence ID="523"></Sentence>
       <Sentence ID="601">setCellCss</Sentence>
       <Sentence ID="602">addRowClass</Sentence>
       <Sentence ID="603">custom</Sentence>
@@ -854,6 +872,8 @@
       <Sentence ID="605">setData</Sentence>
       <Sentence ID="606">show</Sentence>
       <Sentence ID="607"></Sentence>
+      <Sentence ID="608"></Sentence>
+      <Sentence ID="609"></Sentence>
       <Sentence ID="701">columnId</Sentence>
       <Sentence ID="702">cssClass</Sentence>
       <Sentence ID="703">rowId</Sentence>
@@ -864,6 +884,8 @@
       <Sentence ID="708">data</Sentence>
       <Sentence ID="709"></Sentence>
       <Sentence ID="711"></Sentence>
+      <Sentence ID="712"></Sentence>
+      <Sentence ID="713"></Sentence>
       <Sentence ID="801"></Sentence>
       <Sentence ID="802">scriptName2</Sentence>
       <Sentence ID="803"></Sentence>
@@ -874,6 +896,8 @@
       <Sentence ID="808">New data for treegrid</Sentence>
       <Sentence ID="809">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="811"></Sentence>
+      <Sentence ID="812"></Sentence>
+      <Sentence ID="813"></Sentence>
       <Sentence ID="901">cellData</Sentence>
       <Sentence ID="902">cellData</Sentence>
       <Sentence ID="903">headerData</Sentence>
@@ -1362,6 +1386,12 @@ def on_compile(object, attributes):
 const treeGrid = 't_' + vdom_id.slice(2);
 window[treeGrid].addCellCss(rowId, columnId, cssClass);]]></SourceCode>
         </Action>
+        <Action Help="#Lang(522)" InterfaceName="#Lang(608)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(812)" ScriptName="className" Help="#Lang(712)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="addRowClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="cssClass" Help="#Lang(804)" RegularExpressionValidation=""/>
@@ -1382,6 +1412,12 @@ window[treeGrid].addRowCss(rowId,  cssClass);]]></SourceCode>
             <Parameter DefaultValue="0" Interface="fade" InterfaceName="#Lang(707)" ScriptName="fade" Help="#Lang(807)" RegularExpressionValidation="^\d+$"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(523)" InterfaceName="#Lang(609)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(813)" ScriptName="className" Help="#Lang(713)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setData">
           <Parameters>

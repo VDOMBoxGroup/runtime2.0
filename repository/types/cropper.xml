@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.489.0</Version>
+    <Version>1.492.0</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
@@ -621,9 +621,9 @@
       <Sentence ID="211">newAttribute15</Sentence>
       <Sentence ID="212">The image’s resource identifier. If both database64 and Value parameters are set, the prior will be the Value attribute.</Sentence>
       <Sentence ID="213">The image’s resource identifier. If both database64 and Value parameters are set, the prior will be the Value attribute.</Sentence>
-      <Sentence ID="214">newAttribute26</Sentence>
-      <Sentence ID="215">newAttribute12</Sentence>
-      <Sentence ID="216">newAttribute13</Sentence>
+      <Sentence ID="214">If “Yes” is selected, the picture will be created without transparent fields, i.e. in the same view as it is placed in the editor</Sentence>
+      <Sentence ID="215">Displays a clickable preview image in place of the editor, which, when clicked, will open the dialog with the editor.</Sentence>
+      <Sentence ID="216">Hides the component when rendering and shows it when the image is uploaded</Sentence>
       <Sentence ID="217">newAttribute21</Sentence>
       <Sentence ID="218">newAttribute10</Sentence>
       <Sentence ID="219">newAttribute20</Sentence>
@@ -648,9 +648,9 @@
       <Sentence ID="311">newAttribute15</Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="314">newAttribute26</Sentence>
-      <Sentence ID="315">newAttribute12</Sentence>
-      <Sentence ID="316">newAttribute13</Sentence>
+      <Sentence ID="314"></Sentence>
+      <Sentence ID="315"></Sentence>
+      <Sentence ID="316"></Sentence>
       <Sentence ID="317">newAttribute21</Sentence>
       <Sentence ID="318">newAttribute10</Sentence>
       <Sentence ID="319">newAttribute20</Sentence>
@@ -688,34 +688,42 @@
       <Sentence ID="425">User defined</Sentence>
       <Sentence ID="426">Yes</Sentence>
       <Sentence ID="427">No</Sentence>
-      <Sentence ID="501">methodName6</Sentence>
-      <Sentence ID="502">methodName0</Sentence>
-      <Sentence ID="503">methodName3</Sentence>
-      <Sentence ID="504">methodName4</Sentence>
-      <Sentence ID="505">methodName1</Sentence>
-      <Sentence ID="506">Toggle CSS class</Sentence>
-      <Sentence ID="507">methodName2</Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="601">clearCropper</Sentence>
-      <Sentence ID="602">hide</Sentence>
-      <Sentence ID="603">imageStart</Sentence>
-      <Sentence ID="604">setImageFile</Sentence>
-      <Sentence ID="605">show</Sentence>
-      <Sentence ID="606">toggleClass</Sentence>
-      <Sentence ID="607">updateClass</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">imageData</Sentence>
-      <Sentence ID="703">imageFile</Sentence>
-      <Sentence ID="704">Fade</Sentence>
-      <Sentence ID="705">className</Sentence>
-      <Sentence ID="706">newClass</Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="802">scriptName0</Sentence>
-      <Sentence ID="803">scriptName0</Sentence>
+      <Sentence ID="501">Add new CSS class</Sentence>
+      <Sentence ID="502">methodName6</Sentence>
+      <Sentence ID="503">methodName0</Sentence>
+      <Sentence ID="504">Remove CSS class</Sentence>
+      <Sentence ID="505">methodName3</Sentence>
+      <Sentence ID="506">methodName4</Sentence>
+      <Sentence ID="507">methodName1</Sentence>
+      <Sentence ID="508">Toggle CSS class</Sentence>
+      <Sentence ID="509">methodName2</Sentence>
+      <Sentence ID="511"></Sentence>
+      <Sentence ID="512"></Sentence>
+      <Sentence ID="601">addClass</Sentence>
+      <Sentence ID="602">clearCropper</Sentence>
+      <Sentence ID="603">hide</Sentence>
+      <Sentence ID="604">removeClass</Sentence>
+      <Sentence ID="605">imageStart</Sentence>
+      <Sentence ID="606">setImageFile</Sentence>
+      <Sentence ID="607">show</Sentence>
+      <Sentence ID="608">toggleClass</Sentence>
+      <Sentence ID="609">updateClass</Sentence>
+      <Sentence ID="701">className</Sentence>
+      <Sentence ID="702">Fade</Sentence>
+      <Sentence ID="703">className</Sentence>
+      <Sentence ID="704">imageData</Sentence>
+      <Sentence ID="705">imageFile</Sentence>
+      <Sentence ID="706">Fade</Sentence>
+      <Sentence ID="707">className</Sentence>
+      <Sentence ID="708">newClass</Sentence>
+      <Sentence ID="801">Name of CSS class</Sentence>
+      <Sentence ID="802"></Sentence>
+      <Sentence ID="803">Name of CSS class</Sentence>
       <Sentence ID="804">scriptName0</Sentence>
-      <Sentence ID="805">Name of CSS class</Sentence>
+      <Sentence ID="805">scriptName0</Sentence>
       <Sentence ID="806">scriptName0</Sentence>
+      <Sentence ID="807">Name of CSS class</Sentence>
+      <Sentence ID="808">scriptName0</Sentence>
       <Sentence ID="901">newParameter0</Sentence>
     </Language>
   </Languages>
@@ -1185,10 +1193,10 @@ def on_compile(object, attributes):
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="cancelClicked" Help="#Lang(508)">
+        <Event Name="cancelClicked" Help="#Lang(511)">
           <Parameters/>
         </Event>
-        <Event Name="saveClicked" Help="#Lang(509)">
+        <Event Name="saveClicked" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="imagedata" Order="" VbType="" Help="#Lang(901)"/>
           </Parameters>
@@ -1197,43 +1205,55 @@ def on_compile(object, attributes):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="clearCropper">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="className" Help="#Lang(801)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="clearCropper">
           <Parameters/>
           <SourceCode><![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).data('MyImageCropper').clearCropper();]]></SourceCode>
         </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).hide(fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="setImageData">
+        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="imageData" Help="#Lang(802)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="className" Help="#Lang(803)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setImageData">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="imageData" Help="#Lang(804)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ imgData: imageData});]]></SourceCode>
         </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="setImageFile">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setImageFile">
           <Parameters>
-            <Parameter DefaultValue="evt_param('uploaded')[0]" Interface="" InterfaceName="#Lang(703)" ScriptName="imageFile" Help="#Lang(803)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="evt_param('uploaded')[0]" Interface="" InterfaceName="#Lang(705)" ScriptName="imageFile" Help="#Lang(805)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ imgFile: imageFile});]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="show">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="fade" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).show(fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="toggleClass">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="className" Help="#Lang(805)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="className" Help="#Lang(807)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[$(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="updateClass">
+        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="updateClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="newClass" Help="#Lang(806)" RegularExpressionValidation=""/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(708)" ScriptName="newClass" Help="#Lang(808)" RegularExpressionValidation=""/>
           </Parameters>
           <SourceCode><![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ uploadClass: newClass});]]></SourceCode>
         </Action>
