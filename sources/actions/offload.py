@@ -7,7 +7,7 @@ from .auxiliary.constants import TYPE, APPLICATION, REPOSITORY, TYPES, APPLICATI
 from .auxiliary import section, show, warn, confirm, search, autocomplete, locate_repository
 
 
-def run(identifier, location, by_name=False, types=False):
+def run(identifier, location, by_name=None, types=None):
     """
     offload static resources
     :arg uuid_or_name identifier: uuid or name of application
@@ -24,12 +24,12 @@ def run(identifier, location, by_name=False, types=False):
         warn("not a directory: %s" % location)
         return
 
-    if types is True:
+    if (by_name is None and types is None) or types is True:
         types = sorted(managers.memory.types.itervalues(), key=lambda item: item.name)
         for type in types:
             uuids = managers.resource_manager.list_resources(type.id)
             with section("summary"):
-                show("type", type.name)
+                show("location", location)
                 show("application", application)
                 show("resources", len(uuids))
 

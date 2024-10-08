@@ -135,6 +135,7 @@ def run(request):
     sid = args.get("sid")
     if datafield:
         datafield = datafield[0]
+    if sid and datafield:
         # debug(
         # 	u"- - - - - - - - - - - - - - - - - - - -\n"
         # 	u"%s\n"
@@ -142,7 +143,7 @@ def run(request):
         # 	datafield)
         request.request_type = "action"
         try:
-            ev=Parser(builder=calls_builder).parse(datafield)
+            ev = Parser(builder=calls_builder).parse(datafield)
         except ParsingException as error:
             debug("Unable to parse data: %s" % error)
         app = request.application()
@@ -171,7 +172,7 @@ def run(request):
             rr = "<SESSIONISOVER />"
             request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
         else:
-            request.last_state=state
+            request.last_state = state
             #debug("INCOMING STATE: %s"%request.last_state["#"])
             #request.add_header("Content-Type", "text/xml")
             request.add_header("Content-Type", "text/plain")
