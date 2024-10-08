@@ -675,12 +675,12 @@ WYSIWYG_IMAGE_UUID = "76bfc87a-dbe3-46e3-8d11-cc78a576b63a"
 TEMPLATE = u"""{libraries}
 <div objname="{name}" id="{id}" style="{style}" class="{classes}">{contents}
 </div>
+<script type='text/javascript'>
 {observer}
 {declarations}
 </script>
 {dynlibraries}"""
 observer = """
-<script type='text/javascript'>
 const observer_{id} = new MutationObserver((mutationsList) => {{
   for (const mutation of mutationsList) {{
     const target = mutation.target;
@@ -752,7 +752,7 @@ class VDOM_DynamicObject(VDOM_object):
             libraries=libraries,
             declarations=declarations,
             dynlibraries = dynlibraries,
-            observer = observer.format(id=id) if request.render_type != "e2vdom" else "")
+            observer = observer.format(id=u"o_" + self.id.replace('-', '_')) if request.render_type != "e2vdom" else "")
         
         return super(VDOM_DynamicObject, self).render(contents=contents)
 
