@@ -956,6 +956,12 @@ TEMPLATE = u"""{libraries}
 <div objname="{name}" id="{id}" style="{style}" class="{classes}">{contents}
 </div>
 <script type='text/javascript'>
+{observer}
+{declarations}
+</script>
+{dynlibraries}"""
+
+observer = """
 const observer_{id} = new MutationObserver((mutationsList) => {{
   for (const mutation of mutationsList) {{
     const target = mutation.target;
@@ -965,10 +971,7 @@ const observer_{id} = new MutationObserver((mutationsList) => {{
   }}
 }});
 
-observer_{id}.observe(document.body, {{ childList: true, subtree: true }});
-{declarations}
-</script>
-{dynlibraries}"""
+observer_{id}.observe(document.body, {{ childList: true, subtree: true }});"""
 
 
 class VDOM_DynamicObject(VDOM_object):
@@ -1042,7 +1045,9 @@ class VDOM_DynamicObject(VDOM_object):
             contents=inner,
             libraries=libraries,
             declarations=declarations,
-            dynlibraries = dynlibraries)
+            dynlibraries = dynlibraries,
+            observer = observer.format(id=id) if request.render_type != "e2vdom" else "")
+)
         
         return super(VDOM_DynamicObject, self).render(contents=contents)
 
