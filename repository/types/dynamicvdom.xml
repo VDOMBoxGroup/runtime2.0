@@ -684,7 +684,7 @@ observer = """
 const observer_{id} = new MutationObserver((mutationsList) => {{
   for (const mutation of mutationsList) {{
     const target = mutation.target;
-    if (target.getAttribute('objname') === 'dynamicvdom') {{
+    if (target.getAttribute('objname') === 'dynamicvdom' || target.id == 'e2vdomloading') {{
       window.dynamicObjectLoading = true;
     }}
   }}
