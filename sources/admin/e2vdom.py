@@ -202,10 +202,9 @@ def run(request):
                             r[key] = (result[key], k_ob_parent_id, k_ob.type.container, k_ob.type.id)
             except Exception:
                 sys.excepthook(*sys.exc_info())
-                # from utils.tracing import format_exception_trace
-                # debug("E2VDOM Action Error:\n%s" % format_exception_trace())
-                import traceback
-                traceback.print_exc()
+                from utils.tracing import format_exception_trace
+                from logs import log
+                log.write("E2VDOM Action Error:\n%s" % format_exception_trace())
                 # from StringIO import StringIO
                 # err = StringIO()
                 # debug("Error: %s" % str(e))
