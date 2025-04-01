@@ -1367,7 +1367,7 @@ class VDOM_web_services_server(object):
         for o in obj.objects.itervalues():
             result += self.__get_all_objects(o)
         result += "</Objects>\n"
-        result += self.__get_code_interface(obj)
+        result += self.__get_code_interface(obj, False)
         result += "</Object>\n"
         return result
 
@@ -1414,12 +1414,12 @@ class VDOM_web_services_server(object):
         else:
             return 0
 
-    def __get_code_interface(self, obj):
+    def __get_code_interface(self, obj, add_lists=True):
         interfaces = self.__get_interfaces(obj.type)
         result = ""
         app = obj.application
         # if "pagelink" in obj.type.interfaces:
-        if "pagelink" in interfaces:
+        if "pagelink" in interfaces and add_lists:
             result += "<Pagelink>\n"
 #           result += """<Object ID="" Name=""/>\n"""
             # for o in app.get_objects_list():
@@ -1428,7 +1428,7 @@ class VDOM_web_services_server(object):
             result += "</Pagelink>\n"
 
         # if "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]) and "" == obj.type.interfaces["objectlist"][0]:
-        if "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and "" == interfaces["objectlist"][0]:
+        if "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and "" == interfaces["objectlist"][0] and add_lists:
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():
             for obj1 in app.objects.catalog.values():
@@ -1441,7 +1441,7 @@ class VDOM_web_services_server(object):
                         result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
             result += "</Objectlist>\n"
         # elif "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]):
-        elif "objectlist" in interfaces and 1 == len(interfaces["objectlist"]):
+        elif "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and add_lists:
             needed = interfaces["objectlist"][0]
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():

@@ -73,10 +73,6 @@ class VDOM_email_manager(object):
             self.smtp_server = "smtp.gmail.com"
             if not self.smtp_port:
                 self.smtp_port = 465
-            if not self.smtp_user:
-                self.smtp_user = "Vdom.Server@gmail.com"
-            if not self.smtp_pass and self.smtp_user == "Vdom.Server@gmail.com":
-                self.smtp_pass = "VDMNK22YK"
             if not self.use_ssl:
                 self.use_ssl = 1
         else:

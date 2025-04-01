@@ -135,7 +135,6 @@ def run(request):
     sid = args.get("sid")
     if datafield:
         datafield = datafield[0]
-    if sid and datafield:
         # debug(
         # 	u"- - - - - - - - - - - - - - - - - - - -\n"
         # 	u"%s\n"
@@ -143,7 +142,7 @@ def run(request):
         # 	datafield)
         request.request_type = "action"
         try:
-            ev = Parser(builder=calls_builder).parse(datafield)
+            ev=Parser(builder=calls_builder).parse(datafield)
         except ParsingException as error:
             debug("Unable to parse data: %s" % error)
         app = request.application()
@@ -152,11 +151,17 @@ def run(request):
             state = request.session().states[ev.state]
         except KeyError:
             state = None
+        if sid is None and ev.sid:
+            sid = ev.sid
+            debug("Got no session id in args")
+        if sid != ev.sid:
+            debug("Got different  session id in args: %s <> %s"%(sid, ev.sid))
+            if managers.session_manager.session_exists(ev.sid):
+                sid = ev.sid
+                request.set_session_id(sid)
         if app is None:
             request.set_application_id(ev.appid)
             app = request.application()
-        if sid is None:
-            sid = ev.sid
         if app.id != ev.appid:
             debug("Event: Application mismatch")
         elif state is None:
@@ -166,7 +171,7 @@ def run(request):
             rr = "<SESSIONISOVER />"
             request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
         else:
-            request.last_state = state
+            request.last_state=state
             #debug("INCOMING STATE: %s"%request.last_state["#"])
             #request.add_header("Content-Type", "text/xml")
             request.add_header("Content-Type", "text/plain")

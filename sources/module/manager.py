@@ -1,6 +1,6 @@
 """Module Manager module"""
 
-import sys, traceback, shutil, os, types, re
+import shutil, re
 
 import managers
 from utils.exception import VDOM_exception
@@ -8,11 +8,10 @@ from utils.tracing import show_exception_trace
 
 from resource import VDOM_module_resource
 from .python import VDOM_module_python
-from post_processing import VDOM_post_processing
 from contextlib import contextmanager
 
 
-guid_regex=re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
+guid_regex = re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
 
 
 @contextmanager
@@ -51,7 +50,7 @@ class VDOM_module_manager(object):
                 request_object.add_header("Content-Type", e[ext])
                 request_object.add_header("Cache-Control", "max-age=86400")
             else:
-                raise AttributeError, ext
+                raise AttributeError(ext)
             request_object.add_header("Content-Length", str(len(data)))
             return (None, data)
         if "/favicon.ico" == script_name:
@@ -91,7 +90,8 @@ class VDOM_module_manager(object):
                     # result = managers.engine.render(a1, o1, None, o1.type.render_type.lower())
                     result = managers.engine.render(o1, render_type=o1.type.render_type.lower())
                     return (None, result.encode("utf-8"))
-            except: raise
+            except Exception:
+                raise
         # check if container is present
         app = request_object.application()
         if not url_parts:
@@ -107,8 +107,8 @@ class VDOM_module_manager(object):
                     request_object.redirect("/%s.vdom" % _o.name.lower())
                 else:
                     return (404, None)
-            elif app.objects: # CHECK: len(app.get_objects_list()) > 0: # redirect to the first container
-                request_object.redirect("/%s.vdom" % iter(app.objects.itervalues()).next().name) # CHECK: request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
+            elif app.objects:  # CHECK: len(app.get_objects_list()) > 0: # redirect to the first container
+                request_object.redirect("/%s.vdom" % iter(app.objects.itervalues()).next().name)  # CHECK: request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
             return (404, None)  # empty request
 
         request_type = url_parts[0].rpartition(".")[2] if '.' in url_parts[0] else 'vdom'
@@ -117,7 +117,7 @@ class VDOM_module_manager(object):
         # this acts as Communication Dispatcher
         if "vdom" == request_type:  # VDOM container request
             # first chek if application is OK
-            if not request_object.app_id(): # application not registered
+            if not request_object.app_id():  # application not registered
                 ret = "No application registered with virtual host '%s'" % request_object.app_vhname
                 debug(ret)
                 return (None, ret)
@@ -125,7 +125,7 @@ class VDOM_module_manager(object):
                 ret = "Application not found"
                 debug(ret)
                 return (None, ret)
-            if not app.active: # CHECK: if "1" != app.active:   # application not active
+            if not app.active:  # CHECK: if "1" != app.active:   # application not active
                 ret = "Application not active"
                 debug(ret)
                 return (None, ret)
@@ -156,8 +156,17 @@ class VDOM_module_manager(object):
                     managers.engine.execute(action)
                     if request_object.wholeAnswer:
                         return (None, request_object.wholeAnswer.encode("utf-8"))
-                return (404, None) #_("Container not found")
-
+                    else:
+                        if request_object.fh:
+                            shutil.copyfileobj(request_object.fh, request_object.wfile)
+                            return (None, "")
+                        outp = request_object.output()
+                        if outp:
+                            if request_object.binary():
+                                return (None, outp)
+                        else:
+                            return (None, outp.encode("utf-8"))                    
+                return (404, None) # _("Container not found")
 
             if obj.parent != None:
                 return (404, None)# _("This is not a top level container")
@@ -166,7 +175,7 @@ class VDOM_module_manager(object):
                 return (503, None)
 
             # set content type of container
-            if obj.type.http_content_type is "":
+            if obj.type.http_content_type == "":
                 return (None, _("Unknown content type"))
             request_object.add_header("Content-type", obj.type.http_content_type.lower())
 
@@ -211,7 +220,7 @@ class VDOM_module_manager(object):
                 #             os.remove(request_object.files[key][0].name)
 
                 if request_object.fh:
-                    from logs import log
+                    #from logs import log
                     # log.debug("REQUEST FILE HANDLER: %r" % request_object.fh)
                     shutil.copyfileobj(request_object.fh, request_object.wfile)
                     return (None, "")
@@ -251,7 +260,7 @@ class VDOM_module_manager(object):
                 #             request_object.files[key][0].close()
                 #         os.remove(request_object.files[key][0].name)
 
-        elif request_type:# pass to resource module
+        elif request_type: # pass to resource module
             module = VDOM_module_resource()
             ret = module.run(request_object, request_type)
             return (None, ret) if ret else (404, None)
