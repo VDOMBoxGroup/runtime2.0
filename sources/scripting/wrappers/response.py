@@ -56,7 +56,7 @@ class VDOM_response(object):
         return managers.request_manager.current.binary()
 
     def _set_binary(self, value):
-        managers.request_manager.current.binary(b=value)
+        managers.request_manager.current.binary(value)
 
     def _get_whole_answer(self):
         return managers.request_manager.current.wholeAnswer
