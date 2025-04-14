@@ -1,27 +1,30 @@
 """request module represents the request got by the VDOM server"""
 
+import json
+import tempfile
 import sys
+import urlparse
 from cStringIO import StringIO
 from StringIO import StringIO as uStringIO
-import cgi
 from cgi import FieldStorage
-
-from environment import VDOM_environment
-from headers import VDOM_headers
-from arguments import VDOM_request_arguments
 from Cookie import BaseCookie, Morsel
+
 #from memory.interface import MemoryInterface
-import managers
 from utils.file_argument import File_argument
-import tempfile
 from utils.properties import weak
+import managers
 import settings
+
+from .environment import VDOM_environment
+from .headers import VDOM_headers
+from .arguments import VDOM_request_arguments
 
 Morsel._reserved["samesite"] = "SameSite"
 
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
-        return tempfile.NamedTemporaryFile("w+b", prefix="vdomupload", dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
+        return tempfile.NamedTemporaryFile("w+b", prefix="vdomupload",
+                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
 
 
 @weak("_handler")
@@ -50,10 +53,9 @@ class VDOM_request(object):
         args = {}
         env = self.__environment.environment()
         #parse request data depenging on the request method
-        if arguments["method"] == "post":
-            try:
+        try:
+            if arguments["method"] == "post":
                 if env.get("HTTP_CONTENT-TYPE", "").startswith(r'application/json'):
-                    import json
                     try:
                         request_body_size = int(env.get('HTTP_CONTENT-LENGTH', 0))
                     except ValueError:
@@ -62,30 +64,30 @@ class VDOM_request(object):
                     request_body = handler.rfile.read(request_body_size)
                     params = json.loads(request_body)
                     args = {key: params[key] for key in params}
-
-                elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:  # TODO: check situation with SOAP and SOAP-POST-URL
+    
+                elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
                     storage = MFSt(handler.rfile, headers, "", env, True)
-                    for key in storage.keys():
-                        #Access to file name after uploading
-                        filename = getattr(storage[key], "filename", "")
-                        if filename and storage[key].file:
-                            args[key] = File_argument(storage[key].file, filename)
-                            self.files[key] = args[key]
-                        else:
-                            args[key] = storage.getlist(key)
-                        if filename:
-                            args[key+"_filename"] = [filename]
+                    if storage.list is None and storage.value:
+                        args["rawdata"] = storage.value
+                    else:
+                        for key in storage.keys():
+                            #Access to file name after uploading
+                            filename = getattr(storage[key], "filename", "")
+                            if filename and storage[key].file:
+                                args[key] = File_argument(storage[key].file, filename)
+                                self.files[key] = args[key]
+                            else:
+                                args[key] = storage.getlist(key)
+                            if filename:
+                                args[key+"_filename"] = [filename]
                 else:
-                    self.postdata = handler.rfile.read(int(self.__headers.header("Content-length")))
-            except Exception as e:
-                debug("Error while reading socket: %s"%e)
-
-        try:
-            args1 = cgi.parse_qs(env["QUERY_STRING"], True)
-            for key in args1.keys():
-                args[key] = args1[key]
+                    self.postdata = handler.rfile.read(int(env.get("HTTP_CONTENT-LENGTH")))
+    
+            args1 = urlparse.parse_qs(env["QUERY_STRING"], True)
+            for key, value in args1.items():
+                args[key] = value
         except Exception as e:
-            debug("Error while Query String reading: %s"%e)
+            debug("Error while reading arguments: %s"%e)
 
         self.fault_type_http_code = 500
         if "user-agent" in self.__headers.headers():
@@ -122,10 +124,10 @@ class VDOM_request(object):
         self.__server = handler.server
         self._handler = handler
         self.app_vhname = env["HTTP_HOST"].lower()
-        vh = handler.server.virtual_hosting()
-        self.__app_id = vh.get_site(self.app_vhname)
+        vhosts = handler.server.virtual_hosting()
+        self.__app_id = vhosts.get_site(self.app_vhname)
         if not self.__app_id:
-            self.__app_id = vh.get_def_site()
+            self.__app_id = vhosts.get_def_site()
         self.__stdout = StringIO()
         self.action_result = uStringIO()
         self.wholeAnswer = None
@@ -149,6 +151,7 @@ class VDOM_request(object):
         self.wfile = handler.wfile
         self.__nocache = False
         self.nokeepalive = False
+        self.retcode = 200
         self.__binary = False
         self.fh = None
         self.shared_variables = {}
@@ -168,12 +171,14 @@ class VDOM_request(object):
     def add_client_action(self, obj_id, data):
         self.action_result.write(data)
 
-    def binary(self, b=None):
-        if b is not None:
-            self.__binary = b
+    def binary(self, set_binary=None):
+        """switch output mode to binary"""
+        if set_binary is not None:
+            self.__binary = set_binary
         return self.__binary
 
     def set_nocache(self):
+        """switch output to no cache mode"""
         if not self.__nocache:
             self._handler.send_response(200)
             self._handler.send_headers()
@@ -184,6 +189,7 @@ class VDOM_request(object):
         self.nokeepalive = True
 
     def send_htmlcode(self, code=200):
+        """reply with http code with custom output"""
         if not self.__nocache:
             self._handler.send_response(code)
             self._handler.send_headers()
@@ -191,6 +197,7 @@ class VDOM_request(object):
             self.wfile.write(self.output())
         self.__nocache = True
         self.nokeepalive = True
+        self.retcode = code
 
     def set_application_id(self, application_id):
         self.__app_id = application_id
@@ -198,7 +205,7 @@ class VDOM_request(object):
         # try: self.__app = managers.xml_manager.get_application(self.__app_id)
         try:
             self.__app = managers.memory.applications[self.__app_id]
-        except:
+        except Exception:
             sys.excepthook(*sys.exc_info())
 
     def write(self, string=None):
@@ -235,6 +242,7 @@ class VDOM_request(object):
         return self.__session
 
     def set_session_id(self, sid):
+        """override session id"""
         old_sid = self.__session.id()
         self.__cookies["sid"] = sid
         self.args.arguments()["sid"] = sid
@@ -276,9 +284,9 @@ class VDOM_request(object):
         """get application identifier"""
         return self.__app_id
 
-    def redirect(self, to):
+    def redirect(self, url_to):
         """specify redirection to some url"""
-        self.redirect_to = to
+        self.redirect_to = url_to
 
     def add_header(self, name, value):
         """add header"""
@@ -286,6 +294,7 @@ class VDOM_request(object):
         headers[name] = value
 
     def send_file(self, filename, length, handler, content_type=None, cache_control=True):
+        """send response as a downloadable file"""
         f_content_type = content_type if content_type else "application/octet-stream"
         self.add_header("Content-type", f_content_type)
         if content_type:

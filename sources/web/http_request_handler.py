@@ -458,9 +458,10 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
             self.send_error(code, self.responses[code][0])
             return None
         elif "" == ret and not self.__request.binary():
-            self.send_response(204)
-            self.send_headers()
-            self.end_headers()
+            if self.__request.retcode == 200:
+                self.send_response(204)
+                self.send_headers()
+                self.end_headers()
             return None
         elif self.__request.binary():
             return None
