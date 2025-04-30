@@ -935,7 +935,8 @@ Visible - the whole content will always be shown without reference to the object
 			yTfg378/DL++vyc2HWCGAa5oJDYQcUYjSDN6YgIlZSDVgEzTLiGBNGJxQTsan/LMxERKlGFLygAB
 			BgAnHIGhj58zKAAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[from xml.sax.saxutils import escape as xml_escape
+  <SourceCode>
+<![CDATA[from xml.sax.saxutils import escape as xml_escape
 import managers
 from scripting import e2vdom
 from memory import vdomxml, vdomjson
@@ -952,7 +953,6 @@ def exception_trace():
 
 WYSIWYG_IMAGE_UUID = "76bfc87a-dbe3-46e3-8d11-cc78a576b63a"
 TEMPLATE = u"""{libraries}
-{css}
 <div objname="{name}" id="{id}" style="{style}" class="{classes}">{contents}
 </div>
 <script type='text/javascript'>
@@ -960,12 +960,11 @@ TEMPLATE = u"""{libraries}
 {declarations}
 </script>
 {dynlibraries}"""
-
 observer = """
 const observer_{id} = new MutationObserver((mutationsList) => {{
   for (const mutation of mutationsList) {{
     const target = mutation.target;
-    if (target.getAttribute('objname') === 'dynamicvdom') {{
+    if (target.getAttribute('objname') === 'dynamicvdom' || target.id == 'e2vdomloading') {{
       window.dynamicObjectLoading = true;
     }}
   }}
@@ -1006,112 +1005,42 @@ class VDOM_DynamicObject(VDOM_object):
                     message = u"Render error: {}<br>{}<br>{}".format(error, ex_trace, u"<br>".join(lines))
                 return u"<span class=\"render-error\">%s</span>" % message, "", ""
 
-    def check_unit(self, value):
-        return value + "px" if value.isdigit() else value
-
     # use inner_render for raw_content
     def render(self, contents=""):
         inner, declarations, libraries = self.inner_render()
-        id = u"o_" + self.id.replace('-', '_')
-        position = u"{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
+        style = u"{display}z-index: {zindex}; position: {pos}; " \
+            "top: {top}px; left: {left}px; height: {height}px; width: {width}px; " \
+            "overflow: {overflow};".format(
+                display=u"display:none; " if self.visible == "0" else u"",
+                zindex=self.zindex,
+                pos=self.position,
+                top=self.top,
+                left=self.left,
+                width=self.width,
+                height=self.height,
+                overflow={"1": "hidden", "2": "scroll", "3": "visible"}.get(self.overflow, "auto"))
         
-        styles = {
-            "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
-            "display": u"none" if self.visible == "0" else self.displaying,
-            "position": position,
-            "width": self.check_unit(self.width),
-            "height": self.check_unit(self.height),
-            "margin": self.margins,
-            "padding": self.paddings,
-            "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left),
-            "overflow": {"0": "auto", "1": "hidden", "2": "scroll", "3": "visible"}.get(self.overflow, "")
-        }
-        if self.positioning == "static":
-        	styles["top"] = styles["left"] = ""
-        
-        style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
         
         dynlibraries=u"".join(managers.request_manager.current.dyn_libraries.itervalues()) if request.render_type == "e2vdom" else ""
-        
-        css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
     
         contents += TEMPLATE.format(
             name=self.name,
-            css=css,
-            id=id,
+            id=u"o_" + self.id.replace('-', '_'),
             style=style,
-            classes=' '.join([self.classname, 'vdom_dynamicvdom']).strip(),
+            classes=self.classname,
             contents=inner,
             libraries=libraries,
             declarations=declarations,
             dynlibraries = dynlibraries,
-            observer = observer.format(id=id) if request.render_type != "e2vdom" else "")
-)
+            observer = observer.format(id=u"o_" + self.id.replace('-', '_')) if request.render_type != "e2vdom" else "")
         
         return super(VDOM_DynamicObject, self).render(contents=contents)
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
-        self.width, self.height, self.top, self.left = [
-            int(self.ide_width), int(self.ide_height), 
-            int(self.ide_top), int(self.ide_left)
-        ]
         contents += get_empty_wysiwyg_value(self, WYSIWYG_IMAGE_UUID)
-        return super(VDOM_DynamicObject, self).wysiwyg(contents=contents)
-        
-def on_update(object, attributes):
-	o = object
-	modifications = {}
-	
-	for attr in ["left", "width", "height", "top"]:
-		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				modifications[attr] = attr_value + "px"
-				modifications["ide_"+ attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				modifications[attr] = attr_value.rstrip("px") + "px"
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				modifications[attr] = attr_value if "px" in attr_value else obj_value
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			else:
-				modifications[attr] = attr_value
-
-	attributes.update(modifications)
-
-	users = u"""\
-#%(id)s {
-
-}
-"""
-	
-	skin_mapping = {
-		"0": users,
-		"1": ""
-	}
-	if "skin" in attributes:
-		skin = attributes["skin"]
-		if skin in skin_mapping:
-			attributes.update(style=skin_mapping[skin])
-		else:
-			attributes.update(skin="0")
-			
-	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-		attributes.update(skin="0")
-	
-	return ""
-        
-def on_compile(object, attributes):
-	for attr in ["left", "width", "height", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value.rstrip("px") + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
+        return super(VDOM_DynamicObject, self).wysiwyg(contents=contents)]]>
+    </SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[<style type="text/css">
         .vdom_dynamicvdom {
