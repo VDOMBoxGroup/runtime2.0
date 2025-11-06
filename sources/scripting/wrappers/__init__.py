@@ -1,11 +1,12 @@
+from __future__ import absolute_import
 
-from server import VDOM_server
-from application import VDOM_application
-from session import VDOM_session
-from log import VDOM_log
-from request import VDOM_request
-from response import VDOM_response
-from tasks import Task
+from .server import VDOM_server
+from .application import VDOM_application
+from .session import VDOM_session
+from .log import VDOM_log
+from .request import VDOM_request
+from .response import VDOM_response
+from .tasks import Task
 
 # from obsolete_request import VDOM_obsolete_request
 from .. import packages

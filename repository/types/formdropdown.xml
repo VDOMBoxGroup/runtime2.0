@@ -740,7 +740,13 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import StringIO
+<![CDATA[from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from past.utils import old_div
+import io
 
 class VDOM_formdropdown(VDOM_object):
 
@@ -773,11 +779,11 @@ class VDOM_formdropdown(VDOM_object):
 		list1 = self.value1.split("|")
 		if len(list) != len(list1): return u""
 
-		res_buffer = StringIO.StringIO(u"")
+		res_buffer = io.StringIO(u"")
 		res_buffer.write(select)
 			
-		for idx in xrange(len(list1)):
-			if unicode(list1[idx]) == unicode(self.selectedvalue):
+		for idx in range(len(list1)):
+			if str(list1[idx]) == str(self.selectedvalue):
 				selected = u"""selected="selected" """
 			else:
 				selected = u""
@@ -809,9 +815,9 @@ class VDOM_formdropdown(VDOM_object):
 					out_top = 0, out_left = 0, out_wid = int(self.width)-1, out_hei = int(self.height)-1, 
 					contents = contents,
 					inn_left = int(self.width)-14, inn_top = 0, inn_wid = 14, inn_hei = int(self.height)-1,
-					xa = int(self.width)-9, ya = int(self.height) / 2 - 3,
-					xb = int(self.width)-5, yb = int(self.height) / 2 - 3,
-					xc = int(self.width)-7, yc = int(self.height) / 2 + 3)
+					xa = int(self.width)-9, ya = old_div(int(self.height), 2) - 3,
+					xb = int(self.width)-5, yb = old_div(int(self.height), 2) - 3,
+					xc = int(self.width)-7, yc = old_div(int(self.height), 2) + 3)
 
 		return VDOM_object.wysiwyg(self, contents=result)]]>
 	</SourceCode>

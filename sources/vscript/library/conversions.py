@@ -1,4 +1,8 @@
 
+from builtins import chr
+from builtins import str
+from builtins import oct
+from builtins import hex
 from .. import errors
 from ..subtypes import array, dictionary, boolean, date, double, empty, \
 	generic, integer, nothing, null, string, true, false
@@ -54,7 +58,7 @@ def v_clng(expression):
 	return integer(int(expression.as_simple))
 
 def v_cstr(expression):
-	return string(unicode(expression.as_simple))
+	return string(str(expression.as_simple))
 
 
 def v_hex(number):
@@ -62,17 +66,17 @@ def v_hex(number):
 	string1=hex(number)[2:] if number>0 else \
 		hex(0x100000000+number)[2:-1] if number<-0xFFFF else \
 		hex(0x10000+number)[2:] if number<0 else "0"
-	return string(unicode(string1.upper()))
+	return string(str(string1.upper()))
 
 def v_oct(number):
 	number=number.as_integer
 	string1=oct(number)[1:] if number>0 else \
 		oct(0x100000000+number)[1:-1] if number<-0xFFFF else \
 		oct(0x10000+number)[1:] if number<0 else "0"
-	return string(unicode(string1))
+	return string(str(string1))
 
 def v_chr(number):
-	return string(unichr(number.as_integer))
+	return string(chr(number.as_integer))
 
 def v_asc(string1):
 	string1=string1.as_string

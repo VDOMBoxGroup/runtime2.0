@@ -344,7 +344,8 @@ Such restriction is introduced in order to avoid the recursion problems. To avoi
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[def on_startup(object):
+<![CDATA[from builtins import str
+def on_startup(object):
     source_object = object.application.objects.catalog.get(object.attributes["source_object"])
     if source_object:
         source_object.attach(object)

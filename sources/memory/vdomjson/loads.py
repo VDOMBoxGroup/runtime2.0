@@ -1,4 +1,6 @@
 
+from builtins import str
+
 import re
 import json
 
@@ -33,7 +35,7 @@ def loads(vdomjson, object, catch, handler=None):
         return ()
 
     bindings = []
-    for event_declaration, event_actions in actions.iteritems():
+    for event_declaration, event_actions in actions.items():
         try:
             source_name, event_name = event_declaration.split(":")
         except Exception:
@@ -43,7 +45,7 @@ def loads(vdomjson, object, catch, handler=None):
         if not source:
             raise Exception("Unable to find object: %s" % source_name)
 
-        if isinstance(event_actions, basestring):
+        if isinstance(event_actions, str):
             source.actions.new(event_name, source_code=event_actions, handler=handler)
         else:
             event = source.events.new(event_name)

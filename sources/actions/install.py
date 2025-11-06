@@ -29,7 +29,7 @@ def install(filename, select=False):
             elif entity is APPLICATION:
                 subject = managers.memory.install_application(filename=filename, into=notifications)
                 if settings.STORE_BYTECODE:
-                    for library in subject.libraries.itervalues():
+                    for library in subject.libraries.values():
                         # show("precompile library %s" % library.name)
                         library.compile()
 

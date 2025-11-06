@@ -1,6 +1,8 @@
 """Request Manager module"""
 
-import sys, thread
+
+
+import sys, _thread
 
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
@@ -30,12 +32,12 @@ class VDOM_request_manager(dict):
 		#self.__sem.lock()
 		try:
 			
-			r = self.get(thread.get_ident(),None)
+			r = self.get(_thread.get_ident(),None)
 			if r:
 				return r
-			raise VDOM_exception(_("No request associated with current thread"))
+			raise VDOM_exception(("No request associated with current thread"))
 		except:
-			raise VDOM_exception(_("No request associated with current thread"))
+			raise VDOM_exception(("No request associated with current thread"))
 		#finally:
 		#	self.__sem.unlock()
 
@@ -43,7 +45,7 @@ class VDOM_request_manager(dict):
 		self.__sem.lock()
 		#debug("set request")
 		try:
-			dict.__setitem__(self, thread.get_ident(), request)
+			dict.__setitem__(self, _thread.get_ident(), request)
 		finally:
 			self.__sem.unlock()
 
@@ -51,7 +53,7 @@ class VDOM_request_manager(dict):
 		self.__sem.lock()
 		#debug("remove request")
 		try:
-			dict.__delitem__(self, thread.get_ident())
+			dict.__delitem__(self, _thread.get_ident())
 		except:
 			pass
 		finally:

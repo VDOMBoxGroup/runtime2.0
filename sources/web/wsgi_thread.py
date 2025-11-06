@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 
 from logs import log
 from utils.threads import SmartThread
-from http_server import VDOM_http_server
-from http_request_handler import VDOM_http_request_handler
+from .http_server import VDOM_http_server
+from .http_request_handler import VDOM_http_request_handler
 
 
 class WebServer(SmartThread):

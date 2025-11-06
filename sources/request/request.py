@@ -1,19 +1,28 @@
 """request module represents the request got by the VDOM server"""
+from __future__ import absolute_import
 
-import sys
-from cStringIO import StringIO
-from StringIO import StringIO as uStringIO
-import cgi
+
+
+from builtins import str
+from builtins import object
+
+import sys, tempfile
+import urllib.parse 
+from io import BytesIO,  StringIO
+#from io import StringIO as uStringIO
+
 from cgi import FieldStorage
 
-from environment import VDOM_environment
-from headers import VDOM_headers
-from arguments import VDOM_request_arguments
-from Cookie import BaseCookie
+from http.cookies import BaseCookie
+
+from .environment import VDOM_environment
+from .headers import VDOM_headers
+from .arguments import VDOM_request_arguments
+
 #from memory.interface import MemoryInterface
 import managers
 from utils.file_argument import File_argument
-import tempfile
+
 from utils.properties import weak
 
 
@@ -62,8 +71,8 @@ class VDOM_request(object):
                     args = {key: params[key] for key in params}
 
                 elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:  # TODO: check situation with SOAP and SOAP-POST-URL
-                    storage = MFSt(handler.rfile, headers, "", env, True)
-                    for key in storage.keys():
+                    storage = MFSt(handler.rfile, headers, b"", env, True)
+                    for key in list(storage.keys()):
                         #Access to file name after uploading
                         filename = getattr(storage[key], "filename", "")
                         if filename and storage[key].file:
@@ -76,12 +85,13 @@ class VDOM_request(object):
                 else:
                     self.postdata = handler.rfile.read(int(self.__headers.header("Content-length")))
             except Exception as e:
+                raise #TODO: PY3
                 debug("Error while reading socket: %s"%e)
 
         try:
-            args1 = cgi.parse_qs(env["QUERY_STRING"], True)
-            for key in args1.keys():
-                args[key] = args1[key]
+            args.update(urllib.parse.parse_qs(env["QUERY_STRING"], True))
+            #for key in args1.keys():
+            #    args[key] = args1[key]
         except Exception as e:
             debug("Error while Query String reading: %s"%e)
 
@@ -121,8 +131,8 @@ class VDOM_request(object):
         self.__app_id = vh.get_site(self.app_vhname)
         if not self.__app_id:
             self.__app_id = vh.get_def_site()
-        self.__stdout = StringIO()
-        self.action_result = uStringIO()
+        self.__stdout = BytesIO()
+        self.action_result = StringIO()
         self.wholeAnswer = None
         self.application_id = self.__app_id
 
@@ -156,12 +166,13 @@ class VDOM_request(object):
 
     def collect_files(self):
         """Replacement for destructor needed for temp files cleanup"""
-        for file_attach in self.files.itervalues():
+        for file_attach in self.files.values():
             if file_attach.autoremove:
                 file_attach.remove()
 
     def add_client_action(self, obj_id, data):
-        self.action_result.write(data)
+        
+        self.action_result.write(str(data))
 
     def binary(self, b=None):
         if b is not None:
@@ -204,7 +215,7 @@ class VDOM_request(object):
                 #self.wfile.write('\n')
             else:
                 self.__stdout.write(string)
-                self.__stdout.write('\n')
+                self.__stdout.write(b'\n')
 
     def write_handler(self, handler):
         """writing into stream from file handler"""
@@ -218,7 +229,7 @@ class VDOM_request(object):
         """get output"""
         value = self.__stdout.getvalue()
         del self.__stdout
-        self.__stdout = StringIO()
+        self.__stdout = BytesIO()
         return value
 
     def server(self, server=None):

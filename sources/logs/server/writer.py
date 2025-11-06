@@ -1,4 +1,6 @@
 
+from builtins import range
+from builtins import object
 import os
 import os.path
 from collections import deque

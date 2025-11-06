@@ -472,7 +472,9 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import re
+<![CDATA[from __future__ import division
+from past.utils import old_div
+import re
 import json
 
 class VDOM_langsel(VDOM_object):
@@ -499,7 +501,7 @@ class VDOM_langsel(VDOM_object):
 				for lang in lang_display:
 
 					key = lang.strip()
-					lang = lang_res[key][0] if key in lang_res.keys() else key
+					lang = lang_res[key][0] if key in list(lang_res.keys()) else key
 					htmlcode += "<option value=\"%s\">%s</option>"%(key,lang)
 
 				htmlcode += "</select>"
@@ -520,7 +522,7 @@ class VDOM_langsel(VDOM_object):
 				for lang in lang_display:
 
 					key = lang.strip()
-					img = lang_res[key][1] if key in lang_res.keys() else None
+					img = lang_res[key][1] if key in list(lang_res.keys()) else None
 
 					if img:
 
@@ -572,8 +574,8 @@ class VDOM_langsel(VDOM_object):
 		
 		triangle_width = 5 
 		triangle_height = 4 
-		triangle_x = btn_x + (btn_width - triangle_width) / 2 + 1
-		triangle_y = (btn_height - triangle_height) / 2
+		triangle_x = btn_x + old_div((btn_width - triangle_width), 2) + 1
+		triangle_y = old_div((btn_height - triangle_height), 2)
 		
 		color = "#000000"
 		result = \
@@ -587,7 +589,7 @@ class VDOM_langsel(VDOM_object):
 				btn_width = btn_width, btn_height = btn_height,
 				xa = triangle_x, ya = triangle_y,
 				xb = triangle_x+triangle_width, yb = triangle_y,
-				xc = triangle_x+triangle_width/2, yc = triangle_y+triangle_height,
+				xc = triangle_x+old_div(triangle_width,2), yc = triangle_y+triangle_height,
 				color = color)
 				
 		return result
@@ -598,7 +600,7 @@ class VDOM_langsel(VDOM_object):
 		
 		for lang in lang_display:
 			key = lang.strip()
-			lang = lang_res[key][0] if key in lang_res.keys() else key
+			lang = lang_res[key][0] if key in list(lang_res.keys()) else key
 			
 			if len(lang) > max_len :
 				max_len = len(lang)
@@ -608,7 +610,7 @@ class VDOM_langsel(VDOM_object):
 	def get_first_lang_value (self, lang_display, lang_res) :
 		lang = lang_display[0]
 		key = lang.strip()
-		lang = lang_res[key][0] if key in lang_res.keys() else key
+		lang = lang_res[key][0] if key in list(lang_res.keys()) else key
 		
 		return lang
 		
@@ -666,7 +668,7 @@ class VDOM_langsel(VDOM_object):
 			for key in lang_display:
 				
 				key = key.strip()
-				res = lang_res[key] if key in lang_res.keys() else None
+				res = lang_res[key] if key in list(lang_res.keys()) else None
 
 				if res:
 					img = \

@@ -839,7 +839,9 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_formcolorpicker(VDOM_object):
+<![CDATA[from __future__ import division
+from past.utils import old_div
+class VDOM_formcolorpicker(VDOM_object):
 
 	def render(self, contents=""):
 		self.set_color_value()
@@ -906,7 +908,7 @@
 			btn_x = btn_y = 0
 		else:
 			btn_x = int(self.width) + distance
-			btn_y = (int(self.height)-btn_height)/2
+			btn_y = old_div((int(self.height)-btn_height),2)
 
 			obj_max_right = int(self.left)+int(self.width)+distance+btn_width
 			if form_width < obj_max_right:
@@ -929,7 +931,7 @@
 
 		btn_x, btn_y, btn_width, btn_height = self.get_btn_properties()
 
-		text_y = 0 if self.height <= 22 else (int(self.height)-20)/2
+		text_y = 0 if self.height <= 22 else old_div((int(self.height)-20),2)
 		text = "" if self.mode == "1" else u"""<text x="3" y="{text_y}" width="{txt_wid}" height="20" align="left" color="#000000" font-family="tahoma" font-size="14">{value}</text>""" \
 			.format(
 				txt_wid = text_size,
@@ -984,8 +986,7 @@ def on_update(object, attributes):
 	# 		o.set_attributes({"height": "4"})
 	if "height" in attributes:
 		if int(attributes["height"]) < 4:
-			attributes.update(height="4")
-]]>
+			attributes.update(height="4")]]>
 	</SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<script type="text/javascript" src="/41dd5c5b-0a21-c93a-eefe-e0eda91f1b73.res"></script>]]></Library>

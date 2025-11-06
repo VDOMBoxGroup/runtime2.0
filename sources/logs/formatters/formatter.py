@@ -1,4 +1,5 @@
 
+from builtins import object
 class LogFormatter(object):
 
     def __init__(self, name):

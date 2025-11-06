@@ -9,7 +9,7 @@ def encode_resource(data):
 	return base64.b64encode(zlib.compress(data))
 
 def need_xml_escape(data):
-	if data and ('<' in data or '>' in data or '&' in data or '\'' in data or '\"' in data or '\n' in data):
+	if isinstance(data, bytes) and ('<' in data or '>' in data or '&' in data or '\'' in data or '\"' in data or '\n' in data):
 		return True
 	return False
 

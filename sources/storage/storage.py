@@ -1,14 +1,23 @@
 """VDOM storage module"""
+from __future__ import absolute_import
 
+
+
+#from builtins import str
+from builtins import object
 import sqlite3
-import cPickle
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 import traceback
 
 from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 from utils.mutex import VDOM_named_mutex_auto
 import settings
-from daemon import VDOM_storage_writer
+from .daemon import VDOM_storage_writer
 
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
 #__update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
@@ -33,7 +42,7 @@ class VDOM_storage(object):
         # start write thread
         self.__daemon = None
         # check if need to write config_1
-        if not VDOM_CONFIG["VDOM-CONFIG-1-RECORD"] in self.keys():
+        if not VDOM_CONFIG["VDOM-CONFIG-1-RECORD"] in list(self.keys()):
             self.write_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"], VDOM_CONFIG_1)
         else:
             conf = self.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
@@ -125,7 +134,7 @@ class VDOM_storage(object):
         try:
             ret = self.__internal_read(key)
             return ret
-        except Exception, e:
+        except Exception as e:
             debug("Read error, key '%s'" % str(key))
             debug(str(e))
             traceback.print_exc(file=debugfile)
@@ -139,7 +148,7 @@ class VDOM_storage(object):
         try:
             self.__internal_write(key, value)
             return True
-        except Exception, e:
+        except Exception as e:
             debug("Write error, key '%s'" % str(key))
             debug(str(e))
             return False
@@ -173,7 +182,7 @@ class VDOM_storage(object):
 
             return cur.lastrowid or True
 
-        except Exception, e:
+        except Exception as e:
             debug("SQL execute error")
             debug(str(e))
             return False
@@ -186,7 +195,7 @@ class VDOM_storage(object):
         # self.__sem.lock()
         try:
             return sqlite3.connect(self.__fname).execute(sql, params).fetchall()
-        except Exception, e:
+        except Exception as e:
             debug("SQL execute read error")
             debug(str(e))
             return None
@@ -273,21 +282,21 @@ class VDOM_storage(object):
         if not data:
             return None
         try:
-            data = cPickle.loads(str(data))
+            data = pickle.loads(data)
             return data
-        except Exception, e:
-            debug("Error reading object '%s' from the storage" % str(key))
-            debug(str(e))
+        except Exception as e:
+            debug("Error reading object '%s' from the storage" % key)
+            debug(e.message)
             return None
 
     def write_object(self, key, object):
         """save object to the storage"""
         data = None
         try:
-            data = cPickle.dumps(object)
-        except Exception, e:
-            debug("Error writing object '%s' to the storage" % str(key))
-            debug(str(e))
+            data = pickle.dumps(object)
+        except Exception as e:
+            debug("Error writing object '%s' to the storage" % key)
+            debug(e.message)
             return False
         return self.write(key, data)
 
@@ -295,10 +304,10 @@ class VDOM_storage(object):
         """save object to the storage"""
         data = None
         try:
-            data = cPickle.dumps(object)
-        except Exception, e:
-            debug("Error writing object '%s' to the storage" % str(key))
-            debug(str(e))
+            data = pickle.dumps(object)
+        except Exception as e:
+            debug("Error writing object '%s' to the storage" % key)
+            debug(e.message)
             return False
         return self.write_async(key, data)
 
@@ -306,7 +315,7 @@ class VDOM_storage(object):
 import managers
 
 
-class VDOM_config:
+class VDOM_config(object):
     """class to read/save changeable config"""
 
     def get_opt(self, name):
@@ -318,7 +327,7 @@ class VDOM_config:
 
     def get_keys(self):
         conf = managers.storage.read_object(VDOM_CONFIG["VDOM-CONFIG-1-RECORD"])
-        return conf.keys()
+        return list(conf.keys())
 
     def set_opt(self, name, val):
         VDOM_named_mutex_auto(name)

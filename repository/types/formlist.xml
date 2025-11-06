@@ -728,12 +728,17 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[
+<![CDATA[from __future__ import division
+from future import standard_library
+standard_library.install_aliases()
+from builtins import zip
+from builtins import range
+from past.utils import old_div
 import json
-import StringIO
+import io
 
 from collections import OrderedDict, Iterable
-from itertools import izip
+
 
 
 class VDOM_formlist(VDOM_object):
@@ -800,9 +805,9 @@ class VDOM_formlist(VDOM_object):
 
         data = self.get_data()
         try:
-            data = data.iteritems()
+            data = iter(data.items())
         except:
-            data = izip(xrange(len(data)), data)
+            data = zip(range(len(data)), data)
 
         result = u"".join([u"""<option value="{value}"{selected}{disabled}>{title}</option>""".format(
             value=value,
@@ -829,14 +834,14 @@ class VDOM_formlist(VDOM_object):
             triangle_width = btn_width
             triangle_x = btn_x
         else :
-            triangle_x = btn_x + (btn_width - triangle_width) / 2 + 1
+            triangle_x = btn_x + old_div((btn_width - triangle_width), 2) + 1
             
         triangle_height = 4 
         if btn_height < triangle_height :
             triangle_height = btn_height
             triangle_y = 0
         else :
-            triangle_y = (btn_height - triangle_height) / 2
+            triangle_y = old_div((btn_height - triangle_height), 2)
         
         color = "#aaaaaa" if self.disabled=="1" else "#000000"
         btn = \
@@ -848,7 +853,7 @@ class VDOM_formlist(VDOM_object):
                             btn_width = btn_width, btn_height = btn_height,
                             xa = triangle_x, ya = triangle_y,
                             xb = triangle_x+triangle_width, yb = triangle_y,
-                            xc = triangle_x+triangle_width/2, yc = triangle_y+triangle_height,
+                            xc = triangle_x+old_div(triangle_width,2), yc = triangle_y+triangle_height,
                             color = color)
         
         result = \
@@ -869,14 +874,11 @@ class VDOM_formlist(VDOM_object):
                     rect_width = rect_width, rect_height = rect_height, 
                     btn = btn,
                     text_x = 7,
-                    text_y = 15 if rect_height < 15 else (rect_height-15)/2+15,
+                    text_y = 15 if rect_height < 15 else old_div((rect_height-15),2)+15,
                     color = color)
         
 
-        return VDOM_object.wysiwyg(self, contents=result)
-
-	
-]]>
+        return VDOM_object.wysiwyg(self, contents=result)]]>
 	</SourceCode>
 	<E2VDOM>
 		<Events>

@@ -1,5 +1,8 @@
-
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from threading import RLock
 
 import settings
@@ -44,7 +47,7 @@ class MemoryTypes(MemoryBase, Mapping):
         with self._lock:
             if self._lazy:
                 self._discover(full=True)
-            data = "\n".join("%s:%s" % (uuid, name) for name, uuid in self._index.iteritems())
+            data = "\n".join("%s:%s" % (uuid, name) for name, uuid in self._index.items())
         managers.file_manager.write(file_access.FILE, None, settings.INDEX_LOCATION, data)
 
     # unsafe
@@ -90,7 +93,7 @@ class MemoryTypes(MemoryBase, Mapping):
 
         # load all types that's not loaded yet
         if load:
-            for uuid, item in self._items.iteritems():
+            for uuid, item in self._items.items():
                 if item is NOT_LOADED:
                     self._load(uuid)
 
@@ -112,7 +115,7 @@ class MemoryTypes(MemoryBase, Mapping):
                             uuid = self._index[uuid_or_name]
                         except KeyError:
                             if autocomplete:
-                                for name, uuid in self._index.iteritems():
+                                for name, uuid in self._index.items():
                                     if name.lower().startswith(uuid_or_name):
                                         return self.get(uuid)
                             return None
@@ -120,7 +123,7 @@ class MemoryTypes(MemoryBase, Mapping):
                             return self.get(uuid)
                 if autocomplete:
                     with self._lock:
-                        for name, uuid in self._index.iteritems():
+                        for name, uuid in self._index.items():
                             if name.lower().startswith(uuid_or_name):
                                 return self.get(uuid)
                 return None
@@ -137,9 +140,9 @@ class MemoryTypes(MemoryBase, Mapping):
                 self._items[uuid] = NOT_LOADED
 
     def __getitem__(self, uuid):
-        try:
+        if uuid in self._items:
             item = self._items[uuid]
-        except KeyError:
+        else:
             # TODO: check to perform full discovery here
             if self._lazy and managers.file_manager.exists(file_access.TYPE, uuid, settings.TYPE_FILENAME):
                 with self._lock:
@@ -150,16 +153,16 @@ class MemoryTypes(MemoryBase, Mapping):
                         return item
             else:
                 raise
+            
+        if item is NOT_LOADED:
+            with self._lock:
+                item = self._items[uuid]
+                if item is NOT_LOADED:
+                    return self._load(uuid)
+                else:
+                    return item
         else:
-            if item is NOT_LOADED:
-                with self._lock:
-                    item = self._items[uuid]
-                    if item is NOT_LOADED:
-                        return self._load(uuid)
-                    else:
-                        return item
-            else:
-                return item
+            return item
 
     def __iter__(self):
         with self._lock:

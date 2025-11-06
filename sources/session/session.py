@@ -1,5 +1,6 @@
 """session module"""
 
+
 import sys, string, time, os, shutil
 from copy import copy
 
@@ -52,17 +53,17 @@ class VDOM_session(dict):
 
 	def get_key_list(self):
 		"""get list of keys"""
-		return self.keys()
+		return list(self.keys())
 
 	def __setitem__(self, key, value):
 		self.update()
-		if not isinstance(key, basestring):
+		if not isinstance(key, str):
 			raise TypeError()
 		dict.__setitem__(self, key, value)
 
 	def __getitem__(self, key):
 		self.update()
-		if not isinstance(key, basestring):
+		if not isinstance(key, str):
 			raise TypeError()
 		if dict.__contains__(self, key):
 			return dict.__getitem__(self, key)
@@ -75,13 +76,13 @@ class VDOM_session(dict):
 
 	def __contains__(self, key):
 		self.update()
-		if not isinstance(key, basestring):
+		if not isinstance(key, bytes):
 			raise TypeError()
 		return dict.__contains__(self, key)
 
 	def get(self, key, default=None):
 		self.update()
-		if not isinstance(key, basestring):
+		if not isinstance(key, bytes):
 			raise TypeError()
 		return dict.get(self, key, default)
 	
@@ -102,5 +103,5 @@ class VDOM_session(dict):
 	user = property(__get_user)
 
 	def clean_files(self):
-		for uploaded_file in self.files.itervalues():
+		for uploaded_file in self.files.values():
 			uploaded_file.remove()

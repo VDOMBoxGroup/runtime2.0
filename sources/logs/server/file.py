@@ -1,9 +1,12 @@
 
+from builtins import zip
+from builtins import next
+from builtins import object
 import sys
 import os
 import os.path
 from collections import deque
-from itertools import tee, chain, izip, islice
+from itertools import tee, chain, islice
 import settings
 
 
@@ -43,7 +46,7 @@ class LogFile(object):
         self._data = ""
         self._tell = self._size
 
-    def read(self, start=0, count=sys.maxint, into=None):
+    def read(self, start=0, count=sys.maxsize, into=None):
         if self._file is None:
             if self._exists is None:
                 self._exists = os.path.exists(self.filename)
@@ -57,7 +60,7 @@ class LogFile(object):
         if start < len(self._index):
             lefts, rights = tee(chain((self._size,), self._index))
             next(rights, None)
-            for left, right in islice(izip(lefts, rights), start, start + count):
+            for left, right in islice(zip(lefts, rights), start, start + count):
                 self._file.seek(right)
                 entry = self._formatter.parse(self._file.read(left - right).decode("utf8"))
                 result.append(entry)
@@ -74,7 +77,7 @@ class LogFile(object):
 
             if self._tell:
                 try:
-                    tell = iterator.next()
+                    tell = next(iterator)
                 except StopIteration:
                     self._data = data
                     continue
@@ -87,7 +90,7 @@ class LogFile(object):
             index, entries = deque(), deque()
             while 1:
                 try:
-                    position = iterator.next()
+                    position = next(iterator)
                 except StopIteration:
                     break
                 else:

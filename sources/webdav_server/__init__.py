@@ -1,4 +1,5 @@
+from __future__ import absolute_import
 
-import request_server
-import server
-from server import VDOM_webdav_manager
+from . import request_server
+from . import server
+from .server import VDOM_webdav_manager

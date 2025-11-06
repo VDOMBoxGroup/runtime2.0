@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 
-from acl_manager import VDOM_acl_manager
-from user_manager import VDOM_user_manager
+from .acl_manager import VDOM_acl_manager
+from .user_manager import VDOM_user_manager
 
 
 create_application	= 1

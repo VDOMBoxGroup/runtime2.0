@@ -1,5 +1,8 @@
-
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from utils.exception import VDOMSecurityError
 from utils.properties import lazy, weak, roproperty, rwproperty
 from ..generic import MemoryBase
@@ -29,7 +32,7 @@ class MemoryStructureSketch(MemoryBase, Mapping):
 
     def __invert__(self):
         if "_items" in self.__dict__:
-            for item in self._items.itervalues():
+            for item in self._items.values():
                 ~item
         self.__class__ = MemoryStructure
         return self
@@ -91,7 +94,7 @@ class MemoryStructure(MemoryStructureSketch):
                 self._top, self._left, self._state)
         if self.__dict__.get("_items"):
             file.write(u"%s<Object %s>\n" % (ident, information))
-            for item in self._items.itervalues():
+            for item in self._items.values():
                 item.compose(ident=ident + u"\t", file=file)
             file.write(u"%s</Object>\n" % ident)
         else:

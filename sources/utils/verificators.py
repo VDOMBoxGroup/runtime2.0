@@ -1,4 +1,5 @@
 
+from builtins import str
 import re
 from logs.levels import NAME_TO_LEVEL as LOG_LEVEL_MAPPING
 from .decorators import verificator
@@ -200,7 +201,7 @@ def exception(value):
 
 @verificator
 def thread(value):
-    print "???", value
+    print("???", value)
     match = THREAD_REGEX.match(value)
     if match:
         return int(value) if match.lastindex else str(value)

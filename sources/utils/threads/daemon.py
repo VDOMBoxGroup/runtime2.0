@@ -1,4 +1,6 @@
 
+
+
 from threading import enumerate as enumerate_threads
 from .thread import SmartThread
 
@@ -18,7 +20,7 @@ class SmartDaemon(SmartThread):
             if len(mapping) < len(dependencies):
                 raise Exception("Require %s thread(s) to run" % ", ".join(set(dependencies) - set(mapping)))
 
-            for name, thread in mapping.items():
+            for name, thread in list(mapping.items()):
                 if not isinstance(thread, SmartDaemon):
                     raise Exception("Not smart daemon in dependencies")
                 if thread.latter != self.latter:

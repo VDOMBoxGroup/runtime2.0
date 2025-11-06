@@ -959,7 +959,7 @@ class VDOM_carousel(VDOM_object):
 	def render(self, contents=""):
 		display = u"display:none;" if self.visible == "0" else u"display:block;"
 
-		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u""
 
 		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
 					width: {width}px; height: {height}px; """\

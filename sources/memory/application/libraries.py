@@ -1,6 +1,10 @@
 
 from weakref import ref
-from collections import MutableMapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import MutableMapping
+else:
+    from collections.abc import MutableMapping
 
 from utils.properties import lazy, weak, roproperty
 
@@ -48,7 +52,7 @@ class MemoryLibraries(MemoryBase, MutableMapping):
 
     # unsafe
     def compose(self, ident=u"", file=None, shorter=False):
-        libraries = tuple(library for library in self._items.itervalues())
+        libraries = tuple(library for library in self._items.values())
         if libraries:
             file.write(u"%s<Libraries>\n" % ident)
             for library in libraries:

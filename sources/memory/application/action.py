@@ -1,4 +1,5 @@
-
+import codecs
+from builtins import str
 import settings
 import managers
 import file_access
@@ -57,10 +58,10 @@ class MemoryActionSketch(MemoryBase, Executable):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "action",
             "\"%s\"" % self._name if self._name else None,
-            "sketch of %s" % self._collection.owner)))
+            "sketch of %s" % self._collection.owner) if _f])
 
 
 class MemoryActionRestorationSketch(MemoryActionSketch):
@@ -151,10 +152,10 @@ class MemoryAction(MemoryActionSketch):
     # unsafe
     def compose(self, ident=u"", file=None):
         information = u"ID=\"%s\" Name=\"%s\" Top=\"%s\" Left=\"%s\" State=\"%s\"" % \
-            (self._id, self._name.encode("xml"), self._top, self._left, self._state)
+            (self._id, codecs.encode(self._name, "xml"), self._top, self._left, self._state)
         if self.source_code:
             file.write(u"%s<Action %s>\n" % (ident, information))
-            file.write(u"%s\n" % self.source_code.encode("cdata"))
+            file.write(u"%s\n" % codecs.encode(self.source_code, "cdata"))
             file.write(u"%s</Action>\n" % ident)
         else:
             file.write(u"%s<Action %s/>\n" % (ident, information))
@@ -163,7 +164,7 @@ class MemoryAction(MemoryActionSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "action",
             "%s:%s" % (self._id, self._name) if self._name else None,
-            "of %s" % self._collection.owner)))
+            "of %s" % self._collection.owner) if _f])

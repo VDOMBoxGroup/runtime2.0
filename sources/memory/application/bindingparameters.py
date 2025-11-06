@@ -1,5 +1,10 @@
 
-from collections import OrderedDict, Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
+from collections import OrderedDict
 from utils.properties import weak
 from ..generic import MemoryBase
 

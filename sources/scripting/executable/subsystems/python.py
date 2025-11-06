@@ -1,6 +1,9 @@
 
+
+
+from builtins import object
 import re
-from __builtin__ import compile as python_compile
+from builtins import compile as python_compile
 from logs import server_log
 from memory import PYTHON_EXTENSION, BYTECODE_EXTENSION
 from ...wrappers import environment

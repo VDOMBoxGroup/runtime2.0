@@ -10206,7 +10206,10 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import managers
+<![CDATA[from __future__ import division
+from builtins import str
+from past.utils import old_div
+import managers
 
 
 class VDOM_dbtable(VDOM_object):
@@ -10305,8 +10308,8 @@ class VDOM_dbtable(VDOM_object):
 							"<cell>"\
 								"<text top=\"0\" left=\"0\" height=\"%s\" fontsize=\"9\">%s</text>"\
 							"</cell>"%(
-									str(int(self.height)/2-4), font, "<![CDATA[ " + column.attributes["name"].value + "]" + "]>",
-									str(int(self.height)/2-4), type)
+									str(old_div(int(self.height),2)-4), font, "<![CDATA[ " + column.attributes["name"].value + "]" + "]>",
+									str(old_div(int(self.height),2)-4), type)
 				result += "</row>"
 			result += "</table>"
 		result += "</container>"
@@ -10345,7 +10348,7 @@ def get_structure(object, xml_param):
 		table = get_table(object)
 		structure = table.get_structure()
 		return "<Result>%s</Result>" % structure
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Getting structure failed: %s</Error>" % str(e)
 
 
@@ -10378,7 +10381,7 @@ def get_data(object, xml_param):
 
 		data = table.get_data_xml(limit_num, offset_num, filter_query, order)
 		return "<Result>%s</Result>" % data
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Getting data failed: %s</Error>" % str(e)
 
 
@@ -10389,7 +10392,7 @@ def get_count(object, xml_param):
 		table = get_table(object)
 		count = table.get_count()
 		return "<Result>%s</Result>" % count
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Getting row count failed: %s</Error>" % str(e)
 
 
@@ -10400,7 +10403,7 @@ def add_row(object, xml_param):
 		table = get_table(object)
 		num_added = table.addrow_from_xml(xml_param)
 		return "<Result>OK. Added rows:%s</Result>" % num_added
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Adding row failed: %s</Error>" % str(e)
 
 
@@ -10411,7 +10414,7 @@ def add_column(object, xml_param):
 		table = get_table(object)
 		num_added = table.addcolumn_from_xml(xml_param)
 		return "<Result>OK. Added columns:%s</Result>" % num_added
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Adding column failed: %s</Error>" % str(e)
 
 
@@ -10428,7 +10431,7 @@ def delete_column(object, xml_param):
 			if table.delete_column(id):
 				return "<Result>OK. Deleting column %s ok</Result>" % str(id)
 			return "<Error>No such column for delete: %s</Error>" % str(id)
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Deleting column failed: %s</Error>" % str(e)
 
 
@@ -10439,7 +10442,7 @@ def delete_row(object, xml_param):
 		table = get_table(object)
 		table.delete_row_from_xml(xml_param)
 		return "<Result>OK. Deleting row ok</Result>"
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Deleting row failed: %s</Error>" % str(e)
 
 
@@ -10450,7 +10453,7 @@ def update_column(object, xml_param):
 		table = get_table(object)
 		table.update_column(xml_param)
 		return "<Result>OK. Updating column ok</Result>"
-	except Exception, e:
+	except Exception as e:
 		return "<Error>Updating column failed: %s</Error>" % str(e)
 
 
@@ -10461,8 +10464,7 @@ def update_row(object, xml_param):
 		table = get_table(object)
 		table.update_row_from_xml(xml_param)
 		return "<Result>OK. Updating row ok</Result>"
-	except Exception, e:
-		return "<Error>Updating row failed: %s</Error>" % str(e)
-]]>
+	except Exception as e:
+		return "<Error>Updating row failed: %s</Error>" % str(e)]]>
 	</SourceCode>
 </Type>

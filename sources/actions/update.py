@@ -27,7 +27,7 @@ def update(filename, select=False):
             elif entity is APPLICATION:
                 subject = managers.memory.update_application(filename)
                 if settings.STORE_BYTECODE:
-                    for library in subject.libraries.itervalues():
+                    for library in subject.libraries.values():
                         library.compile()
                 show("contains %s" % subject)
                 with section("notifications"):

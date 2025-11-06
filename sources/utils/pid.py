@@ -1,8 +1,9 @@
 """ VDOM_server_pid is used to write pid file for server to stop it later """
 
+from builtins import object
 import os
 
-class VDOM_server_pid:
+class VDOM_server_pid(object):
 	"""server pid class"""
 
 	def __init__(self, pidfile, write=True, remove=False):

@@ -882,7 +882,7 @@ def build_wholexml_data(layout, widgets):
     events_part = {}
 
     if isinstance(layout['items'], dict):
-        iter_items = layout['items'].iteritems()
+        iter_items = iter(layout['items'].items())
     else:
         iter_items = enumerate(layout['items'])
 
@@ -902,7 +902,7 @@ def build_wholexml_data(layout, widgets):
 
         preffix = 'jlayout_container.jlayout_widgets.pane_{}.'.format(key)
 
-        for event,actions in copy.deepcopy(events).iteritems():
+        for event,actions in copy.deepcopy(events).items():
             if not actions: continue
 
             for action in actions:
@@ -925,7 +925,7 @@ def build_wholexml_data(layout, widgets):
         'events' : json.dumps(events_part, indent=2),
     }
 
-    for k,v in result.items():
+    for k,v in list(result.items()):
         if not v: del result[k]
 
     return result

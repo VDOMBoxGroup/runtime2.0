@@ -15,25 +15,29 @@ See `Developers info`_ for more information about the WsgiDAV architecture.
 
 .. _`Developers info`: http://docs.wsgidav.googlecode.com/hg/html/develop.html  
 """
+from __future__ import absolute_import
+
+
 from collections import OrderedDict
 from wsgidav.dav_error import DAVError, HTTP_FORBIDDEN,HTTP_REQUEST_TIMEOUT,HTTP_NOT_FOUND
 from wsgidav.dav_provider import DAVProvider, DAVCollection, DAVNonCollection, _DAVResource
-from wsgidav.property_manager import PropertyManager
-from StringIO import StringIO
+from wsgidav.prop_man.property_manager import PropertyManager
+from io import StringIO
 
-import wsgidav.util as util
+
 import os
 import mimetypes
 import shutil
 import stat
 import managers
-from webdav_request import VDOM_webdav_request
-from webdav_cache import lru_cache
+from .webdav_request import VDOM_webdav_request
+from .webdav_cache import lru_cache
 import posixpath
 import tempfile
+import logging
 __docformat__ = "reStructuredText"
 
-_logger = util.getModuleLogger(__name__)
+_logger = logging.getLogger(__name__)
 
 BUFFER_SIZE = 8192
 
@@ -169,7 +173,7 @@ class VDOM_resource(_DAVResource):
 		if not self.isCollection:
 			raise NotImplementedError()
 		memberList = [] 
-		for name, child in self.getMemberChildren().iteritems():
+		for name, child in self.getMemberChildren().items():
 			member = self.getMember(name,child) 
 			assert member is not None
 			memberList.append(member)

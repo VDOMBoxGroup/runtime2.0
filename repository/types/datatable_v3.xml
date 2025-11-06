@@ -751,11 +751,6 @@
 			S3OUMiv43hzCjeLbnuwK95bP4WaxEg4RGUrEwyRtlRmL/X0qu0Rbfjxx+j41tAxFUrvDaM/+F2AA
 			3tc//lMhXzcAAAAASUVORK5CYII=
 		</Resource>
-		<Resource ID="168eab1b-d9e1-9d79-01ce-0211fc938fbf" Type="png" Name="picture">
-			iVBORw0KGgoAAAANSUhEUgAAAAcAAAAbCAIAAAA/JAJkAAAAXklEQVR42o3KtxHAIADAQHv/Uck5
-			gwewClT+6T3nPL9e1r33ta61QOecoGOMa+29g7bWQGutoKUU0JwzaEoJNMYIGkIA9d6DOudArbWg
-			xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==
-		</Resource>
 		<Resource ID="5a36a105-aea5-cf81-2586-089c91dadd01" Type="png" Name="Icon">
 			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 			jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
@@ -906,7 +901,10 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import json
+<![CDATA[from builtins import str
+from builtins import zip
+from builtins import range
+import json
 
 
 class VDOM_datatable_v3(VDOM_object):
@@ -968,7 +966,7 @@ class VDOM_datatable_v3(VDOM_object):
 		for value in src_data:
 			if len(header) == len(value):
 				if isinstance(value, list):
-					row = dict(zip(header, value))
+					row = dict(list(zip(header, value)))
 					data.append(row)
 					if key and key in header:
 						keys.append(row[key])
@@ -1202,13 +1200,13 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 
 		if vheader:
 			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><div class="tri"><input id="{0}" type="checkbox" /><label for="{0}"></label><em></em></div></th>'.format(str(id)+"tri") if self.selectionmode == "1" else u'<tr header class="thead">'
-			for (index, colname) in zip(range(len(vheader)), vheader):
-				theader += u'<th index="'+unicode(index+1)+'" class="th-cell th-cell-'+unicode(index+1)+'">' + unicode(colname) + u'</th>'
+			for (index, colname) in zip(list(range(len(vheader))), vheader):
+				theader += u'<th index="'+str(index+1)+'" class="th-cell th-cell-'+str(index+1)+'">' + str(colname) + u'</th>'
 
 			theader += u'</tr>'
 
 		lendata = len(data)
-		for (row_i, row) in zip(range(lendata), data):
+		for (row_i, row) in zip(list(range(lendata)), data):
 
 			if nn > 1: classfirst = u""
 			if nn >= lendata: classlast = u"last"
@@ -1225,7 +1223,7 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 			tdata += u'<tr index="%(row)s" class="row row-%(row)s %(even)s %(active)s %(classfirst)s %(classlast)s">' % {
 				"classfirst": classfirst,
 				"classlast":  classlast,
-				"row":        unicode(row_i + 1),
+				"row":        str(row_i + 1),
 				"active":     u"active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u"",
 				"even":       u"oddrow" if (row_i + 1) % 2 else u"even"
 			}
@@ -1250,14 +1248,14 @@ $j("""+id+"""_tds).bind('click dblclick', function(e){
 			#tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox" />%s</td>' % tristate if self.selectionmode == "1" else ""
 			tdata += u'<td checkbox align="center" class="cell cell-0">%s</td>' % tristate if self.selectionmode == "1" else ""
 			if vheader:
-				for (index, col) in zip(range(len(vheader)), vheader):
+				for (index, col) in zip(list(range(len(vheader))), vheader):
 					try:
-						tdata += u'<td index="'+unicode(index+1)+'" class="cell cell-'+unicode(row_i+1)+'_'+unicode(index+1)+' cell-'+unicode(index+1)+'">' + unicode(row[col]) + u'</td>'
+						tdata += u'<td index="'+str(index+1)+'" class="cell cell-'+str(row_i+1)+'_'+str(index+1)+' cell-'+str(index+1)+'">' + str(row[col]) + u'</td>'
 					except:
 						raise Exception ("In row (%s) no column %s" % (json.dumps(row), col))
 			else:
-				for (index, val) in zip(range(len(row)), row):
-					tdata += u'<td class="cell cell-'+unicode(index+1)+'">' + unicode(val) + u'</td>'
+				for (index, val) in zip(list(range(len(row))), row):
+					tdata += u'<td class="cell cell-'+str(index+1)+'">' + str(val) + u'</td>'
 			tdata += u"</tr>"
 
 		if self.draggable == '1':
@@ -1360,7 +1358,7 @@ $j('#%(id)s tr').draggable({
 		# collect data
 		for value in src_data:
 			if isinstance(value, list) and len(header) == len(value):
-				row = dict(zip(header, value))
+				row = dict(list(zip(header, value)))
 				data.append(row)
 			else:
 				data.append(value)
@@ -1372,7 +1370,7 @@ $j('#%(id)s tr').draggable({
 						<text fontsize="14" color="#000000" textalign="center">
 							{colname}
 						</text>
-					</cell>""".format(colname = unicode(colname))
+					</cell>""".format(colname = str(colname))
 
 		# generate table data
 		for row in data:
@@ -1384,7 +1382,7 @@ $j('#%(id)s tr').draggable({
 								<text fontsize="12" color="#000000" textalign="center">
 									{cell_data}
 								</text>
-							</cell>""".format(cell_data = unicode(row[col]))
+							</cell>""".format(cell_data = str(row[col]))
 			else:
 				for val in row:
 					tdata += \
@@ -1392,7 +1390,7 @@ $j('#%(id)s tr').draggable({
 								<text fontsize="12" color="#000000" textalign="center">
 									{cell_data}
 								</text>
-							</cell>""".format(cell_data = unicode(val))
+							</cell>""".format(cell_data = str(val))
 
 			tdata += u"</row>"
 

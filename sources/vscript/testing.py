@@ -1,4 +1,5 @@
 
+from builtins import object
 from unittest import TestCase
 from .engine import vexecute, vcompile
 from .variables import variant
@@ -22,7 +23,7 @@ def raises(exception_class):
 class VScriptTestCase(TestCase):
 	
 	def execute(self, source, value=None, want=None, quiet=1, **keywords):
-		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
+		environment={"v_%s"%name: value for name, value in keywords.items()}
 		if want:
 			want="v_%s"%want
 		else:
@@ -38,7 +39,7 @@ class VScriptTestCase(TestCase):
 			return result.subtype
 	
 	def evaluate(self, expression=None, let=None, set=None, quiet=1, **keywords):
-		environment={"v_%s"%name: value for name, value in keywords.iteritems()}
+		environment={"v_%s"%name: value for name, value in keywords.items()}
 		environment["v_result"]=result=variant()
 		expression=(u"%s\nresult=%s"%(expression, let) if expression else u"result=%s"%let) if let \
 			else (u"%s\nset result=%s"%(expression, set) if expression else u"set result=%s"%set) if set \

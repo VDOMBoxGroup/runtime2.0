@@ -1,4 +1,7 @@
 
+
+
+from builtins import range
 import socket
 from threading import Lock, enumerate as enumerate_threads
 from utils.threads import SmartDaemon
@@ -35,9 +38,9 @@ class LogServerSession(SmartDaemon):
             raise Exception
 
         with self._lock:
-            try:
+            if name in self._writers:
                 writer = self._writers[name]
-            except KeyError:
+            else:
                 writer = self._writers[name] = LogWriter(name, log.formatter())
 
         self._mapping[id] = (log, writer, None)
@@ -145,8 +148,10 @@ class LogServerSession(SmartDaemon):
     def main(self):
         while self.running:
             try:
-                action, = self._action_request.unpack_from(self._stream)
-                self._actions[action](self)
+                ret = self._action_request.unpack_from(self._stream)
+                if ret:
+                    action, = ret
+                    self._actions[action](self)
             except NoDataException:
                 break
             except ShutdownException:

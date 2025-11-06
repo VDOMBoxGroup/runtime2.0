@@ -1,4 +1,7 @@
 
+from builtins import zip
+from builtins import str
+
 import sys, re, datetime
 from math import modf, fabs
 from .. import errors
@@ -25,20 +28,20 @@ def decode_date(value):
 
 class date(subtype):
 
-	pattern=re.compile("^(?:(?P<day>\d{1,2})[\.\-\/](?P<month>\d{1,2})(?:[\.\-\/](?P<year>\d{2,4}))?)?"\
-		"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
-	pattern2=re.compile("^(?:(?P<year>\d{2,4})[\.\-\/](?P<month>\d{1,2})[\.\-\/](?P<day>\d{1,2}))?"\
-		"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
+	pattern=re.compile(r"^(?:(?P<day>\d{1,2})[\.\-\/](?P<month>\d{1,2})(?:[\.\-\/](?P<year>\d{2,4}))?)?"\
+		r"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
+	pattern2=re.compile(r"^(?:(?P<year>\d{2,4})[\.\-\/](?P<month>\d{1,2})[\.\-\/](?P<day>\d{1,2}))?"\
+		r"(?:(?(day)\s+)(?P<hour>\d{1,2}):(?P<minute>\d{1,2})(?::(?P<second>\d{1,2}))?(?:\s*(?P<ampm>(?:am|aM|Am|AM|pm|pM|Pm|PM)))?)?$")
 
 	def __init__(self, value):
 		if isinstance(value, (int, float)):
 			self._value=float(value)
-		elif isinstance(value, basestring):
+		elif isinstance(value, bytes):
 			match=self.pattern.match(value) or self.pattern2.match(value)
 			if match:
 				day=match.group("day")
 				month=match.group("month")
-				year=match.group("year") or unicode(datetime.datetime.today().year)
+				year=match.group("year") or str(datetime.datetime.today().year)
 				hour=match.group("hour")
 				minute=match.group("minute")
 				second=match.group("second") or 0
@@ -74,7 +77,7 @@ class date(subtype):
 	as_date=property(lambda self: float(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: float(self))
 
 
@@ -118,7 +121,7 @@ class date(subtype):
 		else:
 			return u"%02d.%02d.%d"%(day, month, year)
 	
-	def __nonzero__(self):
+	def __bool__(self):
 		return bool(self._value)
 
 
@@ -126,7 +129,7 @@ class date(subtype):
 		return hash(self._value)
 	
 	def __repr__(self):
-		return "DATE@%08X:%r:%s"%(id(self), self._value, unicode(self))
+		return "DATE@%08X:%r:%s"%(id(self), self._value, str(self))
 
 
 from .boolean import boolean, true, false

@@ -1,20 +1,23 @@
 
 import os
 import os.path
-import socket
-
 import settings
+import socket
+import sys
+
 import managers
 
 from utils.exception import VDOM_exception
 # from utils.card import send_to_card_and_wait
 
-
-direct = os.path.join(settings.TEMPORARY_LOCATION, "socket")
-try:
-    s = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
-except:
-    s = None
+s = None
+if not sys.platform.startswith("win"):
+    direct = os.path.join(settings.TEMPORARY_LOCATION, "socket")
+    try:
+        s = socket.socket(socket.af.AF_UNIX, socket.SOCK_DGRAM)
+    except:
+        # not availible
+        pass
 
 
 def console_debug(data):

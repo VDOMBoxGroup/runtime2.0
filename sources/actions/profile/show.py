@@ -1,8 +1,9 @@
 
+from builtins import zip
 import pstats
 import re
 
-from itertools import izip
+
 
 import settings
 import managers
@@ -114,7 +115,7 @@ def run(name=None, location=None, headers=False, sort=None, order=None, limit=50
     profile = pstats.Stats(location)
     statistics = tuple((make_name(path, line, function), calls, total, cumulative)
         for (path, line, function), (calls, stack, total, cumulative, more)
-        in profile.stats.iteritems())
+        in profile.stats.items())
 
     key = SORT_MAPPING[sort]
     reverse = order is ORDER_BY_DESCENDING
@@ -134,7 +135,7 @@ def run(name=None, location=None, headers=False, sort=None, order=None, limit=50
                     or entry[0].startswith(SERVER_ALIAS)):
                 continue
 
-            show(SEPARATOR.join(template % (width, value) for value, (width, label, template) in izip(entry, COLUMNS)))
+            show(SEPARATOR.join(template % (width, value) for value, (width, label, template) in zip(entry, COLUMNS)))
 
             if index == limit:
                 break

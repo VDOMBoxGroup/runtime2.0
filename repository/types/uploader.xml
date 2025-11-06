@@ -509,7 +509,9 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import sys
+<![CDATA[from __future__ import division
+from past.utils import old_div
+import sys
 
 
 class VDOM_uploader(VDOM_object):
@@ -553,7 +555,7 @@ class VDOM_uploader(VDOM_object):
 					skin = self.style % { "id": id },
 					required = "required" if self.required == "1" else "",
 					accept = self.accept,
-					control_width = u'size="2"' if int(self.skin) == 1 else u'size="%s"' % ((int(self.width) - 96) / 7 + 1)
+					control_width = u'size="2"' if int(self.skin) == 1 else u'size="%s"' % (old_div((int(self.width) - 96), 7) + 1)
 				)
 
 		return VDOM_object.render(self, contents=result)
@@ -577,7 +579,7 @@ class VDOM_uploader(VDOM_object):
 					top = self.top, left = self.left, width = self.width, height = self.height,
 					r1_left = 0, r1_top = 0, r1_wid = int(self.width) - 87, r1_hei = int(self.height) - 1,
 					r2_left = int(self.width) - 80 , r2_top = 0, r2_wid = 79, r2_hei = int(self.height) - 1,
-					txt_top = int(self.height)/2 - 9, txt_left = int(self.width) - 80, txt_wid = 79,
+					txt_top = old_div(int(self.height),2) - 9, txt_left = int(self.width) - 80, txt_wid = 79,
 					value = "Browse...", contents = contents)
 
 		return VDOM_object.wysiwyg(self, contents=result)

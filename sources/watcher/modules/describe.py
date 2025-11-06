@@ -1,4 +1,4 @@
-
+import codecs
 import gc
 from collections import defaultdict
 
@@ -31,11 +31,11 @@ def describe(options):
 
     yield "<reply>"
     yield "<descriptions>"
-    for name, items in reference.iteritems():
-        yield "<subgroup name=\"%s\">" % name.encode("xml")
+    for name, items in reference.items():
+        yield "<subgroup name=\"%s\">" % codecs.encode(name, "xml")
         for description, reference in items:
             yield "<description object=\"%s\">%s</description>" % (
-                description.encode("xml"), reference.encode("xml"))
+                codecs.encode(description, "xml"), codecs.encode(reference, "xml"))
         yield "</subgroup>"
     yield "</descriptions>"
     yield "</reply>"

@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 import re
 
@@ -122,7 +123,7 @@ def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package
         if not quiet and listing:
             debug("- - - - - - - - - - - - - - - - - - - -")
             for line, statement in enumerate(script.split("\n")):
-                debug((u"  %s      %s" % (unicode(line + 1).ljust(4), statement.expandtabs(4))).encode("ascii", "backslashreplace"))
+                debug((u"  %s      %s" % (str(line + 1).ljust(4), statement.expandtabs(4))).encode("ascii", "backslashreplace"))
             debug("- - - - - - - - - - - - - - - - - - - -")
         lexer.lineno = 1
         try:
@@ -136,8 +137,8 @@ def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package
             source[0:0] = ((None, 0, line) for line in lines)
         if not quiet and listing:
             for line, data in enumerate(source):
-                debug((u"  %s %s %s%s" % (unicode(line + 1).ljust(4),
-                        unicode("" if data[0] is None else data[0]).ljust(4),
+                debug((u"  %s %s %s%s" % (str(line + 1).ljust(4),
+                        str("" if data[0] is None else data[0]).ljust(4),
                     "    " * data[1], data[2].expandtabs(4))).encode("ascii", "backslashreplace"))
             debug("- - - - - - - - - - - - - - - - - - - -")
         code = u"\n".join([u"%s%s" % (u"\t" * ident, string) for line, ident, string in source])
@@ -191,20 +192,20 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
                 use_code, use_source = weakuses[code]
                 vexecute(use_code, use_source, namespace=namespace, environment=environment)
             namespace["__vscript__"] = source
-            exec code in namespace
+            exec(code, namespace)
         except exitloop:
             error_class, error, traceback = sys.exc_info()
             try:
-                raise errors.invalid_exit_statement, None, traceback
+                raise errors.invalid_exit_statement.with_traceback(traceback)
             finally:
                 del traceback
         except AttributeError:
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    result = re.search(".+ has no attribute \'(.+)\'", unicode(error))
+                    result = re.search(".+ has no attribute \'(.+)\'", str(error))
                     if result:
-                        raise errors.object_has_no_property(name=result.group(1)), None, traceback
+                        raise errors.object_has_no_property(name=result.group(1)).with_traceback(traceback)
                 raise
             finally:
                 del traceback
@@ -212,7 +213,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    raise errors.type_mismatch, None, traceback
+                    raise errors.type_mismatch.with_traceback(traceback)
                 raise
             finally:
                 del traceback
@@ -220,10 +221,10 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    result = re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", unicode(error))
+                    result = re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", str(error))
                     if result:
-                        raise errors.wrong_number_of_arguments(name=result.group(1)), None, traceback
-                    elif re.match("__init__\(\) got an unexpected keyword argument 'set'", unicode(error)):
+                        raise errors.wrong_number_of_arguments(name=result.group(1)).with_traceback(traceback)
+                    elif re.match("__init__\(\) got an unexpected keyword argument 'set'", str(error)):
                         raise errors.illegal_assigment
                 raise
             finally:
@@ -241,7 +242,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             report = format_exception_trace(information=information, locals=True)
             new_error = errors.internal_error(replace=search_exception_place(error, traceback), cause=information, report=report)
             check_exception(new_error, traceback, errors.generic.runtime)
-            raise new_error, None, traceback
+            raise new_error.with_traceback(traceback)
         finally:
             del traceback
 

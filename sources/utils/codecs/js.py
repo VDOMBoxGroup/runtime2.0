@@ -1,4 +1,5 @@
 
+from builtins import map
 import re
 import codecs
 

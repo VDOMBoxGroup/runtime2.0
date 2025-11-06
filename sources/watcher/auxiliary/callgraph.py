@@ -1,6 +1,8 @@
 
+
+
 import gprof2dot
-from cStringIO import StringIO
+from io import StringIO
 
 
 DEFAULT_NODE_THRESHOLD = 0.5

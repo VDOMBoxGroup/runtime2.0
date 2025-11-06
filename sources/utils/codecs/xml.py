@@ -1,4 +1,5 @@
 
+from builtins import chr
 import re
 import codecs
 
@@ -16,7 +17,7 @@ class XmlCodec(codecs.Codec):
     def decode(self, input, errors='strict'):
         def substitute(match):
             code, xcode, entity = match.group(1, 2, 3)
-            return unichr(int(code)) if code else unichr(int(xcode, 16)) if xcode else decode_table.get(entity, entity)
+            return chr(int(code)) if code else chr(int(xcode, 16)) if xcode else decode_table.get(entity, entity)
         output = decode_regex.sub(substitute, input)
         return output, len(output)
 

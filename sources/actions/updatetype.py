@@ -1,7 +1,7 @@
-import install
-import uninstall
+from __future__ import absolute_import
+from . import install
+from . import uninstall
 
-from .select import select as select_default
 from .auxiliary.constants import TYPE, APPLICATION, EXTENSION, TYPES
 from .auxiliary import section, show, warn, detect, locate_repository, is_entity_name
 

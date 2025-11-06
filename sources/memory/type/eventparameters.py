@@ -1,5 +1,8 @@
-
-from collections import Sequence
+import sys
+if sys.version_info[0] < 3:
+    from collections import Sequence
+else:
+    from collections.abc import Sequence
 from utils.properties import weak, roproperty
 from ..generic import MemoryBase
 from .eventparameter import MemoryTypeEventParameterSketch

@@ -1,4 +1,5 @@
 
+from builtins import object
 import managers
 
 
@@ -24,7 +25,7 @@ class VDOM_session(object):
         return managers.request_manager.current.session().get(name, default)
 
     def keys(self):
-        return managers.request_manager.current.session().keys()
+        return list(managers.request_manager.current.session().keys())
 
     def __iter__(self):
         return iter(managers.request_manager.current.session())

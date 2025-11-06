@@ -1,4 +1,5 @@
 
+from builtins import str
 from logs import log
 from utils.parsing import Parser, ParsingException
 from .builder import vdomxml_builder

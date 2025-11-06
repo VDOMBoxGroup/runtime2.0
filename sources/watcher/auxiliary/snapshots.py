@@ -1,4 +1,5 @@
 
+from builtins import object
 import sys
 import gc
 import types
@@ -33,11 +34,11 @@ class WatcherSnapshooter(SmartDaemon):
     def _collect(self):
         gc.collect()
         check_interval = sys.getcheckinterval()
-        sys.setcheckinterval(sys.maxint)
+        sys.setswitchinterval(sys.maxsize)
         try:
             return {id(object) for object in gc.get_objects() if not isinstance(object, EXCLUDE_TYPES)}
         finally:
-            sys.setcheckinterval(check_interval)
+            sys.setswitchinterval(check_interval)
 
     def prepare(self):
         log.write("Start " + self.name)

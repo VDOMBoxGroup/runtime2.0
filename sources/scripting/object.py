@@ -1,8 +1,15 @@
+import codecs
+from builtins import str
 
+from builtins import object
 import json
 
 from copy import copy
-from collections import Mapping, MutableMapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping, MutableMapping
+else:
+    from collections.abc import Mapping, MutableMapping
 
 import settings
 import managers
@@ -234,7 +241,7 @@ class VDOMObject(object):
     def update(self, *names):
         attributes = {}
         for name in names:
-            name = unicode(name).lower()
+            name = str(name).lower()
             attributes[name] = getattr(self, name)
         self._origin.attributes.update(attributes)
 
@@ -257,9 +264,12 @@ class VDOMObject(object):
             log.write(u"Write action %s data to client: %d characters" % (action_name, len(data)))
         render_type = managers.request_manager.current.render_type
         if render_type != "e2vdom":
-            log.warning("Perform write when render type is \"%s\"\n%s" % (render_type,
-                format_thread_trace(statements=False, indent=settings.LOGGING_INDENT,
-                    skip=("write", "action"), until="scripting.executable")))
+            log.warning("Perform write when render type is \"%s\"\n%s" %
+                        (render_type,
+                         format_thread_trace(statements=False, indent=settings.LOGGING_INDENT,
+                                             skip=("write", "action"),
+                                             until="scripting.executable"))
+                        )
         # else:
         #     from utils.tracing import format_thread_trace
         #     log.debug(format_thread_trace(statements=False, skip=("write", "action"), until="scripting.executable"))
@@ -288,12 +298,14 @@ class VDOMObject(object):
         if not isinstance(arguments, (tuple, list)):
             arguments = (arguments,)
 
-        data = (("str", unicode(argument)) if isinstance(argument, basestring) else
-            ("obj", unicode(json.dumps(argument)).encode("xml")) for argument in arguments)
+        data = (("str", argument) if isinstance(argument, bytes) else
+                ("obj", codecs.encode(json.dumps(argument), "xml")) for argument in arguments)
 
         if arguments:
-            self.write("<EXECUTE %s>\n%s\n</EXECUTE>" % (information,
-                "\n".join("  <PARAM type=\"%s\">%s</PARAM>" % (kind, value.encode("xml")) for kind, value in data)), action_name)
+            self.write("<EXECUTE %s>\n%s\n</EXECUTE>" %
+                       (information,
+                        "\n".join("  <PARAM type=\"%s\">%s</PARAM>" % (kind, codecs.encode(value, "xml")) for kind, value in data)),
+                       action_name)
         else:
             self.write("<EXECUTE %s/>" % information, action_name)
 
@@ -316,8 +328,8 @@ class VDOMObject(object):
         except BaseException as error:
             if xmldata.strip():
                 if isinstance(error, vdomxml.ParsingException):
-                    raise VDOMXMLParsingError(str(error),
-                        getattr(error, "line", None), getattr(error, "column", None))
+                    raise VDOMXMLParsingError(error.message,
+                                              getattr(error, "line", None), getattr(error, "column", None))
                 else:
                     raise
             else:
@@ -329,12 +341,12 @@ class VDOMObject(object):
         if jsondata is not None:
             try:
                 vdomjson.loads(jsondata, root, self._origin,
-                    handler=self._origin.actions.get(handler) if handler else None)
+                               handler=self._origin.actions.get(handler) if handler else None)
             except BaseException as error:
                 if jsondata.strip():
                     if isinstance(error, vdomjson.ParsingException):
                         raise VDOMJSONParsingError(str(error),
-                            getattr(error, "line", None), getattr(error, "column", None))
+                                                   getattr(error, "line", None), getattr(error, "column", None))
                     else:
                         raise
 
@@ -372,10 +384,10 @@ class VDOMObject(object):
         self._attributes = attributes
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "object",
             self._type.name,
-            ":".join(filter(None, (self._id, self._name))))))
+            ":".join([_f for _f in (self._id, self._name) if _f])) if _f])
 
     def __repr__(self):
         return "<scripting %s at 0x%08X>" % (self, id(self))

@@ -100,7 +100,7 @@ def gen_wsdl():
 	result += """	<types>\n"""
 	result += """	<s:schema elementFormDefault="qualified" targetNamespace="http://services.vdom.net/VDOMServices">\n"""
 
-	for m in methods.keys():
+	for m in list(methods.keys()):
 		result += """		<s:element name="%s">
 			<s:complexType>
 				<s:sequence>\n""" % m
@@ -122,7 +122,7 @@ def gen_wsdl():
 
 
 	# message block
-	for m in methods.keys():
+	for m in list(methods.keys()):
 		result += """	<message name="%sRequest">
 		<part element="s0:%s" name="parameters"/>
 	</message>
@@ -134,7 +134,7 @@ def gen_wsdl():
 	# port block
 	result += """	<portType name="vdomService">\n"""
 
-	for m in methods.keys():
+	for m in list(methods.keys()):
 		result += """		<operation name="%s">
 			<input message="s0:%sRequest"/>
 			<output message="s0:%sResponse"/>
@@ -147,7 +147,7 @@ def gen_wsdl():
 	result += """	<binding name="vdomService" type="s0:vdomService">
 		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>\n"""
 
-	for m in methods.keys():
+	for m in list(methods.keys()):
 		result += """		<operation name="%s">
 			<soap:operation soapAction="http://services.vdom.net/VDOMServices/%s" style="document"/>
 			<input>
@@ -173,5 +173,5 @@ def gen_wsdl():
 	result += """</definitions>\n"""
 
 	ff = open(VDOM_CONFIG["WSDL-FILE-LOCATION"], "wb")
-	ff.write(result)
+	ff.write(result.encode("utf-8"))
 	ff.close()

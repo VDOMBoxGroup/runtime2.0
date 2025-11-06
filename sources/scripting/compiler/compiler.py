@@ -1,4 +1,6 @@
 
+#from builtins import str
+from builtins import object
 import re
 import settings
 import managers
@@ -76,7 +78,7 @@ class Compiler(object):
 
         # add default attribute values
         if not stateful:
-            for name, attribute in vdomtype.attributes.iteritems():
+            for name, attribute in vdomtype.attributes.items():
                 class_namespace[make_attribute_name(name)] = attribute.default_value
 
         return type(

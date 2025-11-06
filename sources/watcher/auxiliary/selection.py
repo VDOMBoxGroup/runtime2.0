@@ -1,4 +1,7 @@
 
+
+
+from builtins import filter
 import gc
 import threading
 
@@ -75,7 +78,7 @@ def select_objects(selector=None, server=True, unknown=True, source=None, filter
         objects = (object for object in objects if is_server_object(object, default=unknown))
 
     if filter:
-        objects = (object for object in objects if filter(object))
+        objects = (object for object in objects if list(filter(object)))
 
     return tuple(objects)
 

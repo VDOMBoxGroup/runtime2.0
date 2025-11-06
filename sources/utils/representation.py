@@ -1,5 +1,8 @@
 
 
+from builtins import str
+from builtins import next
+
 REASONABLE_WIDTH = 7
 REASONABLE_OBJECT_WIDTH = 10
 
@@ -65,10 +68,10 @@ def represent(value, width=None, limit=None, ellipsis="..."):
             return "".join((
                 opening,
                 separator.join((colon.join((represent(subkey), represent(subvalue)))
-                    for subkey, subvalue in value.iteritems())),
+                    for subkey, subvalue in value.items())),
                 ending))
 
-        iterator = value.iteritems()
+        iterator = iter(value.items())
         subvalue = next(iterator, NOTHING)
         if subvalue is NOTHING:
             result = opening + ending
@@ -127,7 +130,7 @@ def represent(value, width=None, limit=None, ellipsis="..."):
             return result
 
     def string(ellipsis="..."):
-        if isinstance(value, unicode):
+        if isinstance(value, str):
             prefix, extra = "u", 3
             encoding = "unicode-escape"
         else:
@@ -156,7 +159,7 @@ def represent(value, width=None, limit=None, ellipsis="..."):
         return sequence("set(", ")", ellipsis=ellipsis)
     elif isinstance(value, frozenset) and getattr(type(value), "__repr__") is frozenset.__repr__:
         return sequence("frozenset(", ")", ellipsis=ellipsis)
-    elif isinstance(value, basestring):
+    elif isinstance(value, bytes):
         return string(ellipsis=ellipsis)
     else:
         try:

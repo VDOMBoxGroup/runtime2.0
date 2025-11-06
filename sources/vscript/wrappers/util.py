@@ -1,11 +1,14 @@
+from builtins import zip
+from builtins import range
+
+from builtins import object
 from ..subtypes import array, boolean, date, double, empty, binary, integer, \
 	nothing, null, string, v_empty, dictionary, v_nothing, generic
 from ..primitives import primitive
 from ..subtypes.date import decode_date, encode_date
 from .. import errors, error
 from datetime import datetime
-from types import NoneType, FunctionType, MethodType, UnboundMethodType, \
-	BuiltinMethodType, BuiltinFunctionType
+from types import FunctionType, MethodType, BuiltinFunctionType
 
 
 class Nothing( object ):
@@ -19,7 +22,7 @@ class Nothing( object ):
 		return Nothing.__instance
 
 
-	def __nonzero__( self ):
+	def __bool__( self ):
 		return False
 
 
@@ -47,12 +50,12 @@ unwrappers = {
 }
 
 wrappers = {
-	long					: lambda value: integer( value ),
+	int					: lambda value: integer( value ),
 	int					: lambda value: integer( value ),
 	float					: lambda value: double( value  ),
-	unicode					: lambda value: string( value  ),
 	str					: lambda value: string( value  ),
-	NoneType				: lambda value: v_empty,
+	str					: lambda value: string( value  ),
+	type(None)				: lambda value: v_empty,
 	Nothing 				: lambda value: v_nothing,
 	list					: lambda value: wrapp_array( value ),
 	tuple					: lambda value: wrapp_array( value ),
@@ -60,9 +63,7 @@ wrappers = {
 	bool					: lambda value: boolean( value ),
 	FunctionType				: lambda value: method_type( value ),
 	MethodType				: lambda value: method_type( value ),
-	UnboundMethodType			: lambda value: method_type( value ),
 	BuiltinFunctionType			: lambda value: method_type( value ),
-	BuiltinMethodType			: lambda value: method_type( value ),
 	datetime				: lambda value: date( encode_date( *list( value.timetuple() )[:6] ) ),
 }
 
@@ -78,12 +79,12 @@ unwrapp_dictionary 	= lambda args: dict( [ (  unwrapp( key ) ,  unwrapp( args( k
 						for key in args ] )
 
 unwrapp_kwargs		= lambda kwargs: { key: unwrapp( value )
-						for key, value in kwargs.iteritems() }
+						for key, value in kwargs.items() }
 
 wrapp 				= lambda arg: 	wrappers.get( type( arg ), unknowntype )( arg )
 wrapp_array			= lambda args: array( [ wrapp( arg ) for arg in args ] )
 wrapp_dict			= lambda args: dictionary( {  wrapp( key ) : wrapp( value )
-						for key,value in args.iteritems() } )
+						for key,value in args.items() } )
 
 
 def convert( method, args, single = False ):
@@ -164,9 +165,9 @@ def v_PropertyReadOnly( func ):
 #######################################
 #Help functions
 #######################################
-is_string 		= lambda value: isinstance( value, basestring )
+is_string 		= lambda value: isinstance( value, bytes )
 is_byte_string 		= lambda value: isinstance( value, str )
-is_unicode_string 	= lambda value: isinstance( value, unicode )
+is_unicode_string 	= lambda value: isinstance( value, str )
 is_array  		= lambda value: isinstance( value, (list, tuple) )
 is_dict			= lambda value: isinstance( value, dict )
 
@@ -176,6 +177,6 @@ decodeUTF8 = lambda value: value.decode( "utf8" )
 
 #Enums
 def enum(*sequential, **named):
-	enums = dict(zip(sequential, range(len(sequential))), **named)
+	enums = dict(list(zip(sequential, list(range(len(sequential))))), **named)
 	enums[ "enums" ] = enums
 	return type('Enum', (), enums)

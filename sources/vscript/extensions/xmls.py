@@ -1,4 +1,5 @@
 
+
 import xml.dom.minidom
 from .. import errors
 from ..subtypes import boolean, integer, generic, string, true, false, \
@@ -129,21 +130,21 @@ class v_xmlnode(generic):
 			raise errors.object_has_no_property("name")
 		else:
 			name=self._node.nodeName
-			return string(name) if isinstance(name, basestring) else v_empty
+			return string(name) if isinstance(name, bytes) else v_empty
 
 	def v_localname(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("localname")
 		else:
 			name=self._node.localName
-			return string(name) if isinstance(name, basestring) else v_empty
+			return string(name) if isinstance(name, bytes) else v_empty
 
 	def v_prefix(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("prefix")
 		else:
 			name=self._node.prefix
-			return string(name) if isinstance(name, basestring) else v_empty
+			return string(name) if isinstance(name, bytes) else v_empty
 
 	def v_namespaceuri(self, **keywords):
 		raise errors.not_implemented
@@ -151,7 +152,7 @@ class v_xmlnode(generic):
 			raise errors.object_has_no_property("namespaceuri")
 		else:
 			uri=self._node.namespaceURI
-			return string(uri) if isinstance(uri, basestring) else v_empty
+			return string(uri) if isinstance(uri, bytes) else v_empty
 
 	def v_value(self, **keywords):
 		if "let" in keywords:
@@ -160,7 +161,7 @@ class v_xmlnode(generic):
 			raise errors.object_has_no_property("value")
 		else:
 			value=self._node.nodeValue
-			return string(value) if isinstance(value, basestring) else v_empty
+			return string(value) if isinstance(value, bytes) else v_empty
 
 
 	def v_unlink(self):
@@ -286,7 +287,7 @@ class v_xmlattributemap(generic):
 
 
 	def __iter__(self):
-		for attribute in self._attributes.values():
+		for attribute in list(self._attributes.values()):
 			yield variant(v_xmlattribute(attribute))
 
 	def __len__(self):
@@ -411,7 +412,7 @@ class v_xmldocument(v_xmlelement):
 	def v_parse(self, value):
 		value=value.as_string
 		self._document=xml.dom.minidom.parseString(value.encode("utf-8") \
-			if isinstance(value, unicode) else value)
+			if isinstance(value, str) else value)
 		self._node=self._document.documentElement
 		return v_mismatch
 

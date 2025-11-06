@@ -669,7 +669,10 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import collections, json, StringIO
+<![CDATA[from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+import collections, json, io
 
 
 
@@ -731,7 +734,7 @@ class VDOM_list(VDOM_object):
 
 		css = u"#%(id)s ul{list-style: none outside none;margin: 0;padding: 0;}%(hlayout)s" % {"id": id, "hlayout": hlayout}
 
-		res_buffer = StringIO.StringIO(u"")
+		res_buffer = io.StringIO(u"")
 		res_buffer.write(u"<style type='text/css'>")
 		res_buffer.write(css)
 		css = self.style % {"id": id}
@@ -752,26 +755,26 @@ class VDOM_list(VDOM_object):
 		
 		res_buffer.write(rslt)
 
-		for key, value in data.items():
+		for key, value in list(data.items()):
 			active = u'class="list-item-%s %s %s"' % ( key, "active" if key == self.selecteditem else "", "selected" if key in selectedRows else "")
 			if isinstance(value, list):
 				if len(value) == 3:
 					image = u"<img src=\"%s\" />" % value[1]
 					li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(left_image)s%(content)s%(right_image)s</li>" % {
-						"elem_id":     unicode(key),
-						"content":     unicode(value[0]),
+						"elem_id":     str(key),
+						"content":     str(value[0]),
 						"active":      active,
 						"left_image":  image if value[2] == "left" else u"",
 						"right_image": image if value[2] == "right" else u"" }
 					res_buffer.write(li)
 				else:
-					raise Exception("Must be 3 parameters in string %s" % unicode(value))
-			elif isinstance(value, unicode):
-				li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": unicode(key), "active": active, "content": unicode(value)}
+					raise Exception("Must be 3 parameters in string %s" % str(value))
+			elif isinstance(value, str):
+				li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": str(key), "active": active, "content": str(value)}
 				res_buffer.write(li)
 
 			else:
-				raise Exception("Incorrect value in string %s" % unicode(value))
+				raise Exception("Incorrect value in string %s" % str(value))
 
 		if self.dragdrop == "1":
 			dragdrop = u"""
@@ -887,29 +890,29 @@ $j(function(){
 			return VDOM_object.wysiwyg(self, contents=result)
 
 		try:
-			items = data.items()
+			items = list(data.items())
 
 		except:
 			return self.__get_error_wysiwyg_obj(incorrect_data_text)
 
-		res_buffer = StringIO.StringIO(u"")
+		res_buffer = io.StringIO(u"")
 		if self.layout == "1":
 			res_buffer.write(u"""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0">""")
 			for key, value in items:
 				if isinstance(value, list):
-					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % unicode(value[0])
+					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % str(value[0])
 					res_buffer.write(li)
-				elif isinstance(value, unicode):
-					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % unicode(value)
+				elif isinstance(value, str):
+					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % str(value)
 					res_buffer.write(li)
 			res_buffer.write(u"</row>")
 		else:
 			for key, value in items:
 				if isinstance(value, list):
-					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % unicode(value[0])
+					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % str(value[0])
 					res_buffer.write(li)
-				elif isinstance(value, unicode):
-					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % unicode(value)
+				elif isinstance(value, str):
+					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % str(value)
 					res_buffer.write(li)
 
 		result = \

@@ -1,9 +1,10 @@
 
+
 import codecs
 import time
 import datetime
 from struct import Struct
-from cStringIO import StringIO
+from io import StringIO
 
 
 ENCODING = "utf8"
@@ -25,7 +26,7 @@ def create_packer(format):
         "name": name,
         "arguments": ", ".join(name for name, symbol in pairs),
         "strings": ", ".join(name for name, symbol in pairs if symbol == "S"),
-        "encode": ", ".join("encode(unicode(%s))[0]" % name
+        "encoding": ", ".join("str(%s).encode()" % name
             for name, symbol in pairs if symbol == "S"),
         "pack": ", ".join(("mktime(%s.timetuple())" % name if symbol == "T"
             else "len(%s)" % name if symbol == "S"
@@ -46,10 +47,10 @@ def create_packer(format):
     source = """
 class %(name)s(object):
     def pack(self, %(arguments)s):
-        %(strings)s=%(encode)s
+        %(strings)s=%(encoding)s
         return \"\".join((struct.pack(%(pack)s), %(strings)s))
     def pack_into(self, stream, %(arguments)s):
-        %(strings)s=%(encode)s
+        %(strings)s=%(encoding)s
         stream.write(struct.pack(%(pack)s))
 %(write)s
     def unpack(self, data):
@@ -57,7 +58,9 @@ class %(name)s(object):
         %(unpack)s=struct.unpack_from(data)
         return %(decode)s
     def unpack_from(self, stream):
-        %(unpack)s=struct.unpack(stream.read(%(size)d))
+        data = stream.read(%(size)d)
+        if data is None: return
+        %(unpack)s=struct.unpack(data)
         return %(decode)s
         """ if "S" in format else """
 class %(name)s(object):
@@ -69,7 +72,9 @@ class %(name)s(object):
         %(unpack)s=struct.unpack(data)
         return %(decode)s
     def unpack_from(self, stream):
-        %(unpack)s=struct.unpack(stream.read(%(size)d))
+        data = stream.read(%(size)d)
+        if data is None: return
+        %(unpack)s=struct.unpack(data)
         return %(decode)s
         """ if "T" in format else """
 class %(name)s(object):
@@ -80,7 +85,9 @@ class %(name)s(object):
     def unpack(self, data):
         return struct.unpack(data)
     def unpack_from(self, stream):
-        return struct.unpack(stream.read(%(size)d))
+        data = stream.read(%(size)d)
+        if data is None: return
+        return struct.unpack(data)
         """
 
     namespace = {

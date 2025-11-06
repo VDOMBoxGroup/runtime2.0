@@ -1,4 +1,5 @@
 
+from builtins import str
 from uuid import uuid4
 import managers
 

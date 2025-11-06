@@ -23,7 +23,7 @@ class dictionary(subtype):
 			return self._items.get(arguments[0].subtype, v_empty)
 
 	copy=property(lambda self: dictionary({key.copy: value.copy \
-		for key, value in self._items.iteritems()}))
+		for key, value in self._items.items()}))
 
 	code=property(lambda self: 9001)
 	name=property(lambda self: "Dictionary")
@@ -40,7 +40,7 @@ class dictionary(subtype):
 	as_dictionary=property(lambda self: self)
 
 	def is_dictionary(self, function=None):
-		return all((function(key, value) for ket, value in self._items.iteritems())) if function \
+		return all((function(key, value) for ket, value in self._items.items())) if function \
 			else True
 
 	items=property(lambda self: self._items)

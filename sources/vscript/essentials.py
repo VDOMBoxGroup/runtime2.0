@@ -1,4 +1,5 @@
 
+from builtins import str
 import types, random, re
 from . import errors
 from .primitives import subtype, variable
@@ -28,10 +29,10 @@ def randomize(seed=None):
 	random.seed(seed)
 
 def echo(*arguments):
-	debug(" ".join([unicode(argument.as_simple) for argument in arguments]), console=True)
+	debug(" ".join([str(argument.as_simple) for argument in arguments]), console=True)
 
 def concat(*arguments):
-	return string(u"".join(unicode(argument.as_simple) for argument in arguments))
+	return string(u"".join(str(argument.as_simple) for argument in arguments))
 
 
 class exitloop(Exception):

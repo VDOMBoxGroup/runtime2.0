@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 from .. import errors
 from ..operations import div, mod
@@ -9,7 +10,7 @@ class string(subtype):
 
 	def __init__(self, value):
 		#assert isinstance(value, unicode), "Got %s instead unicode string"%type(value)
-		self._value=unicode(value)
+		self._value=str(value)
 
 
 	value=property(lambda self: self._value)
@@ -24,7 +25,7 @@ class string(subtype):
 	as_date=property(lambda self: float(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: float(self))
 
 
@@ -66,9 +67,9 @@ class string(subtype):
 		except ValueError: raise errors.type_mismatch
 
 	def __unicode__(self):
-		return unicode(self._value)
+		return str(self._value)
 
-	def __nonzero__(self):
+	def __bool__(self):
 		try:
 			return bool(float(self._value))
 		except ValueError:
@@ -97,12 +98,12 @@ from .null import null, v_null
 
 
 string.add_table={
-	empty: lambda self, another: string(unicode(self)+unicode(another)),
+	empty: lambda self, another: string(str(self)+str(another)),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: double(float(self)+int(another)),
 	double: lambda self, another: double(float(self)+float(another)),
 	date: lambda self, another: date(float(self)+float(another)),
-	string: lambda self, another: string(unicode(self)+unicode(another)),
+	string: lambda self, another: string(str(self)+str(another)),
 	boolean: lambda self, another: double(float(self)+int(another))}
 
 string.sub_table={
@@ -161,58 +162,58 @@ string.pow_table={
 
 
 string.eq_table={
-	empty: lambda self, another: boolean(true) if unicode(self)==u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)==u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)==int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)==unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)==unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)==str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)==str(another) else boolean(false)}
 
 string.ne_table={
-	empty: lambda self, another: boolean(true) if unicode(self)!=u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)!=u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)!=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)!=unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)!=unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)!=str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)!=str(another) else boolean(false)}
 
 string.lt_table={
-	empty: lambda self, another: boolean(true) if unicode(self)<u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)<u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)<int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)<unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)<unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)<str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)<str(another) else boolean(false)}
 
 string.gt_table={
-	empty: lambda self, another: boolean(true) if unicode(self)>u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)>u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)>int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)>unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)>unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)>str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)>str(another) else boolean(false)}
 
 string.le_table={
-	empty: lambda self, another: boolean(true) if unicode(self)<=u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)<=u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)<=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)<=unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)<=unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)<=str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)<=str(another) else boolean(false)}
 
 string.ge_table={
-	empty: lambda self, another: boolean(true) if unicode(self)>=u"" else boolean(false),
+	empty: lambda self, another: boolean(true) if str(self)>=u"" else boolean(false),
 	null: lambda self, another: v_null,
 	integer: lambda self, another: boolean(true) if int(self)>=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)>=unicode(another) else boolean(false),
-	boolean: lambda self, another: boolean(true) if unicode(self)>=unicode(another) else boolean(false)}
+	string: lambda self, another: boolean(true) if str(self)>=str(another) else boolean(false),
+	boolean: lambda self, another: boolean(true) if str(self)>=str(another) else boolean(false)}
 
 
 string.and_table={

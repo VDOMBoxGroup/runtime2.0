@@ -1,4 +1,5 @@
-
+import codecs
+from builtins import str
 import sys
 
 import settings
@@ -52,11 +53,11 @@ class MemoryLibrarySketch(MemoryBase, Executable):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "library",
             "\"%s\"" % self._name if self._name else None,
             "sketch",
-            " of %s" % self._collection.owner if self._collection else None)))
+            " of %s" % self._collection.owner if self._collection else None) if _f])
 
 
 class MemoryLibraryRestorationSketch(MemoryLibrarySketch):
@@ -96,10 +97,10 @@ class MemoryLibrary(MemoryLibrarySketch):
 
     # unsafe
     def compose(self, ident=u"", file=None, shorter=False):
-        information = u"Name=\"%s\"" % self._name.encode("xml")
+        information = u"Name=\"%s\"" % codecs.encode(self._name, "xml")
         if not shorter and self.source_code:
             file.write(u"%s<Library %s>\n" % (ident, information))
-            file.write(u"%s\n" % self.source_code.encode("cdata"))
+            file.write(u"%s\n" % codecs.encode(self.source_code, "cdata"))
             file.write(u"%s</Library>\n" % ident)
         else:
             file.write(u"%s<Library %s/>\n" % (ident, information))
@@ -108,7 +109,7 @@ class MemoryLibrary(MemoryLibrarySketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "library",
             "\"%s\"" % self._name if self._name else None,
-            "of %s" % self._collection.owner if self._collection else None)))
+            "of %s" % self._collection.owner if self._collection else None) if _f])

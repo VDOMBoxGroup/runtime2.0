@@ -1,11 +1,14 @@
 
-import urllib2, httplib, mimetools, codecs
-from StringIO import StringIO
+
+
+import urllib.request, urllib.error, urllib.parse, http.client, codecs
+from email.parser import Parser
+from io import StringIO
 from .. import errors
 from ..subtypes import generic, boolean, binary, string, true, false, v_empty, v_mismatch, v_nothing
 
 
-v_connectionerror=urllib2.URLError
+v_connectionerror=urllib.error.URLError
 
 
 class v_proxy(generic):
@@ -16,7 +19,7 @@ class v_proxy(generic):
 
 
 	def build_handler(self):
-		return urllib2.ProxyHandler(self._value)
+		return urllib.request.ProxyHandler(self._value)
 
 
 	def __call__(self, *arguments, **keywords):
@@ -42,9 +45,9 @@ class v_passwordmanager(generic):
 		http_proxy=proxy.value.get("http", None)
 		if http_proxy:
 			if not http_proxy.starts_with("http://"): http_proxy="http://"+http_proxy
-			password_manager=urllib2.HTTPPasswordMgrWithDefaultRealm()
+			password_manager=urllib.request.HTTPPasswordMgrWithDefaultRealm()
 			password_manager.add_password(None, http_proxy, self._username, self._password)
-			return urllib2.ProxyBasicAuthHandler(password_manager)
+			return urllib.request.ProxyBasicAuthHandler(password_manager)
 		else:
 			return None
 
@@ -84,7 +87,7 @@ class v_connection(generic):
 	def erase(self):
 		if self._value:
 			try: self._value.close()
-			except httplib.HTTPException as error: raise urllib2.URLError(error)
+			except http.client.HTTPException as error: raise urllib.error.URLError(error)
 			self._value=None
 
 
@@ -122,14 +125,14 @@ class v_connection(generic):
 				if self.authentication:
 					handler=self._authentication.build_handler(self._proxy)
 					if handler: handlers.append(handler)
-			opener=urllib2.build_opener(*handlers)
+			opener=urllib.request.build_opener(*handlers)
 			if self._timeout: parameters["timeout"]=self._timeout
 			self._value=opener.open(url.as_string, **parameters)
-		except httplib.HTTPException as error:
-			raise urllib2.URLError(error)
+		except http.client.HTTPException as error:
+			raise urllib.error.URLError(error)
 		if self._value.url.startswith("http://"):
-			mime=mimetools.Message(StringIO(self._value.info()))
-			encoding=mime.getparam("charset")
+			mime=Parser().parsestr(self._value.info())
+			encoding=mime.get_content_charset()
 			try: self._encoding, self._codec=encoding, codecs.lookup(encoding)
 			except LookupError: pass
 		return v_mismatch
@@ -137,7 +140,7 @@ class v_connection(generic):
 	def v_read(self):
 		if self._value is None: raise errors.invalid_procedure_call(name=u"read")
 		try: data=self._value.read()
-		except httplib.HTTPException as error: raise urllib2.URLError(error)
+		except http.client.HTTPException as error: raise urllib.error.URLError(error)
 		if self._codec:
 			try: return string(self._codec.decode(data))
 			except UnicodeError: raise errors.invalid_procedure_call(name=u"read")
@@ -152,7 +155,7 @@ class v_connection(generic):
 		else:
 			data=data.as_binary
 		try: self._value.write(data)
-		except httplib.HTTPException as error: raise urllib2.URLError(error)
+		except http.client.HTTPException as error: raise urllib.error.URLError(error)
 		return v_mismatch
 
 	def v_close(self):

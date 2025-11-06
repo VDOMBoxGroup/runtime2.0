@@ -36,7 +36,7 @@ def contents(self, selector, iterator):
 
     def element(name, attributes):
         chunks.append("<%s" % name)
-        for name, value in attributes.iteritems():
+        for name, value in attributes.items():
             chunks.append(" %s=\"%s\"" % (name, encode_data(value)))
         chunks.append(">")
         context = self._parser.EndElementHandler

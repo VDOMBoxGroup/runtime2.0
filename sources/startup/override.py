@@ -1,9 +1,11 @@
 
+#
+#
 import os.path
 
 from ast import literal_eval
-from StringIO import StringIO
-from ConfigParser import SafeConfigParser
+from io import StringIO
+from configparser import ConfigParser
 
 import settings
 
@@ -17,7 +19,7 @@ MISSING = "MISSING"
 
 def override(filename):
     if not os.path.isfile(filename):
-        print "File to override settings not found: %s" % filename
+        print("File to override settings not found: %s" % filename)
         return
 
     filelike = StringIO()
@@ -28,7 +30,7 @@ def override(filename):
 
     filelike.seek(0)
 
-    config = SafeConfigParser()
+    config = ConfigParser()
     config.readfp(filelike)
 
     def override_from_section(section):
@@ -39,25 +41,25 @@ def override(filename):
             settings_name = name.replace("-", "_").upper()
 
             if settings_name.startswith("_"):
-                print "Ignore unsupported option: %s" % enquote(name)
+                print("Ignore unsupported option: %s" % enquote(name))
                 continue
 
             current_value = getattr(settings, settings_name, MISSING)
             if current_value is MISSING:
-                print "Ignore unknown option: %s" % enquote(name)
+                print("Ignore unknown option: %s" % enquote(name))
                 continue
 
             try:
                 new_value = literal_eval(value)
             except ValueError:
-                print "Ignore wrong value for %s option: %s" % (enquote(name), enquote(value))
+                print("Ignore wrong value for %s option: %s" % (enquote(name), enquote(value)))
                 continue
 
             if not (current_value is None
                     or new_value is None
                     or type(new_value) is type(current_value)):
-                print "Ignore %s value for %s %s option: %s" % (type(new_value).__name__,
-                    type(current_value).__name__, enquote(name), enquote(value))
+                print("Ignore %s value for %s %s option: %s" % (type(new_value).__name__,
+                    type(current_value).__name__, enquote(name), enquote(value)))
                 continue
 
             setattr(settings, settings_name, new_value)

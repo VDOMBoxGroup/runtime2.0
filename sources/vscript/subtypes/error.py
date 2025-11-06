@@ -1,4 +1,5 @@
 
+from builtins import str
 from .. import errors
 from ..primitives import subtype
 
@@ -25,7 +26,7 @@ class error(subtype):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property
 		else:
-			return string(unicode(str(self._value)))
+			return string(str(str(self._value)))
 
 
 	def __repr__(self):

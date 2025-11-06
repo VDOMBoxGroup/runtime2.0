@@ -1,5 +1,8 @@
-
-from collections import MutableSet
+import sys
+if sys.version_info[0] < 3:
+    from collections import MutableSet
+else:
+    from collections.abc import MutableSet
 
 
 class ChangeEmptyError(Exception):

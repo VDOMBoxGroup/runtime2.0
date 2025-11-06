@@ -1,7 +1,11 @@
 
+
+
+from builtins import next
+from builtins import range
 import ast
 import re
-from cStringIO import StringIO
+from io import StringIO
 import binascii
 import settings
 
@@ -28,8 +32,8 @@ def source_is_empty(source):
     tree = ast.parse(source, mode="exec")
     iterator = ast.walk(tree)
     try:
-        iterator.next()
-        iterator.next()
+        next(iterator)
+        next(iterator)
         return False
     except StopIteration:
         return True
@@ -37,7 +41,7 @@ def source_is_empty(source):
 
 def write_as_base64(file, data, indent=""):
     for position in range(0, len(data), CHUNK_SIZE):
-        file.write(indent + binascii.b2a_base64(data[position:position + CHUNK_SIZE]))
+        file.write(indent + binascii.b2a_base64(data[position:position + CHUNK_SIZE]).decode())
 
 
 def copy_as_base64(target, source, indent=""):
@@ -67,7 +71,7 @@ def clean_source_code(source_code):
 
 
 def parse_index_line(value):
-    match = INDEX_LINE_REGEX.match(value)
+    match = INDEX_LINE_REGEX.match(value.decode('utf-8'))
     if match:
         return match.group("uuid"), match.group("name")
     else:

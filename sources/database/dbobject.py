@@ -1,23 +1,30 @@
+import codecs
 
+
+
+from builtins import map
+#from builtins import str
+from builtins import range
+from builtins import object
 import sqlite3
 import re
 from xml.dom import Node
 from xml.dom.minidom import parseString  # parse,
-from StringIO import StringIO
+from io import StringIO
 import managers
 import file_access
 from utils.exception import VDOM_exception, VDOMDatabaseAccessError
 from utils.semaphore import VDOM_semaphore
 
-class VDOM_database_object:
+class VDOM_database_object(object):
     """database object class"""
 
-    def __init__(self, owner_id, id):
+    def __init__(self, owner_id=None, dbid=None):
         """constructor"""
         self.owner_id = owner_id
-        self.id = id
-        self.name = str(id)
-        self.filename = str(id)#str(uuid.uuid4())
+        self.id = dbid
+        self.name = str(dbid)
+        self.filename = str(dbid)#str(uuid.uuid4())
         self.is_ready = False
         self.tables_list = None
         self.tables_index = {}
@@ -37,7 +44,7 @@ class VDOM_database_object:
             conn = sqlite3.connect(managers.file_manager.locate(file_access.database, self.owner_id, self.filename), timeout=timeout)
             if not simple_rows:
                 conn.row_factory = sqlite3.Row
-        except Exception, e:
+        except Exception as e:
             self.is_ready = False
             debug("Database open failed:" + str(e))
             return None
@@ -82,7 +89,7 @@ class VDOM_database_object:
         sqlitebck.copy(self.get_connection(), tgt_connection)
 
 
-class VDOM_database_table:
+class VDOM_database_table(object):
     """Object representation of database table"""
     def __init__(self, owner_id, db_id, id, name):
         """constructor"""
@@ -172,7 +179,7 @@ class VDOM_database_table:
                 #raise VDOM_exception("Invalid database info")
                 continue
             declaration = table_def.group("declaration")
-            for column in map(unicode.strip, declaration.split(',')):
+            for column in map(str.strip, declaration.split(',')):
                 constraints = {}
                 match = re.search(r"""\A[`'"]?(?P<col_name>[\w_]+|\'.*?\')[`'"]?(?:\s+(?P<type>(?:INTEGER|TEXT|NUMERIC|BLOB|REAL)\(?\d*(?:,\d+)?\)?))?(?:\s+(?:(?P<notnull>NOT NULL)|(?P<unique>UNIQUE)|(?P<primarykeyauto>PRIMARY KEY AUTOINCREMENT)|(?P<primarykey>PRIMARY KEY)|(?P<default>DEFAULT (?:(?:')[\S ]+(?:')|\w+))))*""", column, re.DOTALL | re.IGNORECASE)
                 if match:
@@ -465,7 +472,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
                         if child.nodeName == "DataInsert":
                             self.addrow(child.attributes["values"].value)
                     self.restore_structure()
-            except Exception, e:
+            except Exception as e:
                 debug("Database update failed:" + str(e))
         return self.get_data_xml()
 
@@ -483,7 +490,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
         con = database.get_connection()
         cur = con.cursor()
         arg = "(?"
-        for i in xrange(len(list) - 1):
+        for i in range(len(list) - 1):
             arg += ", ?"
         arg += ")"
         sql = "INSERT INTO \'%s\'  VALUES %s" % (self.name, arg)
@@ -538,7 +545,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
             if not self.structure:
                 self.restore_structure()
 
-        except Exception, e:
+        except Exception as e:
             debug("Database reset failed")
             self.__reset_sem.unlock()
             self.__is_prepared = False
@@ -565,7 +572,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
         self.__is_prepared = False
 
 
-class VDOM_sql_query:
+class VDOM_sql_query(object):
     """Class with main functionality of quering SQL"""
     def __init__(self, owner_id, database_id, query, params=None, executescript=False, executemany=False, simple_rows=False):
         """constructor"""
@@ -640,7 +647,7 @@ class VDOM_sql_query:
                 data = row[column]
                 if data == None or data == "None":
                     data = "NULL"
-                result.write("\t\t\t\t<cell>%s</cell>\n" % unicode(data).encode("xml"))
+                result.write("\t\t\t\t<cell>%s</cell>\n" % codecs.encode(str(data), "xml"))
             result.write("\t\t\t</row>\n")
         result.write("\t\t</data>\n")
         result.write("\t</table>\n")
@@ -662,12 +669,12 @@ class VDOM_sql_query:
     rowcount = property(__get_rowcount, __set_rowcount)
 
 
-class VDOM_db_column:
+class VDOM_db_column(object):
     """VDOM representation of single DB column"""
     def __init__(self, name, constraints={}):
         """Constructor"""
         self.name = name
-        self.id = name  # str(utils.uuid.uuid4())
+        self.id = name  # str(uuid.uuid4())
 
         if "type" in constraints:
             self.type = constraints["type"]

@@ -22,7 +22,7 @@ def words(self, selector, iterator):
         chunks2clean.append(chunk)
 
     def cdata(chunk):
-        chunks.append(u" ".join(filter(None, SPACES.split(u"".join(chunks2clean)))))
+        chunks.append(u" ".join([_f for _f in SPACES.split(u"".join(chunks2clean)) if _f]))
         del chunks2clean[:]
         chunks.append(chunk)
 
@@ -74,7 +74,7 @@ def words(self, selector, iterator):
             self._parser.EndElementHandler = context
 
         if iterator:
-            chunks.append(u" ".join(filter(None, SPACES.split(u"".join(chunks2clean)))))
+            chunks.append(u" ".join([_f for _f in SPACES.split(u"".join(chunks2clean)) if _f]))
             try:
                 iterator.send(u"".join(chunks))
             except StopIteration:

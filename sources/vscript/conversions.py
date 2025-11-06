@@ -1,4 +1,5 @@
 
+from builtins import str
 import types
 from . import errors
 from .subtypes import boolean, double, integer, null, string, v_null
@@ -50,12 +51,12 @@ def pack(value, default=None):
 	def unknown(value): raise errors.type_mismatch
 	return {
 		int: lambda value: integer(value),
-		long: lambda value: integer(value),
-		str: lambda value: string(unicode(value)),
-		unicode: lambda value: string(value),
+		int: lambda value: integer(value),
+		str: lambda value: string(str(value)),
+		str: lambda value: string(value),
 		bool: lambda value: boolean(value),
 		float: lambda value: double(value),
-		types.NoneType: lambda value: v_null} \
+		type(None): lambda value: v_null} \
 			.get(type(value), default or unknown)(value)
 
 def unpack(value, default=None):

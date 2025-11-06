@@ -81,7 +81,7 @@ class v_list(generic):
 
 	def v_removeall(self, value):
 		simple=value.as_simple
-		self._items=filter(lambda item: item!=simple, self._items)
+		self._items=[item for item in self._items if item!=simple]
 		return v_mismatch
 
 	def v_index(self, value):

@@ -1,4 +1,5 @@
 
+from builtins import object
 from weakref import ref
 from threading import RLock
 
@@ -143,9 +144,9 @@ def quicker_lazy(initializer):
 
 
 def weakproperty(name):
-    try:
+    if name in weakproperties:
         return weakproperties[name]()
-    except KeyError:
+    else:
         namespace = {"ref": ref}
         bytecode = compile("""
 class WeakProperty(object):
@@ -170,7 +171,7 @@ def weak(*names, **names_with_values):
     def wrapper(cls):
         for name in names:
             setattr(cls, name, weakproperty(WEAK_NAME_TEMPLATE % name))
-        for name, value in names_with_values.iteritems():
+        for name, value in names_with_values.items():
             weak_name = WEAK_NAME_TEMPLATE % name
             setattr(cls, weak_name, ref(value))
             setattr(cls, name, weakproperty(weak_name))
@@ -225,9 +226,9 @@ def lazy(initializer=None, lock=None):
 
 
 def roproperty(name):
-    try:
+    if name in readonly_properties:
         return readonly_properties[name]()
-    except KeyError:
+    else:
         namespace = {}
         bytecode = compile("""
 class ReadOnlyProperty(object):
@@ -250,9 +251,9 @@ class ReadOnlyProperty(object):
 
 
 def rwproperty(name, setter=None):
-    try:
+    if (name, setter) in readwrite_properties:
         return readwrite_properties[name, setter]()
-    except KeyError:
+    else:
         if setter is None:
             namespace = {}
             assigment = "instance.%s = value" % name

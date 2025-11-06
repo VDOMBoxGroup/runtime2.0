@@ -700,7 +700,9 @@ Submit - send the from data using the request method selected in the Method attr
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_formbutton(VDOM_object):
+<![CDATA[from __future__ import division
+from past.utils import old_div
+class VDOM_formbutton(VDOM_object):
 
 	def render(self, contents=""):
 		display = u"display:none;" if self.visible == "0" else u""
@@ -750,7 +752,7 @@ Submit - send the from data using the request method selected in the Method attr
 					hierarchy = self.hierarchy, order = self.order, 
 					top = self.top, left = self.left, width = self.width, height = self.height,
 					rec_wid = int(self.width)-1, rec_hei = int(self.height)-1,
-					txt_top = int(self.height)/2-9, txt_wid = int(self.width)-4, label = label,
+					txt_top = old_div(int(self.height),2)-9, txt_wid = int(self.width)-4, label = label,
 					contents = contents)
 				
 		return VDOM_object.wysiwyg(self, contents=result)

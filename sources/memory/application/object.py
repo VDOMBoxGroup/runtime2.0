@@ -1,3 +1,6 @@
+# from __future__ import absolute_import
+import codecs
+
 
 from threading import RLock
 
@@ -14,6 +17,7 @@ from ..empties import ChangeEmptyError, EmptySet
 
 from .attributes import MemoryAttributesSketch
 from .actions import MemoryActions
+
 from .events import MemoryEvents
 from .bindings import MemoryBindings
 from .structure import MemoryStructureSketch, MemoryStructure
@@ -137,11 +141,11 @@ class MemoryObjectSketch(MemoryBase):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "virtual" if getattr(self, "_virtual", None) else None,
             "object",
-            ":".join(filter(None, (getattr(self, "_id", None), getattr(self, "_name", None)))),
-            "sketch")))
+            ":".join([_f for _f in (getattr(self, "_id", None), getattr(self, "_name", None)) if _f]),
+            "sketch") if _f])
 
 
 class MemoryObjectRestorationSketch(MemoryObjectSketch):
@@ -161,11 +165,11 @@ class MemoryObjectDuplicationSketch(MemoryObjectSketch):
 class MemoryObjectGhost(MemoryBase):
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "obsolete",
             "virtual" if self._virtual else None,
             "object",
-            ":".join(filter(None, (self._id, self._name))))))
+            ":".join([_f for _f in (self._id, self._name) if _f])) if _f])
 
 
 class MemoryObject(MemoryObjectSketch):
@@ -197,7 +201,7 @@ class MemoryObject(MemoryObjectSketch):
 
     # unsafe
     def compose(self, ident=u"", file=None, shorter=False, excess=False):
-        information = u"ID=\"%s\" Name=\"%s\" Type=\"%s\"" % (self._id, self._name.encode("xml"), self._type.id)
+        information = u"ID=\"%s\" Name=\"%s\" Type=\"%s\"" % (self._id, codecs.encode(self._name, "xml"), self._type.id)
         if self._attributes or self._objects or self._actions:
             file.write(u"%s<Object %s>\n" % (ident, information))
             self._attributes.compose(ident=ident + u"\t", file=file, shorter=shorter, excess=excess)
@@ -216,7 +220,7 @@ class MemoryObject(MemoryObjectSketch):
             # cleanup compiled classes
             if "_classes" in self.__dict__:
                 if contexts:
-                    if isinstance(contexts, basestring):
+                    if isinstance(contexts, str):
                         if settings.DETAILED_LOGGING:
                             log.write("Invalidate %s in %s context" % (self, contexts))
                         self._classes.pop(contexts, None)
@@ -240,7 +244,7 @@ class MemoryObject(MemoryObjectSketch):
 
             # perform downward invalidation
             if downward:
-                for child in self._objects.itervalues():
+                for child in self._objects.values():
                     child.invalidate(contexts=contexts, downward=True)
 
             # perform upward invalidation
@@ -288,7 +292,7 @@ class MemoryObject(MemoryObjectSketch):
                 if probe:
                     return None
             else:
-                if dynamic <= klass._dynamic:
+                if dynamic is None or dynamic <= klass._dynamic:
                     return klass
 
         # remember invalidate count
@@ -331,10 +335,10 @@ class MemoryObject(MemoryObjectSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "virtual" if self._virtual else None,
             "object",
-            ":".join(filter(None, (self._id, self._name))))))
+            ":".join([_f for _f in (self._id, self._name) if _f])) if _f])
 
 
 from .objects import MemoryObjects

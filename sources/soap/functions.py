@@ -1,9 +1,11 @@
 """VDOM web services"""
+from __future__ import absolute_import
+from builtins import str
 import SOAPpy
 # import traceback
 
 # import utils.encode
-from utils.exception import *
+from .utils.exception import *
 import managers
 
 from importlib import import_module
@@ -21,11 +23,11 @@ def proxy1(args):
     except SOAPpy.faultType:
         show_exception_trace(label="SOAP Proxy", locals=True)
         raise
-    except VDOM_exception, v:
+    except VDOM_exception as v:
         show_exception_trace(label="SOAP Proxy1", locals=True)
         # traceback.print_exc(file=debugfile)
         return format_error(str(v))
-    except Exception, e:
+    except Exception as e:
         show_exception_trace(label="SOAP Proxy1", locals=True)
         # traceback.print_exc(file=debugfile)
         return format_error(str(e))
@@ -36,12 +38,11 @@ def proxy(args):
         return (args[0](*args[1:]) or "") + ("\n<Key>%s</Key>" % args[2])
     except SOAPpy.faultType:
         show_exception_trace(label="SOAP Proxy", locals=True)
-        raise
-    except VDOM_exception, v:
+    except VDOM_exception as v:
         show_exception_trace(label="SOAP Proxy", locals=True)
         # traceback.print_exc(file=debugfile)
         return format_error(str(v))
-    except Exception, e:
+    except Exception as e:
         show_exception_trace(label="SOAP Proxy", locals=True)
         # traceback.print_exc(file=debugfile)
         return format_error(str(e))

@@ -1,4 +1,8 @@
 """Module Manager module"""
+from __future__ import absolute_import
+
+from builtins import str
+from builtins import object
 
 import sys, traceback, shutil, os, types, re
 
@@ -6,9 +10,9 @@ import managers
 from utils.exception import VDOM_exception
 from utils.tracing import show_exception_trace
 
-from resource import VDOM_module_resource
+from .resource import VDOM_module_resource
 from .python import VDOM_module_python
-from post_processing import VDOM_post_processing
+from .post_processing import VDOM_post_processing
 from contextlib import contextmanager
 
 
@@ -51,7 +55,7 @@ class VDOM_module_manager(object):
                 request_object.add_header("Content-Type", e[ext])
                 request_object.add_header("Cache-Control", "max-age=86400")
             else:
-                raise AttributeError, ext
+                raise(AttributeError, ext)
             request_object.add_header("Content-Length", str(len(data)))
             return (None, data)
         if "/favicon.ico" == script_name:
@@ -62,12 +66,12 @@ class VDOM_module_manager(object):
                 request_object.environment().environment()["REQUEST_URI"] = "/%s.res" % app.icon
                 module = VDOM_module_resource()
                 return (None, module.run(request_object, "res"))
-            except Exception, e:
-                debug(_("Module manager: resource module error: %s") % str(e))
+            except Exception as e:
+                debug(("Module manager: resource module error: %s") % str(e))
                 return (404, None)
 
         #parts1 = script_name.split("/")
-        url_parts= filter(lambda x: "" != x, script_name.split("/"))
+        url_parts= [x for x in script_name.split("/") if "" != x]
 
         #parts = parts1[-1]
         #parts = parts.split(".")
@@ -108,7 +112,7 @@ class VDOM_module_manager(object):
                 else:
                     return (404, None)
             elif app.objects: # CHECK: len(app.get_objects_list()) > 0: # redirect to the first container
-                request_object.redirect("/%s.vdom" % iter(app.objects.itervalues()).next().name) # CHECK: request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
+                request_object.redirect("/%s.vdom" % iter(app.objects.values()).next().name) # CHECK: request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
             return (404, None)  # empty request
 
         request_type = url_parts[0].rpartition(".")[2] if '.' in url_parts[0] else 'vdom'
@@ -116,7 +120,7 @@ class VDOM_module_manager(object):
 
         # this acts as Communication Dispatcher
         if "vdom" == request_type:  # VDOM container request
-            # first chek if application is OK
+            # first check if application is OK
             if not request_object.app_id(): # application not registered
                 ret = "No application registered with virtual host '%s'" % request_object.app_vhname
                 debug(ret)
@@ -166,7 +170,7 @@ class VDOM_module_manager(object):
                 return (503, None)
 
             # set content type of container
-            if obj.type.http_content_type is "":
+            if obj.type.http_content_type == "":
                 return (None, _("Unknown content type"))
             request_object.add_header("Content-type", obj.type.http_content_type.lower())
 
@@ -189,7 +193,7 @@ class VDOM_module_manager(object):
                     result = managers.engine.render(obj, render_type=obj.type.render_type.lower())
                     # result = managers.engine.render(obj, None, obj.type.render_type.lower())
                     # CHECK: result = managers.engine.render(_a, obj, None, obj.type.render_type.lower())
-                except VDOM_exception, e:
+                except VDOM_exception as e:
                     debug("Render exception: " + str(e))
                     show_exception_trace(caption="Module Manager: Render exception", locals=True)
                     return (None, str(e))
@@ -230,7 +234,7 @@ class VDOM_module_manager(object):
     #           try:
     #               result = module.run(result)
     #           except:
-    #               debug(_("Module manager: post processing error: %s") % sys.exc_info()[0])
+    #               debug(("Module manager: post processing error: %s") % sys.exc_info()[0])
     #               traceback.print_exc(file=debugfile)
 
                 return None, result.encode("utf-8")
@@ -238,13 +242,13 @@ class VDOM_module_manager(object):
         elif "py" == request_type:  # dynamic python script, this doesn't require an application to be registered
             _a = managers.memory.applications[request_object.app_id()]
             with start_stop_request(_a.actions):
-                try:
+                #try: #TODO: PY3
                     module = VDOM_module_python()
                     return (None, module.run(request_object))
-                except Exception, e:
-                    debug(("Module manager: python module error: %s") % str(e))
-                    #traceback.print_exc(file=debugfile)
-                    return 500, None
+                #except Exception as e:
+                #    debug(("Module manager: python module error: %s") % str(e))
+                #    #traceback.print_exc(file=debugfile)
+                #    return 500, None
                 # finally:
                 #     for key in request_object.files:
                 #         if not request_object.files[key][0].closed:

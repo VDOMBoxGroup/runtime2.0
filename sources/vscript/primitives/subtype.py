@@ -153,48 +153,48 @@ class subtype(primitive):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.add_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
 
 	def __sub__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.sub_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
 
 	def __mul__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.mul_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
 
 	def __div__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.div_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
-		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
+		except ZeroDivisionError: raise errors.division_by_zero.with_traceback(sys.exc_info()[2])
 
 	def __floordiv__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.floordiv_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
-		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
+		except ZeroDivisionError: raise errors.division_by_zero.with_traceback(sys.exc_info()[2])
 
 	def __mod__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.mod_table.get(type(simple), unknown)(self, simple)
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
-		except ZeroDivisionError: raise errors.division_by_zero, None, sys.exc_info()[2]
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
+		except ZeroDivisionError: raise errors.division_by_zero.with_traceback(sys.exc_info()[2])
 
 	def __pow__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
 		simple=another.as_simple
 		try: return self.pow_table.get(type(simple), unknown)(self, simple)
-		except ValueError: raise errors.invalid_procedure_call, None, sys.exc_info()[2]
-		except OverflowError: raise errors.overflow, None, sys.exc_info()[2]
-		except ZeroDivisionError: raise errors.invalid_procedure_call, None, sys.exc_info()[2]
+		except ValueError: raise errors.invalid_procedure_call.with_traceback(sys.exc_info()[2])
+		except OverflowError: raise errors.overflow.with_traceback(sys.exc_info()[2])
+		except ZeroDivisionError: raise errors.invalid_procedure_call.with_traceback(sys.exc_info()[2])
 
 	def __eq__(self, another):
 		def unknown(one, another): raise errors.type_mismatch
@@ -266,5 +266,5 @@ class subtype(primitive):
 	def __unicode__(self):
 		raise errors.type_mismatch
 	
-	def __nonzero__(self):
+	def __bool__(self):
 		raise errors.type_mismatch

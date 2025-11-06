@@ -1,28 +1,27 @@
-
 import sys
 # import os
 # import time
 import random
 import socket
 import select
-# import traceback
-import SocketServer
+import socketserver
 # import BaseHTTPServer
 # import SimpleHTTPServer
 import SOAPpy
+
 # import managers
 from utils.pid import VDOM_server_pid
 from utils.exception import VDOM_exception
 from utils.semaphore import VDOM_semaphore
 from utils.tracing import format_exception_trace
-from vhosting import VDOM_vhosting
+from .vhosting import VDOM_vhosting
 from soap.functions import *
 from soap.wsdl import gen_wsdl
 from soap.wsdl import methods as wsdl_methods
 from .http_request_handler import THREAD_ATTRIBUTE_NAME
 
 
-class VDOM_http_server(SocketServer.ThreadingTCPServer):
+class VDOM_http_server(socketserver.ThreadingTCPServer):
     """VDOM threading http server class"""
 
     def __init__(self, server_address, request_handler_class):
@@ -32,7 +31,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
         self.__stop = False
         self.restart = False
 
-        # sys.stderr.write(_("WSDL file available at %s\n" % VDOM_CONFIG["WSDL-FILE-URL"]))
+        # sys.stderr.write(("WSDL file available at %s\n" % VDOM_CONFIG["WSDL-FILE-URL"]))
 
         # initialize random generator
         random.seed()
@@ -65,7 +64,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
         ssl_context = None
         if ssl_context != None and not config.SSLserver:
-            raise AttributeError, "SSL server not supported by this Python installation"
+            raise AttributeError("SSL server not supported by this Python installation")
         namespace = "http://services.vdom.net/VDOMServices"
         log = 0
         self.namespace = namespace
@@ -77,13 +76,13 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
         self.allow_reuse_address = 1
 
         # call base class constructor
-        SocketServer.ThreadingTCPServer.__init__(self, server_address, request_handler_class)
+        socketserver.ThreadingTCPServer.__init__(self, server_address, request_handler_class)
 
         # create semaphore
         self.__sem = VDOM_semaphore()
 
         # register soap methods
-        for method in wsdl_methods.keys():
+        for method in list(wsdl_methods.keys()):
             exec("""self.registerFunction(SOAPpy.MethodSig(%s, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")""" % method)
 
 #		self.registerFunction(SOAPpy.MethodSig(login, keywords = 0, context = 1), namespace = "http://services.vdom.net/VDOMServices")
@@ -109,10 +108,11 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
                 if r == self.socket:
                     sock, addr = self.socket.accept()
                     if self.ssl_context:
+                        from OpenSSL import SSL
                         sock = SSL.Connection(self.ssl_context, sock)
                         sock._setup_ssl(addr)
                         if sock.accept_ssl() != 1:
-                            raise socket.error, "Couldn't accept SSL connection"
+                            raise socket.error("Couldn't accept SSL connection")
                     return sock, addr
 
     def current_connections(self):
@@ -144,7 +144,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
         # while not self.__stop:
         #   self.handle_request()
 
-        SocketServer.ThreadingTCPServer.serve_forever(self)
+        socketserver.ThreadingTCPServer.serve_forever(self)
 
         # while self.__current_connections:
         # while self.active:
@@ -152,7 +152,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
 
     def shutdown(self):
         self.active = False
-        SocketServer.ThreadingTCPServer.shutdown(self)
+        socketserver.ThreadingTCPServer.shutdown(self)
 
     def verify_request(self, request, client_address):
         """verify the request by matching client address with the stored regexp"""
@@ -183,9 +183,11 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
                 debug("Increase: %d (from %s:%d)" % (self.__current_connections, client_address[0], client_address[1]))
         finally:
             self.__sem.unlock()
-        try:
+        
             self.RequestHandlerClass(request, client_address, self, {"reject": self.__reject, "deny": self.__deny, "card": card, "limit": limit, "connections": self.__current_connections})
-        except Exception, e:
+        try:
+            pass #TODO: PY3
+        except Exception as e:
             do_handle = True
             if isinstance(e, socket.error):
                 do_handle = False
@@ -237,7 +239,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
         # fe = "".join(['-' * 40, "Exception happened during processing of request from ",
         #         str(client_address), traceback.format_exc(), '-' * 40])
         # debug(fe)
-        sys.excepthook(*sys.exc_info())
+        #sys.excepthook(*sys.exc_info()) #TODO: PY
 
 
     # soap handler registration methods
@@ -283,7 +285,7 @@ class VDOM_http_server(SocketServer.ThreadingTCPServer):
             namespace = path.replace("/", ":")
             if namespace[0] == ":":
                 namespace = namespace[1:]
-        self.registerFunction(MethodSig(function, keywords=1), namespace, funcName)
+        self.registerFunction(SOAPpy.MethodSig(function, keywords=1), namespace, funcName)
 
     def unregisterObject(self, object, namespace='', path=''):
         if namespace == '' and path == '':

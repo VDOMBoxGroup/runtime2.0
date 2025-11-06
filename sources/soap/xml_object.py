@@ -1,3 +1,7 @@
+from builtins import input
+from builtins import range
+
+from builtins import object
 import os
 from xml.dom.minidom import parse
 from xml.dom.minidom import parseString
@@ -5,7 +9,7 @@ from xml.dom import Node
 from xml.dom.minidom import DOMImplementation
 
 def need_cdata(data):
-	if data is not "" and ('<' in data or '>' in data or '"' in data or '&' in data or "'" in data or "\n" in data):
+	if data != "" and ('<' in data or '>' in data or '"' in data or '&' in data or "'" in data or "\n" in data):
 		return True
 	return False
 
@@ -96,9 +100,9 @@ class _dct(dict):
 		dict.__init__(self)
 
 	def __setitem__(self, key, value):
-		if not isinstance(key, basestring):
+		if not isinstance(key, str):
 			raise TypeError()
-		if not isinstance(value, basestring):
+		if not isinstance(value, str):
 			raise ValueError()
 		if not hasattr(self.xml_object, "parsing") and self.xml_object.node:
 			_k = key
@@ -109,7 +113,7 @@ class _dct(dict):
 		dict.__setitem__(self, key.lower(), x)
 
 	def __getitem__(self, key):
-		if not isinstance(key, basestring):
+		if not isinstance(key, str):
 			raise TypeError()
 		x = dict.__getitem__(self, key.lower())
 		return x[0]
@@ -120,7 +124,7 @@ class _dct(dict):
 		dict.__delitem__(self, key.lower())
 
 	def get_original_key(self, key):
-		if not isinstance(key, basestring):
+		if not isinstance(key, bytes):
 			raise TypeError()
 		x = dict.__getitem__(self, key.lower())
 		return x[1]
@@ -150,13 +154,13 @@ class xml_object(object):
 
 		setattr(self, "parsing", None)
 
-		if srcdata and isinstance(srcdata, basestring):
+		if srcdata and isinstance(srcdata, bytes):
 			self.xml_doc = parseString(srcdata)
 			self.node = self.xml_doc.documentElement
 			self.level = 0
 		else:
 			# if source is a string, consider it a file name and parse
-			if isinstance(source, basestring):
+			if isinstance(source, bytes):
 				self.xml_doc = parse(source)
 				self.node = self.xml_doc.documentElement
 				self.level = 0
@@ -235,12 +239,12 @@ class xml_object(object):
 	def __setattr__(self, name, value):
 		if not hasattr(self, "parsing") and hasattr(self, "node") and self.node:
 			if "name" == name:
-				if not isinstance(value, basestring):
+				if not isinstance(value, bytes):
 					raise ValueError()
 				self.node.tagName = value
 				self.lname = value.lower()
 			elif "value" == name:
-				if not isinstance(value, basestring):
+				if not isinstance(value, bytes):
 					raise ValueError()
 				if len(self.children) > 0:
 					raise ValueError()
@@ -250,7 +254,7 @@ class xml_object(object):
 	def __parse(self):
 		self.name = self.node.nodeName
 		self.lname = self.name.lower()
-		for i in xrange(self.node.attributes.length):
+		for i in range(self.node.attributes.length):
 			attr = self.node.attributes.item(i)
 			self.attributes[attr.name] = self.node.getAttribute(attr.name)
 		v = ""
@@ -302,7 +306,7 @@ class xml_object(object):
 		result = p + o.name + " ["
 		r = ""
 		for a in o.attributes:
-			if r is not "":
+			if r != "":
 				r += ", "
 			r += a + "=" + o.attributes[a]
 		result += r + "]"
@@ -332,7 +336,7 @@ class xml_object(object):
 
 def f1():
 	x = xml_object("z.xml")
-	print x
+	print(x)
 	return 0
 
 # test
@@ -340,14 +344,14 @@ if __name__ == "__main__":
 	f1()
 	import gc
 	gc.collect()
-	print len(gc.garbage)
-	x=raw_input()
+	print(len(gc.garbage))
+	x=input()
 	#import gc
-	print "x"
+	print("x")
 	x = xml_object("z.xml")
 	x.children.pop(0)
-	print x.toxml()
-	x=raw_input()
+	print(x.toxml())
+	x=input()
 
 	a = xml_object()
 	a.name = "test"
@@ -384,7 +388,7 @@ if __name__ == "__main__":
 	del x
 	#c.sync("aaa.xml")
 	#del c, d
-	x=raw_input()
+	x=input()
 
 #	z = xml_object()
 #	z.name = "sample"

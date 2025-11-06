@@ -91,12 +91,12 @@ def compile_registations(container, parent, dynamic):
     
     def iterate_container_and_non_containers():
         yield container._origin
-        for subobject in container._origin.objects.itervalues():
+        for subobject in container._origin.objects.values():
             if subobject.is_non_container:
                 yield subobject
 
     for object in iterate_container_and_non_containers():
-        for event in object.events.itervalues():
+        for event in object.events.values():
             for callee in event.callees:
                 lines.append(ADD_DISPATCH_EVENT.format(
                     dispatcher_name=dispatcher_name,
@@ -106,7 +106,7 @@ def compile_registations(container, parent, dynamic):
                     target="\"server\"" if callee.is_action else u"\"{object_name}:{name}({parameters})\"".format(
                         object_name=OBJECT_NAME % callee.target_object.id.replace("-", "_"),
                         name=callee.name,
-                        parameters=", ".join((value.replace('"', r'\"') for value in callee.parameters.itervalues())))))
+                        parameters=", ".join((value.replace('"', r'\"') for value in callee.parameters.values())))))
         object_id4code = object.id.replace("-", "_")
         lines.append(DEFINE_OBJECT.format(
             object_name=OBJECT_NAME % object_id4code,
@@ -154,7 +154,7 @@ def compile_declaration(render_container, vdomtype, lines, dynamic=False):
         lines.append(DYNAMIC_OPEN.format(class_name=class_name))
 
     events = ", ".join(["\"%s\"" % event.name
-        for event in chain(vdomtype.user_interface_events.itervalues(), vdomtype.object_events.itervalues())])
+        for event in chain(iter(vdomtype.user_interface_events.values()), iter(vdomtype.object_events.values()))])
     lines.append(DEFINE_CLASS.format(
         class_name=class_name,
         extra=DEFINE_CLASS_REGISTERATION.format(events=events) if events else ""))

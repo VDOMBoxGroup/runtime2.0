@@ -1,4 +1,5 @@
 
+from builtins import map
 import string
 import base64
 
@@ -146,7 +147,7 @@ def type_builder(parser, installation_callback=None):
                             # <Containers>
                             def containers_handler(value):
                                 try:
-                                    type.containers = map(string.strip, value.split(u",")) if value else []
+                                    type.containers = list(map(str.strip, value.split(u","))) if value else []
                                 except ValueError:
                                     raise UnexpectedElementValueError(name)
                             parser.handle_value(name, attributes, containers_handler)
@@ -165,7 +166,7 @@ def type_builder(parser, installation_callback=None):
                             # <Handlers>
                             def handlers_handler(value):
                                 try:
-                                    type.handlers = filter(None, map(string.strip, value.split(u",")))
+                                    type.handlers = [_f for _f in map(str.strip, value.split(u",")) if _f]
                                 except ValueError:
                                     raise UnexpectedElementValueError(name)
                                 for handler_name in type.handlers:
@@ -177,7 +178,7 @@ def type_builder(parser, installation_callback=None):
                             def remotemethods_handler(value):
                                 # type.remote_methods = value
                                 try:
-                                    type.remote_methods = filter(None, map(string.strip, value.split(u",")))
+                                    type.remote_methods = [_f for _f in map(str.strip, value.split(u",")) if _f]
                                 except ValueError:
                                     raise UnexpectedElementValueError(name)
                                 for handler_name in type.remote_methods:
@@ -188,7 +189,7 @@ def type_builder(parser, installation_callback=None):
                             # <Languages>
                             def languages_handler(value):
                                 try:
-                                    type.languages = map(string.strip, value.split(u","))
+                                    type.languages = list(map(str.strip, value.split(u",")))
                                 except ValueError:
                                     raise UnexpectedElementValueError(name)
                             parser.handle_value(name, attributes, languages_handler)
@@ -448,9 +449,9 @@ def type_builder(parser, installation_callback=None):
                                                                 pass
                                                             except ValueError:
                                                                 raise UnexpectedAttributeValueError(u"Order")
-                                                            try:
-                                                                attributes.pop(u"VbType")
-                                                            except KeyError:
+                                                            if "VbType" in attributes:
+                                                                attributes.pop("VbType")
+                                                            else:
                                                                 pass  # Just skip attribute
                                                             ~parameter
                                                             parser.handle_elements(name, attributes)

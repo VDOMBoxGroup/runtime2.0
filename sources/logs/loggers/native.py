@@ -1,4 +1,5 @@
 
+from builtins import str
 import weakref
 import socket
 from collections import deque
@@ -48,18 +49,19 @@ class Logger(BaseLogger):
         # prepare packer and perform assume
         name, packer = sublog.name, sublog.packer
         with self._lock:
-            try:
+            if name in self._mapping:  
                 luid = self._mapping[name]
                 self._counters[luid] += 1
-            except KeyError:
-                try:
+            else:
+                if len(self._available) > 0:
                     luid = self._available.popleft()
-                except IndexError:
+                else:
                     luid = self._index
                     self._index += 1
                 self._mapping[name] = luid
                 self._counters[luid] = 1
                 self._queue.append((actions.ASSUME, luid, name))
+                
 
         def enqueue(*values):
             with self._lock:
@@ -91,9 +93,9 @@ class Logger(BaseLogger):
     def work(self):
         # obtain entry(ies)
         with self._lock:
-            try:
+            if len(self._queue) != 0:
                 entry = self._queue.popleft()
-            except IndexError:
+            else:
                 return
 
             # consume as much write actions as possible
@@ -135,7 +137,7 @@ class Logger(BaseLogger):
                 # create stream
                 self._stream = LogSocketStream(self, stream_socket)
                 with self._lock:
-                    for luid, name in self._actual.iteritems():
+                    for luid, name in self._actual.items():
                         self._queue.appendleft((actions.ASSUME, luid, name))
 
             # send entry(ies) to the server

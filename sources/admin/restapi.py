@@ -53,13 +53,13 @@ def run(request):
                     raise InvalidParamsException("Invalid params")
 
                 if not xml_data and request.method == "post":
-                    xml_data = {k: v for k, v in args.items() if k not in ("appid", "objid", "action_name", "xml_param", "callback", "sid")}
+                    xml_data = {k: v for k, v in list(args.items()) if k not in ("appid", "objid", "action_name", "xml_param", "callback", "sid")}
                 request.arguments().arguments({"xml_param": [xml_param], "xml_data": [xml_data]})
                 request.container_id = obj.id
                 result = managers.engine.execute(obj.actions[action])
                 ret = request.session().value("response")
                 request.session().remove("response")
-                if isinstance(ret, unicode):
+                if isinstance(ret, str):
                     ret = ret.encode("utf8", "ignore")
         except InvalidParamsException as ex:
             request.write("<ERROR>%s</ERROR>" % ex.message)

@@ -1,5 +1,7 @@
 
-class VDOM_dictionary:
+from builtins import str
+from builtins import object
+class VDOM_dictionary(object):
 	"""base class for headers and cookies"""
 
 	def __init__(self, arguments):

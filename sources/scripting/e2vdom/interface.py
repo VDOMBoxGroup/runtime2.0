@@ -1,4 +1,5 @@
 
+from builtins import object
 from contextlib import contextmanager
 import managers
 from utils.properties import roproperty

@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 
-import verificators
+from . import verificators
 
 from .auxiliary import get_type_name, get_thread_traceback
 from .selection import search_thread, select_threads, search_object, select_objects, select_types, select_profiler

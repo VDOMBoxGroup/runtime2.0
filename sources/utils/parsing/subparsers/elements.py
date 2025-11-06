@@ -1,6 +1,8 @@
 
+from builtins import next
+from builtins import zip
 import inspect
-from itertools import chain, izip
+from itertools import chain
 from ..exceptions import UnexpectedElementError, UnexpectedAttributeError, MissingAttributeError, UnexpectedAttributeValueError
 from ..auxiliary import subparser, uncover, lower
 from .nothing import nothing
@@ -38,14 +40,14 @@ def elements(self, selector, iterator):
         try:
             parameters = tuple(chain(
                 (attributes.pop(uncover(name)) for name in names[:index]),
-                (attributes.pop(uncover(name), default) for name, default in izip(names[index:], defaults or ()))))
+                (attributes.pop(uncover(name), default) for name, default in zip(names[index:], defaults or ()))))
         except KeyError as error:
             raise MissingAttributeError(error)
 
         verificators = getattr(handler, "verificators", None)
         if verificators is not None:
             try:
-                for attribute_name, parameter, verificator in izip(names, parameters, verificators):
+                for attribute_name, parameter, verificator in zip(names, parameters, verificators):
                     verificator(parameter)
             except:
                 raise UnexpectedAttributeValueError(attribute_name)
@@ -60,7 +62,7 @@ def elements(self, selector, iterator):
 
         if inspect.isgeneratorfunction(handler):
             inner_iterator = handler(*parameters, **attributes)
-            inner_handlers = inner_iterator.next()
+            inner_handlers = next(inner_iterator)
         else:
             inner_iterator = None
             inner_handlers = handler(*parameters, **attributes)
@@ -73,7 +75,7 @@ def elements(self, selector, iterator):
 
         if iterator:
             try:
-                iterator.next()
+                next(iterator)
             except StopIteration:
                 pass
 

@@ -1,4 +1,5 @@
 
+from builtins import next
 from ..auxiliary import subparser, lower
 
 
@@ -35,7 +36,7 @@ def ignore(self, selector, iterator):
     def close_element(name):
         if iterator:
             try:
-                iterator.next()
+                next(iterator)
             except StopIteration:
                 pass
 

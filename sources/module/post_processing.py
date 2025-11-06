@@ -1,11 +1,12 @@
 """url post processing module"""
 
+from builtins import str
 import sys, re, traceback
 
 from .module import VDOM_module_post, VDOM_module
 import managers
 
-rexp = re.compile("VDOMURL\((.*?)\)", re.IGNORECASE)
+rexp = re.compile(r"VDOMURL\((.*?)\)", re.IGNORECASE)
 
 class VDOM_module_url(VDOM_module_post):
 	"""url post processing module class"""
@@ -45,10 +46,10 @@ class VDOM_post_processing(VDOM_module):
 		result = data
 		for cls_name in VDOM_post_processing.post_modules:
 			try:
-				exec "module = " + cls_name + "()"
+				exec("module = " + cls_name + "()")
 				if module:
 					result = module.run(result)
 			except:
-				debug(_("Post processing error %s, %s") % (cls_name, str(sys.exc_info()[0])))
+				debug(("Post processing error %s, %s") % (cls_name, str(sys.exc_info()[0])))
 				traceback.print_exc(file=debugfile)
 		return result

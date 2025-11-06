@@ -1,4 +1,6 @@
+from __future__ import division
 
+from builtins import str
 import sys
 from .. import errors
 from .primitive import primitive
@@ -11,7 +13,7 @@ class variable(primitive):
 		try:
 			return getattr(self.as_complex, name)
 		except AttributeError:
-			raise errors.object_has_no_property(name), None, sys.exc_info()[2]
+			raise errors.object_has_no_property(name).with_traceback(sys.exc_info()[2])
 
 
 	def redim(self, preserve, *subscripts):
@@ -61,7 +63,10 @@ class variable(primitive):
 		return self.subtype*another
 
 	def __div__(self, another):
-		return self.subtype/another
+		return self.subtype.__truediv__(another)
+
+	def __truediv__(self, another):
+		return self.subtype.__truediv__(another)
 
 	def __floordiv__(self, another):
 		return self.subtype//another
@@ -125,9 +130,9 @@ class variable(primitive):
 		return str(self.subtype)
 
 	def __unicode__(self):
-		return unicode(self.subtype)
+		return str(self.subtype)
 
-	def __nonzero__(self):
+	def __bool__(self):
 		return bool(self.subtype)
 
 

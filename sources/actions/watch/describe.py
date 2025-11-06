@@ -92,11 +92,11 @@ def run(address=None, port=None, timeout=None,
             order = "desc"
         order = ORDER_VALUES.get((order or "").lower(), ORDER_BY_ASCENDING)
 
-        options = "".join(filter(None, (
+        options = "".join([_f for _f in (
             SOURCE_OBJECTS_OPTION if objects else None,
             SOURCE_GARBAGE_OPTION if garbage else None,
             SOURCE_CHANGES_OPTION if changes else None,
-            None if all else FILTER_BY_SERVER_OPTION,)))
+            None if all else FILTER_BY_SERVER_OPTION,) if _f])
         request = REQUEST % options
 
         message = query("describe objects", address, port, request, timeout=timeout)

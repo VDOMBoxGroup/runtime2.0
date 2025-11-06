@@ -1,4 +1,6 @@
 
+from builtins import next
+from builtins import str
 from types import MethodType
 from collections import defaultdict
 from threading import local
@@ -219,7 +221,7 @@ class v_evalcontext(generic):
             else:
                 return FALSE_BOOLEAN
             self._variables = {}
-            for name, value in items.items.iteritems():
+            for name, value in items.items.items():
                 self._variables[name.as_string] = variable = v_evalvariable()
                 variable.v_loadvalue(value)
             return TRUE_BOOLEAN
@@ -230,7 +232,7 @@ class v_evalcontext(generic):
     def v_savecontext(self):
         return v_tojson(dictionary(
             {string(name): dictionary({VALUE_STRING: variable.value, TYPE_STRING: variable.vartype})
-            for name, variable in self._variables.iteritems()}))
+            for name, variable in self._variables.items()}))
 
 
 def v_evalglobalcontext():
@@ -298,23 +300,23 @@ class v_evalstring(generic):
 
         def generate():
             iterator = iter(self._strings)
-            yield iterator.next()
+            yield next(iterator)
             for evaluate, expression in self._expressions:
                 if evaluate:
                     ret = eval(expression, namespace)
                     if isinstance(ret, primitive):
                         yield ret.as_string
                     else:
-                        yield unicode(ret)
+                        yield str(ret)
                 else:
                     exec(expression, namespace)
-                yield iterator.next()
+                yield next(iterator)
 
         previous = getattr(contexts, "current", v_nothing)
         contexts.current = v_evalcontext() if self._context is None else self._context
         try:
             namespace = self._functions.copy()
-            namespace.update({name: shadow(value, "_value") for name, value in self._context._variables.iteritems()})
+            namespace.update({name: shadow(value, "_value") for name, value in self._context._variables.items()})
             namespace.update({vtype.__module__.rsplit('.')[2]: vtype for vtype in (integer, double, string, boolean, date)})
             return string(u"".join(generate()))
         finally:

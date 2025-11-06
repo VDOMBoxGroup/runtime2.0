@@ -1,4 +1,6 @@
 
+from builtins import str
+
 import settings
 import logs
 from . import levels
@@ -20,7 +22,7 @@ class DebugLog(BaseLog):
                 else (levels.MESSAGE, "")
 
         if settings.LOGGER and (level >= settings.LOG_LEVEL or level >= settings.CONSOLE_LOG_LEVEL):
-            if not isinstance(message, basestring):
+            if not isinstance(message, str):
                 message = str(message)
             if module is None and settings.DISCOVER_LOGGING_MODULE:
                 module = discover_calling_module()

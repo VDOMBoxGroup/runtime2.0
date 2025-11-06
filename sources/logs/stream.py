@@ -1,4 +1,5 @@
 
+from builtins import object
 import errno
 import socket
 
@@ -28,6 +29,8 @@ class LogSocketStream(object):
             try:
                 value = self._socket.recv(size)
                 break
+            except TimeoutError:
+                return
             except socket.timeout:
                 if not self._thread.running:
                     raise ShutdownException

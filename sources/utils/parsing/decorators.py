@@ -1,5 +1,5 @@
 
-import new
+import types
 from .subparsers import native as native_subparser, anyway as anyway_subparser
 
 
@@ -41,14 +41,14 @@ def verify(*verificators):
 
 
 def uncover(function):
-    name = function.func_name
-    code = function.func_code
+    name = function.__name__
+    code = function.__code__
 
     name = name[1:] if name[0] == "_" else name
     arguments = tuple((name[1:] if name[0] == "_" else name)
         for name in code.co_varnames[:code.co_argcount])
 
-    new_code = new.code(
+    new_code = types.CodeType(
         code.co_argcount,
         code.co_nlocals,
         code.co_stacksize,
@@ -62,13 +62,13 @@ def uncover(function):
         code.co_firstlineno,
         code.co_lnotab)
 
-    print function.func_closure
+    print(function.__closure__)
 
-    new_function = new.function(
+    new_function = types.FunctionType(
         new_code,
-        function.func_globals,
+        function.__globals__,
         name,
-        function.func_defaults,
-        function.func_closure)
+        function.__defaults__,
+        function.__closure__)
 
     return new_function

@@ -735,7 +735,7 @@ class VDOM_DynamicObject(VDOM_object):
                 overflow={"1": "hidden", "2": "scroll", "3": "visible"}.get(self.overflow, "auto"))
         
         
-        dynlibraries=u"".join(managers.request_manager.current.dyn_libraries.itervalues()) if request.render_type == "e2vdom" else ""
+        dynlibraries=u"".join(iter(managers.request_manager.current.dyn_libraries.values())) if request.render_type == "e2vdom" else ""
     
         contents += TEMPLATE.format(
             name=self.name,

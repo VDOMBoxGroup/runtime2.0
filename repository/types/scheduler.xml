@@ -5565,7 +5565,8 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import json
+<![CDATA[from builtins import str
+import json
 class VDOM_scheduler(VDOM_object):
     def render(self, contents=""):
         WOID = (self.id).replace('-', '_')
@@ -5578,7 +5579,7 @@ class VDOM_scheduler(VDOM_object):
           "id": ID,
           "version": self.type.version
         }
-        DEBUG_INFO_STRING = " ".join([str(key)+"='"+str(value)+"'" for key, value in DEBUG_INFO.items()])
+        DEBUG_INFO_STRING = " ".join([str(key)+"='"+str(value)+"'" for key, value in list(DEBUG_INFO.items())])
 
         DISPLAY = lambda v: "none" if v == "0" else None
         SIZE_CONVERT = lambda v: str(v) + "px"
@@ -5591,7 +5592,7 @@ class VDOM_scheduler(VDOM_object):
             "width": SIZE_CONVERT(self.width),
             "height": SIZE_CONVERT(self.height),
         }
-        STYLES_STRING_FORMAT = ";".join([str(key)+":"+str(value) for key, value in STYLES.items() if value])
+        STYLES_STRING_FORMAT = ";".join([str(key)+":"+str(value) for key, value in list(STYLES.items()) if value])
 
         STYLES_STRING = """<style>.%(id)s { %(styles)s }</style>""" % { "id":ID, "styles": STYLES_STRING_FORMAT }
         STYLES_STRING = STYLES_STRING.replace(" ", "")

@@ -1,4 +1,6 @@
-
+import codecs
+from builtins import str
+from builtins import object
 import re
 import managers, uuid
 from utils.exception import VDOM_mailserver_invalid_index
@@ -522,7 +524,7 @@ class v_server(generic):
 
 	def v_createresource(self, type, name, data):
 		application=managers.request_manager.current.application()
-		data, id=data.as_simple, unicode(utils.uuid.uuid4())
+		data, id=data.as_simple, str(uuid.uuid4())
 		if isinstance(data, binary):
 			data=data.as_binary
 		elif isinstance(data, string):
@@ -554,10 +556,10 @@ class v_server(generic):
 		return v_mismatch
 
 	def v_htmlencode(self, string2encode):
-		return string(unicode(string2encode.as_string.encode("html")))
+		return string(str(codecs.encode(string2encode.as_string, "html")))
 
 	def v_urlencode(self, string2encode):
-		return string(unicode(string2encode.as_string.encode("url")))
+		return string(str(codecs.encode(string2encode.as_string, "url")))
 
 	def v_sendmail(self, sender, recipient, subject, message):
 		return integer(managers.email_manager.send(sender.as_string,

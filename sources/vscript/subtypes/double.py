@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 from math import floor, fabs
 from .. import errors
@@ -28,7 +29,7 @@ class double(subtype):
 	as_boolean=property(lambda self: bool(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: float(self))
 
 
@@ -66,11 +67,11 @@ class double(subtype):
 		elif self._value==-infinity:
 			return u"-Infinity"
 		elif floor(self._value)==self._value:
-			return unicode(int(self._value))
+			return str(int(self._value))
 		else:
-			return unicode(self._value)
+			return str(self._value)
 	
-	def __nonzero__(self):
+	def __bool__(self):
 		return bool(self._value)
 
 

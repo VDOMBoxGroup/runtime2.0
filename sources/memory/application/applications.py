@@ -1,6 +1,12 @@
 
+from builtins import str
+from builtins import next
 from weakref import ref
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from itertools import chain
 from threading import RLock, Event
 from uuid import uuid4
@@ -25,7 +31,7 @@ class MemoryApplications(MemoryBase, Mapping):
     @lazy
     def default(self):
         try:
-            return self[settings.DEFAULT_APPLICATION or iter(self).next()]
+            return self[settings.DEFAULT_APPLICATION or next(iter(self))]
         except (KeyError, StopIteration):
             return None
 
@@ -77,7 +83,7 @@ class MemoryApplications(MemoryBase, Mapping):
         except KeyError:
             if autocomplete:
                 with self._lock:
-                    for item in self.itervalues():
+                    for item in self.values():
                         if item.name.lower().startswith(uuid_or_name):
                             return item
             return None
@@ -151,7 +157,7 @@ class MemoryApplications(MemoryBase, Mapping):
             if self._queue is False:
                 self._explore()
 
-            items = self._items.keys()
+            items = list(self._items.keys())
             if self._queue:
                 items += self._queue
 

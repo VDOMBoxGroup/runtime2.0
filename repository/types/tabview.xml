@@ -614,7 +614,8 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[from scripting import e2vdom
+<![CDATA[from builtins import str
+from scripting import e2vdom
 
 
 class VDOM_tabview(VDOM_object):
@@ -649,7 +650,7 @@ $('#%(id)s ul.tabNavigation a').removeClass('active');
 $('#%(id)s ul.tabNavigation a[href="#%(show_guid)s"]').addClass('active');
 </script>""" % { "id": id, "show_guid": show_guid }
 
-		sortTagArray = OrderedDict(sorted(tag_array.items(), key=lambda t: t[0]))
+		sortTagArray = OrderedDict(sorted(list(tag_array.items()), key=lambda t: t[0]))
 		for key in sortTagArray:
 			tab_tag += tag_array[key]
 		
@@ -784,7 +785,7 @@ def on_update(object, attributes):
 
 	# childs = obj.objects
 	# for key in childs:
-	for child in object.objects.itervalues():
+	for child in object.objects.values():
 		# child = childs[key]
 		# if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
 		# 	child.set_attribute_ex("zindex", "1")
@@ -846,7 +847,7 @@ def on_insert(parent, object):
 	# childs = object.parent.objects
 	container_hierarchy = []
 	# for key in childs:
-	for child in parent.objects.itervalues():
+	for child in parent.objects.values():
 		# child = application.objects.search(key)
 		# container_hierarchy.append(child.attributes.hierarchy)
 		container_hierarchy.append(child.attributes["hierarchy"])

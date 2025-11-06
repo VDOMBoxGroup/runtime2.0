@@ -1,4 +1,5 @@
 
+from builtins import object
 import sys
 from threading import RLock
 
@@ -14,13 +15,13 @@ class MaximalCheckInterval(object):
         self._lock.acquire()
         if self._count == 0:
             self._value = sys.getcheckinterval()
-            sys.setcheckinterval(sys.maxint)
+            sys.setswitchinterval(sys.maxsize)
         self._count += 1
 
     def __exit__(self, extype, exvalue, extraceback):
         self._count -= 1
         if self._count == 0:
-            sys.setcheckinterval(self._value)
+            sys.setswitchinterval(self._value)
             self._value = None
         self._lock.release()
 

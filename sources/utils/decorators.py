@@ -33,7 +33,7 @@ def cache_by_argument(function):
 def attributes(**keywords):
 
     def wrapper(function):
-        for name, value in keywords.iteritems():
+        for name, value in keywords.items():
             setattr(function, name, value)
         return function
 
@@ -41,7 +41,7 @@ def attributes(**keywords):
 
 
 def weaker(bound):
-    instance, function = ref(bound.im_self), bound.im_func
+    instance, function = ref(bound.__self__), bound.__func__
 
     @wraps(function)
     def wrapper(*attributes, **keywords):

@@ -1,4 +1,7 @@
+import codecs
 
+from builtins import str
+from builtins import chr
 import re
 from .. import errors
 from ..subtypes import v_null, array, integer, string, empty
@@ -19,8 +22,8 @@ def v_strcomp(string1, string2, compare=None):
 	if string1 is v_null or string2 is v_null:
 		return v_null
 	else:
-		return integer(cmp(string1.lower(), string2.lower())) if compare \
-			else integer(cmp(string1, string2))
+		return integer(string1.lower() == string2.lower()) if compare \
+			else integer(string1 == string2)
 
 def v_replace(expression, find, replacewith, start=None, count=None, compare=None):
 	expression, find=expression.as_string, find.as_string
@@ -155,10 +158,10 @@ def v_string(number, character):
 	if character is v_null:
 		return v_null
 	if isinstance(character, (integer, empty)):
-		try: return string(unichr(character)*number)
+		try: return string(chr(character)*number)
 		except ValueError: raise errors.invalid_procedure_call(name=u"string")
 	elif isinstance(character, string):
-		return string(unicode(character)[0]*number)
+		return string(str(character)[0]*number)
 	else:
 		raise errors.type_mismatch
 
@@ -167,7 +170,7 @@ def v_strreverse(string1):
 
 
 def v_escape(string1):
-	return string(string1.as_string.encode("url"))
+	return string(codecs.encode(string1.as_string, "url"))
 
 def v_unescape(string1):
 	return string(string1.as_string.decode("url"))

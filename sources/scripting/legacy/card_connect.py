@@ -1,4 +1,5 @@
 
+from builtins import str
 def send_to_card_and_wait(message, key, timeout=1, delta=0.1):
     if VDOM_CONFIG["PRELICENSE"]:
         return VDOM_CONFIG["PRELICENSE"].get(key[2:])

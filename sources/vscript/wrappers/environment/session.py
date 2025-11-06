@@ -1,4 +1,5 @@
 
+from builtins import str
 import managers
 from ... import errors
 from ...primitives import subtype
@@ -11,7 +12,7 @@ class v_session(generic):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("sessionid")
 		else:
-			return string(unicode(managers.request_manager.current.sid))
+			return string(str(managers.request_manager.current.sid))
 
 	def v_timeout(self, **keywords):
 		raise errors.not_implemented

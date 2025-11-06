@@ -1,9 +1,10 @@
 """
 User class module
 """
+from builtins import object
 from hashlib import md5
 
-class VDOM_user:
+class VDOM_user(object):
 	"""User class defines behaviour of account"""
 
 	def __init__(self):

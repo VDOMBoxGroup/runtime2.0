@@ -893,7 +893,8 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import sys
+<![CDATA[from builtins import str
+import sys
 import json
 import collections
 from scripting import e2vdom
@@ -912,7 +913,7 @@ class VDOM_smartfolderdata(VDOM_object):
 		classname = u"""class="%s" """ % self.classname if self.classname else u""
 		classname_item = 'sf-item'
 
-		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) <> 0 else u""
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u""
 
 		#style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;  height: {height}px; """\
 		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px; width: {width}px;"""\

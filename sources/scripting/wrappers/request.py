@@ -1,6 +1,8 @@
 
+from builtins import object
+
 import managers
-from utils.file_argument import File_argument
+from utils.file_argument import File_argument, Attachment
 
 
 class VDOM_arguments(object):
@@ -34,13 +36,13 @@ class VDOM_arguments(object):
             return castto(item) if castto and item else item
 
     def __try_decode(self, item):
-        if isinstance(item, str):
-            return unicode(item.decode("utf-8", "ignore"))
+        if isinstance(item, bytes):
+            return bytes(item).decode("utf-8", "ignore")
         else:
             return item
 
     def keys(self):
-        return managers.request_manager.current.arguments().arguments().keys()
+        return list(managers.request_manager.current.arguments().arguments().keys())
 
     def __iter__(self):
         return iter(managers.request_manager.current.arguments().arguments())  # iter is only keys
@@ -55,7 +57,7 @@ class VDOM_headers(object):
         return managers.request_manager.current.headers().headers().get(name.lower(), default)
 
     def keys(self):
-        return managers.request_manager.current.headers().headers().keys()
+        return list(managers.request_manager.current.headers().headers().keys())
 
     def __contains__(self, name):
         return name.lower() in managers.request_manager.current.headers_out().headers()
@@ -114,7 +116,7 @@ class VDOM_shared_variables(object):
         return managers.request_manager.current.shared_variables.get(name)
 
     def keys(self):
-        return managers.request_manager.current.shared_variables.keys()
+        return list(managers.request_manager.current.shared_variables.keys())
 
 
 class VDOM_request(object):

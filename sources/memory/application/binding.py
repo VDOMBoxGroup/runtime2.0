@@ -1,3 +1,4 @@
+import codecs
 
 from utils.properties import weak, constant, roproperty, rwproperty
 from ..generic import MemoryBase
@@ -46,10 +47,10 @@ class MemoryBindingSketch(MemoryBase):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "binding",
             "\"%s\"" % self._name if self._name else None,
-            "sketch of %s" % self._target_object)))
+            "sketch of %s" % self._target_object) if _f])
 
 
 class MemoryBindingRestorationSketch(MemoryBindingSketch):
@@ -88,8 +89,8 @@ class MemoryBinding(MemoryBindingSketch):
             (self._id, self._target_object.id, self._name, self._top, self._left, self._state)
         if self._parameters:
             file.write(u"%s<Action %s>\n" % (ident, information))
-            for name, value in self._parameters.iteritems():
-                file.write(u"%s\t<Parameter Name=\"%s\">%s</Parameter>\n" % (ident, name, value.encode("xml")))
+            for name, value in self._parameters.items():
+                file.write(u"%s\t<Parameter Name=\"%s\">%s</Parameter>\n" % (ident, name, codecs.encode(value, "xml")))
             file.write(u"%s</Action>\n" % ident)
         else:
             file.write(u"%s<Action %s/>\n" % (ident, information))
@@ -98,7 +99,7 @@ class MemoryBinding(MemoryBindingSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "binding",
             "\"%s\"" % self._name if self._name else None,
-            "of %s" % self._target_object)))
+            "of %s" % self._target_object) if _f])

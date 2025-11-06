@@ -1,5 +1,7 @@
 
-from __builtin__ import compile as python_compile
+
+
+from builtins import compile as python_compile
 from importlib import import_module
 
 import settings

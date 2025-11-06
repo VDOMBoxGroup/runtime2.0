@@ -1470,7 +1470,9 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_formdate(VDOM_object):
+<![CDATA[from __future__ import division
+from past.utils import old_div
+class VDOM_formdate(VDOM_object):
 
 	def render(self, contents=""):
 		display = u"display: none;" if self.visible == "0" else u""
@@ -1528,7 +1530,7 @@ $j('#%(id)s').datepicker('destroy').datepicker({
 			image_width = int(self.width)-2
 
 		if int(self.height) > image_height :
-			image_y = (int(self.height) - image_height - 2)/2
+			image_y = old_div((int(self.height) - image_height - 2),2)
 		else :
 			image_y = 1
 			image_height = int(self.height)-2
@@ -1585,8 +1587,7 @@ def on_update(object, attributes):
 	# 		o.set_attributes({"height": "4"})
 	if "height" in attributes:
 		if int(attributes["height"]) < 4:
-			attributes.update(height="4")
-]]>
+			attributes.update(height="4")]]>
 	</SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<script type='text/javascript' src='/aaae709d-2dab-ce1a-35bf-182f195b9336.res'></script>]]></Library>

@@ -1,4 +1,5 @@
 
+from builtins import next
 from ..exceptions import UnexpectedElementError
 from ..auxiliary import subparser, lower
 
@@ -41,7 +42,7 @@ def nothing(self, selector, iterator):
     def close_element(name):
         if iterator:
             try:
-                iterator.next()
+                next(iterator)
             except StopIteration:
                 pass
 

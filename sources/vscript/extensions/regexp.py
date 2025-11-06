@@ -1,4 +1,5 @@
 
+from builtins import str
 import re
 from .. import errors
 from ..subtypes import boolean, generic, integer, string, true, false, v_empty
@@ -49,7 +50,7 @@ class v_match(generic):
 				if not isinstance(group, (integer, string)): raise errors.type_mismatch
 				try: value=self._match.group(group.value)
 				except IndexError: return v_empty
-			return v_empty if value is None else string(unicode(value))
+			return v_empty if value is None else string(str(value))
 			
 
 class v_matches(generic):
@@ -150,7 +151,7 @@ class v_regexp(generic):
 		return v_global_matches(self._regexp, value.as_string) if self._global else v_matches(self._regexp, value.as_string)
 
 	def v_replace(self, value, replace_string):
-		return string(unicode(self._regexp.sub(replace_string.as_string, value.as_string, 0 if self._global else 1)))
+		return string(str(self._regexp.sub(replace_string.as_string, value.as_string, 0 if self._global else 1)))
 
 	def v_test(self, value):
 		return boolean(false if self._regexp.search(value.as_string) is None else true)

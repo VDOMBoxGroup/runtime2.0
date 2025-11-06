@@ -1,6 +1,7 @@
 
+
 import re
-from itertools import izip_longest
+from itertools import zip_longest
 
 from .auxiliary.constants import TYPE, APPLICATION
 from .auxiliary import escape, section, show, warn, search
@@ -36,7 +37,7 @@ lang_regex = re.compile(r"^#lang\((\d+)\)$", re.IGNORECASE)
 
 def grouper(iterable, n, fillvalue=None):
     args = [iter(iterable)] * n
-    return izip_longest(fillvalue=fillvalue, *args)
+    return zip_longest(fillvalue=fillvalue, *args)
 
 
 def unlang(subject, value):
@@ -161,7 +162,7 @@ def run(identifier, description=False, details=False):
 
                 if explanation:
                     value = explanation
-                elif isinstance(value, basestring):
+                elif isinstance(value, str):
                     value = value or "<empty>"
                 elif isinstance(value, (tuple, list)):
                     if value:
@@ -179,7 +180,7 @@ def run(identifier, description=False, details=False):
 
         if entity is TYPE:
             with section("attributes"):
-                for attribute in subject.attributes.itervalues():
+                for attribute in subject.attributes.values():
                     name = attribute.name.replace("_", " ")
                     if details:
                         with section(name):

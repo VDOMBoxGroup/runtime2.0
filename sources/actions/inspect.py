@@ -22,10 +22,10 @@ def describe(item, extra=False):
         entity = "action"
         copy = None
 
-    return " ".join(filter(None, (
+    return " ".join([_f for _f in (
         entity if extra else None,
-        ":".join(filter(None, (item.id, item.name.lower()))),
-        ("-> %s" % copy) if copy else None)))
+        ":".join([_f for _f in (item.id, item.name.lower()) if _f]),
+        ("-> %s" % copy) if copy else None) if _f])
 
 
 def search_parents(item):
@@ -57,10 +57,10 @@ def show_level(item, level=0, expand=0, select=False, actions=False, indent=""):
 
     show("%s%s%s" % (indent, describe(item, extra=True), details), longer=True)
     if show_underlying:
-        for subitem in item.objects.itervalues():
+        for subitem in item.objects.values():
             show_level(subitem, level + 1, expand=expand - 1 if expand else 0, actions=actions)
         if actions:
-            for subitem in item.actions.itervalues():
+            for subitem in item.actions.values():
                 show_level(subitem, level + 1)
 
 

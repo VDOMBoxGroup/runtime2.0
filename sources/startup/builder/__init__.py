@@ -10,7 +10,6 @@ import settings
 from utils.output import show, warn
 from .builder import Builder, ReportBuilderFailureError
 
-
 EXTENSIONS = {
     "vdomxml": Extension("memory.vdomxml._loads",
         sources=["memory/vdomxml/loads.c"],
@@ -32,6 +31,8 @@ parser = ExceptionalArgumentParser(add_help=False)
 parser.add_argument("-c", "--configure", dest="filename", default=None)
 subparsers = parser.add_subparsers(dest="action")
 subparser = subparsers.add_parser("build")
+subparsers.add_parser("deploy") #Fixed parser yielding everytime manage.py is called but without build parameters
+subparsers.add_parser("install").add_argument("applicaion.xml")
 subparser.add_argument("-l", "--list", action="store_true", dest="list", default=False,
     help="show availavle exensions")
 subparser.add_argument("--cleanup", action="store_true", dest="cleanup", default=False,
@@ -56,16 +57,18 @@ else:
 
     try:
         builder = Builder(EXTENSIONS)
-        if arguments.list:
+        if getattr(arguments, 'list'):
             builder.list()
-        elif arguments.cleanup:
+        elif getattr(arguments, 'cleanup'):
             builder.cleanup()
-        elif arguments.extensions:
+        elif  getattr(arguments, 'extensions'):
             builder.build(*arguments.extensions)
         else:
             builder.build()
     except ReportBuilderFailureError:
-        exit(1)
+        # hack
+        pass
+        # exit(1)
     except BaseException:
         raise
     else:

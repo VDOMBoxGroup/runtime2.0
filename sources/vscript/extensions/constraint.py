@@ -1,4 +1,6 @@
 
+from builtins import next
+from builtins import str
 from collections import defaultdict
 from types import MethodType, FunctionType
 from .. import errors
@@ -117,12 +119,12 @@ class v_problem(generic):
 		if self._iterator is None:
 			self.v_again()
 		try:
-			solution=self._iterator.next()
+			solution=next(self._iterator)
 		except StopIteration:
 			self._solution=v_empty
 		except Exception as error:
 			raise errors.internal_error(str(error))
 		else:
-			self._solution=dictionary({string(unicode(key)): pack(value) \
-				for key, value in solution.iteritems()})
+			self._solution=dictionary({string(str(key)): pack(value) \
+				for key, value in solution.items()})
 		return self._solution

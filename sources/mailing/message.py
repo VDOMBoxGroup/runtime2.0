@@ -1,3 +1,6 @@
+from builtins import str
+from builtins import range
+from builtins import object
 from collections import namedtuple
 import threading
 import time
@@ -17,21 +20,21 @@ def mail_to_dict(mail, codecs = ['utf8', 'cp1252', 'latin1' ]):
 	try:
 		subject = email.Header.decode_header(mail.get('Subject'))
 		result["subject"] = subject[0][0].decode(subject[0][1]) if subject[0][1] else decode_strings(subject[0][0], codecs)
-	except Exception, ex:
+	except Exception as ex:
 		result["subject"] = ""
 		
 
 	try:
 		from_email = email.Header.decode_header(mail.get('From'))
 		result["from_email"] = from_email[0][0].decode(from_email[0][1]) if from_email[0][1] else decode_strings(from_email[0][0], codecs)
-	except Exception, ex:
+	except Exception as ex:
 		result["from_email"] = ""
 		
 
 	try:
 		to_email = email.Header.decode_header(mail.get('To'))
 		result["to_email"] = to_email[0][0].decode(to_email[0][1]) if to_email[0][1] else decode_strings(to_email[0][0], codecs)
-	except Exception, ex:
+	except Exception as ex:
 		result["to_email"] = ""
 		
 	if mail.get('Date'):
@@ -162,7 +165,7 @@ class Message(object):
 		self.ttl = 50
 		self.priority = "normal"
 		convertmap = {"id":"id","sender":"sender","from":"from_email", "to":"to_email", "subj":"subject", "msg":"body", "attach": "attach","ttl":"ttl","reply":"reply_to", "headers":"headers", "no_multipart": "nomultipart", "content_type":"content_type", "content_charset":"content_charset", "content_params":"content_params","multipart_subtype":"multipart_subtype"}
-		for key,value in kw.iteritems():
+		for key,value in kw.items():
 			if key in convertmap:
 				if key=="attach":
 					value = [msg if isinstance(msg,MailAttachment) else MailAttachment.fromtuple(msg) for msg in value]
@@ -192,14 +195,14 @@ class Message(object):
 		
 		if self.nomultipart:
 			msgbody = self.body
-			if isinstance(msgbody, unicode):
+			if isinstance(msgbody, str):
 				msgbody = msgbody.encode("utf-8")
 			msg = MIMEText(msgbody)
 			#if len(self.content_type)>1: #item["content_type"] == (type, charset, params={})
 			msg.set_type(self.content_type)
 			msg.set_charset(self.content_charset)								
 			if self.content_params:
-				for key,value in self.content_params.iteritems():
+				for key,value in self.content_params.items():
 					msg.set_param(key,value)
 			#else:
 			#	msg.set_type("text/html")
@@ -208,7 +211,7 @@ class Message(object):
 			msg = MIMEMultipart(_subtype=self.multipart_subtype)
 			msgbody = self.body
 			if  msgbody:
-				if isinstance(msgbody, unicode):
+				if isinstance(msgbody, str):
 					msgbody = msgbody.encode("utf-8")
 				text2 = MIMEText(msgbody)
 				text2.set_type("text/html")
@@ -227,7 +230,7 @@ class Message(object):
 		if self.reply_to:
 			msg['Reply-to'] = self.reply_to
 		if self.headers:
-			for key,value in self.headers.iteritems():
+			for key,value in self.headers.items():
 				msg[key] = value
 		
 		return msg.as_string()
@@ -239,7 +242,7 @@ class Message(object):
 		msg.parse_body(mail)
 		codecs = [msg.content_charset, 'utf8', 'cp1252', 'latin1' ]
 		kw = mail_to_dict(mail, codecs)
-		for k,v in kw.iteritems():
+		for k,v in kw.items():
 			if hasattr(msg, k):
 				setattr(msg, k, v)
 		
@@ -317,12 +320,12 @@ class Message(object):
 								if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
 									try:
 										attachment_object.data = quopri.decodestring(oAttach)
-									except Exception, ex:
+									except Exception as ex:
 										pass								
 								else:
 									try:
 										attachment_object.data= base64.b64decode(oAttach)
-									except Exception, ex:
+									except Exception as ex:
 										pass
 															
 								#attachment_object.data = base64.b64decode(oAttach)
@@ -348,12 +351,12 @@ class Message(object):
 								if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "base64":
 									try:
 										body += base64.b64decode(subpart.get_payload())
-									except Exception, ex:
+									except Exception as ex:
 										pass
 								elif "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
 									try:
 										body += quopri.decodestring(subpart.get_payload())
-									except Exception, ex:
+									except Exception as ex:
 										pass
 								else:
 									if not isinstance(subpart.get_payload(), list):
@@ -368,12 +371,12 @@ class Message(object):
 			if "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "base64":
 				try:
 					body += base64.b64decode(mail.get_payload())
-				except Exception, ex:
+				except Exception as ex:
 					pass
 			elif "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "quoted-printable":
 				try:
 					body += quopri.decodestring(mail.get_payload())
-				except Exception, ex:
+				except Exception as ex:
 					pass
 			else:
 				if not isinstance(mail.get_payload(), list):
@@ -381,7 +384,7 @@ class Message(object):
 		self.body = decode_strings(body,[body_charset, 'utf8', 'cp1252'])
 
 def decode_strings(text, codecs_list):
-	if type( text ) == unicode:
+	if type( text ) == str:
 		return text
 
 	# if unknown encoding, try decode with latin1

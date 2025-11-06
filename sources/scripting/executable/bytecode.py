@@ -1,4 +1,6 @@
 
+#from builtins import str
+from builtins import object
 import marshal
 import json
 
@@ -22,7 +24,7 @@ class Bytecode(object):
     @classmethod
     def cleanup(cls, executable):
         if settings.STORE_BYTECODE:
-            for entity, extension in cls.extensions.iteritems():
+            for entity, extension in cls.extensions.items():
                 if extension:
                     location = executable.locate(entity)
                     if location:
