@@ -1,8 +1,14 @@
+from __future__ import absolute_import
+from __future__ import division
 
+from builtins import map
+from builtins import str
+
+from builtins import object
 from copy import copy, deepcopy
 from importlib import import_module
 from . import errors, lexemes, library, exceptions
-from register import register
+from .register import register
 
 import settings
 
@@ -136,7 +142,7 @@ class vnames(list):
 			name.scope_names(mysource, myclass, myprocedure)
 
 	def __unicode__(self):
-		return u", ".join([unicode(name) for name in self])
+		return u", ".join([str(name) for name in self])
 
 class vme(vname):
 
@@ -254,7 +260,7 @@ class vexpressions(list):
 			expression.scope_names(mysource, myclass, myprocedure)
 
 	def __unicode__(self):
-		return u", ".join(map(unicode, self))
+		return u", ".join(map(str, self))
 
 class vsubscripts(list):
 
@@ -269,7 +275,7 @@ class vsubscripts(list):
 		pass
 
 	def __unicode__(self):
-		return u"[%s]"%u", ".join(map(unicode, self))
+		return u"[%s]"%u", ".join(map(str, self))
 
 class varguments(list):
 
@@ -285,9 +291,8 @@ class varguments(list):
 		[u", ".join([name for name, type in self if type]),
 		u", ".join([u"%s(%s)"%(type, name) for name, type in self if type])])))
 	"""	
-	initialization=property(lambda self: u"=".join(filter(None,
-		[u", ".join([name for name, type in self if type]),
-		u", ".join([u"%s.%s"%(name, type) for name, type in self if type])])))
+	initialization=property(lambda self: u"=".join([_f for _f in [u", ".join([name for name, type in self if type]),
+		u", ".join([u"%s.%s"%(name, type) for name, type in self if type])] if _f]))
 
 	def __unicode__(self):
 		return u", ".join([argument[0] for argument in self])
@@ -831,7 +836,7 @@ class vtrycatch(vstatement):
 
 	def compose(self, ident):
 		contents=[(self.line, ident, u"except%s%s:"%\
-			(" (%s.exception)"%unicode(self.exceptions) if self.exceptions else "",
+			(" (%s.exception)"%str(self.exceptions) if self.exceptions else "",
 			" as %s"%self.name if self.name else ""))]
 		contents.extend(self.statements.compose(ident+1,
 			precede=[(self.line, ident+1, u"%s=error(%s)"%(self.name, self.name))] if self.name else None))
@@ -1010,7 +1015,7 @@ class vprint(vstatement):
 		self.expressions.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
-		string=u"echo(%s)"%u", ".join(map(unicode, self.expressions))
+		string=u"echo(%s)"%u", ".join(map(str, self.expressions))
 		return ((self.line, ident, string),)
 
 class vtouch(vstatement):
@@ -1024,7 +1029,7 @@ class vtouch(vstatement):
 		self.expressions.scope_names(mysource, myclass, myprocedure)
 
 	def compose(self, ident):
-		string=u"print repr(%s)"%u", ".join(map(unicode, self.expressions))
+		string=u"print repr(%s)"%u", ".join(map(str, self.expressions))
 		return ((self.line, ident, string),)
 
 class vglobals(list):
@@ -1061,7 +1066,7 @@ class vprocedure(vstatement):
 
 	def insert(self, *lines):
 		for line in lines:
-			if isinstance(line, basestring):
+			if isinstance(line, (bytes, str)):
 				self.precede.append((None, None, line))
 			else:
 				self.precede.append(line)
@@ -1091,10 +1096,10 @@ class vprocedure(vstatement):
 			(self.line, ident+1, self.globals.initialization)]
 		if precede:
 			initialization.extend(precede)
-		dims=[(name, value) for name, value in self.names.iteritems() if isinstance(value, basestring)]
+		dims=[(name, value) for name, value in self.names.items() if isinstance(value, bytes)]
 		initialization.extend(
-			[(self.line, ident+1, u"=".join(filter(None, [u", ".join([name for name, value in dims]),
-				u", ".join([value for name, value in dims])])))])
+			[(self.line, ident+1, u"=".join([_f for _f in [u", ".join([name for name, value in dims]),
+				u", ".join([value for name, value in dims])] if _f]))])
 		contents.extend(self.statements.compose(ident+1, precede=initialization))
 		return contents
 
@@ -1143,7 +1148,7 @@ class vproperty(vstatement):
 		arguments=[len(self.get.arguments)+1] if self.get else []
 		if self.let: arguments.append(len(self.let.arguments))
 		if self.set: arguments.append(len(self.set.arguments))
-		if len(arguments)>1 and sum(arguments)/3!=arguments[0]:
+		if len(arguments)>1 and sum(arguments) / 3 !=arguments[0]:
 			raise errors.inconsistent_arguments_number(line=self.line)
 		return [(self.line, ident, u"def %s(self, *arguments, **keywords):"%self.name),
 			(self.line, ident+1, u"if \"let\" in keywords:"),
@@ -1271,7 +1276,7 @@ class vclass(vstatement):
 		self.default=self.names.get(python_default, None)
 		self.constructor=self.names.get(vscript_constructor, None)
 		self.destructor=self.names.get(vscript_destructor, None)
-		for value in self.names.itervalues():
+		for value in self.names.values():
 			if isinstance(value, vproperty):
 				self.statements.append(value)
 		if self.default:
@@ -1286,7 +1291,7 @@ class vclass(vstatement):
 			self.statements.insert(0, vsub(python_destructor, deepcopy(self.destructor.arguments),
 				vstatements().join(vcall(vexpression(u"self.%s()"%vscript_destructor, line=self.line),
 				line=self.line)), line=self.line))
-		self.initializations=[(name, value) for name, value in self.names.iteritems() if isinstance(value, basestring)]
+		self.initializations=[(name, value) for name, value in self.names.items() if isinstance(value, bytes)]
 		if self.constructor or self.initializations:
 			statements=vstatements()
 			if self.initializations:
@@ -1354,7 +1359,7 @@ class vsourcenames(object):
 			alias=self.environment.get(name, KeyError)
 			if alias is KeyError:
 				return name in self.names
-		if isinstance(alias, basestring):
+		if isinstance(alias, (bytes, str)):
 			try: names=self.imports[alias]
 			except KeyError: names=self.imports[alias]=set()
 			names.add(name)
@@ -1362,9 +1367,9 @@ class vsourcenames(object):
 
 	def compose(self, ident):
 		contents=[(None, ident, u"from vscript.%s import %s"%(name, u", ".join(names))) \
-			for name, names in self.imports.iteritems() if name is not None]
+			for name, names in self.imports.items() if name is not None]
 		contents.extend((None, ident, u"globals().setdefault(%s, %s)"%(repr(name), value)) \
-			for name, value in self.names.iteritems() if isinstance(value, basestring))
+			for name, value in self.names.items() if isinstance(value, bytes))
 		return contents
 
 class vsource(object):

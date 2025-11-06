@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 from .. import errors
 from ..operations import div, mod
@@ -24,7 +25,7 @@ class integer(subtype):
 	as_date=property(lambda self: float(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: int(self))
 
 
@@ -52,9 +53,9 @@ class integer(subtype):
 		return float(self._value)
 	
 	def __unicode__(self):
-		return unicode(self._value)
+		return str(self._value)
 	
-	def __nonzero__(self):
+	def __bool__(self):
 		return bool(self._value)
 
 

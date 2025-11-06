@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # encoding: utf8
 
-import startup.server  # noqa
+from startup import server  # noqa
 import settings
 import managers
 
@@ -46,7 +46,7 @@ managers.register("resource_editor", VDOM_resource_editor, lazy=True)
 # managers.register("email_manager", VDOM_email_manager, lazy=True)
 managers.register("module_manager", VDOM_module_manager)
 managers.register("soap_server", VDOM_soap_server)
-managers.register("webdav_manager", VDOM_webdav_manager)
+managers.register("webdav_manager", VDOM_webdav_manager, lazy=True)
 managers.register("server", VDOM_server)
 
 on_prepare = (lambda: managers.memory.applications.default) if settings.PRELOAD_DEFAULT_APPLICATION else None

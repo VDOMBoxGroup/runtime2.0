@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import startup.manage  # noqa
+from startup import manage  # noqa
 import managers
 
 from logs import VDOM_log_manager

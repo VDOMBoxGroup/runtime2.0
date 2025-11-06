@@ -1,4 +1,7 @@
+from __future__ import absolute_import
 
+from builtins import str
+from builtins import object
 from threading import RLock
 from logs import log
 
@@ -54,9 +57,9 @@ class DispatcherEntries(object):
         self._entries = {}
 
     def __getitem__(self, type):
-        try:
+        if type in self._entries:
             return self._entries[type]
-        except KeyError:
+        else:
             with self._lock:
                 entry = self._entries.get(type)
                 if not entry:
@@ -110,12 +113,12 @@ class Dispatcher(object):
         try:
             managers.engine.execute(action)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, unicode):
-                message = unicode(error).encode("utf8")
+            if hasattr(error, "message") and isinstance(error.message, str):
+                message = str(error).encode("utf8")
             else:
                 message = str(error)
             import SOAPpy
-            from soap.errors import remote_method_call_error
+            from .soap.errors import remote_method_call_error
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
 
         response = request.session().value("response")

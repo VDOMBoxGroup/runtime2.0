@@ -1,12 +1,13 @@
 """Session Manager module"""
+from __future__ import absolute_import
 
-import thread, time, copy
+import copy
 
-from session import VDOM_session
+from .session import VDOM_session
 from utils.semaphore import VDOM_semaphore
 from utils.exception import VDOM_exception
 import managers
-from daemon import VDOM_session_cleaner
+from .daemon import VDOM_session_cleaner
 from utils.id import vdomid
 import settings
 
@@ -17,14 +18,14 @@ class VDOM_session_manager(dict):
 		"""constructor"""
 		dict.__init__(self)
 		self.__timeout = VDOM_CONFIG["SESSION-LIFETIME"]
-		self.__sem = VDOM_semaphore()#1,True)
+		self.__sem = VDOM_semaphore()
 		#start clean thread
 		self.__daemon=VDOM_session_cleaner(self)
 		self.__daemon.start()
 
 	def check_sessions(self):
 		"""clean timed-out sessions"""
-		keys_copy = copy.deepcopy(self.keys())
+		keys_copy = copy.deepcopy(list(self.keys()))
 		for sid in keys_copy: self[sid]
 
 	def work(self):

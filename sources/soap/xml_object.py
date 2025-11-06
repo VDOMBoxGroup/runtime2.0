@@ -1,3 +1,7 @@
+from builtins import input
+from builtins import range
+
+from builtins import object
 import os
 from xml.dom.minidom import parse
 from xml.dom.minidom import parseString
@@ -20,7 +24,7 @@ def write_text_to_node(doc, node, data):
             i = data.find("]]>", start)
             if -1 == i:
                 break
-            node.appendChild(doc.createCDATASection(data[start:i+2]))
+            node.appendChild(doc.createCDATASection(data[start: i + 2]))
             start = i + 2
         node.appendChild(doc.createCDATASection(data[start:]))
     else:
@@ -44,18 +48,18 @@ class _lst(list):
                     raise ValueError()
                 if len(some.children) > 0:
                     raise ValueError()
-                some.parent = self.xml_object  # set parent of the new element
-                some.xml_doc = self.xml_object.xml_doc  # set ref to xml document
-                some.level = some.parent.level + 1  # increase level
+                some.parent = self.xml_object    # set parent of the new element
+                some.xml_doc = self.xml_object.xml_doc    # set ref to xml document
+                some.level = some.parent.level + 1    # increase level
                 # element
                 some.node = some.xml_doc.createElement(some.name)
                 b = some.parent.node.hasChildNodes()
                 if not b:
-                    some.parent.node.appendChild(some.xml_doc.createTextNode("\n" + "\t"*some.level))
+                    some.parent.node.appendChild(some.xml_doc.createTextNode("\n" + "\t" * some.level))
                     some.parent.node.appendChild(some.node)
-                    some.parent.node.appendChild(some.xml_doc.createTextNode("\n" + "\t"*some.parent.level))
+                    some.parent.node.appendChild(some.xml_doc.createTextNode("\n" + "\t" * some.parent.level))
                 else:
-                    some.parent.node.insertBefore(some.xml_doc.createTextNode("\n" + "\t"*some.level), some.parent.node.lastChild)
+                    some.parent.node.insertBefore(some.xml_doc.createTextNode("\n" + "\t" * some.level), some.parent.node.lastChild)
                     some.parent.node.insertBefore(some.node, some.parent.node.lastChild)
                 # attributes
                 for a in some.attributes:
@@ -100,9 +104,9 @@ class _dct(dict):
         dict.__init__(self)
 
     def __setitem__(self, key, value):
-        if not isinstance(key, basestring):
+        if not isinstance(key, str):
             raise TypeError()
-        if not isinstance(value, basestring):
+        if not isinstance(value, str):
             raise ValueError()
         if not hasattr(self.xml_object, "parsing") and self.xml_object.node:
             _k = key
@@ -113,7 +117,7 @@ class _dct(dict):
         dict.__setitem__(self, key.lower(), x)
 
     def __getitem__(self, key):
-        if not isinstance(key, basestring):
+        if not isinstance(key, str):
             raise TypeError()
         x = dict.__getitem__(self, key.lower())
         return x[0]
@@ -124,7 +128,7 @@ class _dct(dict):
         dict.__delitem__(self, key.lower())
 
     def get_original_key(self, key):
-        if not isinstance(key, basestring):
+        if not isinstance(key, bytes):
             raise TypeError()
         x = dict.__getitem__(self, key.lower())
         return x[1]
@@ -155,13 +159,13 @@ class xml_object(object):
 
         setattr(self, "parsing", None)
 
-        if srcdata and isinstance(srcdata, basestring):
+        if srcdata and isinstance(srcdata, bytes):
             self.xml_doc = parseString(srcdata)
             self.node = self.xml_doc.documentElement
             self.level = 0
         else:
             # if source is a string, consider it a file name and parse
-            if isinstance(source, basestring):
+            if isinstance(source, bytes):
                 self.xml_doc = parse(source)
                 self.node = self.xml_doc.documentElement
                 self.level = 0
@@ -177,13 +181,13 @@ class xml_object(object):
 
         delattr(self, "parsing")
 
-#	def __del__(self):
-#		print "Del", self.name
+#    def __del__(self):
+#        print "Del", self.name
 
     def get_child_by_name(self, name):
-        l = name.lower()
+        lname = name.lower()
         for c in self.children:
-            if c.lname == l:
+            if c.lname == lname:
                 return c
         return None
 
@@ -241,12 +245,12 @@ class xml_object(object):
     def __setattr__(self, name, value):
         if not hasattr(self, "parsing") and hasattr(self, "node") and self.node:
             if "name" == name:
-                if not isinstance(value, basestring):
+                if not isinstance(value, bytes):
                     raise ValueError()
                 self.node.tagName = value
                 self.lname = value.lower()
             elif "value" == name:
-                if not isinstance(value, basestring):
+                if not isinstance(value, bytes):
                     raise ValueError()
                 if len(self.children) > 0:
                     raise ValueError()
@@ -256,7 +260,7 @@ class xml_object(object):
     def __parse(self):
         self.name = self.node.nodeName
         self.lname = self.name.lower()
-        for i in xrange(self.node.attributes.length):
+        for i in range(self.node.attributes.length):
             attr = self.node.attributes.item(i)
             self.attributes[attr.name] = self.node.getAttribute(attr.name)
         v = ""
@@ -267,7 +271,7 @@ class xml_object(object):
             child = self.node.childNodes[i]
             if child.nodeType == Node.ELEMENT_NODE:
                 if e:
-                    self.node.insertBefore(self.xml_doc.createTextNode("\n" + "\t"*(self.level + 1)), child)
+                    self.node.insertBefore(self.xml_doc.createTextNode("\n" + "\t" * (self.level + 1)), child)
                     i += 1
                 e = True
                 self.children.append(xml_object(child, self))
@@ -282,7 +286,7 @@ class xml_object(object):
         if f:
             self.value = v
         if e:
-            self.node.appendChild(self.xml_doc.createTextNode("\n" + "\t"*self.level))
+            self.node.appendChild(self.xml_doc.createTextNode("\n" + "\t" * self.level))
 
     def toxml(self, encode=True):
         if encode:
@@ -303,8 +307,8 @@ class xml_object(object):
         else:
             return self.__do_repr(self, 0)
 
-    def __do_repr(self, o, l):
-        p = '\t'*l
+    def __do_repr(self, o, level):
+        p = '\t' * level
         result = p + o.name + " ["
         r = ""
         for a in o.attributes:
@@ -316,7 +320,7 @@ class xml_object(object):
             result += " " + o.value
         result += "\n"
         for a in o.children:
-            result += self.__do_repr(a, l + 1)
+            result += self.__do_repr(a, level + 1)
         return result
 
     def sync(self, fname, keep_metadata=False):
@@ -339,7 +343,7 @@ class xml_object(object):
 
 def f1():
     x = xml_object("z.xml")
-    print x
+    print(x)
     return 0
 
 
@@ -348,14 +352,14 @@ if __name__ == "__main__":
     f1()
     import gc
     gc.collect()
-    print len(gc.garbage)
-    x = raw_input()
-    #import gc
-    print "x"
+    print(len(gc.garbage))
+    x = input()
+    # import gc
+    print("x")
     x = xml_object("z.xml")
     x.children.pop(0)
-    print x.toxml()
-    x = raw_input()
+    print(x.toxml())
+    x = input()
 
     a = xml_object()
     a.name = "test"
@@ -375,28 +379,28 @@ if __name__ == "__main__":
     d = xml_object()
     d.name = "test3"
     d.value = "x"
-    #c.children.append(d)
+    # c.children.append(d)
 
-#	print x
-#	print x.toxml()
+#    print x
+#    print x.toxml()
     b.name = "test2"
     b.value = "y"
     del a.attributes["gg"]
     a.attributes["ff"] = "gg"
 
     del x.children[1]  # remove(c)
-    #c.children.pop()
-    #print x
-#	print x.toxml()
+    # c.children.pop()
+    # print x
+#    print x.toxml()
     x.delete()
     del x
-    #c.sync("aaa.xml")
-    #del c, d
-    x = raw_input()
+    # c.sync("aaa.xml")
+    # del c, d
+    x = input()
 
-#	z = xml_object()
-#	z.name = "sample"
-#	z.as_root()
-#	z.children.append(d)
-#	print z.toxml()
-#	z.sync("bbb.xml")
+#    z = xml_object()
+#    z.name = "sample"
+#    z.as_root()
+#    z.children.append(d)
+#    print z.toxml()
+#    z.sync("bbb.xml")

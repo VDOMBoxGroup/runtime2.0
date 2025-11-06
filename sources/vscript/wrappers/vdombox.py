@@ -1,5 +1,5 @@
 
-import re, md5, codecs # SOAPpy
+import re, codecs, hashlib # SOAPpy
 # from soap.soaputils import VDOM_session_protector
 from .. import errors
 from ..subtypes import boolean, generic, string, true, false, v_mismatch
@@ -32,7 +32,7 @@ class v_vdombox(generic):
 		self._address=address.as_string
 		self._username=username.as_string
 		self._password=password.as_string
-		response=self._server.open_session(self._username, md5.new(self._password).hexdigest())
+		response=self._server.open_session(self._username, hashlib.md5.new(self._password).hexdigest())
 		# <Session>
 		#   <SessionId><![CDATA[...]]></SessionId>
 		#   <SessionKey><![CDATA[...]]></SessionKey>

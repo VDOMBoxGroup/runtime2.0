@@ -1,7 +1,10 @@
-import re, md5
+from builtins import str
+from builtins import object
+import re, hashlib
 import threading
 
-import SOAPpy
+from suds.client import Client
+# import SOAPpy
 
 from utils.exception import VDOMServiceCallError
 
@@ -41,7 +44,8 @@ class VDOMServiceSingleThread(object):
 			ssl._create_default_https_context = ssl._create_unverified_context
 
 		self._url = url
-		return SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
+		return Client(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
+		# return SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
 
 
 
@@ -71,7 +75,7 @@ class VDOMServiceSingleThread(object):
 		try:
 			ret = self._server.remote_call(self._sid, self.__request_skey(), self._application_id, container_id, action_name, xml_param, xml_data)
 
-		except Exception, ex:
+		except Exception as ex:
 			if ret:
 				raise VDOMServiceCallError( str(ret) )
 			else:
@@ -97,7 +101,7 @@ class VDOMServiceSingleThread(object):
 			soap_method = getattr(self._server, method_name)
 			ret = soap_method(self._sid, self.__request_skey(), *params)
 
-		except Exception, ex:
+		except Exception as ex:
 			if ret:
 				raise VDOMServiceCallError( str(ret) )
 			else:

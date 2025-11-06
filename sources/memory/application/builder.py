@@ -1,4 +1,5 @@
 
+from builtins import map
 import string
 import base64
 
@@ -384,7 +385,7 @@ def application_builder(parser, installation_callback=None):
                                         else:
                                             parser.reject_elements(name, attributes)
                                     def close_level_handler(name):
-                                        for index, index_objects in sorted(level_objects.iteritems(), key=itemgetter(0)):
+                                        for index, index_objects in sorted(iter(level_objects.items()), key=itemgetter(0)):
                                             level.extend(index_objects)
                                     parser.handle_elements(name, attributes, level_handler, close_level_handler)
                                     # </Level>
@@ -691,7 +692,7 @@ def application_builder(parser, installation_callback=None):
                         else:
                             parser.reject_elements(name, attributes)
                     def close_e2vdom_handler(name):
-                        for event, unknown_bindings in unknown_events.iteritems():
+                        for event, unknown_bindings in unknown_events.items():
                             for binding_id in unknown_bindings:
                                 # binding = application.bindings.get(binding_id, None)
                                 # binding = application.bindings.catalog.get(binding_id, None)
@@ -718,12 +719,12 @@ def application_builder(parser, installation_callback=None):
                                     def group_handler(name, attributes):
                                         if name == u"Name":
                                             # <Name>
-                                            def name_handler(value): group.name = value.encode(u"utf8")
+                                            def name_handler(value): group.name = value
                                             parser.handle_value(name, attributes, name_handler)
                                             # </Name>
                                         elif name == u"Description":
                                             # <Description>
-                                            def description_handler(value): group.description = value.encode(u"utf8")
+                                            def description_handler(value): group.description = value
                                             parser.handle_value(name, attributes, description_handler)
                                             # </Description>
                                         elif name == u"Rights":
@@ -736,7 +737,7 @@ def application_builder(parser, installation_callback=None):
                                                     except KeyError:
                                                         raise MissingAttributeError(u"Target")
                                                     try:
-                                                        access = map(int, map(string.strip, attributes.pop(u"Access").split(u",")))
+                                                        access = list(map(int, list(map(str.strip, attributes.pop(u"Access").split(u",")))))
                                                     except KeyError:
                                                         raise MissingAttributeError(u"Access")
                                                     except ValueError:
@@ -757,7 +758,7 @@ def application_builder(parser, installation_callback=None):
                                             MissingElementError(u"Name")
                                         if not managers.user_manager.name_exists(group.name):
                                             managers.user_manager.create_group(group.name, group.description)
-                                        for target, access_list in group.rights.iteritems():
+                                        for target, access_list in group.rights.items():
                                             for access in access_list:
                                                 managers.acl_manager.add_access(target, group.name, access)
                                     parser.handle_elements(name, attributes, group_handler, close_group_handler)
@@ -783,38 +784,38 @@ def application_builder(parser, installation_callback=None):
                                     def user_handler(name, attributes):
                                         if name == u"Login":
                                             # <Login>
-                                            def login_handler(value): user.login = value.encode(u"utf8")
+                                            def login_handler(value): user.login = value
                                             parser.handle_value(name, attributes, login_handler)
                                             # </Login>
                                         elif name == u"Password":
                                             # <Password>
-                                            def password_handler(value): user.password = value.encode(u"utf8")
+                                            def password_handler(value): user.password = value
                                             parser.handle_value(name, attributes, password_handler)
                                             # </Password>
                                         elif name == u"FirstName":
                                             # <FirstName>
-                                            def firstname_handler(value): user.firstname = value.encode(u"utf8")
+                                            def firstname_handler(value): user.firstname = value
                                             parser.handle_value(name, attributes, firstname_handler)
                                             # </FirstName>
                                         elif name == u"LastName":
                                             # <LastName>
-                                            def lastname_handler(value): user.lastname = value.encode(u"utf8")
+                                            def lastname_handler(value): user.lastname = value
                                             parser.handle_value(name, attributes, lastname_handler)
                                             # </LastName>
                                         elif name == u"Email":
                                             # <Email>
-                                            def email_handler(value): user.email = value.encode(u"utf8")
+                                            def email_handler(value): user.email = value
                                             parser.handle_value(name, attributes, email_handler)
                                             # </Email>
                                         elif name == u"SecurityLevel":
                                             # <SecurityLevel>
-                                            def securitylevel_handler(value): user.security_level = value.encode(u"utf8")
+                                            def securitylevel_handler(value): user.security_level = value
                                             parser.handle_value(name, attributes, securitylevel_handler)
                                             # </SecurityLevel>
                                         elif name == u"MemberOf":
                                             # <MemberOf>
                                             def memberof_handler(value): user.member_of = \
-                                                [member.strip().encode(u"utf8") for member in value.split(u",")] if value else []
+                                                [member.strip() for member in value.split(u",")] if value else []
                                             parser.handle_value(name, attributes, memberof_handler)
                                             # </MemberOf>
                                         elif name == u"Rights":
@@ -827,7 +828,7 @@ def application_builder(parser, installation_callback=None):
                                                     except KeyError:
                                                         raise MissingAttributeError(u"Target")
                                                     try:
-                                                        access = map(int, map(string.strip, attributes.pop(u"Access").split(u",")))
+                                                        access = list(map(int, list(map(str.strip, attributes.pop(u"Access").split(u",")))))
                                                     except KeyError:
                                                         raise MissingAttributeError(u"Access")
                                                     except ValueError:
@@ -858,7 +859,7 @@ def application_builder(parser, installation_callback=None):
                                                 user.security_level)
                                         user_object = managers.user_manager.get_user_object(user.login)
                                         if user_object:
-                                            for target, access_list in user.rights.iteritems():
+                                            for target, access_list in user.rights.items():
                                                 for access in access_list:
                                                     managers.acl_manager.add_access(target, user.login, access)
                                             user_object.member_of = user.member_of
@@ -879,11 +880,11 @@ def application_builder(parser, installation_callback=None):
                 if not sections.get("Information", False):
                     raise MissingSectionError("Information")
 
-                for object in objects.itervalues():
+                for object in objects.values():
                     ~object
-                for binding in bindings.itervalues():
+                for binding in bindings.values():
                     ~binding
-                for action in actions.itervalues():
+                for action in actions.values():
                     ~action
                 for event in events:
                     ~event
@@ -895,7 +896,7 @@ def application_builder(parser, installation_callback=None):
                 if (settings.ENABLE_VSCRIPT_PRECOMPILE
                         and application.scripting_language == VSCRIPT_LANGUAGE
                         and not settings.STORE_BYTECODE):
-                    for library in application.libraries.itervalues():
+                    for library in application.libraries.values():
                         server_log.write("Precompile %s" % library)
                         library.compile()
 

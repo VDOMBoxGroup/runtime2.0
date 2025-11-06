@@ -1,5 +1,10 @@
 
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
+    
 from ...generic import MemoryBase
 from .auxiliary import subtree, check_subtree
 
@@ -17,7 +22,7 @@ class MemoryEventsCatalog(MemoryBase, Mapping):
     def compose(self, ident=u"", file=None):
         if self._items:
             file.write(u"%s<Events>\n" % ident)
-            for event in self._items.itervalues():
+            for event in self._items.values():
                 event.compose(ident=ident + u"\t", file=file)
             file.write(u"%s</Events>\n" % ident)
 

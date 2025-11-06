@@ -40,10 +40,10 @@ class MemoryEventSketch(MemoryBase):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "event",
             "\"%s\"" % self._name if self._name else None,
-            "sketch of %s" % self._collection.owner)))
+            "sketch of %s" % self._collection.owner) if _f])
 
 
 class MemoryEventRestorationSketch(MemoryEventSketch):
@@ -93,7 +93,7 @@ class MemoryEvent(MemoryEventSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "event",
             "\"%s\"" % self._name if self._name else None,
-            "of %s" % self._collection.owner)))
+            "of %s" % self._collection.owner) if _f])

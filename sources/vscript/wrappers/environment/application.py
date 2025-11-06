@@ -70,11 +70,11 @@ class v_storage(generic):
 			# managers.file_manager.write(storage,
 			#	managers.request_manager.current.application_id, None,
 			#	normailze(filename.as_string), contents,
-			#	async=False if asynchronous is None else asynchronous.as_boolean)
+			#	write_async=False if asynchronous is None else asynchronous.as_boolean)
 			managers.file_manager.write(storage,
 				managers.request_manager.current.application_id,
 				normailze(filename.as_string), contents,
-				async=False if asynchronous is None else asynchronous.as_boolean)
+				write_async=False if asynchronous is None else asynchronous.as_boolean)
 		except IOError as exception:
 			raise errors.system_error(exception.strerror)
 		return v_mismatch

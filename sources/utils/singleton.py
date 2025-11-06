@@ -1,4 +1,5 @@
 
+from builtins import object
 class Singleton(object):
 
     __instance = None

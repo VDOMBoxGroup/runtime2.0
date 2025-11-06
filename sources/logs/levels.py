@@ -1,4 +1,5 @@
 
+from builtins import zip
 DEBUG = 0
 MESSAGE = 1
 WARNING = 2
@@ -8,5 +9,5 @@ NAMES = "DEBUG", "MESSAGE", "WARNING", "ERROR"
 LEVELS = DEBUG, MESSAGE, WARNING, ERROR
 PREFIXES = "DEBUG: ", "", "WARNING: ", "ERROR: "
 
-NAME_TO_LEVEL = dict(zip(NAMES, LEVELS))
-LEVEL_TO_NAME = dict(zip(LEVELS, NAMES))
+NAME_TO_LEVEL = dict(list(zip(NAMES, LEVELS)))
+LEVEL_TO_NAME = dict(list(zip(LEVELS, NAMES)))

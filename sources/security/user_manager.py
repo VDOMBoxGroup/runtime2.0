@@ -2,6 +2,7 @@
 User Manager module
 """
 
+from builtins import object
 from hashlib import md5
 
 import managers
@@ -12,7 +13,7 @@ from security.group import VDOM_usergroup
 from utils.exception import VDOM_exception
 
 
-class VDOM_user_manager:
+class VDOM_user_manager(object):
 	"""Defines user-system operations"""
 
 	def __init__(self):
@@ -38,7 +39,7 @@ class VDOM_user_manager:
 			self.guest_user = self.create_user("guest", "", system=True)
 			managers.storage.write_async(VDOM_CONFIG["USER-MANAGER-GUEST-ID-STORAGE-RECORD"], self.guest_user.id)
 		# create hash
-		for uid in self.users.keys():
+		for uid in list(self.users.keys()):
 			self.users_by_name[self.users[uid].login] = self.users[uid]
 		self.__check_system()
 		self.__check_membership()
@@ -50,7 +51,7 @@ class VDOM_user_manager:
 				self.create_user(name, passw, system=True)
 				self.users_by_name[name].member_of.append("ManagementLogin")
 
-		sys_groups = [("ManagementLogin", _("Allows to log into the management area"), ["root", "Admin"])]
+		sys_groups = [("ManagementLogin", ("Allows to log into the management area"), ["root", "Admin"])]
 		for (name, descr, members) in sys_groups:
 			if name not in self.users_by_name:
 				self.create_group(name, descr, True)
@@ -67,7 +68,7 @@ class VDOM_user_manager:
 	def create_user(self, login, password, name1="", name2="", email="", slv="", system=False):
 		"""Creates new user and adds it to system"""
 		if(self.name_exists(login)):
-			raise VDOM_exception(_("Login %s already exists in the system" % login))
+			raise VDOM_exception(("Login %s already exists in the system" % login))
 		user = VDOM_user()
 		user.id = vdomid()
 		user.login = login
@@ -85,7 +86,7 @@ class VDOM_user_manager:
 	def create_group(self, name, descr="", system=False):
 		"""Creates new group and adds it to system"""
 		if(self.name_exists(name)):
-			raise VDOM_exception(_("Name %s already exists in the system" % name))
+			raise VDOM_exception(("Name %s already exists in the system" % name))
 		group = VDOM_usergroup()
 		group.id = vdomid()
 		group.login = name
@@ -137,7 +138,7 @@ class VDOM_user_manager:
 			return None
 		u = self.users_by_name[login]
 		if isinstance(u, VDOM_user):
-			md5obj = md5(u.password)
+			md5obj = md5(u.password.encode())
 			if md5obj.hexdigest() == pwd_md5:
 				return u
 		return None

@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 
+# from sources import settings
 import settings
 from logs import log
 from logs.levels import LEVEL_TO_NAME

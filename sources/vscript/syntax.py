@@ -1,7 +1,9 @@
+from __future__ import absolute_import
+
 
 import ply.lex as lex
 from . import errors, lexemes
-from source import *
+from .source import *
 
 
 
@@ -1197,14 +1199,14 @@ def p_source(p):
 def p_error(p):
 	if isinstance(p, tuple):
 		raise errors.syntax_error(p.value[1], p.lexer.lineno)
-	elif isinstance(p, basestring):
+	elif isinstance(p, bytes):
 		raise errors.syntax_error(p.value)
 	elif isinstance(p, lex.LexToken):
 		if p.type=="NEWLINE":
 			raise errors.syntax_error("CR/LF", p.lineno)
 		elif isinstance(p.value, tuple):
 			raise errors.syntax_error(p.value[1], p.lineno)
-		elif isinstance(p.value, basestring):
+		elif isinstance(p.value, bytes):
 			raise errors.syntax_error(p.value, p.lineno)
 		else:
 			debug("!!! STRANGE LEXTOKEN VALUE !!!", console=True)

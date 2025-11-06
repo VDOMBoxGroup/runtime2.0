@@ -1,4 +1,5 @@
 
+from builtins import object
 from operator import itemgetter
 from threading import RLock
 import settings
@@ -31,7 +32,7 @@ class Counters(object):
                 lines.append("%s%s statistics:" % (indent, label))
                 indent += "    "
 
-            items = list(self._items.iteritems())
+            items = list(self._items.items())
             items.sort(key=itemgetter(0))
 
             for name, value in items:

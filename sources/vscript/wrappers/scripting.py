@@ -1,4 +1,5 @@
 
+from builtins import str
 from .. import errors
 from ..subtypes import generic, string
 from ..variables import shadow
@@ -15,13 +16,13 @@ class v_vdomtype(generic):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("id")
 		else:
-			return string(unicode(self._type.id))
+			return string(str(self._type.id))
 
 	def v_name(self, **keywords):
 		if "let" in keywords or "set" in keywords:
 			raise errors.object_has_no_property("name")
 		else:
-			return string(unicode(self._type.name))
+			return string(str(self._type.name))
 
 
 	def __repr__(self):
@@ -45,7 +46,7 @@ class v_vdomobject(generic):
 			else:
 				raise errors.object_has_no_property(name)
 		elif name.startswith("wrapper_"):
-			return string(unicode(getattr(self._object, name[8:])))
+			return string(str(getattr(self._object, name[8:])))
 		else:
 			raise errors.object_has_no_property(name)
 

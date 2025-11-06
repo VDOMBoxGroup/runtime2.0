@@ -1,6 +1,15 @@
 
+from builtins import str
+
+from builtins import object
 import re
-from collections import Mapping, MutableMapping
+import sys
+import codecs
+
+if sys.version_info[0] < 3:
+    from collections import Mapping, MutableMapping
+else:
+    from collections.abc import Mapping, MutableMapping
 import settings
 import managers
 from utils.properties import weak
@@ -10,7 +19,7 @@ from ..generic import MemoryBase
 
 FORCE_CDATA_LENGTH = 1024
 FORCE_CDATA_REGEX = re.compile(u"[\t\n\r\"<=>]", re.MULTILINE)
-PROHIBITED_CHARACTERS = re.compile(ur"[\x00-\x08\x0B\x0C\x0E-\x19]")
+PROHIBITED_CHARACTERS = re.compile("[\x00-\x08\x0B\x0C\x0E-\x19]")
 DEREFERENCE_REGEX = re.compile(r"\#RES\(([A-F\d]{8}-[A-F\d]{4}-[A-F\d]{4}-[A-F\d]{4}-[A-F\d]{12})\)", re.IGNORECASE)
 LAYOUT_ATTRIBUTES = {"top", "left", "width", "height", "hierarchy"}
 
@@ -42,10 +51,10 @@ class MemoryAttributesSketch(MemoryBase, MutableMapping):
         return iter(self._items.__dict__)
 
     def iternondefaultitems(self):
-        return self._items.__dict__.iteritems()
+        return iter(self._items.__dict__.items())
 
     def update(self, values):
-        for name, value in values.iteritems():
+        for name, value in values.items():
             value = DEREFERENCE_REGEX.sub(lambda match: match.group(1), value)
             try:
                 self._owner.type.attributes[name].verify(value)
@@ -126,8 +135,8 @@ class MemoryAttributes(MemoryAttributesSketch):
             file.write(u"%s<Attributes>\n" % ident)
             for name in self._items.__dict__ if skip_defaults else self._items._enumeration:
                 file.write(u"%s\t<Attribute Name=\"%s\">%s</Attribute>\n" %
-                    (ident, name, PROHIBITED_CHARACTERS.sub("?",
-                        getattr(self._items, name)).encode("cdata" if name in self._cdata else "xml")))
+                    (ident, name, codecs.encode(PROHIBITED_CHARACTERS.sub("?",
+                        getattr(self._items, name)), "cdata" if name in self._cdata else "xml")))
             file.write(u"%s</Attributes>\n" % ident)
 
     def update(self, *arguments, **keywords):
@@ -136,7 +145,7 @@ class MemoryAttributes(MemoryAttributesSketch):
             if isinstance(collection, Mapping):
                 values = collection
             elif hasattr(collection, "keys"):
-                values = {key: collection[key] for key in collection.keys()}
+                values = {key: collection[key] for key in list(collection.keys())}
             else:
                 values = {key: collection[key] for key, value in collection}
         else:
@@ -144,8 +153,8 @@ class MemoryAttributes(MemoryAttributesSketch):
 
         updates = {}
         with self._owner.lock:
-            for name, value in values.iteritems():
-                if not isinstance(value, basestring):
+            for name, value in values.items():
+                if not isinstance(value, str):
                     value = str(value)
 
                 try:
@@ -161,8 +170,8 @@ class MemoryAttributes(MemoryAttributesSketch):
 
                 if updates:
                     layout = False
-                    for name, value in updates.iteritems():
-                        if not isinstance(value, basestring):
+                    for name, value in updates.items():
+                        if not isinstance(value, str):
                             value = str(value)
 
                         try:

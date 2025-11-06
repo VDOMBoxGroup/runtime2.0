@@ -1,8 +1,9 @@
 
+from builtins import object
 from threading import BoundedSemaphore as sem
 #import inspect
 
-class VDOM_semaphore:
+class VDOM_semaphore(object):
 
 	def __init__(self, counter=1):
 		self.__semaphore = sem(counter)

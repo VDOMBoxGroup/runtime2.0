@@ -1,5 +1,8 @@
-
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from ...generic import MemoryBase
 from .auxiliary import subtree, check_subtree
 
@@ -17,7 +20,7 @@ class MemoryBindingsCatalog(MemoryBase, Mapping):
     def compose(self, ident=u"", file=None):
         if self._items:
             file.write(u"%s<Actions>\n" % ident)
-            for binding in self._items.itervalues():
+            for binding in self._items.values():
                 binding.compose(ident=u"\t" + ident, file=file)
             file.write(u"%s</Actions>\n" % ident)
 

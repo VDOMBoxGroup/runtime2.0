@@ -1,4 +1,5 @@
 
+from builtins import input
 import re
 from itertools import islice
 
@@ -33,7 +34,7 @@ def run():
     while 1:
         try:
             console.stdout.write("manage > ")
-            command = raw_input().strip().lstrip("-")
+            command = input().strip().lstrip("-")
         except KeyboardInterrupt:
             return
         except EOFError:

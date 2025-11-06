@@ -1,4 +1,5 @@
 
+from builtins import object
 import re
 import threading
 import os
@@ -281,16 +282,16 @@ class VDOM_databases(object):
 
     def create(self, db_name, title="DBSchema", description=""):
         from scripting.wrappers import application
-        application_memmory = managers.memory.applications[application.id]
-        obj = application_memmory.objects.get(
+        app = managers.memory.applications[application.id]
+        obj = app.objects.get(
             db_name,
-            application_memmory.objects.new(managers.memory.types[DBSCHEMA_ID], name=db_name)
+            app.objects.new(managers.memory.types[DBSCHEMA_ID], name=db_name)
         )
         database = managers.database_manager.get_database_by_name(application.id, db_name)
         if not database:
             database = managers.database_manager.create_database(application.id, obj.id, db_name)
             database.open()
-        application_memmory.save()
+        app.save()
         return database
 
     def delete(self, db_name):

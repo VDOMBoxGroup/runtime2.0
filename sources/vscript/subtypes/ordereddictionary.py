@@ -1,4 +1,5 @@
 
+from builtins import str
 from .. import errors
 from ..primitives import subtype
 from .empty import v_empty
@@ -21,7 +22,7 @@ class ordereddictionary(subtype):
 		else:
 			return self._items.get(arguments[0].subtype, v_empty)
 
-	copy=property(lambda self: OrderedDict([(k.copy, v.copy) for k, v in self._items.iteritems()]))
+	copy=property(lambda self: OrderedDict([(k.copy, v.copy) for k, v in self._items.items()]))
 
 	code=property(lambda self: 9001)
 
@@ -43,7 +44,7 @@ class ordereddictionary(subtype):
 	as_dictionary=property(lambda self: self)
 
 	def is_dictionary(self, func=None):
-		return all((func(k, v) for k, v in self._items.iteritems())) if func else True
+		return all((func(k, v) for k, v in self._items.items())) if func else True
 
 	items=property(lambda self: self._items)
 

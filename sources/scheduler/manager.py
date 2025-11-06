@@ -1,5 +1,9 @@
-import managers, utils.uuid
-import task
+from __future__ import absolute_import
+from builtins import str
+from builtins import object
+import managers
+from uuid import uuid4
+from . import task
 
 class VDOM_scheduler_manager(object):
 
@@ -21,7 +25,7 @@ class VDOM_scheduler_manager(object):
 			return None
 
 	def add_task(self, task_object, interval):
-		task_id = str(utils.uuid.uuid4())
+		task_id = str(uuid4())
 		self.__task_list[task_id] = (task_object, interval)
 		managers.storage.write_object_async(VDOM_CONFIG["SCHEDULER-MANAGER-INDEX-STORAGE-RECORD"],self.__task_list)
 		crontab = []

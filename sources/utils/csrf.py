@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from Crypto import Random
 from Crypto.Hash import SHA256
 
 import managers
-from exception import VDOM_exception
+from .exception import VDOM_exception
 
 
 csrf_secret_sess_var_name = 'VDOM_csrf_secret' # name of the session variable storing the csrf key
@@ -33,7 +34,7 @@ def get_csrf_secret():
 
 
 def create_csrf_token(salt=''):
-        """Generate csrf token based on existing/new csrf secret and
+	"""Generate csrf token based on existing/new csrf secret and
 	provided/new salt"""
 	if not salt:
 		salt = Random.new().read(csrf_salt_len).encode('hex')

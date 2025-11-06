@@ -1,8 +1,10 @@
 
+from builtins import str
 from hashlib import md5
 from time import time
 
-from SOAPpy import faultType
+# from SOAPpy import faultType
+from suds import WebFault
 
 from utils.parsing import VALUE, Parser, ParsingException
 from utils.remote_api import VDOMServiceSingleThread, VDOMServiceCallError
@@ -43,7 +45,7 @@ def soap_query(caption, address, user, password, method, *arguments, **keywords)
 
     try:
         Parser(builder=builder, notify=True, supress=True).parse(
-            response.encode("utf8") if isinstance(response, unicode) else response)
+            response.encode("utf8") if isinstance(response, str) else response)
     except ParsingException as error:
         raise SOAPError("Unable to parse response: %s" % error)
 

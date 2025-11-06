@@ -1,12 +1,17 @@
 """server request handler module"""
 
-import sys, os, posixpath, urllib, shutil, mimetypes, thread, re, socket, threading, time, SOAPpy, traceback, select, cgi
+
+
+from builtins import str
+from builtins import object
+
+import sys, os, posixpath, urllib.request, urllib.parse, urllib.error, shutil, mimetypes, _thread, re, socket, threading, time, SOAPpy, traceback, select
 
 if sys.platform.startswith("freebsd"):
     import vdomlib
 
-import SocketServer, BaseHTTPServer, SimpleHTTPServer
-from cStringIO import StringIO
+import http.server, http.server
+from io import StringIO
 import xml.sax.saxutils
 #import webdav_server
 #from wsgidav.wsgidav_app import WsgiDAVApp
@@ -22,10 +27,10 @@ from utils.exception import VDOM_exception
 
 
 # A class to describe how header messages are handled
-class HeaderHandler:
+class HeaderHandler(object):
     # Initially fail out if there are any problems.
     def __init__(self, header, attrs):
-        for i in header.__dict__.keys():
+        for i in list(header.__dict__.keys()):
             if i[0] == "_":
                 continue
 
@@ -37,7 +42,7 @@ class HeaderHandler:
                 fault = 0
 
             if fault:
-                raise faultType, ("%s:MustUnderstand" % SOAPpy.NS.ENV_T,
+                raise SOAPpy.faultType("%s:MustUnderstand" % SOAPpy.NS.ENV_T,
                                   "Required Header Misunderstood",
                                   "%s" % i)
 
@@ -64,7 +69,7 @@ class VDOM_wsgi_request_handler(object):
     def start_response(self, status, response_headers, exc_info=None):
         if exc_info:
             try:
-                raise exc_info[0], exc_info[1], exc_info[2]
+                raise exc_info[0](exc_info[1], exc_info[2])
                 # do stuff w/exc_info here
             finally:
                 exc_info = None    # Avoid circular ref.
@@ -104,7 +109,7 @@ class VDOM_wsgi_request_handler(object):
         else:
             path,query = self.path,''
 
-        env['PATH_INFO'] = urllib.unquote(path)
+        env['PATH_INFO'] = urllib.parse.unquote(path)
         env['QUERY_STRING'] = query
 
         host = self.address_string()
@@ -170,7 +175,7 @@ class VDOM_wsgi_request_handler(object):
             method = getattr(self, mname)
             method()
             self.wfile.flush() #actually send the response if not already done.
-        except socket.timeout, e:
+        except socket.timeout as e:
             #a read or a write timed out.  Discard this connection
             self.log_error("Request timed out: %r", e)
             self.close_connection = 1
@@ -208,9 +213,9 @@ class VDOM_wsgi_request_handler(object):
         self.create_request("get")
         f = self.on_request("get")
         if f:
-            sys.setcheckinterval(0)
+            sys.setswitchinterval(0.05)
             shutil.copyfileobj(f, self.wfile)
-            sys.setcheckinterval(100)
+            sys.setswitchinterval(100)
             #self.copyfile(f, self.wfile)
             f.close()
         if not self.wfile.closed:
@@ -237,9 +242,9 @@ class VDOM_wsgi_request_handler(object):
             return
         f = self.on_request("post")
         if f:
-            sys.setcheckinterval(0)
+            sys.setswitchinterval(0.05)
             shutil.copyfileobj(f, self.wfile)
-            sys.setcheckinterval(100)
+            sys.setswitchinterval(100)
             #self.copyfile(f, self.wfile)
             f.close()
         #if not self.wfile.closed:
@@ -392,7 +397,7 @@ class VDOM_wsgi_request_handler(object):
     def finish(self):
         """finish processing request"""
         #debug("FINISH REQUEST %s"%self)
-        SimpleHTTPServer.SimpleHTTPRequestHandler.finish(self)
+        http.server.SimpleHTTPRequestHandler.finish(self)
         """tell the server that processing is finished"""
         self.server.notify_finish(self.client_address)
         # remove request
@@ -423,7 +428,7 @@ class VDOM_wsgi_request_handler(object):
 
     def print_list(self, list, f):
         """print contents of the dictionary in the form of list"""
-        for k in list.keys():
+        for k in list(list.keys()):
             f.write("%s: \"%s\"<br>\n" % (k.upper(), list[k]))
         f.write("<hr>")
 
@@ -507,7 +512,7 @@ class VDOM_wsgi_request_handler(object):
                 s = 'Incoming HTTP headers'
                 SOAPpy.debugHeader(s)
                 debug(self.raw_requestline.strip())
-                debug("\n".join(map (lambda x: x.strip(), self.headers.headers)))
+                debug("\n".join([x.strip() for x in self.headers.headers]))
                 SOAPpy.debugFooter(s)
             data = self.__request.postdata
             if dumpSOAPIn:
@@ -547,7 +552,7 @@ class VDOM_wsgi_request_handler(object):
                 ordered_args = {}
                 named_args   = {}
 
-                for (k,v) in  kw.items():
+                for (k,v) in  list(kw.items()):
 
                     if k[0]=="v":
                         try:
@@ -574,11 +579,11 @@ class VDOM_wsgi_request_handler(object):
             # authorization method
             a = None
 
-            keylist = ordered_args.keys()
+            keylist = list(ordered_args.keys())
             keylist.sort()
 
             # create list in proper order w/o names
-            tmp = map( lambda x: ordered_args[x], keylist)
+            tmp = [ordered_args[x] for x in keylist]
             ordered_args = tmp
 
 #			print '<-> Argument Matching Yielded:'
@@ -660,10 +665,10 @@ class VDOM_wsgi_request_handler(object):
                     # and it won't be necessary here
                     # for now we're doing both
 
-                    if "SOAPAction".lower() not in self.headers.keys() or self.headers["SOAPAction"] == "\"\"":
+                    if "SOAPAction".lower() not in list(self.headers.keys()) or self.headers["SOAPAction"] == "\"\"":
                         self.headers["SOAPAction"] = method
 
-                    thread_id = thread.get_ident()
+                    thread_id = _thread.get_ident()
                     _contexts[thread_id] = SOAPpy.SOAPContext(header, body,
                                                               attrs, data,
                                                               self.connection,
@@ -701,7 +706,7 @@ class VDOM_wsgi_request_handler(object):
 
                             strkw = {}
 
-                            for (k, v) in kw.items():
+                            for (k, v) in list(kw.items()):
                                 strkw[str(k)] = v
                             if c:
                                 strkw["_SOAPContext"] = c
@@ -735,7 +740,7 @@ class VDOM_wsgi_request_handler(object):
                     if thread_id in _contexts:
                         del _contexts[thread_id]
 
-                except Exception, e:
+                except Exception as e:
                     import traceback
                     info = sys.exc_info()
 
@@ -769,7 +774,7 @@ class VDOM_wsgi_request_handler(object):
                     status = self.__request.fault_type_http_code
                 else:
                     status = 200
-        except SOAPpy.faultType, e:
+        except SOAPpy.faultType as e:
             import traceback
             info = sys.exc_info()
             try:
@@ -792,7 +797,7 @@ class VDOM_wsgi_request_handler(object):
             resp = SOAPpy.buildSOAP(e, encoding = self.server.encoding,
                                     config = self.server.config, namespace = "http://services.vdom.net/VDOMServices" )
             status = self.__request.fault_type_http_code
-        except Exception, e:
+        except Exception as e:
             # internal error, report as HTTP server error
 
             if self.server.config.dumpFaultInfo:
@@ -873,15 +878,15 @@ class VDOM_wsgi_request_handler(object):
                 pass
 
     def date_time_string(self):
-        self.__last_date_time_string = BaseHTTPServer.BaseHTTPRequestHandler.date_time_string(self)
+        self.__last_date_time_string = http.server.BaseHTTPRequestHandler.date_time_string(self)
         return self.__last_date_time_string
 
     def send_error(self, code, message=None, excinfo=None):
         """ send error """
         try:
-            short, long=self.responses[code]
+            short, int=self.responses[code]
         except KeyError:
-            short, long='???', '???'
+            short, int='???', '???'
         if message is None:
             message=short
 
@@ -911,7 +916,7 @@ class VDOM_wsgi_request_handler(object):
                 pass
         else:
             self.requestline = ""
-            SimpleHTTPServer.SimpleHTTPRequestHandler.send_error(self, code, message)
+            http.server.SimpleHTTPRequestHandler.send_error(self, code, message)
             if excinfo:
                 page_debug = VDOM_CONFIG_1["ENABLE-PAGE-DEBUG"]
                 if "1" == page_debug:

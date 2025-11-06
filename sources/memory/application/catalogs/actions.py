@@ -1,5 +1,10 @@
 
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
+
 from ...generic import MemoryBase
 from .auxiliary import subtree, check_subtree
 

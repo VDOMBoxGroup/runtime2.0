@@ -1,8 +1,9 @@
 
+
+from builtins import object
 from itertools import chain
 from inspect import iscode, isroutine, ismodule
 from threading import Lock
-
 
 import managers
 import version
@@ -12,7 +13,6 @@ from uuid import uuid4
 from vscript.engine import vcompile, vexecute, vevaluate
 from mailing.message import Message, MailAttachment as Attachment
 from mailing.pop import VDOM_Pop3_client
-
 
 class VDOM_vscript_libraries(object):
 
@@ -74,32 +74,32 @@ class VDOM_vscript(object):
     vcollection = property(lambda self: vscript.vcollection)
 
     def compile(self, source=None, let=None, set=None, use=None,
-            anyway=False, context=None, environment=None, **keywords):
+                anyway=False, context=None, environment=None, **keywords):
         if environment is None:
-            environment = {"v_%s" % name: value for name, value in keywords.iteritems()}
+            environment = {"v_%s" % name: value for name, value in keywords.items()}
         package = None if context is None else ":".join((managers.engine.application.id, context))
         return vcompile(source, let, set, package=package, environment=environment, use=use, anyway=anyway)
 
     def execute(self, source_or_code, data=None, use=None,
-            anyway=False, context=None, environment=None, namespace=None, **keywords):
+                anyway=False, context=None, environment=None, namespace=None, **keywords):
         if environment is None:
-            environment = {"v_%s" % name: value for name, value in keywords.iteritems()}
+            environment = {"v_%s" % name: value for name, value in keywords.items()}
         if iscode(source_or_code):
             code = source_or_code
         else:
             code, data = self.compile(source_or_code, use=use,
-                anyway=anyway, context=context, environment=environment, **keywords)
+                                      anyway=anyway, context=context, environment=environment, **keywords)
         vexecute(code, data, use=use, environment=environment, namespace=namespace)
 
     def evaluate(self, let=None, set=None, use=None,
-            anyway=False, context=None, environment=None, namespace=None, result=None, **keywords):
+                 anyway=False, context=None, environment=None, namespace=None, result=None, **keywords):
         if environment is None:
-            environment = {"v_%s" % name: value for name, value in keywords.iteritems()}
+            environment = {"v_%s" % name: value for name, value in keywords.items()}
         if iscode(let or set):
             code = let or set
         else:
             code, data = self.compile(let=let, set=set, use=use,
-                anyway=anyway, context=context, environment=environment, **keywords)
+                                      anyway=anyway, context=context, environment=environment, **keywords)
         return vevaluate(code, data, use=use, environment=environment, namespace=namespace, result=result)
 
 
@@ -135,12 +135,11 @@ class VDOM_javascript_libraries(object):
 
         def normalize(namespace):
             if ismodule(namespace):
-                return {name: value for name, value in namespace.__dict__.iteritems()
-                    if not name.startswith("_")}
+                return {name: value for name, value in namespace.__dict__.items() if not name.startswith("_")}
             else:
                 return namespace
 
-        if isinstance(source_or_namespace, basestring):
+        if isinstance(source_or_namespace, bytes):
             code = self._owner.compile(source_or_namespace, context=context, environment=environment)
             module = VDOM_javascript_libraries_module()
             self._owner.execute(code, context=context, environment=environment, module=module)
@@ -246,7 +245,7 @@ class VDOM_javascript(object):
         var = namespace["var"].to_python()
         setattr(var, "require", require)
 
-        for name, value in chain((environment or {}).iteritems(), keywords.iteritems()):
+        for name, value in chain(iter((environment or {}).items()), iter(keywords.items())):
             if hasattr(var, name):
                 raise Exception("Unable to redefine: \"%s\"" % name)
             setattr(var, name, value)
@@ -304,7 +303,6 @@ class VDOM_server(object):
     def __init__(self):
         self._vscript = VDOM_vscript()
         self._javascript = None
-
         self._mailer = VDOM_mailer()
 
     def _get_version(self):

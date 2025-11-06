@@ -1,11 +1,15 @@
 """web services utils"""
 
+from builtins import chr
+from builtins import str
+from builtins import range
+from builtins import object
 import random
 
 from utils.exception import *
 
 # session protector class
-class VDOM_session_protector:
+class VDOM_session_protector(object):
 	"""class used to protect web services from unauthorized access"""
 
 	def __init__(self, hash_str):
@@ -18,12 +22,12 @@ class VDOM_session_protector:
 		if self.__hash == "":
 			raise VDOM_exception_sec("Hash code is empty")
 
-		for idx in xrange(len(self.__hash)):
+		for idx in range(len(self.__hash)):
 			i = self.__hash[idx]
 			if not str(i).isdigit():
 				raise VDOM_exception_sec("Hash code contains non-digit letter \"%c\"" % str(i))
 		result = 0
-		for idx in xrange(len(self.__hash)):
+		for idx in range(len(self.__hash)):
 			i = self.__hash[idx]
 			result += int(self.__calc_hash(session_key, int(i)))
 		return ("0"*10 + str(result)[0:10])[-10:]

@@ -2,9 +2,10 @@
 Virtual hosting class. Allows to map hostnames and application identifiers.
 """
 
+from builtins import object
 import managers
 
-class VDOM_vhosting:
+class VDOM_vhosting(object):
 
 	def __init__(self):
 		"""constructor"""
@@ -31,7 +32,7 @@ class VDOM_vhosting:
 
 	def get_sites(self):
 		"""get the list of registered sites"""
-		return self.__vhosting_data.keys()
+		return list(self.__vhosting_data.keys())
 
 	def get_site(self, site):
 		"""get site identifier by name"""

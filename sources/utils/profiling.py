@@ -1,4 +1,5 @@
 
+from builtins import object
 import errno
 import os.path
 
@@ -121,7 +122,7 @@ class Profiler(object):
 
     def autosave(self):
         self.save()
-        for profiler in self._profilers.itervalues():
+        for profiler in self._profilers.values():
             profiler.save()
 
 

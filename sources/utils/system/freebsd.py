@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import map
 import os
 import re
 
@@ -20,7 +22,7 @@ def get_ip_and_mask():
             parts = [255 & (m >> 24), 255 & (m >> 16), 255 & (m >> 8), 255 & m]
             the_mask = ".".join(map(str, parts))
             return (the_ip, the_mask)
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
     return (None, None)
 
@@ -42,7 +44,7 @@ def get_default_gateway():
         if ret and ret.group():
             gate = ret.group(1)
             return gate
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
     return None
 
@@ -55,7 +57,7 @@ def set_default_gateway(gate):
         f = os.popen("route add default " + gate)
         outp = f.read()
         f.close()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
 
 
@@ -78,7 +80,7 @@ def get_dns():
                 sdns = sdns[10:].strip()
             else:
                 sdns = ""
-    except Exception, e:
+    except Exception as e:
         debug("get_dns: " + str(e))
     return (pdns, sdns)
 
@@ -93,7 +95,7 @@ def set_dns(pdns, sdns):
         f = open("/etc/resolv.conf", "wt")
         f.write("\n".join([a, b]))
         f.close()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
 
 
@@ -106,7 +108,7 @@ def get_date_and_time():
         if 15 == len(outp):
             the_date = "%s.%s.%s %s:%s" % (outp[:4], outp[4:6], outp[6:8], outp[8:10], outp[10:])
             return the_date
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
     return None
 
@@ -122,7 +124,7 @@ def get_free_space():
         if ret and ret.group():
             x = ret.group(1)
             return int(x) / 1024.0
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
     return 0
 
@@ -139,7 +141,7 @@ def get_hd_size():
             x = ret.group(1)
             y = ret.group(2)
             return (int(x) + int(y)) / 1024.0
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
     return 0
 
@@ -198,7 +200,7 @@ def get_vfs_users():
 def move(src, dst):
     try:
         subprocess.check_call(["mv", src, dst])
-    except CalledProcessError, e:
+    except CalledProcessError as e:
         debug("Error: return code: %s" % str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_freebsd")
 
@@ -206,6 +208,6 @@ def move(src, dst):
 def copy(src, dst):
     try:
         subprocess.check_call(["cp", src, dst])
-    except CalledProcessError, e:
+    except CalledProcessError as e:
         debug("Error: return code: %s" % str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_freebsd")

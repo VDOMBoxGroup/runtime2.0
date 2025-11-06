@@ -1,6 +1,13 @@
 
+from builtins import str
+from builtins import object
 from weakref import ref
-from collections import OrderedDict, MutableMapping
+from collections import OrderedDict
+import sys
+if sys.version_info[0] < 3:
+    from collections import MutableMapping
+else:
+    from collections.abc import MutableMapping
 from itertools import islice
 from uuid import uuid4
 
@@ -54,7 +61,7 @@ class MemoryObjects(MemoryBase, MutableMapping):
 
     owner = roproperty("_owner")
     catalog = roproperty("_catalog")
-    names = property(lambda self: self.__dict__.get("_items_by_name", EMPTY_DICTIONARY).keys())
+    names = property(lambda self: list(self.__dict__.get("_items_by_name", EMPTY_DICTIONARY).keys()))
 
     def on_rename(self, item, name):
         with self._owner.lock:
@@ -106,18 +113,18 @@ class MemoryObjects(MemoryBase, MutableMapping):
 
             # cleanup structure
             if self._owner.is_application and not item.virtual:
-                for container in self._owner.objects.itervalues():
+                for container in self._owner.objects.values():
                     if item is container:
                         continue
-                    for level in container.structure.itervalues():
+                    for level in container.structure.values():
                         if item in level:
                             level.remove(item)
 
             # remove events
             item.events.clear()
-            bindings = tuple(binding for binding in item.container.bindings.catalog.itervalues()
+            bindings = tuple(binding for binding in item.container.bindings.catalog.values()
                 if binding.target_object == item)
-            for event in item.container.events.catalog.itervalues():
+            for event in item.container.events.catalog.values():
                 for binding in bindings:
                     while binding in event.callees:
                         event.callees.remove(binding)
@@ -130,8 +137,8 @@ class MemoryObjects(MemoryBase, MutableMapping):
 
             if item.virtual == self._owner.virtual:
                 # recalculate order for following objects
-                index = self._items.keys().index(item.id)
-                for another in islice(self._items.itervalues(), index + 1, None):
+                index = list(self._items.keys()).index(item.id)
+                for another in islice(iter(self._items.values()), index + 1, None):
                     another._order -= 1
 
                 # remove from dictionaries
@@ -172,7 +179,7 @@ class MemoryObjects(MemoryBase, MutableMapping):
         with self._owner.lock:
             if self.__dict__.get("_items"):
                 file.write(u"%s<Objects>\n" % ident)
-                for object in self._items.itervalues():
+                for object in self._items.values():
                     object.compose(ident=ident + u"\t", file=file, shorter=shorter, excess=excess)
                 file.write(u"%s</Objects>\n" % ident)
 
@@ -184,7 +191,7 @@ class MemoryObjects(MemoryBase, MutableMapping):
                 enumeration = another,
             elif isinstance(another, MemoryObjects):
                 if "_items" in another.__dict__:
-                    enumeration = another._items.itervalues()
+                    enumeration = iter(another._items.values())
                 else:
                     enumeration = ()
             else:

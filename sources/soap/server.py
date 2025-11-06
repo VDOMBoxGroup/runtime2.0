@@ -1,18 +1,15 @@
 """web services server"""
 
-import string
 import gc
-import os
 import time
 import re
 import zlib
 import base64
 import copy
 import traceback
-import tempfile
 import SOAPpy
 
-from StringIO import StringIO
+from io import StringIO
 from xml.etree import ElementTree
 from collections import OrderedDict
 
@@ -22,20 +19,23 @@ import security
 import file_access
 
 from logs import log
-from errors import *
-from memory import COMPUTE_CONTEXT, \
+from .errors import render_wysiwyg_error, parent_object_error, xml_script_error, event_format_error, name_error, attr_value_error, \
+    object_id_error, remote_method_call_error, app_id_error, duplicate_vhname_error, server_manage_error, session_id_error, \
+    login_incorrect_error, session_key_error, app_attr_error, resource_not_found_error, delete_object_error, type_id_error, struct_check_error, \
+    application_backup_error, application_restore_error, param_syntax_error, obj_update_error, lib_name_error, invalid_object_error
+from memory import \
     APPLICATION_START_CONTEXT, APPLICATION_FINISH_CONTEXT, APPLICATION_UNINSTALL_CONTEXT, \
     SESSION_START_CONTEXT, SESSION_FINISH_CONTEXT, \
     REQUEST_START_CONTEXT, REQUEST_STOP_CONTEXT, REQUEST_TIMEOUT_CONTEXT, REQUEST_ERROR_CONTEXT
-import utils
-from .utils.encode import *
-from utils.semaphore import VDOM_semaphore
-from utils.mutex import VDOM_named_mutex_auto
-from utils.exception import *
-import soaputils
-from .utils.uuid import uuid4
+from . import utils
+from .utils.encode import need_xml_escape
+from .utils.semaphore import VDOM_semaphore
+from .utils.mutex import VDOM_named_mutex_auto
+from .utils.exception import VDOM_exception_sec, VDOM_exception_element, VDOM_exception_param, VDOM_exception
+from . import soaputils
+from uuid import uuid4
 # from memory.xml_object import xml_object # memory.
-from xml_object import xml_object
+from .xml_object import xml_object
 from database.dbobject import VDOM_sql_query
 # from utils.app_management import import_application, update_application, uninstall_application
 from version import SERVER_VERSION as VDOM_server_version
@@ -99,21 +99,21 @@ APP_INFO_LIST = (
     ("current_language", "CurrentLanguage"))
 
 APP_INFO_MAPPING = {
-    "Id": ("id", unicode),
-    "Name": ("name", unicode),
-    "Description": ("description", unicode),
-    "Version": ("version", unicode),
-    "Owner": ("owner", unicode),
-    "Password": ("password", unicode),
+    "Id": ("id", str),
+    "Name": ("name", str),
+    "Description": ("description", str),
+    "Version": ("version", str),
+    "Owner": ("owner", str),
+    "Password": ("password", str),
     "Active": ("active", int),
-    "Index": ("index", unicode),
-    "Icon": ("icon", unicode),
-    "ServerVersion": ("server_version", unicode),
-    "ScriptingLanguage": ("scripting_language", unicode),
+    "Index": ("index", str),
+    "Icon": ("icon", str),
+    "ServerVersion": ("server_version", str),
+    "ScriptingLanguage": ("scripting_language", str),
     # TODO: check protected attribute
     # "Protected": ("protected", int),
-    "DefaultLanguage": ("default_language", unicode),
-    "CurrentLanguage": ("current_language", unicode)}
+    "DefaultLanguage": ("default_language", str),
+    "CurrentLanguage": ("current_language", str)}
 
 
 class VDOM_web_services_server(object):
@@ -128,14 +128,15 @@ class VDOM_web_services_server(object):
 #       debug("*****")
 #       debug(str(sid))
 #       debug("*****")
-        autolock = VDOM_named_mutex_auto(sid)
+        autolock = VDOM_named_mutex_auto(sid) # noqa
 
         ret = True
 
         mngr = managers.session_manager
         sess = mngr[sid]
         if not sess:
-            raise SOAPpy.faultType(session_id_error, _("Session ID error"), _("Invalid session ID supplied"))
+            raise SOAPpy.faultType(session_id_error, _(
+                "Session ID error"), _("Invalid session ID supplied"))
             # ret = False   # invalid session id
 
         if not sess["login"]:
@@ -159,14 +160,16 @@ class VDOM_web_services_server(object):
         pr = sessions[sid]
         try:
             if int(_index) < keyindex and _index not in keymap:
-                raise VDOM_exception_sec("Incorrect key")  # means this key has already been used
-        except:
+                # means this key has already been used
+                raise VDOM_exception_sec("Incorrect key")
+        except TypeError, VDOM_exception_sec:
             self.__term_session(sid)
             return False
         if _index not in keymap:  # don't have a key generated for this number
             # generate keys
             keymap[str(keyindex)] = pr.next_session_key(keylast)
-            for ii in xrange(keyindex + 1, int(_index) + 10):  # generate 10 more keys than needed
+            # generate 10 more keys than needed
+            for ii in range(keyindex + 1, int(_index) + 10):
                 keymap[str(ii)] = pr.next_session_key(keymap[str(ii - 1)])
             sess["keyindex"] = int(_index) + 10
             sess["keylast"] = keymap[str(int(_index) + 9)]
@@ -185,7 +188,7 @@ class VDOM_web_services_server(object):
             # remove protector object
             try:
                 del sessions[sid]
-            except:
+            except KeyError:
                 pass
             # remove session
             mngr = managers.session_manager
@@ -195,7 +198,7 @@ class VDOM_web_services_server(object):
                 name = sess.user  # ["username"]
                 if name in names:
                     del names[name]
-            except:
+            except KeyError:
                 pass
             del mngr[sid]
         finally:
@@ -207,25 +210,28 @@ class VDOM_web_services_server(object):
 
     def __session_key_error(self):
         """prepare session key error xml message"""
-        raise SOAPpy.faultType(session_key_error, _("Session key error"), _("Invalid session key supplied, your session has been closed"))
-#       return self.__format_error(_("Invalid session key supplied. Your session has been closed."))
+        raise SOAPpy.faultType(session_key_error, _("Session key error"), _(
+            "Invalid session key supplied, your session has been closed"))
+#       return self.__format_error(("Invalid session key supplied. Your session has been closed."))
 
     def __success(self):
         """get xml representing successful result"""
         return "<Result>OK</Result>"
 
-
 # session methods =================================================================================
 
     def open_session(self, name, pwd_md5):
+
         """open session with the server"""
+
         self.__sem.lock()
         try:
             if not managers.user_manager.match_user_md5(name, pwd_md5):
                 time.sleep(1)
                 # self.__sem.unlock()
-                raise SOAPpy.faultType(login_incorrect_error, _("Login incorrect"), _("<Error><User>%s</User></Error>") % name)
-    #           return self.__format_error(_("Login incorrect"))
+                raise SOAPpy.faultType(login_incorrect_error, _(
+                    "Login incorrect"), _("<Error><User>%s</User></Error>") % name)
+    #           return self.__format_error(("Login incorrect"))
         finally:
             self.__sem.unlock()
         # open session
@@ -233,7 +239,7 @@ class VDOM_web_services_server(object):
         sid = mngr.create_session()
         sess = mngr.get_session(sid)
         sess.value("login", "1")
-        #sess.value("username", name)
+        # sess.value("username", name)
         sess.set_user(name, pwd_md5, md5=True)
 
         # create protector object
@@ -294,7 +300,7 @@ class VDOM_web_services_server(object):
                     name = name.lower()
                 param[name] = child.get_value_as_xml()
             root.delete()
-        except:
+        except Exception:
             if root:
                 root.delete()
         return param
@@ -305,7 +311,8 @@ class VDOM_web_services_server(object):
         #     cap = app.info_map[key][2]
         #     result += "<%s>%s</%s>\n" % (cap, self.__attrvalue(getattr(app, app.info_map[key][0])), cap)
         for name, xml_name in APP_INFO_LIST:
-            result += "<%s>%s</%s>\n" % (xml_name, self.__attrvalue(getattr(app, name)), xml_name)
+            result += "<%s>%s</%s>\n" % (xml_name,
+                                         self.__attrvalue(getattr(app, name)), xml_name)
         # add statistics
         # TODO: check virtual hosts
         # default_app = "True" if managers.virtual_hosts.get_def_site() == app.id else "False"
@@ -317,7 +324,8 @@ class VDOM_web_services_server(object):
         # result += "</Hosts>\n"
         result += "<Numberofpages>%d</Numberofpages>\n" % len(app.objects)
         # result += "<Numberofobjects>%d</Numberofobjects>\n" % app.objects_amount()
-        result += "<Numberofobjects>%d</Numberofobjects>\n" % len(app.objects.catalog)
+        result += "<Numberofobjects>%d</Numberofobjects>\n" % len(
+            app.objects.catalog)
         return "<Information>\n%s</Information>\n" % result
 
 # application methods =============================================================================
@@ -335,12 +343,13 @@ class VDOM_web_services_server(object):
             param = self.__parse_attr(attr)
             # for key in param.keys():
             #     app.set_info(key, param[key])
-            for key, value in param.iteritems():
+            for key, value in param.items():
                 name, cast = APP_INFO_MAPPING[key]
                 setattr(app, name, cast(value))
-        except:
-            raise SOAPpy.faultType(app_attr_error, _("Create application error"), _("Error setting information"))
-            # self.__format_error(_("Error setting information"))
+        except Exception:
+            raise SOAPpy.faultType(app_attr_error, _(
+                "Create application error"), _("Error setting information"))
+            # self.__format_error(("Error setting information"))
 
         # app.sync()
         app.save()
@@ -366,7 +375,7 @@ class VDOM_web_services_server(object):
         param = self.__parse_attr(attr)
         # for key in param.keys():
         #     ret[0].set_info(key, param[key])
-        for key, value in param.iteritems():
+        for key, value in param.items():
             name, cast = APP_INFO_MAPPING[key]
             setattr(app, name, cast(value))
 
@@ -403,7 +412,7 @@ class VDOM_web_services_server(object):
         #         result += "<Application ID=\"%s\">\n" % appid
         #         result += self.__app_info(app)
         #         result += "</Application>"
-        for app in managers.memory.applications.itervalues():
+        for app in managers.memory.applications.values():
             if managers.acl_manager.session_user_has_access2(app.id, app.id, right):
                 appname = app.name
                 if "" == appname:
@@ -432,9 +441,10 @@ class VDOM_web_services_server(object):
         # except Exception, e:
         except Exception:
             # traceback.print_exc(file=debugfile)
-            # debug("Get type resource error: " + str(e))
-            raise SOAPpy.faultType(resource_not_found_error, _("Resource not found"), _("<Error><ResourceID>%s</ResourceID></Error>") % resource_id)
-            # return self.__format_error(_("Resource not found")) + ("\n<ResourceID>%s</ResourceID>" % resource_id)
+            # debug("Get type resource error: " + e.message)
+            raise SOAPpy.faultType(resource_not_found_error, _("Resource not found"), _(
+                "<Error><ResourceID>%s</ResourceID></Error>") % resource_id)
+            # return self.__format_error(("Resource not found")) + ("\n<ResourceID>%s</ResourceID>" % resource_id)
 
     def list_resources(self, sid, skey, owner_id):
         """list resources"""
@@ -446,10 +456,12 @@ class VDOM_web_services_server(object):
         for resid in res:
             try:
                 ro = managers.resource_manager.get_resource(owner_id, resid)
-            except:
+            except Exception:
                 continue
-            if not getattr(ro, "label", None):  # TODO: in new version label will always non exist. So no meanin in this line
-                result += """<Resource id="%s" name="%s" type="%s" usecount="%s"/>\n""" % (ro.id, ro.name, ro.res_format, len(ro.dependences))
+            # TODO: in new version label will always non exist. So no meanin in this line
+            if not getattr(ro, "label", None):
+                result += """<Resource id="%s" name="%s" type="%s" usecount="%s"/>\n""" % (
+                    ro.id, ro.name, ro.res_format, len(ro.dependences))
         result += "</Resources>\n"
         return result
 
@@ -466,7 +478,7 @@ class VDOM_web_services_server(object):
 
     def get_application_structure(self, sid, skey, appid):
         """get application structure"""
-        autolock = VDOM_named_mutex_auto(appid + "_structure")
+        autolock = VDOM_named_mutex_auto(appid + "_structure") # noqa
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
@@ -479,19 +491,21 @@ class VDOM_web_services_server(object):
             return error_message
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to structure of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to structure of this application", _("<Error/>"))
 
         # return ret[0].structure_element.toxml()
         file = StringIO()
         file.write(u"<Structure>\n")
-        for container in app.objects.itervalues():
+        for container in app.objects.values():
             file.write(u"<Object ID=\"%s\" top=\"%s\" left=\"%s\" ResourceID=\"%s\" state=\"%s\">\n" %
-                (container.id, container.structure.top, container.structure.left,
-                    container.structure.resource or u"", container.structure.state))
-            for name, level in container.structure.iteritems():
+                       (container.id, container.structure.top, container.structure.left,
+                        container.structure.resource or u"", container.structure.state))
+            for name, level in container.structure.items():
                 file.write(u"<Level Index=\"%s\">\n" % name.encode("xml"))
                 for index, reference in enumerate(level):
-                    file.write(u"<Object ID=\"%s\" Index=\"%s\"/>\n" % (reference.id, index))
+                    file.write(u"<Object ID=\"%s\" Index=\"%s\"/>\n" %
+                               (reference.id, index))
                 file.write(u"</Level>\n")
             file.write(u"</Object>\n")
         file.write(u"</Structure>\n")
@@ -499,7 +513,7 @@ class VDOM_web_services_server(object):
 
     def set_application_structure(self, sid, skey, appid, struct):
         """set application structure"""
-        autolock = VDOM_named_mutex_auto(appid + "_structure")
+        autolock = VDOM_named_mutex_auto(appid + "_structure") # noqa
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
@@ -537,14 +551,14 @@ class VDOM_web_services_server(object):
         #     traceback.print_exc(file=debugfile)
         #     if x:
         #         x.delete()
-        #     raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), str(e))
+        #     raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), e.message)
         # try:
         #     app.set_structure(x)
         # except Exception, e:
         #     import traceback
         #     traceback.print_exc(file=debugfile)
         #     x.delete()
-        #     raise SOAPpy.faultType(struct_check_error, _("Structure validation error (2)"), str(e))
+        #     raise SOAPpy.faultType(struct_check_error, _("Structure validation error (2)"), e.message)
         # x.delete()
         x, update = None, {}
         try:
@@ -558,7 +572,8 @@ class VDOM_web_services_server(object):
 
                 container = app.objects.get(child.attributes["id"])
                 if not container:
-                    raise VDOM_exception_element("object id=" + child.attributes["id"])
+                    raise VDOM_exception_element(
+                        "object id=" + child.attributes["id"])
 
                 levels = {}
                 update[container] = (
@@ -582,26 +597,30 @@ class VDOM_web_services_server(object):
 
                         container2 = app.objects.get(child3.attributes["id"])
                         if not container2:
-                            raise VDOM_exception_element("object id=" + child3.attributes["id"])
+                            raise VDOM_exception_element(
+                                "object id=" + child3.attributes["id"])
 
-                        containers[int(child3.attributes["index"])] = container2
+                        containers[int(child3.attributes["index"])
+                                   ] = container2
         except Exception as e:
             import traceback
             traceback.print_exc(file=debugfile)
-            raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), str(e))
+            raise SOAPpy.faultType(struct_check_error, _(
+                "Structure validation error (1)"), e.message)
         finally:
             if x:
                 x.delete()
 
-        for container, (top, left, state, resource, levels) in update.iteritems():
+        for container, (top, left, state, resource, levels) in update.items():
             container.structure.top = top
             container.structure.left = left
             container.structure.state = state
             container.structure.resource = resource
 
-            for name, containers in levels.iteritems():
+            for name, containers in levels.items():
                 level = container.structure[name]
-                level[:] = (c for i, c in sorted((i, c) for i, c in containers.iteritems()))
+                level[:] = (c for i, c in sorted((i, c)
+                            for i, c in containers.items()))
 
             for name in {name for name in container.structure if name not in levels}:
                 del container.structure[name][:]
@@ -626,9 +645,10 @@ class VDOM_web_services_server(object):
         def create_resource(resid, restype, resname, resdata):
             """create application resource"""
             if not managers.acl_manager.session_user_has_access2(app.id, app.id, security.modify_application):
-                raise VDOM_exception_sec(_("Creating resource is not allowed"))
+                raise VDOM_exception_sec(("Creating resource is not allowed"))
             attributes = {"id": resid, "name": resname, "res_format": restype}
-            managers.resource_manager.add_resource(app.id, None, attributes, resdata)
+            managers.resource_manager.add_resource(
+                app.id, None, attributes, resdata)
 
         # decode resource data
         resdata = zlib.decompress(base64.b64decode(resdata))
@@ -646,7 +666,8 @@ class VDOM_web_services_server(object):
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
-        (app, errmsg) = self.__find_application(appid)  # returns (app, error_message)
+        (app, errmsg) = self.__find_application(
+            appid)  # returns (app, error_message)
         if not app:
             return errmsg
         # decode resource data
@@ -675,7 +696,8 @@ class VDOM_web_services_server(object):
         try:
             type = managers.memory.types[typeid]
         except KeyError:
-            raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Type not found"))
+            raise SOAPpy.faultType(parent_object_error, _(
+                "Create object error"), _("Type not found"))
 
         # ret = self.__find_application(appid)  # returns (app, error_message)
         # if not ret[0]:
@@ -701,7 +723,7 @@ class VDOM_web_services_server(object):
         #         obj = mngr.search_object(appid, parentid)
         #     except:
         #         raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
-        #     # return self.__format_error(_("Parent object not found"))
+        #     # return self.__format_error(("Parent object not found"))
         #     # creating child object
         #     ret = app.create_object(typeid, obj)
         # obj_name = ret[0]
@@ -711,10 +733,12 @@ class VDOM_web_services_server(object):
             try:
                 parent = app.objects.catalog[parentid]
             except KeyError:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
+                raise SOAPpy.faultType(parent_object_error, _(
+                    "Create object error"), _("Parent object not found"))
         else:
             parent = app
-        obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(attr, False) if attr else None)
+        obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(
+            attr, False) if attr else None)
         # #debug("Created object " + str(ret))
 
         # if "" != attr:
@@ -753,11 +777,13 @@ class VDOM_web_services_server(object):
                 # for o in obj.objects:
                 #     if o == parentid:
                 if parentid in obj.objects:
-                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
+                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                        "Parent object is the child of copying object"))
 
             # TODO: copy between different applications, may be...
             if tgt_appid and appid != tgt_appid:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Only allow to copy objects within one application"))
+                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                    "Only allow to copy objects within one application"))
             # if tgt_appid:
             #     ret = self.__find_application(tgt_appid)  # returns (app, error_message)
             #     if not ret[0]:
@@ -766,7 +792,8 @@ class VDOM_web_services_server(object):
             #     appid = tgt_appid
             #     managers.request_manager.current.set_application_id(tgt_appid)
             if objid == parentid:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as copying object"))
+                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                    "Parent object is the same as copying object"))
             tgt_app = app
 
             # action_map = {}
@@ -778,23 +805,26 @@ class VDOM_web_services_server(object):
             # self.__copy_events_structure(app, obj, copy_obj, obj_map, action_map, tgt_app)
             if parentid is None:
                 if not obj.is_top_container:
-                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Unable to copy non-container as top container"))
+                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                        "Unable to copy non-container as top container"))
                 copy_obj = app.objects.replicate(obj)
             else:
                 if obj.is_top_container:
-                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Unable to copy top container as usual object"))
+                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                        "Unable to copy top container as usual object"))
                 try:
                     parent = app.objects.catalog[parentid]
                 except KeyError:
-                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Unable to find parent object"))
+                    raise SOAPpy.faultType(parent_object_error, _(
+                        "Create object error"), _("Unable to find parent object"))
                 copy_obj = parent.objects.replicate(obj)
 
             # tgt_app.sync()
             tgt_app.save()
             return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
-        except Exception, e:
+        except Exception as e:
             show_exception_trace(label="SOAP Copy Object", locals=True)
-            return self.__format_error(str(e))
+            return self.__format_error(e.message)
 
     def move_object(self, sid, skey, appid, parentid, objid):
         raise NotImplementedError
@@ -818,14 +848,17 @@ class VDOM_web_services_server(object):
             parent = app.objects.catalog[parentid]
 
             if 1 == parent.type.container:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is not container"))
+                raise SOAPpy.faultType(parent_object_error, _(
+                    "Create object error"), _("Parent object is not container"))
             if objid == parentid:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the same as moving object"))
+                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                    "Parent object is the same as moving object"))
             if obj:
                 # for o in obj.objects:
                 #     if o == parentid:
                 if parentid in obj.objects.catalog:
-                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object is the child of copying object"))
+                    raise SOAPpy.faultType(parent_object_error, _("Create object error"), _(
+                        "Parent object is the child of copying object"))
 
             # obj.xml_obj.exclude()
             # parent.objects_element.append_as_copy(obj.xml_obj)
@@ -845,9 +878,9 @@ class VDOM_web_services_server(object):
 
             # return self.__get_object(obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
             return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
-        except Exception, e:
+        except Exception as e:
             show_exception_trace(label="SOAP Move Object", locals=True)
-            return self.__format_error(str(e))
+            return self.__format_error(e.message)
 
     def delete_object(self, sid, skey, appid, objid):
         """delete object from application"""
@@ -866,9 +899,10 @@ class VDOM_web_services_server(object):
         # if not succ:
         try:
             del (obj.parent or app).objects[objid]
-        except:
-            raise SOAPpy.faultType(delete_object_error, _("Delete object error"), _("Delete object error"))
-            # return self.__format_error(_("Can't delete this object"))
+        except Exception:
+            raise SOAPpy.faultType(delete_object_error, _(
+                "Delete object error"), _("Delete object error"))
+            # return self.__format_error(("Can't delete this object"))
 
         # ret[0].sync()
         app.save()
@@ -901,8 +935,9 @@ class VDOM_web_services_server(object):
         # result += "</Types>"
         # return result
         result = ["<Types>"]
-        for type in managers.memory.types.itervalues():
-            result.append("<Type id=\"%s\" name=\"%s\" version=\"%s\" />" % (type.id, type.name or _("Not specified"), type.version or _("Not specified")))
+        for type in managers.memory.types.values():
+            result.append("<Type id=\"%s\" name=\"%s\" version=\"%s\" />" % (type.id,
+                          type.name or _("Not specified"), type.version or _("Not specified")))
         result.append("</Types>")
         return "".join(result)
 
@@ -917,8 +952,9 @@ class VDOM_web_services_server(object):
             # return type_obj.get_xml_as_string()
         # except:
         except KeyError:
-            raise SOAPpy.faultType(type_id_error, _("Get type error"), _("Type not registered"))
-            # return self.__format_error(_("Type \"%s\" not registered" % typeid))
+            raise SOAPpy.faultType(type_id_error, _(
+                "Get type error"), _("Type not registered"))
+            # return self.__format_error(("Type \"%s\" not registered" % typeid))
 
         file = StringIO()
         type_obj.compose(shorter=True, file=file)
@@ -938,7 +974,8 @@ class VDOM_web_services_server(object):
 
         def create_empty_file():
             try:
-                file = managers.file_manager.open_temporary(file_access.FILE, None, delete=False)
+                file = managers.file_manager.open_temporary(
+                    file_access.FILE, None, delete=False)
                 return file.name
             finally:
                 file.close()
@@ -1005,7 +1042,8 @@ class VDOM_web_services_server(object):
             try:
                 managers.memory.install_type(source)
             except Exception as error:
-                show_exception_trace(caption="SOAP Set Type: Unable to install: %s" % error)
+                show_exception_trace(
+                    caption="SOAP Set Type: Unable to install: %s" % error)
                 managers.memory.install_type(backup)
                 return self.__format_error("Unable to install: %s" % error)
         finally:
@@ -1036,9 +1074,10 @@ class VDOM_web_services_server(object):
         # result = '<?xml version="1.0" encoding="utf-8"?>\n%s' % result
         # return result
         result = ["<Types>"]
-        for type in managers.memory.types.itervalues():
+        for type in managers.memory.types.values():
             file = StringIO()
             type.compose(file=file, shorter=True)
+
             data = file.getvalue()
 
             root = ElementTree.fromstring(data.encode("utf8"))
@@ -1054,7 +1093,8 @@ class VDOM_web_services_server(object):
                         parameters = event.find("Parameters")
                         if parameters is not None:
                             for parameter in parameters.findall("Parameter"):
-                                parameter.attrib["Help"] = parameter.attrib.pop("Description")
+                                parameter.attrib["Help"] = parameter.attrib.pop(
+                                    "Description")
                                 parameter.attrib["Order"] = ""
                                 parameter.attrib["VbType"] = ""
 
@@ -1062,17 +1102,23 @@ class VDOM_web_services_server(object):
                 if actions is not None:
                     for container in actions.findall("Container"):
                         for action in container.findall("Action"):
-                            action.attrib["MethodName"] = action.attrib.pop("Name")
-                            action.attrib["InterfaceName"] = action.attrib.pop("DisplayName")
-                            action.attrib["Help"] = action.attrib.pop("Description")
+                            action.attrib["MethodName"] = action.attrib.pop(
+                                "Name")
+                            action.attrib["InterfaceName"] = action.attrib.pop(
+                                "DisplayName")
+                            action.attrib["Help"] = action.attrib.pop(
+                                "Description")
                             parameters = action.find("Parameters")
                             if parameters is not None:
                                 for parameter in parameters.findall("Parameter"):
-                                    parameter.attrib["ScriptName"] = parameter.attrib.pop("Name")
-                                    parameter.attrib["InterfaceName"] = parameter.attrib.pop("DisplayName")
-                                    parameter.attrib["Help"] = parameter.attrib.pop("Description")
+                                    parameter.attrib["ScriptName"] = parameter.attrib.pop(
+                                        "Name")
+                                    parameter.attrib["InterfaceName"] = parameter.attrib.pop(
+                                        "DisplayName")
+                                    parameter.attrib["Help"] = parameter.attrib.pop(
+                                        "Description")
 
-            result.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + ElementTree.tostring(root))
+            result.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + ElementTree.tostring(root, encoding="unicode"))
         result.append("</Types>")
         return "".join(result)
 
@@ -1088,8 +1134,9 @@ class VDOM_web_services_server(object):
             app = managers.memory.applications[appid]
         # except:
         except KeyError:
-            raise SOAPpy.faultType(app_id_error, "Application not found", _("<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
-            # return (None, None, self.__format_error(_("Application not found")))
+            raise SOAPpy.faultType(app_id_error, "Application not found", _(
+                "<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
+            # return (None, None, self.__format_error(("Application not found")))
 
         # find object
         # obj = None
@@ -1098,12 +1145,13 @@ class VDOM_web_services_server(object):
             obj = app.objects.catalog[objid]
         # except:
         except KeyError:
-            raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
-            # return (None, None, self.__format_error(_("Object not found")))
+            raise SOAPpy.faultType(object_id_error, "Object not found", _(
+                "<Error><ObjectID>%s</ObjectID></Error>") % objid)
+            # return (None, None, self.__format_error(("Object not found")))
 
         # if not obj:
         #     raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
-        #     # return (None, None, self.__format_error(_("Object not found")))
+        #     # return (None, None, self.__format_error(("Object not found")))
 
         # return (app, obj, None)
         return app, obj, None
@@ -1118,8 +1166,9 @@ class VDOM_web_services_server(object):
             app = managers.memory.applications[appid]
         # except Exception as error:
         except KeyError:
-            raise SOAPpy.faultType(app_id_error, "Application not found", _("<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
-            # return (None, self.__format_error(_("Application not found")))
+            raise SOAPpy.faultType(app_id_error, "Application not found", _(
+                "<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
+            # return (None, self.__format_error(("Application not found")))
 
         # return (app, None)
         return app, None
@@ -1137,7 +1186,8 @@ class VDOM_web_services_server(object):
             return error_message
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to this application", _("<Error><ObjectID>%s</ObjectID><ParentID>%s</ParentID></Error>") % (objid, parentid))
+            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to this application", _(
+                "<Error><ObjectID>%s</ObjectID><ParentID>%s</ParentID></Error>") % (objid, parentid))
 
         # _p = ret[0].search_object(parentid)
         _p = app.objects.catalog.get(parentid)
@@ -1147,9 +1197,10 @@ class VDOM_web_services_server(object):
             # rend = managers.engine.wysiwyg(ret[0], ret[1], _p, dynamic)
             rend = managers.engine.wysiwyg(obj, _p)
             return "<Result>%s</Result>\n<ParentID>%s</ParentID>\n<ObjectID>%s</ObjectID>" % (rend, parentid, objid)
-        except:
+        except Exception:
             traceback.print_exc(file=debugfile)
-            raise SOAPpy.faultType(render_wysiwyg_error, "Render wysiwyg error", _("<Error><ObjectID>%s</ObjectID><ParentID>%s</ParentID></Error>") % (objid, parentid))
+            raise SOAPpy.faultType(render_wysiwyg_error, "Render wysiwyg error", _(
+                "<Error><ObjectID>%s</ObjectID><ParentID>%s</ParentID></Error>") % (objid, parentid))
 
     def __do_get_object_script_presentation(self, obj, depth=0):
         tag_name = obj.type.name.upper()
@@ -1161,7 +1212,7 @@ class VDOM_web_services_server(object):
         ext = []
         # for aname in obj.get_attributes():
         #     val = obj.get_attributes()[aname].value
-        for aname, val in obj.attributes.iteritems():
+        for aname, val in obj.attributes.items():
             # if val != obj.type.get_attributes()[aname].default_value:
             if val != obj.type.attributes[aname].default_value:
                 if not need_xml_escape(val):
@@ -1179,11 +1230,12 @@ class VDOM_web_services_server(object):
         # for aname in ext:
         #     val = obj.get_attributes()[aname].value
         for aname, val in ext:
-            result += prep + "\t<Attribute Name=\"" + aname + "\"><![CDATA[" + val + "]]></Attribute>\n"
+            result += prep + "\t<Attribute Name=\"" + aname + \
+                "\"><![CDATA[" + val + "]]></Attribute>\n"
 
         # child objects
         # for o in obj.get_objects_list():
-        for o in obj.objects.itervalues():
+        for o in obj.objects.values():
             result += self.__do_get_object_script_presentation(o, depth + 1)
 
         # if len(ext) > 0 or len(obj.get_objects_list()) > 0:
@@ -1218,7 +1270,7 @@ class VDOM_web_services_server(object):
 
         # for aname in type_obj.get_attributes():
         #     attr_map[aname.lower()] = type_obj.get_attributes()[aname].default_value
-        for aname, attribute in type_obj.attributes.iteritems():
+        for aname, attribute in type_obj.attributes.items():
             attr_map[aname] = attribute.default_value
 
         # parse attributes
@@ -1226,7 +1278,7 @@ class VDOM_web_services_server(object):
             if i in attr_map or "name" == i:
                 attr_map[i] = xml_obj.attributes[i]
             else:
-                raise VDOM_exception_param(_("Incorrect attribute: %s") % i)
+                raise VDOM_exception_param(("Incorrect attribute: %s") % i)
         for child in xml_obj.children:
             if "attribute" == child.lname:
                 i = child.attributes["name"]
@@ -1235,7 +1287,7 @@ class VDOM_web_services_server(object):
                 if i in attr_map:
                     attr_map[i] = child.get_value_as_xml()
                 else:
-                    raise VDOM_exception_param(_("Incorrect attribute: %s") % i)
+                    raise VDOM_exception_param(("Incorrect attribute: %s") % i)
 
         if not do_create and type_obj != obj.type:
             do_create = True
@@ -1249,7 +1301,7 @@ class VDOM_web_services_server(object):
 
         # write attributes to the object
         # for aname in attr_map:
-        for aname, value in attr_map.iteritems():
+        for aname, value in attr_map.items():
             if "name" == aname:
                 try:
                     # obj.set_name(attr_map[aname])
@@ -1257,7 +1309,8 @@ class VDOM_web_services_server(object):
                 # except VDOM_exception, e:
                 except VDOM_exception:
                     # raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, attr_map[aname]))
-                    raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, value))
+                    raise SOAPpy.faultType(name_error, _(
+                        "Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, value))
             else:
                 # obj.set_attribute(aname, attr_map[aname], False)
                 obj.attributes[aname] = value
@@ -1274,14 +1327,17 @@ class VDOM_web_services_server(object):
                     _create = True
                     if i in objects_inside:
                         if i == obj.name:
-                            raise VDOM_exception_param(_("Incorrect name: %s") % str(i))
+                            raise VDOM_exception_param(
+                                ("Incorrect name: %s") % i)
                         # obj1 = obj.get_objects_by_name()[i]
                         obj1 = obj.objects[i]
                         _create = False
                         objects_inside.remove(i)
-                    self.__do_submit_object_script_presentation(app, obj1, obj, child, _create)
+                    self.__do_submit_object_script_presentation(
+                        app, obj1, obj, child, _create)
                 else:
-                    self.__do_submit_object_script_presentation(app, None, obj, child, do_create)
+                    self.__do_submit_object_script_presentation(
+                        app, None, obj, child, do_create)
 
         # remove objects that remain in <objects_inside> list
         for oname in objects_inside:
@@ -1295,30 +1351,34 @@ class VDOM_web_services_server(object):
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
 
-        app, obj, errmsg = self.__find_object(appid, objid)  # returns (app, obj, error_message)
+        # returns (app, obj, error_message)
+        app, obj, errmsg = self.__find_object(appid, objid)
         if not app:
             return errmsg
 
         if "" == pres.strip():
-            raise VDOM_exception_param(_("Empty data"))
+            raise VDOM_exception_param("Empty data")
 
         # parse xml presentation
         root = None
         try:
             root = xml_object(srcdata=pres.encode("utf-8"))
-        except Exception, e:
-            raise SOAPpy.faultType(xml_script_error, str(e), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
-            # return self.__format_error(_("Invalid argument: pres - " + str(e)))
+        except Exception as e:
+            raise SOAPpy.faultType(
+                xml_script_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+            # return self.__format_error(("Invalid argument: pres - " + e.message))
 
         # start processing
         new_id = None
         try:
-            new_id = self.__do_submit_object_script_presentation(app, obj, obj.parent, root)
-        except VDOM_exception, e:
+            new_id = self.__do_submit_object_script_presentation(
+                app, obj, obj.parent, root)
+        except VDOM_exception as e:
             # app.sync()
             app.save()
-            raise SOAPpy.faultType(xml_script_error, str(e), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
-            # return self.__format_error(str(e))
+            raise SOAPpy.faultType(
+                xml_script_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+            # return self.__format_error(e.message)
 
         # app.sync()
         app.save()
@@ -1328,18 +1388,20 @@ class VDOM_web_services_server(object):
         """build objects xml"""
         result = ""
         # for o in parent.get_objects_list():
-        for o in parent.objects.itervalues():
+        for o in parent.objects.values():
             result += self.__get_object(o)
         return "<Objects>\n%s</Objects>" % result if result else ""
 
     def __get_object_list(self, parent):
         result = ''
         for o in parent.get_objects_list():
-            result += '<Object Name="%s" ID="%s" Type="%s"/>' % (o.original_name, o.id, o.type.id)
+            result += '<Object Name="%s" ID="%s" Type="%s"/>' % (
+                o.original_name, o.id, o.type.id)
         return '<Objects>%s</Objects>' % result if result else ""
 
     def __get_all_object_list(self, obj):
-        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.original_name, obj.id, obj.type.id)
+        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (
+            obj.original_name, obj.id, obj.type.id)
 
         result += "<Objects>\n"
         for o in obj.get_objects_list():
@@ -1351,64 +1413,71 @@ class VDOM_web_services_server(object):
     def __get_all_objects(self, obj):
         """build xml of all child objects"""
         # result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.original_name, obj.id, obj.type.id)
-        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.name, obj.id, obj.type.id)
+        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (
+            obj.name, obj.id, obj.type.id)
         # attributes
         result += "<Attributes>\n"
         # for a in obj.get_attributes().values():
         #     result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
-        for name, value in obj.attributes.iteritems():
-            result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (name, self.__attrvalue(value))
+        for name, value in obj.attributes.items():
+            result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (
+                name, self.__attrvalue(value))
         result += "</Attributes>\n"
 #       result += "<Script>%s</Script>\n" % obj.script
         # put all child objects
         result += "<Objects>\n"
         # for o in obj.get_objects_list():
         #     result += self.__get_all_objects(o)
-        for o in obj.objects.itervalues():
+        for o in obj.objects.values():
             result += self.__get_all_objects(o)
         result += "</Objects>\n"
-        result += self.__get_code_interface(obj, False)
+        result += self.__get_code_interface(obj)
         result += "</Object>\n"
         return result
 
     def __attrvalue(self, data):
-        data = unicode(data)
+        # data = str(data)
         if need_xml_escape(data):
-            result = data.replace("]]>", "]]]]><![CDATA[>")
+            result = u"{}".format(data).replace("]]>", "]]]]><![CDATA[>")
             return "<![CDATA[" + result + "]]>"
         return data
 
     def __get_object(self, obj):
         """build xml with object details"""
         # result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.original_name, obj.id, obj.type.id)
-        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (obj.name, obj.id, obj.type.id)
+        result = "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\">\n" % (
+            obj.name, obj.id, obj.type.id)
         # attributes
         result += "<Attributes>\n"
         # for a in obj.get_attributes().values():
         #     result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (a.name, self.__attrvalue(a.original_value))
-        for name, value in obj.attributes.iteritems():
-            result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (name, self.__attrvalue(value))
+        for name, value in obj.attributes.items():
+            result += u"<Attribute Name=\"%s\">%s</Attribute>\n" % (
+                name, self.__attrvalue(value))
         result += "</Attributes>\n"
 #       result += "<Objects/>\n"
-        result += self.__get_code_interface(obj)
+        result += self.__get_code_interface(obj, False)
         result += "</Object>"
         return result
 
     def __get_interfaces(self, type):
         # htmlcontainer {'dropdown': ['(#lang(401)|0)|(#lang(402)|1)'], 'color': [''], 'pagelink': [''], 'multiline': ['150'], 'file': [''], 'textfield': ['2']}
         interfaces = {}
-        for attribute in type.attributes.itervalues():
+        for attribute in type.attributes.values():
             code_interface = attribute.code_interface.lower().strip()
             ret = if_re.search(code_interface)
             if ret:
                 code_name = ret.groups()[0].strip()
                 code_param = ret.groups()[1].strip()
                 if code_name not in interfaces:
-                    interfaces[code_name] = map(string.strip, code_param.split(","))
+                    if attribute.name == "deniedlink":
+                        continue
+                    interfaces[code_name] = list(
+                        map(str.strip, code_param.split(",")))
         return interfaces
 
     def __has_copy(self, obj):
-        for o in obj.objects.catalog.itervalues():
+        for o in obj.objects.catalog.values():
             if o.type.name == "copy":
                 return 1
         else:
@@ -1423,32 +1492,36 @@ class VDOM_web_services_server(object):
             result += "<Pagelink>\n"
 #           result += """<Object ID="" Name=""/>\n"""
             # for o in app.get_objects_list():
-            for o in app.objects.itervalues():
+            for o in app.objects.values():
                 result += """<Object ID="%s" Name="%s"/>\n""" % (o.id, o.name)
             result += "</Pagelink>\n"
 
         # if "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]) and "" == obj.type.interfaces["objectlist"][0]:
         if "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and "" == interfaces["objectlist"][0] and add_lists:
+
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():
-            for obj1 in app.objects.catalog.values():
+            for obj1 in list(app.objects.catalog.values()):
                 # obj1 = app.search_object(oid)
                 if "copy" != obj1.type.name:
                     # if None != obj1.parent and ("copy" != obj.type.name or 0 == obj1.toplevel.has_copy):  # (oid not in obj.toplevel.all_child_objects):
-                    if None != obj1.parent and ("copy" != obj.type.name):# or 0 == self.__has_copy(obj1.container)):  # (oid not in obj.toplevel.all_child_objects):
+                    # or 0 == self.__has_copy(obj1.container) # (oid not in obj.toplevel.all_child_objects):
+                    if obj1.parent is not None and ("copy" != obj.type.name):
                         if "copy" == obj.type.name and obj.parent.type.name not in obj1.type.containers:
                             continue
-                        result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
+                        result += """<Object ID="%s" Name="%s"/>\n""" % (
+                            obj1.id, obj1.name)
             result += "</Objectlist>\n"
         # elif "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]):
         elif "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and add_lists:
             needed = interfaces["objectlist"][0]
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():
-            for obj1 in app.objects.catalog.itervalues():
+            for obj1 in app.objects.catalog.values():
                 # obj1 = app.search_object(oid)
                 if obj1.type.id == needed:
-                    result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
+                    result += """<Object ID="%s" Name="%s"/>\n""" % (
+                        obj1.id, obj1.name)
             result += "</Objectlist>\n"
         return result
 
@@ -1462,13 +1535,15 @@ class VDOM_web_services_server(object):
             do_compute = True
         obj = app.search_object(objid)
         typeid = obj.type.id
-        attr = {name: value.value for name, value in obj.get_attributes().items()}
+        attr = {name: value.value for name,
+                value in list(obj.get_attributes().items())}
         name = obj.name
         if parentid:
             try:
                 container = appl.search_object(parentid)
-            except:
-                raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
+            except Exception:
+                raise SOAPpy.faultType(parent_object_error, _(
+                    "Create object error"), _("Parent object not found"))
             ret = appl.create_object(typeid, container, do_compute)
         else:
             ret = appl.create_object(typeid, None, do_compute)
@@ -1477,8 +1552,8 @@ class VDOM_web_services_server(object):
         if (parentid and parentid != obj.parent.id) or (newapp and newapp.id != app.id):
             try:
                 copy_object.set_name(name)
-            except:
-                #raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj_id, str(name)))
+            except Exception:
+                # raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj_id, str(name)))
                 pass
         if attr:
             copy_object.set_attributes(attr)
@@ -1491,16 +1566,20 @@ class VDOM_web_services_server(object):
                 x = obj.actions["name"][_name]
                 if _name in copy_object.actions["name"]:
                     y = copy_object.actions["name"][_name]
-                    copy_object.set_action(y.id, x.code.replace("]]>", "]]]]><![CDATA[>"))
+                    copy_object.set_action(
+                        y.id, x.code.replace("]]>", "]]]]><![CDATA[>"))
                     actionid = y.id
                 else:
-                    actionid = copy_object.create_action(x.name, x.code.replace("]]>", "]]]]><![CDATA[>"))
-                xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" Language="" State="%s" />\n""" % (actionid, x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
+                    actionid = copy_object.create_action(
+                        x.name, x.code.replace("]]>", "]]]]><![CDATA[>"))
+                xml_actions += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" Top="%s" Left="%s" Language="" State="%s" />\n""" % (
+                    actionid, x.name, copy_object.id, copy_object.name, x.top, x.left, x.state)
                 action_map[x.id] = actionid
             xml_actions += '</ServerActions>\n'
         if xml_actions:
             try:
-                server_actions_element = xml_object(srcdata=xml_actions.encode("utf-8"))
+                server_actions_element = xml_object(
+                    srcdata=xml_actions.encode("utf-8"))
                 if "serveractions" != server_actions_element.lname:
                     raise VDOM_exception_element(server_actions_element.lname)
                 for child in server_actions_element.children:
@@ -1510,10 +1589,11 @@ class VDOM_web_services_server(object):
                         if not _id or not _name:
                             raise VDOM_exception_element("server action")
 
-            except Exception, e:
+            except Exception as e:
                 if server_actions_element:
                     server_actions_element.delete()
-                raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+                raise SOAPpy.faultType(
+                    event_format_error, _("XML error"), e.message)
 
         xml_client_action = "<ClientActions>\n"
         if obj:
@@ -1521,14 +1601,17 @@ class VDOM_web_services_server(object):
                 a = app.actions[a_id]
                 if a.target_object == obj.id:
                     actionid = str(uuid4()).upper()
-                    xml_client_action += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (actionid, copy_object.id, copy_object.name, a.method_name, a.top, a.left, a.state)
+                    xml_client_action += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" % (
+                        actionid, copy_object.id, copy_object.name, a.method_name, a.top, a.left, a.state)
                     for p in a.parameters:
-                        xml_client_action += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
+                        xml_client_action += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (
+                            p.name, p.value)
                     xml_client_action += "</Action>\n"
                     action_map[a_id] = actionid
         xml_client_action += "</ClientActions>\n"
         try:
-            client_actions_element = xml_object(srcdata=xml_client_action.encode("utf-8"))
+            client_actions_element = xml_object(
+                srcdata=xml_client_action.encode("utf-8"))
             if not client_actions_element:
                 raise VDOM_exception_element("ClientActions")
             # client actions
@@ -1542,13 +1625,14 @@ class VDOM_web_services_server(object):
                     for par in child.children:
                         if "parameter" == par.lname:
                             par_name = par.attributes["scriptname"]
-                            par_value = par.get_value_as_xml()
+                            par_value = par.get_value_as_xml() # noqa
                             if not par_name:
                                 raise VDOM_exception_element("Parameter")
-        except Exception, e:
+        except Exception as e:
             if client_actions_element:
                 client_actions_element.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+            raise SOAPpy.faultType(
+                event_format_error, _("XML error"), e.message)
         if copy_object:
             appl.set_e2vdom_actions(copy_object, client_actions_element)
             if server_actions_element:
@@ -1571,7 +1655,8 @@ class VDOM_web_services_server(object):
             for src_id in app.events[obj.toplevel.id]:
                 if src_id in obj_map:
                     for ev_name in app.events[obj.toplevel.id][src_id]:
-                        result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (obj_map[src_id], tgt_app.search_object(obj_map[src_id]).name, tgt_app.search_object(obj_map[src_id]).type.id, new_obj.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
+                        result += """<Event ObjSrcID="%s" ObjSrcName="%s" TypeID="%s" ContainerID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (obj_map[src_id], tgt_app.search_object(obj_map[src_id]).name, tgt_app.search_object(
+                            obj_map[src_id]).type.id, new_obj.toplevel.id, ev_name, app.events[obj.toplevel.id][src_id][ev_name].top, app.events[obj.toplevel.id][src_id][ev_name].left, app.events[obj.toplevel.id][src_id][ev_name].state)
                         for a in app.events[obj.toplevel.id][src_id][ev_name].actions:
                             if a in action_map:
                                 result += """<Action ID="%s"/>\n""" % action_map[a]
@@ -1593,10 +1678,11 @@ class VDOM_web_services_server(object):
                             _id = act.attributes["id"]
                             if not _id:
                                 raise VDOM_exception_element("event.action")
-        except Exception, e:
+        except Exception as e:
             if events_element:
                 events_element.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+            raise SOAPpy.faultType(
+                event_format_error, _("XML error"), e.message)
 
         tgt_app.set_e2vdom_events(new_obj, events_element)
         events_element.delete()
@@ -1674,7 +1760,8 @@ class VDOM_web_services_server(object):
             return errmsg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to this application", _("<Error/>"))
 
         return "<Objects>\n" + self.__get_object(obj) + "</Objects>"
 
@@ -1709,11 +1796,12 @@ class VDOM_web_services_server(object):
         try:
             # obj.set_name(name)
             obj.name = name
-        except VDOM_exception, e:
-            # raise SOAPpy.faultType(name_error, _("Rename error: ") + str(e), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.original_name))
-            raise SOAPpy.faultType(name_error, _("Rename error: ") + str(e), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.name))
+        except VDOM_exception as e:
+            # raise SOAPpy.faultType(name_error, _("Rename error: ") + e.message, "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.original_name))
+            raise SOAPpy.faultType(name_error, _("Rename error: ") + e.message,
+                                   "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.name))
             # "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>" % (obj.original_name, obj.id, obj.type.id))
-            # return self.__format_error(str(e)) + "\n<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>\n"% (obj.name, obj.id, obj.type.id)
+            # return self.__format_error(e.message) + "\n<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>\n"% (obj.name, obj.id, obj.type.id)
 
         # app.sync()
         app.save()
@@ -1731,8 +1819,9 @@ class VDOM_web_services_server(object):
 
         try:
             self.__set_attributes(obj, attr)
-        except Exception, e:
-            raise SOAPpy.faultType(attr_value_error, str(e), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+        except Exception as e:
+            raise SOAPpy.faultType(
+                attr_value_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
 
         # app.sync()
         app.save()
@@ -1754,7 +1843,7 @@ class VDOM_web_services_server(object):
         #             for a in app.events[obj.id][src_id][ev_name].actions:
         #                 result += """<Action ID="%s"/>\n""" % a
         #             result += "</Event>\n"
-        for event in obj.events.catalog.itervalues():
+        for event in obj.events.catalog.values():
             result += "<Event ObjSrcID=\"%s\" ObjSrcName=\"%s\" TypeID=\"%s\" ContainerID=\"%s\" Name=\"%s\" Top=\"%s\" Left=\"%s\" State=\"%s\">\n" \
                 % (event.source_object.id, event.source_object.name, event.source_object.type.id,
                     event.source_object.container.id, event.name, event.top, event.left, str(event.state).lower())
@@ -1778,12 +1867,13 @@ class VDOM_web_services_server(object):
         #             for p in a.parameters:
         #                 result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
         #             result += "</Action>\n"
-        for binding in obj.bindings.catalog.itervalues():
+        for binding in obj.bindings.catalog.values():
             result += """<Action ID="%s" ObjTgtID="%s" ObjTgtName="%s" MethodName="%s" Top="%s" Left="%s" State="%s">\n""" \
                 % (binding.id, binding.target_object.id, binding.target_object.name,
                     binding.name, binding.top, binding.left, str(binding.state).lower())
-            for name, value in binding.parameters.iteritems():
-                result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (name, value)
+            for name, value in binding.parameters.items():
+                result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (
+                    name, value)
             result += "</Action>\n"
         result += "</ClientActions>\n"
         return result
@@ -1795,7 +1885,8 @@ class VDOM_web_services_server(object):
         if not app:
             return msg
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to events of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to events of this application", _("<Error/>"))
         obj = app.search_object(objid)
         result = self.__do_get_events(app, obj)
         result += self.__do_get_client_actions(app, obj)
@@ -1816,7 +1907,7 @@ class VDOM_web_services_server(object):
 
         result = self.__do_get_events(app, obj)
 
-        #result += "<ClientActions>\n"
+        # result += "<ClientActions>\n"
         # if obj:
         #   ll = obj.get_all_children()
         #   for a_id in app.actions:
@@ -1826,10 +1917,11 @@ class VDOM_web_services_server(object):
         #           for p in a.parameters:
         #               result += """<Parameter ScriptName="%s"><![CDATA[%s]]></Parameter>\n""" % (p.name, p.value)
         #           result += "</Action>\n"
-        #result += "</ClientActions>\n"
+        # result += "</ClientActions>\n"
 
         result += self.__do_get_client_actions(app, obj)
-        result += self.get_server_actions_list(sid, skey, appid, objid, check=False, full=True)
+        result += self.get_server_actions_list(sid,
+                                               skey, appid, objid, check=False, full=True)
         return "<E2vdom>%s</E2vdom>" % result
 
     def set_events_structure(self, sid, skey, appid, objid, events):
@@ -1901,7 +1993,7 @@ class VDOM_web_services_server(object):
         # except Exception, e:
         #     if root:
         #         root.delete()
-        #     raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+        #     raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
         # server_actions_element.name = "Actions"
         # if obj:
         #     app.set_e2vdom_events(obj, events_element)
@@ -1938,7 +2030,8 @@ class VDOM_web_services_server(object):
                 if "action" == child.lname:
                     uuid = child.attributes["id"]
                     name = child.attributes["methodname"]
-                    target = app.objects.catalog.get(child.attributes["ObjTgtID"])
+                    target = app.objects.catalog.get(
+                        child.attributes["ObjTgtID"])
                     top = child.attributes["top"]
                     left = child.attributes["left"]
                     state = child.attributes["state"]
@@ -1947,7 +2040,8 @@ class VDOM_web_services_server(object):
                         raise VDOM_exception_element("client action")
 
                     parameters = OrderedDict()
-                    bindings.append((uuid, name, target, top, left, state, parameters))
+                    bindings.append(
+                        (uuid, name, target, top, left, state, parameters))
                     for parameter in child.children:
                         if "parameter" == parameter.lname:
                             name = parameter.attributes["scriptname"]
@@ -1960,7 +2054,8 @@ class VDOM_web_services_server(object):
                 if "action" == child.lname:
                     action = app.actions.catalog.get(child.attributes["id"])
                     name = child.attributes["name"]
-                    owner = app.objects.catalog.get(child.attributes["ObjectID"])
+                    owner = app.objects.catalog.get(
+                        child.attributes["ObjectID"])
                     top = child.attributes["top"]
                     left = child.attributes["left"]
                     state = child.attributes["state"]
@@ -1973,8 +2068,10 @@ class VDOM_web_services_server(object):
             for child in events_element.children:
                 if "event" == child.lname:
                     name = child.attributes["name"]
-                    source = app.objects.catalog.get(child.attributes["objsrcid"])
-                    container = app.objects.catalog.get(child.attributes["containerid"])
+                    source = app.objects.catalog.get(
+                        child.attributes["objsrcid"])
+                    container = app.objects.catalog.get(
+                        child.attributes["containerid"])
                     top = child.attributes["top"]
                     left = child.attributes["left"]
                     state = child.attributes["state"]
@@ -1990,8 +2087,8 @@ class VDOM_web_services_server(object):
                             if not uuid:
                                 raise VDOM_exception_element("event.action")
                             callees.append(uuid)
-        except Exception, e:
-            # raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+        except Exception:
+            # raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
             raise
         finally:
             if root:
@@ -1999,16 +2096,18 @@ class VDOM_web_services_server(object):
 
         if obj:
             if not managers.acl_manager.session_user_has_access2(app.id, app.id, security.modify_application):
-                raise VDOM_exception_sec(_("Modifying application is not allowed"))
+                raise VDOM_exception_sec(
+                    ("Modifying application is not allowed"))
 
             obj.bindings.clear()
             for event in tuple(event
-                    for event in obj.application.events.catalog.itervalues()
-                    if event.container is obj):
+                               for event in obj.application.events.catalog.values()
+                               if event.container is obj):
                 del event.source_object.events[event.key]
 
             for uuid, name, target, top, left, state, parameters in bindings:
-                binding = obj.bindings.new_sketch(target, name, parameters=parameters)
+                binding = obj.bindings.new_sketch(
+                    target, name, parameters=parameters)
                 binding.id = uuid
                 binding.top = top
                 binding.left = left
@@ -2017,7 +2116,8 @@ class VDOM_web_services_server(object):
 
             for action, name, owner, top, left, state in actions:
                 if not managers.acl_manager.session_user_has_access2(app.id, action.owner.id, security.modify_object):
-                    raise VDOM_exception_sec(_("Modifying object is not allowed"))
+                    raise VDOM_exception_sec(
+                        ("Modifying object is not allowed"))
 
                 action.name = name
                 action.top = top
@@ -2054,15 +2154,17 @@ class VDOM_web_services_server(object):
 
         # for _name in obj.actions["name"]:
         #     x = obj.actions["name"][_name]
-        for _name, x in obj.actions.iteritems():
-            result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (x.id, x.name, x.top, x.left, x.state)
+        for _name, x in obj.actions.items():
+            result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n""" % (
+                x.id, x.name, x.top, x.left, x.state)
             # result += """<![CDATA[%s]]>\n""" % x.code.replace("]]>", "]]]]><![CDATA[>")
-            result += """<![CDATA[%s]]>\n""" % x.source_code.replace("]]>", "]]]]><![CDATA[>")
+            result += """<![CDATA[%s]]>\n""" % x.source_code.replace(
+                "]]>", "]]]]><![CDATA[>")
             result += "</Action>\n"
         result += '</Container>\n'
 
         # for x in obj.objects_list:
-        for x in obj.objects.itervalues():
+        for x in obj.objects.values():
             result += self.__do_get_server_actions(x)
 
         return result
@@ -2070,80 +2172,81 @@ class VDOM_web_services_server(object):
     def set_application_events(self, sid, skey, appid, objid, events):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        (app, msg) = self.__find_application(appid)
-        if not app:
-            return msg
-        obj = app.search_object(objid)
-        if obj and 1 == obj.type.container:
-            raise VDOM_exception("Incorrect object")
-        root = None
-        client_actions_element = None
-        #server_actions_element = None
-        events_element = None
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # (app, msg) = self.__find_application(appid)
+        # if not app:
+        #     return msg
+        # obj = app.search_object(objid)
+        # if obj and 1 == obj.type.container:
+        #     raise VDOM_exception("Incorrect object")
+        # root = None
+        # client_actions_element = None
+        # # server_actions_element = None
+        # events_element = None
 
-        try:
-            root = xml_object(srcdata=events.encode("utf-8"))
-            if "e2vdom" != root.lname:
-                raise VDOM_exception_element(root.lname)
-            client_actions_element = root.get_child_by_name("clientactions")
-            if not client_actions_element:
-                raise VDOM_exception_element("ClientActions")
-            #server_actions_element = root.get_child_by_name("serveractions")
-            # if not server_actions_element:
-            #   raise VDOM_exception_element("ServerActions")
-            events_element = root.get_child_by_name("events")
-            if not events_element:
-                raise VDOM_exception_element("Events")
-            # client actions
-            for child in client_actions_element.children:
-                if "action" == child.lname:
-                    _id = child.attributes["id"]
-                    tgt_id = child.attributes["objtgtid"]
-                    mn = child.attributes["methodname"]
-                    if not tgt_id or not mn or not _id:
-                        raise VDOM_exception_element("client action")
-                    for par in child.children:
-                        if "parameter" == par.lname:
-                            par_name = par.attributes["scriptname"]
-                            par_value = par.get_value_as_xml()
-                            if not par_name:
-                                raise VDOM_exception_element("Parameter")
-            # server actions
-            # for child in server_actions_element.children:
-            #   if "action" == child.lname:
-            #       _id = child.attributes["id"]
-            #       _name = child.attributes["name"]
-            #       _lang = child.attributes["language"]
-            #       if not _id or not _name or not _lang:
-            #           raise VDOM_exception_element("server action")
-            # events
-            for child in events_element.children:
-                if "event" == child.lname:
-                    src_id = child.attributes["objsrcid"]
-                    name = child.attributes["name"]
-                    if not src_id or not name:
-                        raise VDOM_exception_element("Event")
-                    for act in child.children:
-                        if "action" == act.lname:
-                            _id = act.attributes["id"]
-                            if not _id:
-                                raise VDOM_exception_element("event.action")
-        except Exception, e:
-            if root:
-                root.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
-        #server_actions_element.name = "Actions"
-        if obj:
-            app.set_e2vdom_events(obj, events_element)
-            app.set_e2vdom_actions(obj, client_actions_element)
-        #   obj.set_actions(server_actions_element)
-        # else:
-        #   app.set_global_actions(server_actions_element)
-        root.delete()
-        app.sync()
-        return self.__success()
+        # try:
+        #     root = xml_object(srcdata=events.encode("utf-8"))
+        #     if "e2vdom" != root.lname:
+        #         raise VDOM_exception_element(root.lname)
+        #     client_actions_element = root.get_child_by_name("clientactions")
+        #     if not client_actions_element:
+        #         raise VDOM_exception_element("ClientActions")
+        #     # server_actions_element = root.get_child_by_name("serveractions")
+        #     # if not server_actions_element:
+        #     #   raise VDOM_exception_element("ServerActions")
+        #     events_element = root.get_child_by_name("events")
+        #     if not events_element:
+        #         raise VDOM_exception_element("Events")
+        #     # client actions
+        #     for child in client_actions_element.children:
+        #         if "action" == child.lname:
+        #             _id = child.attributes["id"]
+        #             tgt_id = child.attributes["objtgtid"]
+        #             mn = child.attributes["methodname"]
+        #             if not tgt_id or not mn or not _id:
+        #                 raise VDOM_exception_element("client action")
+        #             for par in child.children:
+        #                 if "parameter" == par.lname:
+        #                     par_name = par.attributes["scriptname"]
+        #                     par_value = par.get_value_as_xml()
+        #                     if not par_name:
+        #                         raise VDOM_exception_element("Parameter")
+        #     # server actions
+        #     # for child in server_actions_element.children:
+        #     #   if "action" == child.lname:
+        #     #       _id = child.attributes["id"]
+        #     #       _name = child.attributes["name"]
+        #     #       _lang = child.attributes["language"]
+        #     #       if not _id or not _name or not _lang:
+        #     #           raise VDOM_exception_element("server action")
+        #     # events
+        #     for child in events_element.children:
+        #         if "event" == child.lname:
+        #             src_id = child.attributes["objsrcid"]
+        #             name = child.attributes["name"]
+        #             if not src_id or not name:
+        #                 raise VDOM_exception_element("Event")
+        #             for act in child.children:
+        #                 if "action" == act.lname:
+        #                     _id = act.attributes["id"]
+        #                     if not _id:
+        #                         raise VDOM_exception_element("event.action")
+        # except Exception as e:
+        #     if root:
+        #         root.delete()
+        #     raise SOAPpy.faultType(
+        #         event_format_error, _("XML error"), e.message)
+        # # server_actions_element.name = "Actions"
+        # if obj:
+        #     app.set_e2vdom_events(obj, events_element)
+        #     app.set_e2vdom_actions(obj, client_actions_element)
+        # #   obj.set_actions(server_actions_element)
+        # # else:
+        # #   app.set_global_actions(server_actions_element)
+        # root.delete()
+        # app.sync()
+        # return self.__success()
 
     def set_server_actions(self, sid, skey, appid, objid, actions):
         raise NotImplementedError
@@ -2167,10 +2270,11 @@ class VDOM_web_services_server(object):
                     _name = child.attributes["name"]
                     if not _id or not _name:
                         raise VDOM_exception_element("server action")
-        except Exception, e:
+        except Exception as e:
             if root:
                 root.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), str(e))
+            raise SOAPpy.faultType(
+                event_format_error, _("XML error"), e.message)
         root.name = "Actions"
         if obj:
             obj.set_actions(root)
@@ -2190,7 +2294,8 @@ class VDOM_web_services_server(object):
             return msg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
 
         # obj = app.search_object(objid)
         obj = app.objects.catalog.get(objid)
@@ -2206,9 +2311,10 @@ class VDOM_web_services_server(object):
         #     result += "</Container>\n"
         elif objid in GLOBAL_CONTEXTS:
             result += "<Container ID=\"%s\">\n" % objid
-            for _id, _name in GLOBAL_CONTEXTS[objid].iteritems():
+            for _id, _name in GLOBAL_CONTEXTS[objid].items():
                 x = app.actions.get(_id)
-                top, left, state, source_code = (x.top, x.left, x.state, x.source_code) if x else ("", "", "", "")
+                top, left, state, source_code = (
+                    x.top, x.left, x.state, x.source_code) if x else ("", "", "", "")
                 result += """<Action ID="%s" Name="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n""" % (
                     _id, _name, top, left, state, source_code.replace("]]>", "]]]]><![CDATA[>"))
             result += "</Container>\n"
@@ -2218,7 +2324,7 @@ class VDOM_web_services_server(object):
 
     def __do_get_server_actions_list(self, obj, full):
         # if not len(obj.actions["name"]):
-        #if not obj.actions:
+        # if not obj.actions:
         #    return ""
         if 1 == obj.type.container:
             return ""
@@ -2226,15 +2332,17 @@ class VDOM_web_services_server(object):
         result = ""  # '<Container ID="%s">\n' % obj.id
         # for _name in obj.actions["name"]:
         #     x = obj.actions["name"][_name]
-        for x in obj.actions.itervalues():
+        for x in obj.actions.values():
             additional = ""
             if full:
-                additional = """  Top="%s" Left="%s" State="%s"  """ % (x.top, x.left, x.state)
-            result += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id, obj.name, additional)
+                additional = """  Top="%s" Left="%s" State="%s"  """ % (
+                    x.top, x.left, x.state)
+            result += """<Action ID="%s" Name="%s" ObjectID="%s"  ObjectName="%s" %s />\n""" % (
+                x.id, x.name, obj.id, obj.name, additional)
 
         if full:
             # for x in obj.objects_list:
-            for x in obj.objects.itervalues():
+            for x in obj.objects.values():
                 result += self.__do_get_server_actions_list(x, full)
 
         return result
@@ -2249,7 +2357,8 @@ class VDOM_web_services_server(object):
             return msg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
 
         # obj = app.search_object(objid)
         obj = app.objects.catalog.get(objid)
@@ -2264,13 +2373,16 @@ class VDOM_web_services_server(object):
         #             additional = """  Top="%s" Left="%s" State="%s"  """ % (x.top, x.left, x.state)
         #         result += """<Action ID="%s" Name="%s" ObjectID="%s" ObjectName="%s" %s />\n""" % (x.id, x.name, obj.id, obj.name, additional)
         elif objid in GLOBAL_CONTEXTS:
-            for _id, _name in GLOBAL_CONTEXTS[objid].iteritems():
+            for _id, _name in GLOBAL_CONTEXTS[objid].items():
                 x = app.actions.get(_id)
-                top, left, state, source_code = (x.top, x.left, x.state, x.source_code) if x else ("", "", "", "")
+                top, left, state, source_code = (
+                    x.top, x.left, x.state, x.source_code) if x else ("", "", "", "")
                 additional = ""
                 if full:
-                    additional = """  Top="%s" Left="%s" State="%s"  """ % (top, left, state)
-                result += """<Action ID="%s" Name="%s" ObjectID="%s" ObjectName="%s" %s />\n""" % (_id, _name, objid, objid, additional)
+                    additional = """  Top="%s" Left="%s" State="%s"  """ % (
+                        top, left, state)
+                result += """<Action ID="%s" Name="%s" ObjectID="%s" ObjectName="%s" %s />\n""" % (
+                    _id, _name, objid, objid, additional)
         result += "</ServerActions>\n"
 
         return result
@@ -2290,9 +2402,10 @@ class VDOM_web_services_server(object):
         if 1 == obj.type.container:
             return
         if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
-            raise VDOM_exception_sec(_("Modifying object is not allowed"))
+            raise VDOM_exception_sec(("Modifying object is not allowed"))
         if not verificators.complies(actionname, verificators.name):
-            raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
+            raise SOAPpy.faultType(name_error, _(
+                "Incorrect server action name"), "")
 
         action = obj.actions.new(name=actionname, source_code=actionvalue)
         # app.sync()
@@ -2310,12 +2423,13 @@ class VDOM_web_services_server(object):
 
         # obj.delete_action(actionid)
         if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
-            raise VDOM_exception_sec(_("Modifying object is not allowed"))
+            raise VDOM_exception_sec(("Modifying object is not allowed"))
 
         try:
             del obj.actions[actionid]
         except KeyError:
-            raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+            raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                "<Error><ActionID>%s</ActionID></Error>") % actionid)
 
         # app.sync()
         app.save()
@@ -2332,17 +2446,20 @@ class VDOM_web_services_server(object):
 
         # obj.rename_action(actionid, new_actionname)
         if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
-            raise VDOM_exception_sec(_("Modifying object is not allowed"))
+            raise VDOM_exception_sec(("Modifying object is not allowed"))
         if not verificators.complies(new_actionname, verificators.name):
-            raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
+            raise SOAPpy.faultType(name_error, _(
+                "Incorrect server action name"), "")
         if new_actionname in obj.actions:
-            raise SOAPpy.faultType(name_error, _("The name is already in use"), _("<Error><ActionName>%s</ActionName></Error>") % new_actionname)
+            raise SOAPpy.faultType(name_error, _("The name is already in use"), _(
+                "<Error><ActionName>%s</ActionName></Error>") % new_actionname)
 
         action = obj.actions.get(actionid)
         if action:
             action.name = new_actionname
         else:
-            raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+            raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                "<Error><ActionID>%s</ActionID></Error>") % actionid)
 
         # app.sync()
         app.save()
@@ -2358,7 +2475,8 @@ class VDOM_web_services_server(object):
             return msg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to actions of this application", _("<Error/>"))
 
         # obj = app.search_object(objid)
         obj = app.objects.catalog.get(objid)
@@ -2366,7 +2484,8 @@ class VDOM_web_services_server(object):
             # if actionid not in obj.actions["id"]:
             action = obj.actions.get(actionid)
             if not action:
-                raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+                raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                    "<Error><ActionID>%s</ActionID></Error>") % actionid)
             # else:
             #     action = obj.actions["id"][actionid]
             else:
@@ -2382,14 +2501,17 @@ class VDOM_web_services_server(object):
         #             action.id, action.name, objid, action.top, action.left, action.state, action.code.replace("]]>", "]]]]><![CDATA[>"))
         elif objid in GLOBAL_CONTEXTS:
             if actionid not in GLOBAL_CONTEXTS[objid]:
-                raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+                raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                    "<Error><ActionID>%s</ActionID></Error>") % actionid)
             else:
                 action = app.actions.get(actionid)
-                top, left, state, source_code = (action.top, action.left, action.state, action.source_code) if action else ("", "", "", "")
+                top, left, state, source_code = (
+                    action.top, action.left, action.state, action.source_code) if action else ("", "", "", "")
                 return """<Action ID="%s" Name="%s" ObjectID="%s" Top="%s" Left="%s" State="%s">\n<![CDATA[%s]]>\n</Action>\n""" % (
                     actionid, GLOBAL_CONTEXTS[objid][actionid], objid, top, left, state, source_code.replace("]]>", "]]]]><![CDATA[>"))
         else:
-            raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
+            raise SOAPpy.faultType(object_id_error, "Object not found", _(
+                "<Error><ObjectID>%s</ObjectID></Error>") % objid)
 
     def set_server_action(self, sid, skey, appid, objid, actionid, actionvalue):
         """set server action"""
@@ -2400,17 +2522,19 @@ class VDOM_web_services_server(object):
         if not app:
             return msg
 
-        actionvalue = actionvalue.replace("]]]]><![CDATA[>", "]]>")  # to escape inside CDATA
+        actionvalue = actionvalue.replace(
+            "]]]]><![CDATA[>", "]]>")  # to escape inside CDATA
         # obj = app.search_object(objid)
         obj = app.objects.catalog.get(objid)
         if obj:
             # obj.set_action(actionid, actionvalue)
             if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
-                raise VDOM_exception_sec(_("Modifying object is not allowed"))
+                raise VDOM_exception_sec(("Modifying object is not allowed"))
 
             action = obj.actions.get(actionid)
             if not actionid:
-                raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+                raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                    "<Error><ActionID>%s</ActionID></Error>") % actionid)
 
             action.source_code = actionvalue
 
@@ -2421,7 +2545,8 @@ class VDOM_web_services_server(object):
         #     app.set_global_action(objid, actionid, actionvalue)
         elif objid in GLOBAL_CONTEXTS:
             if actionid not in GLOBAL_CONTEXTS[objid]:
-                raise SOAPpy.faultType(object_id_error, _("No such server action"), _("<Error><ActionID>%s</ActionID></Error>") % actionid)
+                raise SOAPpy.faultType(object_id_error, _("No such server action"), _(
+                    "<Error><ActionID>%s</ActionID></Error>") % actionid)
 
             action = app.actions.get(actionid)
             if action:
@@ -2431,47 +2556,53 @@ class VDOM_web_services_server(object):
                     del app.actions[actionid]
             else:
                 if actionvalue:
-                    action = app.actions.new(name=actionid, source_code=actionvalue)
+                    action = app.actions.new(
+                        name=actionid, source_code=actionvalue)
 
             # app.sync()
             app.save()
             return self.__success()
         else:
-            raise SOAPpy.faultType(object_id_error, "Object not found", _("<Error><ObjectID>%s</ObjectID></Error>") % objid)
+            raise SOAPpy.faultType(object_id_error, "Object not found", _(
+                "<Error><ObjectID>%s</ObjectID></Error>") % objid)
 
 
 # ----- ========================================================================================================
 
-    def modify_resource(self, sid, skey, appid, objid, resid, attrname, operation, attr):
+    def modify_resource(self, sid, skey, appid, objid, resid, attrname, operation, attr): # noqa
         """modify resource"""
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        ret = self.__find_object(appid, objid)  # returns (app, obj, error_message)
-        if not ret[0]:
-            return ret[2]
-        param = self.__parse_attr(attr, False)
-        (success, _data) = managers.resource_editor.modify_resource(sid, appid, objid, resid, attrname, operation, param)
-        if not success:
-            raise SOAPpy.faultType(res_mod_error, _data, _data)
-#           return self.__format_error(_data)
-        return self.__get_object(ret[1])
+#         if not self.__check_session(sid, skey):
+#             return self.__session_key_error()
+#         # returns (app, obj, error_message)
+#         ret = self.__find_object(appid, objid)
+#         if not ret[0]:
+#             return ret[2]
+#         param = self.__parse_attr(attr, False)
+#         (success, _data) = managers.resource_editor.modify_resource(
+#             sid, appid, objid, resid, attrname, operation, param)
+#         if not success:
+#             raise SOAPpy.faultType(res_mod_error, _data, _data)
+# #           return self.__format_error(_data)
+#         return self.__get_object(ret[1])
 
     def get_thumbnail(self, sid, skey, appid, resid, width, height):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        ret = self.__find_application(appid)  # returns (app, error_message)
-        if not ret[0]:
-            return ret[1]
-        ro = managers.resource_manager.get_resource(appid, resid)
-        if not ro:
-            raise SOAPpy.faultType(resource_not_found_error, _("Thumbnail error"), _("Resource not found"))
-#           return self.__format_error(_("Resource not found"))
-        _data = managers.resource_editor.do_thumbnail(ro.res_format, ro.get_data(), int(width), int(height))
-        return "<Resource><![CDATA[%s]]></Resource>" % utils.encode.encode_resource(_data)
+#         if not self.__check_session(sid, skey):
+#             return self.__session_key_error()
+#         ret = self.__find_application(appid)  # returns (app, error_message)
+#         if not ret[0]:
+#             return ret[1]
+#         ro = managers.resource_manager.get_resource(appid, resid)
+#         if not ro:
+#             raise SOAPpy.faultType(resource_not_found_error, _(
+#                 "Thumbnail error"), _("Resource not found"))
+# #           return self.__format_error(("Resource not found"))
+#         _data = managers.resource_editor.do_thumbnail(
+#             ro.res_format, ro.get_data(), int(width), int(height))
+#         return "<Resource><![CDATA[%s]]></Resource>" % utils.encode.encode_resource(_data)
 
     def execute_sql(self, sid, skey, appid, dbid, sql, script):
         # raise NotImplementedError
@@ -2482,7 +2613,7 @@ class VDOM_web_services_server(object):
         if not ret[0]:
             return ret[1]
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
-            raise VDOM_exception(_("SQL execution is not allowed"))
+            raise VDOM_exception(("SQL execution is not allowed"))
         _script = False
         if "True" == script:
             _script = True
@@ -2497,60 +2628,69 @@ class VDOM_web_services_server(object):
     def remote_method_call(self, sid, skey, appid, objid, func_name, xml_param, session_id):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        ret = self.__find_object(appid, objid)  # returns (app, obj, error_message)
-        if not ret[0]:
-            return ret[2]
-        if session_id == "":
-            if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
-                raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
-        else:
-            try:
-                sess = managers.session_manager.get_session(session_id)
-                policy = sess.value(objid)
-                if policy is None:
-                    raise AttributeError
-                if "rmc_allow" not in policy:
-                    raise AttributeError
-                if func_name not in policy["rmc_allow"]:
-                    raise AttributeError
-            except:
-                raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
-        ret = managers.dispatcher.dispatch_remote(appid, objid, func_name, xml_param, session_id)
-        return ret
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # # returns (app, obj, error_message)
+        # ret = self.__find_object(appid, objid)
+        # if not ret[0]:
+        #     return ret[2]
+        # if session_id == "":
+        #     if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
+        #         raise SOAPpy.faultType(remote_method_call_error, _(
+        #             "Remote method call is not allowed"), _(""))
+        # else:
+        #     try:
+        #         sess = managers.session_manager.get_session(session_id)
+        #         policy = sess.value(objid)
+        #         if policy is None:
+        #             raise AttributeError
+        #         if "rmc_allow" not in policy:
+        #             raise AttributeError
+        #         if func_name not in policy["rmc_allow"]:
+        #             raise AttributeError
+        #     except:
+        #         raise SOAPpy.faultType(remote_method_call_error, _(
+        #             "Remote method call is not allowed"), _(""))
+        # ret = managers.dispatcher.dispatch_remote(
+        #     appid, objid, func_name, xml_param, session_id)
+        # return ret
 
     def dispatch_remote(self, app_id, object_id, func_name, xml_param, session_id=None):
         app, obj, error_message = self.__find_object(app_id, object_id)
         if not obj:
-            raise SOAPpy.faultType(remote_method_call_error, _("Remote method not found"), str(func_name))
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Remote method not found"), str(func_name))
 
         try:
             return managers.dispatcher.dispatch_remote_method(obj, func_name, xml_param, session_id=session_id)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, unicode):
-                message = unicode(error).encode("utf8")
+            if hasattr(error, "message") and isinstance(error.message, str):
+                message = error.message.encode("utf8")
             else:
-                message = str(error)
-            raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
+                message = error.message
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Remote method call error"), message)
 
     def dispatch_action(self, app_id, object_id, func_name, xml_param, xml_data):
         app, obj, error_message = self.__find_object(app_id, object_id)
         action = obj.actions.get(func_name) if obj else None
         if not action:
-            raise SOAPpy.faultType(remote_method_call_error, _("Action not found"), str(func_name))
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Action not found"), str(func_name))
 
         request = managers.request_manager.get_request()
-        request.arguments().arguments({"xml_param": [xml_param], "xml_data": [xml_data]})
+        request.arguments().arguments(
+            {"xml_param": [xml_param], "xml_data": [xml_data]})
 
         try:
             managers.engine.execute(action)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, unicode):
-                message = unicode(error).encode("utf8")
+            if hasattr(error, "message") and isinstance(error.message, str):
+                message = error.message.encode("utf8")
             else:
-                message = str(error)
-            raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
+                message = error.message
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Remote method call error"), message)
 
         response = request.session().value("response")
         request.session().remove("response")
@@ -2563,33 +2703,40 @@ class VDOM_web_services_server(object):
         p = self.__parse_attr(xml_param, namefromtag=True, lowercase=False)
         # p = dict with arguments
         if "CallType" not in p:
-            raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not defined"), _(""))
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Remote call type is not defined"), _(""))
 
         rctype = p["CallType"]
         if rctype == "rmc":
             if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-                raise SOAPpy.faultType(remote_method_call_error, _("Remote method call is not allowed"), _(""))
+                raise SOAPpy.faultType(remote_method_call_error, _(
+                    "Remote method call is not allowed"), _(""))
             ret = self.dispatch_remote(appid, objid, func_name, xml_data)
         elif rctype == "rmc_over_session" and "HTTPSessionID" in p:
             sess = managers.session_manager.get_session(p["HTTPSessionID"])
             policy = sess.value(objid)
             if policy and "rmc_allow" in policy and func_name in policy["rmc_allow"]:
-                ret = self.dispatch_remote(appid, objid, func_name, xml_data, p["HTTPSessionID"])
+                ret = self.dispatch_remote(
+                    appid, objid, func_name, xml_data, p["HTTPSessionID"])
             else:
-                raise SOAPpy.faultType(remote_method_call_error, _("Remote call is not allowed"), _(""))
+                raise SOAPpy.faultType(remote_method_call_error, _(
+                    "Remote call is not allowed"), _(""))
         elif rctype == "server_action":
             if not managers.acl_manager.session_user_has_access2(appid, objid, security.modify_object):
-                raise SOAPpy.faultType(remote_method_call_error, _("Remote call is not allowed"), _(""))
-            ret = self.dispatch_action(appid, objid, func_name, xml_param, xml_data)
+                raise SOAPpy.faultType(remote_method_call_error, _(
+                    "Remote call is not allowed"), _(""))
+            ret = self.dispatch_action(
+                appid, objid, func_name, xml_param, xml_data)
         else:
-            raise SOAPpy.faultType(remote_method_call_error, _("Remote call type is not alowed"), _(""))
+            raise SOAPpy.faultType(remote_method_call_error, _(
+                "Remote call type is not alowed"), _(""))
         return ret
 # management ========================================================================================================
 
     def install_application(self, sid, skey, vhname, appxml):
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
-        
+
         vh = managers.server.web_server.http_server.virtual_hosting()
         if "" != vhname and vh.get_site(vhname):
             raise SOAPpy.faultType(duplicate_vhname_error, _("Install application error"), _("Virtual host name exists"))
@@ -2610,12 +2757,12 @@ class VDOM_web_services_server(object):
             if "" != vhname:
                 vh.set_site(vhname, app.id)  # outp contains the application ID
             return "<ApplicationID>%s</ApplicationID>" % app.id
-        #elif "" == outp:
+        # elif "" == outp:
         #    return self.__format_error(_("Install application error."), _("Application already installed"))
         #    #raise SOAPpy.faultType(app_installed_error, _("Install application error"), _("Application already installed"))
         else:
             return self.__format_error(_("Install application error."), outp)
-            #raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
+            # raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
 
     def uninstall_application(self, sid, skey, appid):
         if not self.__check_session(sid, skey):
@@ -2669,25 +2816,26 @@ class VDOM_web_services_server(object):
     def update_application(self, sid, skey, appxml):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        tmpfilename = ""
-        try:
-            # save file
-            tmpfilename = tempfile.mkstemp(".xml", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-            os.close(tmpfilename[0])
-            tmpfilename = tmpfilename[1]
-            tmpfile = open(tmpfilename, "wb")
-            tmpfile.write(appxml.encode("utf-8"))
-            tmpfile.close()
-            # call update function
-            outp = update_application(tmpfilename, managers.virtual_hosts)
-            if outp[0]:
-                return """<Result>OK</Result>"""
-            else:
-                return self.__format_error(_("Update error: %s" % outp[1]))
-        except Exception as e:
-            return self.__format_error(_("Update error: %s" % str(e)))
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # tmpfilename = ""
+        # try:
+        #     # save file
+        #     tmpfilename = tempfile.mkstemp(
+        #         ".xml", "", VDOM_CONFIG["TEMP-DIRECTORY"])
+        #     os.close(tmpfilename[0])
+        #     tmpfilename = tmpfilename[1]
+        #     tmpfile = open(tmpfilename, "wb")
+        #     tmpfile.write(appxml.encode("utf-8"))
+        #     tmpfile.close()
+        #     # call update function
+        #     outp = update_application(tmpfilename, managers.virtual_hosts)
+        #     if outp[0]:
+        #         return """<Result>OK</Result>"""
+        #     else:
+        #         return self.__format_error(("Update error: %s" % outp[1]))
+        # except Exception as e:
+        #     return self.__format_error(("Update error: %s" % e.message))
 
     def check_application_exists(self, sid, skey, appid):
         if not self.__check_session(sid, skey):
@@ -2700,7 +2848,7 @@ class VDOM_web_services_server(object):
             #     result = "true"
             app, error_message = self.__find_application(appid)
             result = "true" if app else "false"
-        except:
+        except Exception:
             result = "false"
 
         return """<Result>\n <ApplicationExists>\n  %s\n </ApplicationExists>\n</Result>""" % result
@@ -2713,9 +2861,10 @@ class VDOM_web_services_server(object):
         backupid = skey
         result = managers.backup_manager.backup(appid, driverid, 30, backupid)
         if result[0] != 0:
-            raise SOAPpy.faultType(application_backup_error, _("Backup error"), _("Application was not backuped"))
+            raise SOAPpy.faultType(application_backup_error, _(
+                "Backup error"), _("Application was not backuped"))
 
-        return """<Result> <Revision>%s</Revision></Result>""" % str(result[1])
+        return """<Result> <Revision>%s</Revision></Result>""" % result[1]
 
     def get_task_status(self, sid, skey, taskid):
         raise NotImplementedError
@@ -2724,10 +2873,11 @@ class VDOM_web_services_server(object):
             return self.__session_key_error()
         status = managers.task_manager.get_status(taskid)
         if status:
-            result = """<Result>\n <Progress>%s</Progress>\n <Message>\n  %s\n </Message>\n</Result>""" % (status.progress, status.message)
+            result = """<Result>\n <Progress>%s</Progress>\n <Message>\n  %s\n </Message>\n</Result>""" % (
+                status.progress, status.message)
             return result
         else:
-            return self.__format_error(_("Proccess with tid %s does not exists" % taskid))
+            return self.__format_error(("Proccess with tid %s does not exists" % taskid))
 
     def restore_application(self, sid, skey, appid, driverid, revision):
         raise NotImplementedError
@@ -2735,10 +2885,12 @@ class VDOM_web_services_server(object):
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
         taskid = skey
-        result = managers.backup_manager.restore(driverid, appid, revision, taskid)
+        result = managers.backup_manager.restore(
+            driverid, appid, revision, taskid)
         if not result[0]:
-            raise SOAPpy.faultType(application_restore_error, _("Restore error"), _("Application was not restored"))
-        return """<Result><Revision>%s</Revision></Result>""" % str(revision)
+            raise SOAPpy.faultType(application_restore_error, _(
+                "Restore error"), _("Application was not restored"))
+        return """<Result><Revision>%s</Revision></Result>""" % revision
 
     def list_backup_drivers(self, sid, skey):
         raise NotImplementedError
@@ -2749,34 +2901,37 @@ class VDOM_web_services_server(object):
         ret = ""
         for driver in backup_drivers:
             driver_obj = backup_drivers[driver]
-            ret += """\n\t<Driver>\n\t\t<ID>%(id)s</ID>\n\t\t<Name>%(name)s</Name>\n\t\t<Description>%(type)s</Description>\n\t</Driver>\n""" % {"id": driver_obj.id, "name": driver_obj.name, "type": driver_obj.type}
+            ret += """\n\t<Driver>\n\t\t<ID>%(id)s</ID>\n\t\t<Name>%(name)s</Name>\n\t\t<Description>%(type)s</Description>\n\t</Driver>\n""" % {
+                "id": driver_obj.id, "name": driver_obj.name, "type": driver_obj.type}
 
         return "<Result>%s</Result>" % ret
 
     def set_vcard_license(self, sid, skey, serial, reboot):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        if not managers.acl_manager.session_user_can_manage():
-            raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # if not managers.acl_manager.session_user_can_manage():
+        #     raise SOAPpy.faultType(server_manage_error, _(
+        #         "Server management is not allowed"), _(""))
 
-        from utils.system import set_virtual_card_key
-        ret = set_virtual_card_key(serial)
+        # from .utils.system import set_virtual_card_key
+        # ret = set_virtual_card_key(serial)
 
-        if reboot and str(reboot).lower() == "true":
-            import os
-            f = os.popen("reboot")
-            outp = f.read()
-            f.close()
-        return "<Result>%s</Result>" % ret
+        # if reboot and str(reboot).lower() == "true":
+        #     import os
+        #     f = os.popen("reboot")
+        #     outp = f.read()
+        #     f.close()
+        # return "<Result>%s</Result>" % ret
 
     def set_application_vhost(self, sid, skey, appid, hostname):
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
 
         if not managers.acl_manager.session_user_can_manage():
-            raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))
+            raise SOAPpy.faultType(server_manage_error, _(
+                "Server management is not allowed"), _(""))
 
         app, error_message = self.__find_application(appid)
         if not app:
@@ -2787,7 +2942,8 @@ class VDOM_web_services_server(object):
             managers.server.web_server.http_server.virtual_hosting().set_def_site(str(app.id))
         else:
             # managers.virtual_hosts.set_site(hostname, appid)
-            managers.server.web_server.http_server.virtual_hosting().set_site(hostname, str(appid))
+            managers.server.web_server.http_server.virtual_hosting().set_site(hostname,
+                                                                              str(appid))
 
         return "<Result>OK</Result>"
 
@@ -2796,7 +2952,8 @@ class VDOM_web_services_server(object):
             return self.__session_key_error()
 
         if not managers.acl_manager.session_user_can_manage():
-            raise SOAPpy.faultType(server_manage_error, _("Server management is not allowed"), _(""))
+            raise SOAPpy.faultType(server_manage_error, _(
+                "Server management is not allowed"), _(""))
 
         if not hostname or hostname.lower() == "default" or hostname == 0:
             # managers.virtual_hosts.set_def_site(None)
@@ -2814,37 +2971,40 @@ class VDOM_web_services_server(object):
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
-        return "<GUID>%s</GUID>" % str(uuid4())
+        return "<GUID>%s</GUID>" % uuid4()
 
     def search(self, sid, skey, appid, pattern):
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        appidlst = None
-        if "" != appid:
-            ret = self.__find_application(appid)  # returns (app, error_message)
-            if not ret[0]:
-                return ret[1]
-            appidlst = [appid]
-        else:
-            appidlst = managers.xml_manager.get_applications()
-        s = "<SearchResult>\n"
-        for _id in appidlst:
-            _app = managers.xml_manager.get_application(_id)
-            r = _app.search(pattern)
-            if 0 == len(r):
-                continue
-            s += """<Application ID="%s" Name="%s">\n""" % (_app.id, _app.name)
-            for top_id in r:
-                o1 = _app.search_object(top_id)
-                s += '<Container ID="%s" Type="%s" Name="%s">\n' % (o1.id, o1.type.id, o1.name)
-                for l in r[top_id]:
-                    o2 = _app.search_object(l)
-                    s += '<Object ID="%s" Type="%s" Name="%s"/>\n' % (o2.id, o2.type.id, o2.name)
-                s += '</Container>\n'
-            s += "</Application>\n"
-        return s + "</SearchResult>"
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # appidlst = None
+        # if "" != appid:
+        #     # returns (app, error_message)
+        #     ret = self.__find_application(appid)
+        #     if not ret[0]:
+        #         return ret[1]
+        #     appidlst = [appid]
+        # else:
+        #     appidlst = managers.xml_manager.get_applications()
+        # s = "<SearchResult>\n"
+        # for _id in appidlst:
+        #     _app = managers.xml_manager.get_application(_id)
+        #     r = _app.search(pattern)
+        #     if 0 == len(r):
+        #         continue
+        #     s += """<Application ID="%s" Name="%s">\n""" % (_app.id, _app.name)
+        #     for top_id in r:
+        #         o1 = _app.search_object(top_id)
+        #         s += '<Container ID="%s" Type="%s" Name="%s">\n' % (
+        #             o1.id, o1.type.id, o1.name)
+        #         for l in r[top_id]:
+        #             o2 = _app.search_object(l)
+        #             s += '<Object ID="%s" Type="%s" Name="%s"/>\n' % (
+        #                 o2.id, o2.type.id, o2.name)
+        #         s += '</Container>\n'
+        #     s += "</Application>\n"
+        # return s + "</SearchResult>"
 
     def keep_alive(self, sid, skey):
         if not self.__check_session(sid, skey):
@@ -2863,16 +3023,18 @@ class VDOM_web_services_server(object):
                     # load object attributes
                     for _a in _attr_elem.children:
                         if "attribute" == _a.lname:
-                            _attr_map[_a.attributes["name"]] = _a.get_value_as_xml()
+                            _attr_map[_a.attributes["name"]
+                                      ] = _a.get_value_as_xml()
                 # create object
-                (_new_name, _new_id) = app.create_object(_type_obj.id, parent, False)
+                (_new_name, _new_id) = app.create_object(
+                    _type_obj.id, parent, False)
                 _new_obj = app.search_object(_new_id)
                 # set name
                 if _name:
                     try:
                         _new_obj.set_name(_name)
-                    except VDOM_exception, e:
-                        debug(unicode(e))
+                    except VDOM_exception as e:
+                        debug(e.message)
                 # set attributes
                 for aname in _attr_map:
                     _new_obj.set_attribute(aname, _attr_map[aname], False)
@@ -2885,46 +3047,48 @@ class VDOM_web_services_server(object):
         """create multiple objects"""
         raise NotImplementedError
 
-        if not self.__check_session(sid, skey):
-            return self.__session_key_error()
-        (app, errmsg) = self.__find_application(appid)
-        if not app:
-            return errmsg
-        if objects.strip() is "":
-            raise SOAPpy.faultType(param_syntax_error, _("Empty data"), "objects")
-        parent = None
-        if parentid != "":
-            parent = app.search_object(parentid)
-            if parent is None:
-                raise SOAPpy.faultType(parent_object_error, "", "")
-        # parse xml
-        root = None
-        try:
-            root = xml_object(srcdata=objects.encode("utf-8"))
-        except Exception, e:
-            raise SOAPpy.faultType(param_syntax_error, str(e), "objects")
-        # start
-        try:
-            self.__do_create_objects(app, parent, root)
-        except Exception, e:
-            root.delete()
-            app.sync()
-            raise SOAPpy.faultType(obj_create_error, str(e), "")
-        root.delete()
-        app.sync()
-        if parent:
-            return self.__get_objects(parent)
-        else:
-            return self.__get_objects(app)
-            # return self.__success()
+        # if not self.__check_session(sid, skey):
+        #     return self.__session_key_error()
+        # (app, errmsg) = self.__find_application(appid)
+        # if not app:
+        #     return errmsg
+        # if objects.strip() == "":
+        #     raise SOAPpy.faultType(
+        #         param_syntax_error, _("Empty data"), "objects")
+        # parent = None
+        # if parentid != "":
+        #     parent = app.search_object(parentid)
+        #     if parent is None:
+        #         raise SOAPpy.faultType(parent_object_error, "", "")
+        # # parse xml
+        # root = None
+        # try:
+        #     root = xml_object(srcdata=objects.encode("utf-8"))
+        # except Exception as e:
+        #     raise SOAPpy.faultType(param_syntax_error, e.message, "objects")
+        # # start
+        # try:
+        #     self.__do_create_objects(app, parent, root)
+        # except Exception as e:
+        #     root.delete()
+        #     app.sync()
+        #     raise SOAPpy.faultType(obj_create_error, e.message, "")
+        # root.delete()
+        # app.sync()
+        # if parent:
+        #     return self.__get_objects(parent)
+        # else:
+        #     return self.__get_objects(app)
+        #     # return self.__success()
 
     def __do_update_object(self, app, parent, xml_obj, objects_xml_obj):
         _name = xml_obj.attributes["name"]
         if _name:
             try:
                 parent.set_name(_name)
-            except VDOM_exception, e:
-                raise SOAPpy.faultType(name_error, _("Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (parent.id, _name))
+            except VDOM_exception:
+                raise SOAPpy.faultType(name_error, _(
+                    "Name error"), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (parent.id, _name))
         _attr_elem = xml_obj.get_child_by_name["attributes"]
         if _attr_elem:
             # set object attributes
@@ -2932,31 +3096,39 @@ class VDOM_web_services_server(object):
                 if "attribute" == _a.lname:
                     _a_name = _a.attributes["name"]
                     if _a_name:
-                        parent.set_attribute(_a_name, _a.get_value_as_xml(), False)
-        _current = copy.deepcopy(parent.objects.keys())     # child objects' IDs
+                        parent.set_attribute(
+                            _a_name, _a.get_value_as_xml(), False)
+        _current = copy.deepcopy(
+            list(parent.objects.keys()))     # child objects' IDs
         if objects_xml_obj:
             for child in objects_xml_obj.children:
                 if "object" == child.lname:
                     _type = child.attributes["type"].lower()
                     _id = child.attributes["id"].lower()
                     if not _type and not _id:
-                        raise SOAPpy.faultType(attr_value_error, _("Invalid Type or ID"), "")
+                        raise SOAPpy.faultType(
+                            attr_value_error, _("Invalid Type or ID"), "")
                     _obj_node = child.get_child_by_name("objects")
                     if _id:
                         if _id in _current:
                             _obj = parent.objects[_id]
                             if _type and _type != _obj.type.id:
-                                raise SOAPpy.faultType(attr_value_error, _("Invalid Type"), _type)
-                            self.__do_update_object(app, _obj, child, _obj_node)
+                                raise SOAPpy.faultType(
+                                    attr_value_error, _("Invalid Type"), _type)
+                            self.__do_update_object(
+                                app, _obj, child, _obj_node)
                             _current.remove(_id)
                         else:
-                            raise SOAPpy.faultType(attr_value_error, _("Unknown ID"), "")
+                            raise SOAPpy.faultType(
+                                attr_value_error, _("Unknown ID"), "")
                     elif _type:
                         _type_obj = managers.xml_manager.get_type(_type)
                         # create new object
-                        (_new_name, _new_id) = app.create_object(_type_obj.id, parent, False)
+                        (_new_name, _new_id) = app.create_object(
+                            _type_obj.id, parent, False)
                         _new_obj = app.search_object(_new_id)
-                        self.__do_update_object(app, _new_obj, child, _obj_node)
+                        self.__do_update_object(
+                            app, _new_obj, child, _obj_node)
         # remove objects left in _current
         for _i in _current:
             app.delete_object(app.search_object(_i))
@@ -2970,25 +3142,26 @@ class VDOM_web_services_server(object):
         (app, obj, errmsg) = self.__find_object(appid, objid)
         if not obj:
             return errmsg
-        if data.strip() is "":
+        if data.strip() == "":
             raise SOAPpy.faultType(param_syntax_error, _("Empty data"), "data")
         # parse xml
         root = None
         try:
             root = xml_object(srcdata=data.encode("utf-8"))
-        except Exception, e:
-            raise SOAPpy.faultType(param_syntax_error, str(e), "data")
+        except Exception as e:
+            raise SOAPpy.faultType(param_syntax_error, e.message, "data")
         if obj.id != root.attributes["id"]:
             root.delete()
-            raise SOAPpy.faultType(invalid_object_error, _("Invalid object"), objid)
+            raise SOAPpy.faultType(invalid_object_error,
+                                   _("Invalid object"), objid)
         _obj_elem = root.get_child_by_name("objects")
         if _obj_elem:
             try:
                 self.__do_update_object(app, obj, root, _obj_elem)
-            except Exception, e:
+            except Exception as e:
                 root.delete()
                 app.sync()
-                raise SOAPpy.faultType(obj_update_error, str(e), "")
+                raise SOAPpy.faultType(obj_update_error, e.message, "")
         root.delete()
         app.sync()
         return self.__get_all_objects(obj)
@@ -3050,12 +3223,14 @@ class VDOM_web_services_server(object):
             return errmsg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))
 
         # return app.get_library(libname)
         library = app.libraries.get(libname)
         if not library:
-            raise SOAPpy.faultType(lib_name_error, _("No such library '%s'" % libname), "")
+            raise SOAPpy.faultType(lib_name_error, _(
+                "No such library '%s'" % libname), "")
 
         file = StringIO()
         library.compose(file=file)
@@ -3071,7 +3246,8 @@ class VDOM_web_services_server(object):
             return errmsg
 
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.access_to_application):
-            raise SOAPpy.faultType(render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))
+            raise SOAPpy.faultType(
+                render_wysiwyg_error, "You have no access to libraries of this application", _("<Error/>"))
 
         # return app.libraries_element.toxml(encode=False)
         file = StringIO()

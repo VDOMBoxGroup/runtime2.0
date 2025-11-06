@@ -1,4 +1,5 @@
 
+from builtins import object
 from logs import server_log
 from utils.tracing import show_exception_trace
 from . import lexemes, errors

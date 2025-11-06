@@ -1,5 +1,8 @@
-
-from collections import Mapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from utils.properties import weak, roproperty
 from ..generic import MemoryBase
 from .event import MemoryTypeEventSketch
@@ -38,7 +41,7 @@ class MemoryTypeUserInterfaceEvents(MemoryTypeEvents):
     def compose(self, ident=u"", file=None):
         if self.__dict__.get("_items"):
             file.write(u"%s<UserInterfaceEvents>\n" % ident)
-            for event in self._items.itervalues():
+            for event in self._items.values():
                 event.compose(ident=ident + u"\t", file=file)
             file.write(u"%s</UserInterfaceEvents>\n" % ident)
 
@@ -51,7 +54,7 @@ class MemoryTypeObjectEvents(MemoryTypeEvents):
     def compose(self, ident=u"", file=None):
         if self.__dict__.get("_items"):
             file.write(u"%s<ObjectEvents>\n" % ident)
-            for event in self._items.itervalues():
+            for event in self._items.values():
                 event.compose(ident=ident + u"\t", file=file)
             file.write(u"%s</ObjectEvents>\n" % ident)
 

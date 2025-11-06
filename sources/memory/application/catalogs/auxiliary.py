@@ -1,10 +1,11 @@
 
+from builtins import next
 def subtree(root):
     yield root
-    stack, iterator = [], root.objects.itervalues()
+    stack, iterator = [], iter(root.objects.values())
     while iterator:
         try:
-            child = iterator.next()
+            child = next(iterator)
         except StopIteration:
             if stack:
                 iterator = stack.pop()
@@ -13,7 +14,7 @@ def subtree(root):
         else:
             yield child
             stack.append(iterator)
-            iterator = child.objects.itervalues()
+            iterator = iter(child.objects.values())
 
 
 def check_subtree(root, owner):

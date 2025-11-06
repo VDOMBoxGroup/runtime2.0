@@ -1,7 +1,9 @@
+from __future__ import absolute_import
 
+from builtins import str
 import sys
 
-from headers import VDOM_dictionary
+from .headers import VDOM_dictionary
 
 class VDOM_cookies(VDOM_dictionary):
 	"""Server cookies"""
@@ -28,7 +30,7 @@ class VDOM_cookies(VDOM_dictionary):
 		"""convert dictionary to the header string"""
 		#return 
 		string = ""
-		for c in self.dict.keys():
+		for c in list(self.dict.keys()):
 			if string != "": string += "; "
 			string += ("%s=%s" % (c, self.dict[c]))
 		return string

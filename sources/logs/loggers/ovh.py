@@ -49,10 +49,10 @@ class CleanLTSVFormatter(LTSVFormatter):
             time=datetime.datetime.strftime(record.timestamp, self.default_datefmt),
             instance=record.instance)
 
-        for name, value in chain(self.static_fields.iteritems(), record.extra.iteritems()):
+        for name, value in chain(iter(self.static_fields.items()), iter(record.extra.items())):
             data[name] = escape(value)
 
-        result = "\t".join(["%s:%s" % item for item in data.iteritems()])
+        result = "\t".join(["%s:%s" % item for item in data.items()])
         if self.null_character:
             result += "\0"
         return result
@@ -69,7 +69,7 @@ class CleanGELFFormatter(GELFFormatter):
             timestamp=(record.timestamp - UNIX_ORIGIN).total_seconds(),
             _instance=record.instance)
 
-        for name, value in chain(self.static_fields.iteritems(), record.extra.iteritems()):
+        for name, value in chain(iter(self.static_fields.items()), iter(record.extra.items())):
             data["_%s" % name] = escape(value)
 
         result = json.dumps(data)

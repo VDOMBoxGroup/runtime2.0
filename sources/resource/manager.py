@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import object
 import copy
 import managers
 import file_access
@@ -78,7 +80,7 @@ class VDOM_resource_manager(object):
             #    res_descriptor = copy.copy(res_descriptor)
             for key in attributes:
                 if key == "name":
-                    setattr(res_descriptor, "name", unicode(attributes["name"]).encode('ascii', 'ignore'))
+                    setattr(res_descriptor, "name", ''.join(char for char in str(attributes["name"]) if ord(char) < 128))
                     self.__name_index[res_descriptor.name.lower()] = res_descriptor.id
                 elif key == "save_async":
                     write_async = True
@@ -93,7 +95,7 @@ class VDOM_resource_manager(object):
             # managers.file_manager.write(file_access.resource,
             #     res_descriptor.application_id, object_id, res_descriptor.filename, bin_data, None, write_async)
             managers.file_manager.write(file_access.resource,
-                                        res_descriptor.application_id, res_descriptor.filename, bin_data, async=write_async)
+                                        res_descriptor.application_id, res_descriptor.filename, bin_data, write_async=write_async)
 
             if "label" not in attributes:
                 res_descriptor.save_record()
@@ -110,7 +112,7 @@ class VDOM_resource_manager(object):
 
     def list_resources(self, owner_id):
         """listing of all resources of application"""
-        return [res.id for res in self.__main_index.itervalues() if not owner_id or res.application_id == owner_id]
+        return [res.id for res in self.__main_index.values() if not owner_id or res.application_id == owner_id]
 
     def update_resource(self, owner_id, resource_id, bin_data):
         """Adding a new resource"""
@@ -145,7 +147,7 @@ class VDOM_resource_manager(object):
     def invalidate_resources(self, object_id, cleanup=True):
         """Invalidate and clear all resources by object_id"""
         need_clean = False
-        for (obj_id, label) in self.__label_index.keys():
+        for (obj_id, label) in list(self.__label_index.keys()):
             if obj_id == object_id:
                 need_clean = True
                 res_descriptor = self.__label_index.pop((obj_id, label))

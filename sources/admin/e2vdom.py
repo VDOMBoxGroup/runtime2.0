@@ -1,10 +1,12 @@
-
+from builtins import object
 import sys
 import json
 import managers
-from StringIO import StringIO
+from io import StringIO
 from utils.structure import VDOM_structure
-from utils.parsing import Parser, ParsingException, UnexpectedAttributeValueError, MissingAttributeError
+
+from utils.parsing import Parser, ParsingException, MissingAttributeError, UnexpectedAttributeValueError
+# from startup.debug import debug, VDOM_CONFIG_1
 
 
 class EventInfo(object):
@@ -31,15 +33,17 @@ def calls_builder(parser):
     def document_handler(name, attributes):
         if name == "Events" or name == "EVENTS":
             # <Events>
-            structure = VDOM_structure(sid=None, appid=None, events=[], state=0)
+            structure = VDOM_structure(
+                sid=None, appid=None, events=[], state=0)
 
             def events_handler(name, attributes):
                 if name == "Application" or name == "APPLICATION":
                     # <Application>
                     try:
-                        structure.appid=attributes.pop(u"ID")
+                        structure.appid = attributes.pop(u"ID")
                     except KeyError:
-                        raise MissingAttributeError, u"ID"
+                        raise MissingAttributeError(u"ID")
+
                     parser.handle_elements(name, attributes)
                     # </Application>
                 elif name == "Session" or name == "SESSION":
@@ -56,10 +60,12 @@ def calls_builder(parser):
                         event_source_object_id = attributes.pop(u"ObjSrcID")
                     except KeyError:
                         try:
-                            event_source_object_id = attributes.pop(u"objSrcID")
+                            event_source_object_id = attributes.pop(
+                                u"objSrcID")
                         except KeyError:
                             raise MissingAttributeError(u"ObjSrcID")
-                    event_source_object_id = "-".join(event_source_object_id[2:].split("_"))
+                    event_source_object_id = "-".join(
+                        event_source_object_id[2:].split("_"))
                     try:
                         event_name = attributes.pop(u"Name")
                     except KeyError:
@@ -81,25 +87,32 @@ def calls_builder(parser):
                                     raise MissingAttributeError(u"Name")
 
                             def parameter_handler(value):
-                                event_parameters[parameter_name] = [value.replace('&quot;', '"').replace('&gt;', '>').replace('&lt;', '<').replace('&amp;', '&').encode("utf8")]
-                            parser.handle_value(name, attributes, parameter_handler)
+                                event_parameters[parameter_name] = [value.replace('&quot;', '"').replace(
+                                    '&gt;', '>').replace('&lt;', '<').replace('&amp;', '&').encode("utf8")]
+                            parser.handle_value(
+                                name, attributes, parameter_handler)
                             # </Parameter>
                         else:
                             parser.reject_elements(name, attributes)
 
                     def close_event_handler(name):
                         structure.events.append(
-                                                    EventInfo(event_source_object_id, event_name, event_parameters)
-                                                )
-                    parser.handle_elements(name, attributes, event_handler, close_event_handler)
+                            EventInfo(event_source_object_id,
+                                      event_name, event_parameters)
+                        )
+
+                    parser.handle_elements(
+                        name, attributes, event_handler, close_event_handler)
                     # </Event>
                 elif name == "SharedVariables" or name == "SV":
                     # <SV>
                     def shared_variables_handler(value):
                         # TODO: Check replaces...
                         managers.request_manager.current.shared_variables = \
-                                                    json.loads(value.replace('&quot;', '"').replace('&gt;', '>').replace('&lt;', '<').replace('&amp;', '&'))
-                    parser.handle_value(name, attributes, shared_variables_handler)
+                            json.loads(value.replace('&quot;', '"').replace(
+                                '&gt;', '>').replace('&lt;', '<').replace('&amp;', '&'))
+                    parser.handle_value(
+                        name, attributes, shared_variables_handler)
                     # </SV>
                 elif name == "State" or name == "STATE":
                     # <Session>
@@ -121,7 +134,8 @@ def calls_builder(parser):
 
             def close_events_handler(name):
                 parser.accept(structure)
-            parser.handle_elements(name, attributes, events_handler, close_events_handler)
+            parser.handle_elements(
+                name, attributes, events_handler, close_events_handler)
             # </Events>
         else:
             parser.reject_elements(name, attributes)
@@ -146,6 +160,7 @@ def run(request):
             ev = Parser(builder=calls_builder).parse(datafield)
         except ParsingException as error:
             debug("Unable to parse data: %s" % error)
+            raise Exception("Unable to parse e2vdom data")
         app = request.application()
         # TODO: Check ev.state for correct values - may be incorrect state value
         try:
@@ -156,7 +171,7 @@ def run(request):
             sid = ev.sid
             debug("Got no session id in args")
         if sid != ev.sid:
-            debug("Got different  session id in args: %s <> %s"%(sid, ev.sid))
+            debug("Got different  session id in args: %s <> %s" % (sid, ev.sid))
             if managers.session_manager.session_exists(ev.sid):
                 sid = ev.sid
                 request.set_session_id(sid)
@@ -170,11 +185,10 @@ def run(request):
         elif sid != ev.sid:
             debug("Event: Session mismatch")
             rr = "<SESSIONISOVER />"
-            request.write("<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
+            request.write(b"<ACTIONS>%s</ACTIONS>" % rr.encode("utf-8"))
         else:
             request.last_state = state
-            #debug("INCOMING STATE: %s"%request.last_state["#"])
-            #request.add_header("Content-Type", "text/xml")
+#            debug("INCOMING STATE: %s"%request.last_state["#"])
             request.add_header("Content-Type", "text/plain")
             r = {}
             err = None
@@ -185,7 +199,8 @@ def run(request):
                     if obj is None:
                         debug("Event: Incorrect source object")
                         continue
-                    h = app.events.catalog.get((event_info.event_source_id, event_info.event_name))  # all
+                    h = app.events.catalog.get(
+                        (event_info.event_source_id, event_info.event_name))  # all
                     if h is None:
                         debug("Event: No such event")
                         continue
@@ -205,38 +220,46 @@ def run(request):
                         for key in result:
                             k_ob = app.objects.catalog.get(key)
                             k_ob_parent_id = k_ob.parent.id if k_ob.parent else ""
-                            r[key] = (result[key], k_ob_parent_id, k_ob.type.container, k_ob.type.id)
+                            r[key] = (result[key], k_ob_parent_id,
+                                      k_ob.type.container, k_ob.type.id)
             except Exception:
                 sys.excepthook(*sys.exc_info())
                 from utils.tracing import format_exception_trace
-                from logs import log
-                log.write("E2VDOM Action Error:\n%s" % format_exception_trace())
+                debug("E2VDOM Action Error:\n%s" % format_exception_trace())
+                # import traceback
                 # from StringIO import StringIO
                 # err = StringIO()
                 # debug("Error: %s" % str(e))
+                # traceback.print_exc(file=err)
 
             if err:
                 if VDOM_CONFIG_1["DEBUG"] == "1":
-                    request.write("<ERROR>%s</ERROR>"%err.getvalue().replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'))
+                    request.write(b"<ERROR>%s</ERROR>" % err.getvalue().replace('&', '&amp;').replace(
+                        '<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').encode())
                 else:
-                    request.write('<ERROR/>')
+                    request.write(b'<ERROR/>')
             else:
                 if request.action_result:
-                    request.write(request.action_result.getvalue().encode("utf-8"))
+                    request.write(
+                        request.action_result.getvalue().encode("utf-8"))
 
                 rr = StringIO()
                 for key in r:
-                    rr.write("""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (key.replace("-", "_"), r[key][1].replace("-", "_"), r[key][2], r[key][3], r[key][0].replace("]"+"]>", "]]"+"]]><![CD"+"ATA[>")))
-                request.write("<ACTIONS>%s</ACTIONS>" % rr.getvalue().encode("utf-8"))
-                request.write("<SV>%s</SV>" % json.dumps(request.shared_variables).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;'))
+                    rr.write(b"""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (
+                        key.replace("-", "_"), r[key][1].replace("-", "_"),
+                        r[key][2], r[key][3], r[key][0].replace("]" + "]>", "]]" + "]]><![CD" + "ATA[>")))
+                request.write(b"<ACTIONS>%s</ACTIONS>" %
+                              rr.getvalue().encode("utf-8"))
+                request.write(b"<SV>%s</SV>" % json.dumps(request.shared_variables).replace(
+                    '&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').encode())
 
-            #debug("OUTCOMING STATE: %s"%(request.next_state or request.last_state)["#"])
-            #request.write("<STATE value=\"%s\"/>"%0)
-            request.write("<STATE value=\"%s\"/>"%(request.next_state or request.last_state)["#"])
+#           debug("OUTCOMING STATE: %s"%(request.next_state or request.last_state)["#"])
+            request.write(b"<STATE value=\"%d\"/>" %
+                          (request.next_state or request.last_state)["#"])
 
             """
-            print
-            states=request.session().states
-            for state in states: print state
+                print
+                states=request.session().states
+                for state in states: print state
                 print
             """

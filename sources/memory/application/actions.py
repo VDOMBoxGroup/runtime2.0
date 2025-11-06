@@ -1,5 +1,11 @@
 
-from collections import MutableMapping
+from builtins import str
+from builtins import object
+import sys
+if sys.version_info[0] < 3:
+    from collections import MutableMapping
+else:
+    from collections.abc import MutableMapping
 from uuid import uuid4
 
 from utils.properties import lazy, weak, roproperty
@@ -86,7 +92,7 @@ class MemoryActions(MemoryBase, MutableMapping):
 
     # unsafe
     def compose(self, ident=u"", file=None):
-        actions = tuple(action for action in self._items.itervalues()
+        actions = tuple(action for action in self._items.values()
             if action.source_code or action.name not in self._owner.generic)
         if actions:
             file.write(u"%s<Actions>\n" % ident)
@@ -114,7 +120,7 @@ class MemoryActions(MemoryBase, MutableMapping):
             enumeration = another,
         elif isinstance(another, MemoryActions):
             if "_items" in another.__dict__:
-                enumeration = another._items.itervalues()
+                enumeration = iter(another._items.values())
             else:
                 enumeration = ()
         else:

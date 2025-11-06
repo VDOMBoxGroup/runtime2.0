@@ -1,4 +1,5 @@
-
+from __future__ import unicode_literals
+import codecs
 import re
 from utils.properties import lazy, weak, roproperty, rwproperty
 from ..generic import MemoryBase
@@ -12,11 +13,11 @@ class MemoryTypeActionParameterSketch(MemoryBase):
         return re.compile("^%s$" % self._validation_pattern)
 
     _name = None
-    _display_name = u""
-    _description = u""
-    _default_value = u""
-    _validation_pattern = u".*"
-    _interface = u""
+    _display_name = ""
+    _description = ""
+    _default_value = ""
+    _validation_pattern = ".*"
+    _interface = ""
 
     def __init__(self, collection):
         self._collection = collection
@@ -36,21 +37,21 @@ class MemoryTypeActionParameterSketch(MemoryBase):
 
     def __invert__(self):
         if self._name is None:
-            raise Exception(u"Parameter require name")
+            raise Exception("Parameter require name")
 
         self.__class__ = MemoryTypeActionParameter
         self._collection.on_complete(self)
         return self
 
     def __str__(self):
-        return " ".join(filter(None, ("parameter", "\"%s\"" % self._name,
-            "sketch of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("parameter", "\"%s\"" % self._name,
+            "sketch of %s" % self._collection.owner if self._collection else None) if _f])
 
 
 class MemoryTypeActionParameter(MemoryTypeActionParameterSketch):
 
     def __init__(self):
-        raise Exception(u"Use 'new' to create new parameter")
+        raise Exception("Use 'new' to create new parameter")
 
     name = roproperty("_name")
     display_name = roproperty("_display_name")
@@ -60,11 +61,11 @@ class MemoryTypeActionParameter(MemoryTypeActionParameterSketch):
     interface = roproperty("_interface")
 
     # unsafe
-    def compose(self, ident=u"", file=None):
-        file.write(u"%s<Parameter Name=\"%s\" DisplayName=\"%s\" Description=\"%s\" "
+    def compose(self, ident="", file=None):
+        file.write("%s<Parameter Name=\"%s\" DisplayName=\"%s\" Description=\"%s\" "
             "DefaultValue=\"%s\" RegularExpressionValidation=\"%s\" Interface=\"%s\" />\n" %
-            (ident, self._name, self._display_name.encode("xml"), self._description.encode("xml"),
-                self._default_value.encode("xml"), self._validation_pattern.encode("xml"), self._interface.encode("xml")))
+            (ident, self._name, codecs.encode(self._display_name, "xml"), codecs.encode(self._description, "xml"),
+                codecs.encode(self._default_value, "xml"), codecs.encode(self._validation_pattern, "xml"), codecs.encode(self._interface, "xml")))
 
     def verify(self, value):
         return self._regex.match(value) is not None
@@ -73,5 +74,5 @@ class MemoryTypeActionParameter(MemoryTypeActionParameterSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, ("parameter", "\"%s\"" % self._name,
-            "of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("parameter", "\"%s\"" % self._name,
+            "of %s" % self._collection.owner if self._collection else None) if _f])

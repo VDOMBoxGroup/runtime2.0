@@ -1,5 +1,9 @@
+import sys
+if sys.version_info[0] < 3:
+    from collections import Sequence
+else:
+    from collections.abc import Sequence
 
-from collections import Sequence
 from utils.properties import weak, roproperty
 from ..generic import MemoryBase
 from .actionparameter import MemoryTypeActionParameterSketch

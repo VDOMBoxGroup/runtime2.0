@@ -1,4 +1,8 @@
 
+
+
+
+from builtins import object
 from contextlib import contextmanager
 from threading import local, current_thread, enumerate as enumerate_threads
 
@@ -38,14 +42,14 @@ class Engine(object):
             if getattr(thread, "application", None) is not None))
 
     def select(self, application=None):
-        if isinstance(application, basestring):
+        if isinstance(application, str):
             application = managers.memory.applications[application]
         previous = self._storage.application
         if application is not previous:
             if settings.DETAILED_LOGGING:
                 log.write("Select %s" % (application or "no application"))
             self._storage.application = application
-            # TODO: check this thread using
+            # TODO: check this thread using
             current_thread().application = application.id if application else None
         return previous
 

@@ -1,5 +1,8 @@
+from builtins import str
+from builtins import range
+from builtins import object
 from poplib import POP3, POP3_SSL, POP3_SSL_PORT
-from ssl import wrap_socket, PROTOCOL_SSLv23, PROTOCOL_TLSv1
+from ssl import PROTOCOL_SSLv23, PROTOCOL_TLSv1, SSLContext
 import time
 import socket
 from .message import MailAttachment, MailHeader, Message
@@ -21,16 +24,16 @@ class VDOM_POP3_SSL(POP3_SSL):
 				self.sock = socket.socket(af, socktype, proto)
 				self.sock.settimeout(timeout)
 				self.sock.connect(sa)
-			except socket.error, msg:
+			except socket.error as msg:
 				if self.sock:
 					self.sock.close()
 				self.sock = None
 				continue
 			break
 		if not self.sock:
-			raise socket.error, msg
+			raise(socket.error, msg)
 		self.file = self.sock.makefile('rb')
-		self.sslobj = wrap_socket(self.sock, self.keyfile, self.certfile, ssl_version=ssl_version)
+		self.sslobj = SSLContext.wrap_socket(self.sock, self.keyfile, self.certfile, ssl_version=ssl_version)
 		self._debugging = 0
 		self.welcome = self._getresp()		
 
@@ -92,7 +95,7 @@ class VDOM_Pop3_client(object):
 			return []
 		emails = []
 		mail_number = -1
-		for i in xrange(offset, min(limit or self.message_count,self.message_count)):
+		for i in range(offset, min(limit or self.message_count,self.message_count)):
 			mail_number = i+1
 			emails.append(self.fetch_message(i,delete))
 		self.read_mails_count = mail_number

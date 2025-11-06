@@ -1,5 +1,9 @@
 
-from collections import MutableMapping
+import sys
+if sys.version_info[0] < 3:
+    from collections import MutableMapping
+else:
+    from collections.abc import MutableMapping
 from utils.properties import lazy, weak, roproperty
 from ..generic import MemoryBase
 from .catalogs import MemoryEventsCatalog, MemoryEventsDynamicCatalog

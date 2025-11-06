@@ -1,5 +1,7 @@
 
 # import sys
+from builtins import range
+from builtins import object
 import os
 import shutil
 import re
@@ -169,7 +171,7 @@ class VDOM_share(object):
         o1 = []
         o2 = []
         rexp = re.compile(regexp, re.IGNORECASE)
-        for idx in xrange(len(l1)):
+        for idx in range(len(l1)):
             if rexp.match(l1[idx]):
                 o1.append(l1[idx])
                 if l2:

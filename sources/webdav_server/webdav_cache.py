@@ -86,7 +86,7 @@ def lru_cache(maxsize=100):
 			if parent and parent[1] == 1:
 				with lock:
 					cache.pop((app_id, obj_id, path))
-					for name,child in ret.iteritems():
+					for name,child in ret.items():
 						cache[(app_id, obj_id, util.joinUri(path, name))] = (child,0)
 					cache[(app_id, obj_id, path)] = (parent[0], 0)
 			return ret

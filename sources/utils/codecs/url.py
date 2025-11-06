@@ -1,16 +1,18 @@
 
+
+
 import codecs
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 
 class UrlCodec(codecs.Codec):
 
     def encode(self, input, errors='strict'):
-        output = urllib.quote_plus(input)
+        output = urllib.parse.quote_plus(input)
         return output, len(output)
 
     def decode(self, input, errors='strict'):
-        output = urllib.unquote(input)
+        output = urllib.parse.unquote(input)
         return output, len(output)
 
 

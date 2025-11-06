@@ -1,3 +1,7 @@
+import codecs
+
+
+
 
 import numbers
 import os
@@ -24,13 +28,13 @@ def state(options):
             yield "<reply>"
             yield "<threads>"
             yield "<thread name=\"%s\" id=\"%d\" daemon=\"%s\" smart=\"%s\">" % \
-                (thread.name.encode("xml"), thread.ident,
+                (codecs.encode(thread.name, "xml"), thread.ident,
                     "yes" if thread.daemon else "no",
                     "yes" if isinstance(thread, (SmartThread, SmartDaemon)) else "no")
             yield "<stack>"
             for path, line, name, statement in trace_back:
                 yield "<frame name=\"%s\" path=\"%s\" line=\"%d\"/>" % \
-                    (name.encode("xml"), clarify_source_path(path).encode("xml"), line)
+                    (codecs.encode(name, "xml"), codecs.encode(clarify_source_path(path), "xml"), line)
             yield "</stack>"
             yield "</thread>"
             yield "</threads>"
@@ -53,7 +57,7 @@ def state(options):
                     yield "<attribute name=\"%s\">" % name
                     if value is None:
                         yield "<object id=\"%08X\" type=\"%s\"/>" % (id(value), get_type_name(value))
-                    elif isinstance(value, (basestring, numbers.Number, bool)):
+                    elif isinstance(value, (bytes, numbers.Number, bool)):
                         yield "<object id=\"%08X\" type=\"%s\">%r</object>" % (id(value), get_type_name(value), value)
                     else:
                         yield "<object id=\"%08X\" type=\"%s\"/>" % (id(value), get_type_name(value))
@@ -78,7 +82,7 @@ def state(options):
         yield "<threads>"
         for thread, stack in get_threads_trace():
             yield "<thread id=\"%d\" name=\"%s\"%s%s/>" % \
-                (thread.ident, thread.name.encode("xml"),
+                (thread.ident, codecs.encode(thread.name, "xml"),
                 "" if thread.is_alive() else " alive=\"no\"",
                 "" if isinstance(thread, SmartThread) else " smart=\"no\""
                 " daemon=\"yes\"" if thread.daemon else "")

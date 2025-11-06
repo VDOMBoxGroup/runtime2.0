@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import object
 class VDOMType(object):
 
     # attributes that initialized by the compiler at runtime
@@ -14,9 +16,9 @@ class VDOMType(object):
     class_name = property(lambda self: self._class_name)
 
     def __str__(self):
-        return " ".join(filter(None, (
+        return " ".join([_f for _f in (
             "type",
-            ":".join(filter(None, (self._id, self._name))))))
+            ":".join([_f for _f in (self._id, self._name) if _f])) if _f])
 
     def __repr__(self):
         return "<scripting %s at 0x%08X>" % (self, id(self))

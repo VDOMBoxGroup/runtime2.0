@@ -16,7 +16,7 @@ class SOAPBuilderE( SOAPBuilder ):
 		self.depth += 1
 
 		if type(tag) not in (NoneType, StringType, UnicodeType ):
-			raise KeyError, "tag must be a string or None"
+			raise KeyError("tag must be a string or None")
 
 		try:
 			if type(obj).__name__ in ["arrayType", "faultType", "voidType", "structType", "bodyType", "anyType"]:

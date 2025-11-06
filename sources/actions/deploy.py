@@ -31,7 +31,7 @@ def run(renew=False):
 
     with section("%sinitialize directories" % ("re" if renew else "")):
         for caption, segments in LOCATIONS:
-            show("prepare %s directory" % caption)
+            show("prepare %s directory\n" % caption)
             managers.file_manager.prepare_directory(*segments, cleanup=False)
 
     install(locate_repository(TYPE))

@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import gc
 import os
 import os.path
@@ -136,7 +138,7 @@ class Memory(object):
                     if primaries:
                         lines = []
                         lines.append("Tracked primary objects:")
-                        for primary, reference in primaries.iteritems():
+                        for primary, reference in primaries.items():
                             lines.append("    %s" % primary)
                             if reference:
                                 referent = reference()
@@ -242,7 +244,7 @@ class Memory(object):
             err_mess = ". Try to INSTALL the new version instead of UPDATE"
             try:
                 app = managers.memory.applications[appid]
-            except Exception, e:
+            except Exception as e:
                 raise Exception(str(e))
 
             # temporal copy of installed application
@@ -250,7 +252,7 @@ class Memory(object):
             err_mess = ". Unable to save previous version of application"
             tmpappdir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
             app.export(filename=os.path.join(tmpappdir, app.id + ".xml"))
-        except Exception, e:
+        except Exception as e:
             if tmpappdir:
                 shutil.rmtree(tmpappdir, ignore_errors=True)
             import traceback
@@ -342,7 +344,7 @@ class Memory(object):
         debug("Install new version...")
         try:
             subject = self.install_application(filename=filename)
-        except Exception, e:
+        except Exception as e:
             import traceback
             traceback.print_exc(file=debugfile)
         if subject is None:
@@ -373,7 +375,7 @@ class Memory(object):
                     debug("Restored successfully")
                     app_exist = True
                     subject = (None, err_mess + ". Previous version restored successfully")
-            except Exception, e:
+            except Exception as e:
                 import traceback
                 traceback.print_exc(file=debugfile)
                 subject = (None, err_mess + str(e))
@@ -386,9 +388,10 @@ class Memory(object):
             debug("Restore databases...")
             try:
                 # removing databases that we already had before
-                for old_db in dbs.itervalues():
+                for old_db in dbs.values():
                     if managers.database_manager.check_database(appid, old_db["id"]):
-                        managers.database_manager.delete_database(appid, old_db["id"])
+                        pass #keep old db for safety reasons
+                        #managers.database_manager.delete_database(appid, old_db["id"])
             except:
                 pass
             for path in dbs:
@@ -468,7 +471,7 @@ class Memory(object):
         context = Structure(uuid=None)
         try:
             if value:
-                type = parser.parse(value.encode("utf8") if isinstance(value, unicode) else value)
+                type = parser.parse(value.encode("utf8") if isinstance(value, str) else value)
             elif filename:
                 type = parser.parse(filename=filename)
             else:
@@ -531,7 +534,7 @@ class Memory(object):
         context = Structure(uuid=None)
         try:
             if value:
-                application = parser.parse(value.encode("utf8") if isinstance(value, unicode) else value)
+                application = parser.parse(value.encode("utf8") if isinstance(value, str) else value)
             elif filename:
                 application = parser.parse(filename=filename)
             else:
@@ -565,7 +568,7 @@ class Memory(object):
     # loading
 
     def load_type(self, uuid, silently=False):
-        log.write("Load type %s" % uuid)
+        log.write("Load type %s \n" % uuid)
         location = managers.file_manager.locate(file_access.TYPE, uuid, settings.TYPE_FILENAME)
         parser = Parser(builder=type_builder, notify=True)
         try:
@@ -583,7 +586,7 @@ class Memory(object):
             raise Exception("Unable to parse \"%s\", line %s: %s" % (os.path.basename(location), error.lineno, error))
 
     def load_application(self, uuid, silently=False):
-        log.write("Load application %s" % uuid)
+        log.write("Load application %s\n" % uuid)
         location = managers.file_manager.locate(file_access.APPLICATION, uuid, settings.APPLICATION_FILENAME)
         parser = Parser(builder=application_builder, notify=True)
         try:

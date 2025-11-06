@@ -1,8 +1,9 @@
 
+from builtins import object
 import managers, security
 from utils.exception import VDOM_exception
 
-class VDOM_acl_manager:
+class VDOM_acl_manager(object):
 	"""Defines acl-access and acl-storage methods"""
 
 	def __init__(self):

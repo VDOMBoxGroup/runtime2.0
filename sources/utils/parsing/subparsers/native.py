@@ -1,4 +1,5 @@
 
+from builtins import next
 import inspect
 from ..exceptions import UnexpectedAttributeError
 from ..auxiliary import subparser, lower
@@ -17,7 +18,7 @@ def native(self, selector, iterator):
     def element(name, attributes):
         if inspect.isgeneratorfunction(selector):
             inner_iterator = selector(name, attributes)
-            inner_handlers = inner_iterator.next()
+            inner_handlers = next(inner_iterator)
         else:
             inner_iterator = None
             inner_handlers = selector(name, attributes)
@@ -36,7 +37,7 @@ def native(self, selector, iterator):
 
         if iterator:
             try:
-                iterator.next()
+                next(iterator)
             except StopIteration:
                 pass
 

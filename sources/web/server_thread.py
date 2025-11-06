@@ -1,3 +1,6 @@
+from __future__ import print_function
+
+
 
 from threading import current_thread, enumerate as enumerate_threads
 from time import sleep
@@ -49,7 +52,7 @@ class WebServer(SmartThread):
         for thread in enumerate_threads():
             request = getattr(thread, THREAD_ATTRIBUTE_NAME, None)
             if request is not None:
-                print thread, thread.name, request
+                print(thread, thread.name, request)
 
 
 VDOM_web_server_thread = WebServer

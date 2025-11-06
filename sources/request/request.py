@@ -1,25 +1,32 @@
 """request module represents the request got by the VDOM server"""
+from __future__ import absolute_import
 
-import json
-import tempfile
+
+from builtins import str
+from builtins import object
+
 import sys
-import urlparse
-from cStringIO import StringIO
-from StringIO import StringIO as uStringIO
-from cgi import FieldStorage
-from Cookie import BaseCookie, Morsel
+import tempfile
+import urllib.parse
+from io import BytesIO, StringIO
+# from io import StringIO as uStringIO
 
-#from memory.interface import MemoryInterface
-from utils.file_argument import File_argument
-from utils.properties import weak
-import managers
-import settings
+from cgi import FieldStorage
+import json
+
+from http.cookies import BaseCookie
 
 from .environment import VDOM_environment
 from .headers import VDOM_headers
 from .arguments import VDOM_request_arguments
 
-Morsel._reserved["samesite"] = "SameSite"
+
+# from memory.interface import MemoryInterface
+from utils.file_argument import File_argument
+from utils.properties import weak
+import managers
+import settings
+
 
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
@@ -31,17 +38,17 @@ class MFSt(FieldStorage):
 class VDOM_request(object):
     """VDOM server request object"""
 
-    #------------------------------------------------------------
+    # ------------------------------------------------------------
     def __init__(self, arguments):
         """ Constructor, create headers, cookies, request and environment """
 
         headers = arguments["headers"]
         handler = arguments["handler"]
 
-        #debug("Incoming headers---")
-        #for h in headers:
-        #	debug(h + ": " + headers[h])
-        #debug('-'*40)
+        # debug("Incoming headers---")
+        # for h in headers:
+        # debug(h + ": " + headers[h])
+        # debug('-'*40)
 
         self.__headers = VDOM_headers(headers)
         self.__headers_out = VDOM_headers({})
@@ -52,42 +59,49 @@ class VDOM_request(object):
         self.files = {}
         args = {}
         env = self.__environment.environment()
-        #parse request data depenging on the request method
+        # parse request data depenging on the request method
         try:
             if arguments["method"] == "post":
                 if env.get("HTTP_CONTENT-TYPE", "").startswith(r'application/json'):
                     try:
-                        request_body_size = int(env.get('HTTP_CONTENT-LENGTH', 0))
+                        request_body_size = int(
+                            env.get('HTTP_CONTENT-LENGTH', 0))
                     except ValueError:
                         request_body_size = 0
 
                     request_body = handler.rfile.read(request_body_size)
                     params = json.loads(request_body)
                     args = {key: params[key] for key in params}
-    
+
+                # TODO: check situation with SOAP and SOAP-POST-URL
                 elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
-                    storage = MFSt(handler.rfile, headers, "", env, True)
+                    storage = MFSt(handler.rfile, headers, b"", env, True)
                     if storage.list is None and storage.value:
                         args["rawdata"] = storage.value
                     else:
                         for key in storage.keys():
-                            #Access to file name after uploading
+                            # Access to file name after uploading
                             filename = getattr(storage[key], "filename", "")
                             if filename and storage[key].file:
-                                args[key] = File_argument(storage[key].file, filename)
+                                args[key] = File_argument(
+                                    storage[key].file, filename)
                                 self.files[key] = args[key]
                             else:
                                 args[key] = storage.getlist(key)
                             if filename:
-                                args[key+"_filename"] = [filename]
+                                args[key + "_filename"] = [filename]
                 else:
-                    self.postdata = handler.rfile.read(int(env.get("HTTP_CONTENT-LENGTH")))
-    
-            args1 = urlparse.parse_qs(env["QUERY_STRING"], True)
-            for key, value in args1.items():
-                args[key] = value
+                    self.postdata = handler.rfile.read(
+                        int(self.__headers.header("Content-length")))
         except Exception as e:
-            debug("Error while reading arguments: %s"%e)
+            raise  # TODO: PY3
+            debug("Error while reading socket: %s" % e)
+
+        try:
+            args.update(urllib.parse.parse_qs(env["QUERY_STRING"], True))
+
+        except Exception as e:
+            debug("Error while reading arguments: %s" % e)
 
         self.fault_type_http_code = 500
         if "user-agent" in self.__headers.headers():
@@ -97,23 +111,23 @@ class VDOM_request(object):
         # session
         sid = ""
         if "sid" in args:
-            #debug("Got session from arguments "+str(args["sid"]))
+            # debug("Got session from arguments "+str(args["sid"]))
             sid = args["sid"][0]
         elif "sid" in self.__cookies:
-            #debug("Got session from cookies "+cookies["sid"].value)
+            # debug("Got session from cookies "+cookies["sid"].value)
             sid = self.__cookies["sid"].value
         if sid == "":
             sid = managers.session_manager.create_session()
-            #debug("Created session " + sid)
+            # debug("Created session " + sid)
         else:
             x = managers.session_manager[sid]
             if x is None:
-                #debug("Session " + sid + " expired")
+                # debug("Session " + sid + " expired")
                 sid = managers.session_manager.create_session()
-        #debug("Session ID "+str(sid))
+        # debug("Session ID "+str(sid))
         self.__cookies["sid"] = sid
 
-        #if sid not in args.get('sid', []):
+        #  if sid not in args.get('sid', []):
         self.__response_cookies["sid"] = sid
         if settings.SAME_SITE_NONE:
             self.__response_cookies["sid"]["secure"] = True
@@ -128,8 +142,9 @@ class VDOM_request(object):
         self.__app_id = vhosts.get_site(self.app_vhname)
         if not self.__app_id:
             self.__app_id = vhosts.get_def_site()
-        self.__stdout = StringIO()
-        self.action_result = uStringIO()
+        self.__stdout = BytesIO()
+        self.action_result = StringIO()
+
         self.wholeAnswer = None
         self.application_id = self.__app_id
 
@@ -143,7 +158,7 @@ class VDOM_request(object):
             self.__session.context["application_id"] = self.__app_id
             try:
                 self.__app = managers.memory.applications[self.__app_id]
-            except:
+            except Exception:
                 sys.excepthook(*sys.exc_info())
 
         # special flags
@@ -164,12 +179,12 @@ class VDOM_request(object):
 
     def collect_files(self):
         """Replacement for destructor needed for temp files cleanup"""
-        for file_attach in self.files.itervalues():
+        for file_attach in self.files.values():
             if file_attach.autoremove:
                 file_attach.remove()
 
     def add_client_action(self, obj_id, data):
-        self.action_result.write(data)
+        self.action_result.write(str(data))
 
     def binary(self, set_binary=None):
         """switch output mode to binary"""
@@ -184,7 +199,7 @@ class VDOM_request(object):
             self._handler.send_headers()
             self._handler.end_headers()  # TODO!
             self.wfile.write(self.output())
-            #self.wfile.write('\n')
+            # self.wfile.write('\n')
         self.__nocache = True
         self.nokeepalive = True
 
@@ -213,10 +228,10 @@ class VDOM_request(object):
         if string:
             if self.__nocache:
                 self.wfile.write(string)
-                #self.wfile.write('\n')
+                # self.wfile.write('\n')
             else:
                 self.__stdout.write(string)
-                self.__stdout.write('\n')
+                self.__stdout.write(b'\n')
 
     def write_handler(self, handler):
         """writing into stream from file handler"""
@@ -230,7 +245,7 @@ class VDOM_request(object):
         """get output"""
         value = self.__stdout.getvalue()
         del self.__stdout
-        self.__stdout = StringIO()
+        self.__stdout = BytesIO()
         return value
 
     def server(self, server=None):
@@ -298,18 +313,21 @@ class VDOM_request(object):
         f_content_type = content_type if content_type else "application/octet-stream"
         self.add_header("Content-type", f_content_type)
         if content_type:
-            self.add_header("Content-Disposition", "inline; filename=\"%s\""%filename)
+            self.add_header("Content-Disposition",
+                            "inline; filename=\"%s\"" % filename)
         else:
-            self.add_header("Content-Disposition", "attachment; filename=\"%s\""%filename)
+            self.add_header("Content-Disposition",
+                            "attachment; filename=\"%s\"" % filename)
 
         if cache_control is None:
             pass
         elif cache_control is True:
             self.add_header("Cache-Control", "max-age=86400")
         elif cache_control is False:
-            self.add_header("Cache-Control", "no-cache, no-store, must-revalidate")
+            self.add_header("Cache-Control",
+                            "no-cache, no-store, must-revalidate")
         elif isinstance(cache_control, int):
-            self.add_header("Cache-Control", "max-age=%s"%cache_control)
+            self.add_header("Cache-Control", "max-age=%s" % cache_control)
 
         self.add_header("Content-Length", str(length))
         self.set_nocache()

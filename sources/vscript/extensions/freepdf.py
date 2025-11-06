@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import object
 import re
 
 from types import MethodType
@@ -56,7 +58,7 @@ class v_fpdf(generic):
         self._footer = None
 
     @vproperty(double)
-    class v_x:
+    class v_x(object):
 
         def get(self):
             return self._pdf.get_x()
@@ -65,7 +67,7 @@ class v_fpdf(generic):
             self._pdf.set_x(value)
 
     @vproperty(double)
-    class v_y:
+    class v_y(object):
 
         def get(self):
             return self._pdf.get_y()
@@ -190,9 +192,9 @@ class v_fpdf(generic):
         if filename:
             application = managers.engine.application
             location = managers.file_manager.locate(file_access.storage, application.id, filename)
-            return unicode(self._pdf.output(location, dest="F"))
+            return str(self._pdf.output(location, dest="F"))
         else:
-            return unicode(self._pdf.output(dest="S").decode("latin1"))
+            return str(self._pdf.output(dest="S").decode("latin1"))
 
     @vfunction(string, result=double)
     def v_getstringwidth(self, s):

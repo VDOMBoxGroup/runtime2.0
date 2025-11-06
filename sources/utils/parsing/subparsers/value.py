@@ -15,6 +15,9 @@ def value(self, selector, iterator):
     chunks = []
 
     def data(chunk):
+        # HACK: There's a could be a problem with reading files logic but this workaround is good enough for now
+        if isinstance(chunk, str) and chunk.startswith("b'") and chunk.endswith("'"):
+            chunk = chunk[2:-1]
         chunks.append(chunk)
 
     def element(name, attributes):

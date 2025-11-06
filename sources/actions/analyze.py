@@ -204,7 +204,7 @@ def run(filename):
 
                 if parser.report:
                     if SHOW_ERRORS_ONLY:
-                        entries = filter(lambda line: not line[1].startswith("Ignore"), parser.report)
+                        entries = [line for line in parser.report if not line[1].startswith("Ignore")]
                         caption = "errors"
                     else:
                         entries = parser.report
@@ -223,7 +223,7 @@ def run(filename):
                         show("used types", len(types))
 
                     with section("sections"):
-                        for name, value in sections.iteritems():
+                        for name, value in sections.items():
                             name = name.lower()
                             if name == "information":
                                 continue

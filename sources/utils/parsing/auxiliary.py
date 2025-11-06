@@ -20,7 +20,7 @@ def lower(handler):
 
     def wrapper(name, attributes):
         name = name.lower()
-        attributes = {key.lower(): value for key, value in attributes.iteritems()}
+        attributes = {key.lower(): value for key, value in attributes.items()}
         return handler(name, attributes)
 
     return wrapper

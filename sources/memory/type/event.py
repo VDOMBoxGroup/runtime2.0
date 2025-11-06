@@ -1,4 +1,5 @@
-
+from __future__ import unicode_literals
+import codecs
 from utils.properties import weak, roproperty, rwproperty
 from ..generic import MemoryBase
 from .eventparameters import MemoryTypeEventParameters
@@ -29,8 +30,8 @@ class MemoryTypeEventSketch(MemoryBase):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, ("event", self._name,
-            "sketch of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("event", self._name,
+            "sketch of %s" % self._collection.owner if self._collection else None) if _f])
 
 
 class MemoryTypeEvent(MemoryTypeEventSketch):
@@ -44,7 +45,7 @@ class MemoryTypeEvent(MemoryTypeEventSketch):
 
     def compose(self, ident=u"", file=None):
         information = u"Name=\"%s\" Description=\"%s\"" % \
-            (self._name, self._description.encode("xml"))
+            (self._name, codecs.encode(self._description, "xml"))
         if self._parameters:
             file.write(u"%s<Event %s>\n" % (ident, information))
             self._parameters.compose(ident=ident + u"\t", file=file)
@@ -56,5 +57,5 @@ class MemoryTypeEvent(MemoryTypeEventSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, ("event", self._name,
-            "of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("event", self._name,
+            "of %s" % self._collection.owner if self._collection else None) if _f])

@@ -1,10 +1,14 @@
 
+from builtins import str
+from builtins import range
+from builtins import object
 import string, random, math, time, os
 from hashlib import md5
+from uuid import uuid1
 import managers
 
 
-class VDOM_id:
+class VDOM_id(object):
     """id generation class"""
     def hexstr(self, s):
         """convert byte array to hex string"""
@@ -24,7 +28,7 @@ class VDOM_id:
         """generate random string of the specified length"""
         h = string.hexdigits
         r = ""
-        for i in xrange(length):
+        for i in range(length):
             a = random.randint(0, 255)
             r = r + h[a & 0xF]
         return r
@@ -32,7 +36,9 @@ class VDOM_id:
 
 def vdomid():
     """generate new id"""
-    return md5(b''.join([str(time.time()),_urandom(),str(math.sin(random.random()))])).hexdigest()
+    return md5((str(time.time()) + str(math.sin(random.random()))).encode() + _urandom() ).hexdigest()
+    # return md5(b''.join([str(time.time()),_urandom(),str(math.sin(random.random()))])).hexdigest()
+    # return md5("%s%s" %(uuid1().bytes, math.sin(random.random()))).hexdigest()
 
 def hexstr(s):
     """convert byte array to hex string"""
@@ -47,7 +53,7 @@ def hexstr(s):
 def _urandom():
     if hasattr(os, 'urandom'):
         return os.urandom(30)
-    return text_type(random()).encode('ascii')
+    return str(random()).encode('ascii')
 
 
 def generate_key(salt=None):
@@ -83,7 +89,7 @@ def id2link1(res_id):
     #return "temp_" + owner_id + "_" + tempres_id + "." + res_type
 
 def is_valid_identifier(value):
-    if value is "": return False
+    if value == "": return False
     first = value[0]
     if not ('_' == first or first.isalpha()):
         return False

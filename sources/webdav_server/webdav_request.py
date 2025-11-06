@@ -1,9 +1,12 @@
+
+
+from builtins import object
 import managers
-from Cookie import BaseCookie
+from http.cookies import BaseCookie
 from request.arguments import VDOM_request_arguments
 from memory.interface import VDOM_memory_interface
 
-class VDOM_webdav_request:
+class VDOM_webdav_request(object):
 
 	def __init__(self, environment, args={}):
 		"""constructor"""

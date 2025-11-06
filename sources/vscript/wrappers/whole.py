@@ -151,7 +151,7 @@ class v_wholeapplication(generic):
 				parameter=None
 			result=self._service.call(self._container, name.as_string, parameter)
 		except Exception as error:
-			raise whole_remote_call_error, (self._url, "%s: %s"%(type(error), error)), sys.exc_info()[2]
+			raise whole_remote_call_error(self._url, "%s: %s"%(type(error), error)).with_traceback(sys.exc_info()[2])
 		return string(result)
 
 

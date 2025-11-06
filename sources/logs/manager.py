@@ -1,4 +1,5 @@
 
+from builtins import object
 from threading import Lock
 from weakref import WeakValueDictionary
 from logs import server_log, network_log, security_log

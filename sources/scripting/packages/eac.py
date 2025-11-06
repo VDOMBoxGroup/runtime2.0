@@ -1,15 +1,20 @@
 """
 """
+from __future__ import absolute_import
 
+
+
+from builtins import map
+
+from builtins import object
 import json
-import md5
-import urlparse
-import urllib
-import urllib2
+from hashlib import md5
+import urllib.parse
+import urllib.request, urllib.parse, urllib.error
 import email
 import email.utils
 import base64
-import jlayout
+from . import jlayout
 
 from xml.dom.minidom import parseString
 from xml.dom import getDOMImplementation
@@ -85,7 +90,7 @@ class EACContent(object):
     def _parse_api_section(self, api):
         """
         """
-        result = dict(api.attributes.items())
+        result = dict(list(api.attributes.items()))
         result['methods'] = {}
 
         for child in api.childNodes:
@@ -93,7 +98,7 @@ class EACContent(object):
                 continue
 
             name = child.tagName.lower()
-            result['methods'][name] = dict(child.attributes.items())
+            result['methods'][name] = dict(list(child.attributes.items()))
             result['methods'][name]['pattern'] = ""
 
             pattern_el = child.getElementsByTagName("PATTERN")
@@ -133,7 +138,7 @@ class EACContent(object):
             if isData(child):
                 continue
             if child.tagName.lower() == "tag":
-                result.append(dict(child.attributes.items()))
+                result.append(dict(list(child.attributes.items())))
         return result
 
     def _parse_metadata_section(self, metadata):
@@ -151,7 +156,7 @@ class EACContent(object):
 
     def _parse_layout_section(self, layout):
         result = {}
-        for k,v in layout.attributes.items():
+        for k,v in list(layout.attributes.items()):
             result[k] = try_number(v)
 
         if result['type'] == 'border':
@@ -163,10 +168,10 @@ class EACContent(object):
             if isData(child): continue
 
             widget_el = child.getElementsByTagName('WIDGET')
-            widget = dict(widget_el[0].attributes.items()) if widget_el else None
+            widget = dict(list(widget_el[0].attributes.items())) if widget_el else None
 
             pane_config = {}
-            for k,v in child.attributes.items():
+            for k,v in list(child.attributes.items()):
                 pane_config[k] = try_number(v)
 
             pane_config['widget'] = widget
@@ -216,7 +221,7 @@ class EACContent(object):
             raise self.InvalidWholeXMLError
 
         whole_el = whole_el[0]
-        result_whole['global'] = dict(whole_el.attributes.items())
+        result_whole['global'] = dict(list(whole_el.attributes.items()))
 
         api_el = whole_el.getElementsByTagName("API")
         if api_el:
@@ -362,28 +367,28 @@ class EACObject(object):
             'app_id': self.app_id,
             'server': self.api_server,
             'email': email,
-            'pattern': self.get_data if isinstance(self.get_data, basestring) \
+            'pattern': self.get_data if isinstance(self.get_data, bytes) \
                         else json.dumps(self.get_data),
-            'pattern_post': self.post_data if isinstance(self.post_data, basestring) \
+            'pattern_post': self.post_data if isinstance(self.post_data, bytes) \
                         else json.dumps(self.post_data),
-            'vdomxml': self.vdomxml_data.encode('utf8') if isinstance(self.vdomxml_data, unicode) else self.vdomxml_data,
+            'vdomxml': self.vdomxml_data.encode('utf8') if isinstance(self.vdomxml_data, str) else self.vdomxml_data,
             'events': self.events_data,
             'static': '0' if self.dynamic else '1',
             'layout': self.layout,
             'widgets': self.widgets
         }
 
-        for k in param.keys():
+        for k in list(param.keys()):
             if not param[k]:
                 param.pop(k)
 
-        param = urllib.urlencode(param)
+        param = urllib.parse.urlencode(param)
 
         protocol = 'https'
         if '://' in host:
             protocol, host = host.split('://', 1)
 
-        return urlparse.urlunparse((protocol, host, '/eacviewer', '', param, ''))
+        return urllib.parse.urlunparse((protocol, host, '/eacviewer', '', param, ''))
 
     def get_wholexml(self):
         dom_impl = getDOMImplementation()
@@ -461,7 +466,7 @@ class EACObject(object):
             widgets = doc.createElement('WIDGETS')
 
             payload = self.widgets
-            if not isinstance(payload, basestring):
+            if not isinstance(payload, bytes):
                 payload = json.dumps(payload, indent=2)
 
             self.__append_cdata(doc, widgets, base64.encodestring(payload))

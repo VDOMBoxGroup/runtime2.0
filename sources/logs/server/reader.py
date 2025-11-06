@@ -1,4 +1,5 @@
 
+from builtins import object
 import sys
 
 
@@ -16,7 +17,7 @@ class LogReader(object):
             self._index = 0
         return result
 
-    def read(self, start=0, count=sys.maxint, into=None):
+    def read(self, start=0, count=sys.maxsize, into=None):
         start += self._index
         entries = [] if into is None else into
         with self._writer._lock:

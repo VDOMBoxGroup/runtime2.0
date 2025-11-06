@@ -1,11 +1,15 @@
 
-from cStringIO import StringIO
+
+
+from builtins import str
+from builtins import object
+from io import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 
 import managers, security
 from uuid import uuid4
 
-class VDOM_resource_editor:
+class VDOM_resource_editor(object):
     """resource editor class"""
 
     def __init__(self):
@@ -14,7 +18,7 @@ class VDOM_resource_editor:
 
     def modify_resource(self, sid, appid, objid, resid, attrname, operation, param):
         if not managers.acl_manager.session_user_has_access2(appid, appid, security.modify_application):
-            raise VDOM_exception(_("Modifying resource is not allowed"))
+            raise VDOM_exception(("Modifying resource is not allowed"))
         app = managers.xml_manager.get_application(appid)
         obj = app.search_object(objid)
         # check if need to backup this resource
@@ -62,7 +66,7 @@ class VDOM_resource_editor:
 #                   obj.set_attributes({"width": old_w, "height": old_h})
             if data: return (True, data)
             else: return (True, msg)
-        except Exception, e:
+        except Exception as e:
             return (False, str(e))
 
     def rollback(self, sess, app, obj, resid, attrname, data, ro, param):

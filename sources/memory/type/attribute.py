@@ -1,4 +1,6 @@
+from __future__ import unicode_literals
 
+import codecs
 import re
 from utils.properties import lazy, weak, roproperty, rwproperty
 from ..generic import MemoryBase
@@ -13,13 +15,13 @@ class MemoryTypeAttributeSketch(MemoryBase):
 
     _name = None
     _display_name = None
-    _description = u""
-    _default_value = u""
-    _validation_pattern = u".*"
-    _validation_error_message = u""
+    _description = ""
+    _default_value = ""
+    _validation_pattern = ".*"
+    _validation_error_message = ""
     _visible = 1
     _interface_type = 0
-    _code_interface = u"TextField(99)"
+    _code_interface = "TextField(99)"
     _color_group = 1
     _complexity = 0
 
@@ -47,7 +49,7 @@ class MemoryTypeAttributeSketch(MemoryBase):
 
     def __invert__(self):
         if self._name is None:
-            raise Exception(u"Attribute require name")
+            raise Exception("Attribute require name")
         if self._display_name is None:
             self._display_name = self._name
 
@@ -56,14 +58,14 @@ class MemoryTypeAttributeSketch(MemoryBase):
         return self
 
     def __str__(self):
-        return " ".join(filter(None, ("attribute", "\"%s\"" % self._name,
-            "sketch of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("attribute", "\"%s\"" % self._name,
+            "sketch of %s" % self._collection.owner if self._collection else None) if _f])
 
 
 class MemoryTypeAttribute(MemoryTypeAttributeSketch):
 
     def __init__(self):
-        raise Exception(u"Use 'new' to create new attribute")
+        raise Exception("Use 'new' to create new attribute")
 
     name = roproperty("_name")
     display_name = roproperty("_display_name")
@@ -78,22 +80,22 @@ class MemoryTypeAttribute(MemoryTypeAttributeSketch):
     complexity = roproperty("_complexity")
 
     # unsafe
-    def compose(self, ident=u"", file=None):
-        file.write(u"%s<Attribute>\n" % ident)
-        file.write(u"%s\t<Name>%s</Name>\n" % (ident, self._name))
+    def compose(self, ident="", file=None):
+        file.write("%s<Attribute>\n" % ident)
+        file.write("%s\t<Name>%s</Name>\n" % (ident, self._name))
         if self._display_name:
-            file.write(u"%s\t<DisplayName>%s</DisplayName>\n" % (ident, self._display_name.encode("xml")))
+            file.write("%s\t<DisplayName>%s</DisplayName>\n" % (ident, codecs.encode(self._display_name, "xml")))
         if self._description:
-            file.write(u"%s\t<Description>%s</Description>\n" % (ident, self._description.encode("xml")))
-        file.write(u"%s\t<DefaultValue>%s</DefaultValue>\n" % (ident, self._default_value.encode("xml")))
-        file.write(u"%s\t<RegularExpressionValidation>%s</RegularExpressionValidation>\n" % (ident, self._validation_pattern.encode("xml")))
+            file.write("%s\t<Description>%s</Description>\n" % (ident, codecs.encode(self._description, "xml")))
+        file.write("%s\t<DefaultValue>%s</DefaultValue>\n" % (ident, codecs.encode(self._default_value, "xml")))
+        file.write("%s\t<RegularExpressionValidation>%s</RegularExpressionValidation>\n" % (ident, codecs.encode(self._validation_pattern, "xml")))
         if self._validation_error_message:
-            file.write(u"%s\t<ErrorValidationMessage>%s</ErrorValidationMessage>\n" % (ident, self._validation_error_message.encode("xml")))
-        file.write(u"%s\t<Visible>%s</Visible>\n" % (ident, self._visible))
-        file.write(u"%s\t<InterfaceType>%s</InterfaceType>\n" % (ident, self._interface_type))
-        file.write(u"%s\t<CodeInterface>%s</CodeInterface>\n" % (ident, self._code_interface.encode("xml")))
-        file.write(u"%s\t<ColorGroup>%s</ColorGroup>\n" % (ident, self._color_group))
-        file.write(u"%s</Attribute>\n" % ident)
+            file.write("%s\t<ErrorValidationMessage>%s</ErrorValidationMessage>\n" % (ident, codecs.encode(self._validation_error_message, "xml")))
+        file.write("%s\t<Visible>%s</Visible>\n" % (ident, self._visible))
+        file.write("%s\t<InterfaceType>%s</InterfaceType>\n" % (ident, self._interface_type))
+        file.write("%s\t<CodeInterface>%s</CodeInterface>\n" % (ident, codecs.encode(self._code_interface, "xml")))
+        file.write("%s\t<ColorGroup>%s</ColorGroup>\n" % (ident, self._color_group))
+        file.write("%s</Attribute>\n" % ident)
 
     def verify(self, value):
         if not self._regex.match(value):
@@ -103,5 +105,5 @@ class MemoryTypeAttribute(MemoryTypeAttributeSketch):
         raise NotImplementedError
 
     def __str__(self):
-        return " ".join(filter(None, ("attribute", "\"%s\"" % self._name,
-            "of %s" % self._collection.owner if self._collection else None)))
+        return " ".join([_f for _f in ("attribute", "\"%s\"" % self._name,
+            "of %s" % self._collection.owner if self._collection else None) if _f])

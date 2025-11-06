@@ -1,4 +1,6 @@
+from __future__ import division
 
+from builtins import str
 from .. import errors
 from ..lexemes import prefix
 from ..primitives import subtype
@@ -49,7 +51,10 @@ class generic(subtype):
 		return self()*another
 
 	def __div__(self, another):
-		return self()/another
+		return self().__truediv__(another)
+
+	def __truediv__(self, another):
+		return self().__truediv__(another)
 
 	def __floordiv__(self, another):
 		return self()//another
@@ -110,9 +115,9 @@ class generic(subtype):
 		return float(self())
 	
 	def __unicode__(self):
-		return unicode(self())
+		return str(self())
 	
-	def __nonzero__(self):
+	def __bool__(self):
 		return bool(self())
 
 

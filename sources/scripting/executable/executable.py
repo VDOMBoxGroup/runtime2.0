@@ -1,4 +1,5 @@
-
+#from builtins import str
+#from builtins import object
 import sys
 
 import settings
@@ -48,7 +49,8 @@ class Executable(object):
                     return value
 
         def __set__(self, instance, value):
-            value = unicode(value)
+            if isinstance(value, bytes):
+                value = value.decode("utf-8")
             with instance.lock:
                 instance._source_code = value
                 location = instance.locate(SOURCE_CODE)
@@ -152,7 +154,7 @@ class Executable(object):
         package = self.package
         if package:
             __import__(package)
-            namespace["__package__"] = package
+            namespace["__package__"] = str(package)
 
         normally = False
         managers.script_manager.watch()

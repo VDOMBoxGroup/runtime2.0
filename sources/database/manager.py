@@ -1,15 +1,19 @@
 """database manager"""
+from __future__ import absolute_import
 # import string
 # import sys
 # import uuid
+from builtins import str
+from builtins import object
 import managers
 import file_access
 # from utils.exception import VDOM_exception
-from dbobject import VDOM_database_object, VDOM_database_table
+from .dbobject import VDOM_database_object, VDOM_database_table
 from xml.dom.minidom import parseString
 from xml.dom import Node
 # import time
-import sqlite3,os.path
+import sqlite3
+import os.path
 
 
 class VDOM_database_manager(object):
@@ -26,25 +30,25 @@ class VDOM_database_manager(object):
         if self.__index:
             remove_list = []
             is_dirty_index = False
-            for id in self.__index:  # check for not existing or temporary resources
-                database = self.__index[id]
+            for did in self.__index:  # check for not existing or temporary resources
+                database = self.__index[did]
                 try:
                     database.set_wal_mode()
                 except Exception:
-                    remove_list.append(id)
+                    remove_list.append(did)
                 if managers.file_manager.exists(file_access.database, database.owner_id, database.filename):
                     self.__database_by_name[(database.owner_id, database.name)] = database
                 else:
-                    remove_list.append(id)
+                    remove_list.append(did)
 
-            for id in remove_list:
-                self.__index.pop(id, None)
+            for did in remove_list:
+                self.__index.pop(did, None)
                 is_dirty_index = True
 
             if is_dirty_index:
                 managers.storage.write_object_async(VDOM_CONFIG["DATABASE-MANAGER-INDEX-STORAGE-RECORD"], self.__index)
         else:
-            #self.remove_databases()
+            # self.remove_databases()
             pass
 
     def add_database(self, owner_id, attributes, data):
@@ -58,8 +62,7 @@ class VDOM_database_manager(object):
                 for key in attributes:
                     if key not in ("id", "type"):
                         setattr(database, key, attributes[key])
-                        #exec "database." + key + " = \"" + attributes[key] + "\""
-            except:
+            except KeyError:
                 pass
 
             self.__index[database.id] = database
@@ -87,14 +90,14 @@ class VDOM_database_manager(object):
 
     def get_database(self, owner_id, db_id):
         """Getting database object"""
-        database = None
+        # database = None
         if db_id in self.__index:
             return self.__index[db_id]
 
             # if database.application_id == owner_id:
         # else:
             # no more database is created after first access
-            #database = self.create_database(owner_id, db_id)
+            # database = self.create_database(owner_id, db_id)
         # return database
 
     def get_database_by_name(self, owner_id, db_name):
@@ -107,10 +110,10 @@ class VDOM_database_manager(object):
         """Getting database object by name"""
         database = None
         db = []
-        for db_id, db_obj in self.__index.items():
+        for db_id, db_obj in list(self.__index.items()):
             if db_obj.name == db_name and db_obj.owner_id == owner_id:
                 db.append(self.__index[db_id])
-        #managers.log_manager.info_server("list of databases by name %s. name: %s, owner: %s" % (str(db), db_name, owner_id), "db_manager")
+        # managers.log_manager.info_server("list of databases by name %s. name: %s, owner: %s" % (str(db), db_name, owner_id), "db_manager")
         if len(db) == 1:
             database = db[0]
             return database
@@ -130,7 +133,7 @@ class VDOM_database_manager(object):
 
     def create_from_xml(self, database, xml_data):
         """Creation of database from xml representation"""
-        #managers.file_manager.create_database_directory(database.owner_id)
+        # managers.file_manager.create_database_directory(database.owner_id)
         managers.file_manager.prepare_directory(file_access.DATABASE, database.owner_id)
         dom_db = parseString(xml_data)
         database.id = dom_db.firstChild.getAttribute("ID")
@@ -205,8 +208,8 @@ class VDOM_database_manager(object):
 
     def remove_databases(self):
         """Clearing all databases"""
-        #Keep old databases for potential recovery
-        #managers.file_manager.cleanup_directory(file_access.database, None)
+        # Keep old databases for potential recovery
+        # managers.file_manager.cleanup_directory(file_access.database, None)
         if self.__index or self.__database_by_name:
             self.__index = {}
             self.__database_by_name = {}
@@ -265,12 +268,12 @@ class VDOM_database_manager(object):
         orig_db = self.get_database(owner_id, db_id)
         temppath = managers.file_manager.create_temporary_directory("db_")
         try:
-            tgt_connection = sqlite3.connect(os.path.join(temppath,"copydb"))
+            tgt_connection = sqlite3.connect(os.path.join(temppath, "copydb"))
             orig_db.backup_data(tgt_connection)
             tgt_connection.execute("VACUUM")
             tgt_connection.commit()
             tgt_connection.close()
-            data = managers.file_manager.read(file_access.FILE, None, os.path.join(temppath,"copydb"))
+            data = managers.file_manager.read(file_access.FILE, None, os.path.join(temppath, "copydb"))
         finally:
             managers.file_manager.delete_temporary_directory(temppath)
         return data

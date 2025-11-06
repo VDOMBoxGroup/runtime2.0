@@ -1,4 +1,4 @@
-
+import codecs
 import sys
 import gc
 
@@ -33,7 +33,7 @@ def query(options):
         yield "<reply>"
         yield "<types>"
         for type in types:
-            yield "<type id=\"%08X\" name=\"%s\"/>" % (id(type), type.encode("xml"))
+            yield "<type id=\"%08X\" name=\"%s\"/>" % (id(type), codecs.encode(type, "xml"))
         yield "</types>"
         yield "</reply>"
     elif "objects" in options:
@@ -101,7 +101,7 @@ def query(options):
 
             yield "<reply>"
             yield "<graph>"
-            yield "".join(generate_graph(objects, **keywords)).encode("xml")
+            yield codecs.encode("".join(generate_graph(objects, **keywords)), "xml")
             yield "</graph>"
             yield "</reply>"
     elif "profile" in options:
@@ -113,7 +113,7 @@ def query(options):
             yield "<profile/>"
         else:
             yield "<profile>"
-            yield data.encode("base64").encode("cdata")
+            yield codecs.encode(data.encode("base64"), "cdata")
             yield "</profile>"
         yield "</reply>"
     elif "call-graph" in options:
@@ -141,6 +141,6 @@ def query(options):
             yield "<call-graph/>"
         else:
             yield "<call-graph>"
-            yield data.encode("xml")
+            yield codecs.encode(data, "xml")
             yield "</call-graph>"
         yield "</reply>"

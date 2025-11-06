@@ -1,4 +1,6 @@
-
+import codecs
+from builtins import str
+from builtins import object
 import re
 import managers
 import uuid
@@ -11,31 +13,35 @@ from ..scripting import v_vdomobject, v_vdomapplication
 from ...variables import variant
 
 
-default_text_encoding="utf-16"
+default_text_encoding = "utf-16"
 
 
 class mailserver_error(errors.generic):
 
     def __init__(self, message, line=None):
-        errors.generic.__init__(self, message=u"Mailserver error: %s"%message, line=line)
+        errors.generic.__init__(
+            self, message=u"Mailserver error: %s" % message, line=line)
 
 
 class mailserver_already_connected(mailserver_error):
 
     def __init__(self, line=None):
-        mailserver_error.__init__(self, message=u"Already connected", line=line)
+        mailserver_error.__init__(
+            self, message=u"Already connected", line=line)
 
 
 class mailserver_closed_connection(mailserver_error):
 
     def __init__(self, line=None):
-        mailserver_error.__init__(self, message=u"Connection closed", line=line)
+        mailserver_error.__init__(
+            self, message=u"Connection closed", line=line)
 
 
 class mailserver_no_message_index(mailserver_error):
 
     def __init__(self, index=None, line=None):
-        mailserver_error.__init__(self, message=u"No messege with index %s"%(index if index is not None else "'invalid'",), line=line)
+        mailserver_error.__init__(self, message=u"No messege with index %s" % (
+            index if index is not None else "'invalid'",), line=line)
 
 
 v_mailservererror = error(mailserver_error)
@@ -58,32 +64,32 @@ class v_mailattachment(generic):
             var = keywords["let"]
             self._data_type = type(var.subtype)
             self._value.data = var.as_binary if isinstance(var.subtype, binary) else \
-                            var.as_string
+                var.as_string
 
         elif "set" in keywords:
             raise errors.object_has_no_property("data")
         else:
-            return self._data_type(self._value.data)	
+            return self._data_type(self._value.data)
 
     def v_filename(self, **keywords):
         if "let" in keywords:
-            self._value.filename=keywords["let"].as_string
+            self._value.filename = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("filename")
         else:
-            return string(self._value.filename)	
+            return string(self._value.filename)
 
     def v_contenttype(self, **keywords):
         if "let" in keywords:
-            self._value.content_type=keywords["let"].as_string
+            self._value.content_type = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("contenttype")
         else:
-            return string(self._value.content_type)	
+            return string(self._value.content_type)
 
     def v_contentsubtype(self, **keywords):
         if "let" in keywords:
-            self._value.content_subtype=keywords["let"].as_string
+            self._value.content_subtype = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("contentsubtype")
         else:
@@ -119,15 +125,13 @@ class v_mailmessage(generic):
 
     def __init__(self, message=None):
         generic.__init__(self)
-        self._value=message or Message()
+        self._value = message or Message()
 
-
-    value=property(lambda self: self._value)
-
+    value = property(lambda self: self._value)
 
     def v_id(self, **keywords):
         if "let" in keywords:
-            self._value.id=keywords["let"].as_integer
+            self._value.id = keywords["let"].as_integer
         elif "set" in keywords:
             raise errors.object_has_no_property("id")
         else:
@@ -135,7 +139,7 @@ class v_mailmessage(generic):
 
     def v_subject(self, **keywords):
         if "let" in keywords:
-            self._value.subject=keywords["let"].as_string
+            self._value.subject = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("subject")
         else:
@@ -143,7 +147,7 @@ class v_mailmessage(generic):
 
     def v_sender(self, **keywords):
         if "let" in keywords:
-            self._value.from_email=keywords["let"].as_string
+            self._value.from_email = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("sender")
         else:
@@ -151,7 +155,7 @@ class v_mailmessage(generic):
 
     def v_replyto(self, **keywords):
         if "let" in keywords:
-            self._value.reply_to=keywords["let"].as_string
+            self._value.reply_to = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("replyto")
         else:
@@ -159,7 +163,7 @@ class v_mailmessage(generic):
 
     def v_recipients(self, **keywords):
         if "let" in keywords:
-            self._value.to_email=keywords["let"].as_string
+            self._value.to_email = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("recipients")
         else:
@@ -167,7 +171,7 @@ class v_mailmessage(generic):
 
     def v_body(self, **keywords):
         if "let" in keywords:
-            self._value.body=keywords["let"].as_string
+            self._value.body = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("body")
         else:
@@ -175,7 +179,7 @@ class v_mailmessage(generic):
 
     def v_nomultipart(self, **keywords):
         if "let" in keywords:
-            self._value.nomultipart=keywords["let"].as_boolean
+            self._value.nomultipart = keywords["let"].as_boolean
         elif "set" in keywords:
             raise errors.object_has_no_property("nomultipart")
         else:
@@ -183,7 +187,7 @@ class v_mailmessage(generic):
 
     def v_priority(self, **keywords):
         if "let" in keywords:
-            self._value.priority=keywords["let"].as_string
+            self._value.priority = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("priority")
         else:
@@ -207,7 +211,7 @@ class v_mailmessage(generic):
 
     def v_ttl(self, **keywords):
         if "let" in keywords:
-            self._value.ttl=keywords["let"].as_integer
+            self._value.ttl = keywords["let"].as_integer
         elif "set" in keywords:
             raise errors.object_has_no_property("priority")
         else:
@@ -223,7 +227,8 @@ class v_mailmessage(generic):
             return v_mailattachmentcollection(self._value.attach)
 
     def v_addattachment(self, attachment):
-        self._value.attach.append(attachment.as_specific(v_mailattachment).value)
+        self._value.attach.append(
+            attachment.as_specific(v_mailattachment).value)
         return v_mismatch
 
     def v_addheader(self, key, value):
@@ -231,12 +236,11 @@ class v_mailmessage(generic):
         return v_mismatch
 
 
-
 class v_mailconnection(generic):
 
     def __init__(self, client=None):
         generic.__init__(self)
-        self._client=client
+        self._client = client
 
     def v_isconnected(self, **keywords):
         if "let" in keywords or "set" in keywords:
@@ -249,7 +253,7 @@ class v_mailconnection(generic):
         if self._client:
             raise mailserver_already_connected
         self._client = VDOM_Pop3_client(server.as_string, port.as_integer,
-                                      secure=False if secure is None else secure.as_boolean)
+                                        secure=False if secure is None else secure.as_boolean)
         return v_mismatch
 
     def v_user(self, login, password):
@@ -262,15 +266,15 @@ class v_mailconnection(generic):
         if not self._client:
             raise errors.mailserver_closed_connection
         message = self._client.fetch_message(0 if index is None else index.as_integer,
-                                           False if delete is None else delete.as_boolean)
+                                             False if delete is None else delete.as_boolean)
         return v_nothing if message is None else v_mailmessage(message)
 
     def v_receiveall(self, offset=None, limit=None, delete=None):
         if not self._client:
             raise errors.mailserver_closed_connection
         messages = self._client.fetch_all_messages(0 if offset is None else offset.as_integer,
-                                                 None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
-        return array(items=[v_mailmessage(message) for message in messages])	
+                                                   None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
+        return array(items=[v_mailmessage(message) for message in messages])
 
     def v_countmessages(self):
         if not (self._client and self._client.connected):
@@ -324,7 +328,7 @@ class v_smtpsettings(generic):
 
     def v_port(self, **keywords):
         if "let" in keywords:
-            self._value.smtp_server_port=keywords["let"].as_integer
+            self._value.smtp_server_port = keywords["let"].as_integer
         elif "set" in keywords:
             raise errors.object_has_no_property("port")
         else:
@@ -368,7 +372,7 @@ class v_mailer(generic):
     def v_connect(self, server, port, secure=None):
         from mailing.pop import VDOM_Pop3_client
         client = VDOM_Pop3_client(server.as_string, port.as_integer,
-                                secure=False if secure is None else secure.as_boolean)
+                                  secure=False if secure is None else secure.as_boolean)
         return v_mailconnection(client)
 
     def v_send(self, message):
@@ -382,7 +386,7 @@ class v_mailer(generic):
             email_manager.work()
             ret = email_manager.check(msg_id)
             if ret:
-                print (ret)
+                print(ret)
                 msg_id = -1
         else:
             msg_id = -1
@@ -392,19 +396,19 @@ class v_mailer(generic):
         from mailing.pop import VDOM_Pop3_client
         try:
             client = VDOM_Pop3_client(server.as_string, port.as_integer,
-                                    secure=False if secure is None else secure.as_boolean)
+                                      secure=False if secure is None else secure.as_boolean)
         except Exception as e:
             raise mailserver_error(str(e))
         try:
             client.user(login.as_string, password.as_string)
             if not client.connected:
-                raise mailserver_closed_connection()		
+                raise mailserver_closed_connection()
             message = client.fetch_message(0 if index is None else index.as_integer,
-                                         False if delete is None else delete.as_boolean)
+                                           False if delete is None else delete.as_boolean)
         except VDOM_mailserver_invalid_index:
             raise mailserver_no_message_index(index.as_integer)
         except Exception as e:
-            raise mailserver_error(str(e))		
+            raise mailserver_error(str(e))
         finally:
             client.quit()
         return v_mailmessage(message)
@@ -413,47 +417,47 @@ class v_mailer(generic):
         from mailing.pop import VDOM_Pop3_client
         try:
             client = VDOM_Pop3_client(server.as_string, port.as_integer,
-                                    secure=False if secure is None else secure.as_boolean)
+                                      secure=False if secure is None else secure.as_boolean)
         except Exception as e:
-            raise mailserver_error(str(e))		
+            raise mailserver_error(str(e))
         try:
             client.user(login.as_string, password.as_string)
             if not client.connected:
                 raise mailserver_closed_connection()
-            messages=client.fetch_all_messages(0 if offset is None else offset.as_integer,
-                                               None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
+            messages = client.fetch_all_messages(0 if offset is None else offset.as_integer,
+                                                 None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
         except Exception as e:
-            raise mailserver_error(str(e))		
+            raise mailserver_error(str(e))
         finally:
             client.quit()
-        return array(items=[v_mailmessage(message) for message in messages])	
+        return array(items=[v_mailmessage(message) for message in messages])
 
     def v_countmessages(self, server, port, login, password, secure=None):
         from mailing.pop import VDOM_Pop3_client
         try:
             client = VDOM_Pop3_client(server.as_string, port.as_integer,
-                                    secure=False if secure is None else secure.as_boolean)
+                                      secure=False if secure is None else secure.as_boolean)
         except Exception as e:
-            raise mailserver_error(str(e))			
+            raise mailserver_error(str(e))
         try:
             client.user(login.as_string, password.as_string)
             if not client.connected:
                 raise errors.mailserver_closed_connection()
-            count=len(client)
+            count = len(client)
         except Exception as e:
-            raise mailserver_error(str(e))		
+            raise mailserver_error(str(e))
         finally:
             client.quit()
         return integer(count)
 
     def v_status(self, msg_id):
         result = managers.email_manager.check(msg_id.as_integer)
-        return string(result) if result else v_empty		
+        return string(result) if result else v_empty
 
 
 class v_server(generic):
-
-    check_regex=re.compile("[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
+    check_regex = re.compile(
+        "[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
 
     def __init__(self):
         generic.__init__(self)
@@ -479,11 +483,11 @@ class v_server(generic):
             parent = application.search_object(parent)
         else:
             objects = application.search_objects_by_name(parent)
-            parent = objects[0] if len(objects)==1 else None
+            parent = objects[0] if len(objects) == 1 else None
         if type is None or parent is None:
             raise errors.invalid_procedure_call(name=u"createobject")
-        object_tuple=application.create_object(type, parent)
-        obj=application.search_object(object_tuple[1])
+        object_tuple = application.create_object(type, parent)
+        obj = application.search_object(object_tuple[1])
         if name is not None:
             obj.set_name(name.as_string)
         return v_vdomobject(obj)
@@ -513,7 +517,7 @@ class v_server(generic):
 
     def v_createresource(self, type, name, data):
         application = managers.request_manager.current.application()
-        data, id = data.as_simple, unicode(uuid.uuid4())
+        data, resid = data.as_simple, str(uuid.uuid4())
         if isinstance(data, binary):
             data = data.as_binary
         elif isinstance(data, string):
@@ -524,15 +528,17 @@ class v_server(generic):
                 pass
         else:
             raise errors.invalid_procedure_call("createresource")
-        application.create_resource(id, type.as_string, name.as_string, data)
-        return string(id)
+        application.create_resource(
+            resid, type.as_string, name.as_string, data)
+        return string(resid)
 
     def v_getresource(self, resource):
-        obj = managers.resource_manager.get_resource(managers.request_manager.current.application(), resource.as_string)
+        obj = managers.resource_manager.get_resource(
+            managers.request_manager.current.application(), resource.as_string)
         if obj is None:
             return v_empty
         else:
-            data=obj.get_data()
+            data = obj.get_data()
             try:
                 return string(data.decode(default_text_encoding))
             except UnicodeError:
@@ -543,15 +549,12 @@ class v_server(generic):
                                                   resource.as_string, remove=True)
         return v_mismatch
 
-    def v_htmlencode(self, string2encode):
-        return string(unicode(string2encode.as_string.encode("html")))
-
     def v_urlencode(self, string2encode):
-        return string(unicode(string2encode.as_string.encode("url")))
+        return string(str(codecs.encode(string2encode.as_string, "url")))
 
     def v_sendmail(self, sender, recipient, subject, message):
         return integer(managers.email_manager.send(sender.as_string,
-                                                           recipient.as_string, subject.as_string, message.as_string))
+                                                   recipient.as_string, subject.as_string, message.as_string))
 
     def v_mailstatus(self, msg_id):
         ret = managers.email_manager.check(msg_id.as_integer)

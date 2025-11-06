@@ -1,4 +1,6 @@
 
+from builtins import str
+
 import sys
 import types
 import numbers
@@ -17,9 +19,9 @@ DEFAULT_SKIP_FUNCTIONS = True
 
 def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
         optimize=DEFAULT_OPTIMIZE, minify=DEFAULT_MINIFY, skip_functions=DEFAULT_SKIP_FUNCTIONS):
-    print "Generate graph for %s" % \
+    print("Generate graph for %s" % \
         (", ".join("%08X" % id(object) for object in objects)
-            if len(objects) < 10 else "%d objects" % len(objects))
+            if len(objects) < 10 else "%d objects" % len(objects)))
     # TODO: __del__
     # TODO: Dereference members
 
@@ -78,7 +80,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
     def show_edge(source, target):
         if minify and id(source) in owners:
             if isinstance(source, dict):
-                for key, value in source.iteritems():
+                for key, value in source.items():
                     if value is target:
                         membership_edges.append((id(owners[id(source)]), mapping.get(id(target), id(target)), quote(key)))
                         return
@@ -120,7 +122,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
             return
         elif isinstance(source, dict):
             try:
-                label = quote(repr(source.keys()[source.values().index(target)]))
+                label = quote(repr(list(source.keys())[list(source.values()).index(target)]))
             except BaseException:
                 label = "?"
             elementary_edges.append((id(source), mapping.get(id(target), id(target)), label))
@@ -203,7 +205,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
             module = target.__module__
             storage = elementary_nodes
         elif type(target).__module__ == "__builtin__":
-            name = quote(repr(target))[:40] if isinstance(target, (basestring, numbers.Number, bool, types.NoneType)) else " "
+            name = quote(repr(target))[:40] if isinstance(target, (bytes, numbers.Number, bool, type(None))) else " "
             if isinstance(target, (dict, tuple, list, set)):
                 count = len(target)
                 details = "1 item" if count == 1 else "%d items" % count
@@ -215,7 +217,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
             kind = "object"
             name = type(target).__name__
             if isinstance(target, MemoryBase):
-                details = ":".join(filter(None, (getattr(target, "id", None), getattr(target, "name", None)))).lower()
+                details = ":".join([_f for _f in (getattr(target, "id", None), getattr(target, "name", None)) if _f]).lower()
                 if getattr(target, "virtual", None):
                     name += " (Virtual)"
             else:
@@ -271,7 +273,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
 
         if level > depth:
             continue
-        if isinstance(target, (types.ModuleType, basestring, numbers.Number, bool)):
+        if isinstance(target, (types.ModuleType, bytes, numbers.Number, bool)):
             continue
 
         sources = gc.get_referrers(target)

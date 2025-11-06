@@ -1,4 +1,7 @@
 
+from builtins import str
+
+from builtins import object
 import sys
 import settings
 
@@ -20,7 +23,7 @@ class Console(object):
         self._lock = Lock()
         self._formatter = PrefixingLogFormatter(NAME)
 
-    def write(self, message=None, warning=None, error=None, debug=None, module=None, level=None, format=True):
+    def write(self, message=None, warning=None, error=None, debug=None, module=None, level=None, format=True): 
         if level is None:
             level, message = \
                 (levels.MESSAGE, message) if message is not None else \
@@ -30,10 +33,10 @@ class Console(object):
                 (levels.MESSAGE, "")
 
         if level >= settings.CONSOLE_LOG_LEVEL:
-            if isinstance(message, unicode):
-                message = message.encode((self.stderr.encoding if level is levels.ERROR
-                    else self.stdout.encoding) or "ascii", "backslashreplace")
-            elif not isinstance(message, basestring):
+            # if isinstance(message, str):
+            #     message = message.encode((self.stderr.encoding if level is levels.ERROR
+            #         else self.stdout.encoding) or "ascii", "backslashreplace")
+            if not isinstance(message, str):
                 message = str(message)
 
             if format:

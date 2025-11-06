@@ -14,14 +14,14 @@ def cleanup_directory(path, ignore_errors=False, onerror=None, remove=False):
 
     # just to not worry about remove something wrong
     assert uuid_regex.search(path) \
-        or path.endswith(settings.APPLICATIONS_LOCATION) \
-        or path.endswith(settings.TYPES_LOCATION) \
-        or path.endswith(settings.CACHE_LOCATION) \
-        or path.endswith(settings.RESOURCES_LOCATION) \
-        or path.endswith(settings.DATA_LOCATION) \
-        or path.endswith(settings.DATABASES_LOCATION) \
-        or path.endswith(settings.STORAGE_LOCATION) \
-        or path.endswith(settings.TEMPORARY_LOCATION)
+        or path.endswith(os.path.normpath(settings.APPLICATIONS_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.TYPES_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.CACHE_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.RESOURCES_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.DATA_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.DATABASES_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.STORAGE_LOCATION)) \
+        or path.endswith(os.path.normpath(settings.TEMPORARY_LOCATION))
 
     # declare default handlers
     if ignore_errors:

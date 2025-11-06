@@ -208,7 +208,7 @@ class v_eac(generic):
     @AutoCast
     @v_PropertyReadOnly
     def v_tags(self):
-        return self._eac_obj.tags.keys()
+        return list(self._eac_obj.tags.keys())
 
     @AutoCast
     def v_get_wholexml(self):

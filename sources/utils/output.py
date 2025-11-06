@@ -1,4 +1,8 @@
 
+from builtins import input
+from builtins import str
+
+from builtins import object
 import sys
 
 from contextlib import contextmanager
@@ -32,14 +36,14 @@ class ConsoleWrapper(object):
         if logs:
             logs.console.write(message)
         else:
-            print message or ""
+            print(message or "")
 
     def error(self, message=None):
         logs = sys.modules.get("logs")
         if logs:
             logs.console.error(message)
         else:
-            print ERROR_PREFIX + (message or "").replace("\n", "\n" + ERROR_PREFIX)
+            print(ERROR_PREFIX + (message or "").replace("\n", "\n" + ERROR_PREFIX))
 
 
 console = ConsoleWrapper()
@@ -119,10 +123,11 @@ def show(name=None, value=ABSENT, indent=None, longer=False, continuation="", no
             width = longer
         caption = align(name, width, filler="." if name else " ", indent=indent)
 
-    if not isinstance(value, basestring):
+    if not isinstance(value, bytes):
         value = str(value)
 
-    console.write(reformat(value, caption, continuation=continuation, noclip=noclip))
+    #Workaround for missing newline in console
+    console.write(f"{reformat(value, caption, continuation=continuation, noclip=noclip)}\n") 
 
 
 def warn(message, indent=None, continuation="", noclip=False):
@@ -136,7 +141,7 @@ def warn(message, indent=None, continuation="", noclip=False):
     if global_context.show_section:
         global_context.show_section()
 
-    if not isinstance(message, basestring):
+    if not isinstance(message, bytes):
         message = str(message)
 
     console.error(reformat(message, indent, continuation=continuation, noclip=noclip))
@@ -146,7 +151,7 @@ def confirm(message=None, question=None):
     if message:
         console.write(message)
     console.stdout.write("are you sure%s? ___\b\b\b" % (" to %s" % question if question else ""))
-    answer = raw_input()
+    answer = input()
     result = answer.lower() == "yes"
     if not result:
         console.write("unconfirmed")

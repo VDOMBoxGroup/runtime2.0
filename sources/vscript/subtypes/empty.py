@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 from .. import errors
 from ..operations import div, mod
@@ -16,7 +17,7 @@ class empty(subtype):
 	as_date=property(lambda self: float(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: int(self))
 
 
@@ -25,7 +26,7 @@ class empty(subtype):
 
 	def __div__(self, another):
 		try: return subtype.__div__(self, another)
-		except errors.division_by_zero: raise errors.overflow, None, sys.exc_info()[2]
+		except errors.division_by_zero: raise errors.overflow.with_traceback(sys.exc_info()[2])
 
 
 	def __invert__(self):
@@ -57,7 +58,7 @@ class empty(subtype):
 	def __unicode__(self):
 		return u""
 
-	def __nonzero__(self):
+	def __bool__(self):
 		return False
 
 
@@ -83,7 +84,7 @@ empty.add_table={
 	integer: lambda self, another: integer(0+int(another)),
 	double: lambda self, another: double(0+float(another)),
 	date: lambda self, another: date(0+float(another)),
-	string: lambda self, another: string(""+unicode(another)),
+	string: lambda self, another: string(""+str(another)),
 	boolean: lambda self, another: integer(0+int(another))}
 
 empty.sub_table={
@@ -147,7 +148,7 @@ empty.eq_table={
 	integer: lambda self, another: boolean(true) if 0==int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0==float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0==float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u""==unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u""==str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0==int(another) else boolean(false)}
 
 empty.ne_table={
@@ -156,7 +157,7 @@ empty.ne_table={
 	integer: lambda self, another: boolean(true) if 0!=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0!=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0!=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u""!=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u""!=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0!=int(another) else boolean(false)}
 
 empty.lt_table={
@@ -165,7 +166,7 @@ empty.lt_table={
 	integer: lambda self, another: boolean(true) if 0<int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0<float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0<float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u""<unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u""<str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0<int(another) else boolean(false)}
 
 empty.gt_table={
@@ -174,7 +175,7 @@ empty.gt_table={
 	integer: lambda self, another: boolean(true) if 0>int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0>float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0>float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u"">unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u"">str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0>int(another) else boolean(false)}
 
 empty.le_table={
@@ -183,7 +184,7 @@ empty.le_table={
 	integer: lambda self, another: boolean(true) if 0<=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0<=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0<=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u""<=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u""<=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0<=int(another) else boolean(false)}
 
 empty.ge_table={
@@ -192,7 +193,7 @@ empty.ge_table={
 	integer: lambda self, another: boolean(true) if 0>=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if 0>=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if 0>=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if u"">=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if u"">=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if 0>=int(another) else boolean(false)}
 
 

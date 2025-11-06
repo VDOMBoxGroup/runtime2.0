@@ -1,6 +1,7 @@
 """base module"""
 
-class VDOM_module:
+from builtins import object
+class VDOM_module(object):
 	"""base module class"""
 
 	def __init__(self):

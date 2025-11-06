@@ -1,3 +1,5 @@
+from builtins import str
+from builtins import object
 import copy
 import managers
 import file_access
@@ -107,7 +109,7 @@ class VDOM_resource_descriptor(object):
         return 1
 
 
-class VDOM_resource_object:
+class VDOM_resource_object(object):
     """resource object class"""
 
     def __init__(self, owner_id, object_id, res_id):

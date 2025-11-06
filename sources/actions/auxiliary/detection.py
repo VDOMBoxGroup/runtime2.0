@@ -108,7 +108,7 @@ def detect(filename):
 
 
 def search_object(identifier):
-    for application in managers.memory.applications.itervalues():
+    for application in managers.memory.applications.values():
         if identifier == application.id:
             return application
         else:
@@ -119,7 +119,7 @@ def search_object(identifier):
 
 
 def search_action(identifier):
-    for application in managers.memory.applications.itervalues():
+    for application in managers.memory.applications.values():
         subject = application.actions.catalog.get(identifier)
         if subject is not None:
             return subject

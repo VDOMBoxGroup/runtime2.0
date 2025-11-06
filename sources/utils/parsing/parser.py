@@ -1,4 +1,5 @@
 
+#from builtins import str
 import types
 from weakref import proxy
 from xml.parsers.expat import ParserCreate, ExpatError
@@ -149,7 +150,7 @@ class Parser(LegacyInterface):
         """
         Choose subparser and execute
         """
-        if isinstance(handlers, types.TupleType):
+        if isinstance(handlers, tuple):
             elements(self, {uncover(getattr(handler, "name", handler.__name__)): handler for handler in handlers}.get, iterator)
         elif handlers is None:
             nothing(self, handlers, iterator)
@@ -202,9 +203,9 @@ class Parser(LegacyInterface):
         except ExpatError as error:
             try:
                 error = ERRATIC[error.code]()
-                message = str(error)
+                message = error.args[0]
             except KeyError:
-                message = error.message.split(":")[0].capitalize()
+                message = error.args[0].split(":")[0].capitalize()
                 error = ParsingException(message)
 
             error.offset = self._parser.ErrorByteIndex
@@ -221,11 +222,13 @@ class Parser(LegacyInterface):
             error.column = self._parser.CurrentColumnNumber
 
             if self._supress:
-                self.notify(str(error))
+                self.notify(error.message)
             else:
                 raise
         except AbortingError as error:
-            message = str(error)
+            # message = error.message
+            # if message:
+            message = error.args[0]
             if message:
                 self.notify(message)
 

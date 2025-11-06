@@ -2,17 +2,17 @@
 """
 watcher sub-actions
 """
+from __future__ import absolute_import
 
-import ping
-import state
-import analyze
-import memorize
-import describe
-import query
-import profiling
-import logging
-import debugging
-import raise_
+from . import ping
+from . import state
+from . import analyze
+from . import memorize
+from . import describe
+from . import query
+from . import profiling
+from . import logging
+from . import debugging
 
 
 DEFAULT = ping

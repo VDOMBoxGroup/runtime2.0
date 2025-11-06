@@ -1,4 +1,6 @@
 
+from builtins import chr
+from builtins import str
 from . import errors
 
 
@@ -250,7 +252,7 @@ def t_comment(t):
 def t_rem(t):
 	r'rem\s.*'
 	t.type=u"REM"
-	t.value=(t.lexer.lineno, unicode(t.value))
+	t.value=(t.lexer.lineno, str(t.value))
 	return t
 
 def t_multiline(t):
@@ -261,45 +263,45 @@ def t_multiline(t):
 def t_double(t):
 	r'\d+\.\d+([Ee][+-]?\d+)? | [+-]?\d+[Ee][+-]?\d+'
 	t.type=u"DOUBLE"
-	t.value=(t.lexer.lineno, unicode(t.value))
+	t.value=(t.lexer.lineno, str(t.value))
 	return t
 
 def t_number(t):
 	r'\d+'
 	t.type=u"NUMBER"
-	t.value=(t.lexer.lineno, unicode(t.value))
+	t.value=(t.lexer.lineno, str(t.value))
 	return t
 
 def t_date(t):
 	r'\#[^#]+\#'
 	t.type=u"DATE"
-	t.value=(t.lexer.lineno, unicode(t.value[1:-1]))
+	t.value=(t.lexer.lineno, str(t.value[1:-1]))
 	return t
 
 def t_string(t):
 	r'\"([^\"\n]|(\"\"))*\"'
 	t.type=u"STRING"
-	t.value=(t.lexer.lineno, unicode(t.value[1:-1].replace(u"\"\"", u"\"")))
+	t.value=(t.lexer.lineno, str(t.value[1:-1].replace(u"\"\"", u"\"")))
 	return t
 
 def t_character(t):
 	r'\&[Hh][0-9A-Fa-f]+'
-	print "STRING!!!"
+	#print("STRING!!!")
 	t.type=u"STRING"
-	t.value=(t.lexer.lineno, unichr(int(t.value[2:], 16)))
+	t.value=(t.lexer.lineno, chr(int(t.value[2:], 16)))
 	return t
 
 def t_python(t):
 	r'`[^\n]*'
-	value=unicode(t.value[1:])
+	value=str(t.value[1:])
 	value=value.replace(u"\\n", u"\n")
 	t.type=u"PYTHON"
-	t.value=(t.lexer.lineno, unicode(value))
+	t.value=(t.lexer.lineno, str(value))
 	return t
 
 def t_name(t):
 	r'[a-zA-Z][a-zA-Z0-9_]*'
-	value=unicode(t.value.lower())
+	value=str(t.value.lower())
 	t.type=reserved.get(value, u"NAME")
 	t.value=(t.lexer.lineno, prefix+value) if t.type==u"NAME" else (t.lexer.lineno, value)
 	return t
@@ -308,7 +310,7 @@ def t_newline(t):
 	r'(\r?\n)+'
 	t.lexer.lineno+=t.value.count(u"\n")
 	t.type=u"NEWLINE"
-	t.value=(t.lexer.lineno, unicode(t.value))
+	t.value=(t.lexer.lineno, str(t.value))
 	return t
 
 t_ignore=" \t"

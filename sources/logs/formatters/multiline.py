@@ -1,7 +1,9 @@
 
+from builtins import zip
+from builtins import range
 import os
 import re
-from itertools import izip
+
 from .formatter import LogFormatter
 
 
@@ -14,13 +16,13 @@ class MultilineLogFormatter(LogFormatter):
 
     def _make_caption(self, *values):
         return "".join(value[:width - 5] + "...  " if len(value) + 2 > width else value.ljust(width)
-            for value, width in izip(values[:-1], self._widths))
+            for value, width in zip(values[:-1], self._widths))
 
     FORMAT_REGEX = re.compile("([^\r\n]*?)[ \t]*(?:(?:\n|\r\n|\r)?($)|(?:\n|\r\n|\r))")
 
     def format(self, *values):
         return self.FORMAT_REGEX.sub(lambda match:
-            ("%s%s %s" if match.group(2) is None else "%s%s%s") % (
+            "" if match.group(1) == '' else "%s%s%s" % (
                 self._make_caption(*values), match.group(1), os.linesep), values[-1])
 
     FIND_REGEX = re.compile("(?: \n| \r\n| \r|.)*(?:\n|\r\n|\r)")

@@ -1,15 +1,17 @@
 
+#from builtins import str
+from builtins import object
 import os, socket
 
 from version import SERVER_NAME, SERVER_VERSION
 
-class VDOM_environment:
+class VDOM_environment(object):
 	"""environment variables"""
 
 	def __init__(self, headers, handler):
 		""" Constructor """
 		self.__environment = {}
-		for k in headers.keys():
+		for k in list(headers.keys()):
 			self.__environment["HTTP_%s" % k.upper()] = str(headers[k])
 
 		self.__environment["REQUEST_METHOD"] = str(handler.command)
@@ -43,7 +45,7 @@ class VDOM_environment:
 			self.__environment["SCRIPT_NAME"] = "/"
 		else:
 			self.__environment["SCRIPT_NAME"] = request_list[0]
-		try: self.__environment["QUERY_STRING"] = request_list[1]
+		try: self.__environment["QUERY_STRING"] = request_list[1] if len(request_list)>1 else ""
 		except: self.__environment["QUERY_STRING"] = ""
 
 	def environment(self):

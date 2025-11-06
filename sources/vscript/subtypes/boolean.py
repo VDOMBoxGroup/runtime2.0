@@ -1,4 +1,5 @@
 
+from builtins import str
 import sys
 from .. import errors
 from ..primitives import subtype
@@ -30,7 +31,7 @@ class boolean(subtype):
 	as_date=property(lambda self: float(self))
 	as_double=property(lambda self: float(self))
 	as_integer=property(lambda self: int(self))
-	as_string=property(lambda self: unicode(self))
+	as_string=property(lambda self: str(self))
 	as_number=property(lambda self: int(self))
 	
 
@@ -60,7 +61,7 @@ class boolean(subtype):
 	def __unicode__(self):
 		return u"True" if self._value else u"False"
 
-	def __nonzero__(self):
+	def __bool__(self):
 		return self._value
 
 
@@ -151,7 +152,7 @@ boolean.eq_table={
 	integer: lambda self, another: boolean(true) if int(self)==int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)==float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)==unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)==str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)==int(another) else boolean(false)}
 
 boolean.ne_table={
@@ -160,7 +161,7 @@ boolean.ne_table={
 	integer: lambda self, another: boolean(true) if int(self)!=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)!=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)!=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)!=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)!=int(another) else boolean(false)}
 
 boolean.lt_table={
@@ -169,7 +170,7 @@ boolean.lt_table={
 	integer: lambda self, another: boolean(true) if int(self)<int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)<float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)<unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)<str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)<int(another) else boolean(false)}
 
 boolean.gt_table={
@@ -178,7 +179,7 @@ boolean.gt_table={
 	integer: lambda self, another: boolean(true) if int(self)>int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)>float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)>unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)>str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)>int(another) else boolean(false)}
 
 boolean.le_table={
@@ -187,7 +188,7 @@ boolean.le_table={
 	integer: lambda self, another: boolean(true) if int(self)<=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)<=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)<=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)<=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)<=int(another) else boolean(false)}
 
 boolean.ge_table={
@@ -196,7 +197,7 @@ boolean.ge_table={
 	integer: lambda self, another: boolean(true) if int(self)>=int(another) else boolean(false),
 	double: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
 	date: lambda self, another: boolean(true) if float(self)>=float(another) else boolean(false),
-	string: lambda self, another: boolean(true) if unicode(self)>=unicode(another) else boolean(false),
+	string: lambda self, another: boolean(true) if str(self)>=str(another) else boolean(false),
 	boolean: lambda self, another: boolean(true) if int(self)>=int(another) else boolean(false)}
 
 

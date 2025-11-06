@@ -11,7 +11,7 @@ PARSER_TABLE_NAME = "vscript.tables.parser"
 
 
 if settings.DISABLE_VSCRIPT:
-    print "VScript are disabled through configuration"
+    print("VScript are disabled through configuration")
     lexer = None
     parser = None
 else:

@@ -1,4 +1,5 @@
 
+from builtins import str
 python = Exception
 python_using_abstract = NotImplementedError
 python_avoid_using = RuntimeError
@@ -28,7 +29,7 @@ class generic(python):
         self.line = line
 
     def __str__(self):
-        return unicode(self).encode("ascii", errors="replace")
+        return str(self).encode("ascii", errors="replace")
 
     def __unicode__(self):
         if self.near:
@@ -42,11 +43,11 @@ class generic(python):
             character = None
             column = None
         details = ", ".join(
-            filter(None, (
+            [_f for _f in (
                 None if self.library is None else "library \"%s\"" % self.library,
                 None if self.line is None else "line %s" % self.line,
                 character,
-                column)))
+                column) if _f])
         return u"VScript %s error%s: %s" % (
             self.source,
             (u" (%s)" % details if details else u""),

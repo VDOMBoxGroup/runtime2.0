@@ -1,3 +1,4 @@
+from builtins import str
 import os
 import re
 import subprocess
@@ -11,7 +12,7 @@ rexp_gateway = re.compile(r"^0\.0\.0\.0\s*(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})",
 def reinit_network():
     try:
         subprocess.check_call(["/bin/sh", "/opt/boot/networkconfig.sh"])
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: Network reinit failed. %s" % str(e), "system_linux")
 
@@ -25,7 +26,7 @@ def get_ip_and_mask(interface="eth0"):
             the_ip = ret.group(1)
             the_mask = ret.group(2)
             return (the_ip, the_mask)
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return (None, None)
@@ -48,7 +49,7 @@ def get_default_gateway():
         if ret and ret.group():
             gate = ret.group(1)
             return gate
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return None
@@ -60,7 +61,7 @@ def set_default_gateway(gate):
         f.write(gate)
         f.close()
         reinit_network()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
 
@@ -84,7 +85,7 @@ def get_dns():
                 sdns = sdns[10:].strip()
             else:
                 sdns = ""
-    except Exception, e:
+    except Exception as e:
         debug("get_dns: " + str(e))
         managers.log_manager.error_server("System call error: Getting DNS failed. %s" % str(e), "system_linux")
     return (pdns, sdns)
@@ -100,7 +101,7 @@ def set_dns(pdns, sdns):
         f = open("/etc/resolv.conf", "wt")
         f.write("\n".join([a, b]))
         f.close()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
 
@@ -109,7 +110,7 @@ def get_date_and_time():
     try:
         outp = subprocess.check_output(['date', '+%Y-%m-%d %H:%M:%S'])
         return outp.strip()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return None
@@ -126,7 +127,7 @@ def get_free_space():
     try:
         (size, used, free, percent) = vdom_df()
         return int(free) / 1024.0
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return 0
@@ -136,7 +137,7 @@ def get_hd_size():
     try:
         (size, used, free, percent) = vdom_df()
         return int(size) / 1024.0
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return 0
@@ -148,7 +149,7 @@ def get_external_drives():
         lines = outp.strip().split("\n")
         return [{"device": line.split(';', 1)[0],
         "label": line.split(';', 1)[1].strip()} for line in lines if line]
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return []
@@ -163,7 +164,7 @@ def mount_device(dev):
     try:
         outp = subprocess.check_output(["/opt/boot/mountpoint.sh", dev])
         return outp.strip()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
 
@@ -172,7 +173,7 @@ def umount_device(dev):
     try:
         outp = subprocess.check_output(["umount", dev])
         return outp.strip()
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
 
@@ -187,7 +188,7 @@ def get_vfs_users():
             if i < 0:
                 i = len(s)
             r.append(s[:i])
-    except Exception, e:
+    except Exception as e:
         debug("Error: " + str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
     return r
@@ -196,7 +197,7 @@ def get_vfs_users():
 def move(src, dst):
     try:
         subprocess.check_call(["mv", src, dst])
-    except subprocess.CalledProcessError, e:
+    except subprocess.CalledProcessError as e:
         debug("Error: return code: %s" % str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")
 
@@ -204,6 +205,6 @@ def move(src, dst):
 def copy(src, dst):
     try:
         subprocess.check_call(["cp", src, dst])
-    except subprocess.CalledProcessError, e:
+    except subprocess.CalledProcessError as e:
         debug("Error: return code: %s" % str(e))
         managers.log_manager.error_server("System call error: %s" % str(e), "system_linux")

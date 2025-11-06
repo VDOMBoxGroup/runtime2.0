@@ -59,10 +59,10 @@ class scripting_dictionary(generic):
 		return boolean(key.subtype in self._items)
 
 	def v_items(self):
-		return array(list((self._items.itervalues())))
+		return array(list((iter(self._items.values()))))
 
 	def v_keys(self):
-		return array(list((self._items.iterkeys())))
+		return array(list((iter(self._items.keys()))))
 
 	def v_remove(self, key):
 		try: del self._items[key.subtype]

@@ -1,4 +1,5 @@
 
+from builtins import object
 import io
 import os
 import errno
@@ -12,13 +13,15 @@ from glob import glob
 import settings
 import file_access
 
+from utils.exception import VDOM_exception_file_access
 from utils.system import *
 from utils.mutex import VDOM_named_mutex
 from utils.tracing import format_exception_trace
-# from utils.file_argument import Attachment
+from utils.file_argument import Attachment
 
 from .auxiliary import cleanup_directory
 from .daemon import FileWriter
+
 
 
 TEMPORARY_DIRECTORY_SUFFIX = "-temporary"
@@ -100,7 +103,7 @@ class FileManager(object):
             segments = settings.TEMPORARY_LOCATION, owner, name
         else:
             raise Exception("Unknown category: %r" % category)
-        return os.path.normpath(os.path.join(*filter(None, segments))).decode('utf-8')
+        return os.path.normpath(os.path.join(*[_f for _f in segments if _f]))
 
     def ensure(self, category, owner, mode, name=None):
         if "w" not in mode:
@@ -111,7 +114,7 @@ class FileManager(object):
                 try:
                     os.makedirs(location)
                 except Exception as error:
-                    print "Ensure %s directory error: %s" % (location, error)
+                    print("Ensure %s directory error: %s" % (location, error))
 
     # elementary
 
@@ -121,12 +124,12 @@ class FileManager(object):
             try:
                 return glob(location + "/" + pattern)
             except Exception as error:
-                print "List storage %s and pattern %s directory error: %s" % (location, pattern, error)
+                print("List storage %s and pattern %s directory error: %s" % (location, pattern, error))
         else:
             try:
                 return os.listdir(location)
             except Exception as error:
-                print "List storage %s directory error: %s" % (location, error)
+                print("List storage %s directory error: %s" % (location, error))
 
     def exists(self, category, owner=None, name=None):
         location = self.locate(category, owner, name)
@@ -168,8 +171,8 @@ class FileManager(object):
             else:
                 raise
 
-    def write(self, category, owner, name, data=None, encoding=None, async=False, safely=False):
-        if async:
+    def write(self, category, owner, name, data=None, encoding=None, write_async=False, safely=False):
+        if write_async:
             with self._lock:
                 self._queue.append((category, owner, name, data, encoding, False, safely))
                 if self._daemon is None:
@@ -217,6 +220,10 @@ class FileManager(object):
                 with io.open(location, mode, encoding=encoding, newline=None if "b" in mode else "") as file:
                     if hasattr(data, "read"):
                         shutil.copyfileobj(data, file)
+                    elif "b" in mode:
+                        if isinstance(data, str):
+                            data = data.encode()
+                        file.write(data)
                     else:
                         file.write(data)
                 if safely:
@@ -229,7 +236,7 @@ class FileManager(object):
                 os.remove(location)
             except Exception as error:
                 if error.errno != errno.ENOENT:
-                    print "Delete %s file error: %s" % (location, error)
+                    print("Delete %s file error: %s" % (location, error))
 
     # directories
 
@@ -242,7 +249,7 @@ class FileManager(object):
             else:
                 os.makedirs(location)
         except Exception as error:
-            print "Prepare %s directory error: %s" % (location, error)
+            print("Prepare %s directory error: %s" % (location, error))
 
     def cleanup_directory(self, category, owner, remove=False):
         location = self.locate(category, owner)
@@ -252,7 +259,7 @@ class FileManager(object):
             elif os.path.exists(location):
                 raise Exception("Unable to cleanup non-directory: %s" % location)
         except Exception as error:
-            print "Cleanup %s directory error: %s" % (location, error)
+            print("Cleanup %s directory error: %s" % (location, error))
 
     def create_temporary_directory(self, prefix=""):
         return mkdtemp(TEMPORARY_DIRECTORY_SUFFIX, prefix, dir=settings.TEMPORARY_LOCATION)
@@ -270,21 +277,21 @@ class FileManager(object):
         try:
             os.makedirs(location)
         except Exception as error:
-            print "Create storage %s directory error: %s" % (location, error)
+            print("Create storage %s directory error: %s" % (location, error))
 
     def list_storage_directory(self, owner, folder_name):
         location = self.locate(file_access.STORAGE, owner, folder_name)
         try:
             return os.listdir(location)
         except Exception as error:
-            print "List storage %s directory error: %s" % (location, error)
+            print("List storage %s directory error: %s" % (location, error))
 
     def delete_storage_directory(self, owner, folder_name):
         location = self.locate(file_access.STORAGE, owner, folder_name)
         try:
             shutil.rmtree(location)
         except Exception as error:
-            print "Delete storage %s directory error: %s" % (location, error)
+            print("Delete storage %s directory error: %s" % (location, error))
 
     # libraries
 

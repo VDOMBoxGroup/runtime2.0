@@ -44,7 +44,7 @@ class null(subtype):
 	def __unicode__(self):
 		return u"null"
 
-	def __nonzero__(self):
+	def __bool__(self):
 		return False
 
 

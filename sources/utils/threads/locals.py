@@ -13,14 +13,14 @@ local = threading.local()
 def localcontext(**keywords):
     backup = {}
 
-    for name, value in keywords.iteritems():
+    for name, value in keywords.items():
         previous_value = getattr(local, name, MISSING)
         backup[name] = previous_value
         setattr(local, name, value)
 
     yield
 
-    for name, value in backup.iteritems():
+    for name, value in backup.items():
         if value is MISSING:
             delattr(local, name)
         else:

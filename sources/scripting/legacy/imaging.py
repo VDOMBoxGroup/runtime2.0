@@ -1,12 +1,17 @@
 """image processing module"""
+from __future__ import division
 
+
+
+from builtins import str
+from builtins import object
 import sys
-from cStringIO import StringIO
+from io import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImagePalette
 from utils.exception import VDOM_exception
 import managers
 
-class VDOM_imaging:
+class VDOM_imaging(object):
 	"""imaging class"""
 
 	def __init__(self):
@@ -23,9 +28,9 @@ class VDOM_imaging:
 		try:
 			resource = managers.resource_manager.get_resource(application_id,res_id)
 			if not resource:
-				raise VDOM_exception(_("Cannot load resource"))
+				raise VDOM_exception(("Cannot load resource"))
 		except:
-			debug("[Imagin]Error reading resource %s:%s\n" % (str(application_id), str(file))) #TODO: change to logger
+			debug("[Imagin]Error reading resource %s:%s\n" % (str(application_id), str(res_id))) #TODO: change to logger
 			return ""
 
 		formats = {"jpg": "JPEG", "jpeg": "JPEG", "gif": "GIF", "bmp": "BMP","png": "PNG"}
@@ -49,7 +54,7 @@ class VDOM_imaging:
 		try:
 			self.__font = ImageFont.truetype(VDOM_CONFIG["FONT-DIRECTORY"] + "/" + name + ".ttf", size,0, encoding="unic")
 			#self.__font = self.__font_factory.get_font(name, size, fontstyle = fontstyle, fontweight = fontweight)
-		except Exception, e:
+		except Exception as e:
 			self.__font = ImageFont.truetype(VDOM_CONFIG["FONT-DIRECTORY"] + "/arial.ttf", size,0, encoding="unic")			
 			debug("creating font error")
 			debug(str(e))			
@@ -79,7 +84,7 @@ class VDOM_imaging:
 				left = imgw - txtw
 		else:
 			left = (imgw - txtw) / 2
-		top = (imgh - txth) / 2
+		top = (imgh - txth) /  2
 		
 		draw = ImageDraw.Draw(self.__im)
 		try:
@@ -88,7 +93,7 @@ class VDOM_imaging:
 				right = left + txtw
 				y = top + txth * 8 / 9
 				draw.line([(left, y) , (right, y)], fill = color)			
-		except Exception, e: 
+		except Exception as e: 
 			debug("!!!!!!!!!!!!VDOM_imagin error:")
 			debug(str(e))
 		

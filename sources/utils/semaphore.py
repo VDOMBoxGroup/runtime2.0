@@ -1,4 +1,5 @@
 
+from builtins import object
 from threading import BoundedSemaphore
 
 

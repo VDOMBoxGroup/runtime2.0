@@ -1,5 +1,10 @@
 
-from collections import Mapping
+from builtins import next
+import sys
+if sys.version_info[0] < 3:
+    from collections import Mapping
+else:
+    from collections.abc import Mapping
 from ...generic import MemoryBase
 from .auxiliary import subtree, check_subtree
 
@@ -40,7 +45,7 @@ class MemoryObjectsDynamicCatalog(MemoryBase, Mapping):
 
     def __iter__(self):
         iterator = subtree(self._collection.owner)
-        iterator.next()
+        next(iterator)
         for subobject in iterator:
             yield subobject.id
 

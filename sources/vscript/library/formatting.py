@@ -1,4 +1,6 @@
 
+from builtins import str
+from builtins import range
 from itertools import chain
 from math import modf, copysign, fabs
 from .. import errors

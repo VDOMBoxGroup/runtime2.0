@@ -13,11 +13,12 @@ VERSION: 0.001<br>
 #from threading import RLock
 #from threading import Lock
 
+from builtins import object
 from threading import Semaphore
 
 from utils.exception import VDOM_exception
 
-class VDOM_mutex:
+class VDOM_mutex(object):
 	""" This class should be used to lock objects """
 
 	def __init__(self):
@@ -93,7 +94,7 @@ mutex_manager = VDOM_named_mutex_manager()
 del VDOM_named_mutex_manager
 
 
-class VDOM_named_mutex:
+class VDOM_named_mutex(object):
 	"""mutex with name"""
 
 	def __init__(self, name):

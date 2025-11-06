@@ -13,7 +13,7 @@ def _get_windows_console_size():
         bx, by, cx, cy, wa, x1, y1, x2, y2, mx, my = struct.unpack("hhhhHhhhhhh", chars.raw)
         width, height = x2 - x1 + 1, y2 - y1 + 1
     else:
-        width, height = sys.maxint, sys.maxint
+        width, height = sys.maxsize, sys.maxsize
     return width, height
 
 
@@ -53,7 +53,7 @@ def _get_linux_console_size():
     except:
         pass
 
-    return sys.maxint, sys.maxint
+    return sys.maxsize, sys.maxsize
 
 
 def get_console_size():
@@ -63,7 +63,7 @@ def get_console_size():
     elif platform.startswith("freebsd") or platform.startswith("linux"):
         return _get_linux_console_size()
     else:
-        return sys.maxint, sys.maxint
+        return sys.maxsize, sys.maxsize
 
 
 def get_ansii_color():

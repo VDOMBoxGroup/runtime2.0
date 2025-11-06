@@ -1,7 +1,7 @@
 
+from builtins import object
 import sys
 from threading import RLock
-
 
 # def register(name, manager_class):
 #     globals()[name] = manager_class()
@@ -46,8 +46,39 @@ class Managers(object):
                     instance = manager_class()
                     setattr(self, name, instance)
                     return instance
+                elif name == '__spec__':
+                    return None
                 else:
                     raise AttributeError(name)
 
 
 sys.modules[__name__] = Managers()
+
+# anounce globals for further linting
+if __name__ not in sys.modules:
+    from logs import VDOM_log_manager as log
+    from storage import VDOM_storage as storage
+    from file_access import VDOM_file_manager as file_access
+    from request import VDOM_request_manager as  request_manager
+    from resource import VDOM_resource_manager as resource_manager
+    from database import VDOM_database_manager as databse_manager
+    from scripting import VDOM_compiler as compiler, VDOM_dispatcher as dispatcher
+    from memory import VDOM_memory as memory
+    from engine import VDOM_engine as engine    
+    from server import VDOM_server as server
+    # from mailing import VDOM_email_manager
+    from session import VDOM_session_manager as session_manager
+    from module import VDOM_module_manager as module_manager
+    from soap import VDOM_soap_server as soap_server
+    from webdav_server import VDOM_webdav_manager as webdav_manager
+
+    #if not managers.has("server"): 
+    if sys.version_info[0] < 3:
+        import __builtin__ as builtins
+    else:
+        import builtins
+    from startup.debug import debug, DebugFile
+    builtins.debug = debug
+    builtins.debugfile = DebugFile()
+    builtins._ = lambda value: value
+    VDOM_CONFIG_1 = {}

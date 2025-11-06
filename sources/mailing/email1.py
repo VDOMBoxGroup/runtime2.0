@@ -3,17 +3,18 @@ from collections import namedtuple
 import copy
 from daemon import VDOM_mailer
 from message import Message
-from smtplib import SMTP, SMTPConnectError, SMTPHeloError, SMTPAuthenticationError, SMTPException,\
-     SMTPRecipientsRefused, SMTPSenderRefused, SMTPDataError, SSLFakeFile
+from smtplib import SMTP, SMTPConnectError, SMTPHeloError, SMTPAuthenticationError, SMTPException, \
+    SMTPRecipientsRefused, SMTPSenderRefused, SMTPDataError
 from socket import create_connection, error as socket_error
-from ssl import PROTOCOL_SSLv23, wrap_socket
+from ssl import PROTOCOL_SSLv23, SSLContext
 from storage.storage import VDOM_config
 from utils.semaphore import VDOM_semaphore
 
 
 from traceback import print_exc
 
-MailAttachment = namedtuple("MailAttachment", "data, filename, content_type, content_subtype")
+MailAttachment = namedtuple(
+    "MailAttachment", "data, filename, content_type, content_subtype")
 
 
 class VDOM_SMTP(SMTP):
@@ -35,17 +36,17 @@ class VDOM_SMTP(SMTP):
     def _get_socket(self, host, port, timeout):
         new_socket = create_connection((host, port), timeout)
         if self.use_ssl in (1, -1):
-            new_socket = wrap_socket(new_socket, ssl_version=PROTOCOL_SSLv23)
-            self.file = SSLFakeFile(new_socket)
+            new_socket = SSLContext.wrap_socket(new_socket, ssl_version=PROTOCOL_SSLv23)
+            self.file = new_socket(new_socket)
         return new_socket
 
     def connect(self, host='localhost', port=0):
         (code, msg) = SMTP.connect(self, host, port)
         if self.use_ssl == 2:
-            print ("starttls")
+            # print("starttls")
             (resp, reply) = self.starttls()
-            print ((resp, reply))
-        print ((code, msg))
+            # print((resp, reply))
+        # print((code, msg))
         return (code, msg)
 
 
@@ -110,7 +111,7 @@ class VDOM_email_manager(object):
             if isinstance(fr, Message):
                 m = fr
                 if '@' not in m.from_email or m.from_email != sender:
-                    m.from_email = "%s <%s>"%(m.from_email, sender)
+                    m.from_email = "%s <%s>" % (m.from_email, sender)
 
             else:
                 if '@' not in fr or fr != sender:
@@ -151,26 +152,30 @@ class VDOM_email_manager(object):
         try:
             self.__load_config()
             s = VDOM_SMTP(config=self.__config)
-            #connecting
+            # connecting
             s.connect(self.smtp_server, self.smtp_port)
             self.__error = ""
-            #authentification
+            # authentification
             if "" != self.smtp_user:
                 s.login(self.smtp_user, self.smtp_pass)
                 self.__error = ""
             s.quit()
             del s
         except (SMTPConnectError, SMTPHeloError, socket_error) as e:  # Connect error
-            debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
-            self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
-            managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (e, self.smtp_server, self.smtp_port), "email")
+            debug("SMTP connect error: %s:%d" %
+                  (self.smtp_server, self.smtp_port))
+            self.__error = "SMTP connect error: %s:%d" % (
+                self.smtp_server, self.smtp_port)
+            managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (
+                e, self.smtp_server, self.smtp_port), "email")
         except SMTPAuthenticationError as e:
-            #debug("Authentication error: %s" % str(e))
+            # debug("Authentication error: %s" % str(e))
             self.__error = "SMTP Authentication error: %s" % str(e)
-            managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")
-        except SMTPException, e:
+            managers.log_manager.error_server(
+                "SMTP authentication error: %s" % str(e), "email")
+        except SMTPException as e:
             self.__error = "General SMTP error: %s" % str(e)
-        except Exception, e:
+        except Exception as e:
             self.__error = "Unknown error: %s" % str(e)
         finally:
             self.__sem.unlock()
@@ -228,7 +233,7 @@ class VDOM_email_manager(object):
                 s = VDOM_SMTP(config=self.__config)
                 s.connect(self.smtp_server, self.smtp_port)
                 self.__error = ""
-                #authentification
+                # authentification
                 if "" != self.smtp_user:
                     s.login(str(self.smtp_user), str(self.smtp_pass))
                     self.__error = ""
@@ -243,8 +248,10 @@ class VDOM_email_manager(object):
                         s.sendmail(mes.from_email, mes.to_email, mes.as_mime())
                         self.__errors.pop(mes.id, 0)
                     except (SMTPRecipientsRefused, SMTPSenderRefused, SMTPDataError) as e:
-                        debug("SMTP send to %s error: %s" % (mes.to_email, str(e)))
-                        managers.log_manager.error_server("SMTP send to %s error: %s" % (mes.to_email, str(e)), "email")
+                        debug("SMTP send to %s error: %s" %
+                              (mes.to_email, str(e)))
+                        managers.log_manager.error_server(
+                            "SMTP send to %s error: %s" % (mes.to_email, str(e)), "email")
                         self.__errors[mes.id] = str(e)
                         # move this mail to the temp queue
                         if mes.ttl > 0:
@@ -258,21 +265,26 @@ class VDOM_email_manager(object):
                         self.__queue_tmp.append(mes)
                         raise
                 if len(self.__queue_tmp) > 0:
-                    self.__queue = self.__queue_tmp  # [item for item in self.__queue_tmp if item["attempt"]<50]
+                    # [item for item in self.__queue_tmp if item["attempt"]<50]
+                    self.__queue = self.__queue_tmp
                     del self.__queue_tmp
                     ts = 30
                 s.quit()
                 del s
 
             except (SMTPConnectError, SMTPHeloError, socket_error) as e:  # Connect errors
-                debug("SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port))
-                self.__error = "SMTP connect error: %s:%d" % (self.smtp_server, self.smtp_port)
-                managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (e, self.smtp_server, self.smtp_port), "email")
+                debug("SMTP connect error: %s:%d" %
+                      (self.smtp_server, self.smtp_port))
+                self.__error = "SMTP connect error: %s:%d" % (
+                    self.smtp_server, self.smtp_port)
+                managers.log_manager.error_server("SMTP connect error: %s on %s:%d" % (
+                    e, self.smtp_server, self.smtp_port), "email")
                 ts = 360
             except SMTPAuthenticationError as e:
-                #debug("Authentication error: %s" % str(e))
+                # debug("Authentication error: %s" % str(e))
                 self.__error = "SMTP Authentication error: %s" % str(e)
-                managers.log_manager.error_server("SMTP authentication error: %s" % str(e), "email")
+                managers.log_manager.error_server(
+                    "SMTP authentication error: %s" % str(e), "email")
                 ts = 360
 
             except SMTPException as e:
@@ -289,5 +301,5 @@ class VDOM_email_manager(object):
         else:
             ts = 10
         if self.__error:
-            print (self.__error)
+            print(self.__error)
         return ts
