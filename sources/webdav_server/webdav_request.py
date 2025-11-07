@@ -1,6 +1,5 @@
 
 
-from builtins import object
 import managers
 from http.cookies import BaseCookie
 from request.arguments import VDOM_request_arguments

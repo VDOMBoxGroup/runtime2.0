@@ -1,7 +1,4 @@
 
-from builtins import next
-from builtins import zip
-from builtins import range
 from copy import deepcopy
 from .. import errors
 from ..primitives import subtype

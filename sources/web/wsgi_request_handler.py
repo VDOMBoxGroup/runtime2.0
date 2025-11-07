@@ -1,29 +1,14 @@
-"""server request handler module"""
-
-
-
-from builtins import str
-from builtins import object
-
 import sys, os, posixpath, urllib.request, urllib.parse, urllib.error, shutil, mimetypes, _thread, re, socket, threading, time, SOAPpy, traceback, select
-
 if sys.platform.startswith("freebsd"):
     import vdomlib
-
-import http.server, http.server
+import http.server
 from io import StringIO
-import xml.sax.saxutils
-#import webdav_server
-#from wsgidav.wsgidav_app import WsgiDAVApp
 from wsgiref.util import guess_scheme
 
 import managers
 from request.request import VDOM_request
 from storage.storage import VDOM_config
-from version import *
-#import soap.SOAPBuilder
-#from soap.wsdl import methods as soap_methods
-from utils.exception import VDOM_exception
+from version import SERVER_NAME
 
 
 # A class to describe how header messages are handled
@@ -46,9 +31,9 @@ class HeaderHandler(object):
                                   "Required Header Misunderstood",
                                   "%s" % i)
 
+
 # for the soap handler
 _contexts = dict()
-#class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 class VDOM_wsgi_request_handler(object):
     """VDOM wsgi request handler"""
 
@@ -74,7 +59,7 @@ class VDOM_wsgi_request_handler(object):
             finally:
                 exc_info = None    # Avoid circular ref.
         status_code = int(status.split(' ')[0])
-        status_message = status[status.find(' ')+1:]
+        status_message = status[status.find(' ') + 1:]
         self.send_response(status_code, status_message)
         for header in response_headers:
             if header[0] != 'Date':

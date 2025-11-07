@@ -1,7 +1,5 @@
 
-#from builtins import str
-from builtins import object
-import os, socket
+#import os, socket
 
 from version import SERVER_NAME, SERVER_VERSION
 

@@ -2,7 +2,6 @@
 User Manager module
 """
 
-from builtins import object
 from hashlib import md5
 
 import managers

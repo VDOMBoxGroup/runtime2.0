@@ -1,7 +1,5 @@
 
 # import sys
-from builtins import range
-from builtins import object
 import os
 import shutil
 import re

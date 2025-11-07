@@ -1,6 +1,4 @@
 
-from builtins import next
-from builtins import zip
 import inspect
 from itertools import chain
 from ..exceptions import UnexpectedElementError, UnexpectedAttributeError, MissingAttributeError, UnexpectedAttributeValueError

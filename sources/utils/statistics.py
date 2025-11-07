@@ -1,5 +1,4 @@
 
-from builtins import object
 from operator import itemgetter
 from threading import RLock
 import settings

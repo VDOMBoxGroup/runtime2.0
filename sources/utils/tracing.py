@@ -1,9 +1,6 @@
 
 
 from builtins import map
-from builtins import next
-from builtins import zip
-from builtins import str
 
 import sys
 import gc

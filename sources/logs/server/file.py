@@ -1,7 +1,4 @@
 
-from builtins import zip
-from builtins import next
-from builtins import object
 import sys
 import os
 import os.path

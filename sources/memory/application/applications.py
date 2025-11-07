@@ -1,6 +1,4 @@
 
-from builtins import str
-from builtins import next
 from weakref import ref
 import sys
 if sys.version_info[0] < 3:

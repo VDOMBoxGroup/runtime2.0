@@ -1,5 +1,4 @@
 
-from builtins import zip
 from importlib import import_module
 import managers
 from .. import errors

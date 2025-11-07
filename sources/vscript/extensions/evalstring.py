@@ -1,6 +1,4 @@
 
-from builtins import next
-from builtins import str
 from types import MethodType
 from collections import defaultdict
 from threading import local

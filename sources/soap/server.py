@@ -128,7 +128,7 @@ class VDOM_web_services_server(object):
 #       debug("*****")
 #       debug(str(sid))
 #       debug("*****")
-        autolock = VDOM_named_mutex_auto(sid) # noqa
+        autolock = VDOM_named_mutex_auto(sid)  # noqa
 
         ret = True
 
@@ -221,7 +221,6 @@ class VDOM_web_services_server(object):
 # session methods =================================================================================
 
     def open_session(self, name, pwd_md5):
-
         """open session with the server"""
 
         self.__sem.lock()
@@ -478,7 +477,7 @@ class VDOM_web_services_server(object):
 
     def get_application_structure(self, sid, skey, appid):
         """get application structure"""
-        autolock = VDOM_named_mutex_auto(appid + "_structure") # noqa
+        autolock = VDOM_named_mutex_auto(appid + "_structure")  # noqa
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
@@ -513,7 +512,7 @@ class VDOM_web_services_server(object):
 
     def set_application_structure(self, sid, skey, appid, struct):
         """set application structure"""
-        autolock = VDOM_named_mutex_auto(appid + "_structure") # noqa
+        autolock = VDOM_named_mutex_auto(appid + "_structure")  # noqa
 
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
@@ -1625,7 +1624,7 @@ class VDOM_web_services_server(object):
                     for par in child.children:
                         if "parameter" == par.lname:
                             par_name = par.attributes["scriptname"]
-                            par_value = par.get_value_as_xml() # noqa
+                            par_value = par.get_value_as_xml()  # noqa
                             if not par_name:
                                 raise VDOM_exception_element("Parameter")
         except Exception as e:
@@ -2569,7 +2568,7 @@ class VDOM_web_services_server(object):
 
 # ----- ========================================================================================================
 
-    def modify_resource(self, sid, skey, appid, objid, resid, attrname, operation, attr): # noqa
+    def modify_resource(self, sid, skey, appid, objid, resid, attrname, operation, attr):  # noqa
         """modify resource"""
         raise NotImplementedError
 
@@ -2739,10 +2738,12 @@ class VDOM_web_services_server(object):
 
         vh = managers.server.web_server.http_server.virtual_hosting()
         if "" != vhname and vh.get_site(vhname):
-            raise SOAPpy.faultType(duplicate_vhname_error, _("Install application error"), _("Virtual host name exists"))
+            raise SOAPpy.faultType(duplicate_vhname_error, _(
+                "Install application error"), _("Virtual host name exists"))
 
         notifications = []
-        app = managers.memory.install_application(value=appxml, into=notifications)
+        app = managers.memory.install_application(
+            value=appxml, into=notifications)
         if settings.STORE_BYTECODE:
             for library in app.libraries.itervalues():
                 library.compile()
@@ -2769,7 +2770,8 @@ class VDOM_web_services_server(object):
             return self.__session_key_error()
 
         if appid not in managers.memory.applications.keys():
-            raise SOAPpy.faultType(app_id_error, "Application not found", _("<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
+            raise SOAPpy.faultType(app_id_error, "Application not found", _(
+                "<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
 
         app, error_message = self.__find_application(appid)
         vh = managers.server.web_server.http_server.virtual_hosting()

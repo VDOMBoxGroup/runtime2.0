@@ -1,6 +1,4 @@
 
-from builtins import str
-from builtins import object
 from weakref import ref
 from collections import OrderedDict
 import sys

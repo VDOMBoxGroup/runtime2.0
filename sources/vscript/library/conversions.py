@@ -1,6 +1,5 @@
 
 from builtins import chr
-from builtins import str
 from builtins import oct
 from builtins import hex
 from .. import errors

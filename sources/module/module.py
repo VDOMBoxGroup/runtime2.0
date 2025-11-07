@@ -1,6 +1,5 @@
 """base module"""
 
-from builtins import object
 class VDOM_module(object):
 	"""base module class"""
 

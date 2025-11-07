@@ -1,5 +1,4 @@
 
-from builtins import object
 import re
 import threading
 import os

@@ -1,6 +1,5 @@
 
 
-from builtins import object
 from itertools import chain
 from inspect import iscode, isroutine, ismodule
 from threading import Lock

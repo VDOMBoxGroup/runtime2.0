@@ -1,5 +1,4 @@
 
-from builtins import next
 from ..exceptions import UnexpectedElementError
 from ..auxiliary import subparser, lower
 

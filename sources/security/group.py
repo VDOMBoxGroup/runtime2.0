@@ -2,7 +2,6 @@
 Group class module
 """
 
-from builtins import object
 class VDOM_usergroup(object):
 	"""Group class defines behaviour of user group"""
 

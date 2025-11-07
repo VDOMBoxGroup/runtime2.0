@@ -1,5 +1,4 @@
 
-from builtins import str
 from hashlib import md5
 from time import time
 

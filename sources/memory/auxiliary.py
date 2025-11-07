@@ -1,8 +1,3 @@
-
-
-
-from builtins import next
-from builtins import range
 import ast
 import re
 from io import StringIO

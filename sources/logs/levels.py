@@ -1,5 +1,4 @@
 
-from builtins import zip
 DEBUG = 0
 MESSAGE = 1
 WARNING = 2

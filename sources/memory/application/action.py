@@ -1,5 +1,4 @@
 import codecs
-from builtins import str
 import settings
 import managers
 import file_access

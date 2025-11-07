@@ -1,5 +1,4 @@
 
-from builtins import str
 
 import types
 from json import JSONDecoder, JSONEncoder

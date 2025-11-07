@@ -1,5 +1,4 @@
 
-from builtins import object
 class Structure(object):
 
     def __init__(self, **keywords):

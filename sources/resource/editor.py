@@ -1,8 +1,6 @@
 
 
 
-from builtins import str
-from builtins import object
 from io import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImageEnhance
 

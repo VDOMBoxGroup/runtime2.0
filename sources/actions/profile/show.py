@@ -1,5 +1,4 @@
 
-from builtins import zip
 import pstats
 import re
 

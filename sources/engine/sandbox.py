@@ -1,5 +1,4 @@
 
-from builtins import object
 import sys
 import time
 from utils.exception import VDOM_exception

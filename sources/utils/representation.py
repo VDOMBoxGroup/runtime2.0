@@ -1,7 +1,5 @@
 
 
-from builtins import str
-from builtins import next
 
 REASONABLE_WIDTH = 7
 REASONABLE_OBJECT_WIDTH = 10

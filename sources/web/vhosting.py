@@ -2,7 +2,6 @@
 Virtual hosting class. Allows to map hostnames and application identifiers.
 """
 
-from builtins import object
 import managers
 
 class VDOM_vhosting(object):

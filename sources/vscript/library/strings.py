@@ -1,6 +1,5 @@
 import codecs
 
-from builtins import str
 from builtins import chr
 import re
 from .. import errors

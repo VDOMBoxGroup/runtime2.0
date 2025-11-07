@@ -1,6 +1,4 @@
 
-from builtins import next
-from builtins import zip
 from .. import errors
 from ..subtypes import array, dictionary, integer, string, ordereddictionary
 

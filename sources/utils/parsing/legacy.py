@@ -1,6 +1,4 @@
 
-from builtins import next
-from builtins import object
 from .exceptions import UnexpectedElementError, UnexpectedAttributeError
 from .auxiliary import lower
 from .subparsers import VALUE, CONTENTS

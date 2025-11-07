@@ -3,8 +3,6 @@ from __future__ import absolute_import
 # import string
 # import sys
 # import uuid
-from builtins import str
-from builtins import object
 import managers
 import file_access
 # from utils.exception import VDOM_exception

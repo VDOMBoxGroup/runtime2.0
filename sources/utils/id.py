@@ -1,7 +1,4 @@
 
-from builtins import str
-from builtins import range
-from builtins import object
 import string, random, math, time, os
 from hashlib import md5
 from uuid import uuid1

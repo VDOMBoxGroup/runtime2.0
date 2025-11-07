@@ -1,6 +1,4 @@
 
-from builtins import str
-from builtins import object
 class VDOMType(object):
 
     # attributes that initialized by the compiler at runtime

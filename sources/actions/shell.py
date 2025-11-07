@@ -1,5 +1,4 @@
-
-from builtins import input
+# from builtins import input
 import re
 from itertools import islice
 

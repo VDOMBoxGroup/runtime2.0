@@ -1,5 +1,4 @@
 
-from builtins import object
 from weakref import ref
 from threading import RLock
 

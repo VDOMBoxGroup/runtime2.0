@@ -1,5 +1,4 @@
 
-from builtins import str
 from ..subtypes import generic, string
 
 

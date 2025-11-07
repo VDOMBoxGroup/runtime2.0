@@ -1,5 +1,4 @@
 import codecs
-from builtins import str
 import sys
 
 import settings

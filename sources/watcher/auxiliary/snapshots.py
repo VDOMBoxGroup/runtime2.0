@@ -1,5 +1,4 @@
 
-from builtins import object
 import sys
 import gc
 import types

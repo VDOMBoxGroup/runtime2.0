@@ -1,9 +1,6 @@
 """web services utils"""
 
 from builtins import chr
-from builtins import str
-from builtins import range
-from builtins import object
 import random
 
 from utils.exception import *

@@ -1,5 +1,4 @@
 
-from builtins import str
 
 import settings
 import logs

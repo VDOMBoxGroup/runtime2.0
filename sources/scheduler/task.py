@@ -1,4 +1,3 @@
-from builtins import object
 import managers
 
 class VDOM_scheduler_task(object):

@@ -1,6 +1,4 @@
 
-from builtins import zip
-from builtins import str
 
 import sys, re, datetime
 from math import modf, fabs

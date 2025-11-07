@@ -2,9 +2,7 @@ from __future__ import absolute_import
 from __future__ import division
 
 from builtins import map
-from builtins import str
 
-from builtins import object
 from copy import copy, deepcopy
 from importlib import import_module
 from . import errors, lexemes, library, exceptions

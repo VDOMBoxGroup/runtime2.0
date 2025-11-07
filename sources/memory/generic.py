@@ -1,6 +1,4 @@
 
-from builtins import str
-from builtins import object
 from utils.properties import constant
 
 

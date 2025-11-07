@@ -1,7 +1,6 @@
 
 
 
-from builtins import object
 import re
 from builtins import compile as python_compile
 from logs import server_log

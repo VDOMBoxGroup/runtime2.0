@@ -1,5 +1,4 @@
 
-from builtins import str
 import sys
 from .. import errors
 from ..primitives import subtype

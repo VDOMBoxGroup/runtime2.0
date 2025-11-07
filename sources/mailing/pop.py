@@ -1,6 +1,3 @@
-from builtins import str
-from builtins import range
-from builtins import object
 from poplib import POP3, POP3_SSL, POP3_SSL_PORT
 from ssl import PROTOCOL_SSLv23, PROTOCOL_TLSv1, SSLContext
 import time

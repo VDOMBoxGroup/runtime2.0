@@ -1,7 +1,4 @@
-from builtins import zip
-from builtins import range
 
-from builtins import object
 from ..subtypes import array, boolean, date, double, empty, binary, integer, \
 	nothing, null, string, v_empty, dictionary, v_nothing, generic
 from ..primitives import primitive

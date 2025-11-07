@@ -1,6 +1,5 @@
 
-#from builtins import str
-import types
+#import types
 from weakref import proxy
 from xml.parsers.expat import ParserCreate, ExpatError
 from utils.properties import roproperty, rwproperty

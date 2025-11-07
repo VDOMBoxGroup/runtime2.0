@@ -6,7 +6,6 @@ from __future__ import absolute_import
 
 from builtins import map
 
-from builtins import object
 import json
 from hashlib import md5
 import urllib.parse

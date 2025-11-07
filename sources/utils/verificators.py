@@ -1,5 +1,4 @@
 
-from builtins import str
 import re
 from logs.levels import NAME_TO_LEVEL as LOG_LEVEL_MAPPING
 from .decorators import verificator

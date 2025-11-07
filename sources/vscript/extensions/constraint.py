@@ -1,6 +1,4 @@
 
-from builtins import next
-from builtins import str
 from collections import defaultdict
 from types import MethodType, FunctionType
 from .. import errors

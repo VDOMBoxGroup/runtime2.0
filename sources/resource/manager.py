@@ -1,6 +1,4 @@
 
-from builtins import str
-from builtins import object
 import copy
 import managers
 import file_access

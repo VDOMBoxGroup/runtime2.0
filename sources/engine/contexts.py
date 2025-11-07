@@ -1,5 +1,4 @@
 
-from builtins import object
 from utils.properties import roproperty
 
 

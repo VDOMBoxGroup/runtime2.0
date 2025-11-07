@@ -1,7 +1,5 @@
 from builtins import input
-from builtins import range
 
-from builtins import object
 import os
 from xml.dom.minidom import parse
 from xml.dom.minidom import parseString

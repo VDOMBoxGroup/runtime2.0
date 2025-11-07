@@ -1,5 +1,4 @@
 
-from builtins import str
 import managers
 from ... import errors
 from ...primitives import subtype

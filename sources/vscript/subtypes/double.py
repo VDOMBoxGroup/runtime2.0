@@ -1,5 +1,4 @@
 
-from builtins import str
 import sys
 from math import floor, fabs
 from .. import errors

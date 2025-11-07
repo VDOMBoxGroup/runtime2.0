@@ -1,5 +1,4 @@
 
-from builtins import str
 import weakref
 import socket
 from collections import deque

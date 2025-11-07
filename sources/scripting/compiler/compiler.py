@@ -1,7 +1,5 @@
 
-#from builtins import str
-from builtins import object
-import re
+#import re
 import settings
 import managers
 

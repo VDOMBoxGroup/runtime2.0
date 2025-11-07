@@ -1,5 +1,4 @@
 
-from builtins import str
 from .. import errors
 from ..subtypes import generic, string
 from ..variables import shadow

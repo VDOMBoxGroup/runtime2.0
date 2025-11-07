@@ -3,9 +3,7 @@ from __future__ import absolute_import
 
 
 
-#from builtins import str
-from builtins import object
-import sqlite3
+#import sqlite3
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

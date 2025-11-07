@@ -1,15 +1,8 @@
 """request module represents the request got by the VDOM server"""
-from __future__ import absolute_import
-
-
-from builtins import str
-from builtins import object
-
 import sys
 import tempfile
 import urllib.parse
 from io import BytesIO, StringIO
-# from io import StringIO as uStringIO
 
 from cgi import FieldStorage
 import json

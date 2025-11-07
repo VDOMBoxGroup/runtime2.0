@@ -1,5 +1,4 @@
 
-from builtins import str
 import managers
 from ... import errors
 from ...subtypes import boolean, generic, string, true, false, v_empty, v_mismatch

@@ -1,8 +1,5 @@
 
-from builtins import str
-from builtins import zip
 
-from builtins import object
 import types
 from . import errors
 from .subtypes import array, binary, boolean, date, double, empty, \

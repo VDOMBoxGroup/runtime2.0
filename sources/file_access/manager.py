@@ -1,5 +1,4 @@
 
-from builtins import object
 import io
 import os
 import errno

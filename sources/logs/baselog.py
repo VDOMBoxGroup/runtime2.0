@@ -1,5 +1,4 @@
 
-from builtins import object
 import logs
 from .viewer import LogViewer
 

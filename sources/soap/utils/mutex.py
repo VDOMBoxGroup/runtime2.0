@@ -13,7 +13,6 @@ VERSION: 0.001<br>
 #from threading import RLock
 #from threading import Lock
 
-from builtins import object
 from threading import Semaphore
 
 from utils.exception import VDOM_exception

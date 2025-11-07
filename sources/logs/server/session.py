@@ -1,7 +1,6 @@
 
 
 
-from builtins import range
 import socket
 from threading import Lock, enumerate as enumerate_threads
 from utils.threads import SmartDaemon

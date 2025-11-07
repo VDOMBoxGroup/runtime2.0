@@ -3,8 +3,6 @@ from __future__ import division
 
 
 
-from builtins import str
-from builtins import object
 import sys
 from io import StringIO
 from PIL import Image, ImageDraw, ImageFont, ImagePalette

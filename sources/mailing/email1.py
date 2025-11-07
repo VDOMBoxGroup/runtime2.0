@@ -1,17 +1,16 @@
-import managers
 from collections import namedtuple
 import copy
 from daemon import VDOM_mailer
+import managers
 from message import Message
 from smtplib import SMTP, SMTPConnectError, SMTPHeloError, SMTPAuthenticationError, SMTPException, \
     SMTPRecipientsRefused, SMTPSenderRefused, SMTPDataError
 from socket import create_connection, error as socket_error
 from ssl import PROTOCOL_SSLv23, SSLContext
 from storage.storage import VDOM_config
+from traceback import print_exc
 from utils.semaphore import VDOM_semaphore
 
-
-from traceback import print_exc
 
 MailAttachment = namedtuple(
     "MailAttachment", "data, filename, content_type, content_subtype")

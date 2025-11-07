@@ -1,5 +1,4 @@
 
-from builtins import str
 import gc
 import re
 import managers

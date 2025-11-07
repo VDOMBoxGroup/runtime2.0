@@ -1,5 +1,4 @@
 
-from builtins import str
 from builtins import map
 import os
 import re

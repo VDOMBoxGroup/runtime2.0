@@ -1,6 +1,5 @@
 
 from builtins import chr
-from builtins import str
 from . import errors
 
 

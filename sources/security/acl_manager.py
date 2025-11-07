@@ -1,5 +1,4 @@
 
-from builtins import object
 import managers, security
 from utils.exception import VDOM_exception
 

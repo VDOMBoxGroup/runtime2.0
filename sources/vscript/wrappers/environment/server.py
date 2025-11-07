@@ -1,6 +1,4 @@
 import codecs
-from builtins import str
-from builtins import object
 import re
 import managers
 import uuid

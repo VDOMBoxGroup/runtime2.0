@@ -1,4 +1,3 @@
-from builtins import object
 import sys
 
 from logs import log

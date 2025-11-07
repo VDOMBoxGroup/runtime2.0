@@ -1,5 +1,4 @@
 
-from builtins import str
 import types
 from . import errors
 from .subtypes import boolean, double, integer, null, string, v_null

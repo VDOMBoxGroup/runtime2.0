@@ -1,6 +1,5 @@
 from __future__ import division
 
-from builtins import str
 from .. import errors
 from ..lexemes import prefix
 from ..primitives import subtype

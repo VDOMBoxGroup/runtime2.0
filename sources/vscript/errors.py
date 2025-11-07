@@ -1,5 +1,4 @@
 
-from builtins import str
 python = Exception
 python_using_abstract = NotImplementedError
 python_avoid_using = RuntimeError

@@ -1,7 +1,5 @@
 import codecs
-from builtins import str
 
-from builtins import object
 import json
 
 from copy import copy

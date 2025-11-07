@@ -1,5 +1,4 @@
 
-from builtins import str
 import managers
 from utils.file_argument import File_argument
 from ... import errors

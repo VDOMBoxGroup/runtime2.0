@@ -1,5 +1,4 @@
 
-from builtins import object
 from unittest import TestCase
 from .engine import vexecute, vcompile
 from .variables import variant

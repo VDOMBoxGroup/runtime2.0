@@ -1,6 +1,5 @@
 from __future__ import division
 
-from builtins import str
 import sys
 from .. import errors
 from .primitive import primitive

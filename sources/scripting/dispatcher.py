@@ -1,7 +1,5 @@
 from __future__ import absolute_import
 
-from builtins import str
-from builtins import object
 from threading import RLock
 from logs import log
 

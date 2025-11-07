@@ -1,5 +1,4 @@
 
-from builtins import object
 
 import managers
 from utils.file_argument import File_argument, Attachment

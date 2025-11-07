@@ -1,5 +1,4 @@
 
-from builtins import str
 import types, random, re
 from . import errors
 from .primitives import subtype, variable

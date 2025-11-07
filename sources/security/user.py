@@ -1,7 +1,6 @@
 """
 User class module
 """
-from builtins import object
 from hashlib import md5
 
 class VDOM_user(object):

@@ -1,9 +1,5 @@
 """server request handler module"""
 
-
-from builtins import str
-from builtins import object
-
 import sys
 import io
 import shutil
