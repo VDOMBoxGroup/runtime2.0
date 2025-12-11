@@ -1,14 +1,7 @@
 """VDOM storage module"""
-from __future__ import absolute_import
 
-
-
-#import sqlite3
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import sqlite3
+import pickle
 import traceback
 
 from utils.semaphore import VDOM_semaphore
@@ -18,7 +11,7 @@ import settings
 from .daemon import VDOM_storage_writer
 
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
-#__update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
+# __update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
 _clear_sql = "DELETE FROM Resource_index"
 _create_sql = "CREATE TABLE IF NOT EXISTS Resource_index (res_id NOT NULL UNIQUE, app_id NOT NULL, filename NOT NULL, name NOT NULL, res_type,res_format)"
 _list_sql = "SELECT app_id, res_id, res_format, name FROM Resource_index"

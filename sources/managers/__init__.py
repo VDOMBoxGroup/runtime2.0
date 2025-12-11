@@ -71,11 +71,7 @@ if __name__ not in sys.modules:
     from soap import VDOM_soap_server as soap_server
     from webdav_server import VDOM_webdav_manager as webdav_manager
 
-    #if not managers.has("server"): 
-    if sys.version_info[0] < 3:
-        import __builtin__ as builtins
-    else:
-        import builtins
+    import builtins
     from startup.debug import debug, DebugFile
     builtins.debug = debug
     builtins.debugfile = DebugFile()

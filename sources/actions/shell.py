@@ -8,7 +8,7 @@ from utils.threads import intercept
 from utils.tracing import show_exception_trace
 
 
-ARGUMENTS_REGEX = re.compile("(\"(?:\\\\\"|[^\"\\\\])*\"|[^\"\s]+)")
+ARGUMENTS_REGEX = re.compile(r"(\"(?:\\\\\"|[^\"\\\\])*\"|[^\"\s]+)")
 
 
 def split(value):
