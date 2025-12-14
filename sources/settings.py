@@ -65,6 +65,10 @@ AUTOSAVE_APPLICATIONS = True  # periodically save application
 
 SESSION_LIFETIME = 1200  # life time for web sessions
 
+# cookies
+
+SAME_SITE_NONE = False
+
 # timeouts
 
 SCRIPT_TIMEOUT = 30.1  # default termination timeout for arbitrary actions
@@ -125,6 +129,7 @@ PROFILE_FILENAME_TEMPLATE = PROFILE_LOCATION + "/%s." + PROFILE_EXTENSION
 STORE_BYTECODE = False  # store executables bytecode on disk
 STORE_ACTIONS_BYTECODE = False  # store action bytecode on disk
 ANALYZE_SCRIPT_STRUCTURE = True  # analyze actions to collect dependencies
+HANDLE_NO_RESOURCE = False # call onerror handler for app resource missing
 
 # watcher
 

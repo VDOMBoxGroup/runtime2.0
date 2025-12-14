@@ -14,28 +14,28 @@
     <Container>1</Container>
     <Category>Additional</Category>
     <Dynamic>1</Dynamic>
-    <Version>1.82.8389</Version>
+    <Version>1.140.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, flexcontainer, dialog, dialog_2, container, tablecell, form, accordeon, smartfolderdata, sensetive</Containers>
+    <Containers>htmlcontainer, flexcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, smartfolderdata, sensetive</Containers>
     <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers/>
+    <Handlers>on_update, on_compile</Handlers>
     <RemoteMethods/>
     <WCAG/>
     <XMLScriptName/>
   </Information>
   <Attributes>
     <Attribute>
-      <Name>stateful</Name>
+      <Name>classname</Name>
       <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(201)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>TextField(500)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>hierarchy</Name>
@@ -50,76 +50,76 @@
       <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>visible</Name>
+      <Name>positioning</Name>
       <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue>static</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(203)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|relative)|(#Lang(403)|fixed)|(#Lang(404)|static))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>top</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DisplayName>#Lang(104)</DisplayName>
+      <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
+      <Help>#Lang(204)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>left</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue>50</DefaultValue>
+      <DisplayName>#Lang(105)</DisplayName>
+      <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(206)</Help>
+      <Help>#Lang(205)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>width</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue>400</DefaultValue>
+      <DisplayName>#Lang(106)</DisplayName>
+      <DefaultValue/>
       <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
+      <Help>#Lang(206)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>height</Name>
+      <DisplayName>#Lang(107)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(207)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(10)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>displaying</Name>
       <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue>250</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(208)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(4)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
+      <CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
       <Name>vdomclassid</Name>
@@ -148,14 +148,14 @@
     <Attribute>
       <Name>layout</Name>
       <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>1</DefaultValue>
+      <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(212)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1)|(#Lang(407)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1)|(#Lang(413)|2)|(#Lang(414)|))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[012]$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[012]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>draggable</Name>
@@ -164,7 +164,7 @@
       <Visible>1</Visible>
       <Help>#Lang(213)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(408)|0)|(#Lang(409)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -176,7 +176,7 @@
       <Visible>1</Visible>
       <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -200,7 +200,7 @@
       <Visible>1</Visible>
       <Help>#Lang(216)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(413)|1)|(#Lang(414)|2))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(419)|1)|(#Lang(421)|2))</CodeInterface>
       <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
       <RegularExpressionValidation>^[12]$</RegularExpressionValidation>
@@ -218,28 +218,28 @@
       <RegularExpressionValidation>.*</RegularExpressionValidation>
     </Attribute>
     <Attribute>
-      <Name>overflow</Name>
+      <Name>skindata</Name>
       <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>0</DefaultValue>
+      <DefaultValue>3</DefaultValue>
       <Visible>1</Visible>
       <Help>#Lang(218)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1)|(#Lang(417)|2)|(#Lang(418)|3))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
+      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1)|(#Lang(424)|2)|(#Lang(425)|3))</CodeInterface>
+      <Colorgroup>2</Colorgroup>
       <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
+      <RegularExpressionValidation/>
     </Attribute>
     <Attribute>
-      <Name>classname</Name>
+      <Name>overflow</Name>
       <DisplayName>#Lang(119)</DisplayName>
       <DefaultValue/>
       <Visible>1</Visible>
       <Help>#Lang(219)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
+      <CodeInterface>DropDown((#Lang(426)|0)|(#Lang(427)|1)|(#Lang(428)|2)|(#Lang(429)|3)|(#Lang(431)|))</CodeInterface>
       <Colorgroup>4</Colorgroup>
       <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
+      <RegularExpressionValidation>^[0123]*$</RegularExpressionValidation>
     </Attribute>
     <Attribute>
       <Name>loading</Name>
@@ -248,7 +248,7 @@
       <Visible>1</Visible>
       <Help>#Lang(221)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(419)|1)|(#Lang(421)|0))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(432)|1)|(#Lang(433)|0))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -284,7 +284,7 @@
       <Visible>0</Visible>
       <Help>#Lang(224)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(434)|0)|(#Lang(435)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
@@ -320,10 +320,142 @@
       <Visible>1</Visible>
       <Help>#Lang(227)</Help>
       <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(424)|0)|(#Lang(425)|1))</CodeInterface>
+      <CodeInterface>DropDown((#Lang(436)|0)|(#Lang(437)|1))</CodeInterface>
       <Colorgroup>3</Colorgroup>
       <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
       <RegularExpressionValidation>[01]</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>style</Name>
+      <DisplayName>#Lang(128)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(228)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>MultiLine(10000)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>skin</Name>
+      <DisplayName>#Lang(129)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(229)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(438)|0)|(#Lang(439)|1)|(#Lang(441)|2))</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>margins</Name>
+      <DisplayName>#Lang(131)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(231)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>paddings</Name>
+      <DisplayName>#Lang(132)</DisplayName>
+      <DefaultValue/>
+      <Visible>1</Visible>
+      <Help>#Lang(232)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(32)</CodeInterface>
+      <Colorgroup>4</Colorgroup>
+      <ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>ide_top</Name>
+      <DisplayName>#Lang(133)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(233)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_left</Name>
+      <DisplayName>#Lang(134)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(234)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_width</Name>
+      <DisplayName>#Lang(135)</DisplayName>
+      <DefaultValue>400</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(235)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(335)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>ide_height</Name>
+      <DisplayName>#Lang(136)</DisplayName>
+      <DefaultValue>250</DefaultValue>
+      <Visible>0</Visible>
+      <Help>#Lang(236)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(8)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(336)</ErrorValidationMessage>
+      <RegularExpressionValidation/>
+    </Attribute>
+    <Attribute>
+      <Name>zindex</Name>
+      <DisplayName>#Lang(137)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(237)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>TextField(2)</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(337)</ErrorValidationMessage>
+      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>visible</Name>
+      <DisplayName>#Lang(138)</DisplayName>
+      <DefaultValue>1</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(238)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(442)|0)|(#Lang(443)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(338)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+    </Attribute>
+    <Attribute>
+      <Name>stateful</Name>
+      <DisplayName>#Lang(139)</DisplayName>
+      <DefaultValue>0</DefaultValue>
+      <Visible>1</Visible>
+      <Help>#Lang(239)</Help>
+      <InterfaceType>0</InterfaceType>
+      <CodeInterface>DropDown((#Lang(444)|0)|(#Lang(445)|1))</CodeInterface>
+      <Colorgroup>1</Colorgroup>
+      <ErrorValidationMessage>#Lang(339)</ErrorValidationMessage>
+      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
   <Languages>
@@ -336,14 +468,14 @@ Before using the Object view type, create a new VDOM package top-level container
   "2": "{'city': 'Sofia', 'zip': '1000', 'phone': '943 31 54'}" 
 }</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="103">Position</Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108">Display</Sentence>
       <Sentence ID="109">VDOM class</Sentence>
       <Sentence ID="111">Data</Sentence>
       <Sentence ID="112">Layout</Sentence>
@@ -352,8 +484,8 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="115">Bindings</Sentence>
       <Sentence ID="116">Lifetime</Sentence>
       <Sentence ID="117">Hierarchy</Sentence>
-      <Sentence ID="118">Overflow</Sentence>
-      <Sentence ID="119">CSS Class</Sentence>
+      <Sentence ID="118">Skin Data</Sentence>
+      <Sentence ID="119">Overflow</Sentence>
       <Sentence ID="121">Loading</Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
@@ -361,14 +493,25 @@ Before using the Object view type, create a new VDOM package top-level container
       <Sentence ID="125">Items count</Sentence>
       <Sentence ID="126">Items count</Sentence>
       <Sentence ID="127">Dynamic render</Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="128">Style</Sentence>
+      <Sentence ID="129">Skin</Sentence>
+      <Sentence ID="131">Margins</Sentence>
+      <Sentence ID="132">Paddings</Sentence>
+      <Sentence ID="133">IDE_top</Sentence>
+      <Sentence ID="134">IDE_left</Sentence>
+      <Sentence ID="135">IDE_width</Sentence>
+      <Sentence ID="136">IDE_height</Sentence>
+      <Sentence ID="137">Z-Index</Sentence>
+      <Sentence ID="138">Visibility</Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="201">The name of the CSS class.</Sentence>
       <Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="203">Visibility of the object.</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels.</Sentence>
-      <Sentence ID="207">Width of the object in pixels.</Sentence>
-      <Sentence ID="208">Height of the object in pixels.</Sentence>
+      <Sentence ID="203">newAttribute30</Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels.</Sentence>
+      <Sentence ID="206">Width of the object in pixels.</Sentence>
+      <Sentence ID="207">Height of the object in pixels.</Sentence>
+      <Sentence ID="208">newAttribute29</Sentence>
       <Sentence ID="209">The link to VDOMClass object, which is used as a template for items.</Sentence>
       <Sentence ID="211">The description of objects list in JSON format inside the Object View object.</Sentence>
       <Sentence ID="212">The way of items disposition inside the object:
@@ -380,12 +523,12 @@ vertical wide - the  items are disposed vertically, their width is stretched to 
       <Sentence ID="215">Bindings</Sentence>
       <Sentence ID="216">Lifetime</Sentence>
       <Sentence ID="217"></Sentence>
-      <Sentence ID="218">The overflow control mode:
+      <Sentence ID="218">newAttribute35</Sentence>
+      <Sentence ID="219">The overflow control mode:
 Auto - if the content fits in the object' borders - scrolling will not be shown; if not - the scrolling will be shown;
 Hidden - if the content does not fit in the object' borders - it will be cropped within the borders;
 Scroll - the horizontal and vertical scrolling will always be shown, no matter if the content fits or not;
 Visible - the whole content will always be shown without reference to the object's borders.</Sentence>
-      <Sentence ID="219">The name of the CSS class.</Sentence>
       <Sentence ID="221">Show progress control over the item after left-click or double-click on it.</Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
@@ -393,14 +536,25 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="226">Number of items to load for each request in infinite scroll mode</Sentence>
       <Sentence ID="227">as a replacement for dynamicloading. now dynamicloading is not use.</Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="228">newAttribute26</Sentence>
+      <Sentence ID="229">newAttribute25</Sentence>
+      <Sentence ID="231">newAttribute28</Sentence>
+      <Sentence ID="232">newAttribute27</Sentence>
+      <Sentence ID="233">newAttribute31</Sentence>
+      <Sentence ID="234">newAttribute32</Sentence>
+      <Sentence ID="235">newAttribute33</Sentence>
+      <Sentence ID="236">newAttribute34</Sentence>
+      <Sentence ID="237">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+      <Sentence ID="238">Visibility of the object.</Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="301">Incorrect value.</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
-      <Sentence ID="303">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="303">newAttribute30</Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+      <Sentence ID="308">newAttribute29</Sentence>
       <Sentence ID="309">Incorrect value.</Sentence>
       <Sentence ID="311">Incorrect, must be in JSON format.</Sentence>
       <Sentence ID="312">Incorrect value, must be either 0, 1 or 2.</Sentence>
@@ -409,8 +563,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Invalid value</Sentence>
       <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317">Hierarchy of the object</Sentence>
-      <Sentence ID="318">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
-      <Sentence ID="319">Incorrect value.</Sentence>
+      <Sentence ID="318">newAttribute35</Sentence>
+      <Sentence ID="319">Incorrect value, must be 0, 1, 2 or 3.</Sentence>
       <Sentence ID="321">Incorrect value.</Sentence>
       <Sentence ID="322"></Sentence>
       <Sentence ID="323"></Sentence>
@@ -418,29 +572,58 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325">Incorrect value</Sentence>
       <Sentence ID="326">Incorrect value</Sentence>
       <Sentence ID="327">Invalid value</Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">Vertical</Sentence>
-      <Sentence ID="406">Horizontal</Sentence>
-      <Sentence ID="407">Vertical wide</Sentence>
-      <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411">No</Sentence>
-      <Sentence ID="412">Yes</Sentence>
-      <Sentence ID="413">Request</Sentence>
-      <Sentence ID="414">Session</Sentence>
-      <Sentence ID="415">Auto</Sentence>
-      <Sentence ID="416">Hidden</Sentence>
-      <Sentence ID="417">Scroll</Sentence>
-      <Sentence ID="418">Visible</Sentence>
-      <Sentence ID="419">Yes</Sentence>
-      <Sentence ID="421">No</Sentence>
-      <Sentence ID="422">No</Sentence>
-      <Sentence ID="423">Yes</Sentence>
-      <Sentence ID="424">No</Sentence>
-      <Sentence ID="425">Yes</Sentence>
+      <Sentence ID="328">newAttribute26</Sentence>
+      <Sentence ID="329">newAttribute25</Sentence>
+      <Sentence ID="331">Incorrect value.</Sentence>
+      <Sentence ID="332">Incorrect value.</Sentence>
+      <Sentence ID="333">newAttribute31</Sentence>
+      <Sentence ID="334">newAttribute32</Sentence>
+      <Sentence ID="335">newAttribute33</Sentence>
+      <Sentence ID="336">newAttribute34</Sentence>
+      <Sentence ID="337">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
+      <Sentence ID="338">Incorrect value, must be either 0 or 1.</Sentence>
+      <Sentence ID="339"></Sentence>
+      <Sentence ID="401">Absolute</Sentence>
+      <Sentence ID="402">Relative</Sentence>
+      <Sentence ID="403">Fixed</Sentence>
+      <Sentence ID="404">Static</Sentence>
+      <Sentence ID="405">Block</Sentence>
+      <Sentence ID="406">Inline</Sentence>
+      <Sentence ID="407">Flex</Sentence>
+      <Sentence ID="408">Inline-block</Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Vertical</Sentence>
+      <Sentence ID="412">Horizontal</Sentence>
+      <Sentence ID="413">Vertical wide</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">No</Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417">No</Sentence>
+      <Sentence ID="418">Yes</Sentence>
+      <Sentence ID="419">Request</Sentence>
+      <Sentence ID="421">Session</Sentence>
+      <Sentence ID="422">User data</Sentence>
+      <Sentence ID="423">List</Sentence>
+      <Sentence ID="424">Dictionary</Sentence>
+      <Sentence ID="425"></Sentence>
+      <Sentence ID="426">Auto</Sentence>
+      <Sentence ID="427">Hidden</Sentence>
+      <Sentence ID="428">Scroll</Sentence>
+      <Sentence ID="429">Visible</Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432">Yes</Sentence>
+      <Sentence ID="433">No</Sentence>
+      <Sentence ID="434">No</Sentence>
+      <Sentence ID="435">Yes</Sentence>
+      <Sentence ID="436">No</Sentence>
+      <Sentence ID="437">Yes</Sentence>
+      <Sentence ID="438">User defined</Sentence>
+      <Sentence ID="439">Empty</Sentence>
+      <Sentence ID="441">Default</Sentence>
+      <Sentence ID="442">Invisible</Sentence>
+      <Sentence ID="443">Visible</Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Load the items of the object on scrolling to them.</Sentence>
@@ -468,6 +651,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="530">Add new CSS class</Sentence>
+      <Sentence ID="531">Remove CSS class</Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">Show</Sentence>
@@ -485,6 +670,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="616">Show</Sentence>
       <Sentence ID="617">unselectAll</Sentence>
       <Sentence ID="618">unselectItems</Sentence>
+      <Sentence ID="619">addClass</Sentence>
+      <Sentence ID="620">removeClass</Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
       <Sentence ID="703">Fade</Sentence>
@@ -502,6 +689,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="716">Fade</Sentence>
       <Sentence ID="717">Fade</Sentence>
       <Sentence ID="718">idlist</Sentence>
+      <Sentence ID="719">Name of CSS class</Sentence>
+      <Sentence ID="720">Name of CSS class</Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Time of appearance</Sentence>
       <Sentence ID="803">Time of appearance</Sentence>
@@ -519,6 +708,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="816">Time of appearance</Sentence>
       <Sentence ID="817">Time of appearance</Sentence>
       <Sentence ID="818">list of items</Sentence>
+      <Sentence ID="819">className</Sentence>
+      <Sentence ID="820">className</Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -535,14 +726,14 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="001">Object View</Sentence>
       <Sentence ID="002">Multiplicated container for objects</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">CSS Class</Sentence>
       <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Visibility</Sentence>
-      <Sentence ID="104">Z-Index</Sentence>
-      <Sentence ID="105">Top</Sentence>
-      <Sentence ID="106">Left</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Height</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Top</Sentence>
+      <Sentence ID="105">Left</Sentence>
+      <Sentence ID="106">Width</Sentence>
+      <Sentence ID="107">Height</Sentence>
+      <Sentence ID="108"></Sentence>
       <Sentence ID="109">VDOMClass</Sentence>
       <Sentence ID="111">Data</Sentence>
       <Sentence ID="112">Layout</Sentence>
@@ -551,8 +742,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="115">Bindings</Sentence>
       <Sentence ID="116">Lifetime</Sentence>
       <Sentence ID="117">Hierarchy</Sentence>
-      <Sentence ID="118">Overflow</Sentence>
-      <Sentence ID="119">CSS Class</Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119">Overflow</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
@@ -560,14 +751,25 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135"></Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137">Z-Index</Sentence>
+      <Sentence ID="138">Visibility</Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="201">Names of CSS classes</Sentence>
       <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">Visibility of the object</Sentence>
-      <Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="207">Width of the object in pixels</Sentence>
-      <Sentence ID="208">Height of the object in pixels</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+      <Sentence ID="206">Width of the object in pixels</Sentence>
+      <Sentence ID="207">Height of the object in pixels</Sentence>
+      <Sentence ID="208"></Sentence>
       <Sentence ID="209">Incorrect value</Sentence>
       <Sentence ID="211">Description of objects list</Sentence>
       <Sentence ID="212">Items layout</Sentence>
@@ -576,8 +778,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="215">Bindings</Sentence>
       <Sentence ID="216">Lifetime</Sentence>
       <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Overflow control mode</Sentence>
-      <Sentence ID="219">Names of CSS classes</Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219">Overflow control mode</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
@@ -585,14 +787,25 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235"></Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237">Position in visual hierarchy of objects</Sentence>
+      <Sentence ID="238">Visibility of the object</Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="301">Incorrect value</Sentence>
       <Sentence ID="302">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="303">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="303"></Sentence>
       <Sentence ID="304">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="305">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="306">Incorrect value, must be positive integer</Sentence>
       <Sentence ID="307">Incorrect value, must be positive integer</Sentence>
-      <Sentence ID="308">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="308"></Sentence>
       <Sentence ID="309">List of containers with item pattern</Sentence>
       <Sentence ID="311">Incorrect, must be JSON</Sentence>
       <Sentence ID="312">Incorrect, must be 0, 1 or 2</Sentence>
@@ -601,7 +814,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Invalid value</Sentence>
       <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317">Hierarchy of the object</Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="319">Incorrect value</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
@@ -610,29 +823,58 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337">Incorrect value, must be positive integer</Sentence>
+      <Sentence ID="338">Incorrect value, must be 0 or 1</Sentence>
+      <Sentence ID="339"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Invisible</Sentence>
-      <Sentence ID="404">Visible</Sentence>
-      <Sentence ID="405">Vertical</Sentence>
-      <Sentence ID="406">Horizontal</Sentence>
-      <Sentence ID="407">Vertical wide</Sentence>
-      <Sentence ID="408">No</Sentence>
-      <Sentence ID="409">Yes</Sentence>
-      <Sentence ID="411"></Sentence>
-      <Sentence ID="412"></Sentence>
-      <Sentence ID="413">Request</Sentence>
-      <Sentence ID="414">Session</Sentence>
-      <Sentence ID="415">Auto</Sentence>
-      <Sentence ID="416">Hidden</Sentence>
-      <Sentence ID="417">Scroll</Sentence>
-      <Sentence ID="418">Visible</Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Vertical</Sentence>
+      <Sentence ID="412">Horizontal</Sentence>
+      <Sentence ID="413">Vertical wide</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">No</Sentence>
+      <Sentence ID="416">Yes</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419">Request</Sentence>
+      <Sentence ID="421">Session</Sentence>
       <Sentence ID="422"></Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
+      <Sentence ID="426">Auto</Sentence>
+      <Sentence ID="427">Hidden</Sentence>
+      <Sentence ID="428">Scroll</Sentence>
+      <Sentence ID="429">Visible</Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442">Invisible</Sentence>
+      <Sentence ID="443">Visible</Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
       <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Show the items of the object</Sentence>
       <Sentence ID="503">Show the items of the object</Sentence>
@@ -660,6 +902,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="530"></Sentence>
+      <Sentence ID="531"></Sentence>
       <Sentence ID="601">Hide</Sentence>
       <Sentence ID="602">Show</Sentence>
       <Sentence ID="603">Show</Sentence>
@@ -677,6 +921,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="616">Show</Sentence>
       <Sentence ID="617">Show</Sentence>
       <Sentence ID="618">Show</Sentence>
+      <Sentence ID="619"></Sentence>
+      <Sentence ID="620"></Sentence>
       <Sentence ID="701">Fade</Sentence>
       <Sentence ID="702">Fade</Sentence>
       <Sentence ID="703">Fade</Sentence>
@@ -694,6 +940,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="716">Fade</Sentence>
       <Sentence ID="717">Fade</Sentence>
       <Sentence ID="718">Fade</Sentence>
+      <Sentence ID="719"></Sentence>
+      <Sentence ID="720"></Sentence>
       <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
       <Sentence ID="802">Time of appearance</Sentence>
       <Sentence ID="803">Time of appearance</Sentence>
@@ -711,6 +959,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="816">Time of appearance</Sentence>
       <Sentence ID="817">Time of appearance</Sentence>
       <Sentence ID="818">Time of appearance</Sentence>
+      <Sentence ID="819"></Sentence>
+      <Sentence ID="820"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -727,14 +977,14 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="001">Объектное представление</Sentence>
       <Sentence ID="002">Используется для объектного представления элементов</Sentence>
       <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
+      <Sentence ID="101">Класс CSS</Sentence>
       <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103">Отображение</Sentence>
-      <Sentence ID="104">Позиция</Sentence>
-      <Sentence ID="105">Сверху</Sentence>
-      <Sentence ID="106">Слева</Sentence>
-      <Sentence ID="107">Ширина</Sentence>
-      <Sentence ID="108">Высота</Sentence>
+      <Sentence ID="103"></Sentence>
+      <Sentence ID="104">Сверху</Sentence>
+      <Sentence ID="105">Слева</Sentence>
+      <Sentence ID="106">Ширина</Sentence>
+      <Sentence ID="107">Высота</Sentence>
+      <Sentence ID="108"></Sentence>
       <Sentence ID="109">VDOMClass</Sentence>
       <Sentence ID="111">Данные</Sentence>
       <Sentence ID="112">Расположение</Sentence>
@@ -743,8 +993,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="115">Bindings</Sentence>
       <Sentence ID="116">Lifetime</Sentence>
       <Sentence ID="117">Иерархия</Sentence>
-      <Sentence ID="118">Переполнение</Sentence>
-      <Sentence ID="119">Класс CSS</Sentence>
+      <Sentence ID="118"></Sentence>
+      <Sentence ID="119">Переполнение</Sentence>
       <Sentence ID="121"></Sentence>
       <Sentence ID="122"></Sentence>
       <Sentence ID="123"></Sentence>
@@ -752,14 +1002,25 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="125"></Sentence>
       <Sentence ID="126"></Sentence>
       <Sentence ID="127"></Sentence>
-      <Sentence ID="201"></Sentence>
+      <Sentence ID="128"></Sentence>
+      <Sentence ID="129"></Sentence>
+      <Sentence ID="131"></Sentence>
+      <Sentence ID="132"></Sentence>
+      <Sentence ID="133"></Sentence>
+      <Sentence ID="134"></Sentence>
+      <Sentence ID="135"></Sentence>
+      <Sentence ID="136"></Sentence>
+      <Sentence ID="137">Позиция</Sentence>
+      <Sentence ID="138">Отображение</Sentence>
+      <Sentence ID="139"></Sentence>
+      <Sentence ID="201">Имена классов CSS</Sentence>
       <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="203">Отображение объекта</Sentence>
-      <Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="207">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="208">Высота объекта в пикселях</Sentence>
+      <Sentence ID="203"></Sentence>
+      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
+      <Sentence ID="207">Высота объекта в пикселях</Sentence>
+      <Sentence ID="208"></Sentence>
       <Sentence ID="209">Неправильное значение</Sentence>
       <Sentence ID="211">Описание списка объектов</Sentence>
       <Sentence ID="212">Расположение элементов</Sentence>
@@ -768,8 +1029,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="215">Bindings</Sentence>
       <Sentence ID="216">Lifetime</Sentence>
       <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Режим переполнения</Sentence>
-      <Sentence ID="219">Имена классов CSS</Sentence>
+      <Sentence ID="218"></Sentence>
+      <Sentence ID="219">Режим переполнения</Sentence>
       <Sentence ID="221"></Sentence>
       <Sentence ID="222"></Sentence>
       <Sentence ID="223"></Sentence>
@@ -777,14 +1038,25 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="225"></Sentence>
       <Sentence ID="226"></Sentence>
       <Sentence ID="227"></Sentence>
-      <Sentence ID="301"></Sentence>
+      <Sentence ID="228"></Sentence>
+      <Sentence ID="229"></Sentence>
+      <Sentence ID="231"></Sentence>
+      <Sentence ID="232"></Sentence>
+      <Sentence ID="233"></Sentence>
+      <Sentence ID="234"></Sentence>
+      <Sentence ID="235"></Sentence>
+      <Sentence ID="236"></Sentence>
+      <Sentence ID="237">Положение в визуальной иерархии объектов</Sentence>
+      <Sentence ID="238">Отображение объекта</Sentence>
+      <Sentence ID="239"></Sentence>
+      <Sentence ID="301">Неправильное значение</Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="303"></Sentence>
       <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="308"></Sentence>
       <Sentence ID="309">Список контейнеров с шаблонами элементов</Sentence>
       <Sentence ID="311">Неправильное значение, должно быть в формате JSON</Sentence>
       <Sentence ID="312">Неправильное значение, дожен быть указан 0, 1 или 2</Sentence>
@@ -793,7 +1065,7 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="315">Invalid value</Sentence>
       <Sentence ID="316">Incorrect value</Sentence>
       <Sentence ID="317">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
+      <Sentence ID="318"></Sentence>
       <Sentence ID="319">Неправильное значение</Sentence>
       <Sentence ID="321"></Sentence>
       <Sentence ID="322"></Sentence>
@@ -802,29 +1074,58 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="325"></Sentence>
       <Sentence ID="326"></Sentence>
       <Sentence ID="327"></Sentence>
+      <Sentence ID="328"></Sentence>
+      <Sentence ID="329"></Sentence>
+      <Sentence ID="331"></Sentence>
+      <Sentence ID="332"></Sentence>
+      <Sentence ID="333"></Sentence>
+      <Sentence ID="334"></Sentence>
+      <Sentence ID="335"></Sentence>
+      <Sentence ID="336"></Sentence>
+      <Sentence ID="337">Неправильное значение, должно быть указано целое положительное число</Sentence>
+      <Sentence ID="338">Неправильное значение, должен быть указан 0 или 1</Sentence>
+      <Sentence ID="339"></Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
-      <Sentence ID="403">Не отображать</Sentence>
-      <Sentence ID="404">Отображать</Sentence>
-      <Sentence ID="405">Вертикальный</Sentence>
-      <Sentence ID="406">Горизонтальный</Sentence>
-      <Sentence ID="407">Ширина по вертикали</Sentence>
-      <Sentence ID="408">Нет</Sentence>
-      <Sentence ID="409">Да</Sentence>
-      <Sentence ID="411"></Sentence>
-      <Sentence ID="412"></Sentence>
-      <Sentence ID="413">Request</Sentence>
-      <Sentence ID="414">Session</Sentence>
-      <Sentence ID="415">Авто</Sentence>
-      <Sentence ID="416">Скрытый</Sentence>
-      <Sentence ID="417">Прокрутка</Sentence>
-      <Sentence ID="418">Отображать</Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421"></Sentence>
+      <Sentence ID="403"></Sentence>
+      <Sentence ID="404"></Sentence>
+      <Sentence ID="405"></Sentence>
+      <Sentence ID="406"></Sentence>
+      <Sentence ID="407"></Sentence>
+      <Sentence ID="408"></Sentence>
+      <Sentence ID="409"></Sentence>
+      <Sentence ID="411">Вертикальный</Sentence>
+      <Sentence ID="412">Горизонтальный</Sentence>
+      <Sentence ID="413">Ширина по вертикали</Sentence>
+      <Sentence ID="414"></Sentence>
+      <Sentence ID="415">Нет</Sentence>
+      <Sentence ID="416">Да</Sentence>
+      <Sentence ID="417"></Sentence>
+      <Sentence ID="418"></Sentence>
+      <Sentence ID="419">Request</Sentence>
+      <Sentence ID="421">Session</Sentence>
       <Sentence ID="422"></Sentence>
       <Sentence ID="423"></Sentence>
       <Sentence ID="424"></Sentence>
       <Sentence ID="425"></Sentence>
+      <Sentence ID="426">Авто</Sentence>
+      <Sentence ID="427">Скрытый</Sentence>
+      <Sentence ID="428">Прокрутка</Sentence>
+      <Sentence ID="429">Отображать</Sentence>
+      <Sentence ID="431"></Sentence>
+      <Sentence ID="432"></Sentence>
+      <Sentence ID="433"></Sentence>
+      <Sentence ID="434"></Sentence>
+      <Sentence ID="435"></Sentence>
+      <Sentence ID="436"></Sentence>
+      <Sentence ID="437"></Sentence>
+      <Sentence ID="438"></Sentence>
+      <Sentence ID="439"></Sentence>
+      <Sentence ID="441"></Sentence>
+      <Sentence ID="442">Не отображать</Sentence>
+      <Sentence ID="443">Отображать</Sentence>
+      <Sentence ID="444"></Sentence>
+      <Sentence ID="445"></Sentence>
       <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Показать элементы объекта</Sentence>
       <Sentence ID="503">Показать элементы объекта</Sentence>
@@ -852,6 +1153,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="527"></Sentence>
       <Sentence ID="528"></Sentence>
       <Sentence ID="529"></Sentence>
+      <Sentence ID="530"></Sentence>
+      <Sentence ID="531"></Sentence>
       <Sentence ID="601">Скрыть</Sentence>
       <Sentence ID="602">Показать</Sentence>
       <Sentence ID="603">Показать</Sentence>
@@ -869,6 +1172,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="616">Показать</Sentence>
       <Sentence ID="617">Показать</Sentence>
       <Sentence ID="618">Показать</Sentence>
+      <Sentence ID="619"></Sentence>
+      <Sentence ID="620"></Sentence>
       <Sentence ID="701">Исчезновение</Sentence>
       <Sentence ID="702">Исчезновение</Sentence>
       <Sentence ID="703">Исчезновение</Sentence>
@@ -886,6 +1191,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="716">Исчезновение</Sentence>
       <Sentence ID="717">Исчезновение</Sentence>
       <Sentence ID="718">Исчезновение</Sentence>
+      <Sentence ID="719"></Sentence>
+      <Sentence ID="720"></Sentence>
       <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
       <Sentence ID="802">Время появления</Sentence>
       <Sentence ID="803">Время появления</Sentence>
@@ -903,6 +1210,8 @@ Visible - the whole content will always be shown without reference to the object
       <Sentence ID="816">Время появления</Sentence>
       <Sentence ID="817">Время появления</Sentence>
       <Sentence ID="818">Время появления</Sentence>
+      <Sentence ID="819"></Sentence>
+      <Sentence ID="820"></Sentence>
       <Sentence ID="901"></Sentence>
       <Sentence ID="902"></Sentence>
       <Sentence ID="903"></Sentence>
@@ -1087,43 +1396,6 @@ Visible - the whole content will always be shown without reference to the object
 			aOmWZNq4B7oBbGaRQA5o8vk0jxNk/tgJE5vpClHX3Ji9IRRy79h/KLJWZ2RYZzTtw5wfadT9sCAf
 			oomQZ31DY3YrdNh3HDkS+SxVEO800OQnolkerE46RRY8HgUzhizGxtQIf0pwuqpR9yQLj0XwjDuI
 			iQkEyZ2K5scGmX7S6/8EGACZm+6vXzttpgAAAABJRU5ErkJggg==]]></Resource>
-    <Resource ID="e0cc0355-d598-33f6-92e9-731bed2c78eb" Name="scrollstart-scrollstop-resize-div.js" Type="js"><![CDATA[Lyogc2Nyb2xsc3RhcnQgJiBzY3JvbGxzdG9wIGV2ZW50cyAqLw0KKGZ1bmN0aW9uKCl7dmFyIHNw
-			ZWNpYWw9alF1ZXJ5LmV2ZW50LnNwZWNpYWwsdWlkMT0iRCIrICtuZXcgRGF0ZSx1aWQyPSJEIiso
-			K25ldyBEYXRlKzEpO3NwZWNpYWwuc2Nyb2xsc3RhcnQ9e3NldHVwOmZ1bmN0aW9uKCl7dmFyIHRp
-			bWVyLGhhbmRsZXI9ZnVuY3Rpb24oZXZ0KXt2YXIgX3NlbGY9dGhpcyxfYXJncz1hcmd1bWVudHM7
-			aWYodGltZXIpY2xlYXJUaW1lb3V0KHRpbWVyKTtlbHNle2V2dC50eXBlPSJzY3JvbGxzdGFydCI7
-			alF1ZXJ5LmV2ZW50LmhhbmRsZS5hcHBseShfc2VsZixfYXJncyl9dGltZXI9c2V0VGltZW91dChm
-			dW5jdGlvbigpe3RpbWVyPW51bGx9LHNwZWNpYWwuc2Nyb2xsc3RvcC5sYXRlbmN5KX07alF1ZXJ5
-			KHRoaXMpLmJpbmQoInNjcm9sbCIsaGFuZGxlcikuZGF0YSh1aWQxLGhhbmRsZXIpfSx0ZWFyZG93
-			bjpmdW5jdGlvbigpe2pRdWVyeSh0aGlzKS51bmJpbmQoInNjcm9sbCIsalF1ZXJ5KHRoaXMpLmRh
-			dGEodWlkMSkpfX07c3BlY2lhbC5zY3JvbGxzdG9wPSB7bGF0ZW5jeToyMDAsc2V0dXA6ZnVuY3Rp
-			b24oKXt2YXIgdGltZXIsaGFuZGxlcj1mdW5jdGlvbihldnQpe3ZhciBfc2VsZj10aGlzLF9hcmdz
-			PWFyZ3VtZW50cztpZih0aW1lciljbGVhclRpbWVvdXQodGltZXIpO3RpbWVyPXNldFRpbWVvdXQo
-			ZnVuY3Rpb24oKXt0aW1lcj1udWxsO2V2dC50eXBlPSJzY3JvbGxzdG9wIjtqUXVlcnkuZXZlbnQu
-			aGFuZGxlLmFwcGx5KF9zZWxmLF9hcmdzKX0sc3BlY2lhbC5zY3JvbGxzdG9wLmxhdGVuY3kpfTtq
-			UXVlcnkodGhpcykuYmluZCgic2Nyb2xsIixoYW5kbGVyKS5kYXRhKHVpZDIsaGFuZGxlcil9LHRl
-			YXJkb3duOmZ1bmN0aW9uKCl7alF1ZXJ5KHRoaXMpLnVuYmluZCgic2Nyb2xsIixqUXVlcnkodGhp
-			cykuZGF0YSh1aWQyKSl9fX0pKCk7DQoNCi8qIGpRdWVyeSByZXNpemUgZXZlbnQgLSB2MS4xIC0g
-			My8xNC8yMDEwDQogKiBodHRwOi8vYmVuYWxtYW4uY29tL3Byb2plY3RzL2pxdWVyeS1yZXNpemUt
-			cGx1Z2luLw0KICogQ29weXJpZ2h0IChjKSAyMDEwICJDb3dib3kiIEJlbiBBbG1hbg0KICogRHVh
-			bCBsaWNlbnNlZCB1bmRlciB0aGUgTUlUIGFuZCBHUEwgbGljZW5zZXMuDQogKiBodHRwOi8vYmVu
-			YWxtYW4uY29tL2Fib3V0L2xpY2Vuc2UvDQogKi8NCihmdW5jdGlvbigkLGgsYyl7dmFyIGE9JChb
-			XSksZT0kLnJlc2l6ZT0kLmV4dGVuZCgkLnJlc2l6ZSx7fSksaSxrPSJzZXRUaW1lb3V0IixqPSJy
-			ZXNpemUiLGQ9aisiLXNwZWNpYWwtZXZlbnQiLGI9ImRlbGF5IixmPSJ0aHJvdHRsZVdpbmRvdyI7
-			ZVtiXT0yNTA7ZVtmXT10cnVlOyQuZXZlbnQuc3BlY2lhbFtqXT17c2V0dXA6ZnVuY3Rpb24oKXtp
-			ZighZVtmXSYmdGhpc1trXSl7cmV0dXJuIGZhbHNlfXZhciBsPSQodGhpcyk7YT1hLmFkZChsKTsk
-			LmRhdGEodGhpcyxkLHt3Omwud2lkdGgoKSxoOmwuaGVpZ2h0KCl9KTtpZihhLmxlbmd0aD09PTEp
-			e2coKX19LHRlYXJkb3duOmZ1bmN0aW9uKCl7aWYoIWVbZl0mJnRoaXNba10pe3JldHVybiBmYWxz
-			ZX12YXIgbD0kKHRoaXMpO2E9YS5ub3QobCk7bC5yZW1vdmVEYXRhKGQpO2lmKCFhLmxlbmd0aCl7
-			Y2xlYXJUaW1lb3V0KGkpfX0sYWRkOmZ1bmN0aW9uKGwpe2lmKCFlW2ZdJiZ0aGlzW2tdKXtyZXR1
-			cm4gZmFsc2V9dmFyIG47ZnVuY3Rpb24gbShzLG8scCl7dmFyIHE9JCh0aGlzKSxyPSQuZGF0YSh0
-			aGlzLGQpO3Iudz1vIT09Yz9vOnEud2lkdGgoKTtyLmg9cCE9PWM/cDpxLmhlaWdodCgpO24uYXBw
-			bHkodGhpcyxhcmd1bWVudHMpfWlmKCQuaXNGdW5jdGlvbihsKSl7bj1sO3JldHVybiBtfWVsc2V7
-			bj1sLmhhbmRsZXI7bC5oYW5kbGVyPW19fX07ZnVuY3Rpb24gZygpe2k9aFtrXShmdW5jdGlvbigp
-			e2EuZWFjaChmdW5jdGlvbigpe3ZhciBuPSQodGhpcyksbT1uLndpZHRoKCksbD1uLmhlaWdodCgp
-			LG89JC5kYXRhKHRoaXMsZCk7aWYobSE9PW8ud3x8bCE9PW8uaCl7bi50cmlnZ2VyKGosW28udz1t
-			LG8uaD1sXSl9fSk7ZygpfSxlW2JdKX19KShqUXVlcnksdGhpcyk7DQo=]]></Resource>
-    <Resource ID="6fc7a62f-9482-4cfe-a625-75810735a9de" Name="objectview.js" Type="js"><![CDATA[KGZ1bmN0aW9uKCQpIHsNCiAgICAkLmZuLmxpdmVEcmFnZ2FibGUgPSBmdW5jdGlvbiAobykgew0KICAgICAgICB0aGlzLmxpdmUoIm1vdXNlb3ZlciIsIGZ1bmN0aW9uKCkgew0KICAgICAgICAgICAgaWYgKCEkKHRoaXMpLmRhdGEoImluaXRkcmFnIikpIHsNCiAgICAgICAgICAgICAgICAkKHRoaXMpLmRhdGEoImluaXRkcmFnIiwgdHJ1ZSkuZHJhZ2dhYmxlKG8pOw0KICAgICAgICAgICAgfQ0KICAgICAgICB9KTsNCiAgICAgICAgcmV0dXJuICQoKTsNCiAgICB9Ow0KfShqUXVlcnkpKTsNCg0KKGZ1bmN0aW9uKCQpIHsNCiAgICAkLmZuLmxpdmVTb3J0YWJsZSA9IGZ1bmN0aW9uIChvKSB7DQogICAgICAgIHRoaXMubGl2ZSgibW91c2VvdmVyIiwgZnVuY3Rpb24oKSB7DQogICAgICAgICAgICBpZiAoISQodGhpcykuZGF0YSgiaW5pdHNvcnQiKSkgew0KICAgICAgICAgICAgICAgICQodGhpcykuZGF0YSgiaW5pdHNvcnQiLCB0cnVlKS5zb3J0YWJsZShvKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfSk7DQogICAgICAgIHJldHVybiAkKCk7DQogICAgfTsNCn0oalF1ZXJ5KSk7DQoNCmZ1bmN0aW9uIHZkb21fb3ZfaW5EaXYodzAsIHMpew0KICAgIHZhciB3ID0gJGoodzApLCByZXN1bHQgPSBbXSwgZWxzID0gJGoocywgdyksIHBhLCBvcGE7DQogICAgdmFyIG8gPSB3LnBvc2l0aW9uKCksIHdUb3AgPSB3LnNjcm9sbFRvcCgpOw0KICAgIHZhciBvdG9wID0gKG8gPT0gbnVsbCkgPyAwIDogby50b3A7DQogICAgaWYgKHcucGFyZW50KCkpIHsNCiAgICAgICAgcCA9IHcucGFyZW50KCk7DQogICAgICAgIG9wYSA9IHAucG9zaXRpb24oKTsNCiAgICAgICAgb3RvcCArPSAob3BhID09IG51bGwpID8gMCA6IG9wYS50b3A7DQogICAgfQ0KICAgIHZhciB3SGVpZ2h0ID0gdy5vdXRlckhlaWdodCh0cnVlKSArIG90b3A7DQogICAgdmFyIHdCb3R0b20gPSB3SGVpZ2h0ICsgd1RvcCArIG90b3A7DQogICAgZWxzLmVhY2goZnVuY3Rpb24oKXsNCiAgICAgICAgdmFyIGVsID0gJGoodGhpcyk7DQogICAgICAgIGlmIChlbC5oYXNDbGFzcygnbm90LWxvYWRlZCcpKSB7DQogICAgICAgICAgICB2YXIgb2Zmc2V0ID0gZWwub2Zmc2V0KCk7DQogICAgICAgICAgICB2YXIgZWxUb3AgPSBvZmZzZXQudG9wOw0KICAgICAgICAgICAgdmFyIGVsQm90dG9tID0gb2Zmc2V0LnRvcCArIGVsLm91dGVySGVpZ2h0KHRydWUpOw0KICAgICAgICAgICAgLy9pZiggKGVsVG9wID49IHdUb3AgJiYgZWxUb3AgPD0gd0JvdHRvbSkgfHwgKGVsQm90dG9tIDw9IHdCb3R0b20gJiYgZWxCb3R0b20gPj0gd1RvcCkgKSB7DQogICAgICAgICAgICBpZiggKGVsVG9wID49IDAgJiYgZWxUb3AgPD0gd0hlaWdodCkgfHwgKGVsQm90dG9tIDw9IHdIZWlnaHQgJiYgZWxCb3R0b20gPj0gMCkgKSB7DQogICAgICAgICAgICAgICAgLy9lbC5yZW1vdmVDbGFzcygnbm90LWxvYWRlZCcpOw0KICAgICAgICAgICAgICAgIHJlc3VsdC5wdXNoKHRoaXMpOw0KICAgICAgICAgICAgfQ0KICAgICAgICAgICAgLy9pZiggd1RvcCA8PSBlbFRvcCAmJiAoZWwuaGVpZ2h0KCkgKyBlbFRvcCkgPCAod1RvcCArIHdIZWlnaHQpICkgcmVzdWx0LnB1c2godGhpcyk7DQogICAgICAgIH0NCiAgICB9KTsNCiAgICByZXR1cm4gJGoocmVzdWx0KTsNCn0NCg0KZnVuY3Rpb24gdmRvbV9vdl9tYXJrU2hvdyhpKSB7DQogICAgdmFyIHEgPSAnPmRpdi5vdi1jb250ZW50PmRpdltkYXRhaWRdJzsNCiAgICB2YXIgYSA9IFtdLCB6ID0gdmRvbV9vdl9pbkRpdignI29fJytpLCBxKTsNCiAgICBpZiAoei5zaXplKCkgPiAwKSB7DQogICAgICAgIHouZWFjaChmdW5jdGlvbigpew0KICAgICAgICAgICAgYS5wdXNoKCRqKHRoaXMpLmF0dHIoJ2RhdGFpZCcpKTsNCiAgICAgICAgfSk7DQogICAgICAgIC8vZXhlY0V2ZW50QmluZGVkKGksICJpdGVtc3JlcXVlc3QiLCB7aWRsaXN0OiBhfSk7DQogICAgICAgIHZhcg0KICAgICAgICAgICAgZCA9ICRqKCcjb18nK2kpLA0KICAgICAgICAgICAgZHggPSBwYXJzZUludChkLmRhdGEoJ21hcmtzaG93JyksIDEwKTsNCiAgICAgICAgaWYgKGR4ID4gMikgew0KICAgICAgICAgICAgZC5kYXRhKCdtYXJrc2hvdycsIDApOw0KICAgICAgICB9IGVsc2Ugew0KICAgICAgICAgICAgZXhlY0V2ZW50QmluZGVkKGksICJpdGVtc3JlcXVlc3QiLCB7aWRsaXN0OiBhfSk7DQogICAgICAgICAgICBkLmRhdGEoJ21hcmtzaG93JywgZHggKyAxKTsNCiAgICAgICAgfQ0KICAgIH0NCn0NCg0KZnVuY3Rpb24gdmRvbV9vdl9tYWtlRGl2KGksIG8pIHsNCiAgICB2YXIgcyA9ICRqKCc+ZGl2Lm92LWNvbnRlbnQ+ZGl2W2RhdGFpZF06Zmlyc3QnLCBvKS5hdHRyKCdzdHlsZScpOw0KICAgIGlmIChzID09ICcnKSBzID0gJ2hlaWdodDoxMHB4O3dpZHRoOjEwcHg7JzsNCiAgICByZXR1cm4gJzxkaXYgZGF0YWlkPSInK2krJyIgY2xhc3M9IicrJGoobykuZGF0YSgib3ZpdGVtY2xhc3MiKSsnIG5vdC1sb2FkZWQiIHN0eWxlPSInK3MrJyI+PC9kaXY+JzsNCn0NCg0KZnVuY3Rpb24gdmRvbV9vdl9nZXRTZWxlY3RlZChvKSB7DQogICAgdmFyIGEgPSBbXTsNCiAgICAkaignI29fJytvKycgLm92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0uc2VsZWN0ZWQnKS5lYWNoKGZ1bmN0aW9uKCl7IGEucHVzaCgkaih0aGlzKS5hdHRyKCdkYXRhaWQnKSk7IH0pOw0KICAgIGV4ZWNFdmVudEJpbmRlZChvLCAiaXRlbXNzZWxlY3RlZCIsIHtpZGxpc3Q6IGF9KTsNCn0NCg0KLyoqDQogKiBBbmRlcnNvbiBGZXJtaW5pYW5vDQogKiBjb250YXRvQGFuZGVyc29uZmVybWluaWFuby5jb20gLS0gZmVlbCBmcmVlIHRvIGNvbnRhY3QgbWUgZm9yIGJ1Z3Mgb3IgbmV3IGltcGxlbWVudGF0aW9ucy4NCiAqIGpRdWVyeSBTY3JvbGxQYWdpbmF0aW9uDQogKiAyOHRoL01hcmNoLzIwMTENCiAqIGh0dHA6Ly9hbmRlcnNvbmZlcm1pbmlhbm8uY29tL2pxdWVyeXNjcm9sbHBhZ2luYXRpb24vDQogKiBZb3UgbWF5IHVzZSB0aGlzIHNjcmlwdCBmb3IgZnJlZSwgYnV0IGtlZXAgbXkgY3JlZGl0cy4NCiAqIFRoYW5rIHlvdS4NCiAqICMgbW9kaWZpZWQgZm9yIFZET00gQm94IFJlc2VhcmNoIGJ5IExlbyBAIDIwMTItMDgtMTQNCiAqLw0KDQooZnVuY3Rpb24oJCl7DQogICAgJC5mbi5pbmZpbml0ZVNjcm9sbCA9IGZ1bmN0aW9uKG9wdGlvbnMpIHsNCiAgICAgICAgdmFyIG9wdHMgPSAkLmV4dGVuZCgkLmZuLmluZmluaXRlU2Nyb2xsLmRlZmF1bHRzLCBvcHRpb25zKTsNCiAgICAgICAgcmV0dXJuIHRoaXMuZWFjaChmdW5jdGlvbigpIHsNCiAgICAgICAgICAkLmZuLmluZmluaXRlU2Nyb2xsLmluaXQoJCh0aGlzKSwgb3B0cyk7DQogICAgICAgIH0pOw0KICAgIH07DQoNCiAgICAkLmZuLnN0b3BpbmZpbml0ZVNjcm9sbCA9IGZ1bmN0aW9uKCl7DQogICAgICAgIHJldHVybiB0aGlzLmVhY2goZnVuY3Rpb24oKSB7DQogICAgICAgICAgICAkKHRoaXMpLmF0dHIoJ2luZmluaXRlU2Nyb2xsJywgJ2Rpc2FibGVkJyk7DQogICAgICAgIH0pOw0KICAgIH07DQoNCiAgICAkLmZuLmluZmluaXRlU2Nyb2xsLmxvYWRDb250ZW50ID0gZnVuY3Rpb24ob2JqLCBvcHRzKXsNCiAgICAgICAgdmFyICRjb250ZW50ID0gJCgnPmRpdi5vdi1jb250ZW50Jywgb2JqKTsNCiAgICAgICAgdmFyIGNhbkxvYWRDb250ZW50ID0gJGNvbnRlbnQub3V0ZXJIZWlnaHQoKSAtIG9iai5pbm5lckhlaWdodCgpIC0gb2JqLnNjcm9sbFRvcCgpIDw9IG9wdHMuaGVpZ2h0T2Zmc2V0Ow0KICAgICAgICBpZiAoY2FuTG9hZENvbnRlbnQpIHsNCiAgICAgICAgICAgIGV4ZWNFdmVudEJpbmRlZChvcHRzLm92aWQsICdpdGVtc2JhdGNocmVxdWVzdCcsIHsgbG9hZGVkOiAkKCc+ZGl2Lm92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0nLCQob2JqKSkuc2l6ZSgpIH0pOw0KICAgICAgICB9DQogICAgfTsNCg0KICAgICQuZm4uaW5maW5pdGVTY3JvbGwuaW5pdCA9IGZ1bmN0aW9uKG9iaiwgb3B0cyl7DQogICAgICAgIG9iai5hdHRyKCdpbmZpbml0ZVNjcm9sbCcsICdlbmFibGVkJyk7DQogICAgICAgIG9iai5zY3JvbGwoZnVuY3Rpb24oZXZlbnQpew0KICAgICAgICAgICAgaWYgKG9iai5hdHRyKCdpbmZpbml0ZVNjcm9sbCcpID09ICdlbmFibGVkJyl7DQogICAgICAgICAgICAgICAgJC5mbi5pbmZpbml0ZVNjcm9sbC5sb2FkQ29udGVudChvYmosIG9wdHMpOw0KICAgICAgICAgICAgfSBlbHNlIHsNCiAgICAgICAgICAgICAgICBldmVudC5zdG9wUHJvcGFnYXRpb24oKTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfSk7DQogICAgICAgICQuZm4uaW5maW5pdGVTY3JvbGwubG9hZENvbnRlbnQob2JqLCBvcHRzKTsNCiAgICAgfTsNCg0KICAgICQuZm4uaW5maW5pdGVTY3JvbGwuZGVmYXVsdHMgPSB7DQogICAgICAgICdvdmlkJzogJycsDQogICAgICAgICdjc3NjJzogJycsDQogICAgICAgICdoZWlnaHRPZmZzZXQnOiAzMA0KICAgIH07DQp9KShqUXVlcnkpOw==]]></Resource>
     <Resource ID="feb69c13-3f9b-f49f-6527-72f5a7193a34" Name="16.gif" Type="gif"><![CDATA[R0lGODlhUAAKAIQAANxiZPy+vPzi5PSWlPzy9PzS1OympPzq7Pz6/Pza3PympORqbPSmpNxmZPzC
 			xPzm5PSanPz29PzW1Pzu7Pz+/Pze3PSqrBwZHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05F
 			VFNDQVBFMi4wAwEAAAAh+QQJAwAXACwAAAAAUAAKAAAF0mBRCWRpnuaIrqfKvu57JgJl33iu73zv
@@ -1233,6 +1505,8 @@ Visible - the whole content will always be shown without reference to the object
 			+N5xOt3ew8v1fDx+enU3UzkHCoqLixI+iYyMjj2QkYqTPJWWmG03CQCgoaEKPp+ioqQ9pqegqTyr
 			rK4UhxQVDQC3pxA+trisuz29uaLAPMK/VUQVC6G3zgO8zKDOuNDB0r7P0c3Z1jlTERYG4+TjFgQR
 			6Orp4eXl5+zr6OLu5vLx7fUG8PITIQA7]]></Resource>
+    <Resource ID="921cc43e-bdc2-6443-8c1e-0a825f4d9652" Name="objectview.js" Type="js"><![CDATA[ZnVuY3Rpb24gdmRvbV9vdl9pbkRpdih3MCwgcyl7DQogICAgdmFyIHcgPSAkaih3MCksIHJlc3VsdCA9IFtdLCBlbHMgPSAkaihzLCB3KSwgcGEsIG9wYTsNCiAgICB2YXIgbyA9IHcucG9zaXRpb24oKSwgd1RvcCA9IHcuc2Nyb2xsVG9wKCk7DQogICAgdmFyIG90b3AgPSAobyA9PSBudWxsKSA/IDAgOiBvLnRvcDsNCiAgICBpZiAody5wYXJlbnQoKSkgew0KICAgICAgICBwID0gdy5wYXJlbnQoKTsNCiAgICAgICAgb3BhID0gcC5wb3NpdGlvbigpOw0KICAgICAgICBvdG9wICs9IChvcGEgPT0gbnVsbCkgPyAwIDogb3BhLnRvcDsNCiAgICB9DQogICAgdmFyIHdIZWlnaHQgPSB3Lm91dGVySGVpZ2h0KHRydWUpICsgb3RvcDsNCiAgICB2YXIgd0JvdHRvbSA9IHdIZWlnaHQgKyB3VG9wICsgb3RvcDsNCiAgICBlbHMuZWFjaChmdW5jdGlvbigpew0KICAgICAgICB2YXIgZWwgPSAkaih0aGlzKTsNCiAgICAgICAgaWYgKGVsLmhhc0NsYXNzKCdub3QtbG9hZGVkJykpIHsNCiAgICAgICAgICAgIHZhciBvZmZzZXQgPSBlbC5vZmZzZXQoKTsNCiAgICAgICAgICAgIHZhciBlbFRvcCA9IG9mZnNldC50b3A7DQogICAgICAgICAgICB2YXIgZWxCb3R0b20gPSBvZmZzZXQudG9wICsgZWwub3V0ZXJIZWlnaHQodHJ1ZSk7DQogICAgICAgICAgICAvL2lmKCAoZWxUb3AgPj0gd1RvcCAmJiBlbFRvcCA8PSB3Qm90dG9tKSB8fCAoZWxCb3R0b20gPD0gd0JvdHRvbSAmJiBlbEJvdHRvbSA+PSB3VG9wKSApIHsNCiAgICAgICAgICAgIGlmKCAoZWxUb3AgPj0gMCAmJiBlbFRvcCA8PSB3SGVpZ2h0KSB8fCAoZWxCb3R0b20gPD0gd0hlaWdodCAmJiBlbEJvdHRvbSA+PSAwKSApIHsNCiAgICAgICAgICAgICAgICAvL2VsLnJlbW92ZUNsYXNzKCdub3QtbG9hZGVkJyk7DQogICAgICAgICAgICAgICAgcmVzdWx0LnB1c2godGhpcyk7DQogICAgICAgICAgICB9DQogICAgICAgICAgICAvL2lmKCB3VG9wIDw9IGVsVG9wICYmIChlbC5oZWlnaHQoKSArIGVsVG9wKSA8ICh3VG9wICsgd0hlaWdodCkgKSByZXN1bHQucHVzaCh0aGlzKTsNCiAgICAgICAgfQ0KICAgIH0pOw0KICAgIHJldHVybiAkaihyZXN1bHQpOw0KfQ0KDQpmdW5jdGlvbiB2ZG9tX292X21hcmtTaG93KGkpIHsNCiAgICB2YXIgcSA9ICc+ZGl2Lm92LWNvbnRlbnQ+ZGl2W2RhdGFpZF0nOw0KICAgIHZhciBhID0gW10sIHogPSB2ZG9tX292X2luRGl2KCcjb18nK2ksIHEpOw0KICAgIGlmICh6Lmxlbmd0aCA+IDApIHsNCiAgICAgICAgei5lYWNoKGZ1bmN0aW9uKCl7DQogICAgICAgICAgICBhLnB1c2goJGoodGhpcykuYXR0cignZGF0YWlkJykpOw0KICAgICAgICB9KTsNCiAgICAgICAgLy9leGVjRXZlbnRCaW5kZWQoaSwgIml0ZW1zcmVxdWVzdCIsIHtpZGxpc3Q6IGF9KTsNCiAgICAgICAgdmFyDQogICAgICAgICAgICBkID0gJGooJyNvXycraSksDQogICAgICAgICAgICBkeCA9IHBhcnNlSW50KGQuZGF0YSgnbWFya3Nob3cnKSwgMTApOw0KICAgICAgICBpZiAoZHggPiAyKSB7DQogICAgICAgICAgICBkLmRhdGEoJ21hcmtzaG93JywgMCk7DQogICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoaSwgIml0ZW1zcmVxdWVzdCIsIHtpZGxpc3Q6IGF9KTsNCiAgICAgICAgICAgIGQuZGF0YSgnbWFya3Nob3cnLCBkeCArIDEpOw0KICAgICAgICB9DQogICAgfQ0KfQ0KDQpmdW5jdGlvbiB2ZG9tX292X21ha2VEaXYoaSwgbykgew0KICAgIHZhciBzID0gJGooJz5kaXYub3YtY29udGVudD5kaXZbZGF0YWlkXTpmaXJzdCcsIG8pLmF0dHIoJ3N0eWxlJyk7DQogICAgaWYgKHMgPT0gJycpIHMgPSAnaGVpZ2h0OjEwcHg7d2lkdGg6MTBweDsnOw0KICAgIHJldHVybiAnPGRpdiBkYXRhaWQ9IicraSsnIiBjbGFzcz0iJyskaihvKS5kYXRhKCJvdml0ZW1jbGFzcyIpKycgbm90LWxvYWRlZCIgc3R5bGU9IicrcysnIj48L2Rpdj4nOw0KfQ0KDQpmdW5jdGlvbiB2ZG9tX292X2dldFNlbGVjdGVkKG8pIHsNCiAgICB2YXIgYSA9IFtdOw0KICAgICRqKCcjb18nK28rJyAub3YtY29udGVudD5kaXZbZGF0YWlkXS5zZWxlY3RlZCcpLmVhY2goZnVuY3Rpb24oKXsgYS5wdXNoKCRqKHRoaXMpLmF0dHIoJ2RhdGFpZCcpKTsgfSk7DQogICAgZXhlY0V2ZW50QmluZGVkKG8sICJpdGVtc3NlbGVjdGVkIiwge2lkbGlzdDogYX0pOw0KfQ0KDQovKioNCiAqIEFuZGVyc29uIEZlcm1pbmlhbm8NCiAqIGNvbnRhdG9AYW5kZXJzb25mZXJtaW5pYW5vLmNvbSAtLSBmZWVsIGZyZWUgdG8gY29udGFjdCBtZSBmb3IgYnVncyBvciBuZXcgaW1wbGVtZW50YXRpb25zLg0KICogalF1ZXJ5IFNjcm9sbFBhZ2luYXRpb24NCiAqIDI4dGgvTWFyY2gvMjAxMQ0KICogaHR0cDovL2FuZGVyc29uZmVybWluaWFuby5jb20vanF1ZXJ5c2Nyb2xscGFnaW5hdGlvbi8NCiAqIFlvdSBtYXkgdXNlIHRoaXMgc2NyaXB0IGZvciBmcmVlLCBidXQga2VlcCBteSBjcmVkaXRzLg0KICogVGhhbmsgeW91Lg0KICogIyBtb2RpZmllZCBmb3IgVkRPTSBCb3ggUmVzZWFyY2ggYnkgTGVvIEAgMjAxMi0wOC0xNA0KICovDQovKg0KKGZ1bmN0aW9uKCQpew0KICAgICQuZm4uaW5maW5pdGVTY3JvbGwgPSBmdW5jdGlvbihvcHRpb25zKSB7DQogICAgICAgIHZhciBvcHRzID0gJC5leHRlbmQoJC5mbi5pbmZpbml0ZVNjcm9sbC5kZWZhdWx0cywgb3B0aW9ucyk7DQogICAgICAgIHJldHVybiB0aGlzLmVhY2goZnVuY3Rpb24oKSB7DQogICAgICAgICAgJC5mbi5pbmZpbml0ZVNjcm9sbC5pbml0KCQodGhpcyksIG9wdHMpOw0KICAgICAgICB9KTsNCiAgICB9Ow0KDQogICAgJC5mbi5zdG9waW5maW5pdGVTY3JvbGwgPSBmdW5jdGlvbigpew0KICAgICAgICByZXR1cm4gdGhpcy5lYWNoKGZ1bmN0aW9uKCkgew0KICAgICAgICAgICAgJCh0aGlzKS5hdHRyKCdpbmZpbml0ZVNjcm9sbCcsICdkaXNhYmxlZCcpOw0KICAgICAgICB9KTsNCiAgICB9Ow0KDQogICAgJC5mbi5pbmZpbml0ZVNjcm9sbC5sb2FkQ29udGVudCA9IGZ1bmN0aW9uKG9iaiwgb3B0cyl7DQogICAgICAgIHZhciAkY29udGVudCA9ICQoJz5kaXYub3YtY29udGVudCcsIG9iaik7DQogICAgICAgIHZhciBjYW5Mb2FkQ29udGVudCA9ICRjb250ZW50Lm91dGVySGVpZ2h0KCkgLSBvYmouaW5uZXJIZWlnaHQoKSAtIG9iai5zY3JvbGxUb3AoKSA8PSBvcHRzLmhlaWdodE9mZnNldDsNCiAgICAgICAgaWYgKGNhbkxvYWRDb250ZW50KSB7DQogICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQob3B0cy5vdmlkLCAnaXRlbXNiYXRjaHJlcXVlc3QnLCB7IGxvYWRlZDogJCgnPmRpdi5vdi1jb250ZW50PmRpdltkYXRhaWRdJywkKG9iaikpLmxlbmd0aCB9KTsNCiAgICAgICAgfQ0KICAgIH07DQoNCiAgICAkLmZuLmluZmluaXRlU2Nyb2xsLmluaXQgPSBmdW5jdGlvbihvYmosIG9wdHMpew0KICAgICAgICBvYmouYXR0cignaW5maW5pdGVTY3JvbGwnLCAnZW5hYmxlZCcpOw0KICAgICAgICBvYmouc2Nyb2xsKGZ1bmN0aW9uKGV2ZW50KXsNCiAgICAgICAgICAgIGlmIChvYmouYXR0cignaW5maW5pdGVTY3JvbGwnKSA9PSAnZW5hYmxlZCcpew0KICAgICAgICAgICAgICAgICQuZm4uaW5maW5pdGVTY3JvbGwubG9hZENvbnRlbnQob2JqLCBvcHRzKTsNCiAgICAgICAgICAgIH0gZWxzZSB7DQogICAgICAgICAgICAgICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7DQogICAgICAgICAgICB9DQogICAgICAgIH0pOw0KICAgICAgICAkLmZuLmluZmluaXRlU2Nyb2xsLmxvYWRDb250ZW50KG9iaiwgb3B0cyk7DQogICAgIH07DQoNCiAgICAkLmZuLmluZmluaXRlU2Nyb2xsLmRlZmF1bHRzID0gew0KICAgICAgICAnb3ZpZCc6ICcnLA0KICAgICAgICAnY3NzYyc6ICcnLA0KICAgICAgICAnaGVpZ2h0T2Zmc2V0JzogMzANCiAgICB9Ow0KfSkoalF1ZXJ5KTsqLw==]]></Resource>
+    <Resource ID="5c01260d-dc04-68d9-6e8c-2ada83cb3019" Name="resize-div.js" Type="js"><![CDATA[LyogalF1ZXJ5IHJlc2l6ZSBldmVudCAtIHYxLjEgLSAzLzE0LzIwMTANCiAqIGh0dHA6Ly9iZW5hbG1hbi5jb20vcHJvamVjdHMvanF1ZXJ5LXJlc2l6ZS1wbHVnaW4vDQogKiBDb3B5cmlnaHQgKGMpIDIwMTAgIkNvd2JveSIgQmVuIEFsbWFuDQogKiBEdWFsIGxpY2Vuc2VkIHVuZGVyIHRoZSBNSVQgYW5kIEdQTCBsaWNlbnNlcy4NCiAqIGh0dHA6Ly9iZW5hbG1hbi5jb20vYWJvdXQvbGljZW5zZS8NCiAqLw0KKGZ1bmN0aW9uKCQsaCxjKXt2YXIgYT0kKFtdKSxlPSQucmVzaXplPSQuZXh0ZW5kKCQucmVzaXplLHt9KSxpLGs9InNldFRpbWVvdXQiLGo9InJlc2l6ZSIsZD1qKyItc3BlY2lhbC1ldmVudCIsYj0iZGVsYXkiLGY9InRocm90dGxlV2luZG93IjtlW2JdPTI1MDtlW2ZdPXRydWU7JC5ldmVudC5zcGVjaWFsW2pdPXtzZXR1cDpmdW5jdGlvbigpe2lmKCFlW2ZdJiZ0aGlzW2tdKXtyZXR1cm4gZmFsc2V9dmFyIGw9JCh0aGlzKTthPWEuYWRkKGwpOyQuZGF0YSh0aGlzLGQse3c6bC53aWR0aCgpLGg6bC5oZWlnaHQoKX0pO2lmKGEubGVuZ3RoPT09MSl7ZygpfX0sdGVhcmRvd246ZnVuY3Rpb24oKXtpZighZVtmXSYmdGhpc1trXSl7cmV0dXJuIGZhbHNlfXZhciBsPSQodGhpcyk7YT1hLm5vdChsKTtsLnJlbW92ZURhdGEoZCk7aWYoIWEubGVuZ3RoKXtjbGVhclRpbWVvdXQoaSl9fSxhZGQ6ZnVuY3Rpb24obCl7aWYoIWVbZl0mJnRoaXNba10pe3JldHVybiBmYWxzZX12YXIgbjtmdW5jdGlvbiBtKHMsbyxwKXt2YXIgcT0kKHRoaXMpLHI9JC5kYXRhKHRoaXMsZCk7ci53PW8hPT1jP286cS53aWR0aCgpO3IuaD1wIT09Yz9wOnEuaGVpZ2h0KCk7bi5hcHBseSh0aGlzLGFyZ3VtZW50cyl9aWYoJC5pc0Z1bmN0aW9uKGwpKXtuPWw7cmV0dXJuIG19ZWxzZXtuPWwuaGFuZGxlcjtsLmhhbmRsZXI9bX19fTtmdW5jdGlvbiBnKCl7aT1oW2tdKGZ1bmN0aW9uKCl7YS5lYWNoKGZ1bmN0aW9uKCl7dmFyIG49JCh0aGlzKSxtPW4ud2lkdGgoKSxsPW4uaGVpZ2h0KCksbz0kLmRhdGEodGhpcyxkKTtpZihtIT09by53fHxsIT09by5oKXtuLnRyaWdnZXIoaixbby53PW0sby5oPWxdKX19KTtnKCl9LGVbYl0pfX0pKGpRdWVyeSx0aGlzKTsNCg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[import sys
 import re
@@ -1245,24 +1519,29 @@ from scripting import e2vdom
 
 
 JS_DRAG = u"""
-$j("#%(id)s div[dataid]").liveDraggable({
-    connectToDynatree: true,
-    appendTo: 'body',
-    containment: 'document',
-    zIndex: 99999,
-    /*option: 'accept',*/
-    cursor: 'default',
-    cursorAt: { left: -2, top: 4 },
-    start: function(e,u){
-        execEventBinded('%(woid)s', "dragstart", {id: $j(this).attr('dataid')}, true);
-    },
-    connectToSortable: '#%(id)s',
-    revert: "invalid",
-    revertDuration: 200,
-    /*helper: 'clone'*/
-    opacity: 1,
-    helper: function(e) {
-        return $j("<div class='ov-drag-helper' style='width:50px;height:20px;background:#555'></div>");
+$j(document).on('mouseover', "#%(id)s div[dataid]", function () {
+    if (!$j(this).data('initDraggable')) {
+        $j(this).data('initDraggable', true);
+        $j(this).draggable({
+            connectToDynatree: true,
+            appendTo: 'body',
+            containment: 'document',
+            zIndex: 99999,
+            /*option: 'accept',*/
+            cursor: 'default',
+            /*cursorAt: { left: -2, top: 4 },*/
+            start: function (e, u) {
+                execEventBinded('%(woid)s', "dragstart", { id: $j(this).attr('dataid') }, true);
+            },
+            connectToSortable: '#%(id)s',
+            revert: "invalid",
+            revertDuration: 200,
+            /*helper: 'clone'*/
+            opacity: 1/*,
+            helper: function (e) {
+                return $j("<div class='ov-drag-helper' style='width:50px;height:20px;background:#555'></div>");
+            }*/
+        });
     }
 });
 /*
@@ -1280,16 +1559,21 @@ $('#%(id)s').droppable({
 """
 
 JS_SORTABLE = u"""
-$j('#%(id)s').liveSortable({
-    items: 'div[dataid]',
-    receive: function (event, ui){
-        ui.item.remove();
-        //ui.sender.remove();
-    },
-    stop: function(e, u) {
-        execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
+$j(document).on('mouseover', "#%(id)s", function () {
+    if (!$j(this).data('initSortable')) {
+        $j(this).data('initSortable', true);
+        $j(this).sortable({
+            items: 'div[dataid]',
+            receive: function (event, ui) {
+                ui.item.remove();
+                // ui.sender.remove();
+            },
+            stop: function (e, u) {
+                execEventBinded('%(woid)s', "itemsort", { position: u.item.index(), id: u.item.attr('dataid') });
+            }
+        });
     }
-}).disableSelection();
+});
 /*}).disableSelection().bind("sortstop",function(e,u){
     execEventBinded('%(woid)s', "itemsort", {position: u.item.index(), id: u.item.attr('dataid')});
     //ui.draggable.empty();
@@ -1298,9 +1582,9 @@ $j('#%(id)s').liveSortable({
 """
 
 JS_LOADING = u"""
-%(id)s_ld = function(t){
-    var z = $j('>.loading',t);
-    if (z.size() > 0) {
+function %(id)s_ld(t) {
+    var z = $j('>.loading', t);
+    if (z.length > 0) {
         if (z.is(':visible')) return;
         z.fadeIn(100);
     } else {
@@ -1312,30 +1596,34 @@ JS_LOADING = u"""
 """
 
 JS_DYNAMIC = u"""
-    $j("#%(id)s").bind('scrollstop resize', function() {
-        var obj = $j("#%(id)s");
-        var $content = $('>div.ov-content', obj);
-        var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
-        if (canLoadContent) {
-            execEventBinded("%(woid)s", 'endscroll', {});
-        }
-        vdom_ov_markShow("%(woid)s");
+    $j("#%(id)s").on('scroll resize', function () {
+    	clearTimeout(jQuery.data(this, 'scrollTimer'));
+    	jQuery.data(this, 'scrollTimer', setTimeout(function () {
+    		var obj = $j("#%(id)s");
+    		var $content = obj.find('>div.ov-content');
+    		var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
+    		
+    		if (canLoadContent) {
+    			execEventBinded("%(woid)s", 'endscroll', {});
+    		}
+    		vdom_ov_markShow("%(woid)s");
+    	}, 200));
     });
     vdom_ov_markShow("%(woid)s");
-    window.setTimeout('vdom_ov_markShow("%(woid)s")', 2000);
+    
+    window.setTimeout(function () {
+    	vdom_ov_markShow("%(woid)s");
+    }, 2000);
 """
 
-JS = u"""<style type='text/css'>
-#%(id)s .loading { background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; }
-#%(id)s .not-loaded { background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; }
-</style>
+JS = u"""
 <script type="text/javascript">
 %(js_loading)s
 
 $j(function(){
-    $j("#%(id)s").data("ovitemclass","%(class)s-item");
+    $j(document).on("#%(id)s").data("ovitemclass","%(class)s-item");
 
-    $j("#%(id)s div[dataid]").live('click dblclick', function(e){
+    $j(document).on('click dblclick', "#%(id)s div[dataid]", function(e){
         if (e.preventDefault) e.preventDefault(); else e.returnValue = false;
         var t = $j(this);
         if (e.type == 'dblclick') {
@@ -1356,10 +1644,10 @@ $j(function(){
         return false;
     });
 
-    $j("#%(id)s div[dataid]").live('mouseover', function(e){
+    $j(document).on('mouseover', "#%(id)s div[dataid]", function(e){
         execEventBinded('%(woid)s', "itemmouseover", {"id":$j(this).attr("dataid"), 'X':e.pageX, 'Y':e.pageY});
         return false;
-    }).live('mouseout', function(e){
+    }).on('mouseout', "#%(id)s div[dataid]", function(e){
         execEventBinded('%(woid)s', "itemmouseout", {"id":$j(this).attr("dataid")});
         return false;
     });
@@ -1371,17 +1659,17 @@ $j(function(){
 });
 </script>"""
 
-JS_INFINITE_SCROLL = u"""
-$j('#%(id)s').infiniteScroll({
+JS_INFINITE_SCROLL = u"""/*
+$j(document).on('infiniteScroll', '#%(id)s', {
     'ovid': '%(woid)s',
     'cssc': '%(cssc)s'
-});
+});*/
 /*
 var obj = $j("#%(id)s");
-var $content = $('>div.ov-content', obj);
+var $content = obj.find('>div.ov-content');
 var canLoadContent = $content.outerHeight() - obj.innerHeight() - obj.scrollTop() <= 30;
 if (canLoadContent) {
-    execEventBinded("%(woid)s", 'itemsrequestforinfinite', { loaded: $('>div.ov-content>div[dataid]',obj).size() });
+    execEventBinded("%(woid)s", 'itemsrequestforinfinite', { loaded: $('>div.ov-content>div[dataid]', obj).length });
 }
 */
 """
@@ -1407,7 +1695,7 @@ if ($j.trim(ovtmp.html()) != '') {
     });*/
     // vdom_ov_markShow("%(woid)s");
     // NOTE: Workaround for not working vdom_ov_markShow after load
-    window.setTimeout('vdom_ov_markShow("%(woid)s")', 1);
+    window.setTimeout(function { vdom_ov_markShow("%(woid)s"); }, 1);
 }
 """
 
@@ -1418,7 +1706,7 @@ if ($j.trim(ovtmp.html()) != '') {
     $j('>div[dataid]',ovtmp).each(function(){
         var t = $j(this);
         var i = $j(">div[dataid="+t.attr('dataid')+"]", x);
-        if (i.size() > 0) {
+        if (i.length > 0) {
             if (i.hasClass('selected')) t.addClass('selected');
             i.before(t);
             i.remove();
@@ -1429,7 +1717,18 @@ if ($j.trim(ovtmp.html()) != '') {
     vdom_ov_markShow("%(woid)s");
 }
 """
+OVERFLOW = {
+    "0": "auto",
+    "1": "hidden",
+    "2": "scroll",
+    "3": "visible"
+}
 
+LAYOUT = {
+    "0": "clear: both",
+    "1": "float: left;",
+    "2": "width: 100% !important; clear: both;",
+}
 
 def xml_escape(value):
     global xml_escape
@@ -1456,6 +1755,9 @@ def xml_escape(value):
 
 
 class VDOM_objectview(VDOM_object):
+	
+    def check_unit(self, value):
+        return value + "px" if value.isdigit() else value
 
     def render_items(self, items, div_only, bindings):
         if not self.vdomclassid:
@@ -1602,55 +1904,40 @@ class VDOM_objectview(VDOM_object):
                     js = E2VDOM_RENDER_JAVASCRIPT % {"id": id4js, "tmp_id": tmp_id, "woid": woid}
 
             return VDOM_object.render(self, contents=u"""<noreplace/>
-<div id="%(tmp_id)s" style="display:none">%(contents)s</div>
+<div id="%(tmp_id)s" style="display: none">%(contents)s</div>
 <script type='text/javascript'>
     %(js)s
 </script>""" % {"js": js, "contents": items_contents, "tmp_id": tmp_id})
         else:
             # initial render
             e2vdom.process(self, self.parent.id if self.parent else None)
-
-            if self.overflow == "1":
-                overflow = u"hidden"
-            elif self.overflow == "2":
-                overflow = u"scroll"
-            elif self.overflow == "3":
-                overflow = u"visible"
-            else:
-                overflow = u"auto"
-
-            classes = (
-                u"display:none;" if self.visible == "0" else None,
-                u"z-index: {zindex}; position: {pos}; top: {top}px; left: {left}px; "
-                "width: {width}px; height: %spx; overflow: {overflow};".format(
-                    zindex=self.zindex,
-                    pos=self.position,
-                    top=self.top,
-                    left=self.left,
-                    width=self.width,
-                    height=self.height,
-                    overflow=overflow)
-            )
-            style = " ".join(filter(None, classes))
-
-            classname = u"""class="%s" """ % self.classname if self.classname else u""
+            
+            styles = {
+                "width": self.check_unit(self.width),
+                "height": self.check_unit(self.height),
+                "margin": self.margins,
+                "padding": self.paddings,
+                "top": self.check_unit(self.top),
+                "left": self.check_unit(self.left),
+                "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+                "position": self.positioning,
+                "display": u"none" if self.visible == "0" else self.displaying,
+                "overflow": OVERFLOW.get(self.overflow, "")
+            }
+            if self.positioning == "static":
+            	styles["top"] = styles["left"] = ""
+            	styles["position"] = ""
+            	
+            style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
             classname_item = 'ov' if self.classname == '' else (self.classname).replace(' ', '')
-
-            # items layout
-
-            if self.layout == "1":
-                layout = u"float: left;"
-            elif self.layout == "0":
-                layout = u"clear: both;"
-            else:
-                layout = u"width: 100% !important; clear: both;"
+            css = u"<style>\n" + self.style % {"id": id4js} + u"</style>" if self.style else u""
 
             style_items = u"""<style type="text/css">
 #%(id)s .%(class)s-item {
 %(layout)s
 }
-</style>""" % {"id": id4js, "class": classname_item, "layout": layout}
+</style>""" % {"id": id4js, "class": classname_item, "layout": LAYOUT.get(self.layout, "")}
 
             if self.loading == "0":
                 js_loading_call = u""
@@ -1681,92 +1968,216 @@ class VDOM_objectview(VDOM_object):
             else:
                 debug_info = u""
 
-            result = u"""
-                <div {debug_info} id="{id}" style="{style}" {classname}>
+            result = u"""{css}
+                <div {debug_info} id="{id}" style="{style}" class="{classname}">
                     {style_items}
                     <div class='ov-content'>
                         {contents}
-                        <span class='ov-eoi' style='display:block;clear:both'></span>
+                        <span class='ov-eoi' style='display: block; clear: both'></span>
                     </div>
                 </div>
                 {js}
                 """.format(
                 js=js,
+                css=css,
                 id=id4js,
                 debug_info=debug_info,
                 style=style,
                 style_items=style_items,
-                classname=classname,
+                classname=' '.join([self.classname, 'vdom_objectview']).strip(),
                 contents=items_contents
             )
 
             return VDOM_object.render(self, contents=result)
 
+    def regex(self, obj):
+        match = re.search(r'\d+', obj)
+        return int(match.group()) if match else ""
+    
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+        self.width, self.height, self.top, self.left = [
+            int(self.ide_width), int(self.ide_height), 
+            int(self.ide_top), int(self.ide_left)
+        ]
         result = get_empty_wysiwyg_value(self, "cc72f740-5527-4dab-3c59-16b7fccb0032")
-        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
+        return VDOM_object.wysiwyg(self, contents=result)
+        
+def on_update(object, attributes):
+    
+    o = object
+    modif = {}
+    
+    for attr in ["left", "width", "height", "top"]:
+    	if attr in attributes:
+    		attr_value = attributes[attr]
+    		obj_value = o.attributes.get(attr, '').lower()
+    		
+    		if obj_value.isdigit() and attr_value.isdigit():
+    			modif[attr] = attr_value + "px"
+    			modif["ide_"+ attr] = attr_value
+    		elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+    			modif[attr] = attr_value.rstrip("px") + "px"
+    			modif["ide_"+ attr] = attr_value.rstrip("px")
+    		elif attr_value.isdigit() or "px" in attr_value:
+    			modif[attr] = attr_value if "px" in attr_value else obj_value
+    			modif["ide_"+ attr] = attr_value.rstrip("px")
+    		else:
+    			modif[attr] = attr_value
+    attributes.update(modif)
+    
+    default = """\
+#%(id)s .loading { 
+    background: #fff url('/1869b90e-c056-1337-dfac-72b9873df6fa.res') center center no-repeat; 
+}
+#%(id)s .not-loaded { 
+    background: url('/feb69c13-3f9b-f49f-6527-72f5a7193a34.res') center center no-repeat; 
+}
+"""
+    
+    users = """\
+#%(id)s {
+
+}
+
+"""
+
+    skin_mapping = {
+        "0": users,
+        "1": "",
+        "2": default
+    }
+    
+    if "skin" in attributes:
+    	skin = attributes["skin"]
+    	if skin in skin_mapping:
+    		attributes.update(style=skin_mapping[skin])
+    	else:
+    		attributes.update(skin="0")
+    		
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+    	attributes.update(skin="0")
+    	
+    list = u"""\
+[ "item1", "item2", "item3" ]
+"""
+	
+    dict = u"""\
+{
+    "A": {"label": "AAA"},
+    "B": {"label": "BBB"},
+    "C": {"label": "CCC"},
+    "D": "DDD" 
+}
+"""
+
+    bindings_ex = u"""\
+{
+    "default": {
+        "label": "text.value" 
+    }
+}"""
+
+    data_map = {
+        "0": u"",
+        "1": list,
+        "2": dict,
+        "3": bindings_ex
+    }
+    
+    if "skindata" in attributes:
+    	skindata = attributes["skindata"]
+    	if skindata in ["1", "2"]:
+    		attributes.update(data=data_map[skindata], bindings=bindings_ex)
+    	else:
+    		attributes.update(data=u"", bindings=u"")
+
+    if any(key in attributes for key in ["data", "bindings"]):
+    	if any(attributes.get(key) not in data_map.values() for key in ["data", "bindings"]):
+    		attributes.update(skindata="0")
+
+
+    return ""
+    
+def on_compile(object, attributes):
+	for attr in ["left", "width", "height", "top"]:
+		obj_value = object.attributes[attr]
+		
+		if obj_value.isdigit() or "px" in obj_value:
+			object.attributes[attr] = obj_value.rstrip("px") + "px"
+			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
   <Libraries>
-    <Library Target="html"><![CDATA[<script type="text/javascript" src="/e0cc0355-d598-33f6-92e9-731bed2c78eb.res"></script>]]></Library>
-    <Library Target="html"><![CDATA[<script type='text/javascript' src="/6fc7a62f-9482-4cfe-a625-75810735a9de.js"></script>]]></Library>
+    <Library Target="html"><![CDATA[<script type="text/javascript" src="/5c01260d-dc04-68d9-6e8c-2ada83cb3019.res"></script>]]></Library>
+    <Library Target="html"><![CDATA[<script type='text/javascript' src="/921cc43e-bdc2-6443-8c1e-0a825f4d9652.js"></script>]]></Library>
+    <Library Target="html"><![CDATA[<style type="text/css">
+        .vdom_objectview {
+            
+        }
+</style>]]></Library>
   </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="itemsselected" Help="#Lang(519)">
+        <Event Name="dragstart" Help="#Lang(519)">
           <Parameters>
-            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(901)"/>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(901)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseover" Help="#Lang(521)">
+        <Event Name="endscroll" Help="#Lang(521)">
+          <Parameters/>
+        </Event>
+        <Event Name="itemclick" Help="#Lang(522)">
           <Parameters>
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="itemmouseout" Help="#Lang(522)">
+        <Event Name="itemdblclick" Help="#Lang(523)">
           <Parameters>
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(903)"/>
           </Parameters>
         </Event>
-        <Event Name="itemdblclick" Help="#Lang(523)">
+        <Event Name="itemmouseout" Help="#Lang(524)">
           <Parameters>
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="itemclick" Help="#Lang(524)">
+        <Event Name="itemmouseover" Help="#Lang(525)">
           <Parameters>
             <Parameter Name="id" Order="0" VbType="" Help="#Lang(905)"/>
           </Parameters>
         </Event>
-        <Event Name="itemsrequest" Help="#Lang(525)">
+        <Event Name="itemsort" Help="#Lang(526)">
           <Parameters>
-            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="id" Order="0" VbType="" Help="#Lang(906)"/>
+            <Parameter Name="position" Order="0" VbType="" Help="#Lang(907)"/>
           </Parameters>
         </Event>
-        <Event Name="dragstart" Help="#Lang(526)">
+        <Event Name="itemsrequest" Help="#Lang(527)">
           <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(907)"/>
+            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(527)">
+        <Event Name="itemsselected" Help="#Lang(528)">
           <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(908)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(909)"/>
+            <Parameter Name="idlist" Order="0" VbType="" Help="#Lang(909)"/>
           </Parameters>
         </Event>
-        <Event Name="endscroll" Help="#Lang(528)">
-          <Parameters/>
-        </Event>
-        <Event Name="itemsort" Help="#Lang(529)">
+        <Event Name="mouseover" Help="#Lang(529)">
           <Parameters>
-            <Parameter Name="id" Order="0" VbType="" Help="#Lang(911)"/>
-            <Parameter Name="position" Order="0" VbType="" Help="#Lang(912)"/>
+            <Parameter Name="X" Order="0" VbType="" Help="#Lang(911)"/>
+            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(912)"/>
           </Parameters>
         </Event>
       </Userinterfaceevents>
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+        <Action Help="#Lang(530)" InterfaceName="#Lang(619)" MethodName="addClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(819)" ScriptName="className" Help="#Lang(719)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
+        </Action>
         <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
             <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
@@ -1840,6 +2251,12 @@ class VDOM_objectview(VDOM_object):
 $j('>div.ov-content>div[dataid]',o).remove();
 execEventBinded(o.id.substring(2, o.id.length), "itemsrequest", {idlist: ""});
 /*vdom_ov_markShow(o.id.substring(2, o.id.length));*/]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(531)" InterfaceName="#Lang(620)" MethodName="removeClass">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(820)" ScriptName="className" Help="#Lang(720)" RegularExpressionValidation=""/>
+          </Parameters>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="resizeTo">
           <Parameters>

@@ -304,7 +304,7 @@ class VDOM_server(object):
     def __init__(self):
         self._vscript = VDOM_vscript()
         self._javascript = None
-        
+
         self._mailer = VDOM_mailer()
 
     def _get_version(self):
@@ -312,14 +312,13 @@ class VDOM_server(object):
         return version.SERVER_VERSION
 
     def _get_guid(self):
-        # return utils.uuid.uuid4()
         return uuid4()
 
     def _load_javascript(self):
         if self._javascript is None:
             self._javascript = VDOM_javascript()
         return self._javascript
-    
+
     version = property(_get_version)
     # mailer=property(lambda self: managers.email_manager)
     mailer = property(lambda self: self._mailer)

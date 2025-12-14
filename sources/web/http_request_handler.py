@@ -454,13 +454,16 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                     return ret
             else:
                 return StringIO(ret)
-        elif "" == ret:
-            self.send_response(204)
-            self.send_headers()
-            self.end_headers()
-            return None
         elif code:
             self.send_error(code, self.responses[code][0])
+            return None
+        elif "" == ret and not self.__request.binary():
+            if self.__request.retcode == 200:
+                self.send_response(204)
+                self.send_headers()
+                self.end_headers()
+            return None
+        elif self.__request.binary():
             return None
         else:
             self.send_error(404, self.responses[404][0])
@@ -510,9 +513,14 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
     def log_message(self, format, *args):
         """log an arbitrary message to stderr"""
-        if "127.0.0.1" != self.client_address[0]:
-            debug("%s %s {%d}" % (self.address_string(), format % args, self.server.get_cur_con()))
-        #sys.stderr.write("%s - Thread %d - [%s] %s {%d}\n" % (self.address_string(), thread.get_ident(), self.log_date_time_string(), format%args, self.server.get_cur_con()))
+        try:    
+            unicode_args = [arg.decode('utf-8') if isinstance(arg, str) else arg for arg in args]
+    
+            if "127.0.0.1" != self.client_address[0]:
+                debug("%s %s {%d}" % (self.address_string(), format % args, self.server.get_cur_con()))
+            #sys.stderr.write("%s - Thread %d - [%s] %s {%d}\n" % (self.address_string(), thread.get_ident(), self.log_date_time_string(), format%args, self.server.get_cur_con()))
+        except UnicodeDecodeError:
+            debug("Error decoding message for client %s" % self.address_string())
 
     def print_list(self, list, f):
         """print contents of the dictionary in the form of list"""
@@ -523,8 +531,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def address_string(self):
         """Return the client address formatted for logging"""
         host, port = self.client_address[:2]
-        remote_ip = self.headers.get("X-Real-IP")\
-            or self.headers.get("X-Forwarded-For")\
+        headers = getattr(self, "headers", {}) # TODO: Sometimes we do not have self.headers
+        remote_ip = headers.get("X-Real-IP")\
+            or headers.get("X-Forwarded-For")\
             or host
         return remote_ip
 
@@ -946,6 +955,9 @@ class VDOM_http_request_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                     s = 'Outgoing SOAP'
                     SOAPpy.debugHeader(s)
                     debug(resp)
+                    import time
+                    with open("dumpSOAPOut%d.txt" % int(time.time()), "wb") as f:
+                        f.write(resp)
 
                     SOAPpy.debugFooter(s)
                 except:

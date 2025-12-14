@@ -1,7 +1,6 @@
 """web services server"""
 
 import string
-import sys
 import gc
 import os
 import time
@@ -11,7 +10,6 @@ import base64
 import copy
 import traceback
 import tempfile
-import shutil
 import SOAPpy
 
 from StringIO import StringIO
@@ -1040,7 +1038,7 @@ class VDOM_web_services_server(object):
         result = ["<Types>"]
         for type in managers.memory.types.itervalues():
             file = StringIO()
-            type.compose(file=file)
+            type.compose(file=file, shorter=True)
             data = file.getvalue()
 
             root = ElementTree.fromstring(data.encode("utf8"))
@@ -1369,7 +1367,7 @@ class VDOM_web_services_server(object):
         for o in obj.objects.itervalues():
             result += self.__get_all_objects(o)
         result += "</Objects>\n"
-        result += self.__get_code_interface(obj)
+        result += self.__get_code_interface(obj, False)
         result += "</Object>\n"
         return result
 
@@ -1416,12 +1414,12 @@ class VDOM_web_services_server(object):
         else:
             return 0
 
-    def __get_code_interface(self, obj):
+    def __get_code_interface(self, obj, add_lists=True):
         interfaces = self.__get_interfaces(obj.type)
         result = ""
         app = obj.application
         # if "pagelink" in obj.type.interfaces:
-        if "pagelink" in interfaces:
+        if "pagelink" in interfaces and add_lists:
             result += "<Pagelink>\n"
 #           result += """<Object ID="" Name=""/>\n"""
             # for o in app.get_objects_list():
@@ -1430,7 +1428,7 @@ class VDOM_web_services_server(object):
             result += "</Pagelink>\n"
 
         # if "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]) and "" == obj.type.interfaces["objectlist"][0]:
-        if "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and "" == interfaces["objectlist"][0]:
+        if "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and "" == interfaces["objectlist"][0] and add_lists:
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():
             for obj1 in app.objects.catalog.values():
@@ -1443,7 +1441,7 @@ class VDOM_web_services_server(object):
                         result += """<Object ID="%s" Name="%s"/>\n""" % (obj1.id, obj1.name)
             result += "</Objectlist>\n"
         # elif "objectlist" in obj.type.interfaces and 1 == len(obj.type.interfaces["objectlist"]):
-        elif "objectlist" in interfaces and 1 == len(interfaces["objectlist"]):
+        elif "objectlist" in interfaces and 1 == len(interfaces["objectlist"]) and add_lists:
             needed = interfaces["objectlist"][0]
             result += "<Objectlist>\n"
             # for oid in app.get_all_objects():
@@ -2589,58 +2587,54 @@ class VDOM_web_services_server(object):
 # management ========================================================================================================
 
     def install_application(self, sid, skey, vhname, appxml):
-        raise NotImplementedError
-
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
-        request = managers.request_manager.get_request()
-        vh = request.server().virtual_hosting()
+        
+        vh = managers.server.web_server.http_server.virtual_hosting()
         if "" != vhname and vh.get_site(vhname):
             raise SOAPpy.faultType(duplicate_vhname_error, _("Install application error"), _("Virtual host name exists"))
-#           return self.__format_error(_("Virtual host name \"%s\" already exists" % vhname))
-        # save file
-        tmpfilename = tempfile.mkstemp(".xml", "", VDOM_CONFIG["TEMP-DIRECTORY"])
-        os.close(tmpfilename[0])
-        tmpfilename = tmpfilename[1]
-        tmpfile = open(tmpfilename, "wb")
-        tmpfile.write(appxml.encode("utf-8"))
-        tmpfile.close()
-        # install
-        outp, msg = import_application(tmpfilename, "xml")
-        try:
-            os.remove(tmpfilename)
-        except Exception, e:
-            pass
-        if "" != outp and None != outp:
+
+        notifications = []
+        app = managers.memory.install_application(value=appxml, into=notifications)
+        if settings.STORE_BYTECODE:
+            for library in app.libraries.itervalues():
+                library.compile()
+        msgs = []
+        for (lineno, message) in notifications:
+            err = "    %s, line %s" % (message, lineno)
+            log.warning(err)
+            msgs.append(err)
+        outp = "".join(msgs)
+
+        if app is not None:
             if "" != vhname:
-                vh.set_site(vhname, outp)  # outp contains the application ID
-            return "<ApplicationID>%s</ApplicationID>" % outp
-        elif "" == outp:
-            return self.__format_error(_("Install application error."), _("Application already installed"))
-            #raise SOAPpy.faultType(app_installed_error, _("Install application error"), _("Application already installed"))
+                vh.set_site(vhname, app.id)  # outp contains the application ID
+            return "<ApplicationID>%s</ApplicationID>" % app.id
+        #elif "" == outp:
+        #    return self.__format_error(_("Install application error."), _("Application already installed"))
+        #    #raise SOAPpy.faultType(app_installed_error, _("Install application error"), _("Application already installed"))
         else:
-            return self.__format_error(_("Install application error."), msg)
+            return self.__format_error(_("Install application error."), outp)
             #raise SOAPpy.faultType(app_install_error, _("Install application error"), msg)
 
     def uninstall_application(self, sid, skey, appid):
-        raise NotImplementedError
-
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
-        ret = self.__find_application(appid)  # returns (app, error_message)
-        if not ret[0]:
-            return ret[1]
-        outp, msg = uninstall_application(appid)
-        # remove vhosts
-        vh = managers.virtual_hosts
+
+        if appid not in managers.memory.applications.keys():
+            raise SOAPpy.faultType(app_id_error, "Application not found", _("<Error><ApplicationID>%s</ApplicationID></Error>") % appid)
+
+        app, error_message = self.__find_application(appid)
+        vh = managers.server.web_server.http_server.virtual_hosting()
         for s in vh.get_sites():
             if vh.get_site(s) == appid:
                 vh.set_site(s, None)
-        if "" != outp and None != outp:
-            return "<Result>OK</Result>"
-        else:
+        try:
+            app.uninstall()
+        except Exception as msg:
             return self.__format_error(_("Uninstall application error"), msg)
-            #raise SOAPpy.faultType(app_uninstall_error, _("Uninstall application error"), msg)
+
+        return "<Result>OK</Result>"
 
     def export_application(self, sid, skey, appid):
         if not self.__check_session(sid, skey):
@@ -2899,7 +2893,7 @@ class VDOM_web_services_server(object):
         if objects.strip() is "":
             raise SOAPpy.faultType(param_syntax_error, _("Empty data"), "objects")
         parent = None
-        if parentid is not "":
+        if parentid != "":
             parent = app.search_object(parentid)
             if parent is None:
                 raise SOAPpy.faultType(parent_object_error, "", "")

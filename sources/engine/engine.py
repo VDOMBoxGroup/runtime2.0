@@ -162,7 +162,7 @@ class Engine(object):
             log.write("Terminate render")
         # from utils.tracing import format_thread_trace
         # log.debug(format_thread_trace(statements=False, skip=("terminate", "redirect"), until="scripting.executable"))
-        raise RenderTermination
+        raise RenderTermination()
 
 
 VDOM_engine = Engine

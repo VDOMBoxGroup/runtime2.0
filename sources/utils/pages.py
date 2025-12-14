@@ -108,7 +108,8 @@ font-weight:bold;background-image:url("data:image/svg+xml;utf8,\
 .items > div{display:flex;border-radius:2px;padding:0 .25rem;justify-content:stretch;overflow:hidden}\
 .items > div:hover{background:rgba(0,0,0,0.05)}\
 .items > div > div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}\
-.items > div > div:not(:only-of-type):first-of-type{flex:0 0 35rem}\
+.items > div > div:hover {white-space: pre-wrap;}\
+.items > div > div:not(:only-of-type):first-of-type{flex:0 0 45rem}\
 .items > div > div:not(:only-of-type):not(:last-of-type):after{content:"\\00a0\
 \\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\
 \\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\\2026\
