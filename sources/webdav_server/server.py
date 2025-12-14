@@ -1,10 +1,11 @@
 from __future__ import absolute_import
-from . import request_server
+# from . import request_server
 from wsgidav.wsgidav_app import DEFAULT_CONFIG
 try:
     from wsgidav.wsgidav_app import WsgiDAVApp
 except ImportError as e:
-    raise RuntimeError("Could not import wsgidav package:\n%s\nSee http://wsgidav.googlecode.com/." % e)
+    raise RuntimeError(
+        "Could not import wsgidav package:\n%s\nSee http://wsgidav.googlecode.com/." % e)
 from wsgidav.lock_man.lock_storage import LockStorageDict
 from wsgidav.prop_man.property_manager import PropertyManager
 from wsgidav.lock_man.lock_manager import LockManager
@@ -47,16 +48,17 @@ class VDOM_webdav_manager(object):
     def load_webdav(self, appid):
         start_dav = False
         __conf = self.__config.copy()
-        __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(appid)
+        __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(
+            appid)
         app = managers.memory.applications[appid]
         for objid, obj in app.objects.items():
             if obj.type.id == '1a43b186-5c83-92fa-7a7f-5b6c252df941':
                 __conf["provider_mapping"]["/" + obj.name] = VDOM_Provider(appid, obj.id)
                 if not self.__index.get(appid):
-                    self.__index[appid] = {obj.id : '/%s'%obj.name}
-                    self.__path_index[(appid,obj.name)] = self.__index[appid]
+                    self.__index[appid] = {obj.id: '/%s' % obj.name}
+                    self.__path_index[(appid, obj.name)] = self.__index[appid]
                 else:
-                    self.__index[appid][obj.id] = "/%s"%obj.name
+                    self.__index[appid][obj.id] = "/%s" % obj.name
                     self.__path_index[(appid, obj.name)] = self.__index[appid]
                 start_dav = True
 
@@ -71,9 +73,11 @@ class VDOM_webdav_manager(object):
         __conf = {}
         if not hasattr(app, "wsgidav_app"):
             __conf = self.__config.copy()
-            __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(appid)
-            #TODO: There could be problems with utf encoding, check later
-            __conf["provider_mapping"][sharePath.encode('utf8')] = VDOM_Provider(appid, objid)
+            __conf["http_authenticator"]["domain_controller"] = VDOM_domain_controller(
+                appid)
+            # TODO: There could be problems with utf encoding, check later
+            __conf["provider_mapping"][sharePath.encode(
+                'utf8')] = VDOM_Provider(appid, objid)
             app.wsgidav_app = WsgiDAVApp(__conf)
         else:
             provider = VDOM_Provider(appid, objid)
@@ -81,7 +85,7 @@ class VDOM_webdav_manager(object):
             provider.setLockManager(LockManager(LockStorageDict()))
             provider.setPropManager(PropertyManager())
             app.wsgidav_app.providerMap[sharePath.encode('utf8')] = provider
-        #self.__index[appid][objid] = sharePath
+        # self.__index[appid][objid] = sharePath
         app = managers.memory.applications[appid]
         obj = app.objects.get(objid)
         if not self.__index.get(appid):
@@ -98,7 +102,8 @@ class VDOM_webdav_manager(object):
                 del app.wsgidav_app.providerMap[sharePath.encode('utf8')]
                 del self.__index[appid][objid]
                 del self.__path_index[(appid, app.objects[objid].name)]
-                if len(self.__index[appid]) == 0: del self.__index[appid]
+                if len(self.__index[appid]) == 0:
+                    del self.__index[appid]
 
     def list_webdav(self, appid):
         wdav = self.__index.get(appid)
@@ -106,7 +111,7 @@ class VDOM_webdav_manager(object):
 
     def del_all_webdav(self, appid):
         app = managers.memory.applications.get(appid)
-        if hasattr(app, "wsgidav_app"):	
+        if hasattr(app, "wsgidav_app"):
             delattr(app, 'wsgidav_app')
         if appid in self.__index:
             del self.__index[appid]
@@ -121,12 +126,12 @@ class VDOM_webdav_manager(object):
             return (appid, pagename) in self.__path_index
         return False
 
-    #def get_webdav_obj_by_path(self, appid, sharePath):
-    #	if appid in self.__index:
-    #		davs = self.__index[appid] or {}
-    #		for key in davs:
-    #			if davs[key] == 
-    #	return None		
+    # def get_webdav_obj_by_path(self, appid, sharePath):
+    # if appid in self.__index:
+    # davs = self.__index[appid] or {}
+    # for key in davs:
+    # if davs[key] ==
+    # return None
 
     def add_to_cache(self, appid, objid, path):
         if isinstance(path, str):
@@ -144,7 +149,9 @@ class VDOM_webdav_manager(object):
         get_properties.clear()
 
     def change_property_value(self, app_id, obj_id, path, propname, value):
-        get_properties.change_property_value(app_id, obj_id, path, propname, value)
+        get_properties.change_property_value(
+            app_id, obj_id, path, propname, value)
 
     def change_parents_property(self, app_id, obj_id, path, propname, value):
-        get_properties.change_parents_property(self, app_id, obj_id, path, propname, value)
+        get_properties.change_parents_property(
+            self, app_id, obj_id, path, propname, value)

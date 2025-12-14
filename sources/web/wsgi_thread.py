@@ -28,5 +28,4 @@ class WebServer(SmartThread):
             self.__server.shutdown()
 
 
-
 VDOM_web_server_thread = WebServer

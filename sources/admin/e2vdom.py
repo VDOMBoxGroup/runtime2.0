@@ -150,10 +150,10 @@ def run(request):
         datafield = datafield[0]
     if sid and datafield:
         # debug(
-        # 	u"- - - - - - - - - - - - - - - - - - - -\n"
-        # 	u"%s\n"
-        # 	u"- - - - - - - - - - - - - - - - - - - -\n" %
-        # 	datafield)
+        # u"- - - - - - - - - - - - - - - - - - - -\n"
+        # u"%s\n"
+        # u"- - - - - - - - - - - - - - - - - - - -\n" %
+        # datafield)
         request.request_type = "action"
         try:
             ev = Parser(builder=calls_builder).parse(datafield)

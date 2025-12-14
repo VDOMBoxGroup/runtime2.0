@@ -9,24 +9,24 @@ class InvalidParamsException(Exception):
 def run(request):
     args = request.arguments().arguments()
     request.render_type = "e2vdom"
-    #auth = request.headers().headers().get("Authorization")
-    #if not auth:
-        #request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
-        #request.send_htmlcode(401)
+    # auth = request.headers().headers().get("Authorization")
+    # if not auth:
+    #     request.add_header("WWW-Authenticate","Basic realm=\"vdom\"")
+    #     request.send_htmlcode(401)
 
-        #return
-    #else:
-        #if auth[:len("Basic ")]=="Basic ":
-            #user,login = base64.b64decode(auth[len("Basic "):]).split(":")
-            #sem = VDOM_semaphore()
-            #sem.lock()
-            #try:
-                #if not managers.user_manager.match_user_md5(user, hashlib.md5(login).hexdigest()):
-                    #time.sleep(1)
-                    #request.send_htmlcode(401)
-                    #return
-            #finally:
-                #sem.unlock()
+    #     return
+    # else:
+    #     if auth[:len("Basic ")]=="Basic ":
+    #         user,login = base64.b64decode(auth[len("Basic "):]).split(":")
+    #         sem = VDOM_semaphore()
+    #         sem.lock()
+    #         try:
+    #             if not managers.user_manager.match_user_md5(user, hashlib.md5(login).hexdigest()):
+    #                 time.sleep(1)
+    #                 request.send_htmlcode(401)
+    #                 return
+    #         finally:
+    #             sem.unlock()
     appid = args.get("appid")[0] if args.get("appid") else request.app_id()
     container = args.get("objid")[0] if args.get("objid") else "API"
     action = args.get("action_name")[0] if args.get("action_name") else ""
@@ -35,7 +35,7 @@ def run(request):
     callback = args.get("callback")[0] if args.get("callback") else ""
 
     if not (appid != '' and container != '' and action != ''):
-        request.write("<ERROR>Invalid params</ERROR>")
+        request.write(b"<ERROR>Invalid params</ERROR>")
     else:
         try:
             if appid not in managers.memory.applications:
@@ -57,7 +57,7 @@ def run(request):
                 request.arguments().arguments({"xml_param": [xml_param], "xml_data": [xml_data]})
                 request.container_id = obj.id
                 result = managers.engine.execute(obj.actions[action])
-                ret = request.session().value("response")
+                ret = request.session().value("response") or result
                 request.session().remove("response")
                 if isinstance(ret, str):
                     ret = ret.encode("utf8", "ignore")
@@ -65,6 +65,6 @@ def run(request):
             request.write("<ERROR>%s</ERROR>" % ex.message)
         except Exception as e:
             print_exc()
-            request.write("<ERROR>%s</ERROR>"%e)
+            request.write("<ERROR>%s</ERROR>" % e)
         else:
             request.write("/**/ %s(%s);" % (callback, ret) if callback else ret)

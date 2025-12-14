@@ -1,5 +1,6 @@
 """VDOM storage module"""
 
+import managers
 import sqlite3
 import pickle
 import traceback
@@ -100,8 +101,8 @@ class VDOM_storage(object):
     def __internal_erase(self, key):
         """internal erase method"""
         with sqlite3.connect(self.__fname) as conn:
-            conm.execute("delete from storage where name = ?", (key, ))
-            #conn.commit() #
+            conn.execute("delete from storage where name = ?", (key, ))
+            # conn.commit() #
 
     def prepare(self):
         connection = sqlite3.connect(self.__fname)
@@ -130,7 +131,7 @@ class VDOM_storage(object):
             debug(str(e))
             traceback.print_exc(file=debugfile)
         # finally:
-        #	self.__sem.unlock()
+        # self.__sem.unlock()
         # return None
 
     def write(self, key, value):
@@ -212,7 +213,7 @@ class VDOM_storage(object):
 
     def get_resource_record(self, res_descriptor):
         """Interface for access to DB records of resources"""
-        rows = self.__execute_sql_read(list_all_res, (res_descriptor.id,))
+        rows = self.__execute_sql_read(_list_res, (res_descriptor.id,))
         if len(rows) == 1:
             row = rows[0]
         else:
@@ -228,16 +229,15 @@ class VDOM_storage(object):
 
     def create_resource_record(self, res_descriptor):
         """Interface for adding DB record of resources"""
-
-        #params = (res_descriptor.id,res_descriptor.application_id,res_descriptor.filename,res_descriptor.name,res_descriptor.res_type,res_descriptor.res_format)
-        #ret = self.__execute_sql(__insert_sql,params)
+        # params = (res_descriptor.id,res_descriptor.application_id,res_descriptor.filename,res_descriptor.name,res_descriptor.res_type,res_descriptor.res_format)
+        # ret = self.__execute_sql(__insert_sql,params)
         # return ret if isinstance(ret,int) else None
         self.write_async("addresource", res_descriptor)
 
     def update_resource_record(self, res_descriptor):
         """Interface for updating DB record of resources"""
-        #params = (res_descriptor.filename,res_descriptor.name,res_descriptor.res_type,res_descriptor.res_format,res_descriptor.res_id)
-        #db_id = self.__execute_sql(__update_sql,params)
+        # params = (res_descriptor.filename,res_descriptor.name,res_descriptor.res_type,res_descriptor.res_format,res_descriptor.res_id)
+        # db_id = self.__execute_sql(__update_sql,params)
         # return db_id
         self.write_async("updateresource", res_descriptor)
 
@@ -265,7 +265,7 @@ class VDOM_storage(object):
         self.__sem.unlock()
         return ret
 
-###### object interface ############################################################################
+# ======= object interface ===========================================================================================
 
     def read_object(self, key):
         """read object from the storage"""
@@ -301,9 +301,6 @@ class VDOM_storage(object):
             debug(e.message)
             return False
         return self.write_async(key, data)
-
-
-import managers
 
 
 class VDOM_config(object):

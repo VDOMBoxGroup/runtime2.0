@@ -35,7 +35,7 @@ ORDER_VALUES = {
     "descending": ORDER_BY_DESCENDING
 }
 
-COUNTER_REGEX = re.compile("(\d+)(?:\s*\((\d+)\))?")
+COUNTER_REGEX = re.compile(r"(\d+)(?:\s*\((\d+)\))?")
 
 
 def sort_by_name(x):
@@ -50,9 +50,11 @@ def builder(parser):
     # <reply>
     def reply():
         result = Structure(counters=None)
+
         # <counters>
         def counters():
             result.counters = []
+
             # <counter>
             def counter(object):
                 value = yield VALUE

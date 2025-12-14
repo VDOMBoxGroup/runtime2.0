@@ -10,7 +10,7 @@ class VDOM_session_cleaner(VDOM_daemon):
     def __init__(self, manager):
         VDOM_daemon.__init__(self, name=VDOM_session_cleaner.name)
         self.__manager = manager
-        
+
     def prepare(self):
         sys.stdout.write("Start %s\n" % self.name)
 

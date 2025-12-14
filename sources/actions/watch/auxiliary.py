@@ -11,7 +11,7 @@ from utils.parsing import VALUE, Parser
 
 
 FRAME = 64 * 1024
-RESPONSE_PATTERN = re.compile("\s*(?:<reply>.+</reply>|<reply/>)\s*", re.DOTALL)
+RESPONSE_PATTERN = re.compile(r"\s*(?:<reply>.+</reply>|<reply/>)\s*", re.DOTALL)
 DEFAULT_TIMEOUT = 10.0
 
 

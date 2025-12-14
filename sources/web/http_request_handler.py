@@ -1066,4 +1066,4 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
 
     def version_string(self):
         """Return the server software version string."""
-        return "VDOM v2 server " + SERVER_VERSION + ' ' + self.sys_version
+        return "VDOM v3 server " + SERVER_VERSION + ' ' + self.sys_version

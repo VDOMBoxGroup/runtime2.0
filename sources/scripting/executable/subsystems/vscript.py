@@ -1,7 +1,4 @@
-
-
-
-from builtins import compile as python_compile
+from builtins import compile as python_compile  # TODO: check if needed
 from importlib import import_module
 
 import settings
@@ -27,7 +24,7 @@ class VScriptBytecode(Bytecode):
     def compile(cls, executable, signature=None):
         try:
             listing, symbols = vcompile(executable.source_code,
-                package=executable.package, bytecode=False, listing=settings.SHOW_VSCRIPT_LISTING, anyway=False)
+                                        package=executable.package, bytecode=False, listing=settings.SHOW_VSCRIPT_LISTING, anyway=False)
         except verrors.lock_error:
             if settings.VSCRIPT_AUTO_PRECOMPILE:
                 executable.cleanup()

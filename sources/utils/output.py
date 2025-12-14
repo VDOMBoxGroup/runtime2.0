@@ -124,8 +124,8 @@ def show(name=None, value=ABSENT, indent=None, longer=False, continuation="", no
     if not isinstance(value, bytes):
         value = str(value)
 
-    #Workaround for missing newline in console
-    console.write(f"{reformat(value, caption, continuation=continuation, noclip=noclip)}\n") 
+    # Workaround for missing newline in console
+    console.write(f"{reformat(value, caption, continuation=continuation, noclip=noclip)}\n")
 
 
 def warn(message, indent=None, continuation="", noclip=False):

@@ -261,8 +261,9 @@ class VDOM_module_manager(object):
                 return None, result.encode("utf-8")
 
         elif "py" == request_type:  # dynamic python script, this doesn't require an application to be registered
-            _a = managers.memory.applications[request_object.app_id()]
-            with start_stop_request(_a.actions):
+            app_id = request_object.app_id()
+            _a = managers.memory.applications[app_id].actions if app_id else {}
+            with start_stop_request(_a):
                 try:  # TODO: PY3
                     module = VDOM_module_python()
                     return (None, module.run(request_object))

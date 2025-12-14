@@ -1,17 +1,11 @@
 """
+EAC basic implementation
 """
-from __future__ import absolute_import
-
-
-
-from builtins import map
-
 import json
-from hashlib import md5
 import urllib.parse
-import urllib.request, urllib.parse, urllib.error
-import email
-import email.utils
+import urllib.request
+import urllib.parse
+import urllib.error
 import base64
 from . import jlayout
 
@@ -19,11 +13,10 @@ from xml.dom.minidom import parseString
 from xml.dom import getDOMImplementation
 
 
-
 class FakeLogger(object):
     def debug(self, *args):
-        args = ' '.join(map(repr,args))
-        debug('[REMOTE_API CALL] '+args)
+        args = ' '.join(map(repr, args))
+        debug('[REMOTE_API CALL] ' + args)
 
 
 logger = FakeLogger()
@@ -45,8 +38,9 @@ def append_cdata(doc, parent, data):
     start = 0
     while True:
         i = data.find("]]>", start)
-        if i < 0: break
-        parent.appendChild(doc.createCDATASection(data[start:i+2]))
+        if i < 0:
+            break
+        parent.appendChild(doc.createCDATASection(data[start:i + 2]))
         start = i + 2
     parent.appendChild(doc.createCDATASection(data[start:]))
 
@@ -82,7 +76,6 @@ class EACContent(object):
     class InvalidEventsDefinition(EACParseException):
         pass
 
-
     def __init__(self, wholexml):
         self.wholedata = self.parse_wholexml(wholexml)
 
@@ -108,7 +101,7 @@ class EACContent(object):
             if pattern:
                 try:
                     pattern = json.loads(pattern)
-                except:
+                except Exception:
                     if pattern == "{}":
                         pattern = {}
                     else:
@@ -155,22 +148,25 @@ class EACContent(object):
 
     def _parse_layout_section(self, layout):
         result = {}
-        for k,v in list(layout.attributes.items()):
+        for k, v in list(layout.attributes.items()):
             result[k] = try_number(v)
 
         if result['type'] == 'border':
-            result['items'] = dict((k, None) for k in ['north', 'west', 'center', 'east', 'south'])
+            result['items'] = dict((k, None) for k in [
+                                   'north', 'west', 'center', 'east', 'south'])
         else:
             result['items'] = []
 
         for child in layout.childNodes:
-            if isData(child): continue
+            if isData(child):
+                continue
 
             widget_el = child.getElementsByTagName('WIDGET')
-            widget = dict(list(widget_el[0].attributes.items())) if widget_el else None
+            widget = dict(
+                list(widget_el[0].attributes.items())) if widget_el else None
 
             pane_config = {}
-            for k,v in list(child.attributes.items()):
+            for k, v in list(child.attributes.items()):
                 pane_config[k] = try_number(v)
 
             pane_config['widget'] = widget
@@ -188,16 +184,15 @@ class EACContent(object):
 
         try:
             return json.loads(base64.decodestring(payload))
-        except:
+        except Exception:
             pass
 
         try:
             return json.loads(payload)
-        except:
+        except Exception:
             pass
 
         return {}
-
 
     def parse_wholexml(self, wholexml):
         try:
@@ -236,7 +231,8 @@ class EACContent(object):
 
         metadata_el = whole_el.getElementsByTagName("METADATA")
         if metadata_el:
-            result_whole['metadata'] = self._parse_metadata_section(metadata_el[0])
+            result_whole['metadata'] = self._parse_metadata_section(
+                metadata_el[0])
 
         layout_el = whole_el.getElementsByTagName("LAYOUT")
         if layout_el:
@@ -244,7 +240,8 @@ class EACContent(object):
 
         widgets_el = whole_el.getElementsByTagName("WIDGETS")
         if widgets_el:
-            result_whole['widgets'] = self._parse_widgets_section(widgets_el[0])
+            result_whole['widgets'] = self._parse_widgets_section(
+                widgets_el[0])
 
         # update "vdom" and "events" values in result by compilation from layout / widgets
         if layout_el and widgets_el:
@@ -299,7 +296,6 @@ class EACObject(object):
         # layout / widgets
         self.layout = ''
         self.widgets = ''
-
 
     @classmethod
     def from_data(cls, eac_token, payload):
@@ -366,10 +362,10 @@ class EACObject(object):
             'app_id': self.app_id,
             'server': self.api_server,
             'email': email,
-            'pattern': self.get_data if isinstance(self.get_data, bytes) \
-                        else json.dumps(self.get_data),
-            'pattern_post': self.post_data if isinstance(self.post_data, bytes) \
-                        else json.dumps(self.post_data),
+            'pattern': self.get_data if isinstance(self.get_data, bytes)
+            else json.dumps(self.get_data),
+            'pattern_post': self.post_data if isinstance(self.post_data, bytes)
+            else json.dumps(self.post_data),
             'vdomxml': self.vdomxml_data.encode('utf8') if isinstance(self.vdomxml_data, str) else self.vdomxml_data,
             'events': self.events_data,
             'static': '0' if self.dynamic else '1',
@@ -473,11 +469,9 @@ class EACObject(object):
 
         return root.toprettyxml(encoding='utf8')
 
-
     def __append_cdata(self, doc, elem, data):
         append_cdata(doc, elem,
-            json.dumps(data, indent=2) if isinstance(data, dict) else data)
-
+                     json.dumps(data, indent=2) if isinstance(data, dict) else data)
 
     def send(self, toemail, subject, body):
         from mailing.message import Message, MailAttachment
@@ -489,7 +483,8 @@ class EACObject(object):
         message.headers['EAC-Token'] = self.eac_token
         message.headers['EAC-Method'] = self.eac_method
 
-        message.append(MailAttachment(data = self.get_wholexml(), filename='EAC.xml', content_type='TEXT', content_subtype='WHOLEXML'))
+        message.append(MailAttachment(data=self.get_wholexml(
+        ), filename='EAC.xml', content_type='TEXT', content_subtype='WHOLEXML'))
 
         message.to_email = toemail
         message.from_email = 'services@appinmail.io'

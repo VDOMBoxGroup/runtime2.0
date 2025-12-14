@@ -1,4 +1,4 @@
-import re, hashlib
+import re
 import threading
 
 from suds.client import Client
@@ -10,144 +10,129 @@ from utils.exception import VDOMServiceCallError
 __version__ = '0.1.6'
 
 
-session_id_re = re.compile("\<SessionId\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionId\>")
-session_key_re = re.compile("\<SessionKey\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionKey\>")
-hash_string_re = re.compile("\<HashString\>\<\!\[CDATA\[(\S+)\]\]\>\<\/HashString\>")
-key_re = re.compile("\<Key\>(\S+)_\d+\<\/Key\>")
-
+session_id_re = re.compile(r"\<SessionId\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionId\>")
+session_key_re = re.compile(r"\<SessionKey\>\<\!\[CDATA\[(\S+)\]\]\>\<\/SessionKey\>")
+hash_string_re = re.compile(r"\<HashString\>\<\!\[CDATA\[(\S+)\]\]\>\<\/HashString\>")
+key_re = re.compile(r"\<Key\>(\S+)_\d+\<\/Key\>")
 
 
 class VDOMServiceSingleThread(object):
-	def __init__(self, url, login, md5hexpass, application_id):
-		self._url = url
-		self._login = login
-		self._md5hexpass = md5hexpass
-		self._application_id = application_id
+    def __init__(self, url, login, md5hexpass, application_id):
+        self._url = url
+        self._login = login
+        self._md5hexpass = md5hexpass
+        self._application_id = application_id
 
-		self._request_num = 0
-		self._skey = None
-		self._sid = None
-		self._skey = None
+        self._request_num = 0
+        self._skey = None
+        self._sid = None
+        self._skey = None
 
-		self._server = self.__create_soap_proxy(url)
-		self._protector = None
+        self._server = self.__create_soap_proxy(url)
+        self._protector = None
 
+    def __create_soap_proxy(self, url):
+        if '://' not in url:
+            url = 'http://' + url
 
-	def __create_soap_proxy(self, url):
-		if not '://' in url:
-			url = 'http://' + url
+        if url.lower().startswith('https://'):
+            import ssl
+            ssl._create_default_https_context = ssl._create_unverified_context
 
-		if url.lower().startswith('https://'):
-			import ssl
-			ssl._create_default_https_context = ssl._create_unverified_context
+        self._url = url
+        return Client(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
+        # return SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
 
-		self._url = url
-		return Client(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
-		# return SOAPpy.SOAPProxy(url.rstrip('/') + '/SOAP', namespace='http://services.vdom.net/VDOMServices')
+    def __request_skey(self):
+        return '{0}_{1:d}'.format(self._skey, self._request_num)
 
+    def open_session(self):
+        login_result = self._server.open_session(self._login, self._md5hexpass)
 
+        self._request_num = 0
 
-	def __request_skey(self):
-		return '{0}_{1:d}'.format(self._skey, self._request_num)
+        self._sid = str(session_id_re.search(login_result, 1).group(1))
+        skey = str(session_key_re.search(login_result, 1).group(1))
+        hash_string = str(hash_string_re.search(login_result, 1).group(1))
 
+        self._protector = VDOM_session_protector(hash_string)
+        self._skey = self._protector.next_session_key(skey)
 
-	def open_session(self):
-		login_result = self._server.open_session(self._login, self._md5hexpass)
+        return self
 
-		self._request_num = 0
+    def call(self, container_id, action_name, xml_data):
+        xml_param = "<Arguments><CallType>server_action</CallType></Arguments>"
+        ret = None
 
-		self._sid = str(session_id_re.search(login_result, 1).group(1))
-		skey = str(session_key_re.search(login_result, 1).group(1))
-		hash_string = str(hash_string_re.search(login_result, 1).group(1))
+        try:
+            ret = self._server.remote_call(self._sid, self.__request_skey(
+            ), self._application_id, container_id, action_name, xml_param, xml_data)
 
-		self._protector = VDOM_session_protector(hash_string)
-		self._skey = self._protector.next_session_key(skey)
+        except Exception as ex:
+            if ret:
+                raise VDOMServiceCallError(str(ret))
+            else:
+                raise VDOMServiceCallError(ex.message)
 
-		return self
+        if ret == 'None':
+            raise VDOMServiceCallError('Session is closed')
 
+        self._skey = self._protector.next_session_key(self._skey)
+        self._request_num += 1
 
-	def call(self, container_id, action_name, xml_data):
-		xml_param = "<Arguments><CallType>server_action</CallType></Arguments>"
-		ret = None
+        return key_re.sub('', ret)
 
-		try:
-			ret = self._server.remote_call(self._sid, self.__request_skey(), self._application_id, container_id, action_name, xml_param, xml_data)
+    def remote(self, method_name, params=None, no_app_id=False):
+        params = params or []
 
-		except Exception as ex:
-			if ret:
-				raise VDOMServiceCallError( str(ret) )
-			else:
-				raise VDOMServiceCallError( ex.message  )
+        if not no_app_id:
+            params.insert(0, self._application_id)
 
-		if ret == 'None':
-			raise VDOMServiceCallError('Session is closed')
+        ret = None
+        try:
+            soap_method = getattr(self._server, method_name)
+            ret = soap_method(self._sid, self.__request_skey(), *params)
 
-		self._skey = self._protector.next_session_key(self._skey)
-		self._request_num += 1
+        except Exception as ex:
+            if ret:
+                raise VDOMServiceCallError(str(ret))
+            else:
+                raise VDOMServiceCallError(getattr(ex, "message", None) or getattr(
+                    ex, "faultstring", None) or str(ex))
 
-		return key_re.sub('', ret)
+        self._skey = self._protector.next_session_key(self._skey)
+        self._request_num += 1
 
+        return key_re.sub('', ret)
 
-	def remote(self, method_name, params=None, no_app_id=False):
-		params = params or []
-
-		if not no_app_id:
-			params.insert(0, self._application_id)
-
-		ret = None
-		try:
-			soap_method = getattr(self._server, method_name)
-			ret = soap_method(self._sid, self.__request_skey(), *params)
-
-		except Exception as ex:
-			if ret:
-				raise VDOMServiceCallError( str(ret) )
-			else:
-				raise VDOMServiceCallError( getattr(ex, "message", None) or getattr(ex, "faultstring", None) or str(ex) )
-
-		self._skey = self._protector.next_session_key(self._skey)
-		self._request_num+=1
-
-		return key_re.sub('', ret)
-
-
-	@classmethod
-	def connect(cls, url, login, md5_hexpass, application_id):
-		service = cls(url, login, md5_hexpass, application_id)
-		return service.open_session()
-
-
-
-
-
+    @classmethod
+    def connect(cls, url, login, md5_hexpass, application_id):
+        service = cls(url, login, md5_hexpass, application_id)
+        return service.open_session()
 
 
 class VDOMServiceMultiThread(VDOMServiceSingleThread):
-	def __init__(self, url, login, md5hexpass, application_id):
-		VDOMServiceSingleThread.__init__(self, url, login, md5hexpass, application_id)
-		self.__thread = threading.local()
+    def __init__(self, url, login, md5hexpass, application_id):
+        VDOMServiceSingleThread.__init__(
+            self, url, login, md5hexpass, application_id)
+        self.__thread = threading.local()
 
+    def api(self):
+        if getattr(self.__thread, 'api', None) is None:
+            self.__thread.api = VDOMServiceSingleThread(
+                self._url, self._login, self._md5hexpass, self._application_id)
+            self.__thread.api.open_session()
+        return self.__thread.api
 
-	def api(self):
-		if getattr(self.__thread, 'api', None) is None:
-			self.__thread.api = VDOMServiceSingleThread(self._url, self._login, self._md5hexpass, self._application_id)
-			self.__thread.api.open_session()
-		return self.__thread.api
+    def open_session(self):
+        self.api().open_session()
+        return self
 
+    def call(self, container_id, action_name, xml_data):
+        return self.api().call(container_id, action_name, xml_data)
 
-	def open_session( self ):
-		self.api().open_session()
-		return self
-
-
-	def call( self, container_id, action_name, xml_data ):
-		return self.api().call(container_id, action_name, xml_data)
-
-
-	def remote(self, method_name, params=None, no_app_id=False):
-		return self.api().remote(method_name, params, no_app_id)
-
-
+    def remote(self, method_name, params=None, no_app_id=False):
+        return self.api().remote(method_name, params, no_app_id)
 
 
 VDOMService = VDOMServiceMultiThread
@@ -155,6 +140,6 @@ VDOM_service = VDOMServiceMultiThread
 
 
 try:
-	from soap.soaputils import VDOM_session_protector
+    from soap.soaputils import VDOM_session_protector
 except ImportError:
-	from scripting.soap.soaputils import VDOM_session_protector
+    from scripting.soap.soaputils import VDOM_session_protector

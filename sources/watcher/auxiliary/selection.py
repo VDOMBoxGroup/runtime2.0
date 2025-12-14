@@ -1,7 +1,3 @@
-
-
-
-from builtins import filter
 import gc
 import threading
 

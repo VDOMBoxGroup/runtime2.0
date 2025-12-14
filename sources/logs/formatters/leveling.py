@@ -7,7 +7,7 @@ from .multiline import MultilineLogFormatter
 class LevelingLogFormatter(MultilineLogFormatter):
 
     PREFIXES = levels.PREFIXES
-    PREFIXES_REGEX = re.compile("|".join("(^%s)" % prefix or "$" for prefix in PREFIXES))
+    PREFIXES_REGEX = re.compile(r"|".join("(^%s)" % prefix or "$" for prefix in PREFIXES))
 
     def _make_caption(self, level, *values):
         return super(LevelingLogFormatter, self)._make_caption(*values) + self.PREFIXES[level]

@@ -55,21 +55,21 @@ sys.modules[__name__] = Managers()
 
 # anounce globals for further linting
 if __name__ not in sys.modules:
-    from logs import VDOM_log_manager as log
-    from storage import VDOM_storage as storage
-    from file_access import VDOM_file_manager as file_access
-    from request import VDOM_request_manager as  request_manager
-    from resource import VDOM_resource_manager as resource_manager
-    from database import VDOM_database_manager as databse_manager
-    from scripting import VDOM_compiler as compiler, VDOM_dispatcher as dispatcher
-    from memory import VDOM_memory as memory
-    from engine import VDOM_engine as engine    
-    from server import VDOM_server as server
+    from logs import VDOM_log_manager as log # noqa
+    from storage import VDOM_storage as storage # noqa
+    from file_access import VDOM_file_manager as file_access # noqa
+    from request import VDOM_request_manager as  request_manager # noqa
+    from resource import VDOM_resource_manager as resource_manager # noqa
+    from database import VDOM_database_manager as databse_manager # noqa
+    from scripting import VDOM_compiler as compiler, VDOM_dispatcher as dispatcher # noqa
+    from memory import VDOM_memory as memory # noqa
+    from engine import VDOM_engine as engine # noqa
+    from server import VDOM_server as server# noqa
     # from mailing import VDOM_email_manager
-    from session import VDOM_session_manager as session_manager
-    from module import VDOM_module_manager as module_manager
-    from soap import VDOM_soap_server as soap_server
-    from webdav_server import VDOM_webdav_manager as webdav_manager
+    from session import VDOM_session_manager as session_manager # noqa
+    from module import VDOM_module_manager as module_manager # noqa
+    from soap import VDOM_soap_server as soap_server # noqa
+    from webdav_server import VDOM_webdav_manager as webdav_manager # noqa
 
     import builtins
     from startup.debug import debug, DebugFile
@@ -77,3 +77,4 @@ if __name__ not in sys.modules:
     builtins.debugfile = DebugFile()
     builtins._ = lambda value: value
     VDOM_CONFIG_1 = {}
+    builtins.MANAGE = False

@@ -7,7 +7,6 @@ from utils.console import CONSOLE_WIDTH
 if sys.version_info[0] < 3:
     import imp
 
-
     class SettingsImporter(object):
 
         def find_module(self, fullname, path=None):
@@ -63,7 +62,7 @@ if sys.version_info[0] < 3:
                 module.__dict__["MANAGE_LONG_NAME_WIDTH"] = CONSOLE_WIDTH * 70 // 100
 
             return module
-        
+
         def find_spec(self, fullname, path, target=None):
             return self.find_module(fullname, path)
 
@@ -83,9 +82,8 @@ else:
             globals()[module.__name__] = module
 
         def create_module(self, spec):
-
             module = module_from_spec(find_spec(spec.name))
-            fullname = module.__name__ 
+            fullname = module.__name__
             filename = fullname + ".pyc"
             if os.path.isfile(filename):
                 with io.open(filename, "rb") as file:
@@ -121,24 +119,22 @@ else:
 
             sys.modules[fullname] = module
             exec(code, module.__dict__)
-            
 
             if CONSOLE_WIDTH < module.__dict__.get("MANAGE_LINE_WIDTH"):
                 module.__dict__["MANAGE_LINE_WIDTH"] = CONSOLE_WIDTH
                 module.__dict__["MANAGE_NAME_WIDTH"] = CONSOLE_WIDTH * 30 // 100
                 module.__dict__["MANAGE_LONG_NAME_WIDTH"] = CONSOLE_WIDTH * 70 // 100
 
-            return module                   
-        
+            return module
+
         def find_spec(self, fullname, path, target=None):
-            
+
             if fullname != "appsettings":
                 return None
-            
+
             fullname = "settings"
-            
-            spec = ModuleSpec(fullname, self)          
 
-            return spec  
+            spec = ModuleSpec(fullname, self)
 
- 
+            return spec
+

@@ -1,5 +1,3 @@
-from builtins import input
-
 import os
 from xml.dom.minidom import parse
 from xml.dom.minidom import parseString
@@ -347,6 +345,7 @@ def f1():
 
 # test
 if __name__ == "__main__":
+    from builtins import input
     f1()
     import gc
     gc.collect()

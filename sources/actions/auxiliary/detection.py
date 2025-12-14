@@ -8,7 +8,7 @@ from utils.parsing import native, Parser
 from .constants import TYPE, APPLICATION, USER, GROUP
 
 
-ENTITY_NAME_REGEX = re.compile("[a-z][_0-9a-z]*$", re.IGNORECASE)
+ENTITY_NAME_REGEX = re.compile(r"[a-z][_0-9a-z]*$", re.IGNORECASE)
 
 
 def is_entity_name(value):

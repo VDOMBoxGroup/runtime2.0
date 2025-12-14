@@ -1,6 +1,3 @@
-
-
-
 import ctypes
 import re
 from utils.threads import SmartThread
@@ -8,7 +5,7 @@ from ..exceptions import OptionError, WatcherError, WatcherManualException
 from ..auxiliary import search_thread
 
 
-pattern = re.compile("[A-Za-z][0-9A-Za-z]*$")
+pattern = re.compile(r"[A-Za-z][0-9A-Za-z]*$")
 
 
 def intrude(options):

@@ -3,7 +3,6 @@ import pstats
 import re
 
 
-
 import settings
 import managers
 import file_access
@@ -61,8 +60,8 @@ SORT_MAPPING = {
     SORT_BY_CUMULATIVE: lambda item: item[3]
 }
 
-BUILD_IN_PATTERN = re.compile("\<built-in method (?P<name>.+)\>")
-METHOD_PATTERN = re.compile("\<method '(?P<name>.+)' of '(?P<class>.+)' objects\>")
+BUILD_IN_PATTERN = re.compile(r"\<built-in method (?P<name>.+)\>")
+METHOD_PATTERN = re.compile(r"\<method '(?P<name>.+)' of '(?P<class>.+)' objects\>")
 
 
 def make_name(path, line, function):
@@ -113,8 +112,8 @@ def run(name=None, location=None, headers=False, sort=None, order=None, limit=50
 
     profile = pstats.Stats(location)
     statistics = tuple((make_name(path, line, function), calls, total, cumulative)
-        for (path, line, function), (calls, stack, total, cumulative, more)
-        in profile.stats.items())
+                       for (path, line, function), (calls, stack, total, cumulative, more)
+                       in profile.stats.items())
 
     key = SORT_MAPPING[sort]
     reverse = order is ORDER_BY_DESCENDING

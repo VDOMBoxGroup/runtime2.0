@@ -1,5 +1,3 @@
-
-import sys
 from utils.threads import VDOM_daemon
 from logs import log
 

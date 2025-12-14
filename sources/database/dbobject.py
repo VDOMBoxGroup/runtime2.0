@@ -1,17 +1,14 @@
 import codecs
-
-
-
-from builtins import map
-#import sqlite3
 import re
+import sqlite3
 from xml.dom import Node
 from xml.dom.minidom import parseString  # parse,
 from io import StringIO
 import managers
 import file_access
-from utils.exception import VDOM_exception, VDOMDatabaseAccessError
+from utils.exception import VDOMDatabaseAccessError
 from utils.semaphore import VDOM_semaphore
+
 
 class VDOM_database_object(object):
     """database object class"""
@@ -21,7 +18,7 @@ class VDOM_database_object(object):
         self.owner_id = owner_id
         self.id = dbid
         self.name = str(dbid)
-        self.filename = str(dbid)#str(uuid.uuid4())
+        self.filename = str(dbid)  # str(uuid.uuid4())
         self.is_ready = False
         self.tables_list = None
         self.tables_index = {}
@@ -38,7 +35,8 @@ class VDOM_database_object(object):
         # if self.__conn: return True
         try:
             # conn = sqlite3.connect(managers.file_manager.get_path(file_access.database, self.owner_id, None, self.filename), timeout=timeout)
-            conn = sqlite3.connect(managers.file_manager.locate(file_access.database, self.owner_id, self.filename), timeout=timeout)
+            conn = sqlite3.connect(managers.file_manager.locate(
+                file_access.database, self.owner_id, self.filename), timeout=timeout)
             if not simple_rows:
                 conn.row_factory = sqlite3.Row
         except Exception as e:
@@ -55,7 +53,8 @@ class VDOM_database_object(object):
 
     def get_table(self, table_id, table_name, table_diffinition=""):
         """Create or read object representation for database table"""
-        table = VDOM_database_table(self.owner_id, self.id, table_id, table_name)
+        table = VDOM_database_table(
+            self.owner_id, self.id, table_id, table_name)
         if not self.tables_list:
             self.tables_list = self.get_tables_list()
 
@@ -76,21 +75,23 @@ class VDOM_database_object(object):
     def get_tables_list(self):
         tables = []
         cur = self.get_connection().cursor()
-        cur.execute("SELECT name FROM sqlite_master WHERE type=\'table\' ORDER BY name")
+        cur.execute(
+            "SELECT name FROM sqlite_master WHERE type=\'table\' ORDER BY name")
         for row in cur:
             tables.append(row["name"])
         return tables
 
     def backup_data(self, tgt_connection):
         try:
-            import sqlitebck
+            import sqlitebck  # type: ignore
             sqlitebck.copy(self.get_connection(), tgt_connection)
         except ImportError:
-            print ("ERROR: No module sqlitebck - databases could not be exported")
+            print("ERROR: No module sqlitebck - databases could not be exported")
 
 
 class VDOM_database_table(object):
     """Object representation of database table"""
+
     def __init__(self, owner_id, db_id, id, name):
         """constructor"""
         self.id = id
@@ -108,21 +109,24 @@ class VDOM_database_table(object):
         """Create new table in DB"""
         if fields_list == "" or fields_list == "()":
             fields_list = "(id INTEGER PRIMARY KEY AUTOINCREMENT)"
-        #fields_list = ""
+        # fields_list = ""
         # if fields and len(fields)>0:
-            #fields_list = "("
+            # fields_list = "("
             # for key in fields:
-                # if fields_list != "(":
-                            #fields_list +=", "
-                #fields_list += str(key)
-            #fields_list += ")"
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+            # if fields_list != "(":
+            # fields_list +=", "
+            # fields_list += str(key)
+            # fields_list += ")"
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS \'%s\'%s" % (self.name, fields_list))
+        cur.execute("CREATE TABLE IF NOT EXISTS \'%s\'%s" %
+                    (self.name, fields_list))
         self.restore_structure(True)
 
     def remove(self):
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
         cur.execute("DROP TABLE IF EXISTS \'%s\'" % (self.name,))
         database.tables_list = database.get_tables_list()
@@ -148,18 +152,19 @@ class VDOM_database_table(object):
         self.headers = []
         self.headersindex = {}
         i = 0
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
         cur.execute("select * from `%s`" % self.name)
         for fieldDesc in cur.description:
             # if len(fieldDesc[0])>20:
-            #	text = fieldDesc[0].ljust(20)
+            # text = fieldDesc[0].ljust(20)
             # else:
             text = fieldDesc[0]
             try:
                 self.headers.append(text.decode("UTF-8"))
                 self.headersindex[text.decode("UTF-8")] = i
-            except:
+            except Exception:
                 self.headers.append(text)
                 self.headersindex[text] = i
             i += 1
@@ -170,13 +175,16 @@ class VDOM_database_table(object):
         """Parsing table declaration"""
         # based on sql grammar from http://www.sqlite.org/lang_createtable.html
         columns = {}
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
-        cur.execute("SELECT sql FROM sqlite_master WHERE type=\'table\' and upper(name)=?", (self.name.upper(),))
+        cur.execute(
+            "SELECT sql FROM sqlite_master WHERE type=\'table\' and upper(name)=?", (self.name.upper(),))
         for row in cur:
-            table_def = re.search(r"""create table [\`'\"]?(?P<tbl_name>\w*)[\`'\"]?\s*\((?P<declaration>.+)\)""", row[0], re.DOTALL | re.IGNORECASE)
+            table_def = re.search(
+                r"""create table [\`'\"]?(?P<tbl_name>\w*)[\`'\"]?\s*\((?P<declaration>.+)\)""", row[0], re.DOTALL | re.IGNORECASE)
             if (not table_def) or (table_def.group("tbl_name").lower() != self.name.lower()):
-                #raise VDOM_exception("Invalid database info")
+                # raise VDOM_exception("Invalid database info")
                 continue
             declaration = table_def.group("declaration")
             for column in map(str.strip, declaration.split(',')):
@@ -199,7 +207,8 @@ class VDOM_database_table(object):
                     if match.group("unique"):
                         constraints["unique"] = True
                     if match.group("default"):
-                        default = match.group("default")[8:]  # missing default word
+                        # missing default word
+                        default = match.group("default")[8:]
                         if default[0] == "'" and default[-1] == "'":
                             constraints["default"] = default[1:-1]
                         else:
@@ -210,24 +219,26 @@ class VDOM_database_table(object):
     def update_structure(self, xmldata):
         """Updating table structure from xml"""
         # if xmldata:
-            # try:
-                #dom3 = parseString(xmldata)
-                #changelog = dom3.getElementsByTagName("ChangeLog")
-                # if len(changelog) == 1:
-                    # for child in changelog[0].childNodes:
-                        # if child.nodeName == "ColumnInsert":
-                            #self.addcolumn(child.attributes["name"].value+ " " + child.attributes["type"].value)
-                    # self.restore_structure()
-            # except Exception, e:
-                #debug("Database open failed:"+ str(e))
+        # try:
+        # dom3 = parseString(xmldata)
+        # changelog = dom3.getElementsByTagName("ChangeLog")
+        # if len(changelog) == 1:
+        # for child in changelog[0].childNodes:
+        # if child.nodeName == "ColumnInsert":
+        # self.addcolumn(child.attributes["name"].value+ " " + child.attributes["type"].value)
+        # self.restore_structure()
+        # except Exception, e:
+        # debug("Database open failed:"+ str(e))
         return self.get_structure()
 
     def addcolumn(self, column):
         """Insert row in table"""
         if column not in self.headersindex:
-            database = managers.database_manager.get_database(self.owner_id, self.database_id)
+            database = managers.database_manager.get_database(
+                self.owner_id, self.database_id)
             cur = database.get_connection().cursor()
-            cur.execute("ALTER TABLE \'%s\' ADD COLUMN %s" % (self.name, column.to_declaration()))
+            cur.execute("ALTER TABLE \'%s\' ADD COLUMN %s" %
+                        (self.name, column.to_declaration()))
 
     def addcolumn_from_xml(self, xmldata):
         """Insert row in table from xml"""
@@ -243,7 +254,7 @@ class VDOM_database_table(object):
                     continue
                 if name in columns:
                     continue  # column already exists
-                declaration = name
+                # declaration = name
                 constraints = {}
                 cid = column.getAttribute("id")
                 type = column.getAttribute("type")
@@ -311,7 +322,8 @@ INSERT INTO  `%(newtablename)s` SELECT %(newcols)s FROM '%(oldtablename)s';
 DROP TABLE `%(oldtablename)s`;
 ALTER TABLE `%(newtablename)s` RENAME TO `%(oldtablename)s`;
 END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new", "oldtablename": self.name, "newcols": newcols_decl[2:]}
-        query = VDOM_sql_query(self.owner_id, self.database_id, sql, None, True)
+        query = VDOM_sql_query(
+            self.owner_id, self.database_id, sql, None, True)
         query.commit()
         columns.pop(column.name)
         managers.request_manager.get_request().session().value("columns", columns)
@@ -330,7 +342,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
             name = un_quote(column.getAttribute("name"))
             if not name:
                 return False
-            declaration = name
+            # declaration = name
             constraints = {}
             cid = column.getAttribute("id")
             type = column.getAttribute("type")
@@ -393,7 +405,8 @@ INSERT INTO `%(newtablename)s` (%(newcols)s) SELECT %(newcols)s FROM `%(oldtable
 DROP TABLE `%(oldtablename)s`;
 ALTER TABLE `%(newtablename)s` RENAME TO `%(oldtablename)s`;
 END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new", "oldtablename": self.name, "newcols": newcols_decl[2:]}
-            query = VDOM_sql_query(self.owner_id, self.database_id, sql, None, True)
+            query = VDOM_sql_query(
+                self.owner_id, self.database_id, sql, None, True)
             query.commit()
             columns.pop(old_column.name)
             columns[column_obj.name] = column_obj
@@ -408,7 +421,8 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
             for row in dom.getElementsByTagName("row"):
                 cid = row.getAttribute("id")
                 if cid:
-                    query = VDOM_sql_query(self.owner_id, self.database_id, "DELETE FROM \'%s\' WHERE id = \'%s\'" % (self.name, cid))
+                    query = VDOM_sql_query(
+                        self.owner_id, self.database_id, "DELETE FROM \'%s\' WHERE id = \'%s\'" % (self.name, cid))
                     query.commit()
 
     def update_row_from_xml(self, xmldata):
@@ -442,7 +456,8 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
                     params.append(value)
                 params.append(cid)
                 if assignment and params:
-                    query = VDOM_sql_query(self.owner_id, self.database_id, "UPDATE `%s` SET %s WHERE id = ?" % (self.name, assignment), params)
+                    query = VDOM_sql_query(self.owner_id, self.database_id, "UPDATE `%s` SET %s WHERE id = ?" % (
+                        self.name, assignment), params)
                     query.commit()
 
     def get_data_xml(self, limit=None, offset=None, filter_query=None, order_by=(None, None)):
@@ -457,9 +472,10 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
             filter_sql = " where %s" % filter_query
         if order_by and order_by[0]:
             oreder_sql = " order by %s %s" % order_by
-        query = VDOM_sql_query(self.owner_id, self.database_id, "select * from `%s` %s%s%s" % (self.name, filter_sql, oreder_sql, range))
+        query = VDOM_sql_query(self.owner_id, self.database_id,
+                               "select * from `%s` %s%s%s" % (self.name, filter_sql, oreder_sql, range))
         data = query.fetchall_xml()
-        del(query)
+        del (query)
         return data
 
     def update_data(self, xmldata):
@@ -477,7 +493,8 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
         return self.get_data_xml()
 
     def addrow(self, newrow):
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         con = database.get_connection()
         cur = con.cursor()
         sql = "INSERT INTO \'%s\'  VALUES(%s)" % (self.name, newrow)
@@ -486,7 +503,8 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
 
     def addrow_from_list(self, list):
         """Adding new row from the list of values"""
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         con = database.get_connection()
         cur = con.cursor()
         arg = "(?"
@@ -520,13 +538,16 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
 
     def rename(self, old_name):
         """Renameing table"""
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
-        cur.execute("ALTER TABLE \'%s\' RENAME TO \'%s\'" % (old_name, self.name))
+        cur.execute("ALTER TABLE \'%s\' RENAME TO \'%s\'" %
+                    (old_name, self.name))
 
     def get_count(self):
         """Getting count of rows"""
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         cur = database.get_connection().cursor()
         cur.execute("SELECT COUNT(*) FROM `%s`" % (self.name,))
         return cur.fetchone()[0]
@@ -534,7 +555,8 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
     def reset(self):
         """prepare for usage"""
         # loading database header
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         if not database:
             return False
 
@@ -557,10 +579,11 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
         return True
 
     def rows(self):
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         if not database or (not database.is_ready and not database.open()):
             return
-        del(database)
+        del (database)
 
         if not self.__is_prepared:
             if not self.reset():
@@ -574,6 +597,7 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
 
 class VDOM_sql_query(object):
     """Class with main functionality of quering SQL"""
+
     def __init__(self, owner_id, database_id, query, params=None, executescript=False, executemany=False, simple_rows=False):
         """constructor"""
         self.query = query
@@ -586,7 +610,8 @@ class VDOM_sql_query(object):
         self.database_id = database_id
         if not managers.database_manager.check_database(self.owner_id, self.database_id):
             raise VDOMDatabaseAccessError("database not exist")
-        database = managers.database_manager.get_database(self.owner_id, self.database_id)
+        database = managers.database_manager.get_database(
+            self.owner_id, self.database_id)
         if not database or (not database.is_ready and not database.open()):
             raise VDOMDatabaseAccessError("database not ready")
         self.__conn = database.get_connection(simple_rows)
@@ -614,9 +639,11 @@ class VDOM_sql_query(object):
 
     def close(self):
         self.__conn.close()
+
     def commit(self):
         if self.__conn:
             self.__conn.commit()
+
     def rows(self):
         if not self.finished:
             for row in self.__cur:
@@ -638,16 +665,18 @@ class VDOM_sql_query(object):
         result.write("\t<table>\n")
         result.write("\t\t<header>\n")
         for header in self.headers:
-            result.write("\t\t\t<column id=\"\" name=\"%s\"/>\n" % header.decode("UTF-8"))
+            result.write("\t\t\t<column id=\"\" name=\"%s\"/>\n" %
+                         header.decode("UTF-8"))
         result.write("\t\t</header>\n")
         result.write("\t\t<data>\n")
         for row in self.__cur:
             result.write("\t\t\t<row>\n")
             for column in self.headers:
                 data = row[column]
-                if data == None or data == "None":
+                if data is None or data == "None":
                     data = "NULL"
-                result.write("\t\t\t\t<cell>%s</cell>\n" % codecs.encode(str(data), "xml"))
+                result.write("\t\t\t\t<cell>%s</cell>\n" %
+                             codecs.encode(str(data), "xml"))
             result.write("\t\t\t</row>\n")
         result.write("\t\t</data>\n")
         result.write("\t</table>\n")
@@ -671,6 +700,7 @@ class VDOM_sql_query(object):
 
 class VDOM_db_column(object):
     """VDOM representation of single DB column"""
+
     def __init__(self, name, constraints={}):
         """Constructor"""
         self.name = name
@@ -681,7 +711,7 @@ class VDOM_db_column(object):
         else:
             self.type = "TEXT"
 
-        if "not null" in constraints and constraints["not null"] == True:
+        if "not null" in constraints and constraints["not null"]:
             self.notnull = True
         else:
             self.notnull = False
@@ -689,14 +719,14 @@ class VDOM_db_column(object):
         if "primary key" in constraints and constraints["primary key"] == "autoincrement":
             self.primary = True
             self.autoincrement = True
-        elif "primary key" in constraints and constraints["primary key"] == True:
+        elif "primary key" in constraints and constraints["primary key"]:
             self.primary = True
             self.autoincrement = False
         else:
             self.primary = False
             self.autoincrement = False
 
-        if "unique" in constraints and constraints["unique"] == True:
+        if "unique" in constraints and constraints["unique"]:
             self.unique = True
         else:
             self.unique = False
@@ -705,9 +735,11 @@ class VDOM_db_column(object):
             self.default = constraints["default"]
         else:
             self.default = None
+
     def to_xml(self):
         """Returning xml representation of column definition"""
-        declaration = "<column id=\"%s\" name=\"%s\" type=\"%s\"" % (self.id, self.name, self.type)
+        declaration = "<column id=\"%s\" name=\"%s\" type=\"%s\"" % (
+            self.id, self.name, self.type)
         if self.notnull:
             declaration += " notnull=\"true\""
         if self.primary:
@@ -717,9 +749,11 @@ class VDOM_db_column(object):
         if self.unique:
             declaration += " unique=\"true\""
         if self.default:
-            declaration += " default=\"%s\"" % self.default.replace("<", "&lt;").replace(">", "&gt;")
+            declaration += " default=\"%s\"" % self.default.replace(
+                "<", "&lt;").replace(">", "&gt;")
         declaration += "/>"
         return declaration
+
     def to_declaration(self):
         """Returning sql declaration representation of column definition"""
         declaration = "\'" + self.name + "\'"

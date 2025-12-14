@@ -1,8 +1,8 @@
 from collections import namedtuple
 import copy
-from daemon import VDOM_mailer
+from mailing.daemon import VDOM_mailer
 import managers
-from message import Message
+from mailing.message import Message
 from smtplib import SMTP, SMTPConnectError, SMTPHeloError, SMTPAuthenticationError, SMTPException, \
     SMTPRecipientsRefused, SMTPSenderRefused, SMTPDataError
 from socket import create_connection, error as socket_error

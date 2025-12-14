@@ -1,7 +1,3 @@
-from __future__ import print_function
-
-
-
 from threading import current_thread, enumerate as enumerate_threads
 from time import sleep
 
@@ -23,9 +19,12 @@ class WebServer(SmartThread):
 
     def main(self):
         log.write("Start %s\n" % self.name)
-        server_address = (VDOM_CONFIG["SERVER-ADDRESS"], VDOM_CONFIG["SERVER-PORT"])
-        self.__server = VDOM_http_server(server_address, VDOM_http_request_handler)
-        msg = "%s listening on port %s" % (VDOM_http_request_handler.server_version, VDOM_CONFIG["SERVER-PORT"])
+        server_address = (
+            VDOM_CONFIG["SERVER-ADDRESS"], VDOM_CONFIG["SERVER-PORT"])
+        self.__server = VDOM_http_server(
+            server_address, VDOM_http_request_handler)
+        msg = "%s listening on port %s" % (
+            VDOM_http_request_handler.server_version, VDOM_CONFIG["SERVER-PORT"])
         log.write(msg, "Web server thread")
         # self.__server.daemon_threads = True
         self.__server.serve_forever()
@@ -36,7 +35,7 @@ class WebServer(SmartThread):
         allowable = {current_thread()}
         while 1:
             threads = {thread for thread in enumerate_threads()
-                if getattr(thread, THREAD_ATTRIBUTE_NAME, None) is not None}
+                       if getattr(thread, THREAD_ATTRIBUTE_NAME, None) is not None}
             if not threads or threads == allowable:
                 break
             sleep(settings.QUANTUM)

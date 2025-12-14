@@ -7,7 +7,7 @@
 # from admin.serverinfo import run
 # from admin.config import run
 # from admin.date import run
-from admin.e2vdom import run
+from admin.e2vdom import run # noqa
 # from admin.echo import run
 # from admin.export import run
 # from admin.group_new import run
@@ -47,5 +47,5 @@ from admin.e2vdom import run
 # from admin.vfs_update import run
 # from admin.virtualhost import run
 # from admin.vcard import run
-from admin.restapi import run
-from admin.upload import run
+from admin.restapi import run  # noqa
+from admin.upload import run # noqa

@@ -1,12 +1,16 @@
 
-import string, random, math, time, os
-from hashlib import md5
-from uuid import uuid1
+import string
+import random
+import math
+import time
+import os
+from hashlib import md5, sha1
 import managers
 
 
 class VDOM_id(object):
     """id generation class"""
+
     def hexstr(self, s):
         """convert byte array to hex string"""
         h = string.hexdigits
@@ -33,9 +37,10 @@ class VDOM_id(object):
 
 def vdomid():
     """generate new id"""
-    return md5((str(time.time()) + str(math.sin(random.random()))).encode() + _urandom() ).hexdigest()
+    return md5((str(time.time()) + str(math.sin(random.random()))).encode() + _urandom()).hexdigest()
     # return md5(b''.join([str(time.time()),_urandom(),str(math.sin(random.random()))])).hexdigest()
     # return md5("%s%s" %(uuid1().bytes, math.sin(random.random()))).hexdigest()
+
 
 def hexstr(s):
     """convert byte array to hex string"""
@@ -60,19 +65,22 @@ def generate_key(salt=None):
         salt,
         str(time.time()).encode('ascii'),
         _urandom()
-        ])).hexdigest()
+    ])).hexdigest()
+
 
 def guid2mod(guid):
     """transform guid to module name"""
     return "module_" + "_".join(guid.split("-"))
 
-#def id2res(owner_id, res_id, res_type):
-#	"""transform owner id and resource id to resource name"""
-#	return "res_" + owner_id + "_" + res_id + "." + res_type
+# def id2res(owner_id, res_id, res_type):
+# """transform owner id and resource id to resource name"""
+# return "res_" + owner_id + "_" + res_id + "." + res_type
+
 
 def id2link(res_id):
     """transform resource id to resource URL"""
-    return "/%s.res"%res_id
+    return "/%s.res" % res_id
+
 
 def id2link1(res_id):
     """transform resource id to resource URL"""
@@ -81,12 +89,14 @@ def id2link1(res_id):
         return ""
     return "".join(["/", res_id, ".", o.res_format])
 
-#def id2tempres(owner_id, tempres_id, res_type):
-    #"""transform owner id and temporary resource id to temporary resource name"""
-    #return "temp_" + owner_id + "_" + tempres_id + "." + res_type
+# def id2tempres(owner_id, tempres_id, res_type):
+    # """transform owner id and temporary resource id to temporary resource name"""
+    # return "temp_" + owner_id + "_" + tempres_id + "." + res_type
+
 
 def is_valid_identifier(value):
-    if value == "": return False
+    if value == "":
+        return False
     first = value[0]
     if not ('_' == first or first.isalpha()):
         return False
