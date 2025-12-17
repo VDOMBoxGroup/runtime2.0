@@ -423,12 +423,11 @@ def type_builder(parser, installation_callback=None):
 
                             def resource_handler(value):
                                 data = base64.b64decode(value)
-                                if resource_type == 'js' and jsmin is not None:
-                                    data = jsmin.jsmin(
-                                        data, quote_chars="'\"`")
+                                # if resource_type == 'js' and jsmin is not None:
+                                #    data = jsmin.jsmin(data.decode("utf8"), quote_chars="'\"`")
                                 managers.resource_manager.add_resource(type.id, None,
                                                                        {"id": resource_id, "name": resource_name,
-                                                                           "res_format": resource_type},
+                                                                        "res_format": resource_type},
                                                                        data, optimize=0)
                             parser.handle_value(
                                 name, attributes, resource_handler)

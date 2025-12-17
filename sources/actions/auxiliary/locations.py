@@ -7,7 +7,7 @@ from .constants import TYPE, EXTENSION
 
 def autocomplete(subject, location):
     if os.path.isdir(location):
-        return os.path.join(location, (subject if isinstance(subject, basestring) else subject.name) + EXTENSION)
+        return os.path.join(location, (subject if isinstance(subject, str) else subject.name) + EXTENSION)
     elif not location.endswith(EXTENSION):
         return location + EXTENSION
     else:
