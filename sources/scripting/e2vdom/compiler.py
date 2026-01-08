@@ -115,7 +115,7 @@ def compile_registations(container, parent, dynamic):
             element_name=ELEMENT_NAME % object_id4code,
             engine_name=engine_name))
 
-    # for subobject in container._origin.objects.itervalues():
+    # for subobject in container._origin.objects.values():
     #     subobject_id4code = subobject.id.replace("-", "_")
     #     lines.append(DEFINE_OBJECT.format(
     #         object_name=OBJECT_NAME % subobject_id4code,
@@ -246,7 +246,7 @@ def compile_declarations_n_libraries(types, render_type, render_container, regis
 #                         name=action[1],
 #                         parameters=", ".join(escape_parameter(value) for value in action[2:]))))
 
-#     for event in container._origin.events.itervalues():
+#     for event in container._origin.events.values():
 #         for callee in event.callees:
 #             lines.append(ADD_DISPATCH_EVENT.format(
 #                 dispatcher_name=dispatcher_name,
@@ -258,7 +258,7 @@ def compile_declarations_n_libraries(types, render_type, render_container, regis
 #                     name=callee.name,
 #                     parameters=", ".join((value.replace('"', r'\"') for name, value in callee.parameters)))))
 
-#     for subobject in container.objects.catalog.itervalues():
+#     for subobject in container.objects.catalog.values():
 #         subobject_id4code = subobject.id.replace("-", "_")
 #         lines.append(DEFINE_OBJECT.format(
 #             object_name=OBJECT_NAME % subobject_id4code,

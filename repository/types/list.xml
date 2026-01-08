@@ -1,842 +1,840 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-  <Information>
-    <Name>list</Name>
-    <DisplayName>#Lang(001)</DisplayName>
-    <Description>#Lang(002)</Description>
-    <ClassName>VDOM_list</ClassName>
-    <ID>2fa03ef7-5ebb-5d9a-6f49-ad4c87a673ab</ID>
-    <Icon>#Res(4a582b3d-09ee-8ac1-1451-08a964bbb510)</Icon>
-    <EditorIcon>#Res(37845d76-d0ee-a176-9aee-08a99a34577f)</EditorIcon>
-    <StructureIcon>#Res(c0f9065a-cd07-eb98-7e88-08a9d0f57d30)</StructureIcon>
-    <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
-    <Container>1</Container>
-    <Category>Standard</Category>
-    <Dynamic>1</Dynamic>
-    <Version>1.230.8389</Version>
-    <InterfaceType>1</InterfaceType>
-    <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
-    <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_compile, on_update</Handlers>
-    <RemoteMethods/>
-    <WCAG/>
-    <XMLScriptName/>
-  </Information>
-  <Attributes>
-    <Attribute>
-      <Name>cssclass</Name>
-      <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>positioning</Name>
-      <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>static</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>width</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(206)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>data</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>selectedrows</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>selectionmode</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>layout</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>selecteditem</Name>
-      <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>dragdrop</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>clickclass</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(1000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>skindata</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>2</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1)|(#Lang(419)|2))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>style</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(100000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>skin</Name>
-      <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue>2</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(219)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1)|(#Lang(423)|2))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>ide_top</Name>
-      <DisplayName>#Lang(123)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(223)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_left</Name>
-      <DisplayName>#Lang(124)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(224)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_width</Name>
-      <DisplayName>#Lang(125)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(225)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_height</Name>
-      <DisplayName>#Lang(126)</DisplayName>
-      <DefaultValue>150</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(226)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(127)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(227)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(128)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(228)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(424)|0)|(#Lang(425)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>stateful</Name>
-      <DisplayName>#Lang(129)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(229)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(426)|0)|(#Lang(427)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-  </Attributes>
-  <Languages>
-    <Language Code="en_US">
-      <Sentence ID="001">List</Sentence>
-      <Sentence ID="002">The List type produces an object displayed as a horizontal or vertical list.</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">CSS class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Position</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108">Display</Sentence>
-      <Sentence ID="109">Data</Sentence>
-      <Sentence ID="111">Selected rows</Sentence>
-      <Sentence ID="112">Selection mode</Sentence>
-      <Sentence ID="113">Layout</Sentence>
-      <Sentence ID="114">Selected item</Sentence>
-      <Sentence ID="115">Drag-and-drop</Sentence>
-      <Sentence ID="116">Click on</Sentence>
-      <Sentence ID="117">Skin Data</Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="121">Margins</Sentence>
-      <Sentence ID="122">Paddings</Sentence>
-      <Sentence ID="123">IDE_top</Sentence>
-      <Sentence ID="124">IDE_left</Sentence>
-      <Sentence ID="125">IDE_width</Sentence>
-      <Sentence ID="126">IDE_height</Sentence>
-      <Sentence ID="127">Z-Index</Sentence>
-      <Sentence ID="128">Visibility</Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="201">The necessary CSS code applied to all objects within the container.</Sentence>
-      <Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
-      <Sentence ID="203">newAttribute20</Sentence>
-      <Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
-      <Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
-      <Sentence ID="206">The width of the object in pixels.</Sentence>
-      <Sentence ID="207">The height of the object in pixels.</Sentence>
-      <Sentence ID="208">newAttribute21</Sentence>
-      <Sentence ID="209">The data in JSON (JavaScript Object Notation) format.</Sentence>
-      <Sentence ID="211">The list of keys displayed as checked, specified by the 'Data' attribute.</Sentence>
-      <Sentence ID="212">The mode of selecting the rows.</Sentence>
-      <Sentence ID="213">The way of items disposition inside the object.</Sentence>
-      <Sentence ID="214">The key displayed as selected and specified in the 'Data' attribute.</Sentence>
-      <Sentence ID="215">The dragability of the object's items. If it is set to 'No', the records are not draggable, if 'Yes'---the records can be dragged and dropped.</Sentence>
-      <Sentence ID="216">CSS class name, mouse click will be binded on element which contains this class</Sentence>
-      <Sentence ID="217">newAttribute26</Sentence>
-      <Sentence ID="218">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the 'User defined'.</Sentence>
-      <Sentence ID="219">The skin of the object.</Sentence>
-      <Sentence ID="221">newAttribute18</Sentence>
-      <Sentence ID="222">newAttribute19</Sentence>
-      <Sentence ID="223">newAttribute22</Sentence>
-      <Sentence ID="224">newAttribute23</Sentence>
-      <Sentence ID="225">newAttribute24</Sentence>
-      <Sentence ID="226">newAttribute25</Sentence>
-      <Sentence ID="227">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of 'Z-Index' attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
-      <Sentence ID="228">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="301">Incorrect value</Sentence>
-      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316">Incorrect value</Sentence>
-      <Sentence ID="317">newAttribute26</Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321">Incorrect value.</Sentence>
-      <Sentence ID="322">Incorrect value.</Sentence>
-      <Sentence ID="323">newAttribute22</Sentence>
-      <Sentence ID="324">newAttribute23</Sentence>
-      <Sentence ID="325">newAttribute24</Sentence>
-      <Sentence ID="326">newAttribute25</Sentence>
-      <Sentence ID="327">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="328"></Sentence>
-      <Sentence ID="329"></Sentence>
-      <Sentence ID="401">Absolute</Sentence>
-      <Sentence ID="402">Fixed</Sentence>
-      <Sentence ID="403">Relative</Sentence>
-      <Sentence ID="404">Static</Sentence>
-      <Sentence ID="405">Block</Sentence>
-      <Sentence ID="406">Inline</Sentence>
-      <Sentence ID="407">Flex</Sentence>
-      <Sentence ID="408">Inline-block</Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Single</Sentence>
-      <Sentence ID="412">Multi</Sentence>
-      <Sentence ID="413">Vertical</Sentence>
-      <Sentence ID="414">Horizontal</Sentence>
-      <Sentence ID="415">No</Sentence>
-      <Sentence ID="416">Yes</Sentence>
-      <Sentence ID="417">User data</Sentence>
-      <Sentence ID="418">Example</Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421">User defined</Sentence>
-      <Sentence ID="422">Default</Sentence>
-      <Sentence ID="423">Empty</Sentence>
-      <Sentence ID="424">No</Sentence>
-      <Sentence ID="425">Yes</Sentence>
-      <Sentence ID="426"></Sentence>
-      <Sentence ID="427"></Sentence>
-      <Sentence ID="501">The test action.</Sentence>
-      <Sentence ID="502">Hide the object.</Sentence>
-      <Sentence ID="503">Select all rows.</Sentence>
-      <Sentence ID="504">The test action.</Sentence>
-      <Sentence ID="505">Deselect all rows.</Sentence>
-      <Sentence ID="506">Show the object.</Sentence>
-      <Sentence ID="507">The test action.</Sentence>
-      <Sentence ID="508">Toggle CSS class</Sentence>
-      <Sentence ID="509">The test action.</Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516">Remove CSS class</Sentence>
-      <Sentence ID="517">Add new CSS class</Sentence>
-      <Sentence ID="601">toggle</Sentence>
-      <Sentence ID="602">hide</Sentence>
-      <Sentence ID="603">show</Sentence>
-      <Sentence ID="604">toggle</Sentence>
-      <Sentence ID="605"></Sentence>
-      <Sentence ID="606">show</Sentence>
-      <Sentence ID="607">toggle</Sentence>
-      <Sentence ID="608">toggleClass</Sentence>
-      <Sentence ID="609">toggle</Sentence>
-      <Sentence ID="610">removeClass</Sentence>
-      <Sentence ID="611">addClass</Sentence>
-      <Sentence ID="701">id</Sentence>
-      <Sentence ID="702">fade</Sentence>
-      <Sentence ID="703">id</Sentence>
-      <Sentence ID="704">fade</Sentence>
-      <Sentence ID="705">id</Sentence>
-      <Sentence ID="706">className</Sentence>
-      <Sentence ID="707">id</Sentence>
-      <Sentence ID="708">Name of CSS class</Sentence>
-      <Sentence ID="709">Name of CSS class</Sentence>
-      <Sentence ID="801">id</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="803">id</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="805">id</Sentence>
-      <Sentence ID="806">Name of CSS class</Sentence>
-      <Sentence ID="807">id</Sentence>
-      <Sentence ID="808">className</Sentence>
-      <Sentence ID="809">className</Sentence>
-      <Sentence ID="901"></Sentence>
-      <Sentence ID="902"></Sentence>
-      <Sentence ID="903"></Sentence>
-      <Sentence ID="904"></Sentence>
-      <Sentence ID="905"></Sentence>
-    </Language>
-    <Language Code="fr_FR">
-      <Sentence ID="001">List</Sentence>
-      <Sentence ID="002">Used to insert horizontal or vertical list</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">CSS class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103"></Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109">Data</Sentence>
-      <Sentence ID="111">Selected rows</Sentence>
-      <Sentence ID="112">Selection mode</Sentence>
-      <Sentence ID="113">Layout</Sentence>
-      <Sentence ID="114">Selected item</Sentence>
-      <Sentence ID="115">Drag-and-drop</Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118">Style</Sentence>
-      <Sentence ID="119">Skin</Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="124"></Sentence>
-      <Sentence ID="125"></Sentence>
-      <Sentence ID="126"></Sentence>
-      <Sentence ID="127">Z-Index</Sentence>
-      <Sentence ID="128">Visibility</Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="201">Names of CSS classes</Sentence>
-      <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203"></Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-      <Sentence ID="206">Width of the object in pixels</Sentence>
-      <Sentence ID="207">Height of the object in pixels</Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209">Data in JSON format</Sentence>
-      <Sentence ID="211">Rows which should be checked</Sentence>
-      <Sentence ID="212">Mode of row selecting</Sentence>
-      <Sentence ID="213">Way of displaying the list</Sentence>
-      <Sentence ID="214">Set class "active" to item with this identifier</Sentence>
-      <Sentence ID="215">Define is drag-and-drop is used or not</Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">CSS style of the object</Sentence>
-      <Sentence ID="219">Define the skin of the object</Sentence>
-      <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="225"></Sentence>
-      <Sentence ID="226"></Sentence>
-      <Sentence ID="227">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="228">Visibility of the object</Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="301">Incorrect value</Sentence>
-      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309">Incorrect value</Sentence>
-      <Sentence ID="311">Incorrect value</Sentence>
-      <Sentence ID="312">Incorrect value</Sentence>
-      <Sentence ID="313">Incorrect value</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Incorrect value</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318">Incorrect value</Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="324"></Sentence>
-      <Sentence ID="325"></Sentence>
-      <Sentence ID="326"></Sentence>
-      <Sentence ID="327">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="328"></Sentence>
-      <Sentence ID="329"></Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Single</Sentence>
-      <Sentence ID="412">Multi</Sentence>
-      <Sentence ID="413">Vertical</Sentence>
-      <Sentence ID="414">Horizontal</Sentence>
-      <Sentence ID="415">No</Sentence>
-      <Sentence ID="416">Yes</Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421">User defined</Sentence>
-      <Sentence ID="422">Default</Sentence>
-      <Sentence ID="423"></Sentence>
-      <Sentence ID="424">No</Sentence>
-      <Sentence ID="425">Yes</Sentence>
-      <Sentence ID="426"></Sentence>
-      <Sentence ID="427"></Sentence>
-      <Sentence ID="501">toggle</Sentence>
-      <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Select all the rows</Sentence>
-      <Sentence ID="504">toggle</Sentence>
-      <Sentence ID="505">Deselect all the rows</Sentence>
-      <Sentence ID="506">Show the object</Sentence>
-      <Sentence ID="507">toggle</Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509">toggle</Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
-      <Sentence ID="601">toggle</Sentence>
-      <Sentence ID="602">hide</Sentence>
-      <Sentence ID="603">show</Sentence>
-      <Sentence ID="604">toggle</Sentence>
-      <Sentence ID="605"></Sentence>
-      <Sentence ID="606">show</Sentence>
-      <Sentence ID="607">toggle</Sentence>
-      <Sentence ID="608"></Sentence>
-      <Sentence ID="609">toggle</Sentence>
-      <Sentence ID="610"></Sentence>
-      <Sentence ID="611"></Sentence>
-      <Sentence ID="701">id</Sentence>
-      <Sentence ID="702">fade</Sentence>
-      <Sentence ID="703">id</Sentence>
-      <Sentence ID="704">fade</Sentence>
-      <Sentence ID="705">id</Sentence>
-      <Sentence ID="706"></Sentence>
-      <Sentence ID="707">id</Sentence>
-      <Sentence ID="708"></Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="801">id</Sentence>
-      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="803">id</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="805">id</Sentence>
-      <Sentence ID="806"></Sentence>
-      <Sentence ID="807">id</Sentence>
-      <Sentence ID="808"></Sentence>
-      <Sentence ID="809"></Sentence>
-      <Sentence ID="901"></Sentence>
-      <Sentence ID="902"></Sentence>
-      <Sentence ID="903"></Sentence>
-      <Sentence ID="904"></Sentence>
-      <Sentence ID="905"></Sentence>
-    </Language>
-    <Language Code="ru_RU">
-      <Sentence ID="001">Список</Sentence>
-      <Sentence ID="002">Используется для добавления горизонтальных или вертикальных списков</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">Класс CSS</Sentence>
-      <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103"></Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="106">Ширина</Sentence>
-      <Sentence ID="107">Высота</Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109">Данные</Sentence>
-      <Sentence ID="111">Выбранные ряды</Sentence>
-      <Sentence ID="112">Режим выбора</Sentence>
-      <Sentence ID="113">Слой</Sentence>
-      <Sentence ID="114">Выбранные элементы</Sentence>
-      <Sentence ID="115">Перетаскивание</Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118">Стиль</Sentence>
-      <Sentence ID="119">Оформление</Sentence>
-      <Sentence ID="121"></Sentence>
-      <Sentence ID="122"></Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="124"></Sentence>
-      <Sentence ID="125"></Sentence>
-      <Sentence ID="126"></Sentence>
-      <Sentence ID="127">Позиция</Sentence>
-      <Sentence ID="128">Отображение</Sentence>
-      <Sentence ID="129"></Sentence>
-      <Sentence ID="201">Имена классов CSS</Sentence>
-      <Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-      <Sentence ID="203"></Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206">Ширина объекта в пикселях</Sentence>
-      <Sentence ID="207">Высота объекта в пикселях</Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209">Данные в формате JSON</Sentence>
-      <Sentence ID="211">Ряды</Sentence>
-      <Sentence ID="212">Режим выборки рядов</Sentence>
-      <Sentence ID="213">Способ отображения списка</Sentence>
-      <Sentence ID="214">Set class "active" to item with this identifier</Sentence>
-      <Sentence ID="215">Использование перемещения</Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218">Стиль CSS</Sentence>
-      <Sentence ID="219">Оформление объекта</Sentence>
-      <Sentence ID="221"></Sentence>
-      <Sentence ID="222"></Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="224"></Sentence>
-      <Sentence ID="225"></Sentence>
-      <Sentence ID="226"></Sentence>
-      <Sentence ID="227">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="228">Отображение объекта</Sentence>
-      <Sentence ID="229"></Sentence>
-      <Sentence ID="301">Неправильное значение</Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309">Неправильное значение</Sentence>
-      <Sentence ID="311">Неправильное значение</Sentence>
-      <Sentence ID="312">Неправильное значение</Sentence>
-      <Sentence ID="313">Неправильное значение</Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315">Неправильное значение</Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318">Неправильное значение</Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321"></Sentence>
-      <Sentence ID="322"></Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="324"></Sentence>
-      <Sentence ID="325"></Sentence>
-      <Sentence ID="326"></Sentence>
-      <Sentence ID="327">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="328"></Sentence>
-      <Sentence ID="329"></Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Одиночный</Sentence>
-      <Sentence ID="412">Множественный</Sentence>
-      <Sentence ID="413">Вертикальный</Sentence>
-      <Sentence ID="414">Горизонтальный</Sentence>
-      <Sentence ID="415">Нет</Sentence>
-      <Sentence ID="416">Да</Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="419"></Sentence>
-      <Sentence ID="421">Определено пользователем</Sentence>
-      <Sentence ID="422">По умолчанию</Sentence>
-      <Sentence ID="423"></Sentence>
-      <Sentence ID="424">Нет</Sentence>
-      <Sentence ID="425">Да</Sentence>
-      <Sentence ID="426"></Sentence>
-      <Sentence ID="427"></Sentence>
-      <Sentence ID="501">Переключение</Sentence>
-      <Sentence ID="502">Скрыть объект</Sentence>
-      <Sentence ID="503">Выбрать все ряды</Sentence>
-      <Sentence ID="504">Переключение</Sentence>
-      <Sentence ID="505">Отменить выделение всех рядов</Sentence>
-      <Sentence ID="506">Показать объект</Sentence>
-      <Sentence ID="507">Переключение</Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509">Переключение</Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="515"></Sentence>
-      <Sentence ID="516"></Sentence>
-      <Sentence ID="517"></Sentence>
-      <Sentence ID="601">toggle</Sentence>
-      <Sentence ID="602">Скрыть</Sentence>
-      <Sentence ID="603">Показать</Sentence>
-      <Sentence ID="604">toggle</Sentence>
-      <Sentence ID="605"></Sentence>
-      <Sentence ID="606">Показать</Sentence>
-      <Sentence ID="607">toggle</Sentence>
-      <Sentence ID="608"></Sentence>
-      <Sentence ID="609">toggle</Sentence>
-      <Sentence ID="610"></Sentence>
-      <Sentence ID="611"></Sentence>
-      <Sentence ID="701">id</Sentence>
-      <Sentence ID="702">Исчезновение</Sentence>
-      <Sentence ID="703">id</Sentence>
-      <Sentence ID="704">Исчезновение</Sentence>
-      <Sentence ID="705">id</Sentence>
-      <Sentence ID="706"></Sentence>
-      <Sentence ID="707">id</Sentence>
-      <Sentence ID="708"></Sentence>
-      <Sentence ID="709"></Sentence>
-      <Sentence ID="801">id</Sentence>
-      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="803">id</Sentence>
-      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="805">id</Sentence>
-      <Sentence ID="806"></Sentence>
-      <Sentence ID="807">id</Sentence>
-      <Sentence ID="808"></Sentence>
-      <Sentence ID="809"></Sentence>
-      <Sentence ID="901"></Sentence>
-      <Sentence ID="902"></Sentence>
-      <Sentence ID="903"></Sentence>
-      <Sentence ID="904"></Sentence>
-      <Sentence ID="905"></Sentence>
-    </Language>
-  </Languages>
-  <Resources>
-    <Resource ID="37845d76-d0ee-a176-9aee-08a99a34577f" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
+	<Information>
+		<ID>2fa03ef7-5ebb-5d9a-6f49-ad4c87a673ab</ID>
+		<Name>list</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_list</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.230.8389</Version>
+		<Category>Standard</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(4a582b3d-09ee-8ac1-1451-08a964bbb510)</Icon>
+		<EditorIcon>#Res(37845d76-d0ee-a176-9aee-08a99a34577f)</EditorIcon>
+		<StructureIcon>#Res(c0f9065a-cd07-eb98-7e88-08a9d0f57d30)</StructureIcon>
+		<Dynamic>1</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>1</Container>
+		<Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
+		<Handlers>on_compile, on_update</Handlers>
+		<Languages>en_US, fr_FR, ru_RU</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>cssclass</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>static</DefaultValue>
+			<RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>displaying</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>data</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectedrows</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectionmode</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>layout</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selecteditem</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>dragdrop</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>clickclass</Name>
+			<DisplayName>#Lang(116)</DisplayName>
+			<Description>#Lang(216)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>skindata</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue>2</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1)|(#Lang(419)|2))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>style</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(218)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(100000)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>skin</Name>
+			<DisplayName>#Lang(119)</DisplayName>
+			<Description>#Lang(219)</Description>
+			<DefaultValue>2</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1)|(#Lang(423)|2))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>margins</Name>
+			<DisplayName>#Lang(121)</DisplayName>
+			<Description>#Lang(221)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>paddings</Name>
+			<DisplayName>#Lang(122)</DisplayName>
+			<Description>#Lang(222)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_top</Name>
+			<DisplayName>#Lang(123)</DisplayName>
+			<Description>#Lang(223)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_left</Name>
+			<DisplayName>#Lang(124)</DisplayName>
+			<Description>#Lang(224)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_width</Name>
+			<DisplayName>#Lang(125)</DisplayName>
+			<Description>#Lang(225)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_height</Name>
+			<DisplayName>#Lang(126)</DisplayName>
+			<Description>#Lang(226)</Description>
+			<DefaultValue>150</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(127)</DisplayName>
+			<Description>#Lang(227)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(128)</DisplayName>
+			<Description>#Lang(228)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(424)|0)|(#Lang(425)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(129)</DisplayName>
+			<Description>#Lang(229)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(426)|0)|(#Lang(427)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">List</Sentence>
+			<Sentence ID="002">The List type produces an object displayed as a horizontal or vertical list.</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101">CSS class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Display</Sentence>
+			<Sentence ID="109">Data</Sentence>
+			<Sentence ID="111">Selected rows</Sentence>
+			<Sentence ID="112">Selection mode</Sentence>
+			<Sentence ID="113">Layout</Sentence>
+			<Sentence ID="114">Selected item</Sentence>
+			<Sentence ID="115">Drag-and-drop</Sentence>
+			<Sentence ID="116">Click on</Sentence>
+			<Sentence ID="117">Skin Data</Sentence>
+			<Sentence ID="118">Style</Sentence>
+			<Sentence ID="119">Skin</Sentence>
+			<Sentence ID="121">Margins</Sentence>
+			<Sentence ID="122">Paddings</Sentence>
+			<Sentence ID="123">IDE_top</Sentence>
+			<Sentence ID="124">IDE_left</Sentence>
+			<Sentence ID="125">IDE_width</Sentence>
+			<Sentence ID="126">IDE_height</Sentence>
+			<Sentence ID="127">Z-Index</Sentence>
+			<Sentence ID="128">Visibility</Sentence>
+			<Sentence ID="129"></Sentence>
+			<Sentence ID="201">The necessary CSS code applied to all objects within the container.</Sentence>
+			<Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+			<Sentence ID="203">newAttribute20</Sentence>
+			<Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+			<Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+			<Sentence ID="206">The width of the object in pixels.</Sentence>
+			<Sentence ID="207">The height of the object in pixels.</Sentence>
+			<Sentence ID="208">newAttribute21</Sentence>
+			<Sentence ID="209">The data in JSON (JavaScript Object Notation) format.</Sentence>
+			<Sentence ID="211">The list of keys displayed as checked, specified by the &apos;Data&apos; attribute.</Sentence>
+			<Sentence ID="212">The mode of selecting the rows.</Sentence>
+			<Sentence ID="213">The way of items disposition inside the object.</Sentence>
+			<Sentence ID="214">The key displayed as selected and specified in the &apos;Data&apos; attribute.</Sentence>
+			<Sentence ID="215">The dragability of the object&apos;s items. If it is set to &apos;No&apos;, the records are not draggable, if &apos;Yes&apos;---the records can be dragged and dropped.</Sentence>
+			<Sentence ID="216">CSS class name, mouse click will be binded on element which contains this class</Sentence>
+			<Sentence ID="217">newAttribute26</Sentence>
+			<Sentence ID="218">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the &apos;User defined&apos;.</Sentence>
+			<Sentence ID="219">The skin of the object.</Sentence>
+			<Sentence ID="221">newAttribute18</Sentence>
+			<Sentence ID="222">newAttribute19</Sentence>
+			<Sentence ID="223">newAttribute22</Sentence>
+			<Sentence ID="224">newAttribute23</Sentence>
+			<Sentence ID="225">newAttribute24</Sentence>
+			<Sentence ID="226">newAttribute25</Sentence>
+			<Sentence ID="227">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of &apos;Z-Index&apos; attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+			<Sentence ID="228">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+			<Sentence ID="229"></Sentence>
+			<Sentence ID="301">Incorrect value</Sentence>
+			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="311">Incorrect value</Sentence>
+			<Sentence ID="312">Incorrect value</Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315">Incorrect value</Sentence>
+			<Sentence ID="316">Incorrect value</Sentence>
+			<Sentence ID="317">newAttribute26</Sentence>
+			<Sentence ID="318">Incorrect value</Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321">Incorrect value.</Sentence>
+			<Sentence ID="322">Incorrect value.</Sentence>
+			<Sentence ID="323">newAttribute22</Sentence>
+			<Sentence ID="324">newAttribute23</Sentence>
+			<Sentence ID="325">newAttribute24</Sentence>
+			<Sentence ID="326">newAttribute25</Sentence>
+			<Sentence ID="327">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="328"></Sentence>
+			<Sentence ID="329"></Sentence>
+			<Sentence ID="401">Absolute</Sentence>
+			<Sentence ID="402">Fixed</Sentence>
+			<Sentence ID="403">Relative</Sentence>
+			<Sentence ID="404">Static</Sentence>
+			<Sentence ID="405">Block</Sentence>
+			<Sentence ID="406">Inline</Sentence>
+			<Sentence ID="407">Flex</Sentence>
+			<Sentence ID="408">Inline-block</Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Single</Sentence>
+			<Sentence ID="412">Multi</Sentence>
+			<Sentence ID="413">Vertical</Sentence>
+			<Sentence ID="414">Horizontal</Sentence>
+			<Sentence ID="415">No</Sentence>
+			<Sentence ID="416">Yes</Sentence>
+			<Sentence ID="417">User data</Sentence>
+			<Sentence ID="418">Example</Sentence>
+			<Sentence ID="419"></Sentence>
+			<Sentence ID="421">User defined</Sentence>
+			<Sentence ID="422">Default</Sentence>
+			<Sentence ID="423">Empty</Sentence>
+			<Sentence ID="424">No</Sentence>
+			<Sentence ID="425">Yes</Sentence>
+			<Sentence ID="426"></Sentence>
+			<Sentence ID="427"></Sentence>
+			<Sentence ID="501">The test action.</Sentence>
+			<Sentence ID="502">Hide the object.</Sentence>
+			<Sentence ID="503">Select all rows.</Sentence>
+			<Sentence ID="504">The test action.</Sentence>
+			<Sentence ID="505">Deselect all rows.</Sentence>
+			<Sentence ID="506">Show the object.</Sentence>
+			<Sentence ID="507">The test action.</Sentence>
+			<Sentence ID="508">Toggle CSS class</Sentence>
+			<Sentence ID="509">The test action.</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516">Remove CSS class</Sentence>
+			<Sentence ID="517">Add new CSS class</Sentence>
+			<Sentence ID="601">toggle</Sentence>
+			<Sentence ID="602">hide</Sentence>
+			<Sentence ID="603">show</Sentence>
+			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="605"></Sentence>
+			<Sentence ID="606">show</Sentence>
+			<Sentence ID="607">toggle</Sentence>
+			<Sentence ID="608">toggleClass</Sentence>
+			<Sentence ID="609">toggle</Sentence>
+			<Sentence ID="610">removeClass</Sentence>
+			<Sentence ID="611">addClass</Sentence>
+			<Sentence ID="701">id</Sentence>
+			<Sentence ID="702">fade</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="704">fade</Sentence>
+			<Sentence ID="705">id</Sentence>
+			<Sentence ID="706">className</Sentence>
+			<Sentence ID="707">id</Sentence>
+			<Sentence ID="708">Name of CSS class</Sentence>
+			<Sentence ID="709">Name of CSS class</Sentence>
+			<Sentence ID="801">id</Sentence>
+			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="805">id</Sentence>
+			<Sentence ID="806">Name of CSS class</Sentence>
+			<Sentence ID="807">id</Sentence>
+			<Sentence ID="808">className</Sentence>
+			<Sentence ID="809">className</Sentence>
+			<Sentence ID="901"></Sentence>
+			<Sentence ID="902"></Sentence>
+			<Sentence ID="903"></Sentence>
+			<Sentence ID="904"></Sentence>
+			<Sentence ID="905"></Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">List</Sentence>
+			<Sentence ID="002">Used to insert horizontal or vertical list</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101">CSS class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103"></Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109">Data</Sentence>
+			<Sentence ID="111">Selected rows</Sentence>
+			<Sentence ID="112">Selection mode</Sentence>
+			<Sentence ID="113">Layout</Sentence>
+			<Sentence ID="114">Selected item</Sentence>
+			<Sentence ID="115">Drag-and-drop</Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118">Style</Sentence>
+			<Sentence ID="119">Skin</Sentence>
+			<Sentence ID="121"></Sentence>
+			<Sentence ID="122"></Sentence>
+			<Sentence ID="123"></Sentence>
+			<Sentence ID="124"></Sentence>
+			<Sentence ID="125"></Sentence>
+			<Sentence ID="126"></Sentence>
+			<Sentence ID="127">Z-Index</Sentence>
+			<Sentence ID="128">Visibility</Sentence>
+			<Sentence ID="129"></Sentence>
+			<Sentence ID="201">Names of CSS classes</Sentence>
+			<Sentence ID="202">Order of rendering the object on the page</Sentence>
+			<Sentence ID="203"></Sentence>
+			<Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+			<Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+			<Sentence ID="206">Width of the object in pixels</Sentence>
+			<Sentence ID="207">Height of the object in pixels</Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209">Data in JSON format</Sentence>
+			<Sentence ID="211">Rows which should be checked</Sentence>
+			<Sentence ID="212">Mode of row selecting</Sentence>
+			<Sentence ID="213">Way of displaying the list</Sentence>
+			<Sentence ID="214">Set class &quot;active&quot; to item with this identifier</Sentence>
+			<Sentence ID="215">Define is drag-and-drop is used or not</Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218">CSS style of the object</Sentence>
+			<Sentence ID="219">Define the skin of the object</Sentence>
+			<Sentence ID="221"></Sentence>
+			<Sentence ID="222"></Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="224"></Sentence>
+			<Sentence ID="225"></Sentence>
+			<Sentence ID="226"></Sentence>
+			<Sentence ID="227">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="228">Visibility of the object</Sentence>
+			<Sentence ID="229"></Sentence>
+			<Sentence ID="301">Incorrect value</Sentence>
+			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="311">Incorrect value</Sentence>
+			<Sentence ID="312">Incorrect value</Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315">Incorrect value</Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318">Incorrect value</Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321"></Sentence>
+			<Sentence ID="322"></Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="324"></Sentence>
+			<Sentence ID="325"></Sentence>
+			<Sentence ID="326"></Sentence>
+			<Sentence ID="327">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="328"></Sentence>
+			<Sentence ID="329"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403"></Sentence>
+			<Sentence ID="404"></Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Single</Sentence>
+			<Sentence ID="412">Multi</Sentence>
+			<Sentence ID="413">Vertical</Sentence>
+			<Sentence ID="414">Horizontal</Sentence>
+			<Sentence ID="415">No</Sentence>
+			<Sentence ID="416">Yes</Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="419"></Sentence>
+			<Sentence ID="421">User defined</Sentence>
+			<Sentence ID="422">Default</Sentence>
+			<Sentence ID="423"></Sentence>
+			<Sentence ID="424">No</Sentence>
+			<Sentence ID="425">Yes</Sentence>
+			<Sentence ID="426"></Sentence>
+			<Sentence ID="427"></Sentence>
+			<Sentence ID="501">toggle</Sentence>
+			<Sentence ID="502">Hide the object</Sentence>
+			<Sentence ID="503">Select all the rows</Sentence>
+			<Sentence ID="504">toggle</Sentence>
+			<Sentence ID="505">Deselect all the rows</Sentence>
+			<Sentence ID="506">Show the object</Sentence>
+			<Sentence ID="507">toggle</Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509">toggle</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516"></Sentence>
+			<Sentence ID="517"></Sentence>
+			<Sentence ID="601">toggle</Sentence>
+			<Sentence ID="602">hide</Sentence>
+			<Sentence ID="603">show</Sentence>
+			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="605"></Sentence>
+			<Sentence ID="606">show</Sentence>
+			<Sentence ID="607">toggle</Sentence>
+			<Sentence ID="608"></Sentence>
+			<Sentence ID="609">toggle</Sentence>
+			<Sentence ID="610"></Sentence>
+			<Sentence ID="611"></Sentence>
+			<Sentence ID="701">id</Sentence>
+			<Sentence ID="702">fade</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="704">fade</Sentence>
+			<Sentence ID="705">id</Sentence>
+			<Sentence ID="706"></Sentence>
+			<Sentence ID="707">id</Sentence>
+			<Sentence ID="708"></Sentence>
+			<Sentence ID="709"></Sentence>
+			<Sentence ID="801">id</Sentence>
+			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="805">id</Sentence>
+			<Sentence ID="806"></Sentence>
+			<Sentence ID="807">id</Sentence>
+			<Sentence ID="808"></Sentence>
+			<Sentence ID="809"></Sentence>
+			<Sentence ID="901"></Sentence>
+			<Sentence ID="902"></Sentence>
+			<Sentence ID="903"></Sentence>
+			<Sentence ID="904"></Sentence>
+			<Sentence ID="905"></Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Список</Sentence>
+			<Sentence ID="002">Используется для добавления горизонтальных или вертикальных списков</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101">Класс CSS</Sentence>
+			<Sentence ID="102">Иерархия</Sentence>
+			<Sentence ID="103"></Sentence>
+			<Sentence ID="104">Сверху</Sentence>
+			<Sentence ID="105">Слева</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109">Данные</Sentence>
+			<Sentence ID="111">Выбранные ряды</Sentence>
+			<Sentence ID="112">Режим выбора</Sentence>
+			<Sentence ID="113">Слой</Sentence>
+			<Sentence ID="114">Выбранные элементы</Sentence>
+			<Sentence ID="115">Перетаскивание</Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118">Стиль</Sentence>
+			<Sentence ID="119">Оформление</Sentence>
+			<Sentence ID="121"></Sentence>
+			<Sentence ID="122"></Sentence>
+			<Sentence ID="123"></Sentence>
+			<Sentence ID="124"></Sentence>
+			<Sentence ID="125"></Sentence>
+			<Sentence ID="126"></Sentence>
+			<Sentence ID="127">Позиция</Sentence>
+			<Sentence ID="128">Отображение</Sentence>
+			<Sentence ID="129"></Sentence>
+			<Sentence ID="201">Имена классов CSS</Sentence>
+			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+			<Sentence ID="203"></Sentence>
+			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="206">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="207">Высота объекта в пикселях</Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209">Данные в формате JSON</Sentence>
+			<Sentence ID="211">Ряды</Sentence>
+			<Sentence ID="212">Режим выборки рядов</Sentence>
+			<Sentence ID="213">Способ отображения списка</Sentence>
+			<Sentence ID="214">Set class &quot;active&quot; to item with this identifier</Sentence>
+			<Sentence ID="215">Использование перемещения</Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218">Стиль CSS</Sentence>
+			<Sentence ID="219">Оформление объекта</Sentence>
+			<Sentence ID="221"></Sentence>
+			<Sentence ID="222"></Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="224"></Sentence>
+			<Sentence ID="225"></Sentence>
+			<Sentence ID="226"></Sentence>
+			<Sentence ID="227">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="228">Отображение объекта</Sentence>
+			<Sentence ID="229"></Sentence>
+			<Sentence ID="301">Неправильное значение</Sentence>
+			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309">Неправильное значение</Sentence>
+			<Sentence ID="311">Неправильное значение</Sentence>
+			<Sentence ID="312">Неправильное значение</Sentence>
+			<Sentence ID="313">Неправильное значение</Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315">Неправильное значение</Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318">Неправильное значение</Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321"></Sentence>
+			<Sentence ID="322"></Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="324"></Sentence>
+			<Sentence ID="325"></Sentence>
+			<Sentence ID="326"></Sentence>
+			<Sentence ID="327">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="328"></Sentence>
+			<Sentence ID="329"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403"></Sentence>
+			<Sentence ID="404"></Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Одиночный</Sentence>
+			<Sentence ID="412">Множественный</Sentence>
+			<Sentence ID="413">Вертикальный</Sentence>
+			<Sentence ID="414">Горизонтальный</Sentence>
+			<Sentence ID="415">Нет</Sentence>
+			<Sentence ID="416">Да</Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="419"></Sentence>
+			<Sentence ID="421">Определено пользователем</Sentence>
+			<Sentence ID="422">По умолчанию</Sentence>
+			<Sentence ID="423"></Sentence>
+			<Sentence ID="424">Нет</Sentence>
+			<Sentence ID="425">Да</Sentence>
+			<Sentence ID="426"></Sentence>
+			<Sentence ID="427"></Sentence>
+			<Sentence ID="501">Переключение</Sentence>
+			<Sentence ID="502">Скрыть объект</Sentence>
+			<Sentence ID="503">Выбрать все ряды</Sentence>
+			<Sentence ID="504">Переключение</Sentence>
+			<Sentence ID="505">Отменить выделение всех рядов</Sentence>
+			<Sentence ID="506">Показать объект</Sentence>
+			<Sentence ID="507">Переключение</Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509">Переключение</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516"></Sentence>
+			<Sentence ID="517"></Sentence>
+			<Sentence ID="601">toggle</Sentence>
+			<Sentence ID="602">Скрыть</Sentence>
+			<Sentence ID="603">Показать</Sentence>
+			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="605"></Sentence>
+			<Sentence ID="606">Показать</Sentence>
+			<Sentence ID="607">toggle</Sentence>
+			<Sentence ID="608"></Sentence>
+			<Sentence ID="609">toggle</Sentence>
+			<Sentence ID="610"></Sentence>
+			<Sentence ID="611"></Sentence>
+			<Sentence ID="701">id</Sentence>
+			<Sentence ID="702">Исчезновение</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="704">Исчезновение</Sentence>
+			<Sentence ID="705">id</Sentence>
+			<Sentence ID="706"></Sentence>
+			<Sentence ID="707">id</Sentence>
+			<Sentence ID="708"></Sentence>
+			<Sentence ID="709"></Sentence>
+			<Sentence ID="801">id</Sentence>
+			<Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="805">id</Sentence>
+			<Sentence ID="806"></Sentence>
+			<Sentence ID="807">id</Sentence>
+			<Sentence ID="808"></Sentence>
+			<Sentence ID="809"></Sentence>
+			<Sentence ID="901"></Sentence>
+			<Sentence ID="902"></Sentence>
+			<Sentence ID="903"></Sentence>
+			<Sentence ID="904"></Sentence>
+			<Sentence ID="905"></Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="37845d76-d0ee-a176-9aee-08a99a34577f" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
 			jCAtsCEkETZSbdJswkNKaCskRBcwt6CGSoBZVbQ4qdoGhxBaMIYkLRQ5NE1Ioy6SdlHluryyIPuu
 			aHcg/gCqqsEvwMbPsd2ZATu01y4sOtLVtX3nzm/O+c75xjJ0OKwfW0GlUpFYLCY2v9WMU6kUoT+D
 			skCJlPlKlEgkUK4hk8tINBKFF6svXHl5eUI0GgXnnJPwZ0cBhYWFJBKJiGP2MVxUVMQB6GSD+Hw+
@@ -857,8 +855,10 @@
 			pQVtbW39w67TqWIpKisrI9XV1bC8uMwbLRQKZRF51glnz5whe3t7osfrxlarlWvAFt/c3OSAXINp
 			N/PNDDxfeu7SaDTZz4Nv5+5DeXk5oXQxEglj5z0+AVpbW1FnZyei4vNG+/dgkSiVShKPxWF5aZmn
 			iJ7rUsDDBw9BIVfQMyDBRaa1T2ilQJzEEX05I3A2AH1Gdvw7sPDLQm7A4/nHwP5+0BeoBnLq1YRH
-			wHatgAOLoOZM3fOVVfDvhwAm7Pr6uovOFwghGcDfTBa9Nz1vVyYAAAAASUVORK5CYII=]]></Resource>
-    <Resource ID="4a582b3d-09ee-8ac1-1451-08a964bbb510" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			wHatgAOLoOZM3fOVVfDvhwAm7Pr6uovOFwghGcDfTBa9Nz1vVyYAAAAASUVORK5CYII=
+		</Resource>
+		<Resource ID="4a582b3d-09ee-8ac1-1451-08a964bbb510" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -958,8 +958,10 @@
 			c/aqFCOGlKtHOfpskvbsmWPYrmGatWJ9le+zXYZVT0NV88OPzmULsFqrIxWgkAYrC/WLDNl25lrp
 			eFKvzTV+YoktZr3Z4AN76EzFVK6uipmsh+bUNJaPn8De/V3MdluWTAZ9kxqZbkx1m8iHa5jdXaNS
 			U/o1kHqs1Z/NVGrqcW6nZxpmMlizDCe3ecMwZrG08nUJEkNjHR/SAjq/b8H2VnqG5MxaPj6oVEjg
-			MvcNhv/18z8CDAAJmfCaKsJmmwAAAABJRU5ErkJggg==]]></Resource>
-    <Resource ID="c0f9065a-cd07-eb98-7e88-08a9d0f57d30" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			MvcNhv/18z8CDAAJmfCaKsJmmwAAAABJRU5ErkJggg==
+		</Resource>
+		<Resource ID="c0f9065a-cd07-eb98-7e88-08a9d0f57d30" Type="jpg" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -979,441 +981,488 @@
 			8f364piJmcoAUzSunz+en4D/h4dhoHEcHT+G7YGhQxoBp6YTntAnPwugIyAF4Pj1C4HmQ1Il4LSc
 			VmdI0KKyaBIM6GEgLsFMRyucDBQjZ8hgER2NgBcrJRAniEgwAui5RrBWCeKuhiSIts/kASdlUkcn
 			gpAEK2iFiwcK0BGEXkH6ZzQPjABxCdYHfxKMwLpxhoT6alMrp1W9vi7e3o90+XjzxGxfONucG84F
-			U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC]]></Resource>
-  </Resources>
-  <SourceCode><![CDATA[import collections, json, StringIO
+			U/cXfgUYAHsVRok/RxdeAAAAAElFTkSuQmCC
+		</Resource>
+	</Resources>
+	<SourceCode>
+<![CDATA[import collections
+import json
+from io import StringIO
+
 
 class VDOM_list(VDOM_object):
-	
-	def check_unit(self, value):
-		return value + "px" if value.isdigit() else value
+    def check_unit(self, value):
+        return value + "px" if value.isdigit() else value
 
-	def render(self, contents=""):
-		zindex = u"%s" % self.zindex if int(self.zindex) != 0 else u""
-		woid = (self.id).replace('-', '_')
-		id = u"o_" + woid
-		
-		display = u"none" if self.visible == "0" else self.displaying
-		position = u"{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
-		
-		styles = {
-			"z-index": zindex,
-			"display": display,
-			"position": position,
-			"width": self.check_unit(self.width),
-			"height": self.check_unit(self.height),
-			"margin": self.margins,
-			"padding": self.paddings,
-			"top": self.check_unit(self.top),
-			"left": self.check_unit(self.left)
-		}
-		if self.positioning == "static":
-			styles["top"] = styles["left"] = ""
-		
-		styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+    def render(self, contents=""):
+        zindex = "%s" % self.zindex if int(self.zindex) != 0 else ""
+        woid = (self.id).replace("-", "_")
+        id = "o_" + woid
 
-		multclass = u"multiselect" if self.selectionmode == "1" else ""
-		cssclass = list(filter(None, [self.cssclass, 'vdom_list', multclass]))
+        display = "none" if self.visible == "0" else self.displaying
+        position = "{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else ""
 
-		if self.data:
-			try:
-				data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
-				if isinstance(data, int):
-					raise Exception (u"Incorrect value in data %s" % self.data)
-			except:
-				raise Exception (u"Incorrect value in data %s" % self.data)
-		else:
-			data = {}
+        styles = {
+            "z-index": zindex,
+            "display": display,
+            "position": position,
+            "width": self.check_unit(self.width),
+            "height": self.check_unit(self.height),
+            "margin": self.margins,
+            "padding": self.paddings,
+            "top": self.check_unit(self.top),
+            "left": self.check_unit(self.left),
+        }
+        if self.positioning == "static":
+            styles["top"] = styles["left"] = ""
 
-		selectedRows = []
-		if self.selectedrows:
-			try:
-				selectedRows = json.loads(self.selectedrows)
-				if isinstance(selectedRows, list):
-					js_multiselect = ""
-				else:
-					raise Exception (u"Attribute must be list")
-			except:
-				raise Exception (u"Incorrect value in selected rows")
-		else:
-			js_multiselect = u""
+        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
+        multclass = "multiselect" if self.selectionmode == "1" else ""
+        cssclass = list(filter(None, [self.cssclass, "vdom_list", multclass]))
 
-# 		hlayout = u"#%(id)s ul li{display: inline;}" % {"id": id} if self.layout == "1" else u""
+        if self.data:
+            try:
+                data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
+                if isinstance(data, int):
+                    raise Exception("Incorrect value in data %s" % self.data)
+            except Exception:
+                raise Exception("Incorrect value in data %s" % self.data)
+        else:
+            data = {}
 
-# 		if self.skin == "2":
-# 			css = u"#%(id)s ul{list-style: none outside none;margin: 0;padding: 0;}%(hlayout)s" % {"id": id, "hlayout": hlayout}
-# 		else:
-# 			css = u"%(hlayout)s" % {"id": id, "hlayout": hlayout}
+        selectedRows = []
+        if self.selectedrows:
+            try:
+                selectedRows = json.loads(self.selectedrows)
+                if isinstance(selectedRows, list):
+                    js_multiselect = ""
+                else:
+                    raise Exception("Attribute must be list")
+            except Exception:
+                raise Exception("Incorrect value in selected rows")
+        else:
+            js_multiselect = ""
 
-		res_buffer = StringIO.StringIO(u"")
-		res_buffer.write(u"<style type='text/css'>")
-# 		res_buffer.write(css)
-		css = self.style % {"id": id} if self.style else ""
-		res_buffer.write(css)
-		res_buffer.write(u"</style>")
+        # 		hlayout = u"#%(id)s ul li{display: inline;}" % {"id": id} if self.layout == "1" else u""
 
-		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='list' objname='%s' ver='%s'" % (self.name, self.type.version)
-		else:
-			debug_info = u""
+        # 		if self.skin == "2":
+        # 			css = u"#%(id)s ul{list-style: none outside none;margin: 0;padding: 0;}%(hlayout)s" % {"id": id, "hlayout": hlayout}
+        # 		else:
+        # 			css = u"%(hlayout)s" % {"id": id, "hlayout": hlayout}
+        res_buffer = StringIO("")
+        res_buffer.write("<style type='text/css'>")
+        # 		res_buffer.write(css)
+        css = self.style % {"id": id} if self.style else ""
+        res_buffer.write(css)
+        res_buffer.write("</style>")
 
-		rslt = u"""<div {debug_info} id="{id}" style="{style}" class="{cssclass}"><ul>""".format(
-				debug_info = debug_info,
-				name = self.name,
-				id = id,
-				style = styles_str,
-				cssclass = ' '.join(cssclass),
-				multclass = multclass )
-		
-		res_buffer.write(rslt)
+        if VDOM_CONFIG_1["DEBUG"] == "1":
+            debug_info = "objtype='list' objname='%s' ver='%s'" % (
+                self.name,
+                self.type.version,
+            )
+        else:
+            debug_info = ""
 
-		for key, value in data.items():
-			active = u'class="list-item-%s %s %s"' % ( key, "active" if key == self.selecteditem else "", "selected" if key in selectedRows else "")
-			if isinstance(value, list):
-				if len(value) == 3:
-					image = u"<img src=\"%s\" />" % value[1]
-					li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(left_image)s%(content)s%(right_image)s</li>" % {
-						"elem_id":     unicode(key),
-						"content":     unicode(value[0]),
-						"active":      active,
-						"left_image":  image if value[2] == "left" else u"",
-						"right_image": image if value[2] == "right" else u"" }
-					res_buffer.write(li)
-				else:
-					raise Exception("Must be 3 parameters in string %s" % unicode(value))
-			elif isinstance(value, unicode):
-				li = u"<li itemid=\"%(elem_id)s\" %(active)s>%(content)s</li>" % {"elem_id": unicode(key), "active": active, "content": unicode(value)}
-				res_buffer.write(li)
+        rslt = """<div {debug_info} id="{id}" style="{style}" class="{cssclass}"><ul>""".format(
+            debug_info=debug_info,
+            id=id,
+            style=styles_str,
+            cssclass=" ".join(cssclass),
+        )
 
-			else:
-				raise Exception("Incorrect value in string %s" % unicode(value))
+        res_buffer.write(rslt)
 
-		if self.dragdrop == "1":
-			dragdrop = u"""
+        for key, value in data.items():
+            active = 'class="list-item-%s %s %s"' % (
+                key,
+                "active" if key == self.selecteditem else "",
+                "selected" if key in selectedRows else "",
+            )
+            if isinstance(value, list):
+                if len(value) == 3:
+                    image = '<img src="%s" />' % value[1]
+                    li = '<li itemid="%(elem_id)s" %(active)s>%(left_image)s%(content)s%(right_image)s</li>' % {
+                        "elem_id": str(key),
+                        "content": str(value[0]),
+                        "active": active,
+                        "left_image": image if value[2] == "left" else "",
+                        "right_image": image if value[2] == "right" else "",
+                    }
+                    res_buffer.write(li)
+                else:
+                    raise Exception("Must be 3 parameters in string %s" % str(value))
+            elif isinstance(value, str):
+                li = '<li itemid="%(elem_id)s" %(active)s>%(content)s</li>' % {
+                    "elem_id": str(key),
+                    "active": active,
+                    "content": str(value),
+                }
+                res_buffer.write(li)
+
+            else:
+                raise Exception("Incorrect value in string %s" % str(value))
+
+        if self.dragdrop == "1":
+            dragdrop = """
 $j('#%(id)s li').droppable({
-	//greedy: true,
-	//activeClass: "ui-state-hover",
-	hoverClass: "ui-state-active",
-	drop: function(e, ui) {
-		execEventBinded('%(woid)s', "drop", {itemid: $j(this).attr('itemid')});
-	}
+    //greedy: true,
+    //activeClass: "ui-state-hover",
+    hoverClass: "ui-state-active",
+    drop: function(e, ui) {
+        execEventBinded('%(woid)s', "drop", {itemid: $j(this).attr('itemid')});
+    }
 });
-			""" % { "id": id, "woid": woid }
-		else:
-			dragdrop = u""
+            """ % {"id": id, "woid": woid}
+        else:
+            dragdrop = ""
 
-		if ((self.clickclass).strip() == ""):
-			clickclass = u""
-		else:
-			clickclass = self.clickclass
-			clickclass = u".%s" % clickclass.replace(' ', ' .')
+        if (self.clickclass).strip() == "":
+            clickclass = ""
+        else:
+            clickclass = self.clickclass
+            clickclass = ".%s" % clickclass.replace(" ", " .")
 
-		handleclick = u"""
-	var %(id)s_doo = false, m = $j('#%(id)s').hasClass('multiselect');
-	$j('#%(id)s ul li %(clickclass)s').bind('click dblclick', function(e){
-		var tt = $j(this);
-		if (tt.is('li')) {
-			t = tt;
-		} else {
-			t = tt.closest('li');
-		}
-		t.parent().children().removeClass("active");
-		if (m) {
-			if (t.hasClass("selected")) t.removeClass("selected");
-			else t.addClass("selected");
-		}
-		t.addClass("active");
-		if (e.type == 'dblclick') {
-			%(id)s_doo = false;
-			if (m) {
-				var a = [];
-				t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
-				execEventBinded('%(woid)s', "rowsselected", {keyList: a });
-			} else {
-				execEventBinded('%(woid)s', "itemdblclick", {itemid: t.attr('itemid')});
-			}
-		} else {
-			setTimeout(function() {
-				if (%(id)s_doo == true) {
-					%(id)s_doo = false;
-					if (m) {
-						var a = [];
-						t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
-						execEventBinded('%(woid)s', "rowsselected", {keyList: a });
-					} else {
-						execEventBinded('%(woid)s', "itemclick", {itemid: t.attr('itemid')});
-					}
-				}
-			}, 300);
-			%(id)s_doo = true;
-		}
-		return false;
-	});
-		""" % { "id": id, "woid": woid, "clickclass": clickclass }
+        handleclick = """
+    var %(id)s_doo = false, m = $j('#%(id)s').hasClass('multiselect');
+    $j('#%(id)s ul li %(clickclass)s').bind('click dblclick', function(e){
+        var tt = $j(this);
+        if (tt.is('li')) {
+            t = tt;
+        } else {
+            t = tt.closest('li');
+        }
+        t.parent().children().removeClass("active");
+        if (m) {
+            if (t.hasClass("selected")) t.removeClass("selected");
+            else t.addClass("selected");
+        }
+        t.addClass("active");
+        if (e.type == 'dblclick') {
+            %(id)s_doo = false;
+            if (m) {
+                var a = [];
+                t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
+                execEventBinded('%(woid)s', "rowsselected", {keyList: a });
+            } else {
+                execEventBinded('%(woid)s', "itemdblclick", {itemid: t.attr('itemid')});
+            }
+        } else {
+            setTimeout(function() {
+                if (%(id)s_doo == true) {
+                    %(id)s_doo = false;
+                    if (m) {
+                        var a = [];
+                        t.parent().find('li.selected[itemid]').each(function(i,e){ a.push($q(e).attr('itemid')); });
+                        execEventBinded('%(woid)s', "rowsselected", {keyList: a });
+                    } else {
+                        execEventBinded('%(woid)s', "itemclick", {itemid: t.attr('itemid')});
+                    }
+                }
+            }, 300);
+            %(id)s_doo = true;
+        }
+        return false;
+    });
+        """ % {"id": id, "woid": woid, "clickclass": clickclass}
 
-		res_buffer.write(u"</ul></div>")
-		js_script = u"""<script type="text/javascript">
+        res_buffer.write("</ul></div>")
+        js_script = """<script type="text/javascript">
 $j(function(){
-	%(handleclick)s
-	%(dragdrop)s
+    %(handleclick)s
+    %(dragdrop)s
 });
-</script>""" % { "woid": woid, "id": id, "dragdrop": dragdrop, "handleclick": handleclick }
+</script>""" % {
+            "dragdrop": dragdrop,
+            "handleclick": handleclick,
+        }
 
-		res_buffer.write(js_script)
-		result = res_buffer.getvalue()
-		res_buffer.close()
+        res_buffer.write(js_script)
+        result = res_buffer.getvalue()
+        res_buffer.close()
 
-		return VDOM_object.render(self, contents=result)
+        return VDOM_object.render(self, contents=result)
 
-		
-	def __get_error_wysiwyg_obj (self, error_text):
-		
-		result = \
-			u"""<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
-							top="{top}" left="{left}" width="{width}" height="{height}">
-					<text top="0" left="5" color="#ff0000" textalign="left">{value}</text>
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, 
-					zind = self.zindex, hierarchy = self.hierarchy, 
-					top = self.top, left = self.left,
-					width = self.width, height = self.height,
-					value = error_text)
-				
-		return VDOM_object.wysiwyg(self, contents=result)
-			
-			
-	def wysiwyg(self, contents=""):
-		incorrect_data_text = u"Incorrect value in data:\n{data}".format(data = self.data)
-		self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
+    def __get_error_wysiwyg_obj(self, error_text):
+        result = """<container id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
+                            top="{top}" left="{left}" width="{width}" height="{height}">
+                    <text top="0" left="5" color="#ff0000" textalign="left">{value}</text>
+                </container>
+            """.format(
+            id=self.id,
+            vis=self.visible,
+            zind=self.zindex,
+            hierarchy=self.hierarchy,
+            top=self.top,
+            left=self.left,
+            width=self.width,
+            height=self.height,
+            value=error_text,
+        )
 
-		if self.data:
-			try:
-				data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
-				if isinstance(data, int):
-					return self.__get_error_wysiwyg_obj(incorrect_data_text)
-			except:
-				return self.__get_error_wysiwyg_obj(incorrect_data_text)
-		else:
-			data = {}
-		
-		if not data:
-			from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
-			image_id = "4a582b3d-09ee-8ac1-1451-08a964bbb510"
-			result = get_empty_wysiwyg_value(self, image_id)
-			return VDOM_object.wysiwyg(self, contents=result)
+        return VDOM_object.wysiwyg(self, contents=result)
 
-		try:
-			items = data.items()
+    def wysiwyg(self, contents=""):
+        incorrect_data_text = "Incorrect value in data:\n{data}".format(data=self.data)
+        self.width, self.height, self.top, self.left = [
+            int(self.ide_width),
+            int(self.ide_height),
+            int(self.ide_top),
+            int(self.ide_left),
+        ]
 
-		except:
-			return self.__get_error_wysiwyg_obj(incorrect_data_text)
+        if self.data:
+            try:
+                data = json.loads(self.data, object_pairs_hook=collections.OrderedDict)
+                if isinstance(data, int):
+                    return self.__get_error_wysiwyg_obj(incorrect_data_text)
+            except Exception:
+                return self.__get_error_wysiwyg_obj(incorrect_data_text)
+        else:
+            data = {}
 
-		res_buffer = StringIO.StringIO(u"")
-		if self.layout == "1":
-			res_buffer.write(u"""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0">""")
-			for key, value in items:
-				if isinstance(value, list):
-					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % unicode(value[0])
-					res_buffer.write(li)
-				elif isinstance(value, unicode):
-					li = u"<cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell>" % unicode(value)
-					res_buffer.write(li)
-			res_buffer.write(u"</row>")
-		else:
-			for key, value in items:
-				if isinstance(value, list):
-					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % unicode(value[0])
-					res_buffer.write(li)
-				elif isinstance(value, unicode):
-					li = u"<row backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><cell backgroundcolor=\"#f0f0f0\" bordercolor=\"#000000\" borderwidth=\"0\"><text fontsize=\"14\" color=\"#000000\" textalign=\"left\">%s</text></cell></row>" % unicode(value)
-					res_buffer.write(li)
+        if not data:
+            from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
 
-		result = \
-			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}"
-					top="{top}" left="{left}" width="{width}" height="{height}">
-					<table zindex="{zind}" top="0" left="0" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0" >
-						{res_buffer}
-					</table>
-				</container>
-			""".format(
-				id = self.id, vis = self.visible, zind = self.zindex,
-				hierarchy = self.hierarchy, name = self.name,
-				top = self.top, left = self.left,
-				width = self.width, height = self.height,
-				res_buffer = res_buffer.getvalue())
+            image_id = "4a582b3d-09ee-8ac1-1451-08a964bbb510"
+            result = get_empty_wysiwyg_value(self, image_id)
+            return VDOM_object.wysiwyg(self, contents=result)
 
-		res_buffer.close()
-		return VDOM_object.wysiwyg(self, contents=result)
-		
+        try:
+            items = data.items()
+
+        except Exception:
+            return self.__get_error_wysiwyg_obj(incorrect_data_text)
+
+        res_buffer = StringIO("")
+        if self.layout == "1":
+            res_buffer.write("""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0">""")
+            for key, value in items:
+                if isinstance(value, list):
+                    li = (
+                        '<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><text fontsize="14" color="#000000" textalign="left">%s</text></cell>'
+                        % str(value[0])
+                    )
+                    res_buffer.write(li)
+                elif isinstance(value, str):
+                    li = (
+                        '<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><text fontsize="14" color="#000000" textalign="left">%s</text></cell>'
+                        % str(value)
+                    )
+                    res_buffer.write(li)
+            res_buffer.write("</row>")
+        else:
+            for key, value in items:
+                if isinstance(value, list):
+                    li = (
+                        '<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><text fontsize="14" color="#000000" textalign="left">%s</text></cell></row>'
+                        % str(value[0])
+                    )
+                    res_buffer.write(li)
+                elif isinstance(value, str):
+                    li = (
+                        '<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0"><text fontsize="14" color="#000000" textalign="left">%s</text></cell></row>'
+                        % str(value)
+                    )
+                    res_buffer.write(li)
+
+        result = """<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}"
+                    top="{top}" left="{left}" width="{width}" height="{height}">
+                    <table zindex="{zind}" top="0" left="0" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="0" >
+                        {res_buffer}
+                    </table>
+                </container>
+            """.format(
+            id=self.id,
+            vis=self.visible,
+            zind=self.zindex,
+            hierarchy=self.hierarchy,
+            name=self.name,
+            top=self.top,
+            left=self.left,
+            width=self.width,
+            height=self.height,
+            res_buffer=res_buffer.getvalue(),
+        )
+
+        res_buffer.close()
+        return VDOM_object.wysiwyg(self, contents=result)
+
+
 def on_update(object, attributes):
-	o = object
-	modifications = {}
-	
-	for attr in ["left", "width", "height", "top"]:
-		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				modifications[attr] = attr_value + "px"
-				modifications["ide_"+ attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				modifications[attr] = attr_value.rstrip("px") + "px"
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				modifications[attr] = attr_value if "px" in attr_value else obj_value
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			else:
-				modifications[attr] = attr_value
-    			
-	attributes.update(modifications)
-	
-	empty = ""
-	
-	default = """\
-#%(id)s li.selected { 
-    background: #fdeeb5; 
-} 
-#%(id)s li.active { 
-    background: #fbdf75 !important; 
+    o = object
+    modifications = {}
+
+    for attr in ["left", "width", "height", "top"]:
+        if attr in attributes:
+            attr_value = attributes[attr]
+            obj_value = o.attributes.get(attr, "").lower()
+
+            if obj_value.isdigit() and attr_value.isdigit():
+                modifications[attr] = attr_value + "px"
+                modifications["ide_" + attr] = attr_value
+            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+                modifications[attr] = attr_value.rstrip("px") + "px"
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            elif attr_value.isdigit() or "px" in attr_value:
+                modifications[attr] = attr_value if "px" in attr_value else obj_value
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            else:
+                modifications[attr] = attr_value
+
+    attributes.update(modifications)
+
+    empty = ""
+
+    default = """\
+#%(id)s li.selected {
+    background: #fdeeb5;
+}
+#%(id)s li.active {
+    background: #fbdf75 !important;
 }
 """
-	
-	users = """\
+
+    users = """\
 #%(id)s {
 
 }
 """
 
-	skin_mapping = {
-		"0": users,
-		"1": default,
-		"2": empty
-	}
-	if "skin" in attributes:
-		skin = attributes["skin"]
-		if skin in skin_mapping:
-			attributes.update(style=skin_mapping[skin])
-		else:
-			attributes.update(skin="0")
-			
-	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-		attributes.update(skin="0")
-		
-	data_example = u"""\
+    skin_mapping = {"0": users, "1": default, "2": empty}
+    if "skin" in attributes:
+        skin = attributes["skin"]
+        if skin in skin_mapping:
+            attributes.update(style=skin_mapping[skin])
+        else:
+            attributes.update(skin="0")
+
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+        attributes.update(skin="0")
+
+    data_example = """\
 {"item1": "value 1", "item2": "Value 2", "item3": "Value3"}
 """
 
-	data_map = {
-		"data_ex": data_example,
-		"empty": u""
-	}
-	
-	if "skindata" in attributes:
-		skindata = attributes["skindata"]
-		if skindata == "1":
-			attributes.update(data=data_example)
-		else:
-			attributes.update(data=u"")
-	
-	if "data" in attributes:
-		if attributes.get("data") not in data_map.values():
-			attributes.update(skindata="0")
-	
-	return ""
-			
+    data_map = {"data_ex": data_example, "empty": ""}
+
+    if "skindata" in attributes:
+        skindata = attributes["skindata"]
+        if skindata == "1":
+            attributes.update(data=data_example)
+        else:
+            attributes.update(data="")
+
+    if "data" in attributes:
+        if attributes.get("data") not in data_map.values():
+            attributes.update(skindata="0")
+
+    return ""
+
+
 def on_compile(object, attributes):
-	for attr in ["left", "width", "height", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value.rstrip("px") + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
-  <Libraries>
-    <Library Target="html"><![CDATA[<style type="text/css">
+    for attr in ["left", "width", "height", "top"]:
+        obj_value = object.attributes[attr]
+
+        if obj_value.isdigit() or "px" in obj_value:
+            object.attributes[attr] = obj_value.rstrip("px") + "px"
+            object.attributes["ide_" + attr] = obj_value.rstrip("px")
+]]>
+	</SourceCode>
+	<Libraries>
+		<Library Target="html"><![CDATA[<style type="text/css">
         .vdom_list {
             
         }
 </style>]]></Library>
-  </Libraries>
-  <E2vdom>
-    <Events>
-      <Userinterfaceevents>
-        <Event Name="custom" Help="#Lang(511)">
-          <Parameters>
-            <Parameter Name="param" Order="0" VbType="" Help="#Lang(901)"/>
-          </Parameters>
-        </Event>
-        <Event Name="drop" Help="#Lang(512)">
-          <Parameters>
-            <Parameter Name="params" Order="0" VbType="" Help="#Lang(902)"/>
-          </Parameters>
-        </Event>
-        <Event Name="itemclick" Help="#Lang(513)">
-          <Parameters>
-            <Parameter Name="itemid" Order="0" VbType="" Help="#Lang(903)"/>
-          </Parameters>
-        </Event>
-        <Event Name="itemdblclick" Help="#Lang(514)">
-          <Parameters>
-            <Parameter Name="itemid" Order="0" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
-        <Event Name="rowsselected" Help="#Lang(515)">
-          <Parameters>
-            <Parameter Name="keyList" Order="0" VbType="" Help="#Lang(905)"/>
-          </Parameters>
-        </Event>
-      </Userinterfaceevents>
-    </Events>
-    <Actions>
-      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateItem">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="item" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var t = $(this.domCont), id = this.domCont.id;
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="custom" Description="#Lang(511)">
+					<Parameters>
+						<Parameter Name="param" Description="#Lang(901)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="drop" Description="#Lang(512)">
+					<Parameters>
+						<Parameter Name="params" Description="#Lang(902)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="itemclick" Description="#Lang(513)">
+					<Parameters>
+						<Parameter Name="itemid" Description="#Lang(903)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="itemdblclick" Description="#Lang(514)">
+					<Parameters>
+						<Parameter Name="itemid" Description="#Lang(904)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="rowsselected" Description="#Lang(515)">
+					<Parameters>
+						<Parameter Name="keyList" Description="#Lang(905)" Order="0"/>
+					</Parameters>
+				</Event>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="activateItem" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="item" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var t = $(this.domCont), id = this.domCont.id;
 t.find('li[itemid].active').removeClass("active");
 
 if (item){
   t.find('li[itemid="'+item+'"]').addClass("active");
-}]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(517)" InterfaceName="#Lang(611)" MethodName="addClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(808)" ScriptName="className" Help="#Lang(708)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(516)" InterfaceName="#Lang(610)" MethodName="removeClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(809)" ScriptName="className" Help="#Lang(709)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="selectAll">
-          <Parameters/>
-          <SourceCode><![CDATA[var t = $j(this.domCont), ii = this.domCont.id;
+}]]>
+					</SourceCode>
+				</Action>
+				<Action Name="addClass" DisplayName="#Lang(611)" Description="#Lang(517)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(808)" Description="#Lang(708)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).addClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="hide" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(610)" Description="#Lang(516)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(809)" Description="#Lang(709)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="selectAll" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<SourceCode>
+<![CDATA[var t = $j(this.domCont), ii = this.domCont.id;
 if (t.hasClass('multiselect')){
 	var a = [], k = t.find('li[itemid]');
 	k.addClass('selected');
 	k.each(function(i,e){ a.push($q(e).attr('itemid')); });
 	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});
-}]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="selectItems">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="items" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var t = $(this.domCont), id = this.domCont.id;
+}]]>
+					</SourceCode>
+				</Action>
+				<Action Name="selectItems" DisplayName="#Lang(604)" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="items" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var t = $(this.domCont), id = this.domCont.id;
 var only1 = false;
 if (!t.hasClass('multiselect')){
   t.find('li[itemid].selected').removeClass("selected");
@@ -1431,27 +1480,32 @@ for (var i of items){
 var a = [];
 var k = t.find('li.selected[itemid]');
 k.each(function(i,e){ a.push($q(e).attr('itemid')); });
-execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="selectNone">
-          <Parameters/>
-          <SourceCode><![CDATA[var t = $j(this.domCont), ii = this.domCont.id;
+execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});]]>
+					</SourceCode>
+				</Action>
+				<Action Name="selectNone" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<SourceCode>
+<![CDATA[var t = $j(this.domCont), ii = this.domCont.id;
 if (t.hasClass('multiselect')){
 	t.find('li[itemid]').removeClass('selected');
 	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:[]});
-}]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="toggle">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="id" Help="#Lang(805)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var t = $(this.domCont), ii = this.domCont.id;
+}]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(606)" Description="#Lang(506)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_show(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toggle" DisplayName="#Lang(607)" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="id" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var t = $(this.domCont), ii = this.domCont.id;
 if (t.hasClass('multiselect')){
 	l = t.find('li[itemid="'+id+'"]');
 	if (l.hasClass('selected')){
@@ -1461,19 +1515,23 @@ if (t.hasClass('multiselect')){
 	}
 	var a = [], k = t.find('li.selected[itemid]');
 	k.each(function(i,e){ a.push($q(e).attr('itemid')); });
-	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});}]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="toggleClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(706)" ScriptName="className" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="unselectItems">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(707)" ScriptName="items" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var t = $(this.domCont), id = this.domCont.id;
+	execEventBinded(ii.substring(2, ii.length), "rowsselected", {keyList:a});}]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toggleClass" DisplayName="#Lang(608)" Description="#Lang(508)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).toggleClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="unselectItems" DisplayName="#Lang(609)" Description="#Lang(509)">
+					<Parameters>
+						<Parameter Name="items" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var t = $(this.domCont), id = this.domCont.id;
 for (var i of items){
   l = t.find('li[itemid="'+i+'"]');
   if (l.hasClass('selected')){
@@ -1483,9 +1541,10 @@ for (var i of items){
 var a = [];
 var k = t.find('li.selected[itemid]');
 k.each(function(i,e){ a.push($q(e).attr('itemid')); });
-execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});]]></SourceCode>
-        </Action>
-      </Container>
-    </Actions>
-  </E2vdom>
+execEventBinded(id.substring(2, id.length), "rowsselected", {keyList:a});]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
 </Type>

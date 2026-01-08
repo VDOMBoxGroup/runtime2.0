@@ -1,532 +1,768 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-  <Information>
-    <Name>monacoeditor</Name>
-    <DisplayName>#Lang(001)</DisplayName>
-    <Description>#Lang(002)</Description>
-    <ClassName>VDOM_monacoeditor</ClassName>
-    <ID>d1ba1896-36ce-4fda-82e5-61e292723535</ID>
-    <Icon>#Res(30b2054e-61bc-46dc-8f7b-263540d8eaaa)</Icon>
-    <EditorIcon>#Res(9eac030e-29c7-448e-9f7c-777be6f49713)</EditorIcon>
-    <StructureIcon>#Res(8adcbde4-c1ff-4a26-a04f-795b953fa9ee)</StructureIcon>
-    <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
-    <Container>1</Container>
-    <Category>Additional</Category>
-    <Dynamic>1</Dynamic>
-    <Version>0.7.3</Version>
-    <InterfaceType>1</InterfaceType>
-    <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, flexcontainer</Containers>
-    <Languages>en_US ,ru_RU ,fr_FR</Languages>
-    <Handlers>on_compile, on_update</Handlers>
-    <RemoteMethods/>
-    <WCAG/>
-    <XMLScriptName/>
-  </Information>
-  <Attributes>
-    <Attribute>
-      <Name>cssclass</Name>
-      <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(100)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>positioning1</Name>
-      <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>static</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|static)|(#Lang(403)|relative)|(#Lang(404)|fixed))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>width</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(206)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|)|(#Lang(406)|block)|(#Lang(407)|inline)|(#Lang(408)|flex)|(#Lang(409)|inline-block))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>value</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(10000)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(411)|1)|(#Lang(412)|0))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>ide_left</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_top</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_width</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>300</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_height</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-  </Attributes>
-  <Languages>
-    <Language Code="en_US">
-      <Sentence ID="001">Monaco editor</Sentence>
-      <Sentence ID="002">Type desctiption</Sentence>
-      <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="101">Css class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Position</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108">Display</Sentence>
-      <Sentence ID="109"></Sentence>
-      <Sentence ID="111">Margins</Sentence>
-      <Sentence ID="112">Paddings</Sentence>
-      <Sentence ID="113">Visibility</Sentence>
-      <Sentence ID="114">Z-Index</Sentence>
-      <Sentence ID="115">IDE_left</Sentence>
-      <Sentence ID="116">IDE_top</Sentence>
-      <Sentence ID="117">IDE_width</Sentence>
-      <Sentence ID="118">IDE_height</Sentence>
-      <Sentence ID="201">Default help field</Sentence>
-      <Sentence ID="202">Default help field</Sentence>
-      <Sentence ID="203">Default help field</Sentence>
-      <Sentence ID="204">Default help field</Sentence>
-      <Sentence ID="205">Default help field</Sentence>
-      <Sentence ID="206">Default help field</Sentence>
-      <Sentence ID="207">Default help field</Sentence>
-      <Sentence ID="208">newAttribute14</Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="211">newAttribute15</Sentence>
-      <Sentence ID="212">newAttribute16</Sentence>
-      <Sentence ID="213">Default help field</Sentence>
-      <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215">newAttribute10</Sentence>
-      <Sentence ID="216">newAttribute11</Sentence>
-      <Sentence ID="217">newAttribute12</Sentence>
-      <Sentence ID="218">newAttribute13</Sentence>
-      <Sentence ID="301">Default validation message</Sentence>
-      <Sentence ID="302">Default validation message</Sentence>
-      <Sentence ID="303">Default validation message</Sentence>
-      <Sentence ID="304">Default validation message</Sentence>
-      <Sentence ID="305">Default validation message</Sentence>
-      <Sentence ID="306">Default validation message</Sentence>
-      <Sentence ID="307">Default validation message</Sentence>
-      <Sentence ID="308">newAttribute14</Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311">newAttribute15</Sentence>
-      <Sentence ID="312">newAttribute16</Sentence>
-      <Sentence ID="313">Default validation message</Sentence>
-      <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315">newAttribute10</Sentence>
-      <Sentence ID="316">newAttribute11</Sentence>
-      <Sentence ID="317">newAttribute12</Sentence>
-      <Sentence ID="318">newAttribute13</Sentence>
-      <Sentence ID="401">absolute</Sentence>
-      <Sentence ID="402">static</Sentence>
-      <Sentence ID="403">relative</Sentence>
-      <Sentence ID="404">fixed</Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406">Block</Sentence>
-      <Sentence ID="407">Inline</Sentence>
-      <Sentence ID="408">Flex</Sentence>
-      <Sentence ID="409">Inline-block</Sentence>
-      <Sentence ID="411">Yes</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="501">Default help field</Sentence>
-      <Sentence ID="502">Default help field</Sentence>
-      <Sentence ID="503">Default help field</Sentence>
-      <Sentence ID="504">Add new CSS class</Sentence>
-      <Sentence ID="505">Remove CSS class</Sentence>
-      <Sentence ID="601">hide</Sentence>
-      <Sentence ID="602">show</Sentence>
-      <Sentence ID="603">addClass</Sentence>
-      <Sentence ID="604">removeClass</Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703">Name of CSS class</Sentence>
-      <Sentence ID="704">Name of CSS class</Sentence>
-      <Sentence ID="801">Default help field</Sentence>
-      <Sentence ID="802">Default help field</Sentence>
-      <Sentence ID="803">className</Sentence>
-      <Sentence ID="804">className</Sentence>
-      <Sentence ID="901">Default help field</Sentence>
-    </Language>
-    <Language Code="ru_RU">
-      <Sentence ID="001">Monaco editor</Sentence>
-      <Sentence ID="002">Type desctiption</Sentence>
-      <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="101">Css class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Position</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109"></Sentence>
-      <Sentence ID="111"></Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113">Visibility</Sentence>
-      <Sentence ID="114">Z-Index</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="201">Default help field</Sentence>
-      <Sentence ID="202">Default help field</Sentence>
-      <Sentence ID="203">Default help field</Sentence>
-      <Sentence ID="204">Default help field</Sentence>
-      <Sentence ID="205">Default help field</Sentence>
-      <Sentence ID="206">Default help field</Sentence>
-      <Sentence ID="207">Default help field</Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="211"></Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213">Default help field</Sentence>
-      <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="301">Default validation message</Sentence>
-      <Sentence ID="302">Default validation message</Sentence>
-      <Sentence ID="303">Default validation message</Sentence>
-      <Sentence ID="304">Default validation message</Sentence>
-      <Sentence ID="305">Default validation message</Sentence>
-      <Sentence ID="306">Default validation message</Sentence>
-      <Sentence ID="307">Default validation message</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Default validation message</Sentence>
-      <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="401">absolute</Sentence>
-      <Sentence ID="402">static</Sentence>
-      <Sentence ID="403">relative</Sentence>
-      <Sentence ID="404">fixed</Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Yes</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="501">Default help field</Sentence>
-      <Sentence ID="502">Default help field</Sentence>
-      <Sentence ID="503">Default help field</Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="601">hide</Sentence>
-      <Sentence ID="602">show</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="801">Default help field</Sentence>
-      <Sentence ID="802">Default help field</Sentence>
-      <Sentence ID="803"></Sentence>
-      <Sentence ID="804"></Sentence>
-      <Sentence ID="901">Default help field</Sentence>
-    </Language>
-    <Language Code="fr_FR">
-      <Sentence ID="001">Monaco editor</Sentence>
-      <Sentence ID="002">Type desctiption</Sentence>
-      <Sentence ID="003">Hierarchy</Sentence>
-      <Sentence ID="101">Css class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Position</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Width</Sentence>
-      <Sentence ID="107">Height</Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109"></Sentence>
-      <Sentence ID="111"></Sentence>
-      <Sentence ID="112"></Sentence>
-      <Sentence ID="113">Visibility</Sentence>
-      <Sentence ID="114">Z-Index</Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="201">Default help field</Sentence>
-      <Sentence ID="202">Default help field</Sentence>
-      <Sentence ID="203">Default help field</Sentence>
-      <Sentence ID="204">Default help field</Sentence>
-      <Sentence ID="205">Default help field</Sentence>
-      <Sentence ID="206">Default help field</Sentence>
-      <Sentence ID="207">Default help field</Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209"></Sentence>
-      <Sentence ID="211"></Sentence>
-      <Sentence ID="212"></Sentence>
-      <Sentence ID="213">Default help field</Sentence>
-      <Sentence ID="214">Default help field</Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="301">Default validation message</Sentence>
-      <Sentence ID="302">Default validation message</Sentence>
-      <Sentence ID="303">Default validation message</Sentence>
-      <Sentence ID="304">Default validation message</Sentence>
-      <Sentence ID="305">Default validation message</Sentence>
-      <Sentence ID="306">Default validation message</Sentence>
-      <Sentence ID="307">Default validation message</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312"></Sentence>
-      <Sentence ID="313">Default validation message</Sentence>
-      <Sentence ID="314">Default validation message</Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="401">absolute</Sentence>
-      <Sentence ID="402">static</Sentence>
-      <Sentence ID="403">relative</Sentence>
-      <Sentence ID="404">fixed</Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Yes</Sentence>
-      <Sentence ID="412">No</Sentence>
-      <Sentence ID="501">Default help field</Sentence>
-      <Sentence ID="502">Default help field</Sentence>
-      <Sentence ID="503">Default help field</Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="601">hide</Sentence>
-      <Sentence ID="602">show</Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="701">Fade</Sentence>
-      <Sentence ID="702">Fade</Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="801">Default help field</Sentence>
-      <Sentence ID="802">Default help field</Sentence>
-      <Sentence ID="803"></Sentence>
-      <Sentence ID="804"></Sentence>
-      <Sentence ID="901">Default help field</Sentence>
-    </Language>
-  </Languages>
-  <Resources>
-    <Resource ID="30b2054e-61bc-46dc-8f7b-263540d8eaaa" Name="64.png" Type="png"><![CDATA[
-      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
-    ]]></Resource>
-    <Resource ID="9eac030e-29c7-448e-9f7c-777be6f49713" Name="24.png" Type="png"><![CDATA[
-      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
-    ]]></Resource>
-    <Resource ID="8adcbde4-c1ff-4a26-a04f-795b953fa9ee" Name="16.png" Type="png"><![CDATA[
-      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
-    ]]></Resource>
-    <Resource ID="3821693c-e0b5-6687-3951-749599aaa7d1" Name="monacoEditor.js" Type="js"><![CDATA[Ly8g0JTQvtCx0LDQstC40YLRjCDQu9C10L3QuNCy0YPQsSDQt9Cw0LPRgNGD0LfQutGDINC80L7QtNC10LvQtdC5DQovLyDQlNC10LvQsNC10Lwg0L3QsNC00L/QuNGB0Ywg0LvQvtCw0LnQtNC40L3QsyDQv9C+0LrQsCDRgtCw0Lwg0LfQsNC/0YDQvtGBINCz0YPQu9GP0LXRgiDQt9CwINGE0LDQudC70L7QvA0KLy8gKyDQtNC10LvQsNC10Lwg0LzQvtC00LXQu9GMINGA0LjQtNC+0L3Qu9C4DQoNCmNsYXNzIE1vbmFjb0VkaXRvciB7DQogIGNvbnN0cnVjdG9yKGNvbnRhaW5lciwgY29uZmlnID0ge30pIHsNCiAgICBkb2N1bWVudC5mb250cy5yZWFkeS50aGVuKCgpID0+IHsNCiAgICAgIHRoaXMuaW5pdChjb250YWluZXIsIGNvbmZpZyk7DQogICAgfSk7DQogIH0NCg0KICBhc3luYyBpbml0KGNvbnRhaW5lciwgY29uZmlnKSB7DQogICAgdGhpcy5jb250YWluZXIgPSBjb250YWluZXI7DQogICAgdGhpcy4kY29udGFpbmVyID0gJChjb250YWluZXIpOw0KICAgIHRoaXMuY29uZmlnID0geyAuLi5jb25maWcgfTsNCiAgICB0aGlzLmNvbmZpZy5hdXRvbWF0aWNMYXlvdXQgPSB0cnVlOw0KICAgIC8vdGhpcy5jb25maWcudXNlU2hhZG93RE9NID0gZmFsc2U7DQogICAgZGVsZXRlIHRoaXMuY29uZmlnLnZhbHVlOw0KICAgIHRoaXMuY29uZmlnLmxhbmd1YWdlID0gTW9uYWNvRWRpdG9yLnZhbGlkYXRlTGFuZ3VhZ2UodGhpcy5jb25maWc/Lmxhbmd1YWdlKTsNCiAgICB0aGlzLmNvbmZpZy50aGVtZSA9IE1vbmFjb0VkaXRvci52YWxpZGF0ZVRoZW1lKHRoaXMuY29uZmlnPy50aGVtZSk7DQogICAgdGhpcy5lZGl0b3IgPSBtb25hY28uZWRpdG9yLmNyZWF0ZSh0aGlzLmNvbnRhaW5lciwgdGhpcy5jb25maWcpOw0KICAgIHRoaXMuY29uZmlnLnZhbHVlcyA9IGF3YWl0IHRoaXMudmFsaWRhdGVDb25maWdWYWx1ZXModGhpcy5jb25maWc/LnZhbHVlcyk7DQoNCiAgICAvLyBBZGQgaW5wdXQgZm9yIHN1Ym1pdA0KICAgIHRoaXMuaW5pdFRleHRBcmVhKCk7DQoNCiAgICAvLyBsb2FkaW5nIGZpbGVzIGJ5IHVybCBhbmQgY3JlYXRlIG1vZGVsczsNCg0KICAgIGZvciAoY29uc3QgW2tleSwgdmFsdWVdIG9mIE9iamVjdC5lbnRyaWVzKHRoaXMuY29uZmlnLnZhbHVlcykpIHsNCiAgICAgIHRoaXMuY29uZmlnLnZhbHVlc1trZXldID0gYXdhaXQgdGhpcy5wcm9jZXNzVmFsdWUodmFsdWUpOw0KICAgIH0NCiAgICB0aGlzLm1vZGVsID0gdGhpcy5hY3RpdmVNb2RlbEtleTsNCiAgfQ0KDQogIGFzeW5jIHByb2Nlc3NWYWx1ZSh2YWx1ZSkgew0KICAgIC8vIGNyZWF0ZSBtb2RlbCBhbmQgZ2V0IHRleHQgYnkgdmFsdWUgdXJsDQogICAgaWYgKHZhbHVlID09PSB1bmRlZmluZWQgfHwgdmFsdWUgPT09IG51bGwpIHsNCiAgICAgIHZhbHVlID0ge307DQogICAgfQ0KDQogICAgbGV0IG1vZGVsID0gdmFsdWU/Lm1vZGVsIHx8IG51bGw7DQogICAgY29uc3QgdXJsID0gdmFsdWU/LnVybCB8fCBudWxsOw0KICAgIGNvbnN0IGxhbmd1YWdlID0gTW9uYWNvRWRpdG9yLnZhbGlkYXRlTGFuZ3VhZ2UodmFsdWU/Lmxhbmd1YWdlIHx8IG51bGwpOw0KICAgIGNvbnN0IGFjdGl2ZSA9IHZhbHVlPy5hY3RpdmUgfHwgZmFsc2U7DQogICAgbGV0IHRleHQgPSAiIjsNCg0KICAgIGlmIChtb2RlbCA9PT0gbnVsbCkgew0KICAgICAgdHJ5IHsNCiAgICAgICAgdGV4dCA9IHVybCA/IGF3YWl0ICQuYWpheCh1cmwsIHsgZGF0YVR5cGU6ICJ0ZXh0IiwgY2FjaGU6IGZhbHNlIH0pIDogIiI7DQogICAgICB9IGNhdGNoIChlcnJvcikgew0KICAgICAgICBjb25zb2xlLmVycm9yKGBFcnJvciB3aGVuIGxvYWRpbmcgJHt1cmx9IGZpbGUuYCk7DQogICAgICB9DQogICAgICBtb2RlbCA9IG1vbmFjby5lZGl0b3IuY3JlYXRlTW9kZWwodGV4dCwgbGFuZ3VhZ2UpOw0KICAgIH0NCiAgICB0aGlzLmluaXRPbkNoYW5nZUV2ZW50TGlzdGVuZXIobW9kZWwpOw0KICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4gew0KICAgICAgcmVzb2x2ZSh7IG1vZGVsLCB1cmwsIGxhbmd1YWdlLCBhY3RpdmUsIHN0YXRlOiBudWxsIH0pOw0KICAgIH0pOw0KICB9DQoNCiAgc2V0IG1vZGVsKG1vZGVsS2V5KSB7DQogICAgdGhpcy5zYXZlQ3VycmVudE1vZGVsVmlld1N0YXRlKCk7DQogICAgY29uc3QgbmV3VmFsdWUgPSB0aGlzLmNvbmZpZy52YWx1ZXNbbW9kZWxLZXldOw0KICAgIHRoaXMuc2V0TW9kZWwobmV3VmFsdWUubW9kZWwpOw0KICAgIHRoaXMucmVzdG9yZVZpZXdTdGF0ZShuZXdWYWx1ZS5zdGF0ZSk7DQogICAgdGhpcy5mb2N1cygpOw0KDQogICAgdGhpcy5hY3RpdmVNb2RlbEtleSA9IG1vZGVsS2V5Ow0KDQogICAgdGhpcy5zZXRUZXh0QXJlYVZhbHVlKHRoaXMudmFsdWUpOw0KICB9DQoNCiAgc2F2ZUN1cnJlbnRNb2RlbFZpZXdTdGF0ZSgpIHsNCiAgICBjb25zdCBjdXJyZW50VmFsdWUgPSB0aGlzLmNvbmZpZy52YWx1ZXNbdGhpcy5hY3RpdmVNb2RlbEtleV07DQogICAgY3VycmVudFZhbHVlLnN0YXRlID0gdGhpcy5zYXZlVmlld1N0YXRlKCk7DQogIH0NCg0KICBzYXZlVmlld1N0YXRlKCkgew0KICAgIHJldHVybiB0aGlzLmVkaXRvci5zYXZlVmlld1N0YXRlKCk7DQogIH0NCg0KICBzZXRNb2RlbChtb2RlbCkgew0KICAgIHRoaXMuZWRpdG9yLnNldE1vZGVsKG1vZGVsKTsNCiAgfQ0KDQogIHJlc3RvcmVWaWV3U3RhdGUoc3RhdGUpIHsNCiAgICB0aGlzLmVkaXRvci5yZXN0b3JlVmlld1N0YXRlKHN0YXRlKTsNCiAgfQ0KDQogIGZvY3VzKCkgew0KICAgIHRoaXMuZWRpdG9yLmZvY3VzKCk7DQogIH0NCg0KICBnZXQgdmFsdWUoKSB7DQogICAgcmV0dXJuIHRoaXMuZWRpdG9yLmdldFZhbHVlKCk7DQogIH0NCg0KICBpbml0T25DaGFuZ2VFdmVudExpc3RlbmVyKG1vZGVsKSB7DQogICAgbW9kZWwub25EaWRDaGFuZ2VDb250ZW50KCgpID0+IHsNCiAgICAgIHRoaXMuc2V0VGV4dEFyZWFWYWx1ZSh0aGlzLnZhbHVlKTsNCiAgICB9KTsNCiAgfQ0KDQogIHNldFRleHRBcmVhVmFsdWUodmFsdWUpIHsNCiAgICB0aGlzLiR0ZXh0QXJlYS52YWwodmFsdWUpOw0KICB9DQoNCiAgaW5pdFRleHRBcmVhKCkgew0KICAgIHRoaXMuJHRleHRBcmVhID0gJChgPHRleHRhcmVhPjwvdGV4dGFyZWE+YCk7DQogICAgdGhpcy4kdGV4dEFyZWEuYXR0cigibmFtZSIsIHRoaXMuY29uZmlnLnRleHRBcmVhTmFtZSk7DQogICAgdGhpcy4kdGV4dEFyZWEuY3NzKCJkaXNwbGF5IiwgIm5vbmUiKTsNCiAgICB0aGlzLiRjb250YWluZXIucHJlcGVuZCh0aGlzLiR0ZXh0QXJlYSk7DQogIH0NCg0KICBnZXQgYWN0aXZlTW9kZWxLZXkoKSB7DQogICAgY29uc3QgdmFsdWVzRW50cmllcyA9IE9iamVjdC5lbnRyaWVzKHRoaXMuY29uZmlnLnZhbHVlcyk7DQogICAgZm9yIChjb25zdCBba2V5LCB2YWx1ZV0gb2YgdmFsdWVzRW50cmllcykgew0KICAgICAgaWYgKHZhbHVlPy5hY3RpdmUpIHJldHVybiBrZXk7DQogICAgfQ0KICAgIGNvbnN0IGFjdGl2ZUtleSA9IHZhbHVlc0VudHJpZXNbMF1bMF07DQogICAgdGhpcy5jb25maWcudmFsdWVzW2FjdGl2ZUtleV0uYWN0aXZlID0gdHJ1ZTsNCiAgICByZXR1cm4gYWN0aXZlS2V5Ow0KICB9DQoNCiAgc2V0IGFjdGl2ZU1vZGVsS2V5KHZhbHVlKSB7DQogICAgZm9yIChjb25zdCBrZXkgb2YgT2JqZWN0LmtleXModGhpcy5jb25maWcudmFsdWVzKSkgew0KICAgICAgdGhpcy5jb25maWcudmFsdWVzW2tleV0uYWN0aXZlID0gZmFsc2U7DQogICAgfQ0KICAgIHRoaXMuY29uZmlnLnZhbHVlc1t2YWx1ZV0uYWN0aXZlID0gdHJ1ZTsNCiAgfQ0KDQogIGFzeW5jIGFkZE1vZGVsKGlkLCB2YWx1ZSkgew0KICAgIGlmIChpZCBpbiB0aGlzLmNvbmZpZy52YWx1ZXMpIHJldHVybjsNCiAgICB0aGlzLmNvbmZpZy52YWx1ZXNbaWRdID0gYXdhaXQgdGhpcy5wcm9jZXNzVmFsdWUodmFsdWUpOw0KICB9DQoNCiAgYXN5bmMgcmVtb3ZlTW9kZWwobW9kZWxLZXkpIHsNCiAgICB0aGlzLmNvbmZpZy52YWx1ZXNbbW9kZWxLZXldLm1vZGVsLmRpc3Bvc2UoKTsNCiAgICBkZWxldGUgdGhpcy5jb25maWcudmFsdWVzW21vZGVsS2V5XTsNCiAgfQ0KDQogIGFzeW5jIHZhbGlkYXRlQ29uZmlnVmFsdWVzKHZhbHVlcykgew0KICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4gew0KICAgICAgaWYgKHZhbHVlcyA9PT0gdW5kZWZpbmVkIHx8IHZhbHVlcyA9PSBudWxsIHx8ICQuaXNFbXB0eU9iamVjdCh2YWx1ZXMpKSB7DQogICAgICAgIHRoaXMucHJvY2Vzc1ZhbHVlKG51bGwpLnRoZW4oKGRhdGEpID0+IHJlc29sdmUoeyAiLTEiOiBkYXRhIH0pKTsNCiAgICAgIH0gZWxzZSB7DQogICAgICAgIHJlc29sdmUodmFsdWVzKTsNCiAgICAgIH0NCiAgICB9KTsNCiAgfQ0KDQogIHN0YXRpYyB2YWxpZGF0ZVRoZW1lKHRoZW1lKSB7DQogICAgY29uc3QgYWxsb3dlZCA9IFsidnMiLCAidnMtZGFyayIsICJoYy1ibGFjayJdOw0KICAgIHJldHVybiBhbGxvd2VkLmluY2x1ZGVzKHRoZW1lKSA/IHRoZW1lIDogYWxsb3dlZFswXTsNCiAgfQ0KDQogIHN0YXRpYyB2YWxpZGF0ZUxhbmd1YWdlKGxhbmcpIHsNCiAgICBjb25zdCBhbGxvd2VkID0gWw0KICAgICAgImFiYXAiLA0KICAgICAgImFlcyIsDQogICAgICAiYXBleCIsDQogICAgICAiYXpjbGkiLA0KICAgICAgImJhdCIsDQogICAgICAiYmljZXAiLA0KICAgICAgImMiLA0KICAgICAgImNhbWVsaWdvIiwNCiAgICAgICJjbG9qdXJlIiwNCiAgICAgICJjb2ZmZWVzY3JpcHQiLA0KICAgICAgImNwcCIsDQogICAgICAiY3NoYXJwIiwNCiAgICAgICJjc3AiLA0KICAgICAgImNzcyIsDQogICAgICAiZGFydCIsDQogICAgICAiZG9ja2VyZmlsZSIsDQogICAgICAiZWNsIiwNCiAgICAgICJlbGl4aXIiLA0KICAgICAgImZsb3c5IiwNCiAgICAgICJmc2hhcnAiLA0KICAgICAgImdvIiwNCiAgICAgICJncmFwaHFsIiwNCiAgICAgICJoYW5kbGViYXJzIiwNCiAgICAgICJoY2wiLA0KICAgICAgImh0bWwiLA0KICAgICAgImluaSIsDQogICAgICAiamF2YSIsDQogICAgICAiamF2YXNjcmlwdCIsDQogICAgICAianNvbiIsDQogICAgICAianVsaWEiLA0KICAgICAgImtvdGxpbiIsDQogICAgICAibGVzcyIsDQogICAgICAibGV4b24iLA0KICAgICAgImxpcXVpZCIsDQogICAgICAibHVhIiwNCiAgICAgICJtMyIsDQogICAgICAibWFya2Rvd24iLA0KICAgICAgIm1pcHMiLA0KICAgICAgIm1zZGF4IiwNCiAgICAgICJteXNxbCIsDQogICAgICAib2JqZWN0aXZlLWMiLA0KICAgICAgInBhc2NhbCIsDQogICAgICAicGFzY2FsaWdvIiwNCiAgICAgICJwZXJsIiwNCiAgICAgICJwZ3NxbCIsDQogICAgICAicGhwIiwNCiAgICAgICJwbGEiLA0KICAgICAgInBsYWludGV4dCIsDQogICAgICAicG9zdGlhdHMiLA0KICAgICAgInBvd2VycXVlcnkiLA0KICAgICAgInBvd2Vyc2hlbGwiLA0KICAgICAgInByb3RvIiwNCiAgICAgICJwdWciLA0KICAgICAgInB5dGhvbiIsDQogICAgICAicXNoYXJwIiwNCiAgICAgICJyIiwNCiAgICAgICJyYXpvciIsDQogICAgICAicmVkaXMiLA0KICAgICAgInJlZHNoaWZ0IiwNCiAgICAgICJyZXN0cnVjdHVyZWR0ZXh0IiwNCiAgICAgICJydWJ5IiwNCiAgICAgICJydXN0IiwNCiAgICAgICJzYiIsDQogICAgICAic2NhbGEiLA0KICAgICAgInNjaGVtZSIsDQogICAgICAic2NzcyIsDQogICAgICAic2hlbGwiLA0KICAgICAgInNvbCIsDQogICAgICAic3BhcnFsIiwNCiAgICAgICJzcWwiLA0KICAgICAgInN0IiwNCiAgICAgICJzd2lmdCIsDQogICAgICAic3lzdGVtdmVyaWxvZyIsDQogICAgICAidGNsIiwNCiAgICAgICJ0d2lnIiwNCiAgICAgICJ0eXBlc2NyaXB0IiwNCiAgICAgICJ2YiIsDQogICAgICAidmVyaWxvZyIsDQogICAgICAieG1sIiwNCiAgICAgICJ5YW1sIiwNCiAgICBdOw0KICAgIHJldHVybiBhbGxvd2VkLmluY2x1ZGVzKGxhbmcpID8gbGFuZyA6ICIiOw0KICB9DQp9DQo=]]></Resource>
-  </Resources>
-  <SourceCode><![CDATA[
-class VDOM_monacoeditor(VDOM_object):
+	<Information>
+		<ID>d1ba1896-36ce-4fda-82e5-61e292723535</ID>
+		<Name>monacoeditor</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_monacoeditor</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.7.3</Version>
+		<Category>Additional</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(30b2054e-61bc-46dc-8f7b-263540d8eaaa)</Icon>
+		<EditorIcon>#Res(9eac030e-29c7-448e-9f7c-777be6f49713)</EditorIcon>
+		<StructureIcon>#Res(8adcbde4-c1ff-4a26-a04f-795b953fa9ee)</StructureIcon>
+		<Dynamic>1</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>1</Container>
+		<Containers>htmlcontainer, flexcontainer</Containers>
+		<Handlers>on_compile, on_update</Handlers>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>cssclass</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning1</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>static</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|static)|(#Lang(403)|relative)|(#Lang(404)|fixed))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>displaying</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|)|(#Lang(406)|block)|(#Lang(407)|inline)|(#Lang(408)|flex)|(#Lang(409)|inline-block))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>value</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>margins</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>paddings</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(411)|1)|(#Lang(412)|0))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_left</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_top</Name>
+			<DisplayName>#Lang(116)</DisplayName>
+			<Description>#Lang(216)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_width</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue>300</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_height</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(218)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Monaco editor</Sentence>
+			<Sentence ID="002">Type desctiption</Sentence>
+			<Sentence ID="003">Hierarchy</Sentence>
+			<Sentence ID="101">Css class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Display</Sentence>
+			<Sentence ID="109"></Sentence>
+			<Sentence ID="111">Margins</Sentence>
+			<Sentence ID="112">Paddings</Sentence>
+			<Sentence ID="113">Visibility</Sentence>
+			<Sentence ID="114">Z-Index</Sentence>
+			<Sentence ID="115">IDE_left</Sentence>
+			<Sentence ID="116">IDE_top</Sentence>
+			<Sentence ID="117">IDE_width</Sentence>
+			<Sentence ID="118">IDE_height</Sentence>
+			<Sentence ID="201">Default help field</Sentence>
+			<Sentence ID="202">Default help field</Sentence>
+			<Sentence ID="203">Default help field</Sentence>
+			<Sentence ID="204">Default help field</Sentence>
+			<Sentence ID="205">Default help field</Sentence>
+			<Sentence ID="206">Default help field</Sentence>
+			<Sentence ID="207">Default help field</Sentence>
+			<Sentence ID="208">newAttribute14</Sentence>
+			<Sentence ID="209"></Sentence>
+			<Sentence ID="211">newAttribute15</Sentence>
+			<Sentence ID="212">newAttribute16</Sentence>
+			<Sentence ID="213">Default help field</Sentence>
+			<Sentence ID="214">Default help field</Sentence>
+			<Sentence ID="215">newAttribute10</Sentence>
+			<Sentence ID="216">newAttribute11</Sentence>
+			<Sentence ID="217">newAttribute12</Sentence>
+			<Sentence ID="218">newAttribute13</Sentence>
+			<Sentence ID="301">Default validation message</Sentence>
+			<Sentence ID="302">Default validation message</Sentence>
+			<Sentence ID="303">Default validation message</Sentence>
+			<Sentence ID="304">Default validation message</Sentence>
+			<Sentence ID="305">Default validation message</Sentence>
+			<Sentence ID="306">Default validation message</Sentence>
+			<Sentence ID="307">Default validation message</Sentence>
+			<Sentence ID="308">newAttribute14</Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311">newAttribute15</Sentence>
+			<Sentence ID="312">newAttribute16</Sentence>
+			<Sentence ID="313">Default validation message</Sentence>
+			<Sentence ID="314">Default validation message</Sentence>
+			<Sentence ID="315">newAttribute10</Sentence>
+			<Sentence ID="316">newAttribute11</Sentence>
+			<Sentence ID="317">newAttribute12</Sentence>
+			<Sentence ID="318">newAttribute13</Sentence>
+			<Sentence ID="401">absolute</Sentence>
+			<Sentence ID="402">static</Sentence>
+			<Sentence ID="403">relative</Sentence>
+			<Sentence ID="404">fixed</Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406">Block</Sentence>
+			<Sentence ID="407">Inline</Sentence>
+			<Sentence ID="408">Flex</Sentence>
+			<Sentence ID="409">Inline-block</Sentence>
+			<Sentence ID="411">Yes</Sentence>
+			<Sentence ID="412">No</Sentence>
+			<Sentence ID="501">Default help field</Sentence>
+			<Sentence ID="502">Default help field</Sentence>
+			<Sentence ID="503">Default help field</Sentence>
+			<Sentence ID="504">Add new CSS class</Sentence>
+			<Sentence ID="505">Remove CSS class</Sentence>
+			<Sentence ID="601">hide</Sentence>
+			<Sentence ID="602">show</Sentence>
+			<Sentence ID="603">addClass</Sentence>
+			<Sentence ID="604">removeClass</Sentence>
+			<Sentence ID="701">Fade</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703">Name of CSS class</Sentence>
+			<Sentence ID="704">Name of CSS class</Sentence>
+			<Sentence ID="801">Default help field</Sentence>
+			<Sentence ID="802">Default help field</Sentence>
+			<Sentence ID="803">className</Sentence>
+			<Sentence ID="804">className</Sentence>
+			<Sentence ID="901">Default help field</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Monaco editor</Sentence>
+			<Sentence ID="002">Type desctiption</Sentence>
+			<Sentence ID="003">Hierarchy</Sentence>
+			<Sentence ID="101">Css class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109"></Sentence>
+			<Sentence ID="111"></Sentence>
+			<Sentence ID="112"></Sentence>
+			<Sentence ID="113">Visibility</Sentence>
+			<Sentence ID="114">Z-Index</Sentence>
+			<Sentence ID="115"></Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="201">Default help field</Sentence>
+			<Sentence ID="202">Default help field</Sentence>
+			<Sentence ID="203">Default help field</Sentence>
+			<Sentence ID="204">Default help field</Sentence>
+			<Sentence ID="205">Default help field</Sentence>
+			<Sentence ID="206">Default help field</Sentence>
+			<Sentence ID="207">Default help field</Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209"></Sentence>
+			<Sentence ID="211"></Sentence>
+			<Sentence ID="212"></Sentence>
+			<Sentence ID="213">Default help field</Sentence>
+			<Sentence ID="214">Default help field</Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="301">Default validation message</Sentence>
+			<Sentence ID="302">Default validation message</Sentence>
+			<Sentence ID="303">Default validation message</Sentence>
+			<Sentence ID="304">Default validation message</Sentence>
+			<Sentence ID="305">Default validation message</Sentence>
+			<Sentence ID="306">Default validation message</Sentence>
+			<Sentence ID="307">Default validation message</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311"></Sentence>
+			<Sentence ID="312"></Sentence>
+			<Sentence ID="313">Default validation message</Sentence>
+			<Sentence ID="314">Default validation message</Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="401">absolute</Sentence>
+			<Sentence ID="402">static</Sentence>
+			<Sentence ID="403">relative</Sentence>
+			<Sentence ID="404">fixed</Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Yes</Sentence>
+			<Sentence ID="412">No</Sentence>
+			<Sentence ID="501">Default help field</Sentence>
+			<Sentence ID="502">Default help field</Sentence>
+			<Sentence ID="503">Default help field</Sentence>
+			<Sentence ID="504"></Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="601">hide</Sentence>
+			<Sentence ID="602">show</Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604"></Sentence>
+			<Sentence ID="701">Fade</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703"></Sentence>
+			<Sentence ID="704"></Sentence>
+			<Sentence ID="801">Default help field</Sentence>
+			<Sentence ID="802">Default help field</Sentence>
+			<Sentence ID="803"></Sentence>
+			<Sentence ID="804"></Sentence>
+			<Sentence ID="901">Default help field</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Monaco editor</Sentence>
+			<Sentence ID="002">Type desctiption</Sentence>
+			<Sentence ID="003">Hierarchy</Sentence>
+			<Sentence ID="101">Css class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109"></Sentence>
+			<Sentence ID="111"></Sentence>
+			<Sentence ID="112"></Sentence>
+			<Sentence ID="113">Visibility</Sentence>
+			<Sentence ID="114">Z-Index</Sentence>
+			<Sentence ID="115"></Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="201">Default help field</Sentence>
+			<Sentence ID="202">Default help field</Sentence>
+			<Sentence ID="203">Default help field</Sentence>
+			<Sentence ID="204">Default help field</Sentence>
+			<Sentence ID="205">Default help field</Sentence>
+			<Sentence ID="206">Default help field</Sentence>
+			<Sentence ID="207">Default help field</Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209"></Sentence>
+			<Sentence ID="211"></Sentence>
+			<Sentence ID="212"></Sentence>
+			<Sentence ID="213">Default help field</Sentence>
+			<Sentence ID="214">Default help field</Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="301">Default validation message</Sentence>
+			<Sentence ID="302">Default validation message</Sentence>
+			<Sentence ID="303">Default validation message</Sentence>
+			<Sentence ID="304">Default validation message</Sentence>
+			<Sentence ID="305">Default validation message</Sentence>
+			<Sentence ID="306">Default validation message</Sentence>
+			<Sentence ID="307">Default validation message</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311"></Sentence>
+			<Sentence ID="312"></Sentence>
+			<Sentence ID="313">Default validation message</Sentence>
+			<Sentence ID="314">Default validation message</Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="401">absolute</Sentence>
+			<Sentence ID="402">static</Sentence>
+			<Sentence ID="403">relative</Sentence>
+			<Sentence ID="404">fixed</Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Yes</Sentence>
+			<Sentence ID="412">No</Sentence>
+			<Sentence ID="501">Default help field</Sentence>
+			<Sentence ID="502">Default help field</Sentence>
+			<Sentence ID="503">Default help field</Sentence>
+			<Sentence ID="504"></Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="601">hide</Sentence>
+			<Sentence ID="602">show</Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604"></Sentence>
+			<Sentence ID="701">Fade</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703"></Sentence>
+			<Sentence ID="704"></Sentence>
+			<Sentence ID="801">Default help field</Sentence>
+			<Sentence ID="802">Default help field</Sentence>
+			<Sentence ID="803"></Sentence>
+			<Sentence ID="804"></Sentence>
+			<Sentence ID="901">Default help field</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="30b2054e-61bc-46dc-8f7b-263540d8eaaa" Type="png" Name="64.png">
+			iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAJZlWElmTU0A
+			KgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAUgExAAIAAAARAAAAWodp
+			AAQAAAABAAAAbAAAAAAAAA8AAAAAAQAADwAAAAABd3d3Lmlua3NjYXBlLm9yZwAAAAOgAQADAAAA
+			AQABAACgAgAEAAAAAQAAAECgAwAEAAAAAQAAAEAAAAAAkiPv1AAAAAlwSFlzAAJOjQACTo0BQHqW
+			vAAAAjFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6
+			bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDYuMC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRm
+			PSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJk
+			ZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6eG1wPSJodHRwOi8v
+			bnMuYWRvYmUuY29tL3hhcC8xLjAvIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMu
+			YWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx4bXA6Q3JlYXRvclRvb2w+d3d3Lmlua3Nj
+			YXBlLm9yZzwveG1wOkNyZWF0b3JUb29sPgogICAgICAgICA8dGlmZjpZUmVzb2x1dGlvbj4zODQw
+			PC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlvbj4xPC90aWZmOk9y
+			aWVudGF0aW9uPgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj4zODQwPC90aWZmOlhSZXNvbHV0
+			aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4K
+			imNkLwAADEVJREFUeAHdW1uMZEUZ/utcunu6py+zDHe5LRdNMCC6aqIbIvFNswlhhZgQSUwIEB98
+			1cQE1wfDuw8GCPogb4sQI8EHEwKBhQQcRUmMCdk1CMIu7K17+jLdfS7l953T1VMz293T3dOnSfw3
+			Z+qcOlV/ff//f1X115lZJQsWrcWV50TUAxJRNZ5V/UTtDs/VX9exfBlVt6HuKlFyQInUkjYiddFy
+			QSk5g+f3lCN/CyP1Vu1w/V3U6aTNcei9H3pVqpd1ixBgWIzoY+LIz4FvALD9Zu2uMI5/AMjfdV25
+			rVRMh9JwSzi8EtvEcxUuSS6FktLuaIkieQ8ufMlznGdL36i/w/rEwb8QrY5JzOf9ykIcoF8RT90j
+			IcFcPFG7R2n9s5yvvr1SFOl3Rbp9wJZB5MCI5B88gzozPt/r5N8g4nh2CzmlcgWRrQ70BPplrdQv
+			1w7XX8E7scfk87xiAMzbXzY2xD90SILTr61eXlLur4tF9T3HEWl2dKwQRFjGmKJmLokBMNJK3HJR
+			OTFi3uno37d19KOr726dNWPPpXnQaV8OMFFg1B3RL1TKqra5CZKnUfT2A2xE3xAMUZWKcjebuh6L
+			uo9sMBhGtJ+qam4HaEReIfLNE7X78nl5nvM6CHWAUf2pRp6/UeB7yuea0evJ0fLh+gsGyzwq53KA
+			/pPk1XekVz9RPZT31F9CEB30ZOQHS9g8UGbog6mFaeZy8eyF+qu1w40Ng2kGLUnTmeYmljInoRyM
+			b7xZOYA5ftyBybHGArgs4wkbY3FMjk0MCRZgIjZinMUJUzdOaKYk5mrfeK3yfYnUqXxe3dTraa7+
+			i57v09jgcWxiIBZiIjZswzGxTqOAbfacAgOPJvv75kZ5XbrOk+VVdbSzhf08TBa85dB+vEURpoJb
+			XMHO09LPSyF+rHKoeQ64iQs75+R8YSIDhlFHctM4UXlQd52T5bI6utnSIeY9FuIlzfnxxvONSyzE
+			RGy655wkViZk07BhJAPsqDffWL1Ci/dUeVXu7SAhCWOs9LHydYR8xltIMjbZvGneYgdKZr6SAGzw
+			i0jAmi35g5Lw0fI3W59OYsMlDNgR9ddrD8XaPVkuyb3Ye9OoY5tD7CXexDSj+5jDfZZCDF38SHH4
+			CFBMrMRM7A3YMIkNQwYkUX8OuTwOMa23S1fFff/pclmOMCePIwmgf8fC0vtnRXK3tUTl4I3PyglE
+			jyVYfYI07JqdbMSrALuEzzNIsykvOrngkdWvtc/o9FA1XBsSBgyjDuM336j9MOz5J0H5I8jqwijm
+			LmcZj7wUm6HETVf6/y5hGoB/rFu20OlAr87iR4+YdgIgZmKnDbSFNtE2BtheG5zj8AgzunMvX3Zt
+			40T1JTT+LY6uJayoASjuIbqXqsZYjHzwr7wE/13FPcJAJyyLCRwHG6+6iHXoLMb1UDFqbGKHDbSF
+			NtE22khbaXNiO/22+Vr14dhRv6quygob8/BxqeFsCeFArpbuxpqEp4ECbMjfsSW5G1qiI/iKxxdk
+			J5kI1UJ9EvkLsO1jPgDSKg6SN+wxFZnDIIPEFu43WrLlxPrHlbsbz6iLf17/Y+26/pH2RUcirvA2
+			3RP1u34QBIzeggOiTzzBfiAai5B/S19yt7bEKeDMEsIRybRA4xTjLiUzPlqGmzmvLkAx0y/OwGkc
+			MBgSvQKk0X6pirXhU3nRc/5ROXJ+c6uXu7bt4UsMtjeAnxhBqIADaLhJMVRBS3AyB4fUxP98V/wr
+			tzAtIsGBGABxGS9M1Gs5hQZTTFdOQhhKo5M538ezyT3ZlikP23IdZDlO0FbDRqiKmu9LWGq4R7x2
+			HarfLuaiG/04/4VW5BQDVwdJEjVWmYIhTg3z/v3BVoiB1UrKhN5GUYK1vHjX98W7oifQJzjJ40sO
+			kBFgwgyrNJPXAGdJgyk0rg+jm7gw3wXZZ2Isjec7tmWJjyYTxbSFWaoPe89g+jRUruPoyINCbBY4
+			WXzgu/HZapz74lboXdPhGoBcahQbYCgiS+OCAkamURSWbE5HcIf4+0ry3rksEnc9ELcairOCMxO3
+			TTiE60giQ4cMdISwChFWWyjbKDsoedpgTLgRs9uga1LCGbqCCtbRIbuF9XQovlGouorUaUwAQEkY
+			hHQ5JRLwqDyAh8rpvlVS3o05soHRu5QNHASOcUt98W/tSf/dgijMQVI0EToCq7IiWNxHZzyJPsIw
+			9D7GUCvIoDFlOIUU2hWqsJLoYbiiobyoi3oInNduw1GVGIsVS1+FvtCb9LEdgKqkzc6oM9zc21KH
+			oUgdgBvjQVXUimyIwIb8ODZgCnCtyB1sSVx3JfzQF/TbZgMH5wVROdwQGJ9hmN50JW7gnk7HWiLX
+			gY4urYWwHS8azYgPdAxLVCXCNjS+Chzr6MvurDPCfuOjvq130Mx0S0sCo0dTNrjdd2qx7nqR4tJB
+			uu4CVfjSJuZ7ILo9QGADoUa2J0CWfJewA9EnG8CEZA+nsSlg3AzEjGOeWRrdNL4G4z9HxZaYPox6
+			gOX3AydWHyIfZD5gRd3qkQxrP6f3A7CGDZ3Xqyr4qBSKh6SQc5eOIBiu8ohi4a665O7ECgU8mlkZ
+			39GgUULdvIg9cQwa83mSUB+F04PDXw3jr0Nn1pu+LDkmsmLM9VCdchUWOheGp71NOzSxZXsK2LXm
+			nmNss2H02kAjkFvmb2mKd3lf+qeKyZzHepJulYzubqBG/7jSGEzQvLgmwLgk6uuowEKbOI/9TVtG
+			fXuFv2Sus+komewA9iAADGLYMHJtQCNunU65Dzb0JT6Yk+DjAhZAH2cGIKeTUCDPQAmFBD28Bs8c
+			hxeFBvOe7XO4LUM/5rtwnWE937O/aTN6hU/fo9kk2dsBpvc0bOC2CXEqcEStJ/HNWPCaSJDqcAQW
+			y7gNfnbRBlTm94TEMUmiREsgZAsQaS6c2GE1DU7WCdSziTGcxlPmjHraOf05vQPYniAwuGHDpXkD
+			X6IRHMFfgXGbcy/rire+NcgKUR/gQqrMKUJ92kfqnDADullyjWFpjCR7bMOJIX0/al9PMaLJtDKb
+			A4zWARv2zBsIlsaafnCOyuPrOc4LQwPtRIjt2JhGG6EjeLGe5QKiDi1Dmc8B7D4ANJ4NCBPZwMsW
+			PsYMoRG2MfeDcvcz+yww6vZoNhK7fvr7nWwYnzfYGo1jktJ+seve+I5Rn3Jf36Vhz8f5GWCrJlBE
+			bU822H32us8w6vbQ+2eArW0eNtj9eb+EqNtDLoYBtsb9sGFJUbfhLpYBtuZZ2LDkqNswF88AW/s0
+			bCDnM1rhbSjj7rNjgD3iJDZkuMLbEMbdZ8sAe9RdbIg+rcaFO7dCfwV/RPTRjq802wuh3T+j++Uw
+			wAZPNjC/Dx2nu1F05X38rQfP62DCcAew22d872D7BqQlC0fkl+WcVpqfqHZnfsuDEzuuw0Nq8jVu
+			ecNyJE4J+1ru6Bw79HGCd/DLkDNrKw7WgsQJy2fDsg1PGR+uriovjPGBPHT6t1/oxMcrBeV5YAPY
+			yN8O/b9KwKivFpXXaunjkQ5vH86+04/fdD9m5ZPVgnOg0eXf/QxP6dk4A/RXOPuXrmkmvzjJZpCh
+			VjI7Tgzv6Au4f6z88AX8RTMw6GNMQ77lqGOvhv/56fVrnu8/WV1RD3T6+E0iflcInPwqv3hZngMY
+			dT+fU9LqIOrF6LHag42LsJspAD/rprLxyFf8Q0//NaH/UtiQvQPGRl0/hT/yfDSd6kMH0A02G+pg
+			QztLNmTrgMlRP7a99e9wwIAMshQ2ZOMA/BYWcx2/3QPdd8x1O+rGTpYjHcAXmbNh8Q6YOuq0z8hY
+			B5gGmbFhcQ6Yaq4be3aXezqAHTJhw2IcMFfUbSdM5QDTYaFs2J8D9hV1Yw/LmRzADmTDq8gb7mHe
+			8ATyhs6cecP8Dth31GmHkZkdYDrumw2zO2BhUTc2sJzbAexss6EONrRnYcNsDlho1IndyL4cYJTM
+			xYbpHJBJ1A1ulgtxABXNzIa9HZBZ1InXyMIcYBROzYbxDsg86gYry4U7gEqnYsNoB6RRz+Pk1h5x
+			crNyeI6zCMnEAQbYRDZo7eB7gDP4HjBzDm/G2G+ZqQMIbhIb8NfLQenqhvi+Hn9ezyDq+3XaXP3J
+			BtOR3xs+fvzg+dYTN2v97Lpu/mbtfPOZA/i/4anw5Gbusy4zZ4BtgM2GUz85WC2W9O+KVzalsnbu
+			IfxHhgbep19plhj1/wHebXOXQ3qm1QAAAABJRU5ErkJggg==
+		</Resource>
+		<Resource ID="3821693c-e0b5-6687-3951-749599aaa7d1" Type="js" Name="monacoEditor.js">
+			Ly8g0JTQvtCx0LDQstC40YLRjCDQu9C10L3QuNCy0YPQsSDQt9Cw0LPRgNGD0LfQutGDINC80L7Q
+			tNC10LvQtdC5DQovLyDQlNC10LvQsNC10Lwg0L3QsNC00L/QuNGB0Ywg0LvQvtCw0LnQtNC40L3Q
+			syDQv9C+0LrQsCDRgtCw0Lwg0LfQsNC/0YDQvtGBINCz0YPQu9GP0LXRgiDQt9CwINGE0LDQudC7
+			0L7QvA0KLy8gKyDQtNC10LvQsNC10Lwg0LzQvtC00LXQu9GMINGA0LjQtNC+0L3Qu9C4DQoNCmNs
+			YXNzIE1vbmFjb0VkaXRvciB7DQogIGNvbnN0cnVjdG9yKGNvbnRhaW5lciwgY29uZmlnID0ge30p
+			IHsNCiAgICBkb2N1bWVudC5mb250cy5yZWFkeS50aGVuKCgpID0+IHsNCiAgICAgIHRoaXMuaW5p
+			dChjb250YWluZXIsIGNvbmZpZyk7DQogICAgfSk7DQogIH0NCg0KICBhc3luYyBpbml0KGNvbnRh
+			aW5lciwgY29uZmlnKSB7DQogICAgdGhpcy5jb250YWluZXIgPSBjb250YWluZXI7DQogICAgdGhp
+			cy4kY29udGFpbmVyID0gJChjb250YWluZXIpOw0KICAgIHRoaXMuY29uZmlnID0geyAuLi5jb25m
+			aWcgfTsNCiAgICB0aGlzLmNvbmZpZy5hdXRvbWF0aWNMYXlvdXQgPSB0cnVlOw0KICAgIC8vdGhp
+			cy5jb25maWcudXNlU2hhZG93RE9NID0gZmFsc2U7DQogICAgZGVsZXRlIHRoaXMuY29uZmlnLnZh
+			bHVlOw0KICAgIHRoaXMuY29uZmlnLmxhbmd1YWdlID0gTW9uYWNvRWRpdG9yLnZhbGlkYXRlTGFu
+			Z3VhZ2UodGhpcy5jb25maWc/Lmxhbmd1YWdlKTsNCiAgICB0aGlzLmNvbmZpZy50aGVtZSA9IE1v
+			bmFjb0VkaXRvci52YWxpZGF0ZVRoZW1lKHRoaXMuY29uZmlnPy50aGVtZSk7DQogICAgdGhpcy5l
+			ZGl0b3IgPSBtb25hY28uZWRpdG9yLmNyZWF0ZSh0aGlzLmNvbnRhaW5lciwgdGhpcy5jb25maWcp
+			Ow0KICAgIHRoaXMuY29uZmlnLnZhbHVlcyA9IGF3YWl0IHRoaXMudmFsaWRhdGVDb25maWdWYWx1
+			ZXModGhpcy5jb25maWc/LnZhbHVlcyk7DQoNCiAgICAvLyBBZGQgaW5wdXQgZm9yIHN1Ym1pdA0K
+			ICAgIHRoaXMuaW5pdFRleHRBcmVhKCk7DQoNCiAgICAvLyBsb2FkaW5nIGZpbGVzIGJ5IHVybCBh
+			bmQgY3JlYXRlIG1vZGVsczsNCg0KICAgIGZvciAoY29uc3QgW2tleSwgdmFsdWVdIG9mIE9iamVj
+			dC5lbnRyaWVzKHRoaXMuY29uZmlnLnZhbHVlcykpIHsNCiAgICAgIHRoaXMuY29uZmlnLnZhbHVl
+			c1trZXldID0gYXdhaXQgdGhpcy5wcm9jZXNzVmFsdWUodmFsdWUpOw0KICAgIH0NCiAgICB0aGlz
+			Lm1vZGVsID0gdGhpcy5hY3RpdmVNb2RlbEtleTsNCiAgfQ0KDQogIGFzeW5jIHByb2Nlc3NWYWx1
+			ZSh2YWx1ZSkgew0KICAgIC8vIGNyZWF0ZSBtb2RlbCBhbmQgZ2V0IHRleHQgYnkgdmFsdWUgdXJs
+			DQogICAgaWYgKHZhbHVlID09PSB1bmRlZmluZWQgfHwgdmFsdWUgPT09IG51bGwpIHsNCiAgICAg
+			IHZhbHVlID0ge307DQogICAgfQ0KDQogICAgbGV0IG1vZGVsID0gdmFsdWU/Lm1vZGVsIHx8IG51
+			bGw7DQogICAgY29uc3QgdXJsID0gdmFsdWU/LnVybCB8fCBudWxsOw0KICAgIGNvbnN0IGxhbmd1
+			YWdlID0gTW9uYWNvRWRpdG9yLnZhbGlkYXRlTGFuZ3VhZ2UodmFsdWU/Lmxhbmd1YWdlIHx8IG51
+			bGwpOw0KICAgIGNvbnN0IGFjdGl2ZSA9IHZhbHVlPy5hY3RpdmUgfHwgZmFsc2U7DQogICAgbGV0
+			IHRleHQgPSAiIjsNCg0KICAgIGlmIChtb2RlbCA9PT0gbnVsbCkgew0KICAgICAgdHJ5IHsNCiAg
+			ICAgICAgdGV4dCA9IHVybCA/IGF3YWl0ICQuYWpheCh1cmwsIHsgZGF0YVR5cGU6ICJ0ZXh0Iiwg
+			Y2FjaGU6IGZhbHNlIH0pIDogIiI7DQogICAgICB9IGNhdGNoIChlcnJvcikgew0KICAgICAgICBj
+			b25zb2xlLmVycm9yKGBFcnJvciB3aGVuIGxvYWRpbmcgJHt1cmx9IGZpbGUuYCk7DQogICAgICB9
+			DQogICAgICBtb2RlbCA9IG1vbmFjby5lZGl0b3IuY3JlYXRlTW9kZWwodGV4dCwgbGFuZ3VhZ2Up
+			Ow0KICAgIH0NCiAgICB0aGlzLmluaXRPbkNoYW5nZUV2ZW50TGlzdGVuZXIobW9kZWwpOw0KICAg
+			IHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSkgPT4gew0KICAgICAgcmVzb2x2ZSh7IG1vZGVs
+			LCB1cmwsIGxhbmd1YWdlLCBhY3RpdmUsIHN0YXRlOiBudWxsIH0pOw0KICAgIH0pOw0KICB9DQoN
+			CiAgc2V0IG1vZGVsKG1vZGVsS2V5KSB7DQogICAgdGhpcy5zYXZlQ3VycmVudE1vZGVsVmlld1N0
+			YXRlKCk7DQogICAgY29uc3QgbmV3VmFsdWUgPSB0aGlzLmNvbmZpZy52YWx1ZXNbbW9kZWxLZXld
+			Ow0KICAgIHRoaXMuc2V0TW9kZWwobmV3VmFsdWUubW9kZWwpOw0KICAgIHRoaXMucmVzdG9yZVZp
+			ZXdTdGF0ZShuZXdWYWx1ZS5zdGF0ZSk7DQogICAgdGhpcy5mb2N1cygpOw0KDQogICAgdGhpcy5h
+			Y3RpdmVNb2RlbEtleSA9IG1vZGVsS2V5Ow0KDQogICAgdGhpcy5zZXRUZXh0QXJlYVZhbHVlKHRo
+			aXMudmFsdWUpOw0KICB9DQoNCiAgc2F2ZUN1cnJlbnRNb2RlbFZpZXdTdGF0ZSgpIHsNCiAgICBj
+			b25zdCBjdXJyZW50VmFsdWUgPSB0aGlzLmNvbmZpZy52YWx1ZXNbdGhpcy5hY3RpdmVNb2RlbEtl
+			eV07DQogICAgY3VycmVudFZhbHVlLnN0YXRlID0gdGhpcy5zYXZlVmlld1N0YXRlKCk7DQogIH0N
+			Cg0KICBzYXZlVmlld1N0YXRlKCkgew0KICAgIHJldHVybiB0aGlzLmVkaXRvci5zYXZlVmlld1N0
+			YXRlKCk7DQogIH0NCg0KICBzZXRNb2RlbChtb2RlbCkgew0KICAgIHRoaXMuZWRpdG9yLnNldE1v
+			ZGVsKG1vZGVsKTsNCiAgfQ0KDQogIHJlc3RvcmVWaWV3U3RhdGUoc3RhdGUpIHsNCiAgICB0aGlz
+			LmVkaXRvci5yZXN0b3JlVmlld1N0YXRlKHN0YXRlKTsNCiAgfQ0KDQogIGZvY3VzKCkgew0KICAg
+			IHRoaXMuZWRpdG9yLmZvY3VzKCk7DQogIH0NCg0KICBnZXQgdmFsdWUoKSB7DQogICAgcmV0dXJu
+			IHRoaXMuZWRpdG9yLmdldFZhbHVlKCk7DQogIH0NCg0KICBpbml0T25DaGFuZ2VFdmVudExpc3Rl
+			bmVyKG1vZGVsKSB7DQogICAgbW9kZWwub25EaWRDaGFuZ2VDb250ZW50KCgpID0+IHsNCiAgICAg
+			IHRoaXMuc2V0VGV4dEFyZWFWYWx1ZSh0aGlzLnZhbHVlKTsNCiAgICB9KTsNCiAgfQ0KDQogIHNl
+			dFRleHRBcmVhVmFsdWUodmFsdWUpIHsNCiAgICB0aGlzLiR0ZXh0QXJlYS52YWwodmFsdWUpOw0K
+			ICB9DQoNCiAgaW5pdFRleHRBcmVhKCkgew0KICAgIHRoaXMuJHRleHRBcmVhID0gJChgPHRleHRh
+			cmVhPjwvdGV4dGFyZWE+YCk7DQogICAgdGhpcy4kdGV4dEFyZWEuYXR0cigibmFtZSIsIHRoaXMu
+			Y29uZmlnLnRleHRBcmVhTmFtZSk7DQogICAgdGhpcy4kdGV4dEFyZWEuY3NzKCJkaXNwbGF5Iiwg
+			Im5vbmUiKTsNCiAgICB0aGlzLiRjb250YWluZXIucHJlcGVuZCh0aGlzLiR0ZXh0QXJlYSk7DQog
+			IH0NCg0KICBnZXQgYWN0aXZlTW9kZWxLZXkoKSB7DQogICAgY29uc3QgdmFsdWVzRW50cmllcyA9
+			IE9iamVjdC5lbnRyaWVzKHRoaXMuY29uZmlnLnZhbHVlcyk7DQogICAgZm9yIChjb25zdCBba2V5
+			LCB2YWx1ZV0gb2YgdmFsdWVzRW50cmllcykgew0KICAgICAgaWYgKHZhbHVlPy5hY3RpdmUpIHJl
+			dHVybiBrZXk7DQogICAgfQ0KICAgIGNvbnN0IGFjdGl2ZUtleSA9IHZhbHVlc0VudHJpZXNbMF1b
+			MF07DQogICAgdGhpcy5jb25maWcudmFsdWVzW2FjdGl2ZUtleV0uYWN0aXZlID0gdHJ1ZTsNCiAg
+			ICByZXR1cm4gYWN0aXZlS2V5Ow0KICB9DQoNCiAgc2V0IGFjdGl2ZU1vZGVsS2V5KHZhbHVlKSB7
+			DQogICAgZm9yIChjb25zdCBrZXkgb2YgT2JqZWN0LmtleXModGhpcy5jb25maWcudmFsdWVzKSkg
+			ew0KICAgICAgdGhpcy5jb25maWcudmFsdWVzW2tleV0uYWN0aXZlID0gZmFsc2U7DQogICAgfQ0K
+			ICAgIHRoaXMuY29uZmlnLnZhbHVlc1t2YWx1ZV0uYWN0aXZlID0gdHJ1ZTsNCiAgfQ0KDQogIGFz
+			eW5jIGFkZE1vZGVsKGlkLCB2YWx1ZSkgew0KICAgIGlmIChpZCBpbiB0aGlzLmNvbmZpZy52YWx1
+			ZXMpIHJldHVybjsNCiAgICB0aGlzLmNvbmZpZy52YWx1ZXNbaWRdID0gYXdhaXQgdGhpcy5wcm9j
+			ZXNzVmFsdWUodmFsdWUpOw0KICB9DQoNCiAgYXN5bmMgcmVtb3ZlTW9kZWwobW9kZWxLZXkpIHsN
+			CiAgICB0aGlzLmNvbmZpZy52YWx1ZXNbbW9kZWxLZXldLm1vZGVsLmRpc3Bvc2UoKTsNCiAgICBk
+			ZWxldGUgdGhpcy5jb25maWcudmFsdWVzW21vZGVsS2V5XTsNCiAgfQ0KDQogIGFzeW5jIHZhbGlk
+			YXRlQ29uZmlnVmFsdWVzKHZhbHVlcykgew0KICAgIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2
+			ZSkgPT4gew0KICAgICAgaWYgKHZhbHVlcyA9PT0gdW5kZWZpbmVkIHx8IHZhbHVlcyA9PSBudWxs
+			IHx8ICQuaXNFbXB0eU9iamVjdCh2YWx1ZXMpKSB7DQogICAgICAgIHRoaXMucHJvY2Vzc1ZhbHVl
+			KG51bGwpLnRoZW4oKGRhdGEpID0+IHJlc29sdmUoeyAiLTEiOiBkYXRhIH0pKTsNCiAgICAgIH0g
+			ZWxzZSB7DQogICAgICAgIHJlc29sdmUodmFsdWVzKTsNCiAgICAgIH0NCiAgICB9KTsNCiAgfQ0K
+			DQogIHN0YXRpYyB2YWxpZGF0ZVRoZW1lKHRoZW1lKSB7DQogICAgY29uc3QgYWxsb3dlZCA9IFsi
+			dnMiLCAidnMtZGFyayIsICJoYy1ibGFjayJdOw0KICAgIHJldHVybiBhbGxvd2VkLmluY2x1ZGVz
+			KHRoZW1lKSA/IHRoZW1lIDogYWxsb3dlZFswXTsNCiAgfQ0KDQogIHN0YXRpYyB2YWxpZGF0ZUxh
+			bmd1YWdlKGxhbmcpIHsNCiAgICBjb25zdCBhbGxvd2VkID0gWw0KICAgICAgImFiYXAiLA0KICAg
+			ICAgImFlcyIsDQogICAgICAiYXBleCIsDQogICAgICAiYXpjbGkiLA0KICAgICAgImJhdCIsDQog
+			ICAgICAiYmljZXAiLA0KICAgICAgImMiLA0KICAgICAgImNhbWVsaWdvIiwNCiAgICAgICJjbG9q
+			dXJlIiwNCiAgICAgICJjb2ZmZWVzY3JpcHQiLA0KICAgICAgImNwcCIsDQogICAgICAiY3NoYXJw
+			IiwNCiAgICAgICJjc3AiLA0KICAgICAgImNzcyIsDQogICAgICAiZGFydCIsDQogICAgICAiZG9j
+			a2VyZmlsZSIsDQogICAgICAiZWNsIiwNCiAgICAgICJlbGl4aXIiLA0KICAgICAgImZsb3c5IiwN
+			CiAgICAgICJmc2hhcnAiLA0KICAgICAgImdvIiwNCiAgICAgICJncmFwaHFsIiwNCiAgICAgICJo
+			YW5kbGViYXJzIiwNCiAgICAgICJoY2wiLA0KICAgICAgImh0bWwiLA0KICAgICAgImluaSIsDQog
+			ICAgICAiamF2YSIsDQogICAgICAiamF2YXNjcmlwdCIsDQogICAgICAianNvbiIsDQogICAgICAi
+			anVsaWEiLA0KICAgICAgImtvdGxpbiIsDQogICAgICAibGVzcyIsDQogICAgICAibGV4b24iLA0K
+			ICAgICAgImxpcXVpZCIsDQogICAgICAibHVhIiwNCiAgICAgICJtMyIsDQogICAgICAibWFya2Rv
+			d24iLA0KICAgICAgIm1pcHMiLA0KICAgICAgIm1zZGF4IiwNCiAgICAgICJteXNxbCIsDQogICAg
+			ICAib2JqZWN0aXZlLWMiLA0KICAgICAgInBhc2NhbCIsDQogICAgICAicGFzY2FsaWdvIiwNCiAg
+			ICAgICJwZXJsIiwNCiAgICAgICJwZ3NxbCIsDQogICAgICAicGhwIiwNCiAgICAgICJwbGEiLA0K
+			ICAgICAgInBsYWludGV4dCIsDQogICAgICAicG9zdGlhdHMiLA0KICAgICAgInBvd2VycXVlcnki
+			LA0KICAgICAgInBvd2Vyc2hlbGwiLA0KICAgICAgInByb3RvIiwNCiAgICAgICJwdWciLA0KICAg
+			ICAgInB5dGhvbiIsDQogICAgICAicXNoYXJwIiwNCiAgICAgICJyIiwNCiAgICAgICJyYXpvciIs
+			DQogICAgICAicmVkaXMiLA0KICAgICAgInJlZHNoaWZ0IiwNCiAgICAgICJyZXN0cnVjdHVyZWR0
+			ZXh0IiwNCiAgICAgICJydWJ5IiwNCiAgICAgICJydXN0IiwNCiAgICAgICJzYiIsDQogICAgICAi
+			c2NhbGEiLA0KICAgICAgInNjaGVtZSIsDQogICAgICAic2NzcyIsDQogICAgICAic2hlbGwiLA0K
+			ICAgICAgInNvbCIsDQogICAgICAic3BhcnFsIiwNCiAgICAgICJzcWwiLA0KICAgICAgInN0IiwN
+			CiAgICAgICJzd2lmdCIsDQogICAgICAic3lzdGVtdmVyaWxvZyIsDQogICAgICAidGNsIiwNCiAg
+			ICAgICJ0d2lnIiwNCiAgICAgICJ0eXBlc2NyaXB0IiwNCiAgICAgICJ2YiIsDQogICAgICAidmVy
+			aWxvZyIsDQogICAgICAieG1sIiwNCiAgICAgICJ5YW1sIiwNCiAgICBdOw0KICAgIHJldHVybiBh
+			bGxvd2VkLmluY2x1ZGVzKGxhbmcpID8gbGFuZyA6ICIiOw0KICB9DQp9DQo=
+		</Resource>
+		<Resource ID="8adcbde4-c1ff-4a26-a04f-795b953fa9ee" Type="png" Name="16.png">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+			AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAimVYSWZNTQAqAAAACAAFARIA
+			AwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSATEAAgAAABEAAABah2kABAAAAAEAAABs
+			AAAAAAAADwAAAAABAAAPAAAAAAF3d3cuaW5rc2NhcGUub3JnAAAAAqACAAQAAAABAAAAEKADAAQA
+			AAABAAAAEAAAAACLg0KFAAAACXBIWXMAAk6NAAJOjQFAepa8AAADCGlUWHRYTUw6Y29tLmFkb2Jl
+			LnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1Q
+			IENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5
+			OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91
+			dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUuY29tL2V4aWYvMS4w
+			LyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8i
+			CiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyI+CiAg
+			ICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj4yNDwvZXhpZjpQaXhlbFlEaW1lbnNpb24+CiAg
+			ICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj4yNDwvZXhpZjpQaXhlbFhEaW1lbnNpb24+CiAg
+			ICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgogICAgICAgICA8dGlm
+			ZjpYUmVzb2x1dGlvbj4zODQwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpZUmVz
+			b2x1dGlvbj4zODQwPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlmZjpPcmllbnRhdGlv
+			bj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8eG1wOkNyZWF0b3JUb29sPnd3dy5pbmtz
+			Y2FwZS5vcmc8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgPC9yZGY6RGVzY3JpcHRpb24+CiAgIDwv
+			cmRmOlJERj4KPC94OnhtcG1ldGE+Cl2wpNIAAALpSURBVDgRTVJNbxRHEH1V3fOBZ3eNVzYCCy44
+			wiGRgAgOSFyIFJJLzhESl5wiJHLINVxwkIj/QCIlFw58CIkruYQIAXcQlwgUELkQ20q8GC+7y+7M
+			dHelemxL1Kh7pqfqVb161YRtk0dI6ATqjT9mpqdnw7ch0FflRA5Fd5bTc2a53e/xT90zb/o7sdFH
+			IiA8gKFP4dbvzs63d7vfshY+KQdAWUuMQZYQsjZQDfHk7ab9cu7z3qrch8VpeGoidKsfd7/wwf+c
+			GFoYDqXUtIku3vYHCOpWQVnt8dIwX0iOb/wefSSbmJk8m/nRZOF8/TpDnVSOc2/FGShITbdYRo+o
+			4HKQpRbgK/qlnA8XaXx379N8//jwYOhD+bwjfi012bEBeKpGU18UHSJY6awwpB287BXqtIhdj55R
+			79KC+ANlnX84MAjEo3tdyFsGzzuYjkc+PdL+VKgBQVLls+hBjCCr5POhSWwFCfIiS96tW8mPjkLx
+			2WuuXrZRv0rhFBRpUOqhVSF7AmisZVYN8QRJZSRYbZFplzqHTO8edpB+NJFssY90kSiM1c2qX7ol
+			Bv2rzNaJoipiNbdi4yvowzoUlUeo+jOHW00lOzIUOzsmCaregITXlM1YwUkD3BYYwVom9l7ixKML
+			VGyxmTzsSPJxGvLOCPQfa4ZmsDvAOJjaGiRsmP7ZPWUSEfGaJLIBrH5lQvVfGcuaZaVLzSj1t168
+			oMsXBSWkWC5DOFU5uTG9yxi9RDon1HH00SjTj9jktumpTi1xuyDjHW6MJuFUlLmxjR8OnjOGlxPG
+			gc1JcJqEyIgp5gfQcE+BpGiR9R6vvKPvs697NyOQZUnXbZjupb9vVq48WXm51cnZJqxwIaetOWVm
+			iikFO7lVlnQygiNGW9m56sCjb443Isas/SsLZ99c/mBlsLwg4dqcuOvdFXdt9mz0RZNftwTfOr23
+			Rzb3l043XT/97vC+/vLBO+XVuTvr16f2NcAllVdj3oPgf+mqXu7eiWjVAAAAAElFTkSuQmCC
+		</Resource>
+		<Resource ID="9eac030e-29c7-448e-9f7c-777be6f49713" Type="png" Name="24.png">
+			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+			AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAlmVYSWZNTQAqAAAACAAFARIA
+			AwAAAAEAAQAAARoABQAAAAEAAABKARsABQAAAAEAAABSATEAAgAAABEAAABah2kABAAAAAEAAABs
+			AAAAAAAADwAAAAABAAAPAAAAAAF3d3cuaW5rc2NhcGUub3JnAAAAA6ABAAMAAAABAAEAAKACAAQA
+			AAABAAAAGKADAAQAAAABAAAAGAAAAAA2R9jJAAAACXBIWXMAAk6NAAJOjQFAepa8AAADCGlUWHRY
+			TUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIg
+			eDp4bXB0az0iWE1QIENvcmUgNi4wLjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93
+			d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0
+			aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczpleGlmPSJodHRwOi8vbnMuYWRvYmUu
+			Y29tL2V4aWYvMS4wLyIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNv
+			bS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94
+			YXAvMS4wLyI+CiAgICAgICAgIDxleGlmOlBpeGVsWURpbWVuc2lvbj42NDwvZXhpZjpQaXhlbFlE
+			aW1lbnNpb24+CiAgICAgICAgIDxleGlmOlBpeGVsWERpbWVuc2lvbj42NDwvZXhpZjpQaXhlbFhE
+			aW1lbnNpb24+CiAgICAgICAgIDxleGlmOkNvbG9yU3BhY2U+MTwvZXhpZjpDb2xvclNwYWNlPgog
+			ICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj4zODQwPC90aWZmOlhSZXNvbHV0aW9uPgogICAgICAg
+			ICA8dGlmZjpZUmVzb2x1dGlvbj4zODQwPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8dGlm
+			ZjpPcmllbnRhdGlvbj4xPC90aWZmOk9yaWVudGF0aW9uPgogICAgICAgICA8eG1wOkNyZWF0b3JU
+			b29sPnd3dy5pbmtzY2FwZS5vcmc8L3htcDpDcmVhdG9yVG9vbD4KICAgICAgPC9yZGY6RGVzY3Jp
+			cHRpb24+CiAgIDwvcmRmOlJERj4KPC94OnhtcG1ldGE+Cs7/AgEAAATzSURBVEgNfVVLjxRVFD7n
+			1qO7qrvnAQxEEDS2CQoJGmFjcAE/gA0RHTYaDIGduHVjRjeuTMQdicksXDCicaE/YCQRURkTWcBO
+			QwjR6Rlnhpmu6a6uxz1+p6p6mIGRm66q+zj3O993zr2nmbZps7PknjxJmeDbD0beFOLThvlYlspe
+			NXc9/tuKzDHJd0F/7VuG7XDP43C8eUKARHfJ48OUrP80eoxd/jII6RUSorhPlObooHkOUz1AB7v7
+			PbotmZxvvLE6J3fIp0OUMjwXhqVJ2VW2dIIsFm10Y+xVNnQjDChciyStjJ1N9gqQ6/xIk71en3pi
+			6Xjz+MM/QNLQj2RUla4bfckcWGNCwfu3xt4jI9fRV/ABlj0Q9SpbVayPqeY8tcEgBNJ13asYiqWY
+			sCMGFcyR9G+OPS+GvgjqfGq9S7CymVh2Cwu1fFpjymDohk2ELKYf2NL7wesP72nIlYnEP++4AL23
+			gzqdWuvmWf9eYG3iuOxhVtRi8wNPGqDhgxhwxm6+yHatK5liKFb8y+gFMBeOZnd939iTnOqtGsoy
+			StjPvf7cONvIUP21LplmUkq0cKJNnWmrPhQz8QN48YXkOSuIfOq67IctqFmCmu5nL8jgQC/zn11H
+			9IwjRii516TBTYR1pyV3b0rOREKmkSEIqtmW6U3gowvwNXiK4Xc/HOzCmipTixWWkchx3e4SZ7LQ
+			gETf1g5G1jRS4+/rUd72KL/vURr5lP7lE9cAXrfU2N0FeaDo2arCJOMAHwM4fHGK9P2DyK+yE7Eg
+			N764qja775l8cVRqh/vWg5rg2Aon4y3KHvg4t6Z4DO4CtWDtAFnPXw0+RgG+G+AGwVtm4Q7AU7hy
+			sY476RLWtHFdWTEPfmtQ1vGl9nJE9UMrnO+vUb4GJ+u4Bim4N7HBsyR6CEM8uq9PYuaN8CozTmIJ
+			rurQSj/aU0d6lUJhqOH83zGpHepZ78A6mzBlscWVAeXqmqpsHS2C9ULB2oiiKXAFrgaPHOioWuQA
+			Hcgc3IKaBV/8gxGSDPqZMkDTEMUg2wH4NqxLo/LtAlQrUMlnuPKEmio3+3osUMA4IVWst2U9hMFX
+			cPA0+bgqVX9jcYsa5vjXBuUvehKMR+rgiVhv7CvwimBkgHDc0DdgJW6cFrkv6sdm46KkITIIW5Eb
+			sRj4kFgR2GJbDXDd0sBnT2uQyUTOwlVnPHQ81A6tkPo8ahq8oRrc1uIg6Hj7litGCxU2zamT5/as
+			mfjozxnk9EgvsVdH6sZBrdcU4p4WsFth/g+4PFiJ77LTCtlJBnI1cN0jtXMrMyxXjnp88fei5i9P
+			tSdzps+bvtmz3MtzlYifOizcqevGXtxkLRdolbjib6jVYCeOqYMr+YEC67pcKUo90bUz5Jw5gw1v
+			Ud6dau9GabkceDwZI3ZJJvoP5Wrp3XDgFDlQvxlYez4yFycyU3e8S/xOZ0GuFYEs8JTERtusZunj
+			9tuAudyAmodQA/fCjnVLBTlSx4xYl6yNXKq9u/y1AhWsLxaVqsDd4kBnZqfIPXEHN/QbyuehxjN0
+			2Xd4cgA1qGNp45ku1WvW81DBklRmEuNdag1Z34XKqfKvskB/yovnLhzdOLKLn7QnF6ba89GnbZGv
+			JqQ/vWO+Nz0+OdyvrBGvJ8jq+raTw41FbtQIah58+NLOsDmYru+JKNixeI5P09LmWA/3PP79D9gD
+			WjdisOgMAAAAAElFTkSuQmCC
+		</Resource>
+	</Resources>
+	<SourceCode>
+<![CDATA[class VDOM_monacoeditor(VDOM_object):
     def check_unit(self, value):
-		return value + "px" if value.isdigit() else value
-    
+        return value + "px" if value.isdigit() else value
+
     def render(self, contents=""):
         """
-            Args:
-                contents (str): Content into this type.
+        Args:
+            contents (str): Content into this type.
         """
-        WOID = (self.id).replace('-', '_')
-        ID = 'o_' + WOID
+        WOID = (self.id).replace("-", "_")
+        ID = "o_" + WOID
 
-        DEBUG_INFO = {
-          "objname": self.name,
-          "objtype": self.type.name,
-          "id": ID,
-          "version": self.type.version
-        }
-        debug_info_string = " ".join(
-            ["{}='{}'".format(key, value) for key, value in DEBUG_INFO.items()]
-        )
-        
-        display = u"none" if self.visible == "0" else self.displaying
-        position = u"{pos}".format(pos=self.positioning1) if self.positioning1 and self.positioning1 != "static" else u""
-        
+        DEBUG_INFO = {"objname": self.name, "objtype": self.type.name, "id": ID, "version": self.type.version}
+        debug_info_string = " ".join(["{}='{}'".format(key, value) for key, value in DEBUG_INFO.items()])
+
+        display = "none" if self.visible == "0" else self.displaying
+        position = "{pos}".format(pos=self.positioning1) if self.positioning1 and self.positioning1 != "static" else ""
+
         styles = {
-            "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+            "z-index": "%s" % self.zindex if int(self.zindex) != 0 else "",
             "display": display,
             "position": position,
             "width": self.check_unit(self.width),
@@ -534,22 +770,22 @@ class VDOM_monacoeditor(VDOM_object):
             "margin": self.margins,
             "padding": self.paddings,
             "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left)
+            "left": self.check_unit(self.left),
         }
         if self.positioning1 == "static":
-        	styles["top"] = styles["left"] = ""
-        
+            styles["top"] = styles["left"] = ""
+
         styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
-        STYLES_STRING = u"""
+        STYLES_STRING = """
         <style>
             .%(id)s {
                 %(styles)s
             }
         </style>
-        """ % { "id": ID, "styles": styles_str }
+        """ % {"id": ID, "styles": styles_str}
 
-        script = u"""
+        script = """
         <script type="text/javascript">
             const loadMonacoEditor = (url, callback) => {
                 const script = document.createElement('script');
@@ -600,114 +836,116 @@ class VDOM_monacoeditor(VDOM_object):
         });
         </script>
 
-        """ % {
-          "id": ID,
-          "woid": WOID,
-          "values": self.value,
-          "name": self.name
-        }
+        """ % {"id": ID, "woid": WOID, "values": self.value, "name": self.name}
 
-        RESULT = u"""
+        RESULT = """
         <div {debug_string} class='{id} {classname}'>
             {styles}
             {script}
         </div>
-        """.format(
-            debug_string=debug_info_string,
-            classname=' '.join([self.cssclass, 'vdom_monacoeditor']).strip(),
-            id=ID,
-            styles=STYLES_STRING,
-            script=script
-        )
+        """.format(debug_string=debug_info_string, classname=" ".join([self.cssclass, "vdom_monacoeditor"]).strip(), id=ID, styles=STYLES_STRING, script=script)
 
         return VDOM_object.render(self, contents=RESULT)
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+
         self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 
         image_id = "30b2054e-61bc-46dc-8f7b-263540d8eaaa"
         result = get_empty_wysiwyg_value(self, image_id)
 
         return VDOM_object.wysiwyg(self, contents=result)
-    
-def on_update(object, attributes):
-	o = object
-	modifications = {}
-	
-	for attr in ["left", "width", "height", "top"]:
-		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				modifications[attr] = attr_value + "px"
-				modifications["ide_"+ attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				modifications[attr] = attr_value.rstrip("px") + "px"
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				modifications[attr] = attr_value if "px" in attr_value else obj_value
-				modifications["ide_"+ attr] = attr_value.rstrip("px")
-			else:
-				modifications[attr] = attr_value
 
-	attributes.update(modifications)
-	
-	return ""
-        
+
+def on_update(object, attributes):
+    o = object
+    modifications = {}
+
+    for attr in ["left", "width", "height", "top"]:
+        if attr in attributes:
+            attr_value = attributes[attr]
+            obj_value = o.attributes.get(attr, "").lower()
+
+            if obj_value.isdigit() and attr_value.isdigit():
+                modifications[attr] = attr_value + "px"
+                modifications["ide_" + attr] = attr_value
+            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+                modifications[attr] = attr_value.rstrip("px") + "px"
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            elif attr_value.isdigit() or "px" in attr_value:
+                modifications[attr] = attr_value if "px" in attr_value else obj_value
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            else:
+                modifications[attr] = attr_value
+
+    attributes.update(modifications)
+
+    return ""
+
+
 def on_compile(object, attributes):
-	for attr in ["left", "width", "height", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value.rstrip("px") + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
-  <Libraries>
-    <Library Target="html"><![CDATA[<script type='text/javascript' src='/3821693c-e0b5-6687-3951-749599aaa7d1.js'></script>]]></Library>
-    <Library Target="html"><![CDATA[<style type="text/css">
+    for attr in ["left", "width", "height", "top"]:
+        obj_value = object.attributes[attr]
+
+        if obj_value.isdigit() or "px" in obj_value:
+            object.attributes[attr] = obj_value.rstrip("px") + "px"
+            object.attributes["ide_" + attr] = obj_value.rstrip("px")
+]]>
+	</SourceCode>
+	<Libraries>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/3821693c-e0b5-6687-3951-749599aaa7d1.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<style type="text/css">
         .vdom_monacoeditor {
             
         }
 </style>]]></Library>
-  </Libraries>
-  <E2vdom>
-    <Events>
-      <Userinterfaceevents>
-        <Event Name="load" Help="#Lang(503)">
-          <Parameters>
-            <Parameter Name="param" Order="0" VbType="" Help="#Lang(901)"/>
-          </Parameters>
-        </Event>
-      </Userinterfaceevents>
-    </Events>
-    <Actions>
-      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(504)" InterfaceName="#Lang(603)" MethodName="addClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(803)" ScriptName="className" Help="#Lang(703)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$(this.domCont).hide(fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(604)" MethodName="removeClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(804)" ScriptName="className" Help="#Lang(704)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$(this.domCont).show(fade);]]></SourceCode>
-        </Action>
-      </Container>
-    </Actions>
-  </E2vdom>
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="load" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="param" Description="#Lang(901)" Order="0"/>
+					</Parameters>
+				</Event>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="addClass" DisplayName="#Lang(603)" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(803)" Description="#Lang(703)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).addClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="hide" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(this.domCont).hide(fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(604)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(804)" Description="#Lang(704)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(this.domCont).show(fade);]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
 </Type>

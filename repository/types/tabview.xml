@@ -1,674 +1,672 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Type>
-  <Information>
-    <Name>tabview</Name>
-    <DisplayName>#Lang(001)</DisplayName>
-    <Description>#Lang(002)</Description>
-    <ClassName>VDOM_tabview</ClassName>
-    <ID>691b8bc3-0eee-830a-f0e0-e907d2b2489e</ID>
-    <Icon>#Res(e7fce8f1-9aec-5fb8-e047-16ec86203de8)</Icon>
-    <EditorIcon>#Res(a0f87e94-dc47-ec67-b956-16ecb281b5e0)</EditorIcon>
-    <StructureIcon>#Res(e2d5a340-6940-29d9-86b2-16ecd8fa182b)</StructureIcon>
-    <Moveable>1</Moveable>
-    <Resizable>3</Resizable>
-    <Container>2</Container>
-    <Category>Additional</Category>
-    <Dynamic>1</Dynamic>
-    <Version>1.417.6720</Version>
-    <InterfaceType>1</InterfaceType>
-    <OptimizationPriority>1</OptimizationPriority>
-    <Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, vdomclass, flexcontainer</Containers>
-    <Languages>en_US ,fr_FR ,ru_RU</Languages>
-    <Handlers>on_update, on_insert, on_compile</Handlers>
-    <RemoteMethods/>
-    <WCAG/>
-    <XMLScriptName/>
-  </Information>
-  <Attributes>
-    <Attribute>
-      <Name>classname</Name>
-      <DisplayName>#Lang(101)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(201)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(500)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
-      <RegularExpressionValidation>^.*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>hierarchy</Name>
-      <DisplayName>#Lang(102)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(202)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>positioning</Name>
-      <DisplayName>#Lang(103)</DisplayName>
-      <DefaultValue>static</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(203)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|relative)|(#Lang(403)|fixed)|(#Lang(404)|static))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-      <RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>top</Name>
-      <DisplayName>#Lang(104)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(204)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>left</Name>
-      <DisplayName>#Lang(105)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(205)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>height</Name>
-      <DisplayName>#Lang(106)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(206)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>width</Name>
-      <DisplayName>#Lang(107)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(207)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(10)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>displaying</Name>
-      <DisplayName>#Lang(108)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(208)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>style</Name>
-      <DisplayName>#Lang(109)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(209)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>MultiLine(1000000)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-      <RegularExpressionValidation>.*</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>skin</Name>
-      <DisplayName>#Lang(111)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(211)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>currenttab</Name>
-      <DisplayName>#Lang(112)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(212)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>showtabs</Name>
-      <DisplayName>#Lang(113)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(213)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
-      <Colorgroup>2</Colorgroup>
-      <ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>margins</Name>
-      <DisplayName>#Lang(114)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(214)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>paddings</Name>
-      <DisplayName>#Lang(115)</DisplayName>
-      <DefaultValue/>
-      <Visible>1</Visible>
-      <Help>#Lang(215)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(32)</CodeInterface>
-      <Colorgroup>4</Colorgroup>
-      <ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>ide_top</Name>
-      <DisplayName>#Lang(116)</DisplayName>
-      <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(216)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_left</Name>
-      <DisplayName>#Lang(117)</DisplayName>
-      <DefaultValue>50</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(217)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_height</Name>
-      <DisplayName>#Lang(118)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(218)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>ide_width</Name>
-      <DisplayName>#Lang(119)</DisplayName>
-      <DefaultValue>200</DefaultValue>
-      <Visible>0</Visible>
-      <Help>#Lang(219)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(8)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-      <RegularExpressionValidation/>
-    </Attribute>
-    <Attribute>
-      <Name>zindex</Name>
-      <DisplayName>#Lang(121)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(221)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>TextField(2)</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-      <RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>visible</Name>
-      <DisplayName>#Lang(122)</DisplayName>
-      <DefaultValue>1</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(222)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-    <Attribute>
-      <Name>stateful</Name>
-      <DisplayName>#Lang(123)</DisplayName>
-      <DefaultValue>0</DefaultValue>
-      <Visible>1</Visible>
-      <Help>#Lang(223)</Help>
-      <InterfaceType>0</InterfaceType>
-      <CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
-      <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-      <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-    </Attribute>
-  </Attributes>
-  <Languages>
-    <Language Code="en_US">
-      <Sentence ID="001">Tabview</Sentence>
-      <Sentence ID="002">The Tabview type allows storing and displaying the blocks of information, called tabs, in a predefined way.</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101">CSS class</Sentence>
-      <Sentence ID="102">Hierarchy</Sentence>
-      <Sentence ID="103">Position</Sentence>
-      <Sentence ID="104">Top</Sentence>
-      <Sentence ID="105">Left</Sentence>
-      <Sentence ID="106">Height</Sentence>
-      <Sentence ID="107">Width</Sentence>
-      <Sentence ID="108">Display</Sentence>
-      <Sentence ID="109">Style</Sentence>
-      <Sentence ID="111">Skin</Sentence>
-      <Sentence ID="112">currenttab</Sentence>
-      <Sentence ID="113">Show tabs</Sentence>
-      <Sentence ID="114">Margins</Sentence>
-      <Sentence ID="115">Paddings</Sentence>
-      <Sentence ID="116">IDE_top</Sentence>
-      <Sentence ID="117">IDE_left</Sentence>
-      <Sentence ID="118">IDE_height</Sentence>
-      <Sentence ID="119">IDE_width</Sentence>
-      <Sentence ID="121">Z-Index</Sentence>
-      <Sentence ID="122">Visibility</Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="201">Incorrect value</Sentence>
-      <Sentence ID="202">Order of rendering the object on the page</Sentence>
-      <Sentence ID="203">newAttribute13</Sentence>
-      <Sentence ID="204">Spacing between the top edge of the container and the object</Sentence>
-      <Sentence ID="205">Spacing between the left edge of the container and the object</Sentence>
-      <Sentence ID="206">Height of the object.</Sentence>
-      <Sentence ID="207">Width of the object.</Sentence>
-      <Sentence ID="208">newAttribute20</Sentence>
-      <Sentence ID="209">CSS style of the object</Sentence>
-      <Sentence ID="211">Visual appearance of the object</Sentence>
-      <Sentence ID="212">The sequence number of the current inserted element</Sentence>
-      <Sentence ID="213">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="214">newAttribute14</Sentence>
-      <Sentence ID="215">newAttribute15</Sentence>
-      <Sentence ID="216">newAttribute17</Sentence>
-      <Sentence ID="217">newAttribute16</Sentence>
-      <Sentence ID="218">newAttribute19</Sentence>
-      <Sentence ID="219">newAttribute18</Sentence>
-      <Sentence ID="221">Position in visual hierarchy of objects</Sentence>
-      <Sentence ID="222">Visibility of the object</Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Incorrect value, must be positive integer | auto.</Sentence>
-      <Sentence ID="305">Incorrect value, must be positive integer | auto.</Sentence>
-      <Sentence ID="306">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="307">Incorrect value, must be positive integer.</Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314">Incorrect value.</Sentence>
-      <Sentence ID="315">Incorrect value.</Sentence>
-      <Sentence ID="316">newAttribute17</Sentence>
-      <Sentence ID="317">newAttribute16</Sentence>
-      <Sentence ID="318">newAttribute19</Sentence>
-      <Sentence ID="319">newAttribute18</Sentence>
-      <Sentence ID="321">Incorrect value, must be even integer from 0 to 99</Sentence>
-      <Sentence ID="322">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="401">Absolute</Sentence>
-      <Sentence ID="402">Relative</Sentence>
-      <Sentence ID="403">Fixed</Sentence>
-      <Sentence ID="404">Static</Sentence>
-      <Sentence ID="405">Block</Sentence>
-      <Sentence ID="406">Inline</Sentence>
-      <Sentence ID="407">Flex</Sentence>
-      <Sentence ID="408">Inline-block</Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">User defined</Sentence>
-      <Sentence ID="412">Empty</Sentence>
-      <Sentence ID="413">No</Sentence>
-      <Sentence ID="414">Yes</Sentence>
-      <Sentence ID="415">Invisible</Sentence>
-      <Sentence ID="416">Visible</Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="501">Tab is activated</Sentence>
-      <Sentence ID="502">Toggle CSS class</Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513">Add new CSS class</Sentence>
-      <Sentence ID="514">Remove CSS class</Sentence>
-      <Sentence ID="601">activateTab</Sentence>
-      <Sentence ID="602">toggleClass</Sentence>
-      <Sentence ID="603">addClass</Sentence>
-      <Sentence ID="604">removeClass</Sentence>
-      <Sentence ID="701">open tab</Sentence>
-      <Sentence ID="702">className</Sentence>
-      <Sentence ID="703">Name of CSS class</Sentence>
-      <Sentence ID="704">Name of CSS class</Sentence>
-      <Sentence ID="801">Name of the opened tab</Sentence>
-      <Sentence ID="802">Name of CSS class</Sentence>
-      <Sentence ID="803">className</Sentence>
-      <Sentence ID="804">className</Sentence>
-      <Sentence ID="901">Current X-value</Sentence>
-      <Sentence ID="902">Current X-value</Sentence>
-      <Sentence ID="903">Current X-value</Sentence>
-      <Sentence ID="904">Current X-value</Sentence>
-      <Sentence ID="905">Current X-value</Sentence>
-      <Sentence ID="906">Current X-value</Sentence>
-      <Sentence ID="907">Current X-value</Sentence>
-      <Sentence ID="908">Current X-value</Sentence>
-      <Sentence ID="909">Current X-value</Sentence>
-      <Sentence ID="911">Current X-value</Sentence>
-      <Sentence ID="912">Current X-value</Sentence>
-      <Sentence ID="913">Current X-value</Sentence>
-      <Sentence ID="914">Current X-value</Sentence>
-      <Sentence ID="915">Current X-value</Sentence>
-      <Sentence ID="916">Current X-value</Sentence>
-      <Sentence ID="917">Current X-value</Sentence>
-      <Sentence ID="918">Current X-value</Sentence>
-      <Sentence ID="919">Current X-value</Sentence>
-      <Sentence ID="921">Current X-value</Sentence>
-    </Language>
-    <Language Code="fr_FR">
-      <Sentence ID="001">Tabs</Sentence>
-      <Sentence ID="002">Container for tabs</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Hiérarchie</Sentence>
-      <Sentence ID="103"></Sentence>
-      <Sentence ID="104">Haut</Sentence>
-      <Sentence ID="105">Gauche</Sentence>
-      <Sentence ID="106"></Sentence>
-      <Sentence ID="107"></Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109">Style</Sentence>
-      <Sentence ID="111">Skin</Sentence>
-      <Sentence ID="112">currentTab</Sentence>
-      <Sentence ID="113">Show tabs</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119"></Sentence>
-      <Sentence ID="121">Z-Index</Sentence>
-      <Sentence ID="122">Visibilité</Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Hiérarchie de l'objet, ordre de chargement de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="203"></Sentence>
-      <Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
-      <Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
-      <Sentence ID="206"></Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209">CSS style of the object</Sentence>
-      <Sentence ID="211">Visual appearance of the object</Sentence>
-      <Sentence ID="212">Current tab</Sentence>
-      <Sentence ID="213">Define if the tabs are shown or not</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Niveau de superposition de l'objet par rapport aux autres</Sentence>
-      <Sentence ID="222">Afficher ou cacher l'objet</Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="306"></Sentence>
-      <Sentence ID="307"></Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321">Valeur Incorrecte, doit être positive</Sentence>
-      <Sentence ID="322">Valeur Incorrecte, doit être 0 ou 1</Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">User defined</Sentence>
-      <Sentence ID="412">Custom</Sentence>
-      <Sentence ID="413">No</Sentence>
-      <Sentence ID="414">Yes</Sentence>
-      <Sentence ID="415">Invisible</Sentence>
-      <Sentence ID="416">Visible</Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="501">activate tab</Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="601">activateTab</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="701">newTab</Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="801">new tab</Sentence>
-      <Sentence ID="802"></Sentence>
-      <Sentence ID="803"></Sentence>
-      <Sentence ID="804"></Sentence>
-      <Sentence ID="901">Current X-value</Sentence>
-      <Sentence ID="902">Current X-value</Sentence>
-      <Sentence ID="903">Current X-value</Sentence>
-      <Sentence ID="904">Current X-value</Sentence>
-      <Sentence ID="905">Current X-value</Sentence>
-      <Sentence ID="906">Current X-value</Sentence>
-      <Sentence ID="907">Current X-value</Sentence>
-      <Sentence ID="908">Current X-value</Sentence>
-      <Sentence ID="909">Current X-value</Sentence>
-      <Sentence ID="911">Current X-value</Sentence>
-      <Sentence ID="912">Current X-value</Sentence>
-      <Sentence ID="913">Current X-value</Sentence>
-      <Sentence ID="914">Current X-value</Sentence>
-      <Sentence ID="915">Current X-value</Sentence>
-      <Sentence ID="916">Current X-value</Sentence>
-      <Sentence ID="917">Current X-value</Sentence>
-      <Sentence ID="918">Current X-value</Sentence>
-      <Sentence ID="919">Current X-value</Sentence>
-      <Sentence ID="921">Current X-value</Sentence>
-    </Language>
-    <Language Code="ru_RU">
-      <Sentence ID="001">Вкладка</Sentence>
-      <Sentence ID="002">Используется как контейнер для вкладок</Sentence>
-      <Sentence ID="003"></Sentence>
-      <Sentence ID="101"></Sentence>
-      <Sentence ID="102">Иерархия</Sentence>
-      <Sentence ID="103"></Sentence>
-      <Sentence ID="104">Сверху</Sentence>
-      <Sentence ID="105">Слева</Sentence>
-      <Sentence ID="106"></Sentence>
-      <Sentence ID="107"></Sentence>
-      <Sentence ID="108"></Sentence>
-      <Sentence ID="109">Стиль</Sentence>
-      <Sentence ID="111">Оформление</Sentence>
-      <Sentence ID="112">Текущая вкладка</Sentence>
-      <Sentence ID="113">Показывать вкладки</Sentence>
-      <Sentence ID="114"></Sentence>
-      <Sentence ID="115"></Sentence>
-      <Sentence ID="116"></Sentence>
-      <Sentence ID="117"></Sentence>
-      <Sentence ID="118"></Sentence>
-      <Sentence ID="119"></Sentence>
-      <Sentence ID="121">Позиция</Sentence>
-      <Sentence ID="122">Отображение</Sentence>
-      <Sentence ID="123"></Sentence>
-      <Sentence ID="201"></Sentence>
-      <Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
-      <Sentence ID="203"></Sentence>
-      <Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-      <Sentence ID="206"></Sentence>
-      <Sentence ID="207"></Sentence>
-      <Sentence ID="208"></Sentence>
-      <Sentence ID="209">CSS стиль объекта</Sentence>
-      <Sentence ID="211">Визуальное оформление объекта</Sentence>
-      <Sentence ID="212">Порядковый номер текущей вкладки</Sentence>
-      <Sentence ID="213">Определяет, будут ли отображаться вкладки</Sentence>
-      <Sentence ID="214"></Sentence>
-      <Sentence ID="215"></Sentence>
-      <Sentence ID="216"></Sentence>
-      <Sentence ID="217"></Sentence>
-      <Sentence ID="218"></Sentence>
-      <Sentence ID="219"></Sentence>
-      <Sentence ID="221">Положение в визуальной иерархии объектов</Sentence>
-      <Sentence ID="222">Режим отображения объекта</Sentence>
-      <Sentence ID="223"></Sentence>
-      <Sentence ID="301"></Sentence>
-      <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="303"></Sentence>
-      <Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
-      <Sentence ID="306"></Sentence>
-      <Sentence ID="307"></Sentence>
-      <Sentence ID="308"></Sentence>
-      <Sentence ID="309"></Sentence>
-      <Sentence ID="311"></Sentence>
-      <Sentence ID="312">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="313"></Sentence>
-      <Sentence ID="314"></Sentence>
-      <Sentence ID="315"></Sentence>
-      <Sentence ID="316"></Sentence>
-      <Sentence ID="317"></Sentence>
-      <Sentence ID="318"></Sentence>
-      <Sentence ID="319"></Sentence>
-      <Sentence ID="321">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-      <Sentence ID="322">Неправильное значение, должен быть указан 0 или 1</Sentence>
-      <Sentence ID="323"></Sentence>
-      <Sentence ID="401"></Sentence>
-      <Sentence ID="402"></Sentence>
-      <Sentence ID="403"></Sentence>
-      <Sentence ID="404"></Sentence>
-      <Sentence ID="405"></Sentence>
-      <Sentence ID="406"></Sentence>
-      <Sentence ID="407"></Sentence>
-      <Sentence ID="408"></Sentence>
-      <Sentence ID="409"></Sentence>
-      <Sentence ID="411">Определено пользователем</Sentence>
-      <Sentence ID="412">Пользовательский</Sentence>
-      <Sentence ID="413">Нет</Sentence>
-      <Sentence ID="414">Да</Sentence>
-      <Sentence ID="415">Не отображать</Sentence>
-      <Sentence ID="416">Отображать</Sentence>
-      <Sentence ID="417"></Sentence>
-      <Sentence ID="418"></Sentence>
-      <Sentence ID="501">Активировать вкладку</Sentence>
-      <Sentence ID="502"></Sentence>
-      <Sentence ID="503"></Sentence>
-      <Sentence ID="504"></Sentence>
-      <Sentence ID="505"></Sentence>
-      <Sentence ID="506"></Sentence>
-      <Sentence ID="507"></Sentence>
-      <Sentence ID="508"></Sentence>
-      <Sentence ID="509"></Sentence>
-      <Sentence ID="511"></Sentence>
-      <Sentence ID="512"></Sentence>
-      <Sentence ID="513"></Sentence>
-      <Sentence ID="514"></Sentence>
-      <Sentence ID="601">Активировать вкладку</Sentence>
-      <Sentence ID="602"></Sentence>
-      <Sentence ID="603"></Sentence>
-      <Sentence ID="604"></Sentence>
-      <Sentence ID="701">Открыть вкладку</Sentence>
-      <Sentence ID="702"></Sentence>
-      <Sentence ID="703"></Sentence>
-      <Sentence ID="704"></Sentence>
-      <Sentence ID="801">Имя открытой вкладки</Sentence>
-      <Sentence ID="802"></Sentence>
-      <Sentence ID="803"></Sentence>
-      <Sentence ID="804"></Sentence>
-      <Sentence ID="901">Текущее значение X</Sentence>
-      <Sentence ID="902">Текущее значение X</Sentence>
-      <Sentence ID="903">Текущее значение X</Sentence>
-      <Sentence ID="904">Текущее значение X</Sentence>
-      <Sentence ID="905">Текущее значение X</Sentence>
-      <Sentence ID="906">Текущее значение X</Sentence>
-      <Sentence ID="907">Текущее значение X</Sentence>
-      <Sentence ID="908">Текущее значение X</Sentence>
-      <Sentence ID="909">Текущее значение X</Sentence>
-      <Sentence ID="911">Текущее значение X</Sentence>
-      <Sentence ID="912">Текущее значение X</Sentence>
-      <Sentence ID="913">Текущее значение X</Sentence>
-      <Sentence ID="914">Текущее значение X</Sentence>
-      <Sentence ID="915">Текущее значение X</Sentence>
-      <Sentence ID="916">Текущее значение X</Sentence>
-      <Sentence ID="917">Текущее значение X</Sentence>
-      <Sentence ID="918">Текущее значение X</Sentence>
-      <Sentence ID="919">Текущее значение X</Sentence>
-      <Sentence ID="921">Текущее значение X</Sentence>
-    </Language>
-  </Languages>
-  <Resources>
-    <Resource ID="a0f87e94-dc47-ec67-b956-16ecb281b5e0" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+	<Information>
+		<ID>691b8bc3-0eee-830a-f0e0-e907d2b2489e</ID>
+		<Name>tabview</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_tabview</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.417.6720</Version>
+		<Category>Additional</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(e7fce8f1-9aec-5fb8-e047-16ec86203de8)</Icon>
+		<EditorIcon>#Res(a0f87e94-dc47-ec67-b956-16ecb281b5e0)</EditorIcon>
+		<StructureIcon>#Res(e2d5a340-6940-29d9-86b2-16ecd8fa182b)</StructureIcon>
+		<Dynamic>1</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>2</Container>
+		<Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, accordeon, vdomclass, flexcontainer</Containers>
+		<Handlers>on_update, on_insert, on_compile</Handlers>
+		<Languages>en_US, fr_FR, ru_RU</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>classname</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(500)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>static</DefaultValue>
+			<RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|relative)|(#Lang(403)|fixed)|(#Lang(404)|static))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>displaying</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>style</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(1000000)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>skin</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>currenttab</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>showtabs</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>margins</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>paddings</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(32)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_top</Name>
+			<DisplayName>#Lang(116)</DisplayName>
+			<Description>#Lang(216)</Description>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_left</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_height</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(218)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_width</Name>
+			<DisplayName>#Lang(119)</DisplayName>
+			<Description>#Lang(219)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(8)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(121)</DisplayName>
+			<Description>#Lang(221)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{0,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(122)</DisplayName>
+			<Description>#Lang(222)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(123)</DisplayName>
+			<Description>#Lang(223)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Tabview</Sentence>
+			<Sentence ID="002">The Tabview type allows storing and displaying the blocks of information, called tabs, in a predefined way.</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101">CSS class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Height</Sentence>
+			<Sentence ID="107">Width</Sentence>
+			<Sentence ID="108">Display</Sentence>
+			<Sentence ID="109">Style</Sentence>
+			<Sentence ID="111">Skin</Sentence>
+			<Sentence ID="112">currenttab</Sentence>
+			<Sentence ID="113">Show tabs</Sentence>
+			<Sentence ID="114">Margins</Sentence>
+			<Sentence ID="115">Paddings</Sentence>
+			<Sentence ID="116">IDE_top</Sentence>
+			<Sentence ID="117">IDE_left</Sentence>
+			<Sentence ID="118">IDE_height</Sentence>
+			<Sentence ID="119">IDE_width</Sentence>
+			<Sentence ID="121">Z-Index</Sentence>
+			<Sentence ID="122">Visibility</Sentence>
+			<Sentence ID="123"></Sentence>
+			<Sentence ID="201">Incorrect value</Sentence>
+			<Sentence ID="202">Order of rendering the object on the page</Sentence>
+			<Sentence ID="203">newAttribute13</Sentence>
+			<Sentence ID="204">Spacing between the top edge of the container and the object</Sentence>
+			<Sentence ID="205">Spacing between the left edge of the container and the object</Sentence>
+			<Sentence ID="206">Height of the object.</Sentence>
+			<Sentence ID="207">Width of the object.</Sentence>
+			<Sentence ID="208">newAttribute20</Sentence>
+			<Sentence ID="209">CSS style of the object</Sentence>
+			<Sentence ID="211">Visual appearance of the object</Sentence>
+			<Sentence ID="212">The sequence number of the current inserted element</Sentence>
+			<Sentence ID="213">Define if the tabs are shown or not</Sentence>
+			<Sentence ID="214">newAttribute14</Sentence>
+			<Sentence ID="215">newAttribute15</Sentence>
+			<Sentence ID="216">newAttribute17</Sentence>
+			<Sentence ID="217">newAttribute16</Sentence>
+			<Sentence ID="218">newAttribute19</Sentence>
+			<Sentence ID="219">newAttribute18</Sentence>
+			<Sentence ID="221">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="222">Visibility of the object</Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Incorrect value, must be positive integer | auto.</Sentence>
+			<Sentence ID="305">Incorrect value, must be positive integer | auto.</Sentence>
+			<Sentence ID="306">Incorrect value, must be positive integer.</Sentence>
+			<Sentence ID="307">Incorrect value, must be positive integer.</Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311"></Sentence>
+			<Sentence ID="312">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314">Incorrect value.</Sentence>
+			<Sentence ID="315">Incorrect value.</Sentence>
+			<Sentence ID="316">newAttribute17</Sentence>
+			<Sentence ID="317">newAttribute16</Sentence>
+			<Sentence ID="318">newAttribute19</Sentence>
+			<Sentence ID="319">newAttribute18</Sentence>
+			<Sentence ID="321">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="322">Incorrect value, must be either 0 or 1</Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="401">Absolute</Sentence>
+			<Sentence ID="402">Relative</Sentence>
+			<Sentence ID="403">Fixed</Sentence>
+			<Sentence ID="404">Static</Sentence>
+			<Sentence ID="405">Block</Sentence>
+			<Sentence ID="406">Inline</Sentence>
+			<Sentence ID="407">Flex</Sentence>
+			<Sentence ID="408">Inline-block</Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">User defined</Sentence>
+			<Sentence ID="412">Empty</Sentence>
+			<Sentence ID="413">No</Sentence>
+			<Sentence ID="414">Yes</Sentence>
+			<Sentence ID="415">Invisible</Sentence>
+			<Sentence ID="416">Visible</Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="501">Tab is activated</Sentence>
+			<Sentence ID="502">Toggle CSS class</Sentence>
+			<Sentence ID="503"></Sentence>
+			<Sentence ID="504"></Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506"></Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513">Add new CSS class</Sentence>
+			<Sentence ID="514">Remove CSS class</Sentence>
+			<Sentence ID="601">activateTab</Sentence>
+			<Sentence ID="602">toggleClass</Sentence>
+			<Sentence ID="603">addClass</Sentence>
+			<Sentence ID="604">removeClass</Sentence>
+			<Sentence ID="701">open tab</Sentence>
+			<Sentence ID="702">className</Sentence>
+			<Sentence ID="703">Name of CSS class</Sentence>
+			<Sentence ID="704">Name of CSS class</Sentence>
+			<Sentence ID="801">Name of the opened tab</Sentence>
+			<Sentence ID="802">Name of CSS class</Sentence>
+			<Sentence ID="803">className</Sentence>
+			<Sentence ID="804">className</Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
+			<Sentence ID="903">Current X-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
+			<Sentence ID="905">Current X-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
+			<Sentence ID="907">Current X-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
+			<Sentence ID="912">Current X-value</Sentence>
+			<Sentence ID="913">Current X-value</Sentence>
+			<Sentence ID="914">Current X-value</Sentence>
+			<Sentence ID="915">Current X-value</Sentence>
+			<Sentence ID="916">Current X-value</Sentence>
+			<Sentence ID="917">Current X-value</Sentence>
+			<Sentence ID="918">Current X-value</Sentence>
+			<Sentence ID="919">Current X-value</Sentence>
+			<Sentence ID="921">Current X-value</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Tabs</Sentence>
+			<Sentence ID="002">Container for tabs</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101"></Sentence>
+			<Sentence ID="102">Hiérarchie</Sentence>
+			<Sentence ID="103"></Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106"></Sentence>
+			<Sentence ID="107"></Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109">Style</Sentence>
+			<Sentence ID="111">Skin</Sentence>
+			<Sentence ID="112">currentTab</Sentence>
+			<Sentence ID="113">Show tabs</Sentence>
+			<Sentence ID="114"></Sentence>
+			<Sentence ID="115"></Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="119"></Sentence>
+			<Sentence ID="121">Z-Index</Sentence>
+			<Sentence ID="122">Visibilité</Sentence>
+			<Sentence ID="123"></Sentence>
+			<Sentence ID="201"></Sentence>
+			<Sentence ID="202">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="203"></Sentence>
+			<Sentence ID="204">Distance from the top edge of the parent object in pixels</Sentence>
+			<Sentence ID="205">Distance from the left edge of the parent object in pixels</Sentence>
+			<Sentence ID="206"></Sentence>
+			<Sentence ID="207"></Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209">CSS style of the object</Sentence>
+			<Sentence ID="211">Visual appearance of the object</Sentence>
+			<Sentence ID="212">Current tab</Sentence>
+			<Sentence ID="213">Define if the tabs are shown or not</Sentence>
+			<Sentence ID="214"></Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="219"></Sentence>
+			<Sentence ID="221">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="222">Afficher ou cacher l&apos;objet</Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="306"></Sentence>
+			<Sentence ID="307"></Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311"></Sentence>
+			<Sentence ID="312">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="322">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403"></Sentence>
+			<Sentence ID="404"></Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">User defined</Sentence>
+			<Sentence ID="412">Custom</Sentence>
+			<Sentence ID="413">No</Sentence>
+			<Sentence ID="414">Yes</Sentence>
+			<Sentence ID="415">Invisible</Sentence>
+			<Sentence ID="416">Visible</Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="501">activate tab</Sentence>
+			<Sentence ID="502"></Sentence>
+			<Sentence ID="503"></Sentence>
+			<Sentence ID="504"></Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506"></Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="601">activateTab</Sentence>
+			<Sentence ID="602"></Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604"></Sentence>
+			<Sentence ID="701">newTab</Sentence>
+			<Sentence ID="702"></Sentence>
+			<Sentence ID="703"></Sentence>
+			<Sentence ID="704"></Sentence>
+			<Sentence ID="801">new tab</Sentence>
+			<Sentence ID="802"></Sentence>
+			<Sentence ID="803"></Sentence>
+			<Sentence ID="804"></Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
+			<Sentence ID="903">Current X-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
+			<Sentence ID="905">Current X-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
+			<Sentence ID="907">Current X-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
+			<Sentence ID="912">Current X-value</Sentence>
+			<Sentence ID="913">Current X-value</Sentence>
+			<Sentence ID="914">Current X-value</Sentence>
+			<Sentence ID="915">Current X-value</Sentence>
+			<Sentence ID="916">Current X-value</Sentence>
+			<Sentence ID="917">Current X-value</Sentence>
+			<Sentence ID="918">Current X-value</Sentence>
+			<Sentence ID="919">Current X-value</Sentence>
+			<Sentence ID="921">Current X-value</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Вкладка</Sentence>
+			<Sentence ID="002">Используется как контейнер для вкладок</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101"></Sentence>
+			<Sentence ID="102">Иерархия</Sentence>
+			<Sentence ID="103"></Sentence>
+			<Sentence ID="104">Сверху</Sentence>
+			<Sentence ID="105">Слева</Sentence>
+			<Sentence ID="106"></Sentence>
+			<Sentence ID="107"></Sentence>
+			<Sentence ID="108"></Sentence>
+			<Sentence ID="109">Стиль</Sentence>
+			<Sentence ID="111">Оформление</Sentence>
+			<Sentence ID="112">Текущая вкладка</Sentence>
+			<Sentence ID="113">Показывать вкладки</Sentence>
+			<Sentence ID="114"></Sentence>
+			<Sentence ID="115"></Sentence>
+			<Sentence ID="116"></Sentence>
+			<Sentence ID="117"></Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="119"></Sentence>
+			<Sentence ID="121">Позиция</Sentence>
+			<Sentence ID="122">Отображение</Sentence>
+			<Sentence ID="123"></Sentence>
+			<Sentence ID="201"></Sentence>
+			<Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="203"></Sentence>
+			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="206"></Sentence>
+			<Sentence ID="207"></Sentence>
+			<Sentence ID="208"></Sentence>
+			<Sentence ID="209">CSS стиль объекта</Sentence>
+			<Sentence ID="211">Визуальное оформление объекта</Sentence>
+			<Sentence ID="212">Порядковый номер текущей вкладки</Sentence>
+			<Sentence ID="213">Определяет, будут ли отображаться вкладки</Sentence>
+			<Sentence ID="214"></Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="219"></Sentence>
+			<Sentence ID="221">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="222">Режим отображения объекта</Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="303"></Sentence>
+			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="306"></Sentence>
+			<Sentence ID="307"></Sentence>
+			<Sentence ID="308"></Sentence>
+			<Sentence ID="309"></Sentence>
+			<Sentence ID="311"></Sentence>
+			<Sentence ID="312">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="322">Неправильное значение, должен быть указан 0 или 1</Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403"></Sentence>
+			<Sentence ID="404"></Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406"></Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408"></Sentence>
+			<Sentence ID="409"></Sentence>
+			<Sentence ID="411">Определено пользователем</Sentence>
+			<Sentence ID="412">Пользовательский</Sentence>
+			<Sentence ID="413">Нет</Sentence>
+			<Sentence ID="414">Да</Sentence>
+			<Sentence ID="415">Не отображать</Sentence>
+			<Sentence ID="416">Отображать</Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="501">Активировать вкладку</Sentence>
+			<Sentence ID="502"></Sentence>
+			<Sentence ID="503"></Sentence>
+			<Sentence ID="504"></Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506"></Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="601">Активировать вкладку</Sentence>
+			<Sentence ID="602"></Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604"></Sentence>
+			<Sentence ID="701">Открыть вкладку</Sentence>
+			<Sentence ID="702"></Sentence>
+			<Sentence ID="703"></Sentence>
+			<Sentence ID="704"></Sentence>
+			<Sentence ID="801">Имя открытой вкладки</Sentence>
+			<Sentence ID="802"></Sentence>
+			<Sentence ID="803"></Sentence>
+			<Sentence ID="804"></Sentence>
+			<Sentence ID="901">Текущее значение X</Sentence>
+			<Sentence ID="902">Текущее значение X</Sentence>
+			<Sentence ID="903">Текущее значение X</Sentence>
+			<Sentence ID="904">Текущее значение X</Sentence>
+			<Sentence ID="905">Текущее значение X</Sentence>
+			<Sentence ID="906">Текущее значение X</Sentence>
+			<Sentence ID="907">Текущее значение X</Sentence>
+			<Sentence ID="908">Текущее значение X</Sentence>
+			<Sentence ID="909">Текущее значение X</Sentence>
+			<Sentence ID="911">Текущее значение X</Sentence>
+			<Sentence ID="912">Текущее значение X</Sentence>
+			<Sentence ID="913">Текущее значение X</Sentence>
+			<Sentence ID="914">Текущее значение X</Sentence>
+			<Sentence ID="915">Текущее значение X</Sentence>
+			<Sentence ID="916">Текущее значение X</Sentence>
+			<Sentence ID="917">Текущее значение X</Sentence>
+			<Sentence ID="918">Текущее значение X</Sentence>
+			<Sentence ID="919">Текущее значение X</Sentence>
+			<Sentence ID="921">Текущее значение X</Sentence>
+		</Language>
+	</Languages>
+	<Resources>
+		<Resource ID="a0f87e94-dc47-ec67-b956-16ecb281b5e0" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
 			jwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVh
 			ZHlxyWU8AAADIGlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78i
 			IGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9i
@@ -709,8 +707,10 @@
 			pmploN1uD+lWC53mFrqNJtJ22/u8DE68xsixKljvqFWqVZyViM2/ZRYybCYPApJDXFc2e9P1AcRe
 			+O0Kf3CIJZS8KIKSapHzm+eyEQtxOWlKxpRyTufeni1nIlAaCo4y8Q5NFg2Yg7TkwU/6+PNNeWC9
 			p47OO0nsnVUCSGVMRGAkkSBQiriEABSjkFRq2Tt9O8/tj6GKYugWF7/yQzM7B3cSig5ERFIdrZfG
-			ZXJJsZNXIOI8vJv6/2kUNR1yVpyPF4Voh2cFHeFfh2EHEG9zVxUAAAAASUVORK5CYII=]]></Resource>
-    <Resource ID="a48a6898-5596-4b88-5864-f82e57f64545" Name="put_here_ico_label" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAAIMAAAARCAYAAAD+Mx8uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			ZXJJsZNXIOI8vJv6/2kUNR1yVpyPF4Voh2cFHeFfh2EHEG9zVxUAAAAASUVORK5CYII=
+		</Resource>
+		<Resource ID="a48a6898-5596-4b88-5864-f82e57f64545" Type="png" Name="put_here_ico_label">
+			iVBORw0KGgoAAAANSUhEUgAAAIMAAAARCAYAAAD+Mx8uAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -744,8 +744,10 @@
 			8ZSxjDFXfJd4bqf42oa/Q+Pa+hcMv+lFL+Yw4GeOFLGf8byGlzdvobNmxomWwqyOq2WH0lVA16uu
 			cdWLjJfB9tVQTI7RlrW3MWcJwe1a6g/OyRG9nAW6LrKNXYs/AY3tpqTf0QQf2He+LnqWeU34VrZ9
 			DCzt7OzomuHtFGjUYGisrKwU32+vmczh28LLIhSFlOT/GQop5I8AAwDZI0qB3sUACgAAAABJRU5E
-			rkJggg==]]></Resource>
-    <Resource ID="e2d5a340-6940-29d9-86b2-16ecd8fa182b" Name="Icon" Type="jpg"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			rkJggg==
+		</Resource>
+		<Resource ID="e2d5a340-6940-29d9-86b2-16ecd8fa182b" Type="jpg" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -768,8 +770,10 @@
 			aa8I3ZAeMNUkJpIk7HP+RrP5O5B7Bhsd47VyWj5CgZQaBEEWSRvoNDD6X4Ll3uBCru8HeHp8yOlN
 			mdbHrVZCtCIQJsr5A99Ho3mUhuWGL+pi8+KXIa+rHIFi2YRfJgfWWIqIBIHnuYpAXaQcE+W3er2x
 			RRrbYbiOIwhCVG0730CxV8eco06N4Ljf0aX5b1CkwHXXx/NXaKr+R4ABAIvW9WE0oftmAAAAAElF
-			TkSuQmCC]]></Resource>
-    <Resource ID="e7fce8f1-9aec-5fb8-e047-16ec86203de8" Name="Icon" Type="png"><![CDATA[iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			TkSuQmCC
+		</Resource>
+		<Resource ID="e7fce8f1-9aec-5fb8-e047-16ec86203de8" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
 			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
 			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
@@ -873,85 +877,86 @@
 			hmdVSwGErWrPrqfWqAUXOaNMUPaVXI0iCmHsvaQwdYltpUnVUYpIsjGtbewKtaYtnPw4u3PkDaMU
 			23JyTKeCSqUfbPZnDkw8evP1en11yZs3Awhe0bU3I6P55BJwjuGnQZO2A239YSD3jNqXl7YCtqZa
 			pIg2sbaMRvY+xxPa3IkUKXMBppiCqkYhMK32ZMZVsMUpJvosKROEL+RJMDhiHxOos+1AcHb1eBjl
-			SpGJCYFHANBQPO3xb/yPAAMA/2Lna620zO0AAAAASUVORK5CYII=]]></Resource>
-  </Resources>
-  <SourceCode><![CDATA[from scripting import e2vdom
-import re
-import pdb
+			SpGJCYFHANBQPO3xb/yPAAMA/2Lna620zO0AAAAASUVORK5CYII=
+		</Resource>
+	</Resources>
+	<SourceCode>
+<![CDATA[from scripting import e2vdom
+
+
 class VDOM_tabview(VDOM_object):
-	
-	def check_unit(self, value):
-		if value.isdigit():
-			return value + "px"
-		else:
-			return value
+    def check_unit(self, value):
+        if value.isdigit():
+            return value + "px"
+        else:
+            return value
 
-	def render(self, contents=""):
-		from collections import OrderedDict
-		display = u"display: none; " if self.visible == "0" else u"display: {};".format(self.displaying) if self.displaying else u""
-		zindex = u"z-index: {}; ".format(self.zindex)  if self.zindex != "0" and self.zindex else u""
+    def render(self, contents=""):
+        from collections import OrderedDict
 
-		e2vdom.process(self)
-					
-		width_in = u"width: {width};".format(width = self.check_unit(self.width)) if self.width else ""
-		height_in = u"height: {height};".format(height = self.check_unit(self.height)) if self.height else ""
-		
-		margin_in = u"margin: {margins};".format(margins = self.margins) if self.margins else ""
-		padding_in = u"padding: {paddings};".format(paddings = self.paddings) if self.paddings else ""
+        display = "display: none; " if self.visible == "0" else "display: {};".format(self.displaying) if self.displaying else ""
+        zindex = "z-index: {}; ".format(self.zindex) if self.zindex != "0" and self.zindex else ""
 
-		if self.positioning == "static":
-			position = self.positioning = ""
-			self.left = self.top = ""
-		else:
-			position = u"position: {pos};".format(pos = self.positioning)
-			
-		top_inline = u"top: {top};".format(top = self.check_unit(self.top)) if self.top else ""
-		left_inline = u"left: {left};".format(left = self.check_unit(self.left)) if self.left else ""
+        e2vdom.process(self)
 
-		style = u"""{display} {zind} {pos} {top} {left} {width} {height} {margin} {padding}"""\
-				.format(
-					display=display, zind=zindex, pos=position, top=top_inline, left=left_inline,
-					width=width_in, height=height_in, margin=margin_in, padding=padding_in)
-			
-		id = u"o_" + (self.id).replace('-', '_')
-		cont_tag = u"""<div class="tabContent">%s</div>""" % contents
-		tab_tag = u""
-		tag_array = {}
-		js = u""
-		children_array = []
-		children = self.objects
-		for key in children:
-			child = children[key]
-			children_array.append([str(child.id), str(child.name), str(child.hierarchy), "o_" + str(child.id).replace('-', '_')])
-			tab_class = "tab-item"
-			tab_class += " tab-item{num}".format(num=str(int(child.hierarchy) + 1))
-			if int(child.hierarchy) == 0:
-				tab_class += " tab-item-first"
-			if int(child.hierarchy) == len(children)-1:
-				tab_class += " tab-item-last"
-			if self.currenttab == child.hierarchy:
-				tab_class += " active"
+        width_in = "width: {width};".format(width=self.check_unit(self.width)) if self.width else ""
+        height_in = "height: {height};".format(height=self.check_unit(self.height)) if self.height else ""
 
-			tag_array[child.hierarchy] = u"""<li class="{tab_class}"><a href='#{id}' class="{active}">{tabname}</a></li>\n""".format(
-				tab_class=tab_class, id="o_" + (child.id).replace('-', '_'), tabname=child.title, active='active' if self.currenttab == child.hierarchy else '')
+        margin_in = "margin: {margins};".format(margins=self.margins) if self.margins else ""
+        padding_in = "padding: {paddings};".format(paddings=self.paddings) if self.paddings else ""
 
-			if self.currenttab == child.hierarchy:
-				show_guid = u"o_" + (child.id).replace('-', '_')
-				js = u"""<script type="text/javascript">
+        if self.positioning == "static":
+            position = self.positioning = ""
+            self.left = self.top = ""
+        else:
+            position = "position: {pos};".format(pos=self.positioning)
+
+        top_inline = "top: {top};".format(top=self.check_unit(self.top)) if self.top else ""
+        left_inline = "left: {left};".format(left=self.check_unit(self.left)) if self.left else ""
+
+        style = """{display} {zind} {pos} {top} {left} {width} {height} {margin} {padding}""".format(
+            display=display, zind=zindex, pos=position, top=top_inline, left=left_inline, width=width_in, height=height_in, margin=margin_in, padding=padding_in
+        )
+
+        id = "o_" + (self.id).replace("-", "_")
+        cont_tag = """<div class="tabContent">%s</div>""" % contents
+        tab_tag = ""
+        tag_array = {}
+        js = ""
+        children_array = []
+        children = self.objects
+        for key in children:
+            child = children[key]
+            children_array.append([str(child.id), str(child.name), str(child.hierarchy), "o_" + str(child.id).replace("-", "_")])
+            tab_class = "tab-item"
+            tab_class += " tab-item{num}".format(num=str(int(child.hierarchy) + 1))
+            if int(child.hierarchy) == 0:
+                tab_class += " tab-item-first"
+            if int(child.hierarchy) == len(children) - 1:
+                tab_class += " tab-item-last"
+            if self.currenttab == child.hierarchy:
+                tab_class += " active"
+
+            tag_array[child.hierarchy] = """<li class="{tab_class}"><a href='#{id}' class="{active}">{tabname}</a></li>\n""".format(
+                tab_class=tab_class, id="o_" + (child.id).replace("-", "_"), tabname=child.title, active="active" if self.currenttab == child.hierarchy else ""
+            )
+
+            if self.currenttab == child.hierarchy:
+                show_guid = "o_" + (child.id).replace("-", "_")
+                js = """<script type="text/javascript">
     $('#%(id)s div.tabContent').children('div').hide();
     $('#%(id)s #%(show_guid)s').show();
     $('#%(id)s ul.tabNavigation a[href="#%(show_guid)s"]');
     </script>""" % {"id": id, "show_guid": show_guid}
 
-		sortTagArray = OrderedDict(sorted(tag_array.items(), key=lambda t: t[0]))
-		for key in sortTagArray:
-			tab_tag += tag_array[key]
+        sortTagArray = OrderedDict(sorted(tag_array.items(), key=lambda t: t[0]))
+        for key in sortTagArray:
+            tab_tag += tag_array[key]
 
-		if self.showtabs == '1':
-			tabclass = "with_tabs"
-			tabs = u'<ul id="ul_%(id)s" class="tabNavigation" style="list-style: none"> %(tab)s </ul>' % {"id": id,
-                                                                                                           "tab": tab_tag}
-			js += u"""<script type="text/javascript">
+        if self.showtabs == "1":
+            tabclass = "with_tabs"
+            tabs = '<ul id="ul_%(id)s" class="tabNavigation" style="list-style: none"> %(tab)s </ul>' % {"id": id, "tab": tab_tag}
+            js += """<script type="text/javascript">
 var tabview_children_%(id)s = %(arr)s;
 $(document).ready(function($){
     $("#ul_%(id)s a").click(function(){
@@ -971,325 +976,336 @@ $(document).ready(function($){
     });
 });
 </script>""" % {"id": id, "arr": str(children_array)}
-		else:
-			tabclass = ""
-			tabs = u''
-			js += u"""<script type="text/javascript">
+        else:
+            tabclass = ""
+            tabs = ""
+            js += """<script type="text/javascript">
 var tabview_children_%(id)s = %(arr)s;
 </script>""" % {"id": id, "arr": str(children_array)}
 
-		if VDOM_CONFIG_1["DEBUG"] == "1":
-			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
-		else:
-			debug_info = u""
-		
-		outcss = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
+        if VDOM_CONFIG_1["DEBUG"] == "1":
+            debug_info = "objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
+        else:
+            debug_info = ""
 
-		result = u"""\
+        outcss = "<style>\n" + self.style % {"id": id} + "</style>" if self.style else ""
+
+        result = """\
 {css}
 <div {debug_info} id="{id}" class="{classname}" style="{style}">
     {tabs}
     {cont_tag}
 </div>
 {js}
-			""".format(
-			debug_info=debug_info, 
-			classname=' '.join(list(filter(None, [self.classname, 'vdom_tabview', tabclass]))),
-			css=outcss, id=id, style=style,
-			tabs=tabs, cont_tag=cont_tag, js=js)
+            """.format(
+            debug_info=debug_info,
+            classname=" ".join(list(filter(None, [self.classname, "vdom_tabview", tabclass]))),
+            css=outcss,
+            id=id,
+            style=style,
+            tabs=tabs,
+            cont_tag=cont_tag,
+            js=js,
+        )
 
-		return VDOM_object.render(self, contents=result)
+        return VDOM_object.render(self, contents=result)
 
-	def wysiwyg(self, contents=""):
+    def wysiwyg(self, contents=""):
+        top, left = [int(self.ide_top), int(self.ide_left)]
+        object_width = 200
+        object_height = 200
+        if self.ide_width and self.ide_width > 0:
+            object_width = int(self.ide_width)
+        if self.ide_height and self.ide_height > 0:
+            object_height = int(self.ide_height)
 
-		top, left = [int(self.ide_top), int(self.ide_left)]
-		object_width = 200
-		object_height = 200
-		if self.ide_width and self.ide_width > 0:
-			object_width = int(self.ide_width)
-		if self.ide_height and self.ide_height > 0:
-			object_height = int(self.ide_height)
+        image_id = "a48a6898-5596-4b88-5864-f82e57f64545"
+        result = """<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
+                    top="{top}" left="{left}" width="{width}" height="{height}">
+                    <svg>
+                        <rect x="{panel_width}" y="0" width="140" height="20" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE">
+                            <image x="5" y="0" width="131" height="17" href="#Res({img_id})" />
+                        </rect>
+                    </svg>
+                    <svg>
+                        <rect x="0" y="20" width="{container_width}" height="{container_height}" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE"/>
+                    </svg>{contents}
+                </container>
+            """.format(
+            id=self.id,
+            vis=self.visible,
+            zind=self.zindex,
+            name=self.name,
+            hierarchy=self.hierarchy,
+            top=top,
+            left=left,
+            width=object_width + 2,
+            height=object_height + 2,
+            panel_width=object_width - 140,
+            container_height=object_height - 20,
+            container_width=object_width,
+            img_id=image_id,
+            contents=contents,
+        )
 
-		image_id = u"a48a6898-5596-4b88-5864-f82e57f64545"
-		result = \
-			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" 
-					top="{top}" left="{left}" width="{width}" height="{height}">
-					<svg>
-						<rect x="{panel_width}" y="0" width="140" height="20" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE">
-							<image x="5" y="0" width="131" height="17" href="#Res({img_id})" />
-						</rect>
-					</svg>
-					<svg>
-						<rect x="0" y="20" width="{container_width}" height="{container_height}" style="stroke:#DDDDDD;stroke-width:1;" fill="#EEEEEE"/>
-					</svg>{contents}
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, zind = self.zindex, name = self.name,
-					hierarchy = self.hierarchy, top = top, left = left,
-					width = object_width + 2,
-					height = object_height + 2, 
-					panel_width = object_width - 140,
-					container_height = object_height - 20,
-					container_width = object_width, 
-					img_id = image_id,
-					contents = contents)
+        return VDOM_object.wysiwyg(self, contents=result)
 
-		return VDOM_object.wysiwyg(self, contents=result)
-		
+
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
-	# obj = application.objects.search(object_id)
-	# if "width" in param:
-	# 	if param["width"]["value"] and param["width"]["value"] > 0:	
-	# 		width = int(param["width"]["value"])
-	# 	else:
-	# 		width = 200	
-	# 	if obj.attributes.width != width:
-	# 		obj.set_attribute_ex("width", width)objects
-	# if "height" in param:
-	# 	if param["height"]["value"] and param["height"]["value"] > 0:	
-	# 		height = int(param["height"]["value"])
-	# 	else:
-	# 		height = 200			
-	# 	if obj.attributes.height != height:
-	# 		obj.set_attribute_ex("height", height)
-	o = object
-	modifications = {}
-	
-	for attr in ["left", "width", "height", "top"]:
-		if attr in attributes:
-			attr_value = attributes[attr]
-			obj_value = o.attributes.get(attr, '').lower()
-			
-			if obj_value.isdigit() and attr_value.isdigit():
-				modifications[attr] = attr_value + "px"
-				modifications["ide_" + attr] = attr_value
-			elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-				modifications[attr] = attr_value.rstrip("px") + "px"
-				modifications["ide_" + attr] = attr_value.rstrip("px")
-			elif attr_value.isdigit() or "px" in attr_value:
-				modifications[attr] = attr_value if "px" in attr_value else obj_value
-				modifications["ide_" + attr] = attr_value.rstrip("px")
-			else:
-				modifications[attr] = attr_value
-			
-	attributes.update(modifications)
+    # obj = application.objects.search(object_id)
+    # if "width" in param:
+    # 	if param["width"]["value"] and param["width"]["value"] > 0:
+    # 		width = int(param["width"]["value"])
+    # 	else:
+    # 		width = 200
+    # 	if obj.attributes.width != width:
+    # 		obj.set_attribute_ex("width", width)objects
+    # if "height" in param:
+    # 	if param["height"]["value"] and param["height"]["value"] > 0:
+    # 		height = int(param["height"]["value"])
+    # 	else:
+    # 		height = 200
+    # 	if obj.attributes.height != height:
+    # 		obj.set_attribute_ex("height", height)
+    o = object
+    modifications = {}
 
-	width = attributes.get("ide_width")
-	if width is not None:
-		width = int(width)
-		if width > 0:
-			width = str(width - 2)
-		else:
-			attributes["ide_width"] = width = "200"
+    for attr in ["left", "width", "height", "top"]:
+        if attr in attributes:
+            attr_value = attributes[attr]
+            obj_value = o.attributes.get(attr, "").lower()
 
-	height = attributes.get("ide_height")
-	if height is not None:
-		height = int(height)
-		if height > 0:
-			height = str(height - 20)
-		else:
-			attributes["ide_height"] = height = "200"
+            if obj_value.isdigit() and attr_value.isdigit():
+                modifications[attr] = attr_value + "px"
+                modifications["ide_" + attr] = attr_value
+            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
+                modifications[attr] = attr_value.rstrip("px") + "px"
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            elif attr_value.isdigit() or "px" in attr_value:
+                modifications[attr] = attr_value if "px" in attr_value else obj_value
+                modifications["ide_" + attr] = attr_value.rstrip("px")
+            else:
+                modifications[attr] = attr_value
 
-	# childs = obj.objects
-	# for key in childs:
-	for child in o.objects.itervalues():
-		# child = childs[key]
-		# if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
-		# 	child.set_attribute_ex("zindex", "1")
-		# elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
-		# 	child.set_attribute_ex("zindex", "0")
-		if o.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
-			child.attributes.update(zindex="1")
-		elif o.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
-			child.attributes.update(zindex="0")
+    attributes.update(modifications)
 
-		# if "width" in param:
-		# 	if param["width"]["value"] and param["width"]["value"] > 0:	
-		# 		width = int(param["width"]["value"]) - 2
-		# 	else:
-		# 		width = 200	
-		# 	child.set_attribute_ex("width", width)
-		# if "height" in param:
-		# 	if param["height"]["value"] and param["height"]["value"] > 0:	
-		# 		height = int(param["height"]["value"]) - 20
-		# 	else:
-		# 		height = 200			
-		# 	child.set_attribute_ex("height", height)
-		if width is not None:
-			child.attributes.update(ide_width=width)
-		if height is not None:
-			child.attributes.update(ide_height=height)
+    width = attributes.get("ide_width")
+    if width is not None:
+        width = int(width)
+        if width > 0:
+            width = str(width - 2)
+        else:
+            attributes["ide_width"] = width = "200"
 
-	users = u"""\
+    height = attributes.get("ide_height")
+    if height is not None:
+        height = int(height)
+        if height > 0:
+            height = str(height - 20)
+        else:
+            attributes["ide_height"] = height = "200"
+
+    # childs = obj.objects
+    # for key in childs:
+    for child in o.objects.values():
+        # child = childs[key]
+        # if obj.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
+        # 	child.set_attribute_ex("zindex", "1")
+        # elif obj.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
+        # 	child.set_attribute_ex("zindex", "0")
+        if o.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
+            child.attributes.update(zindex="1")
+        elif o.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
+            child.attributes.update(zindex="0")
+
+        # if "width" in param:
+        # 	if param["width"]["value"] and param["width"]["value"] > 0:
+        # 		width = int(param["width"]["value"]) - 2
+        # 	else:
+        # 		width = 200
+        # 	child.set_attribute_ex("width", width)
+        # if "height" in param:
+        # 	if param["height"]["value"] and param["height"]["value"] > 0:
+        # 		height = int(param["height"]["value"]) - 20
+        # 	else:
+        # 		height = 200
+        # 	child.set_attribute_ex("height", height)
+        if width is not None:
+            child.attributes.update(ide_width=width)
+        if height is not None:
+            child.attributes.update(ide_height=height)
+
+    users = """\
 #%(id)s {
 
 }
 """
 
-	empty = ""
-	
-	#o = application.objects.search(object_id)
-	
-	# if "skin" in param:
-	# 	if param["skin"]["value"] == "1":
-	# 		obj.set_attributes({"style": css})
-	# if "style" in param and param["style"]["value"] and obj.attributes.style != css:		
-	# 	obj.set_attributes({"skin": 0})
-	# if attributes.get("skin") == "1":
-	# 	attributes["style"] = css
+    empty = ""
 
-	# style = attributes.get("style")
-	# if style is not None and object.attributes["style"] != css:
-	# 	attributes["skin"] = "0"
+    # o = application.objects.search(object_id)
 
-	# return ""
-	
-	skin_mapping = {
-		"0": users,
-		"1": empty
-	}
-	
-	if "skin" in attributes:
-		skin = attributes["skin"]
-		if skin in skin_mapping:
-			attributes.update(style=skin_mapping[skin])
-		else:
-			attributes.update(skin="0")
-			
-	if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-		attributes.update(skin="0")
+    # if "skin" in param:
+    # 	if param["skin"]["value"] == "1":
+    # 		obj.set_attributes({"style": css})
+    # if "style" in param and param["style"]["value"] and obj.attributes.style != css:
+    # 	obj.set_attributes({"skin": 0})
+    # if attributes.get("skin") == "1":
+    # 	attributes["style"] = css
 
-	return ""
+    # style = attributes.get("style")
+    # if style is not None and object.attributes["style"] != css:
+    # 	attributes["skin"] = "0"
+
+    # return ""
+
+    skin_mapping = {"0": users, "1": empty}
+
+    if "skin" in attributes:
+        skin = attributes["skin"]
+        if skin in skin_mapping:
+            attributes.update(style=skin_mapping[skin])
+        else:
+            attributes.update(skin="0")
+
+    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
+        attributes.update(skin="0")
+
+    return ""
 
 
 # def add_child(app_id, object_id, param):
 def on_insert(parent, object):
-	# object = application.objects.search(param["child_id"])				
+    # object = application.objects.search(param["child_id"])
 
-	# width_container = int(object.parent.attributes.width) - 2
-	# height_container = int(object.parent.attributes.height) - 20
-	width_container = int(parent.attributes["ide_width"]) - 2
-	height_container = int(parent.attributes["ide_height"]) - 20
-	#pdb.set_trace()
+    # width_container = int(object.parent.attributes.width) - 2
+    # height_container = int(object.parent.attributes.height) - 20
+    width_container = int(parent.attributes["ide_width"]) - 2
+    height_container = int(parent.attributes["ide_height"]) - 20
+    # pdb.set_trace()
 
-	# object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})
-	object.attributes.update(ide_width=width_container, ide_height=height_container, top=20, left=1, lockposition="1")
+    # object.set_attributes({"width": width_container, "height": height_container, "lockposition": "1"})
+    object.attributes.update(ide_width=width_container, ide_height=height_container, top=20, left=1, lockposition="1")
 
-	# childs = object.parent.objects
-	container_hierarchy = []
-	# for key in childs:
-	for child in parent.objects.itervalues():
-		# child = application.objects.search(key)
-		# container_hierarchy.append(child.attributes.hierarchy)
-		container_hierarchy.append(child.attributes["hierarchy"])
+    # childs = object.parent.objects
+    container_hierarchy = []
+    # for key in childs:
+    for child in parent.objects.values():
+        # child = application.objects.search(key)
+        # container_hierarchy.append(child.attributes.hierarchy)
+        container_hierarchy.append(child.attributes["hierarchy"])
 
-		# if object.parent.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
-		# 	child.set_attributes({"zindex": "1"})
-		# elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
-		# 	child.set_attributes({"zindex": "0"})
-		if parent.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
-			child.attributes.update(zindex="1")
-		elif parent.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
-			child.attributes.update(zindex="0")
+        # if object.parent.attributes.currenttab == child.attributes.hierarchy and str(child.attributes.zindex) != "1":
+        # 	child.set_attributes({"zindex": "1"})
+        # elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(child.attributes.zindex) != "0":
+        # 	child.set_attributes({"zindex": "0"})
+        if parent.attributes["currenttab"] == child.attributes["hierarchy"] and child.attributes["zindex"] != "1":
+            child.attributes.update(zindex="1")
+        elif parent.attributes["currenttab"] != child.attributes["hierarchy"] and child.attributes["zindex"] != "0":
+            child.attributes.update(zindex="0")
 
-	# if len(container_hierarchy) > 1 and int(object.attributes.hierarchy) == 0:
-	# 	object.set_attributes({"hierarchy": int(max(container_hierarchy)) + 1})
-	# 	if object.parent.attributes.currenttab == child.attributes.hierarchy and str(object.attributes.zindex) != "1":
-	# 		object.set_attributes({"zindex": "1"})
-	# 	elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(object.attributes.zindex) != "0":
-	# 		object.set_attributes({"zindex": "0"})
-	if len(container_hierarchy) > 1 and int(object.attributes["hierarchy"]) == 0:
-		object.attributes.update(hierarchy=str(int(max(container_hierarchy)) + 1))
-		if parent.attributes["currenttab"] == child.attributes["hierarchy"] and object.attributes["zindex"] != "1":
-			object.attributes.update(zindex="1")
-		elif parent.attributes["currenttab"] != child.attributes["hierarchy"] and object.attributes["zindex"] != "0":
-			object.attributes.update(zindex="0")
+    # if len(container_hierarchy) > 1 and int(object.attributes.hierarchy) == 0:
+    # 	object.set_attributes({"hierarchy": int(max(container_hierarchy)) + 1})
+    # 	if object.parent.attributes.currenttab == child.attributes.hierarchy and str(object.attributes.zindex) != "1":
+    # 		object.set_attributes({"zindex": "1"})
+    # 	elif object.parent.attributes.currenttab != child.attributes.hierarchy and str(object.attributes.zindex) != "0":
+    # 		object.set_attributes({"zindex": "0"})
+    if len(container_hierarchy) > 1 and int(object.attributes["hierarchy"]) == 0:
+        object.attributes.update(hierarchy=str(int(max(container_hierarchy)) + 1))
+        if parent.attributes["currenttab"] == child.attributes["hierarchy"] and object.attributes["zindex"] != "1":
+            object.attributes.update(zindex="1")
+        elif parent.attributes["currenttab"] != child.attributes["hierarchy"] and object.attributes["zindex"] != "0":
+            object.attributes.update(zindex="0")
 
-	# return ""
-			
+    # return ""
+
+
 def on_compile(object, attributes):
-	for attr in ["left", "width", "height", "top"]:
-		obj_value = object.attributes[attr]
-		
-		if obj_value.isdigit() or "px" in obj_value:
-			object.attributes[attr] = obj_value.rstrip("px") + "px"
-			object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]></SourceCode>
-  <Libraries>
-    <Library Target="html"><![CDATA[<style type="text/css">
+    for attr in ["left", "width", "height", "top"]:
+        obj_value = object.attributes[attr]
+
+        if obj_value.isdigit() or "px" in obj_value:
+            object.attributes[attr] = obj_value.rstrip("px") + "px"
+            object.attributes["ide_" + attr] = obj_value.rstrip("px")
+]]>
+	</SourceCode>
+	<Libraries>
+		<Library Target="html"><![CDATA[<style type="text/css">
         .vdom_tabview {
             
         }
 
 </style>]]></Library>
-  </Libraries>
-  <E2vdom>
-    <Events>
-      <Userinterfaceevents>
-        <Event Name="click" Help="#Lang(503)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
-          </Parameters>
-        </Event>
-        <Event Name="ctrlclick" Help="#Lang(504)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
-          </Parameters>
-        </Event>
-        <Event Name="dblclick" Help="#Lang(505)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousedown" Help="#Lang(506)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mousemove" Help="#Lang(507)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseout" Help="#Lang(508)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseover" Help="#Lang(509)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(914)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(915)"/>
-          </Parameters>
-        </Event>
-        <Event Name="mouseup" Help="#Lang(511)">
-          <Parameters>
-            <Parameter Name="X" Order="0" VbType="" Help="#Lang(916)"/>
-            <Parameter Name="Y" Order="0" VbType="" Help="#Lang(917)"/>
-          </Parameters>
-        </Event>
-        <Event Name="tabchanged" Help="#Lang(512)">
-          <Parameters>
-            <Parameter Name="ID" Order="0" VbType="" Help="#Lang(918)"/>
-            <Parameter Name="Name" Order="0" VbType="" Help="#Lang(919)"/>
-            <Parameter Name="Hierarchy" Order="0" VbType="" Help="#Lang(921)"/>
-          </Parameters>
-        </Event>
-      </Userinterfaceevents>
-    </Events>
-    <Actions>
-      <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="activateTab">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="openTab" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[var id = this.domCont.id;		  
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="click" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(901)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(902)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="ctrlclick" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(904)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="dblclick" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(905)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(906)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="mousedown" Description="#Lang(506)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(907)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(908)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="mousemove" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(909)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(911)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="mouseout" Description="#Lang(508)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(912)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(913)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="mouseover" Description="#Lang(509)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(914)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(915)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="mouseup" Description="#Lang(511)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(916)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(917)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="tabchanged" Description="#Lang(512)">
+					<Parameters>
+						<Parameter Name="ID" Description="#Lang(918)" Order="0"/>
+						<Parameter Name="Name" Description="#Lang(919)" Order="0"/>
+						<Parameter Name="Hierarchy" Description="#Lang(921)" Order="0"/>
+					</Parameters>
+				</Event>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="activateTab" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="openTab" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var id = this.domCont.id;		  
 eval('var x=tabview_children_'+id+';');
 if (typeof x !== 'undefined') {
 	$q('#'+id+' div.content_'+id+'>div').hide();
@@ -1305,27 +1321,34 @@ if (typeof x !== 'undefined') {
 			}
    
 	});
-}]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(513)" InterfaceName="#Lang(603)" MethodName="addClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(803)" ScriptName="className" Help="#Lang(703)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(514)" InterfaceName="#Lang(604)" MethodName="removeClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(804)" ScriptName="className" Help="#Lang(704)" RegularExpressionValidation=""/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="toggleClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(702)" ScriptName="className" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
-        </Action>
-      </Container>
-    </Actions>
-  </E2vdom>
+}]]>
+					</SourceCode>
+				</Action>
+				<Action Name="addClass" DisplayName="#Lang(603)" Description="#Lang(513)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(803)" Description="#Lang(703)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).addClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(604)" Description="#Lang(514)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(804)" Description="#Lang(704)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toggleClass" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).toggleClass(className);]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
 </Type>

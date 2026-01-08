@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_desktopshared</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>1.4.6720</Version>
+		<Version>2.4.6720</Version>
 		<Category>#Lang(003)</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(d04b4787-5169-4ad1-8295-b37b3ea35439)</Icon>
@@ -556,15 +556,19 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[
-class VDOM_desktopshared(VDOM_object):
+<![CDATA[class VDOM_desktopshared(VDOM_object):
+    def render(self, contents=""):
+        return ""
 
-	def render(self, contents=""):
-		return ""
-
-	def wysiwyg(self, contents=""):
-		result="<container name=\"%s\" id=\"%s\" visible=\"%s\" zindex=\"%s\" hierarchy=\"%s\"></container>"%(self.name, self.id, self.visible, self.zindex, self.hierarchy)
-		return VDOM_object.wysiwyg(self, contents=result)
+    def wysiwyg(self, contents=""):
+        result = '<container name="%s" id="%s" visible="%s" zindex="%s" hierarchy="%s"></container>' % (
+            self.name,
+            self.id,
+            self.visible,
+            self.zindex,
+            self.hierarchy,
+        )
+        return VDOM_object.wysiwyg(self, contents=result)
 ]]>
 	</SourceCode>
 </Type>

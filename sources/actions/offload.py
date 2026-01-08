@@ -25,7 +25,7 @@ def run(identifier, location, by_name=None, types=None):
         return
 
     if (by_name is None and types is None) or types is True:
-        types = sorted(managers.memory.types.itervalues(), key=lambda item: item.name)
+        types = sorted(managers.memory.types.values(), key=lambda item: item.name)
         for type in types:
             uuids = managers.resource_manager.list_resources(type.id)
             with section("summary"):

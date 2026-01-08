@@ -162,7 +162,7 @@ class VDOM_web_services_server(object):
             if int(_index) < keyindex and _index not in keymap:
                 # means this key has already been used
                 raise VDOM_exception_sec("Incorrect key")
-        except TypeError, VDOM_exception_sec:
+        except (TypeError, VDOM_exception_sec):
             self.__term_session(sid)
             return False
         if _index not in keymap:  # don't have a key generated for this number
@@ -437,7 +437,7 @@ class VDOM_web_services_server(object):
             ro = managers.resource_manager.get_resource(owner_id, resource_id)
             data = ro.get_data()
             return "<Resource><![CDATA[%s]]></Resource>\n<ResourceID>%s</ResourceID>\n<ResourceName>%s</ResourceName>\n<ResourceType>%s</ResourceType>\n<ResourceUseCount>%s</ResourceUseCount>" % (utils.encode.encode_resource(data), resource_id, ro.name, ro.res_format, len(ro.dependences))
-        # except Exception, e:
+        # except Exception as e:
         except Exception:
             # traceback.print_exc(file=debugfile)
             # debug("Get type resource error: " + e.message)
@@ -545,7 +545,7 @@ class VDOM_web_services_server(object):
         #                         id_value = child3.attributes["id"]
         #                         if not app.search_object(id_value):  # unknown object
         #                             raise VDOM_exception_element("object id=" + id_value)
-        # except Exception, e:
+        # except Exception as e:
         #     import traceback
         #     traceback.print_exc(file=debugfile)
         #     if x:
@@ -553,7 +553,7 @@ class VDOM_web_services_server(object):
         #     raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), e.message)
         # try:
         #     app.set_structure(x)
-        # except Exception, e:
+        # except Exception as e:
         #     import traceback
         #     traceback.print_exc(file=debugfile)
         #     x.delete()
@@ -1220,7 +1220,7 @@ class VDOM_web_services_server(object):
                     # ext.append(aname)
                     ext.append((aname, val))
         # if len(ext) > 0 or len(obj.get_objects_list()) > 0:
-        if ext or obj.objects > 0:
+        if ext or len(obj.objects) > 0:
             result += ">\n"
         else:
             result += "/>\n"
@@ -1238,7 +1238,7 @@ class VDOM_web_services_server(object):
             result += self.__do_get_object_script_presentation(o, depth + 1)
 
         # if len(ext) > 0 or len(obj.get_objects_list()) > 0:
-        if ext or obj.objects > 0:
+        if ext or len(obj.objects) > 0:
             result += prep + "</" + tag_name + ">\n"
         return result
 
@@ -1989,7 +1989,7 @@ class VDOM_web_services_server(object):
         #                     _id = act.attributes["id"]
         #                     if not _id:
         #                         raise VDOM_exception_element("event.action")
-        # except Exception, e:
+        # except Exception as e:
         #     if root:
         #         root.delete()
         #     raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
@@ -2745,7 +2745,7 @@ class VDOM_web_services_server(object):
         app = managers.memory.install_application(
             value=appxml, into=notifications)
         if settings.STORE_BYTECODE:
-            for library in app.libraries.itervalues():
+            for library in app.libraries.values():
                 library.compile()
         msgs = []
         for (lineno, message) in notifications:

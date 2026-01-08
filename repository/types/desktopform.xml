@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_desktopform</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>1.5.6720</Version>
+		<Version>2.5.6720</Version>
 		<Category>#Lang(003)</Category>
 		<InterfaceType>3</InterfaceType>
 		<Icon>#Res(775472db-f324-1c4d-3af9-172d8055cb26)</Icon>
@@ -492,13 +492,13 @@
 	</Resources>
 	<SourceCode>
 <![CDATA[class VDOM_desktopform(VDOM_object):
+    def render(self, contents=""):
+        result = ""
+        return VDOM_object.render(self, contents=result)
 
-	def render(self, contents=""):
-		result=""
-		return VDOM_object.render(self, contents=result)
-
-	def wysiwyg(self, contents=""):
-		result=""
-		return VDOM_object.wysiwyg(self, contents=result)]]>
+    def wysiwyg(self, contents=""):
+        result = ""
+        return VDOM_object.wysiwyg(self, contents=result)
+]]>
 	</SourceCode>
 </Type>

@@ -973,7 +973,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
 
             # resp = xml.sax.saxutils.unescape(resp)
             print("Soap method call: %s, respsize: %s,resptime:%s" %
-                  (nsmethod.split(":")[-1], len(resp), start_time - time.time()))
+                  (nsmethod.split(":")[-1], len(resp), time.time() - start_time))
             self.wfile.write(resp)
             self.wfile.flush()
 

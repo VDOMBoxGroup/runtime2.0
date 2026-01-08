@@ -227,7 +227,7 @@ class VDOM_database_table(object):
         # if child.nodeName == "ColumnInsert":
         # self.addcolumn(child.attributes["name"].value+ " " + child.attributes["type"].value)
         # self.restore_structure()
-        # except Exception, e:
+        # except Exception as e:
         # debug("Database open failed:"+ str(e))
         return self.get_structure()
 

@@ -901,10 +901,10 @@ def application_builder(parser, installation_callback=None):
                         library.compile()
 
                 # def handle_on_create(container):
-                #     for object in container.objects.itervalues():
+                #     for object in container.objects.values():
                 #         handle_on_create(object)
                 #     managers.dispatcher.dispatch_handler(container, "on_parse") # application
-                # for container in application.objects.itervalues(): # pages
+                # for container in application.objects.values(): # pages
                 #     handle_on_create(container)
                 parser.accept(application)
             parser.handle_elements(name, attributes, application_handler, close_application_handler)
