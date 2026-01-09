@@ -73,13 +73,13 @@ class VDOM_session(dict):
 
     def __contains__(self, key):
         self.update()
-        if not isinstance(key, bytes):
+        if not isinstance(key, str):
             raise TypeError()
         return dict.__contains__(self, key)
 
     def get(self, key, default=None):
         self.update()
-        if not isinstance(key, bytes):
+        if not isinstance(key, str):
             raise TypeError()
         return dict.get(self, key, default)
 

@@ -7,7 +7,7 @@ REASONABLE_OBJECT_WIDTH = 10
 NOTHING = "NOTHING"
 
 
-def represent(value, width=None, limit=None, ellipsis="..."):
+def represent(value, width=-1, limit=None, ellipsis="..."):
     if width < 0:
         width = None
 

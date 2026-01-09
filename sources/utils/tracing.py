@@ -22,7 +22,7 @@ from utils.console import width
 LOGGING = None
 TRACING = None
 
-BINARY_ALIAS = "<sources>"
+BINARY_ALIAS = "sources"
 SERVER_ALIAS = "<server>"
 TYPES_ALIAS = "<types>"
 APPLICATIONS_ALIAS = "<applications>"
@@ -300,7 +300,7 @@ def collect_referrers(referent, limit=16, depth=32, rank=9, exclude=None):
             for key, value in chain.referrer.copy().items():
                 if value is chain.referent:
                     part = "key %s in %s" % (represent(key), describe_object(chain.referrer))
-                    if isinstance(key, bytes):
+                    if isinstance(key, str):
                         part = Chain.KeyValue(part)
                         part.key = key
                         if id(chain.referrer) in modules:

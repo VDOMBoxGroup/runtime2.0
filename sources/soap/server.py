@@ -1820,7 +1820,7 @@ class VDOM_web_services_server(object):
             self.__set_attributes(obj, attr)
         except Exception as e:
             raise SOAPpy.faultType(
-                attr_value_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+                attr_value_error, str(e), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
 
         # app.sync()
         app.save()
