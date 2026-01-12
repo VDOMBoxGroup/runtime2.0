@@ -8,17 +8,35 @@
 
 #define STRING_NEXT(data, stop) (Character)(*(data)++)
 
-#ifdef Py_UNICODE_WIDE
-#   define UNICODE_NEXT(data, stop) (data += Py_UNICODE_SIZE, (Character)(((Py_UNICODE *)(data))[-1]))
-#else
-#   define UNICODE_NEXT(data, stop) \
-        (((IS_HIGH_SURROGATE(*((Py_UNICODE *)(data))) \
-            && (data) < (stop) \
-            && IS_LOW_SURROGATE(((Py_UNICODE *)(data))[1]))) \
-        ? (((Py_UNICODE *)(data)) += 2, \
-            JOIN_SURROGATES(((Py_UNICODE *)(data))[-2], ((Py_UNICODE *)(data))[-1])) \
-        : (data += Py_UNICODE_SIZE, (Character)(((Py_UNICODE *)(data))[-1])))
-#endif
+/* UTF-8 decoder for Python 3 - decode next UTF-8 character */
+static inline Character unicode_next_utf8(Data *data_ptr, Data stop)
+{
+    unsigned char *p = (unsigned char *)*data_ptr;
+    if (p >= (unsigned char *)stop)
+        return 0;
+
+    if (*p < 0x80) {
+        (*data_ptr)++;
+        return (Character)*p;
+    } else if (*p < 0xE0) {
+        if (p + 1 >= (unsigned char *)stop) return 0;
+        Character c = ((Character)(p[0] & 0x1F) << 6) | (p[1] & 0x3F);
+        *data_ptr += 2;
+        return c;
+    } else if (*p < 0xF0) {
+        if (p + 2 >= (unsigned char *)stop) return 0;
+        Character c = ((Character)(p[0] & 0x0F) << 12) | ((Character)(p[1] & 0x3F) << 6) | (p[2] & 0x3F);
+        *data_ptr += 3;
+        return c;
+    } else {
+        if (p + 3 >= (unsigned char *)stop) return 0;
+        Character c = ((Character)(p[0] & 0x07) << 18) | ((Character)(p[1] & 0x3F) << 12) | ((Character)(p[2] & 0x3F) << 6) | (p[3] & 0x3F);
+        *data_ptr += 4;
+        return c;
+    }
+}
+
+#define UNICODE_NEXT(data, stop) unicode_next_utf8(&(data), stop)
 
 
 static int
@@ -74,16 +92,36 @@ unicode_is_equal_to_string(UnicodeData data, UnicodeData stop, char *value)
 static int
 string_is_equal_to_python_string(Data data, Data stop, PyObject *object)
 {
-    Data object_data = (char *)PyString_AS_STRING(object);
-    DataSize object_size = PyString_GET_SIZE(object);
+    const char *object_data;
+    Py_ssize_t object_size;
+    if (PyBytes_CheckExact(object)) {
+        object_data = PyBytes_AS_STRING(object);
+        object_size = PyBytes_GET_SIZE(object);
+    } else if (PyUnicode_CheckExact(object)) {
+        object_data = PyUnicode_AsUTF8AndSize(object, &object_size);
+        if (!object_data)
+            return 0;
+    } else {
+        return 0;
+    }
     return ((stop - data) == object_size) && !memcmp(data, object_data, object_size);
 };
 
 static int
 unicode_is_equal_to_python_string(Data data, Data stop, PyObject *object)
 {
-    Data object_data = (char *)PyUnicode_AS_DATA(object);
-    DataSize object_size = PyUnicode_GET_DATA_SIZE(object);
+    const char *object_data;
+    Py_ssize_t object_size;
+    if (PyBytes_CheckExact(object)) {
+        object_data = PyBytes_AS_STRING(object);
+        object_size = PyBytes_GET_SIZE(object);
+    } else if (PyUnicode_CheckExact(object)) {
+        object_data = PyUnicode_AsUTF8AndSize(object, &object_size);
+        if (!object_data)
+            return 0;
+    } else {
+        return 0;
+    }
     return ((stop - data) == object_size) && !memcmp(data, object_data, object_size);
 };
 
@@ -91,38 +129,51 @@ unicode_is_equal_to_python_string(Data data, Data stop, PyObject *object)
 static int
 string_python_string_is_equal_to_string(PyObject *object, char *value)
 {
-    Data data = (Data)PyString_AS_STRING(object);
-    DataSize size = PyString_GET_SIZE(object);
-    return string_is_equal_to_string(data, data + size, value);
+    const char *data;
+    Py_ssize_t size;
+    if (PyBytes_CheckExact(object)) {
+        data = PyBytes_AS_STRING(object);
+        size = PyBytes_GET_SIZE(object);
+    } else if (PyUnicode_CheckExact(object)) {
+        data = PyUnicode_AsUTF8AndSize(object, &size);
+        if (!data)
+            return 0;
+    } else {
+        return 0;
+    }
+    return string_is_equal_to_string((Data)data, (Data)(data + size), value);
 };
 
 static int
 unicode_python_string_is_equal_to_string(PyObject *object, char *value)
 {
-    UnicodeData data = (UnicodeData)PyUnicode_AS_DATA(object);
-    DataSize size = PyUnicode_GET_DATA_SIZE(object);
-    return unicode_is_equal_to_string(data, data + size, value);
+    const char *data;
+    Py_ssize_t size;
+    if (PyBytes_CheckExact(object)) {
+        data = PyBytes_AS_STRING(object);
+        size = PyBytes_GET_SIZE(object);
+    } else if (PyUnicode_CheckExact(object)) {
+        data = PyUnicode_AsUTF8AndSize(object, &size);
+        if (!data)
+            return 0;
+    } else {
+        return 0;
+    }
+    return unicode_is_equal_to_string((UnicodeData)data, (UnicodeData)(data + size), value);
 };
 
 
 static PyObject *
 string_create_python_string(Data data, Data stop)
 {
-    return PyString_FromStringAndSize((char *)data, stop - data);
+    return PyBytes_FromStringAndSize((char *)data, stop - data);
 }
 
 static PyObject *
 unicode_create_python_string(Data data, Data stop)
 {
-    Length length = (stop - data) / Py_UNICODE_SIZE;
-#ifdef DEBUG
-    if ((stop - data) % Py_UNICODE_SIZE)
-    {
-        PyErr_SetString(PyExc_RuntimeError, "Inconsistency in internal buffers");
-        return NULL;
-    }
-#endif
-    return PyUnicode_FromUnicode((Py_UNICODE *)data, length);
+    /* In Python 3, data is UTF-8 encoded bytes */
+    return PyUnicode_FromStringAndSize((char *)data, stop - data);
 }
 
 
@@ -133,11 +184,11 @@ string_create_python_string_from_substrings(Substrings *substrings)
     Substring *substring;
     Data data;
 
-    object = PyString_FromStringAndSize(NULL, substrings->size);
+    object = PyBytes_FromStringAndSize(NULL, substrings->size);
     if (!object)
         return NULL;
 
-    data = PyString_AS_STRING(object);
+    data = (Data)PyBytes_AS_STRING(object);
     for (substring = substrings->list; substring; substring = substring->next)
     {
         Py_MEMCPY(data, substring->data, substring->size);
@@ -150,30 +201,26 @@ string_create_python_string_from_substrings(Substrings *substrings)
 static PyObject *
 unicode_create_python_string_from_substrings(Substrings *substrings)
 {
-    DataSize length;
     PyObject *object;
     Substring *substring;
-    Data data;
+    char *buffer;
+    char *data;
 
-    length = substrings->size / Py_UNICODE_SIZE;
-#ifdef DEBUG
-    if (substrings->size % Py_UNICODE_SIZE)
-    {
-        PyErr_SetString(PyExc_RuntimeError, "Inconsistency in internal buffers");
-        return NULL;
-    }
-#endif
+    /* Allocate buffer for UTF-8 string */
+    buffer = (char *)PyMem_Malloc(substrings->size);
+    if (!buffer)
+        return PyErr_NoMemory();
 
-    object = PyUnicode_FromUnicode(NULL, length);
-    if (!object)
-        return NULL;
-
-    data = (char *)PyUnicode_AS_DATA(object);
+    data = buffer;
     for (substring = substrings->list; substring; substring = substring->next)
     {
         Py_MEMCPY(data, substring->data, substring->size);
         data += substring->size;
     }
+
+    /* Create Unicode object from UTF-8 string */
+    object = PyUnicode_FromStringAndSize(buffer, substrings->size);
+    PyMem_Free(buffer);
 
     return object;
 }
@@ -182,13 +229,13 @@ unicode_create_python_string_from_substrings(Substrings *substrings)
 static PyObject *
 string_create_empty_python_string(void)
 {
-    return Py_BuildValue("s", "");
+    return PyBytes_FromStringAndSize("", 0);
 }
 
 static PyObject *
 unicode_create_empty_python_string(void)
 {
-    return Py_BuildValue("u", "");
+    return PyUnicode_FromString("");
 }
 
 
@@ -208,12 +255,27 @@ string_write_character(Data data, Character character)
 static DataSize
 unicode_write_character(Data data, Character character)
 {
-    if (character > 0x7F)
-    {
+    /* In Python 3, encode character to UTF-8 */
+    if (character <= 0x7F) {
+        *((char *)data) = (char)character;
+        return 1;
+    } else if (character <= 0x7FF) {
+        *((char *)data) = (char)(0xC0 | (character >> 6));
+        *((char *)(data + 1)) = (char)(0x80 | (character & 0x3F));
+        return 2;
+    } else if (character <= 0xFFFF) {
+        *((char *)data) = (char)(0xE0 | (character >> 12));
+        *((char *)(data + 1)) = (char)(0x80 | ((character >> 6) & 0x3F));
+        *((char *)(data + 2)) = (char)(0x80 | (character & 0x3F));
+        return 3;
+    } else if (character <= 0x10FFFF) {
+        *((char *)data) = (char)(0xF0 | (character >> 18));
+        *((char *)(data + 1)) = (char)(0x80 | ((character >> 12) & 0x3F));
+        *((char *)(data + 2)) = (char)(0x80 | ((character >> 6) & 0x3F));
+        *((char *)(data + 3)) = (char)(0x80 | (character & 0x3F));
+        return 4;
+    } else {
         PyErr_Format(WrongCharacterError, "Wrong character '?' (0x%x)", character);
         return 0;
     }
-
-    *((Py_UNICODE *)data) = (Py_UNICODE)character;
-    return Py_UNICODE_SIZE;
 }

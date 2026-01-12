@@ -1,7 +1,7 @@
 
 
 typedef char *Data;
-typedef Py_UNICODE *UnicodeData;
+typedef char *UnicodeData;  /* In Python 3, Unicode strings are UTF-8 encoded */
 typedef Py_ssize_t DataSize;
 typedef Py_ssize_t Length;
 typedef unsigned long Hash;
@@ -48,7 +48,8 @@ typedef struct SubstringStruct
 {
     Data data;
     DataSize size;
-    char buffer[Py_UNICODE_SIZE];
+    // Maximum UTF-8 character size is 4 bytes.
+    char buffer[4];
     struct SubstringStruct *next;
 }
 Substring;

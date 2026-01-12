@@ -40,10 +40,18 @@ invert_python_object(PyObject *object)
 static PyObject *
 decode_utf8_python_string(PyObject *object)
 {
-    return PyUnicode_DecodeUTF8(
-        (Data)PyString_AS_STRING(object),
-        (DataSize)PyString_GET_SIZE(object),
-        "replace");
+    if (PyBytes_CheckExact(object)) {
+        return PyUnicode_DecodeUTF8(
+            PyBytes_AS_STRING(object),
+            PyBytes_GET_SIZE(object),
+            "replace");
+    } else if (PyUnicode_CheckExact(object)) {
+        Py_INCREF(object);
+        return object;
+    } else {
+        PyErr_SetString(PyExc_TypeError, "Expected bytes or unicode");
+        return NULL;
+    }
 }
 
 
