@@ -1,24 +1,25 @@
+from io import TextIOWrapper
+from pathlib import Path
+from typing import Self
 
-from builtins import object
-import sys
-import os
-import settings
+from sources import settings
 
 
-class OutputCapture(object):
-
-    _file = None
-    _lines = ()
-
-    def __init__(self, filename="capture.log"):
+class OutputCapture:
+    def __init__(
+        self,
+        filename: str = 'capture.log'
+    ) -> None:
         self._filename = filename
+        self._lines = []
+        self._file: TextIOWrapper | None = None
 
-    def __enter__(self):
+    def __enter__(self) -> Self:
         if self._file:
-            raise Exception("Unable to re-enter")
+            raise RuntimeError('Capture is already active and cannot be re-entered')
 
-        self._fullname = os.path.join(settings.TEMPORARY_LOCATION, self._filename)
-        self._file = open(self._fullname, "w+")
+        self._temp_path.parent.mkdir(parents=True, exist_ok=True)
+        self._file = open(self._temp_path, 'w+')
 
         #HACK: doesn't fully understand how this work, but think it doesn't need fd, 
         # so comment for now, maybe need to rewrite Capture later
@@ -40,7 +41,12 @@ class OutputCapture(object):
 
         return self
 
-    def __exit__(self, extype, exvalue, extraceback):
+    def __exit__(
+        self,
+        exc_type: object,
+        exc_val: object,
+        exc_tb: object,
+    ) -> None:
         # os.dup2(self._stdout_duplicate, self._stdout_descriptor)
         # os.dup2(self._stderr_duplicate, self._stderr_descriptor)
 
@@ -56,16 +62,22 @@ class OutputCapture(object):
         self._file.close()
         self._file = None
 
-        os.remove(self._fullname)
+        self._temp_path.unlink(missing_ok=True)
 
-    lines = property(lambda self: self._lines)
-
-    def write(self, message):
+    def write(self, message) -> None:
         if self._file:
-            os.write(self._fullname, message + "\n")
+            self._file.write(f'{message}\n')
         else:
             print(message)
 
-    def flush(self):
+    def flush(self) -> None:
         if self._file:
-            os.fsync(self._fullname)
+            self._file.flush()
+
+    @property
+    def lines(self) -> list[str]:
+        return self._lines
+
+    @property
+    def _temp_path(self) -> Path:
+        return Path(settings.TEMPORARY_LOCATION) / self._filename
