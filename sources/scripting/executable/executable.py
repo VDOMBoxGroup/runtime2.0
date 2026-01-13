@@ -1,4 +1,4 @@
-##import sys
+import sys
 
 import settings
 import managers
@@ -17,16 +17,13 @@ from .exceptions import SourceSyntaxError, CompilationError, RequirePrecompileEr
 
 
 class Executable(object):
-
     class SubsystemLazyProperty(object):
-
         def __get__(self, instance, owner=None):
             with instance.lock:
                 instance.subsystem = value = select(instance.scripting_language)
                 return value
 
     class SourceCodeProperty(object):
-
         __slots__ = "_handler"
 
         def __init__(self, handler=None):
@@ -39,10 +36,9 @@ class Executable(object):
                 except AttributeError:
                     location = instance.locate(SOURCE_CODE)
                     if location:
-                        value = managers.file_manager.read(file_access.FILE, None,
-                            location + instance.subsystem.source_extension, encoding="utf8", default=u"")
+                        value = managers.file_manager.read(file_access.FILE, None, location + instance.subsystem.source_extension, encoding="utf8", default="")
                     else:
-                        value = u""
+                        value = ""
                     instance._source_code = value
                     return value
 
@@ -53,26 +49,22 @@ class Executable(object):
                 instance._source_code = value
                 location = instance.locate(SOURCE_CODE)
                 if location:
-                    managers.file_manager.write(file_access.FILE, None,
-                        location + instance.subsystem.source_extension, value, encoding="utf8")
+                    managers.file_manager.write(file_access.FILE, None, location + instance.subsystem.source_extension, value, encoding="utf8")
                 instance.cleanup()
                 if self._handler:
                     self._handler(instance, value)
 
         def __delete__(self, instance):
             with instance.lock:
-                instance._source_code = u""
+                instance._source_code = ""
                 location = instance.locate(SOURCE_CODE)
                 if location:
-                    managers.file_manager.delete(file_access.FILE, None,
-                        location + instance.subsystem.source_extension)
+                    managers.file_manager.delete(file_access.FILE, None, location + instance.subsystem.source_extension)
 
     class BytecodeLazyProperty(object):
-
         def __get__(self, instance, owner=None):
             with instance.lock:
-                instance.bytecode = value = \
-                    (instance.subsystem.restore(instance) if settings.STORE_BYTECODE else None) or instance._compile()
+                instance.bytecode = value = (instance.subsystem.restore(instance) if settings.STORE_BYTECODE else None) or instance._compile()
                 return value
 
     scripting_language = aroproperty()
@@ -127,15 +119,15 @@ class Executable(object):
                         show_exception_trace(caption="Unable to precompile %s" % executable, locals=True)
                         return ErrorBytecode(self, cause=sys.exc_info())
             except CompilationError as error:
-                log.error("Unable to compile %s\n%sDue to error in %s" %
-                    (self, settings.LOGGING_INDENT, error.source))
+                log.error("Unable to compile %s\n%sDue to error in %s" % (self, settings.LOGGING_INDENT, error.source))
                 return ErrorBytecode(self, cause=sys.exc_info())
             except SourceSyntaxError as error:
-                log.error("Unable to compile %s\n%sDue to syntax error%s: %s"
-                    % (self, settings.LOGGING_INDENT,
-                        (" on line %d" % error.lineno if error.lineno else ""), error))
+                log.error(
+                    "Unable to compile %s\n%sDue to syntax error%s: %s"
+                    % (self, settings.LOGGING_INDENT, (" on line %d" % error.lineno if error.lineno else ""), error)
+                )
                 return ErrorBytecode(self, cause=sys.exc_info())
-            except Exception as error:
+            except Exception:
                 show_exception_trace(caption="Unable to compile %s" % self, locals=True)
                 return ErrorBytecode(self, cause=sys.exc_info())
 
@@ -167,7 +159,7 @@ class Executable(object):
                 raise Exception(message)
         except (RenderTermination, CompilationError, RequirePrecompileError):
             raise
-        except Exception as e:
+        except Exception:
             show_exception_trace(caption="Unhandled exception in %s" % self, locals=True)
             raise
         finally:

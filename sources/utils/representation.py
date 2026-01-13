@@ -131,11 +131,13 @@ def represent(value, width=-1, limit=None, ellipsis="..."):
         if isinstance(value, str):
             prefix, extra = "u", 3
             encoding = "unicode-escape"
+            result = value.encode(encoding).replace("\"", "\\\"")
+        elif isinstance(value,bytes):
+            prefix, extra = "b", 2
+            encoding = "unicode-escape"
+            result = str(value).encode(encoding).replace(b"\"", b"\\\"")
         else:
-            prefix, extra = "", 2
-            encoding = "string_escape"
-
-        result = value.encode(encoding).replace("\"", "\\\"")
+            result = str(value).encode("unicode-escape").replace("\"", "\\\"")
 
         if width is None or len(result) + extra <= width:
             return "%s\"%s\"" % (prefix, result)

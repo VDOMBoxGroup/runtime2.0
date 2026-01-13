@@ -2,7 +2,10 @@
 import re
 
 from types import MethodType
-from fpdf import FPDF
+try:
+    from fpdf import FPDF
+except ImportError:
+    FPDF = object
 
 import managers
 import file_access

@@ -79,10 +79,12 @@ class VDOM_response(object):
     def write(self, value, continue_render=False):
         if isinstance(value, bytes):
             managers.request_manager.current.write(value)
+        elif isinstance(value, str):
+            managers.request_manager.current.write(value.encode())
         elif hasattr(value, "read"):
             managers.request_manager.current.write_handler(value)
         else:
-            raise ValueError
+            raise ValueError(f"invalid write value {type(value)}")
         if not continue_render:
             managers.engine.terminate()
 

@@ -296,7 +296,7 @@ class VDOMObject(object):
         if not isinstance(arguments, (tuple, list)):
             arguments = (arguments,)
 
-        data = (("str", argument) if isinstance(argument, bytes) else
+        data = (("str", argument) if isinstance(argument, str) else
                 ("obj", codecs.encode(json.dumps(argument), "xml")) for argument in arguments)
 
         if arguments:

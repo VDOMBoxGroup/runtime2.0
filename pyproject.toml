@@ -6,7 +6,7 @@ authors = [
     {name = "michael.ovsyannikov",email = "michael.ovsyannikov@vdombox.ru"}
 ]
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<4.0"
 
 
 dependencies = [
@@ -58,6 +58,9 @@ dependencies = [
     "xappy @ https://github.com/astyd256/xappy-py3/archive/refs/heads/master.zip#sha256=fa33bfb29a90066919b708fbd5b991ad075fe9ce32f7cb313de1abc2a986d218",
     "soappy-py3 @ https://github.com/thomdask/SOAPpy-py3/archive/refs/heads/master.zip",
     "wstools-py3 (>=0.54.5,<0.55.0)",
+    "peewee (>=3.19.0,<4.0.0)",
+    "redis (>=7.1.0,<8.0.0)",
+    "ldif (>=4.3.0,<5.0.0)",
 ]
 
 
@@ -68,3 +71,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 package-mode = false
+
+[dependency-groups]
+dev = [
+    "ruff (>=0.14.11,<0.15.0)"
+]

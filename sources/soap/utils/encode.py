@@ -10,7 +10,7 @@ def encode_resource(data):
 
 
 def need_xml_escape(data):
-    if isinstance(data, bytes) and ('<' in data or '>' in data or '&' in data or '\'' in data or '\"' in data or '\n' in data):
+    if isinstance(data, str) and ('<' in data or '>' in data or '&' in data or '\'' in data or '\"' in data or '\n' in data):
         return True
     return False
 

@@ -455,13 +455,13 @@ def describe_exception(exception):
     name = type(exception).__name__
 
     try:
-        if isinstance(exception, types.InstanceType):
-            description = getattr(exception, "__str__")()
-        else:
-            try:
-                description = str(exception)
-            except Exception:
-                description = str(exception).encode("ascii", "backslashreplace")
+        #if  hasattr(exception, "__str__"):
+        #    description = getattr(exception, "__str__")()
+        #else:
+        try:
+            description = str(exception)
+        except Exception:
+            description = str(exception).encode("ascii", "backslashreplace")
     except Exception:
         description = None
 
@@ -857,7 +857,10 @@ def format_referrers(referent, limit=16,
     if referent is not None:
         references = collect_referrers(referent, limit=limit, rank=9)
         if references:
-            references.sort(cmp=lambda x, y: (-x[0] > -y[0]) - (-x[0] < -y[0]))
+            #references.sort(cmp=lambda x, y: (-x[0] > -y[0]) - (-x[0] < -y[0]))
+            from functools import cmp_to_key
+            sorted(references, key = cmp_to_key(lambda x, y: (-x[0] > -y[0]) - (-x[0] < -y[0])))
+            
             for rank, depth, parts in references:
                 lines.append(indent + parts[0])
                 for part in parts[1:]:

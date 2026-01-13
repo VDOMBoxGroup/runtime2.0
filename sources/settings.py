@@ -47,7 +47,7 @@ TYPE_MODULE_NAME = "type"
 REPOSITORY_TYPES_DIRECTORY = "types"
 RESOURCE_LINE_LENGTH = 76  # line length for stored resources
 STORE_DEFAULT_VALUES = False  # store default attribute values on disk
-PRELOAD_DEFAULT_APPLICATION = False  # preload default application on start
+PRELOAD_DEFAULT_APPLICATION = True  # preload default application on start
 MANUAL_GARBAGE_COLLECTING = False  # collect garbage on server idle instead auto
 BINARY_LOADS_EXTENSION = True  # use binary memory.vdomxml.loads if available
 
@@ -71,10 +71,10 @@ SAME_SITE_NONE = False
 
 # timeouts
 
-SCRIPT_TIMEOUT = 30.1  # default termination timeout for arbitrary actions
-COMPUTE_TIMEOUT = 30.1  # cumulutive timeout for all comupter actions
-RENDER_TIMEOUT = 30.1  # cumulative timeout for all onload actions
-WYSIWYG_TIMEOUT = 30.1  # cumulative timeout fro all wysiwyg actinos
+SCRIPT_TIMEOUT = 3000.1  # default termination timeout for arbitrary actions
+COMPUTE_TIMEOUT = 3000.1  # cumulutive timeout for all comupter actions
+RENDER_TIMEOUT = 3000.01  # cumulative timeout for all onload actions
+WYSIWYG_TIMEOUT = 3000.1  # cumulative timeout fro all wysiwyg actinos
 
 CONNECTION_INITIAL_TIMEOUT = 3.0  # initial connection timeout before disconnect
 CONNECTION_SUBSEQUENT_TIMEOUT = 30.0  # connection timeout after receive any data

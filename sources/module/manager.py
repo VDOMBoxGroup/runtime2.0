@@ -246,7 +246,10 @@ class VDOM_module_manager(object):
                     if request_object.binary():
                         return (None, outp)
                     else:
-                        return (None, outp.encode("utf-8"))
+                        if isinstance(outp, str):
+                            return (None, outp.encode("utf-8"))
+                        else:
+                            return (None, outp)
 
                 # debug("Result is: " + result.encode("utf-8"))
 

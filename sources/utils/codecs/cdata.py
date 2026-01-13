@@ -1,25 +1,21 @@
-
 import codecs
 
 
 class XmlCodec(codecs.Codec):
-
-    def encode(self, input, errors='strict'):
-        output = u"<![CDATA[%s]]>" % input.replace("]]>", "]]]]><![CDATA[>")
+    def encode(self, input, errors="strict"):
+        output = "<![CDATA[%s]]>" % input.replace("]]>", "]]]]><![CDATA[>")
         return output, len(output)
 
-    def decode(self, input, errors='strict'):
+    def decode(self, input, errors="strict"):
         raise NotImplementedError
 
 
 class XmlIncrementalEncoder(codecs.IncrementalEncoder):
-
     def encode(self, input, final=False):
         raise NotImplementedError
 
 
 class XmlIncrementalDecoder(codecs.IncrementalDecoder):
-
     def decode(self, input, final=False):
         raise NotImplementedError
 
@@ -33,12 +29,14 @@ class XmlStreamWriter(XmlCodec, codecs.StreamWriter):
 
 
 def search(encoding):
-    if encoding == 'cdata':
-        return codecs.CodecInfo(name='cdata',
-                encode=XmlCodec().encode,
-                decode=XmlCodec().decode,
-                incrementalencoder=XmlIncrementalEncoder,
-                incrementaldecoder=XmlIncrementalDecoder,
-                streamreader=XmlStreamReader,
-                streamwriter=XmlStreamWriter)
+    if encoding == "cdata":
+        return codecs.CodecInfo(
+            name="cdata",
+            encode=XmlCodec().encode,
+            decode=XmlCodec().decode,
+            incrementalencoder=XmlIncrementalEncoder,
+            incrementaldecoder=XmlIncrementalDecoder,
+            streamreader=XmlStreamReader,
+            streamwriter=XmlStreamWriter,
+        )
     return None

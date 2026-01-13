@@ -1,19 +1,21 @@
-
 import sys
-
-from collections import defaultdict
-# from threading import local
-
-import managers
 import importlib
-from logs import log
+import importlib.util
 from importlib.abc import Loader
+from importlib.machinery import ModuleSpec
+from collections import defaultdict
 from threading import Lock
 
-importer_lock = Lock()
-class ImportManagerLocal(object):  # local
+import managers
 
-    modules = defaultdict(dict)
+from logs import log
+
+
+class ImportManagerLocal(object):
+
+    def __init__(self):
+        self.modules = defaultdict(dict)
+        self.lock = Lock()
 
 
 class ImportManager(object):
@@ -26,29 +28,32 @@ class ImportManager(object):
         if application is None:
             raise Exception("Unable to register library outside of application")
         context = ":".join((application.id, context))
-        with importer_lock:
+        
+        with self._local.lock:
+            self._local.modules[context][name] = initializer
+            if context not in sys.modules:
+                __import__(context)
             try:
-                self._local.modules[context][name] = initializer
-                if context not in sys.modules:
-                    __import__(context)
                 del sys.modules[".".join((context, name))]
                 del sys.modules[context].__dict__[name]
             except KeyError:
                 pass
-        
+
     def unregister(self, context, name=None):
         application = managers.engine.application
         if application is None:
             raise Exception("Unable to unregister library outside of application")
         context = ":".join((application.id, context))
-        with importer_lock:
-            if name is None:
+        
+        if name is None:
+            with self._local.lock:
                 try:
                     del self._local.modules[context]
                     del sys.modules[context]
                 except KeyError:
                     pass
-            else:
+        else:
+            with self._local.lock:
                 try:
                     del self._local.modules[context][name]
                     del sys.modules[".".join((context, name))]
@@ -75,21 +80,27 @@ class ImportManagerPackageLoader(Loader):
     def __init__(self, fullname):
         self._fullname = fullname
 
-    def exec_module(self, module):
-        pass
-
     def create_module(self, spec):
-        if spec.name != self._fullname:
-            log.write("Loader for module \"%s\" cannot handle module \"%s\"" % (self._fullname, spec.name))
-            raise ImportError
+        """Return None to use default module creation semantics."""
+        return None
 
-        import types
-        module = types.ModuleType(self._fullname)
+    def exec_module(self, module):
+        """Execute the module in its own namespace."""
         module.__file__ = None
         module.__loader__ = self
         module.__package__ = self._fullname
         module.__path__ = []
 
+    def load_module(self, fullname):
+        """Legacy load_module for compatibility."""
+        if fullname != self._fullname:
+            log.write("Loader for module \"%s\" cannot handle module \"%s\"" % (self._fullname, fullname))
+            raise ImportError
+
+        spec = ModuleSpec(self._fullname, self, is_package=True)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[self._fullname] = module
+        self.exec_module(module)
         return module
 
 
@@ -99,22 +110,29 @@ class ImportManagerModuleLoader(Loader):
         self._fullname = fullname
         self._initializer = initializer
 
-    def exec_module(self, module):
-        pass
-
     def create_module(self, spec):
-        if spec.name != self._fullname:
-            log.write("Loader for module \"%s\" cannot handle module \"%s\"" % (self._fullname, spec.name))
-            raise ImportError
+        """Return None to use default module creation semantics."""
+        return None
 
+    def exec_module(self, module):
+        """Execute the module in its own namespace."""
         package = self._fullname.partition(".")[0]
         context, separator, name = package.partition(":")
-        import types
-        module = types.ModuleType(self._fullname)
+
         module.__file__ = None
         module.__loader__ = self
         module.__package__ = package
-
+        
         self._initializer(context, name, module.__dict__)
 
+    def load_module(self, fullname):
+        """Legacy load_module for compatibility."""
+        if fullname != self._fullname:
+            log.write("Loader for module \"%s\" cannot handle module \"%s\"" % (self._fullname, fullname))
+            raise ImportError
+
+        spec = ModuleSpec(self._fullname, self)
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[self._fullname] = module
+        self.exec_module(module)
         return module

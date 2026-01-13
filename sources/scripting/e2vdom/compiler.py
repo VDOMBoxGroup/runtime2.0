@@ -234,7 +234,7 @@ def compile_declarations_n_libraries(types, render_type, render_container, regis
 #                 return value.replace('"', r'\"')
 
 #         # actions = {(src_obj, event): [(dst_obj, action, param1, ...), ...], ...}
-#         for event, actions in actions.iteritems():
+#         for event, actions in actions.items():
 #             for action in actions:
 #                 lines.append(ADD_DISPATCH_EVENT.format(
 #                     dispatcher_name=dispatcher_name,
