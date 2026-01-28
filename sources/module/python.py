@@ -12,6 +12,7 @@ class VDOM_module_python(VDOM_module):
     def run(self, request):
         """run python script"""
         script_name = request.environment().environment()["SCRIPT_NAME"]
+        print(f"Http request to {script_name}")
         if script_name.startswith("/"):
             script_name = script_name[1:]
         script_name = script_name.split(".")[0]

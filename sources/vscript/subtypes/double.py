@@ -50,7 +50,7 @@ class double(subtype):
     def __float__(self):
         return self._value
 
-    def __unicode__(self):
+    def __str__(self):
         if self._value == nan:
             return u"NaN"
         elif self._value == infinity:

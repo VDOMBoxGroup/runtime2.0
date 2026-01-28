@@ -63,9 +63,14 @@ wrappers = {
 }
 
 
+def safe_as_complex(arg):
+    try:
+        return arg.as_complex
+    except (errors.object_required, AttributeError):
+        return None
+
 def unwrapp(arg):
-    obj = arg if not isinstance(arg, primitive) else \
-        arg.as_complex if hasattr(arg, "as_complex") else arg.as_simple
+    obj = arg if not isinstance(arg, primitive) else safe_as_complex(arg) or arg.as_simple
     return unwrappers.get(type(obj), unknowntype)(obj)
 
 
@@ -186,11 +191,11 @@ def v_PropertyReadOnly(func):
 # Help functions
 #######################################
 def is_string(value):
-    return isinstance(value, bytes)
+    return isinstance(value, str)
 
 
 def is_byte_string(value):
-    return isinstance(value, str)
+    return isinstance(value, bytes)
 
 
 def is_unicode_string(value):

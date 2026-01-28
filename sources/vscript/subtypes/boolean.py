@@ -49,11 +49,11 @@ class boolean(subtype):
     def __float__(self):
         return float(self._value)
 
-    def __unicode__(self):
+    def __str__(self):
         return u"True" if self._value else u"False"
 
     def __bool__(self):
-        return self._value
+        return bool(self._value)
 
     def __hash__(self):
         return hash(self._value)

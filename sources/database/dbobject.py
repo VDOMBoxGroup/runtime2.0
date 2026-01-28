@@ -82,11 +82,13 @@ class VDOM_database_object(object):
         return tables
 
     def backup_data(self, tgt_connection):
-        try:
-            import sqlitebck  # type: ignore
-            sqlitebck.copy(self.get_connection(), tgt_connection)
-        except ImportError:
-            print("ERROR: No module sqlitebck - databases could not be exported")
+        with tgt_connection:
+            self.get_connection().backup(tgt_connection)
+        #try:
+        #    import sqlitebck  # type: ignore
+        #    sqlitebck.copy(self.get_connection(), tgt_connection)
+        #except ImportError:
+        #    print("ERROR: No module sqlitebck - databases could not be exported")
 
 
 class VDOM_database_table(object):
@@ -666,7 +668,7 @@ class VDOM_sql_query(object):
         result.write("\t\t<header>\n")
         for header in self.headers:
             result.write("\t\t\t<column id=\"\" name=\"%s\"/>\n" %
-                         header.decode("UTF-8"))
+                         header)
         result.write("\t\t</header>\n")
         result.write("\t\t<data>\n")
         for row in self.__cur:

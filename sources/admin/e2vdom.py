@@ -244,7 +244,7 @@ def run(request):
 
                 rr = StringIO()
                 for key in r:
-                    rr.write(b"""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (
+                    rr.write("""<OBJECT ID="%s" PARENT="%s" CONTAINER="%s" TYPE="%s"><![CDATA[%s]]></OBJECT>\n""" % (
                         key.replace("-", "_"), r[key][1].replace("-", "_"),
                         r[key][2], r[key][3], r[key][0].replace("]" + "]>", "]]" + "]]><![CD" + "ATA[>")))
                 request.write(b"<ACTIONS>%s</ACTIONS>" %

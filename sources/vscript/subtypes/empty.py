@@ -50,7 +50,7 @@ class empty(subtype):
     def __float__(self):
         return 0.0
 
-    def __unicode__(self):
+    def __str__(self):
         return u""
 
     def __bool__(self):

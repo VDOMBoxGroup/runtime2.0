@@ -93,6 +93,7 @@ class MemoryLibrary(MemoryLibrarySketch):
 
     def unimport(self):
         sys.modules.pop("%s.%s" % (self.application.id, self._name), None)
+        sys.modules.pop(self._name, None)
 
     # unsafe
     def compose(self, ident=u"", file=None, shorter=False):

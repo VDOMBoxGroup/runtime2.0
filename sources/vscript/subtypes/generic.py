@@ -105,7 +105,7 @@ class generic(subtype):
     def __float__(self):
         return float(self())
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self())
 
     def __bool__(self):

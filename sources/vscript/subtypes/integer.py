@@ -43,7 +43,7 @@ class integer(subtype):
     def __float__(self):
         return float(self._value)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self._value)
 
     def __bool__(self):

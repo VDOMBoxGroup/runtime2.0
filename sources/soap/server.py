@@ -1268,7 +1268,11 @@ class VDOM_web_services_server:
         if not do_create and type_obj != obj.type:
             do_create = True
             # delete current object
-            app.delete_object(obj)
+            try:
+                del (obj.parent or app).objects[obj.id]
+            except Exception:
+                raise SOAPpy.faultType(delete_object_error, _("Delete object error"), _("Delete object error"))
+            #app.delete_object(obj)
         if do_create:
             # create new object under <parent>
             # ret = app.create_object(type_obj.id, parent, False)
@@ -1336,7 +1340,7 @@ class VDOM_web_services_server:
         try:
             root = xml_object(srcdata=pres.encode("utf-8"))
         except Exception as e:
-            raise SOAPpy.faultType(xml_script_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+            raise SOAPpy.faultType(xml_script_error, getattr(e,"message", str(e)), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
             # return self.__format_error(("Invalid argument: pres - " + e.message))
 
         # start processing
@@ -1346,7 +1350,7 @@ class VDOM_web_services_server:
         except VDOM_exception as e:
             # app.sync()
             app.save()
-            raise SOAPpy.faultType(xml_script_error, e.message, "<Error><ObjectID>%s</ObjectID></Error>" % objid)
+            raise SOAPpy.faultType(xml_script_error, getattr(e,"message", str(e)), "<Error><ObjectID>%s</ObjectID></Error>" % objid)
             # return self.__format_error(e.message)
 
         # app.sync()
@@ -1767,8 +1771,8 @@ class VDOM_web_services_server:
             # obj.set_name(name)
             obj.name = name
         except VDOM_exception as e:
-            # raise SOAPpy.faultType(name_error, _("Rename error: ") + e.message, "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.original_name))
-            raise SOAPpy.faultType(name_error, _("Rename error: ") + e.message, "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.name))
+            # raise SOAPpy.faultType(name_error, _("Rename error: ") + getattr(e,"message", str(e)), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.original_name))
+            raise SOAPpy.faultType(name_error, _("Rename error: ") + getattr(e,"message", str(e)), "<Error><ObjectID>%s</ObjectID><Name>%s</Name></Error>" % (obj.id, obj.name))
             # "<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>" % (obj.original_name, obj.id, obj.type.id))
             # return self.__format_error(e.message) + "\n<Object Name=\"%s\" ID=\"%s\" Type=\"%s\"/>\n"% (obj.name, obj.id, obj.type.id)
 
@@ -2624,10 +2628,13 @@ class VDOM_web_services_server:
         try:
             return managers.dispatcher.dispatch_remote_method(obj, func_name, xml_param, session_id=session_id)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, str):
-                message = error.message.encode("utf8")
+            if hasattr(error, "message"):
+                if isinstance(error.message, str):
+                    message = error.message.encode("utf8")
+                else:
+                    message = error.message
             else:
-                message = error.message
+                message = str(error)
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
 
     def dispatch_action(self, app_id, object_id, func_name, xml_param, xml_data):
@@ -2642,10 +2649,13 @@ class VDOM_web_services_server:
         try:
             managers.engine.execute(action)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, str):
-                message = error.message.encode("utf8")
+            if hasattr(error, "message"):
+                if isinstance(error.message, str):
+                    message = error.message.encode("utf8")
+                else:
+                    message = error.message
             else:
-                message = error.message
+                message = str(error)
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
 
         response = request.session().value("response")
@@ -3009,14 +3019,14 @@ class VDOM_web_services_server:
         # try:
         #     root = xml_object(srcdata=objects.encode("utf-8"))
         # except Exception as e:
-        #     raise SOAPpy.faultType(param_syntax_error, e.message, "objects")
+        #     raise SOAPpy.faultType(param_syntax_error, getattr(e,"message", str(e)), "objects")
         # # start
         # try:
         #     self.__do_create_objects(app, parent, root)
         # except Exception as e:
         #     root.delete()
         #     app.sync()
-        #     raise SOAPpy.faultType(obj_create_error, e.message, "")
+        #     raise SOAPpy.faultType(obj_create_error, getattr(e,"message", str(e)), "")
         # root.delete()
         # app.sync()
         # if parent:
@@ -3066,7 +3076,10 @@ class VDOM_web_services_server:
                         self.__do_update_object(app, _new_obj, child, _obj_node)
         # remove objects left in _current
         for _i in _current:
-            app.delete_object(app.search_object(_i))
+           #app.delete_object(app.search_object(_i))
+           obj = app.search_object(_i)
+           del (obj.parent or app).objects[obj.id]
+            
 
     def update_object(self, sid, skey, appid, objid, data):
         """update object"""
@@ -3084,7 +3097,7 @@ class VDOM_web_services_server:
         try:
             root = xml_object(srcdata=data.encode("utf-8"))
         except Exception as e:
-            raise SOAPpy.faultType(param_syntax_error, e.message, "data")
+            raise SOAPpy.faultType(param_syntax_error, getattr(e,"message", str(e)), "data")
         if obj.id != root.attributes["id"]:
             root.delete()
             raise SOAPpy.faultType(invalid_object_error, _("Invalid object"), objid)
@@ -3095,7 +3108,7 @@ class VDOM_web_services_server:
             except Exception as e:
                 root.delete()
                 app.sync()
-                raise SOAPpy.faultType(obj_update_error, e.message, "")
+                raise SOAPpy.faultType(obj_update_error, getattr(e,"message", str(e)), "")
         root.delete()
         app.sync()
         return self.__get_all_objects(obj)

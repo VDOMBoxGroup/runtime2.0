@@ -8,4 +8,4 @@ def run(request):
         uploaded_file.autoremove = False
         # managers.file_manager.file_upload[fileid] = attach
         sess.files[fileid] = uploaded_file
-        request.write(str(fileid) + '\n')
+        request.write(str(fileid).encode() + b'\n')

@@ -23,7 +23,7 @@ class Unavailable(object):
     def __str__(self):
         return "self is not available"
 
-    def __unicode__(self):
+    def __str__(self):
         return u"self is not available"
 
     def __repr__(self):

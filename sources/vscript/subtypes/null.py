@@ -33,7 +33,7 @@ class null(subtype):
     def __int__(self):
         return 0
 
-    def __unicode__(self):
+    def __str__(self):
         return u"null"
 
     def __bool__(self):

@@ -159,7 +159,7 @@ class v_xmlnode(generic):
             raise errors.object_has_no_property("value")
         else:
             value = self._node.nodeValue
-            return string(value) if isinstance(value, bytes) else v_empty
+            return string(value) if isinstance(value, str) else v_empty
 
     def v_unlink(self):
         self._node.unlink()

@@ -1,13 +1,8 @@
 import os
-import sys
-
-if sys.version_info[0] < 3:
-    import __builtin__ as builtins
-else:
-    import builtins
+import builtins
 
 
-class File_argument(object):
+class File_argument:
     def __init__(self, fileobj, name):
         """File argument wrapper for uploaded files"""
         self.fileobj = fileobj
@@ -52,7 +47,7 @@ class File_argument(object):
         return getattr(self.fileobj, "name")
 
 
-class Attachment(object):
+class Attachment:
     def __init__(self, file_argument):
         self.__filearg = file_argument
 
@@ -60,6 +55,10 @@ class Attachment(object):
         return self.__filearg.name
 
     def __get_handler(self):
+        fh = self.__filearg.fileobj
+        if fh.closed:
+            fh = open(fh.name, mode="rb")
+            self.__filearg.fileobj = fh
         return self.__filearg.fileobj
 
     def _get_realpath(self):

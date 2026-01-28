@@ -6,7 +6,7 @@ from weakref import WeakKeyDictionary
 from threading import RLock
 # from utils.mutex import VDOM_named_mutex_auto as auto_mutex
 from utils.tracing import format_exception_trace
-from . import errors, lexemes, syntax
+from . import errors
 from .variables import variant
 from .essentials import exitloop
 from .prepare import lexer, parser
@@ -16,26 +16,26 @@ from .wrappers.scripting import v_vdomobject
 from . import wrappers
 
 
-vscript_source_string = u"<vscript>"
+vscript_source_string = "<vscript>"
 vscript_wrappers_name = "wrappers"
 
-vscript_default_code = compile(u"", vscript_source_string, u"exec")
+vscript_default_code = compile("", vscript_source_string, "exec")
 vscript_default_listing = ""
 vscript_default_source = []
 
 vscript_default_action_namespace = {
-    u"v_server": v_server(),
-    u"v_request": v_request(),
-    u"v_response": v_response(),
-    u"v_session": v_session(),
-    u"v_application": v_application()}
+    "v_server": v_server(),
+    "v_request": v_request(),
+    "v_response": v_response(),
+    "v_session": v_session(),
+    "v_application": v_application()}
 vscript_default_environment = {
-    u"v_this": None,
-    u"v_server": None,
-    u"v_request": None,
-    u"v_response": None,
-    u"v_session": None,
-    u"v_application": None}
+    "v_this": None,
+    "v_server": None,
+    "v_request": None,
+    "v_response": None,
+    "v_session": None,
+    "v_application": None}
 
 vscript_global_lock = RLock()
 vscript_global_counter = 0
@@ -85,11 +85,11 @@ def check_exception(error, traceback, error_type):
         if information:
             try:
                 lineno = information[traceback.tb_lineno - 1][0]
-            except:
+            except Exception:
                 lineno = None
             try:
                 library = frame.f_globals.get("__name__").partition(".")[2]
-            except:
+            except Exception:
                 library = None
             vtraceback.append((library, lineno))
         traceback = traceback.tb_next
@@ -101,7 +101,7 @@ def check_exception(error, traceback, error_type):
 
 
 def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package=None,
-             lines=None, environment=None, use=None, anyway=1, quiet=None, listing=False, safe=None):
+             lines=None, environment=None, use=None, anyway=1, quiet=None, listing=True, safe=None):
     global vscript_global_counter
     if script is None:
         if let is not None:
@@ -122,7 +122,7 @@ def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package
         if not quiet and listing:
             debug("- - - - - - - - - - - - - - - - - - - -")
             for line, statement in enumerate(script.split("\n")):
-                debug((u"  %s      %s" % (str(line + 1).ljust(4), statement.expandtabs(4))).encode("ascii", "backslashreplace"))
+                debug(("  %s      %s" % (str(line + 1).ljust(4), statement.expandtabs(4))).encode("ascii", "backslashreplace"))
             debug("- - - - - - - - - - - - - - - - - - - -")
         lexer.lineno = 1
         try:
@@ -136,13 +136,13 @@ def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package
             source[0:0] = ((None, 0, line) for line in lines)
         if not quiet and listing:
             for line, data in enumerate(source):
-                debug((u"  %s %s %s%s" % (str(line + 1).ljust(4),
+                debug(("  %s %s %s%s" % (str(line + 1).ljust(4),
                         str("" if data[0] is None else data[0]).ljust(4),
                     "    " * data[1], data[2].expandtabs(4))).encode("ascii", "backslashreplace"))
             debug("- - - - - - - - - - - - - - - - - - - -")
-        code = u"\n".join([u"%s%s" % (u"\t" * ident, string) for line, ident, string in source])
+        code = "\n".join(["%s%s" % ("\t" * ident, string) for line, ident, string in source])
         if bytecode:
-            code = compile(code, filename or vscript_source_string, u"exec")
+            code = compile(code, filename or vscript_source_string, "exec")
         if use:
             use_code, use_source = vcompile(use, package=package, environment=environment, safe=True)
             weakuses[code] = use_code, use_source
@@ -183,7 +183,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             if namespace is None:
                 namespace = {}
             if environment is None:
-                namespace[u"v_this"] = v_vdomobject(object) if object else v_nothing
+                namespace["v_this"] = v_vdomobject(object) if object else v_nothing
                 namespace.update(vscript_default_action_namespace)
             else:
                 namespace.update(environment)
@@ -202,7 +202,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    result = re.search(".+ has no attribute \'(.+)\'", str(error))
+                    result = re.search(r".+ has no attribute \'(.+)\'", str(error))
                     if result:
                         raise errors.object_has_no_property(name=result.group(1)).with_traceback(traceback)
                 raise
@@ -220,10 +220,10 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    result = re.search("(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", str(error))
+                    result = re.search(r"(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", str(error))
                     if result:
                         raise errors.wrong_number_of_arguments(name=result.group(1)).with_traceback(traceback)
-                    elif re.match("__init__\(\) got an unexpected keyword argument 'set'", str(error)):
+                    elif re.match(r"__init__\(\) got an unexpected keyword argument 'set'", str(error)):
                         raise errors.illegal_assigment
                 raise
             finally:

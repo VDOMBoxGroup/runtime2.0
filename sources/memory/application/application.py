@@ -237,7 +237,7 @@ class MemoryApplication(MemoryApplicationSketch):
                 try:
                     managers.engine.execute(action)
                 except Exception as e:
-                    print("Exception while application:onstart execution: %s" % e.message)
+                    print(f"Exception while application:onstart execution: {e}")
                     from traceback import print_exc
                     print_exc()
 

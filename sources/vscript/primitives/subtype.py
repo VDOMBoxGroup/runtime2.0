@@ -299,7 +299,7 @@ class subtype(primitive):
     def __str__(self):
         raise errors.python_avoid_using
 
-    def __unicode__(self):
+    def __str__(self):
         raise errors.type_mismatch
 
     def __bool__(self):

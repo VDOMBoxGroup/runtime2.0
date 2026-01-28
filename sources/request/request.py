@@ -24,7 +24,7 @@ import settings
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
         return tempfile.NamedTemporaryFile("w+b", prefix="vdomupload",
-                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
+                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False, delete_on_close=False)
 
 
 @weak("_handler")

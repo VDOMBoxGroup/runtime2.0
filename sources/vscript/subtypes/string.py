@@ -70,7 +70,7 @@ class string(subtype):
         except ValueError:
             raise errors.type_mismatch
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self._value)
 
     def __bool__(self):

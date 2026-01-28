@@ -48,7 +48,7 @@ class vself(object):
     def scope_names(self, mysource, myclass, myprocedure):
         pass
 
-    def __unicode__(self):
+    def __str__(self):
         return u"self"
 
 
@@ -125,7 +125,7 @@ class vname(object):
         for expressions in self.values:
             expressions.scope_names(mysource, myclass, myprocedure)
 
-    def __unicode__(self):
+    def __str__(self):
         result = self.string % (
             (u"self.%s" % self.base if self.member else self.base, ) + self.values)
         return u"check(%s)" % result if self.check else result
@@ -144,7 +144,7 @@ class vnames(list):
         for name in self:
             name.scope_names(mysource, myclass, myprocedure)
 
-    def __unicode__(self):
+    def __str__(self):
         return u", ".join([str(name) for name in self])
 
 
@@ -239,7 +239,7 @@ class vexpression(object):
         for value in self.values:
             value.scope_names(mysource, myclass, myprocedure)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.string % self.values
 
 
@@ -268,7 +268,7 @@ class vexpressions(list):
         for expression in self:
             expression.scope_names(mysource, myclass, myprocedure)
 
-    def __unicode__(self):
+    def __str__(self):
         return u", ".join(map(str, self))
 
 
@@ -284,7 +284,7 @@ class vsubscripts(list):
     def scope_names(self, mysource, myclass, myprocedure):
         pass
 
-    def __unicode__(self):
+    def __str__(self):
         return u"[%s]" % u", ".join(map(str, self))
 
 
@@ -305,7 +305,7 @@ class varguments(list):
     initialization = property(lambda self: u"=".join([_f for _f in [u", ".join([name for name, type in self if type]),
                                                                     u", ".join([u"%s.%s" % (name, type) for name, type in self if type])] if _f]))
 
-    def __unicode__(self):
+    def __str__(self):
         return u", ".join([argument[0] for argument in self])
 
 
@@ -1163,7 +1163,7 @@ class vprocedure(vstatement):
         if precede:
             initialization.extend(precede)
         dims = [(name, value)
-                for name, value in self.names.items() if isinstance(value, bytes)]
+                for name, value in self.names.items() if isinstance(value, str)]
         initialization.extend(
             [(self.line, ident + 1, u"=".join([_f for _f in [u", ".join([name for name, value in dims]),
                                                              u", ".join([value for name, value in dims])] if _f]))])
@@ -1377,7 +1377,7 @@ class vclass(vstatement):
                                            vstatements().join(vcall(vexpression(u"self.%s()" % vscript_destructor, line=self.line),
                                                                     line=self.line)), line=self.line))
         self.initializations = [
-            (name, value) for name, value in self.names.items() if isinstance(value, bytes)]
+            (name, value) for name, value in self.names.items() if isinstance(value, str)]
         if self.constructor or self.initializations:
             statements = vstatements()
             if self.initializations:
@@ -1464,7 +1464,7 @@ class vsourcenames(object):
         contents = [(None, ident, u"from vscript.%s import %s" % (name, u", ".join(names)))
                     for name, names in self.imports.items() if name is not None]
         contents.extend((None, ident, u"globals().setdefault(%s, %s)" % (repr(name), value))
-                        for name, value in self.names.items() if isinstance(value, bytes))
+                        for name, value in self.names.items() if isinstance(value, str))
         return contents
 
 

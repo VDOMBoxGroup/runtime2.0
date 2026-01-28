@@ -37,7 +37,7 @@ class date(subtype):
     def __init__(self, value):
         if isinstance(value, (int, float)):
             self._value = float(value)
-        elif isinstance(value, bytes):
+        elif isinstance(value, str):
             match = self.pattern.match(value) or self.pattern2.match(value)
             if match:
                 day = match.group("day")
@@ -117,7 +117,7 @@ class date(subtype):
     def __float__(self):
         return self._value
 
-    def __unicode__(self):
+    def __str__(self):
         year, month, day, hour, minute, second = decode_date(self._value)
         if hour+minute+second:
             return u"%02d.%02d.%d %02d:%02d:%02d" % (day, month, year, hour, minute, second)

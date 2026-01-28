@@ -121,7 +121,7 @@ class variable(primitive):
     def __str__(self):
         return str(self.subtype)
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.subtype)
 
     def __bool__(self):

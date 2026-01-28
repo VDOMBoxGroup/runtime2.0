@@ -1,15 +1,11 @@
 """web services utils"""
-from __future__ import absolute_import
-
-from builtins import chr
 import random
-
 from .utils.exception import VDOM_exception_sec
 
 # session protector class
 
 
-class VDOM_session_protector(object):
+class VDOM_session_protector:
     """class used to protect web services from unauthorized access"""
 
     def __init__(self, hash_str):

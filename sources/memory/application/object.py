@@ -324,7 +324,7 @@ class MemoryObject(MemoryObjectSketch):
 
                         # update klass if needed and return
                         klass = self._classes.get(context)
-                        if klass is None or dynamic > klass._dynamic:
+                        if klass is None or (dynamic or 0) > klass._dynamic:
                             self._classes[context] = klass = new_klass
                         return klass
                     else:
