@@ -1066,8 +1066,8 @@
 	</Resources>
 	<SourceCode>
 <![CDATA[import json
-from collections import OrderedDict, Iterable
-from itertools import izip
+from collections import OrderedDict
+from collections.abc import Iterable
 
 
 class VDOM_formlist(VDOM_object):
@@ -1080,12 +1080,12 @@ class VDOM_formlist(VDOM_object):
         except Exception:
             if self.value:
                 raise Exception(
-                    u"value: %r. Incorrect format of JSON data" % self.value)
+                    "value: %r. Incorrect format of JSON data" % self.value)
 
             value = []
 
         if not isinstance(value, Iterable):
-            raise Exception(u"value: %r. Must be dict or list" % self.value)
+            raise Exception("value: %r. Must be dict or list" % self.value)
 
         return value
 
@@ -1093,9 +1093,9 @@ class VDOM_formlist(VDOM_object):
         return value + "px" if value.isdigit() else value
 
     def render(self, contents=""):
-        display = u"none" if self.visible == "0" else self.displaying
-        zindex = self.zindex if int(self.zindex) != 0 else u""
-        position = self.positioning if self.positioning and self.positioning != "static" else u""
+        display = "none" if self.visible == "0" else self.displaying
+        zindex = self.zindex if int(self.zindex) != 0 else ""
+        position = self.positioning if self.positioning and self.positioning != "static" else ""
 
         styles = {
             "width": self.check_unit(self.width),
@@ -1111,16 +1111,16 @@ class VDOM_formlist(VDOM_object):
         if self.positioning == "static":
             styles["top"] = styles["left"] = ""
 
-        style = " ".join(["{}: {};".format(key, value)
+        style = " ".join([f"{key}: {value};"
                          for key, value in styles.items() if value])
 
-        id = u"o_" + (self.id).replace('-', '_')
+        id = "o_" + (self.id).replace('-', '_')
 
-        disabled = u""" disabled="disabled\"""" if self.disabled == "1" else u""
-        multi = u""" multiple="multiple\"""" if self.multiselect and self.multiselect == "1" else u""
-        size = u""" size="%s" """ % self.size if self.size else u""
+        disabled = """ disabled="disabled\"""" if self.disabled == "1" else ""
+        multi = """ multiple="multiple\"""" if self.multiselect and self.multiselect == "1" else ""
+        size = """ size="%s" """ % self.size if self.size else ""
 
-        select = u"""<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="{classname}" style="{style}" {size}{multi}{disabled}>"""\
+        select = """<select id="{id}" name="{name}" tabindex="{tabind}" autocomplete="off" class="{classname}" style="{style}" {size}{multi}{disabled}>"""\
             .format(
                 disabled=disabled,
                 id=id,
@@ -1152,16 +1152,16 @@ class VDOM_formlist(VDOM_object):
         try:
             data = iter(data.items())
         except Exception:
-            data = izip(range(len(data)), data)
+            data = zip(range(len(data)), data)
 
-        result = u"".join([u"""<option value="{value}"{selected}{disabled}>{title}</option>""".format(
+        result = "".join(["""<option value="{value}"{selected}{disabled}>{title}</option>""".format(
             value=value,
-            selected=u""" selected="selected\"""" if value in selected_values else u"",
-            disabled=u""" disabled="disabled\"""" if value in disabled_values else u"",
+            selected=""" selected="selected\"""" if value in selected_values else "",
+            disabled=""" disabled="disabled\"""" if value in disabled_values else "",
             title=title
         ) for value, title in data])
 
-        result = u"{}{}</select>".format(select, result)
+        result = f"{select}{result}</select>"
         return VDOM_object.render(self, contents=result)
 
     def wysiwyg(self, contents=""):
@@ -1192,37 +1192,24 @@ class VDOM_formlist(VDOM_object):
 
         color = "#aaaaaa" if self.disabled == "1" else "#000000"
         btn = \
-            u"""<svg>
+            f"""<svg>
                         <rect x="{btn_x}" y="{btn_y}" width="{btn_width}" height="{btn_height}" fill="#EEEEEE" stroke="{color}"/>
-                        <polygon fill="{color}" stroke="{color}" points="{xa},{ya} {xb},{yb} {xc},{yc}"/>
+                        <polygon fill="{color}" stroke="{color}" points="{triangle_x},{triangle_y} {triangle_x + triangle_width},{triangle_y} {triangle_x + triangle_width / 2},{triangle_y + triangle_height}"/>
                     </svg>
-                """.format(btn_x=btn_x, btn_y=btn_y,
-                           btn_width=btn_width, btn_height=btn_height,
-                           xa=triangle_x, ya=triangle_y,
-                           xb=triangle_x + triangle_width, yb=triangle_y,
-                           xc=triangle_x + triangle_width / 2, yc=triangle_y + triangle_height,
-                           color=color)
+                """
 
         result = \
-            u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
+            f"""<container name="{self.name}" id="{self.id}" visible="{self.visible}" zindex="{self.zindex}" hierarchy="{self.hierarchy}" order="{self.order}"
                         top="{top}" left="{left}" width="{width}" height="{height}">
                     <svg>
                         <rect y="0" x="0" width="{rect_width}" height="{rect_height}" fill="#FFFFFF" stroke="{color}"/>
                     </svg>
                     <svg>
-                        <text x="{text_x}" y="{text_y}" width="{width}" height="{height}" fill="{color}" font-size="14" font-family="tahoma"></text>
+                        <text x="{7}" y="{15 if rect_height < 15 else (rect_height - 15) / 2 + 15}" width="{width}" height="{height}" fill="{color}" font-size="14" font-family="tahoma"></text>
                     </svg>
                     {btn}
                 </container>
-            """.format(id=self.id, vis=self.visible, zind=self.zindex,
-                       hierarchy=self.hierarchy, order=self.order,
-                       top=top, left=left, name=self.name,
-                       width=width, height=height,
-                       rect_width=rect_width, rect_height=rect_height,
-                       btn=btn,
-                       text_x=7,
-                       text_y=15 if rect_height < 15 else (rect_height - 15) / 2 + 15,
-                       color=color)
+            """
 
         return VDOM_object.wysiwyg(self, contents=result)
 

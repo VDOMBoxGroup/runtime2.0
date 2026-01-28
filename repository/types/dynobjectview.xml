@@ -2290,7 +2290,7 @@ def xml_escape(value):
     ]
     illegal_ranges = ["%s-%s" % (chr(low), chr(high))
         for (low, high) in illegal_unichrs if low < sys.maxunicode]
-    regex = re.compile(u"[%s]" % u"".join(illegal_ranges))
+    regex = re.compile("[%s]" % "".join(illegal_ranges))
 
     def real_xml_escape(text):
         return regex.sub("", text)
@@ -2321,7 +2321,7 @@ class CachedDict(dict):
 
 # template
 
-class Template(object):
+class Template:
 
     __slots__ = ("_attributes", "_vdomxml", "_object")
 
@@ -2379,7 +2379,7 @@ class Template(object):
 DEFAULT_MARGIN = 17
 
 
-class Layout(object):
+class Layout:
 
     __slots__ = ("_elements", "_left", "_top", "_width", "_height", "_margin")
 
@@ -2396,7 +2396,7 @@ class Layout(object):
 
     def append(self, element):
         self._elements.append(element)
-        if not isinstance(element, basestring):
+        if not isinstance(element, str):
             self.arrange(element)
 
     def render(self, parent):
@@ -2405,7 +2405,7 @@ class Layout(object):
             declarations = []
             libraries = []
             for element in self._elements:
-                if isinstance(element, basestring):
+                if isinstance(element, str):
                     elements.append(element)
                 else:
                     element["top"] = str(self._top + int(element["top"] or 0))
@@ -2415,8 +2415,8 @@ class Layout(object):
                     declarations.append(declaration)
                     libraries.append(library)
             #declarations.extend(e2vdom.registrations())
-            return (u"""{}
-<script type='text/javascript'>{}</script>""".format(u"".join(libraries), u"".join(declarations)),u"".join(elements))
+            return ("""{}
+<script type='text/javascript'>{}</script>""".format("".join(libraries), "".join(declarations)),"".join(elements))
 
 
 class VerticalLayout(Layout):
@@ -2456,10 +2456,10 @@ class HorizontalLayout(Layout):
 
 LAYOUTS = (VerticalLayout, HorizontalLayout, VerticalLayout)
 
-CSS_FIRST = u"dov-item-first"
-CSS_LAST = u"dov-item-last"
-CSS_ODD = u"dov-item-odd"
-CSS_ACTIVE = u"dov-item-active"
+CSS_FIRST = "dov-item-first"
+CSS_LAST = "dov-item-last"
+CSS_ODD = "dov-item-odd"
+CSS_ACTIVE = "dov-item-active"
 
 CLICK_N_SELECT = (
     "click",
@@ -2537,7 +2537,7 @@ class DynamicObjectView(VDOM_object):
             return {key.lower(): value[1: len(value) - 1] for key, value in attrs}
 
         # initialize templates
-        templates = CachedDict(templates, lambda xml: xml.encode("utf8"))
+        templates = CachedDict(templates, lambda xml: xml) #.encode("utf8")
         templates_attributes = CachedDict(templates, get_root_attributes)
 
         # initialize actions
@@ -2570,11 +2570,11 @@ class DynamicObjectView(VDOM_object):
                 CSS_LAST if index == len(data) else None,
                 CSS_ODD if index % 2 == 0 else None,
                 CSS_ACTIVE if self.activeitem == uuid else None,
-                u"dov-item dov-item-%d" % index
+                "dov-item dov-item-%d" % index
             )
 
             template["name"] = "dovtemplate_%d" % index
-            template["classname"] = u" ".join([_f for _f in classes if _f])
+            template["classname"] = " ".join([_f for _f in classes if _f])
 
             template["dataid"] = uuid
 
@@ -2593,19 +2593,19 @@ class DynamicObjectView(VDOM_object):
             "padding": self.paddings,
             "top": self.check_unit(self.top),
             "left": self.check_unit(self.left),
-            "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+            "z-index": "%s" % self.zindex if int(self.zindex) != 0 else "",
             "position": self.positioning,
-            "display": u"none" if self.visible == "0" else self.displaying,
+            "display": "none" if self.visible == "0" else self.displaying,
             "overflow": OVERFLOW.get(self.overflow, "")
         }
         if self.positioning == "static":
             styles["top"] = styles["left"] = ""
             styles["position"] = ""
         
-        object_style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+        object_style = " ".join([f"{key}: {value};" for key, value in styles.items() if value])
 
         id4js = "o_" + self.id.replace('-', '_')
-        element_style = u"<style type=\"text/css\">\n" \
+        element_style = "<style type=\"text/css\">\n" \
             "{user_css}\n" \
             "#{id4js} .dov-item {{{layout}}}\n" \
             "</style>\n".format(
@@ -2626,7 +2626,7 @@ class DynamicObjectView(VDOM_object):
             declarations= static_libraries+ "<script type='text/javascript'>"+ static_declarations +"</script>" + declarations
         #request.dyn_libraries[self.name] = declarations
         if request.render_type == "e2vdom" and self.dynamicrender == "1":
-            result = u"""<noreplace/>
+            result = """<noreplace/>
 <div id="{tmp_id}" style="display:none">{contents}</div>
 <script type='text/javascript'>
 $(document).ready(function(){{
@@ -2656,7 +2656,7 @@ $(document).ready(function(){{
             }
 
             object_style, element_style = self.compile_style()
-            result = u"""
+            result = """
 {element_style}
 <div objname="{name}" id="{id4js}" style="{object_style}" class="{classes}">
 <div class='dov-content'>
@@ -2746,11 +2746,11 @@ def on_update(object, attributes):
     if "css" in attributes and attributes.get("css") not in skin_mapping.values():
         attributes.update(skin="0")
         
-    template_ex = u"""\
+    template_ex = """\
 { "default": "<VDOMCLASS visible=\\"1\\" name=\\"meeting\\" top=\\"464\\" left=\\"129\\" width=\\"542\\" height=\\"118\\" classname=\\"meeting\\"> <FLEXCONTAINER name=\\"cal_date_holder\\" classname=\\"cal_date_holder medium\\" flexshrink=\\"0\\" margins=\\"0px 30px 0px 15px\\" superleft=\\"0px\\" supertop=\\"0px\\" width=\\"60\\" superwidth=\\"60px\\" height=\\"60\\" superheight=\\"60px\\"> <TEXT name=\\"cal_date_day\\" left=\\"7\\" width=\\"39\\" value=\\"1\\" classname=\\"cal_date_day\\"/> <TEXT name=\\"cal_date_month\\" top=\\"14\\" left=\\"9\\" width=\\"35\\" value=\\"Dec\\" classname=\\"cal_date_month\\"/> </FLEXCONTAINER></VDOMCLASS>"}
 """
     
-    data_ex = u"""\
+    data_ex = """\
 {
   "1": {
     "month": "Novembre",
@@ -2766,13 +2766,13 @@ def on_update(object, attributes):
   }
 }"""
 
-    actions_ex = u"""\
+    actions_ex = """\
 {"default": {
   "def_item.text1:click": [["def_item.text1:toggleClass",  "'status'"]]
 }
 }"""
         
-    bindings_ex = u"""\
+    bindings_ex = """\
 {"default":{
   
     "day": "left_col.cal_date_holder.cal_date_day.value",
@@ -2786,7 +2786,7 @@ def on_update(object, attributes):
         "template_ex": template_ex,
         "actions_ex": actions_ex,
         "bindings_ex": bindings_ex,
-        "empty": u""
+        "empty": ""
     }
     
     if "skindata" in attributes:
@@ -2794,7 +2794,7 @@ def on_update(object, attributes):
         if skindata == "1":
             attributes.update(data=data_ex, template=template_ex, actions=actions_ex, bindings=bindings_ex)
         else:
-            attributes.update(data=u"", template=u"", actions=u"", bindings=u"")
+            attributes.update(data="", template="", actions="", bindings="")
 
     if any(key in attributes for key in ["data", "template", "actions", "bindings"]):
         if any(attributes.get(key) not in data_map.values() for key in ["data", "template", "actions", "bindings"]):

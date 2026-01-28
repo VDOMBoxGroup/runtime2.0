@@ -417,6 +417,13 @@
 	<SourceCode>
 <![CDATA[from scss.compiler import compile_string
 
+def patch_lib():
+    import scss.grammar.expression
+    for i in range(len(scss.grammar.expression.SassExpressionScanner._patterns)):
+        if scss.grammar.expression.SassExpressionScanner._patterns[i][0] == 'OPACITY':
+            scss.grammar.expression.SassExpressionScanner._patterns[i] = ('OPACITY', '(?i)(opacity)')
+            break
+patch_lib()
 
 class VDOM_editableresource(VDOM_object):
     def render(self, contents=""):
@@ -437,7 +444,7 @@ class VDOM_editableresource(VDOM_object):
             udata = ""
             if self.datatype == "1":
                 if import_way_is_inline:
-                    udata = '<script id="{}">{}</script>'.format(id, self.data)
+                    udata = f'<script id="{id}">{self.data}</script>'
                     if self.import_way == "1":
                         request.dyn_libraries[self.name] = udata
                         return VDOM_object.render(self, contents="")
@@ -451,7 +458,7 @@ class VDOM_editableresource(VDOM_object):
                     udata = "<!-- no res for script -->"
             elif self.datatype == "2" or self.datatype == "3":
                 if import_way_is_inline:
-                    udata = '<style id="{}">{}</style>'.format(id, self.data)
+                    udata = f'<style id="{id}">{self.data}</style>'
                     if self.import_way == "1":
                         request.dyn_libraries[self.name] = udata
                         return VDOM_object.render(self, contents="")
@@ -494,32 +501,15 @@ class VDOM_editableresource(VDOM_object):
 
         text_format = self.get_data_format()
 
-        result = """<container name="{name}" id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}"
-                    width="{width}" height="{height}" backgroundcolor="#f0f0f0" alpha="0.5">
+        result = f"""<container name="{self.name}" id="{self.id}" zindex="{self.zindex}" hierarchy="{self.hierarchy}" top="{self.top}" left="{self.left}"
+                    width="{self.width}" height="{self.height}" backgroundcolor="#f0f0f0" alpha="0.5">
                     <svg>
                         <image x="{image_x}" y="{image_y}" href="#Res({image_id})" width="{image_width}" height="{image_height}"/>
                     </svg>
-                    <text top="30" left="{txt_format_left}" width="{text_width}" textalign="right" color="#ffffff">{text_format}</text>
-                    <text top="50" width="80" textalign="center" color="#000000">{name}</text>
+                    <text top="30" left="{txt_format_left}" width="{image_width - 6}" textalign="right" color="#ffffff">{text_format}</text>
+                    <text top="50" width="80" textalign="center" color="#000000">{self.name}</text>
                 </container>
-            """.format(
-            id=self.id,
-            name=self.name,
-            zindex=self.zindex,
-            hierarchy=self.hierarchy,
-            top=self.top,
-            left=self.left,
-            width=self.width,
-            height=self.height,
-            image_x=image_x,
-            image_y=image_y,
-            image_id=image_id,
-            text_format=text_format,
-            image_width=image_width,
-            image_height=image_height,
-            text_width=image_width - 6,
-            txt_format_left=txt_format_left,
-        )
+            """
 
         return VDOM_object.wysiwyg(self, contents=result)
 ]]>

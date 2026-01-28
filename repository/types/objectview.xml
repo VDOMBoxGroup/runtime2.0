@@ -1617,7 +1617,7 @@ import managers
 from scripting import e2vdom
 
 
-JS_DRAG = u"""
+JS_DRAG = """
 $j(document).on('mouseover', "#%(id)s div[dataid]", function () {
     if (!$j(this).data('initDraggable')) {
         $j(this).data('initDraggable', true);
@@ -1657,7 +1657,7 @@ $('#%(id)s').droppable({
 */
 """
 
-JS_SORTABLE = u"""
+JS_SORTABLE = """
 $j(document).on('mouseover', "#%(id)s", function () {
     if (!$j(this).data('initSortable')) {
         $j(this).data('initSortable', true);
@@ -1680,7 +1680,7 @@ $j(document).on('mouseover', "#%(id)s", function () {
 });*/
 """
 
-JS_LOADING = u"""
+JS_LOADING = """
 function %(id)s_ld(t) {
     var z = $j('>.loading', t);
     if (z.length > 0) {
@@ -1694,7 +1694,7 @@ function %(id)s_ld(t) {
 }
 """
 
-JS_DYNAMIC = u"""
+JS_DYNAMIC = """
     $j("#%(id)s").on('scroll resize', function () {
         clearTimeout(jQuery.data(this, 'scrollTimer'));
         jQuery.data(this, 'scrollTimer', setTimeout(function () {
@@ -1715,7 +1715,7 @@ JS_DYNAMIC = u"""
     }, 2000);
 """
 
-JS = u"""
+JS = """
 <script type="text/javascript">
 %(js_loading)s
 
@@ -1758,7 +1758,7 @@ $j(function(){
 });
 </script>"""
 
-JS_INFINITE_SCROLL = u"""/*
+JS_INFINITE_SCROLL = """/*
 $j(document).on('infiniteScroll', '#%(id)s', {
     'ovid': '%(woid)s',
     'cssc': '%(cssc)s'
@@ -1774,7 +1774,7 @@ if (canLoadContent) {
 """
 
 
-E2VDOM_DYNAMIC_JAVASCRIPT = u"""
+E2VDOM_DYNAMIC_JAVASCRIPT = """
 var x = $j('#%(id)s>div.ov-content');
 $j('>div[dataid]', x).remove();
 var ovtmp = $j('#%(tmp_id)s:last');
@@ -1783,7 +1783,7 @@ if ($j.trim(ovtmp.html()) != '') {
 }
 """
 
-E2VDOM_DIV_ONLY_JAVASCRIPT = u"""
+E2VDOM_DIV_ONLY_JAVASCRIPT = """
 var x = $j('#%(id)s>div.ov-content');
 $j('>div[dataid]', x).remove();
 var ovtmp = $j('#%(tmp_id)s:last');
@@ -1798,7 +1798,7 @@ if ($j.trim(ovtmp.html()) != '') {
 }
 """
 
-E2VDOM_RENDER_JAVASCRIPT = u"""
+E2VDOM_RENDER_JAVASCRIPT = """
 var ovtmp = $j('#%(tmp_id)s:last');
 if ($j.trim(ovtmp.html()) != '') {
     var x = $j('#%(id)s>div.ov-content');
@@ -1844,7 +1844,7 @@ def xml_escape(value):
     ]
     illegal_ranges = ["%s-%s" % (chr(low), chr(high))
         for (low, high) in illegal_chrs if low < sys.maxunicode]
-    regex = re.compile(u"[%s]" % u"".join(illegal_ranges))
+    regex = re.compile("[%s]" % "".join(illegal_ranges))
 
     def real_xml_escape(text):
         return regex.sub("", text)
@@ -1862,12 +1862,12 @@ class VDOM_objectview(VDOM_object):
         if not self.vdomclassid:
             return ""
 
-        classname = self.classname or u"ov"
+        classname = self.classname or "ov"
         source_object = self.lookup(self.vdomclassid)
         parent_object = None if div_only else self.lookup(self.id)
 
         if not source_object:
-            return u"Invalid VDOM class"
+            return "Invalid VDOM class"
         used_types = set()
         used_types.add(source_object.type)
         for obj in source_object.objects.values():
@@ -1891,12 +1891,12 @@ class VDOM_objectview(VDOM_object):
                 managers.memory.track(copy, sync=managers.session_manager.current)
 
             classes = " ".join(filter(None, (
-                u"%s-item" % classname,
-                u"%s-item-%s" % (classname, index + 1),
-                u"%s-item-first" % classname if index == 0 else None,
-                u"%s-item-last" % classname if index == last_index else None,
-                u"%s-item-odd" % classname if index % 2 else None,
-                u"not-loaded" if div_only else None)))
+                "%s-item" % classname,
+                "%s-item-%s" % (classname, index + 1),
+                "%s-item-first" % classname if index == 0 else None,
+                "%s-item-last" % classname if index == last_index else None,
+                "%s-item-odd" % classname if index % 2 else None,
+                "not-loaded" if div_only else None)))
 
             values = {
                 "dataid": key,
@@ -1953,10 +1953,10 @@ class VDOM_objectview(VDOM_object):
             copy.attributes.update(values)
 
             if div_only:
-                contents.append(u"""<div class="{classes}" dataid="{id}" style="{style}"></div>""".format(
+                contents.append("""<div class="{classes}" dataid="{id}" style="{style}"></div>""".format(
                     id=key,
                     classes=classes,
-                    style=u"position:relative;width:%spx;height:%spx;display:block;" % (
+                    style="position:relative;width:%spx;height:%spx;display:block;" % (
                         source_width, source_height)))
             else:
                 contents.append(managers.engine.render(copy, parent_object, "vdom"))
@@ -1966,14 +1966,14 @@ class VDOM_objectview(VDOM_object):
 
     def render(self, contents=""):
         woid = (self.id).replace('-', '_')
-        id4js = u"o_" + woid
+        id4js = "o_" + woid
 
         try:
             items = json.loads(self.data, object_pairs_hook=OrderedDict)
             if isinstance(items, dict):
                 div_only = False
             elif isinstance(items, list):
-                items, div_only = OrderedDict((str(key), u"") for key in items), True
+                items, div_only = OrderedDict((str(key), "") for key in items), True
             else:
                 raise Exception("Unable to parse data")
         except Exception:
@@ -1993,7 +1993,7 @@ class VDOM_objectview(VDOM_object):
 
         if request.render_type == "e2vdom":
             # action render
-            tmp_id = u"ov%s" % uuid4()
+            tmp_id = "ov%s" % uuid4()
             if self.dynamicrender == "0":
                 js = E2VDOM_DYNAMIC_JAVASCRIPT % {"id": id4js, "tmp_id": tmp_id, "woid": woid}
             else:
@@ -2002,7 +2002,7 @@ class VDOM_objectview(VDOM_object):
                 else:         # {} - items with content: render items in empty frames
                     js = E2VDOM_RENDER_JAVASCRIPT % {"id": id4js, "tmp_id": tmp_id, "woid": woid}
 
-            return VDOM_object.render(self, contents=u"""<noreplace/>
+            return VDOM_object.render(self, contents="""<noreplace/>
 <div id="%(tmp_id)s" style="display: none">%(contents)s</div>
 <script type='text/javascript'>
     %(js)s
@@ -2018,31 +2018,31 @@ class VDOM_objectview(VDOM_object):
                 "padding": self.paddings,
                 "top": self.check_unit(self.top),
                 "left": self.check_unit(self.left),
-                "z-index": u"%s" % self.zindex if int(self.zindex) != 0 else u"",
+                "z-index": "%s" % self.zindex if int(self.zindex) != 0 else "",
                 "position": self.positioning,
-                "display": u"none" if self.visible == "0" else self.displaying,
+                "display": "none" if self.visible == "0" else self.displaying,
                 "overflow": OVERFLOW.get(self.overflow, "")
             }
             if self.positioning == "static":
                 styles["top"] = styles["left"] = ""
                 styles["position"] = ""
                 
-            style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+            style = " ".join([f"{key}: {value};" for key, value in styles.items() if value])
 
             classname_item = 'ov' if self.classname == '' else (self.classname).replace(' ', '')
-            css = u"<style>\n" + self.style % {"id": id4js} + u"</style>" if self.style else u""
+            css = "<style>\n" + self.style % {"id": id4js} + "</style>" if self.style else ""
 
-            style_items = u"""<style type="text/css">
+            style_items = """<style type="text/css">
 #%(id)s .%(class)s-item {
 %(layout)s
 }
 </style>""" % {"id": id4js, "class": classname_item, "layout": LAYOUT.get(self.layout, "")}
 
             if self.loading == "0":
-                js_loading_call = u""
-                js_loading = u""
+                js_loading_call = ""
+                js_loading = ""
             else:
-                js_loading_call = u"%s_ld(t);" % id4js
+                js_loading_call = "%s_ld(t);" % id4js
                 js_loading = JS_LOADING % {"id": id4js}
 
             js_dynamic = JS_DYNAMIC % {"id": id4js, "woid": woid, "cssc": classname_item}
@@ -2063,11 +2063,11 @@ class VDOM_objectview(VDOM_object):
             }
 
             if VDOM_CONFIG_1["DEBUG"] == "1":
-                debug_info = u"objtype='objectview' objname='%s' ver='%s'" % (self.name, self.type.version)
+                debug_info = "objtype='objectview' objname='%s' ver='%s'" % (self.name, self.type.version)
             else:
-                debug_info = u""
+                debug_info = ""
 
-            result = u"""{css}
+            result = """{css}
                 <div {debug_info} id="{id}" style="{style}" class="{classname}">
                     {style_items}
                     <div class='ov-content'>
@@ -2157,11 +2157,11 @@ def on_update(object, attributes):
     if "style" in attributes and attributes.get("style") not in skin_mapping.values():
         attributes.update(skin="0")
         
-    list = u"""\
+    list = """\
 [ "item1", "item2", "item3" ]
 """
     
-    dict = u"""\
+    dict = """\
 {
     "A": {"label": "AAA"},
     "B": {"label": "BBB"},
@@ -2170,7 +2170,7 @@ def on_update(object, attributes):
 }
 """
 
-    bindings_ex = u"""\
+    bindings_ex = """\
 {
     "default": {
         "label": "text.value" 
@@ -2178,7 +2178,7 @@ def on_update(object, attributes):
 }"""
 
     data_map = {
-        "0": u"",
+        "0": "",
         "1": list,
         "2": dict,
         "3": bindings_ex
@@ -2189,7 +2189,7 @@ def on_update(object, attributes):
         if skindata in ["1", "2"]:
             attributes.update(data=data_map[skindata], bindings=bindings_ex)
         else:
-            attributes.update(data=u"", bindings=u"")
+            attributes.update(data="", bindings="")
 
     if any(key in attributes for key in ["data", "bindings"]):
         if any(attributes.get(key) not in data_map.values() for key in ["data", "bindings"]):
