@@ -497,25 +497,22 @@ END TRANSACTION;""" % {"newtable": newtable, "newtablename": self.name + "_new",
     def addrow(self, newrow):
         database = managers.database_manager.get_database(
             self.owner_id, self.database_id)
-        con = database.get_connection()
-        cur = con.cursor()
-        sql = "INSERT INTO \'%s\'  VALUES(%s)" % (self.name, newrow)
-        cur.execute(sql)
-        con.commit()
+        with database.get_connection() as con:
+            sql = "INSERT INTO \'%s\'  VALUES(%s)" % (self.name, newrow)
+            con.execute(sql)
 
     def addrow_from_list(self, list):
         """Adding new row from the list of values"""
         database = managers.database_manager.get_database(
             self.owner_id, self.database_id)
-        con = database.get_connection()
-        cur = con.cursor()
         arg = "(?"
         for i in range(len(list) - 1):
             arg += ", ?"
         arg += ")"
         sql = "INSERT INTO \'%s\'  VALUES %s" % (self.name, arg)
-        cur.execute(sql, tuple(list))
-        con.commit()
+        with database.get_connection() as con:
+            con.execute(sql, tuple(list))
+
 
     def addrow_from_xml(self, xmldata):
         """Adding new row from the xml"""
