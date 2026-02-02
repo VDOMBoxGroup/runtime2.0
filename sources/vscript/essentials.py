@@ -20,7 +20,7 @@ def check(value):
             return value()
         except TypeError as error:
             match = re.search(
-                "(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", error.message)
+                r"(.+)\(\) (?:takes no arguments)|(?:takes exactly \d+ arguments) \(\d+ given\)", getattr(error, "message", str(error)))
             if match:
                 raise errors.wrong_number_of_arguments(name=match.group(1))
             else:
