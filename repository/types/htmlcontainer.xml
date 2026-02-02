@@ -179,7 +179,7 @@
 			<ColorGroup>2</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>page_wrapper</Name>
+			<Name>page_wrapper_mode</Name>
 			<DisplayName>#Lang(115)</DisplayName>
 			<Description>#Lang(215)</Description>
 			<DefaultValue>1</DefaultValue>
@@ -13532,7 +13532,7 @@ class VDOM_htmlcontainer(VDOM_object):
             noscript = ""
 
         content = """{contents}{javascript}"""
-        if self.page_wrapper == "1":
+        if self.page_wrapper_mode == "1":
             content = """<div id='container'>{contents}{javascript}</div>"""
 
         cookie_name = "cookiewarning"
