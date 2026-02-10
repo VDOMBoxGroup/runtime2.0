@@ -1,6 +1,5 @@
 
 import inspect
-import socket
 import select
 
 from logs import log
@@ -39,13 +38,13 @@ class WatcherSession(SmartThread):
         while self.running:
             try:
                 reading, writing, erratic = select.select((self._socket,), (), (), self.quantum)
-            except select.error:
+            except OSError:
                 log.error("Unable to check session state")
             else:
                 if reading:
                     try:
                         message = self._socket.recv(4096)
-                    except socket.error:
+                    except OSError:
                         log.error("Unable to receive request")
                         break
                     if not message:
@@ -55,8 +54,8 @@ class WatcherSession(SmartThread):
                     except ParsingException:
                         log.error("Unable to parse request")
                         try:
-                            self._socket.send("<reply><error>Incorrect request</error></reply>")
-                        except socket.error:
+                            self._socket.send(b"<reply><error>Incorrect request</error></reply>")
+                        except OSError:
                             log.error("Unable to send response")
                         break
                     for name, options in parser.result:
@@ -82,8 +81,8 @@ class WatcherSession(SmartThread):
                         if not response:
                             response = "<reply><error>No reply</error></reply>"
                         try:
-                            self._socket.send(response)
-                        except socket.error:
+                            self._socket.send(response.encode())
+                        except OSError:
                             log.error("Unable to send response")
                             break
                     del parser.result[:]

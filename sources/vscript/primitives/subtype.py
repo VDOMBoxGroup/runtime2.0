@@ -187,6 +187,17 @@ class subtype(primitive):
         except ZeroDivisionError:
             raise errors.division_by_zero.with_traceback(sys.exc_info()[2])
 
+    def __truediv__(self, another):
+        def unknown(one, another):
+            raise errors.type_mismatch
+        simple = another.as_simple
+        try:
+            return self.div_table.get(type(simple), unknown)(self, simple)
+        except OverflowError:
+            raise errors.overflow.with_traceback(sys.exc_info()[2])
+        except ZeroDivisionError:
+            raise errors.division_by_zero.with_traceback(sys.exc_info()[2])
+
     def __floordiv__(self, another):
         def unknown(one, another):
             raise errors.type_mismatch
@@ -298,9 +309,6 @@ class subtype(primitive):
 
     def __str__(self):
         raise errors.python_avoid_using
-
-    def __str__(self):
-        raise errors.type_mismatch
 
     def __bool__(self):
         raise errors.type_mismatch

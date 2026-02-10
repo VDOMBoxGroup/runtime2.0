@@ -1,7 +1,4 @@
 """image processing module"""
-from __future__ import division
-
-
 from io import StringIO
 from PIL import Image, ImageDraw, ImageFont
 from utils.exception import VDOM_exception

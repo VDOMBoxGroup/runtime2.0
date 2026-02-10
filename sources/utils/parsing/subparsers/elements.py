@@ -30,7 +30,8 @@ def elements(self, selector, iterator):
             if subuparser:
                 subuparser(self, handler, iterator)
 
-        names, arguments, keywords, defaults = inspect.getargspec(handler)
+        spec = inspect.getfullargspec(handler)
+        names, arguments, keywords, defaults = spec.args, spec.varargs, spec.kwonlyargs, spec.defaults
         index = len(names) - (len(defaults) if defaults else 0)
 
         names = getattr(handler, "names", names)
@@ -47,7 +48,7 @@ def elements(self, selector, iterator):
             try:
                 for attribute_name, parameter, verificator in zip(names, parameters, verificators):
                     verificator(parameter)
-            except:
+            except Exception:
                 raise UnexpectedAttributeValueError(attribute_name)
 
         if not keywords:

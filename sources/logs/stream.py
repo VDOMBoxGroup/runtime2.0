@@ -15,7 +15,7 @@ class ShutdownException(socket.error):
         socket.error.__init__(self, errno.EINTR, "Log server shutdown")
 
 
-class LogSocketStream(object):
+class LogSocketStream:
 
     def __init__(self, thread, socket):
         self._thread = thread
@@ -30,7 +30,7 @@ class LogSocketStream(object):
                 break
             except TimeoutError:
                 return
-            except socket.timeout:
+            except TimeoutError:
                 if not self._thread.running:
                     raise ShutdownException
         if len(value) == size:
@@ -39,7 +39,7 @@ class LogSocketStream(object):
         while left:
             try:
                 chunk = self._socket.recv(left)
-            except socket.timeout:
+            except TimeoutError:
                 if not self._thread.running:
                     raise ShutdownException
                 continue
@@ -54,12 +54,12 @@ class LogSocketStream(object):
             try:
                 offset = self._socket.send(data)
                 break
-            except socket.timeout:
+            except TimeoutError:
                 if not self._thread.running:
                     raise ShutdownException
         while offset < len(data):
             try:
                 offset += self._socket.send(data[offset:])
-            except socket.timeout:
+            except TimeoutError:
                 if not self._thread.running:
                     raise ShutdownException

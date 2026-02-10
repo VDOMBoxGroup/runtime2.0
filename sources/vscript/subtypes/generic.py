@@ -1,5 +1,3 @@
-from __future__ import division
-
 from .. import errors
 from ..lexemes import prefix
 from ..primitives import subtype

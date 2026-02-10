@@ -59,8 +59,10 @@ class LogFile(object):
             next(rights, None)
             for left, right in islice(zip(lefts, rights), start, start + count):
                 self._file.seek(right)
-                entry = self._formatter.parse(self._file.read(left - right).decode("utf8"))
-                result.append(entry)
+                batch = self._file.read(left - right).decode("utf8")
+                if batch:
+                    entry = self._formatter.parse(batch)
+                    result.append(entry)
                 count -= 1
 
         while count > 0 and self._tell:
@@ -68,7 +70,7 @@ class LogFile(object):
             self._tell -= size
 
             self._file.seek(self._tell)
-            data = self._file.read(size) + self._data
+            data = self._file.read(size).decode() + self._data
 
             iterator = self._formatter.finditer(data)
 
@@ -91,7 +93,7 @@ class LogFile(object):
                 except StopIteration:
                     break
                 else:
-                    entry = self._formatter.parse(data[tell:position].decode("utf8"))
+                    entry = self._formatter.parse(data[tell:position])
                     index.appendleft(self._tell + tell)
                     entries.appendleft(entry)
                     count -= 1

@@ -1,5 +1,3 @@
-from __future__ import division
-
 import sys
 from .. import errors
 from .primitive import primitive
@@ -117,9 +115,6 @@ class variable(primitive):
 
     def __float__(self):
         return float(self.subtype)
-
-    def __str__(self):
-        return str(self.subtype)
 
     def __str__(self):
         return str(self.subtype)

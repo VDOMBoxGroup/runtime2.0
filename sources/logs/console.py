@@ -12,7 +12,7 @@ LOGGING = None
 NAME = "console"
 
 
-class Console(object):
+class Console:
 
     stdout = sys.stdout
     stderr = sys.stderr
@@ -34,8 +34,14 @@ class Console(object):
             # if isinstance(message, str):
             #     message = message.encode((self.stderr.encoding if level is levels.ERROR
             #         else self.stdout.encoding) or "ascii", "backslashreplace")
-            if not isinstance(message, str):
-                message = str(message)
+            if isinstance(message, bytes):
+                message = message.encode((self.stderr.encoding if level is levels.ERROR
+                     else self.stdout.encoding) or "ascii", "backslashreplace")
+            elif not isinstance(message, str):
+                try:
+                    message = message.encode()
+                except Exception:
+                    message = str(message)
 
             if format:
                 message = self._formatter.format(module, level, message)

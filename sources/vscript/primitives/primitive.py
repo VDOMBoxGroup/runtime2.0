@@ -2,7 +2,7 @@
 from .. import errors
 
 
-class primitive(object):
+class primitive:
 
     def _get_subtype(self):
         raise errors.python_using_abstract

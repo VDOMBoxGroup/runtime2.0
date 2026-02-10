@@ -11,7 +11,7 @@ from .packer import create_packer
 VIEWER_TIMEOUT = 3.0
 
 
-class LogViewerStream(object):
+class LogViewerStream:
 
     def __init__(self, socket):
         self._socket = socket
@@ -24,7 +24,7 @@ class LogViewerStream(object):
         while left:
             chunk = self._socket.recv(left)
             if not chunk:
-                raise socket.error(errno.EIO, "No data available")
+                raise OSError(errno.EIO, "No data available")
             chunks.append(chunk)
             left -= len(chunk)
         return "".join(chunks)
@@ -35,7 +35,7 @@ class LogViewerStream(object):
             offset += self._socket.send(data[offset:])
 
 
-class LogViewer(object):
+class LogViewer:
 
     _assume_request = create_packer("BBS")
     _update_request = create_packer("BB")

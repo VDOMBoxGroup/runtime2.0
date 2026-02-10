@@ -167,7 +167,7 @@ string.pow_table = {
 
 
 string.eq_table = {
-    empty: lambda self, another: boolean(true) if str(self) == u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) == "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) == int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) == float(another) else boolean(false),
@@ -176,7 +176,7 @@ string.eq_table = {
     boolean: lambda self, another: boolean(true) if str(self) == str(another) else boolean(false)}
 
 string.ne_table = {
-    empty: lambda self, another: boolean(true) if str(self) != u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) != "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) != int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) != float(another) else boolean(false),
@@ -185,7 +185,7 @@ string.ne_table = {
     boolean: lambda self, another: boolean(true) if str(self) != str(another) else boolean(false)}
 
 string.lt_table = {
-    empty: lambda self, another: boolean(true) if str(self) < u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) < "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) < int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) < float(another) else boolean(false),
@@ -194,7 +194,7 @@ string.lt_table = {
     boolean: lambda self, another: boolean(true) if str(self) < str(another) else boolean(false)}
 
 string.gt_table = {
-    empty: lambda self, another: boolean(true) if str(self) > u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) > "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) > int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) > float(another) else boolean(false),
@@ -203,7 +203,7 @@ string.gt_table = {
     boolean: lambda self, another: boolean(true) if str(self) > str(another) else boolean(false)}
 
 string.le_table = {
-    empty: lambda self, another: boolean(true) if str(self) <= u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) <= "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) <= int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) <= float(another) else boolean(false),
@@ -212,7 +212,7 @@ string.le_table = {
     boolean: lambda self, another: boolean(true) if str(self) <= str(another) else boolean(false)}
 
 string.ge_table = {
-    empty: lambda self, another: boolean(true) if str(self) >= u"" else boolean(false),
+    empty: lambda self, another: boolean(true) if str(self) >= "" else boolean(false),
     null: lambda self, another: v_null,
     integer: lambda self, another: boolean(true) if int(self) >= int(another) else boolean(false),
     double: lambda self, another: boolean(true) if float(self) >= float(another) else boolean(false),

@@ -49,7 +49,7 @@ def query(caption, address, port, request, timeout=None, datagrams=False):
             sock.sendto(request, (address, port))
         else:
             sock.connect((address, port))
-            sock.send(request)
+            sock.send(request.encode())
 
         if datagrams:
             message, address = sock.recvfrom(FRAME)
@@ -59,7 +59,7 @@ def query(caption, address, port, request, timeout=None, datagrams=False):
                 reading, writing, erratic = select.select((sock,), (), (), timeout)
                 if reading:
                     chunk = sock.recv(FRAME)
-                    message += chunk
+                    message += chunk.decode()
                     if RESPONSE_PATTERN.match(message):
                         break
 

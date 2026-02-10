@@ -1,6 +1,3 @@
-from __future__ import division
-
-
 def get_centered_image_metrics(image_width, image_height, container_width, container_height):
     width_distance = container_width - image_width if container_width > image_width else 0
     height_distance = container_height - image_height if container_height > image_height else 0

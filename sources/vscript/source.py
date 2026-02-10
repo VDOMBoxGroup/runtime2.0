@@ -1,8 +1,3 @@
-from __future__ import absolute_import
-from __future__ import division
-
-from builtins import map
-
 from copy import deepcopy
 from importlib import import_module
 from . import errors, lexemes, error
@@ -11,36 +6,36 @@ from .register import register
 import settings
 
 
-__all__ = [u"vname", u"vmybase", u"vme", u"vmyclass", u"vnames",
-           u"vexpression", u"vexpressions",
-           u"vsubscripts", u"varguments", u"vstatements", u"vdeclarations", u"vredim",
-           u"verase", u"vlet", u"vset", u"vuse", u"vpython", u"vconstant", u"vcall",
-           u"velseif", u"velseifs", u"vifthen", u"vifthenelse",
-           u"vselectcase", u"vselectcases", u"vselect", u"vselectelse",
-           u"vdoloop", u"vdowhileloop", u"vdountilloop", u"vdoloopwhile", u"vdoloopuntil",
-           u"vforeach", u"vfor", u"vforstep",
-           u"vtrycatch", u"vtrycatches", u"vtry", u"vtryfinally", u"vthrow",
-           u"vwith", u"vexitfunction", u"vexitsub", u"vexitproperty", u"vexitdo", u"vexitfor",
-           u"vrandomize", u"vprint", u"vtouch", u"vglobals",
-           u"vfunction", u"vsub", u"vpropertyget", u"vpropertylet", u"vpropertyset",
-           u"vinherits", u"vclass", u"vsource"]
+__all__ = ["vname", "vmybase", "vme", "vmyclass", "vnames",
+           "vexpression", "vexpressions",
+           "vsubscripts", "varguments", "vstatements", "vdeclarations", "vredim",
+           "verase", "vlet", "vset", "vuse", "vpython", "vconstant", "vcall",
+           "velseif", "velseifs", "vifthen", "vifthenelse",
+           "vselectcase", "vselectcases", "vselect", "vselectelse",
+           "vdoloop", "vdowhileloop", "vdountilloop", "vdoloopwhile", "vdoloopuntil",
+           "vforeach", "vfor", "vforstep",
+           "vtrycatch", "vtrycatches", "vtry", "vtryfinally", "vthrow",
+           "vwith", "vexitfunction", "vexitsub", "vexitproperty", "vexitdo", "vexitfor",
+           "vrandomize", "vprint", "vtouch", "vglobals",
+           "vfunction", "vsub", "vpropertyget", "vpropertylet", "vpropertyset",
+           "vinherits", "vclass", "vsource"]
 
 
 no_explicit = 1  # try to emulate OPTION EXPLICIT OFF behaviour
 
 absent = "ABSENT"
 
-vscript_constructor = u"%sclass_initialize" % lexemes.prefix
-vscript_destructor = u"%sclass_terminate" % lexemes.prefix
+vscript_constructor = "%sclass_initialize" % lexemes.prefix
+vscript_destructor = "%sclass_terminate" % lexemes.prefix
 
-python_default = u"__call__"
-python_constructor = u"__init__"
-python_destructor = u"__del__"
+python_default = "__call__"
+python_constructor = "__init__"
+python_destructor = "__del__"
 python_result = "result"
 python_value = "subtype"
 
 
-class vself(object):
+class vself:
 
     def __init__(self, line=None):
         pass
@@ -49,27 +44,27 @@ class vself(object):
         pass
 
     def __str__(self):
-        return u"self"
+        return "self"
 
 
-class vname(object):
+class vname:
 
     def __init__(self, base, line=None):
         self.line = line
         self.base = base
-        self.string = u"%s"
+        self.string = "%s"
         self.values = ()
         self.check = 1
 
     def join(self, value):
         if isinstance(value, (vexpression, vexpressions)):
-            self.string += u"(%s)"
+            self.string += "(%s)"
             self.values += (value, )
             self.check = 0
         else:
             if self.check:
-                self.string = u"check(%s)" % self.string
-            self.string = u"%s.%s" % (self.string, value)
+                self.string = "check(%s)" % self.string
+            self.string = "%s.%s" % (self.string, value)
             self.check = 1
         return self
 
@@ -127,8 +122,8 @@ class vname(object):
 
     def __str__(self):
         result = self.string % (
-            (u"self.%s" % self.base if self.member else self.base, ) + self.values)
-        return u"check(%s)" % result if self.check else result
+            ("self.%s" % self.base if self.member else self.base, ) + self.values)
+        return "check(%s)" % result if self.check else result
 
 
 class vnames(list):
@@ -145,7 +140,7 @@ class vnames(list):
             name.scope_names(mysource, myclass, myprocedure)
 
     def __str__(self):
-        return u", ".join([str(name) for name in self])
+        return ", ".join([str(name) for name in self])
 
 
 class vme(vname):
@@ -214,7 +209,7 @@ class vmyclass(vname):
             expressions.scope_names(mysource, myclass, myprocedure)
 
 
-class vexpression(object):
+class vexpression:
 
     def __init__(self, string, values=None, line=None):
         self.line = line
@@ -253,11 +248,11 @@ class vexpressions(list):
         return self
 
     def let(self, value):
-        self.append(value.apply(u"let=%s"))
+        self.append(value.apply("let=%s"))
         return self
 
     def set(self, value):
-        self.append(value.apply(u"set=%s"))
+        self.append(value.apply("set=%s"))
         return self
 
     def classify(self):
@@ -269,7 +264,7 @@ class vexpressions(list):
             expression.scope_names(mysource, myclass, myprocedure)
 
     def __str__(self):
-        return u", ".join(map(str, self))
+        return ", ".join(map(str, self))
 
 
 class vsubscripts(list):
@@ -285,7 +280,7 @@ class vsubscripts(list):
         pass
 
     def __str__(self):
-        return u"[%s]" % u", ".join(map(str, self))
+        return "[%s]" % ", ".join(map(str, self))
 
 
 class varguments(list):
@@ -302,11 +297,11 @@ class varguments(list):
         [u", ".join([name for name, type in self if type]),
         u", ".join([u"%s(%s)"%(type, name) for name, type in self if type])])))
     """
-    initialization = property(lambda self: u"=".join([_f for _f in [u", ".join([name for name, type in self if type]),
-                                                                    u", ".join([u"%s.%s" % (name, type) for name, type in self if type])] if _f]))
+    initialization = property(lambda self: "=".join([_f for _f in [", ".join([name for name, type in self if type]),
+                                                                    ", ".join(["%s.%s" % (name, type) for name, type in self if type])] if _f]))
 
     def __str__(self):
-        return u", ".join([argument[0] for argument in self])
+        return ", ".join([argument[0] for argument in self])
 
 
 class vstatements(list):
@@ -336,10 +331,10 @@ class vstatements(list):
         if follow:
             contents.extend(follow)
         contents = [line for line in contents if line[2]]
-        return contents if contents else [(None, ident, u"pass")]
+        return contents if contents else [(None, ident, "pass")]
 
 
-class vstatement(object):
+class vstatement:
 
     def __init__(self, line=None):
         self.line = line
@@ -395,8 +390,8 @@ class vredim(list, vstatement):
         return [(self.line, ident, u"redim(%s, [%s]%s)"%\
                 (name, value, preserve)) for name, value in self]
         """
-        return [(self.line, ident, u"%s.redim(%s%s)" %
-                (name, self.preserve, u", %s" % value if value else u""))
+        return [(self.line, ident, "%s.redim(%s%s)" %
+                (name, self.preserve, ", %s" % value if value else ""))
                 for name, value in self]
 
 
@@ -417,7 +412,7 @@ class verase(vstatement):
         """
         return ((self.line, ident, u"erase(%s)"%self.name),)
         """
-        return ((self.line, ident, u"%s.erase(%s)" % (self.name, self.expressions or u"")),)
+        return ((self.line, ident, "%s.erase(%s)" % (self.name, self.expressions or "")),)
 
 
 class vlet(vstatement):
@@ -434,7 +429,7 @@ class vlet(vstatement):
         self.value.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        return ((self.line, ident, u"%s(let=%s)" % (self.name, self.value)),)
+        return ((self.line, ident, "%s(let=%s)" % (self.name, self.value)),)
 
 
 class vset(vstatement):
@@ -451,7 +446,7 @@ class vset(vstatement):
         self.value.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        return ((self.line, ident, u"%s(set=%s)" % (self.name, self.value)),)
+        return ((self.line, ident, "%s(set=%s)" % (self.name, self.value)),)
 
 
 class vuse(vstatement):
@@ -480,7 +475,7 @@ class vuse(vstatement):
         self.import_names = []
 
     def compose(self, ident):
-        return ((self.line, ident, u"from %s import %s" % (self.name, ", ".join(self.import_names))),) \
+        return ((self.line, ident, "from %s import %s" % (self.name, ", ".join(self.import_names))),) \
             if self.import_names else ()
 
 
@@ -521,7 +516,7 @@ class vconstant(vstatement):
         self.value.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        return ((self.line, ident, u"%s=constant(%s)" % (self.name, self.value)),)
+        return ((self.line, ident, "%s=constant(%s)" % (self.name, self.value)),)
 
 
 class vcall(vstatement):
@@ -535,7 +530,7 @@ class vcall(vstatement):
         self.expression.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        return ((self.line, ident, u"%s" % self.expression),)
+        return ((self.line, ident, "%s" % self.expression),)
 
 
 class velseif(vstatement):
@@ -555,7 +550,7 @@ class velseif(vstatement):
         self.statements.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        contents = [(self.line, ident, u"elif bool(%s):" % self.condition)]
+        contents = [(self.line, ident, "elif bool(%s):" % self.condition)]
         contents.extend(self.statements.compose(ident + 1))
         return contents
 
@@ -604,7 +599,7 @@ class vifthen(vstatement):
             self.elseifs.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        contents = [(self.line, ident, u"if bool(%s):" % self.condition)]
+        contents = [(self.line, ident, "if bool(%s):" % self.condition)]
         contents.extend(self.statements.compose(ident+1))
         if self.elseifs:
             contents.extend(self.elseifs.compose(ident))
@@ -628,7 +623,7 @@ class vifthenelse(vifthen):
 
     def compose(self, ident):
         contents = vifthen.compose(self, ident)
-        contents.append((self.line, ident, u"else:"))
+        contents.append((self.line, ident, "else:"))
         contents.extend(self.else_statements.compose(ident+1))
         return contents
 
@@ -651,10 +646,10 @@ class vselectcase(vstatement):
 
     def compose(self, ident, compare, index):
         contents = []
-        conditions = u" or ".join(
-            [u"bool(%s==%s)" % (compare, expression) for expression in self.expressions])
-        contents.append((self.line, ident, u"%s %s:" %
-                        (u"elif" if index else u"if", conditions)))
+        conditions = " or ".join(
+            ["bool(%s==%s)" % (compare, expression) for expression in self.expressions])
+        contents.append((self.line, ident, "%s %s:" %
+                        ("elif" if index else "if", conditions)))
         contents.extend(self.statements.compose(ident+1))
         return contents
 
@@ -721,7 +716,7 @@ class vselectelse(vselect):
 
     def compose(self, ident):
         contents = vselect.compose(self, ident)
-        contents.append((self.line, ident, u"else:"))
+        contents.append((self.line, ident, "else:"))
         contents.extend(self.else_statements.compose(ident+1))
         return contents
 
@@ -741,11 +736,11 @@ class vdoloop(vstatement):
         self.statements.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident, condition=None, follow=None):
-        contents = [(self.line, ident, u"while %s:" %
-                     (condition or u"1")), (self.line, ident+1, u"try:")]
+        contents = [(self.line, ident, "while %s:" %
+                     (condition or "1")), (self.line, ident+1, "try:")]
         contents.extend(self.statements.compose(ident+2, follow=follow))
-        contents.append((self.line, ident+1, u"except exitdo:"))
-        contents.append((self.line, ident+2, u"break"))
+        contents.append((self.line, ident+1, "except exitdo:"))
+        contents.append((self.line, ident+2, "break"))
         return contents
 
 
@@ -764,30 +759,30 @@ class vdowhileloop(vdoconditionalloop):
 
     def compose(self, ident):
         return vdoconditionalloop.compose(self, ident,
-                                          condition=u"bool(%s)" % self.condition)
+                                          condition="bool(%s)" % self.condition)
 
 
 class vdountilloop(vdoconditionalloop):
 
     def compose(self, ident):
         return vdoconditionalloop.compose(self, ident,
-                                          condition=u"not bool(%s)" % self.condition)
+                                          condition="not bool(%s)" % self.condition)
 
 
 class vdoloopwhile(vdoconditionalloop):
 
     def compose(self, ident):
         return vdoconditionalloop.compose(self, ident,
-                                          follow=[(self.condition.line, ident+2, u"if not bool(%s):" % self.condition),
-                                                  (self.condition.line, ident+3, u"break")])
+                                          follow=[(self.condition.line, ident+2, "if not bool(%s):" % self.condition),
+                                                  (self.condition.line, ident+3, "break")])
 
 
 class vdoloopuntil(vdoconditionalloop):
 
     def compose(self, ident):
         return vdoconditionalloop.compose(self, ident,
-                                          follow=[(self.condition.line, ident+2, u"if bool(%s):" % self.condition),
-                                                  (self.condition.line, ident+3, u"break")])
+                                          follow=[(self.condition.line, ident+2, "if bool(%s):" % self.condition),
+                                                  (self.condition.line, ident+3, "break")])
 
 
 class vforeach(vstatement):
@@ -806,13 +801,13 @@ class vforeach(vstatement):
         self.statements.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        contents = [(self.line, ident, u"for %s in %s:" % (self.variable, self.collection)),
-                    (self.line, ident+1, u"try:")]
+        contents = [(self.line, ident, "for %s in %s:" % (self.variable, self.collection)),
+                    (self.line, ident+1, "try:")]
         contents.extend(self.statements.compose(ident+2))
-        contents.append((self.line, ident+1, u"except exitfor:"))
-        contents.append((self.line, ident+2, u"break"))
-        contents.append((self.line, ident+1, u"finally:"))
-        contents.append((self.line, ident+2, u"%s=variant()" % self.variable))
+        contents.append((self.line, ident+1, "except exitfor:"))
+        contents.append((self.line, ident+2, "break"))
+        contents.append((self.line, ident+1, "finally:"))
+        contents.append((self.line, ident+2, "%s=variant()" % self.variable))
         return contents
 
 
@@ -833,14 +828,14 @@ class vfor(vstatement):
         self.statements.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident, step=None):
-        contents = [(self.line, ident, u"%s(let=integer(int(%s)))" % (self.variable, self.range[0])),
-                    (self.line, ident, u"while bool(%s<=integer(int(%s))):" %
+        contents = [(self.line, ident, "%s(let=integer(int(%s)))" % (self.variable, self.range[0])),
+                    (self.line, ident, "while bool(%s<=integer(int(%s))):" %
                      (self.variable, self.range[1])),
-                    (self.line, ident+1, u"try:")]
+                    (self.line, ident+1, "try:")]
         contents.extend(self.statements.compose(ident+2,
-                                                follow=[(self.line, ident+2, u"%s(let=%s+integer(int(%s)))" % (self.variable, self.variable, step or u"1"))]))
-        contents.append((self.line, ident+1, u"except exitfor:"))
-        contents.append((self.line, ident+2, u"break"))
+                                                follow=[(self.line, ident+2, "%s(let=%s+integer(int(%s)))" % (self.variable, self.variable, step or "1"))]))
+        contents.append((self.line, ident+1, "except exitfor:"))
+        contents.append((self.line, ident+2, "break"))
         return contents
 
 
@@ -882,11 +877,11 @@ class vtrycatch(vstatement):
         mysource.trys.leave()
 
     def compose(self, ident):
-        contents = [(self.line, ident, u"except%s%s:" %
+        contents = [(self.line, ident, "except%s%s:" %
                      (" (%s.exception)" % str(self.exceptions) if self.exceptions else "",
                       " as %s" % self.name if self.name else ""))]
         contents.extend(self.statements.compose(ident+1,
-                                                precede=[(self.line, ident+1, u"%s=error(%s)" % (self.name, self.name))] if self.name else None))
+                                                precede=[(self.line, ident+1, "%s=error(%s)" % (self.name, self.name))] if self.name else None))
         return contents
 
 
@@ -931,13 +926,13 @@ class vtry(vstatement):
         self.excepts.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident, complete=1):
-        contents = [(self.line, ident, u"try:")]
+        contents = [(self.line, ident, "try:")]
         contents.extend(self.statements.compose(ident+1))
         if self.excepts:
             contents.extend(self.excepts.compose(ident))
         elif complete:
-            contents.append((self.line, ident, u"finally:"))
-            contents.append((self.line, ident+1, u"pass"))
+            contents.append((self.line, ident, "finally:"))
+            contents.append((self.line, ident+1, "pass"))
         return contents
 
 
@@ -959,7 +954,7 @@ class vtryfinally(vtry):
     def compose(self, ident):
         contents = []
         contents.extend(vtry.compose(self, ident, complete=0))
-        contents.append((self.finally_line, ident, u"finally:"))
+        contents.append((self.finally_line, ident, "finally:"))
         contents.extend(self.finally_statements.compose(ident+1))
         return contents
 
@@ -971,7 +966,7 @@ class vthrow(vstatement):
         self.name = name
 
     def compose(self, ident):
-        return [(self.line, ident, u"raise %s.exception" % self.name if self.name else u"raise")]
+        return [(self.line, ident, "raise %s.exception" % self.name if self.name else "raise")]
 
 
 class vwith(vstatement):
@@ -1004,7 +999,7 @@ class vexitfunction(vstatement):
         self.myprocedure = myprocedure
 
     def compose(self, ident):
-        return ((self.line, ident, u"return %s.%s" % (python_result, python_value)),)
+        return ((self.line, ident, "return %s.%s" % (python_result, python_value)),)
 
 
 class vexitsub(vstatement):
@@ -1017,7 +1012,7 @@ class vexitsub(vstatement):
             raise errors.expected_sub(line=self.line)
 
     def compose(self, ident):
-        return ((self.line, ident, u"return v_mismatch"),)
+        return ((self.line, ident, "return v_mismatch"),)
 
 
 class vexitproperty(vstatement):
@@ -1028,8 +1023,8 @@ class vexitproperty(vstatement):
     def scope_names(self, mysource, myclass, myprocedure):
         if not isinstance(myprocedure, (vpropertyget, vpropertyletset)):
             raise errors.expected_property(line=self.line)
-        self.string = u"return %s.%s" % (python_result, python_value) \
-            if isinstance(myprocedure, vpropertyget) else u"return v_mismatch"
+        self.string = "return %s.%s" % (python_result, python_value) \
+            if isinstance(myprocedure, vpropertyget) else "return v_mismatch"
 
     def compose(self, ident):
         return ((self.line, ident, self.string),)
@@ -1041,7 +1036,7 @@ class vexitdo(vstatement):
         vstatement.__init__(self, line)
 
     def compose(self, ident):
-        return ((self.line, ident, u"raise exitdo"),)
+        return ((self.line, ident, "raise exitdo"),)
 
 
 class vexitfor(vstatement):
@@ -1050,7 +1045,7 @@ class vexitfor(vstatement):
         vstatement.__init__(self, line)
 
     def compose(self, ident):
-        return ((self.line, ident, u"raise exitfor"),)
+        return ((self.line, ident, "raise exitfor"),)
 
 
 class vrandomize(vstatement):
@@ -1060,7 +1055,7 @@ class vrandomize(vstatement):
         self.seed = seed
 
     def compose(self, ident):
-        return ((self.line, ident, u"randomize(%s)" % (self.seed or u"")),)
+        return ((self.line, ident, "randomize(%s)" % (self.seed or "")),)
 
 
 class vprint(vstatement):
@@ -1074,7 +1069,7 @@ class vprint(vstatement):
         self.expressions.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        string = u"echo(%s)" % u", ".join(map(str, self.expressions))
+        string = "echo(%s)" % ", ".join(map(str, self.expressions))
         return ((self.line, ident, string),)
 
 
@@ -1089,7 +1084,7 @@ class vtouch(vstatement):
         self.expressions.scope_names(mysource, myclass, myprocedure)
 
     def compose(self, ident):
-        string = u"print repr(%s)" % u", ".join(map(str, self.expressions))
+        string = "print repr(%s)" % ", ".join(map(str, self.expressions))
         return ((self.line, ident, string),)
 
 
@@ -1099,7 +1094,7 @@ class vglobals(list):
         pass
 
     initialization = property(lambda self: (
-        u"global %s" % u", ".join(self)) if self else u"")
+        "global %s" % ", ".join(self)) if self else "")
 
 
 class vdefinename(vstatement):
@@ -1153,7 +1148,7 @@ class vprocedure(vstatement):
         self.statements.scope_names(mysource, myclass, self)
 
     def compose(self, ident, precede=None):
-        contents = [(self.line, ident, u"def %s(%s):" %
+        contents = [(self.line, ident, "def %s(%s):" %
                      (self.vname, self.arguments))]
         for local_line, local_ident, local_string in self.precede:
             contents.append((local_line or self.line, ident + \
@@ -1165,8 +1160,8 @@ class vprocedure(vstatement):
         dims = [(name, value)
                 for name, value in self.names.items() if isinstance(value, str)]
         initialization.extend(
-            [(self.line, ident + 1, u"=".join([_f for _f in [u", ".join([name for name, value in dims]),
-                                                             u", ".join([value for name, value in dims])] if _f]))])
+            [(self.line, ident + 1, "=".join([_f for _f in [", ".join([name for name, value in dims]),
+                                                             ", ".join([value for name, value in dims])] if _f]))])
         contents.extend(self.statements.compose(
             ident + 1, precede=initialization))
         return contents
@@ -1186,7 +1181,7 @@ class vfunction(vprocedure):
 
     def compose(self, ident):
         return vprocedure.compose(self, ident,
-                                  precede=[(self.line, ident+1, u"%s=variant()" % python_result)])
+                                  precede=[(self.line, ident+1, "%s=variant()" % python_result)])
 
 
 class vsub(vprocedure):
@@ -1203,7 +1198,7 @@ class vsub(vprocedure):
     def compose(self, ident):
         return vprocedure.compose(self, ident,
                                   precede=[
-                                      (self.line, ident+1, u"%s=constant()" % python_result)]
+                                      (self.line, ident+1, "%s=constant()" % python_result)]
                                   if self.name not in (python_constructor, python_destructor) else None)
 
 
@@ -1224,22 +1219,22 @@ class vproperty(vstatement):
             arguments.append(len(self.set.arguments))
         if len(arguments) > 1 and sum(arguments) / 3 != arguments[0]:
             raise errors.inconsistent_arguments_number(line=self.line)
-        return [(self.line, ident, u"def %s(self, *arguments, **keywords):" % self.name),
-                (self.line, ident+1, u"if \"let\" in keywords:"),
+        return [(self.line, ident, "def %s(self, *arguments, **keywords):" % self.name),
+                (self.line, ident+1, "if \"let\" in keywords:"),
                 (self.line, ident+2,
-                 u"return self.%s_let(let=keywords[\"let\"], *arguments)" % self.name),
-                (self.line, ident+1, u"elif \"set\" in keywords:"),
+                 "return self.%s_let(let=keywords[\"let\"], *arguments)" % self.name),
+                (self.line, ident+1, "elif \"set\" in keywords:"),
                 (self.line, ident+2,
-                 u"return self.%s_set(set=keywords[\"set\"], *arguments)" % self.name),
-                (self.line, ident+1, u"else:"),
-                (self.line, ident+2, u"return self.%s_get(*arguments)" % self.name)]
+                 "return self.%s_set(set=keywords[\"set\"], *arguments)" % self.name),
+                (self.line, ident+1, "else:"),
+                (self.line, ident+2, "return self.%s_get(*arguments)" % self.name)]
 
 
 class vpropertyget(vprocedure):
 
     def __init__(self, name, arguments, statements, default=False, line=None):
         vprocedure.__init__(self, name, arguments, statements, default, line)
-        self.vname = u"%s_get" % self.name
+        self.vname = "%s_get" % self.name
         self.statements.append(vexitproperty(line=self.line))
 
     def collect_names(self, names):
@@ -1254,7 +1249,7 @@ class vpropertyget(vprocedure):
 
     def compose(self, ident):
         return vprocedure.compose(self, ident,
-                                  precede=[(self.line, ident+1, u"%s=variant()" % python_result)])
+                                  precede=[(self.line, ident+1, "%s=variant()" % python_result)])
 
 
 class vpropertyletset(vprocedure):
@@ -1272,8 +1267,8 @@ class vpropertylet(vpropertyletset):
     def __init__(self, name, arguments, statements, default=False, line=None):
         vpropertyletset.__init__(
             self, name, arguments, statements, default, line)
-        self.vname = u"%s_let" % self.name
-        self.arguments.join((u"let", None))
+        self.vname = "%s_let" % self.name
+        self.arguments.join(("let", None))
 
     def collect_names(self, names):
         vprocedure.collect_names(self, names)
@@ -1287,8 +1282,8 @@ class vpropertylet(vpropertyletset):
 
     def compose(self, ident):
         return vprocedure.compose(self, ident,
-                                  precede=[(self.line, ident+1, u"%s=variant()" % python_result),
-                                           (self.line, ident+1, u"%s=let.%s" % (self.value[0], self.value[1]))])
+                                  precede=[(self.line, ident+1, "%s=variant()" % python_result),
+                                           (self.line, ident+1, "%s=let.%s" % (self.value[0], self.value[1]))])
 
 
 class vpropertyset(vpropertyletset):
@@ -1296,8 +1291,8 @@ class vpropertyset(vpropertyletset):
     def __init__(self, name, arguments, statements, default=False, line=None):
         vpropertyletset.__init__(
             self, name, arguments, statements, default, line)
-        self.vname = u"%s_set" % self.name
-        self.arguments.join((u"set", None))
+        self.vname = "%s_set" % self.name
+        self.arguments.join(("set", None))
 
     def collect_names(self, names):
         vprocedure.collect_names(self, names)
@@ -1311,8 +1306,8 @@ class vpropertyset(vpropertyletset):
 
     def compose(self, ident):
         return vprocedure.compose(self, ident,
-                                  precede=[(self.line, ident+1, u"%s=variant()" % python_result),
-                                           (self.line, ident+1, u"%s=set.%s" % (self.value[0], self.value[1]))])
+                                  precede=[(self.line, ident+1, "%s=variant()" % python_result),
+                                           (self.line, ident+1, "%s=set.%s" % (self.value[0], self.value[1]))])
 
 
 class vinitializations(vstatement):
@@ -1322,7 +1317,7 @@ class vinitializations(vstatement):
         self.owner = owner
 
     def compose(self, ident):
-        return [(self.line, ident, u"self.%s=%s" % (name, value)) for name, value in self.owner.initializations]
+        return [(self.line, ident, "self.%s=%s" % (name, value)) for name, value in self.owner.initializations]
 
 
 class vinherits(vstatement):
@@ -1366,7 +1361,7 @@ class vclass(vstatement):
                 self.statements.append(value)
         if self.default:
             self.statements.insert(0, vsub(python_default, deepcopy(self.default.arguments),
-                                           vstatements().join(vcall(vexpression(u"return self.%s(%s)" % (self.default.name,
+                                           vstatements().join(vcall(vexpression("return self.%s(%s)" % (self.default.name,
                                                                                 self.default.arguments), line=self.line), line=self.line)), line=self.line))
         if self.destructor:
             if not isinstance(self.destructor, vsub):
@@ -1374,7 +1369,7 @@ class vclass(vstatement):
             if self.destructor.arguments:
                 raise errors.constructor_or_destructor_have_arguments
             self.statements.insert(0, vsub(python_destructor, deepcopy(self.destructor.arguments),
-                                           vstatements().join(vcall(vexpression(u"self.%s()" % vscript_destructor, line=self.line),
+                                           vstatements().join(vcall(vexpression("self.%s()" % vscript_destructor, line=self.line),
                                                                     line=self.line)), line=self.line))
         self.initializations = [
             (name, value) for name, value in self.names.items() if isinstance(value, str)]
@@ -1384,19 +1379,19 @@ class vclass(vstatement):
                 statements.join(vinitializations(self, line=self.line))
             if self.constructor:
                 if not isinstance(self.constructor, vsub):
-                    raise errors.expected_sub(u"Sub")
+                    raise errors.expected_sub("Sub")
                 if self.constructor.arguments:
                     raise errors.constructor_or_destructor_have_arguments
                 arguments = deepcopy(self.constructor.arguments)
                 statements.join(vcall(vexpression(
-                    u"self.%s()" % vscript_constructor, line=self.line), line=self.line))
+                    "self.%s()" % vscript_constructor, line=self.line), line=self.line))
             else:
                 arguments = varguments()
             self.native = vsub(python_constructor, arguments,
                                statements, line=self.line)
             self.statements.insert(0, self.native)
         for procedure in [statement for statement in self.statements if isinstance(statement, vprocedure)]:
-            procedure.arguments.insert(0, (u"self", None))
+            procedure.arguments.insert(0, ("self", None))
 
     def check_name_deeply(self, name):
         if name in self.names:
@@ -1411,7 +1406,7 @@ class vclass(vstatement):
             self.native.insert("super(%s, self).__init__()" % self.name)
 
     def compose(self, ident):
-        contents = [(self.line, ident, u"class %s(%s):" %
+        contents = [(self.line, ident, "class %s(%s):" %
                      (self.name, self.inherits or "generic"))]
         contents.extend(self.statements.compose(ident+1))
         return contents
@@ -1426,7 +1421,7 @@ class vnamestack(list):
         self.pop()
 
 
-class vsourcenames(object):
+class vsourcenames:
 
     def __init__(self, environment):
         self.internal = register.names
@@ -1461,14 +1456,14 @@ class vsourcenames(object):
         return True
 
     def compose(self, ident):
-        contents = [(None, ident, u"from vscript.%s import %s" % (name, u", ".join(names)))
+        contents = [(None, ident, "from vscript.%s import %s" % (name, ", ".join(names)))
                     for name, names in self.imports.items() if name is not None]
-        contents.extend((None, ident, u"globals().setdefault(%s, %s)" % (repr(name), value))
+        contents.extend((None, ident, "globals().setdefault(%s, %s)" % (repr(name), value))
                         for name, value in self.names.items() if isinstance(value, str))
         return contents
 
 
-class vsource(object):
+class vsource:
 
     def __init__(self, statements, package=None, environment=None):
         self.line = 0
@@ -1493,7 +1488,7 @@ class vsource(object):
 
     def compose(self, ident):
         self.scope_names()
-        contents = [(None, ident, u"from vscript import *")]
+        contents = [(None, ident, "from vscript import *")]
         if self.package:
             contents.insert(0, (None, 0, "__package__=\"%s\"" % self.package))
         contents.extend(self.statements.compose(

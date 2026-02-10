@@ -1,4 +1,3 @@
-
 import weakref
 import socket
 from collections import deque
@@ -19,11 +18,9 @@ RECONNECT_TIMEOUT = 5
 
 
 class Logger(BaseLogger):
-
     name = "Logger"
 
     def __init__(self):
-
         def condition():
             with self._lock:
                 return not self._queue
@@ -48,7 +45,7 @@ class Logger(BaseLogger):
         # prepare packer and perform assume
         name, packer = sublog.name, sublog.packer
         with self._lock:
-            if name in self._mapping:  
+            if name in self._mapping:
                 luid = self._mapping[name]
                 self._counters[luid] += 1
             else:
@@ -60,7 +57,6 @@ class Logger(BaseLogger):
                 self._mapping[name] = luid
                 self._counters[luid] = 1
                 self._queue.append((actions.ASSUME, luid, name))
-                
 
         def enqueue(*values):
             with self._lock:
@@ -117,19 +113,18 @@ class Logger(BaseLogger):
         # send entry(ies)
         try:
             if self._stream is None:
-
                 # (re)connect to the server
                 while 1:
                     log.write("Connect to %s:%d" % (self._address, self._port))
                     stream_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                    stream_socket.settimeout(RECONNECT_TIMEOUT) # self.quantum
+                    stream_socket.settimeout(RECONNECT_TIMEOUT)  # self.quantum
                     try:
                         stream_socket.connect((self._address, self._port))
                         break
-                    except socket.timeout:
+                    except TimeoutError:
                         if not self.running:
                             return
-                    except socket.error as error:
+                    except OSError as error:
                         log.error(error.strerror or str(error))
                         sleep(RECONNECT_TIMEOUT)
 
@@ -154,11 +149,11 @@ class Logger(BaseLogger):
                     for index, entry in enumerate(entries):
                         entry[2].pack_into(self._stream, *entry[3])
                 return 0
-            except socket.error as error:
+            except OSError as error:
                 log.error(error.strerror or error.message)
                 self._stream = None
-        except UnicodeDecodeError as e: 
-            log.error(u"nonascii data in native logger: %s"%e)
+        except UnicodeDecodeError as e:
+            log.error("nonascii data in native logger: %s" % e)
             return 0
         except:
             with self._lock:

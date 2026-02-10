@@ -62,9 +62,9 @@ def run(request):
                 if isinstance(ret, str):
                     ret = ret.encode("utf8", "ignore")
         except InvalidParamsException as ex:
-            request.write("<ERROR>%s</ERROR>" % ex.message)
+            request.write(f"<ERROR>{ex.message}</ERROR>".encode())
         except Exception as e:
             print_exc()
-            request.write("<ERROR>%s</ERROR>" % e)
+            request.write(f"<ERROR>{e}</ERROR>" % e)
         else:
             request.write("/**/ %s(%s);" % (callback, ret) if callback else ret)

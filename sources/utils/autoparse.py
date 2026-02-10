@@ -229,7 +229,7 @@ class AutoArgumentParser(ArgumentParser):
         module = keywords.pop("module", None)
         alias = keywords.pop("alias", None)
 
-        super(AutoArgumentParser, self).__init__(*arguments, **keywords)
+        super().__init__(*arguments, **keywords)
 
         if module:
             self._package = package or module.__package__ + "."
@@ -269,7 +269,7 @@ class AutoArgumentParser(ArgumentParser):
     default = property(lambda self: self._default)
 
     def parse_args(self, args=None, namespace=None):
-        arguments = super(AutoArgumentParser, self).parse_args(args=args, namespace=namespace)
+        arguments = super().parse_args(args=args, namespace=namespace)
 
         if self._name:
             subparser, parser = self, None
@@ -297,7 +297,7 @@ class AutoArgumentParser(ArgumentParser):
     def error(self, message):
         if self._default and message.endswith("too few arguments"):
             return
-        super(AutoArgumentParser, self).error(message)
+        super().error(message)
 
     def disable(self, optional_actions=False, usage=False, help=False):
         if optional_actions:
@@ -312,10 +312,10 @@ class AutoArgumentParser(ArgumentParser):
         if self._disable_usage:
             return
         else:
-            super(AutoArgumentParser, self).print_usage(*arguments, **keywords)
+            super().print_usage(*arguments, **keywords)
 
     def print_help(self, *arguments, **keywords):
         if self._disable_help:
             return
         else:
-            super(AutoArgumentParser, self).print_help(*arguments, **keywords)
+            super().print_help(*arguments, **keywords)

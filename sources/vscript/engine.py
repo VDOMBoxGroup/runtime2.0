@@ -101,7 +101,7 @@ def check_exception(error, traceback, error_type):
 
 
 def vcompile(script=None, let=None, set=None, filename=None, bytecode=1, package=None,
-             lines=None, environment=None, use=None, anyway=1, quiet=None, listing=True, safe=None):
+             lines=None, environment=None, use=None, anyway=1, quiet=None, listing=False, safe=None):
     global vscript_global_counter
     if script is None:
         if let is not None:
