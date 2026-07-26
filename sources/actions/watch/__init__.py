@@ -13,6 +13,6 @@ from . import query
 from . import profiling
 from . import logging
 from . import debugging
-
+from . import raise_
 
 DEFAULT = ping

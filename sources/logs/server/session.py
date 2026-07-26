@@ -140,6 +140,9 @@ class LogServerSession(SmartDaemon):
 
     def cleanup(self):
         server_log.write("Stop " + self.name)
+        import traceback
+        server_log.write( self.name + traceback.format_stack())
+        
         self._stream = None
 
     _action_request = create_packer("B")

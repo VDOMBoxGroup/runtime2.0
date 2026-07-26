@@ -34,7 +34,7 @@ LOG_LEVEL_REGEX = re.compile(
     re.IGNORECASE)
 EXCEPTION_REGEX = NAME_REGEX
 THREAD_REGEX = re.compile(
-    r"^(?:[A-Z][A-Z\d_-]*(?:\s[A-Z][A-Z\d_-]*)*|(-[1-9]\d*))$",
+    r"^(?:[A-Z][A-Z\d_-]*(?:\s[A-Z][A-Z\d_-]*)*|([-]?[1-9]\d*))$",
     re.IGNORECASE)
 
 FLOAT = float
@@ -205,4 +205,5 @@ def thread(value):
     if match:
         return int(value) if match.lastindex else str(value)
     else:
+        print('re check fails')
         raise ValueError("Not a name")
