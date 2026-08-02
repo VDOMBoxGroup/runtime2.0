@@ -434,6 +434,25 @@ def patch_lib():
         if patterns[i][0] == 'OPACITY':
             patterns[i] = ('OPACITY', '(?i)(opacity)')
             break
+
+    # pyScss 1.4.0 predates clamp(), and matches its known-function list case
+    # sensitively although CSS function names are case insensitive - so
+    # "rotatez(45deg)" was reported as unknown while "rotateZ" was fine. Both
+    # render correctly either way; the only effect was ERROR lines in the log
+    # that are not errors, which is how a real failure went unnoticed.
+    import scss.cssdefs
+    scss.cssdefs.BUILTIN_FUNCTIONS |= {'clamp'}
+    known = {name.lower() for name in scss.cssdefs.BUILTIN_FUNCTIONS}
+
+    def is_builtin_css_function(name):
+        name = name.replace('_', '-')
+        if name.lower() in known:
+            return True
+        return name[0] == '-' and '-' in name[1:]
+
+    scss.cssdefs.is_builtin_css_function = is_builtin_css_function
+    import scss.ast
+    scss.ast.is_builtin_css_function = is_builtin_css_function
 patch_lib()
 
 class VDOM_editableresource(VDOM_object):
