@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_carousel</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.11.8388</Version>
+		<Version>1.9.8388</Version>
 		<Category>Additional</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(065ea1aa-cc4d-a3dd-8383-13ebc037be9e)</Icon>
@@ -17,29 +17,29 @@
 		<Resizable>3</Resizable>
 		<OptimizationPriority>1</OptimizationPriority>
 		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, dialog_3, vdomclass</Containers>
+		<Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass</Containers>
 		<Languages>en_US</Languages>
 	</Information>
 	<Attributes>
 		<Attribute>
 			<Name>stateful</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
+			<DisplayName>#Lang(199)</DisplayName>
+			<Description>#Lang(299)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(399)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(499)|0)|(#Lang(499)|1))</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(2)</CodeInterface>
@@ -47,23 +47,23 @@
 		</Attribute>
 		<Attribute>
 			<Name>visible</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
 			<DefaultValue>1</DefaultValue>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>zindex</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(2)</CodeInterface>
@@ -71,6 +71,18 @@
 		</Attribute>
 		<Attribute>
 			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(3)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
 			<DisplayName>#Lang(105)</DisplayName>
 			<Description>#Lang(205)</Description>
 			<DefaultValue>0</DefaultValue>
@@ -82,10 +94,10 @@
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>left</Name>
+			<Name>width</Name>
 			<DisplayName>#Lang(106)</DisplayName>
 			<Description>#Lang(206)</Description>
-			<DefaultValue>0</DefaultValue>
+			<DefaultValue>400</DefaultValue>
 			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
 			<Visible>1</Visible>
@@ -94,10 +106,10 @@
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>width</Name>
+			<Name>height</Name>
 			<DisplayName>#Lang(107)</DisplayName>
 			<Description>#Lang(207)</Description>
-			<DefaultValue>400</DefaultValue>
+			<DefaultValue>200</DefaultValue>
 			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
 			<Visible>1</Visible>
@@ -106,21 +118,9 @@
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>height</Name>
+			<Name>data</Name>
 			<DisplayName>#Lang(108)</DisplayName>
 			<Description>#Lang(208)</Description>
-			<DefaultValue>200</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(3)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>data</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<Description>#Lang(209)</Description>
 			<DefaultValue>&lt;ul id=&quot;%(id)s&quot;&gt;
 &lt;li&gt;slide 1&lt;/li&gt;
 &lt;li&gt;slide 2 picture &lt;img src=... /&gt;&lt;/li&gt;
@@ -131,7 +131,7 @@
 &lt;li&gt;slide 7&lt;/li&gt;
 &lt;/ul&gt;</DefaultValue>
 			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>MultiLine()</CodeInterface>
@@ -139,23 +139,23 @@
 		</Attribute>
 		<Attribute>
 			<Name>direction</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^[0123]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1)|(#Lang(407)|2)|(#Lang(408)|3))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1)|(#Lang(405)|2)|(#Lang(406)|3))</CodeInterface>
 			<ColorGroup>2</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>itemscount</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
 			<DefaultValue>3</DefaultValue>
 			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(4)</CodeInterface>
@@ -163,11 +163,11 @@
 		</Attribute>
 		<Attribute>
 			<Name>duration</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
 			<DefaultValue>2000</DefaultValue>
 			<RegularExpressionValidation>^\d{1,8}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField()</CodeInterface>
@@ -175,11 +175,11 @@
 		</Attribute>
 		<Attribute>
 			<Name>custominit</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
 			<DefaultValue>infinite: false, auto: false</DefaultValue>
 			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>MultiLine(10000)</CodeInterface>
@@ -187,11 +187,11 @@
 		</Attribute>
 		<Attribute>
 			<Name>classname</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
 			<DefaultValue></DefaultValue>
 			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(1000)</CodeInterface>
@@ -203,56 +203,51 @@
 			<Sentence ID="001">Carousel</Sentence>
 			<Sentence ID="002">The Carousel type produces an object used to spin images or information.</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visibility</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Top</Sentence>
-			<Sentence ID="106">Left</Sentence>
-			<Sentence ID="107">Width</Sentence>
-			<Sentence ID="108">Height</Sentence>
-			<Sentence ID="109">Data</Sentence>
-			<Sentence ID="111">Direction</Sentence>
-			<Sentence ID="112">Visible items</Sentence>
-			<Sentence ID="113">Duration</Sentence>
-			<Sentence ID="114">Custom Init</Sentence>
-			<Sentence ID="115">Class CSS</Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
-			<Sentence ID="203">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
-			<Sentence ID="204">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of &apos;Z-Index&apos; attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
-			<Sentence ID="205">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
-			<Sentence ID="206">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
-			<Sentence ID="207">The width of the object in pixels.</Sentence>
-			<Sentence ID="208">The height of the object in pixels.</Sentence>
-			<Sentence ID="209">The range of HTML elements.</Sentence>
-			<Sentence ID="211">The direction of scrolling the items; it determines whether the object scrolls the items and in what direction to scroll them.</Sentence>
-			<Sentence ID="212">The number of items to display.</Sentence>
-			<Sentence ID="213">The duration of displaying the items.</Sentence>
-			<Sentence ID="214">The JavaScript code initialization.</Sentence>
-			<Sentence ID="215">The names of CSS classes separated by spaces. The names can consist only of Latin characters, may include hyphen (-) and underscore (_). The CSS style must be placed in some other object, for example, in &apos;Hypertext&apos; object.</Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="304">Incorrect value, must be even positive integer from 0 to 99</Sentence>
-			<Sentence ID="305">newAttribute3</Sentence>
-			<Sentence ID="306">newAttribute4</Sentence>
-			<Sentence ID="307">newAttribute5</Sentence>
-			<Sentence ID="308">newAttribute6</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Data</Sentence>
+			<Sentence ID="109">Direction</Sentence>
+			<Sentence ID="111">Visible items</Sentence>
+			<Sentence ID="112">Duration</Sentence>
+			<Sentence ID="113">Custom Init</Sentence>
+			<Sentence ID="114">Class CSS</Sentence>
+			<Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+			<Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+			<Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of &apos;Z-Index&apos; attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
+			<Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
+			<Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
+			<Sentence ID="206">The width of the object in pixels.</Sentence>
+			<Sentence ID="207">The height of the object in pixels.</Sentence>
+			<Sentence ID="208">The range of HTML elements.</Sentence>
+			<Sentence ID="209">The direction of scrolling the items; it determines whether the object scrolls the items and in what direction to scroll them.</Sentence>
+			<Sentence ID="211">The number of items to display.</Sentence>
+			<Sentence ID="212">The duration of displaying the items.</Sentence>
+			<Sentence ID="213">The JavaScript code initialization.</Sentence>
+			<Sentence ID="214">The names of CSS classes separated by spaces. The names can consist only of Latin characters, may include hyphen (-) and underscore (_). The CSS style must be placed in some other object, for example, in &apos;Hypertext&apos; object.</Sentence>
+			<Sentence ID="301">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+			<Sentence ID="303">Incorrect value, must be even positive integer from 0 to 99</Sentence>
+			<Sentence ID="304">newAttribute3</Sentence>
+			<Sentence ID="305">newAttribute4</Sentence>
+			<Sentence ID="306">newAttribute5</Sentence>
+			<Sentence ID="307">newAttribute6</Sentence>
+			<Sentence ID="308"></Sentence>
 			<Sentence ID="309"></Sentence>
 			<Sentence ID="311"></Sentence>
 			<Sentence ID="312"></Sentence>
 			<Sentence ID="313"></Sentence>
 			<Sentence ID="314"></Sentence>
-			<Sentence ID="315"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Invisible</Sentence>
-			<Sentence ID="404">Visible</Sentence>
-			<Sentence ID="405">Left</Sentence>
-			<Sentence ID="406">Right</Sentence>
-			<Sentence ID="407">Up</Sentence>
-			<Sentence ID="408">Down</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">Left</Sentence>
+			<Sentence ID="404">Right</Sentence>
+			<Sentence ID="405">Up</Sentence>
+			<Sentence ID="406">Down</Sentence>
 		</Language>
 	</Languages>
 	<Resources>
@@ -957,71 +952,78 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_carousel(VDOM_object):
-    def render(self, contents=""):
-        display = "display:none;" if self.visible == "0" else "display:block;"
+<![CDATA[import sys
 
-        style_zindex = "z-index:%s;" % self.zindex if int(self.zindex) != 0 else ""
+class VDOM_carousel(VDOM_object):
 
-        style = """{display} {zind} position: {pos}; top: {top}px; left: {left}px;
-                    width: {width}px; height: {height}px; """.format(
-            display=display, zind=style_zindex, pos=self.position, top=self.top, left=self.left, width=self.width, height=self.height
-        )
+	def render(self, contents=""):
+		display = u"display:none;" if self.visible == "0" else u"display:block;"
 
-        id = "o_" + (self.id).replace("-", "_")
-        idin = id + "-inner"
+		style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u""
 
-        if VDOM_CONFIG_1["DEBUG"] == "1":
-            debug_info = "objtype='carousel' objname='%s' ver='%s'" % (self.name, self.type.version)
-        else:
-            debug_info = ""
+		style = u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;
+					width: {width}px; height: {height}px; """\
+			.format(
+				display = display, zind = style_zindex, pos = self.position,
+				top = self.top, left = self.left, width = self.width, height = self.height)
 
-        data = self.data % {"id": idin}
+		id = u"o_" + (self.id).replace('-', '_')
+		idin = id + u"-inner"
 
-        if self.direction == "1":
-            dir = "right"
-        elif self.direction == "2":
-            dir = "up"
-        elif self.direction == "3":
-            dir = "down"
-        else:
-            dir = "left"
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='carousel' objname='%s' ver='%s'" % (self.name, self.type.version)
+		else:
+			debug_info = u""
 
-        classname = """class="%s" """ % self.classname if self.classname else ""
+		data = self.data % { "id": idin }
 
-        if self.custominit != "":
-            custom_init = self.custominit
-        else:
-            custom_init = """
-        items: %(items)s,
-        direction: "%(dir)s",
-        scroll: {
-            items: %(items)s,
-            duration: %(duration)s,
-            pauseOnHover: true
-        }
-            """ % {"dir": dir, "items": int(self.itemscount), "duration": int(self.duration)}
+		if self.direction == '1':
+			dir = 'right'
+		elif self.direction == '2':
+			dir = 'up'
+		elif self.direction == '3':
+			dir = 'down'
+		else:
+			dir = 'left'
 
-        result = """
+		classname = u"""class="%s" """ % self.classname if self.classname else u""
+
+		if self.custominit != "":
+			custom_init = self.custominit
+		else:
+			custom_init = u"""
+		items: %(items)s,
+		direction: "%(dir)s",
+		scroll: {
+			items: %(items)s,
+			duration: %(duration)s,
+			pauseOnHover: true
+		}
+			""" % { "dir": dir, "items": int(self.itemscount), "duration": int(self.duration) }
+
+		result = u"""
 <div %(debug_info)s id="%(id)s" style="%(style)s" %(classname)s>%(data)s</div>
 <script type="text/javascript">
 $j(function(){
-    $j("#%(idin)s").carouFredSel({
-        %(custom_init)s
-    });
+	$j("#%(idin)s").carouFredSel({
+		%(custom_init)s
+	});
 });
-</script>""" % {"debug_info": debug_info, "id": id, "idin": idin, "style": style, "classname": classname, "data": data, "custom_init": custom_init}
+</script>""" % {
+			"debug_info": debug_info, "id": id, "idin": idin,
+			"style": style, "classname": classname,
+			"data": data, "custom_init": custom_init }
 
-        return VDOM_object.render(self, contents=result)
+		return VDOM_object.render(self, contents=result)
 
-    def wysiwyg(self, contents=""):
-        from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
 
-        image_id = "065ea1aa-cc4d-a3dd-8383-13ebc037be9e"
-        result = get_empty_wysiwyg_value(self, image_id)
-
-        return VDOM_object.wysiwyg(self, contents=result)
-]]>
+	def wysiwyg(self, contents=""):
+		from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
+		
+		image_id = "065ea1aa-cc4d-a3dd-8383-13ebc037be9e"
+		result = get_empty_wysiwyg_value(self, image_id)
+		
+		return VDOM_object.wysiwyg(self, contents=result)]]>
 	</SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<script type="text/javascript" src="/5e53b1da-48e5-2d38-f8ea-6407cd4c854f.res"></script>]]></Library>

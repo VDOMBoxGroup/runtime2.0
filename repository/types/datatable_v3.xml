@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_datatable_v3</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>3.267.8389</Version>
+		<Version>3.153.8389</Version>
 		<Category>Table</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(f7e008b4-3eef-3269-b004-089c613a538b)</Icon>
@@ -17,22 +17,22 @@
 		<Resizable>3</Resizable>
 		<OptimizationPriority>1</OptimizationPriority>
 		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass, flexcontainer</Containers>
-		<Handlers>on_update, on_compile</Handlers>
+		<Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
+		<Handlers>on_update</Handlers>
 		<Languages>en_US, fr_FR, ru_RU</Languages>
 	</Information>
 	<Attributes>
 		<Attribute>
-			<Name>cssclass</Name>
+			<Name>stateful</Name>
 			<DisplayName>#Lang(101)</DisplayName>
 			<Description>#Lang(201)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(100)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>hierarchy</Name>
@@ -47,76 +47,76 @@
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>positioning</Name>
+			<Name>visible</Name>
 			<DisplayName>#Lang(103)</DisplayName>
 			<Description>#Lang(203)</Description>
-			<DefaultValue>static</DefaultValue>
-			<RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>top</Name>
+			<Name>zindex</Name>
 			<DisplayName>#Lang(104)</DisplayName>
 			<Description>#Lang(204)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>left</Name>
+			<Name>top</Name>
 			<DisplayName>#Lang(105)</DisplayName>
 			<Description>#Lang(205)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>width</Name>
+			<Name>left</Name>
 			<DisplayName>#Lang(106)</DisplayName>
 			<Description>#Lang(206)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>height</Name>
+			<Name>width</Name>
 			<DisplayName>#Lang(107)</DisplayName>
 			<Description>#Lang(207)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>displaying</Name>
+			<Name>height</Name>
 			<DisplayName>#Lang(108)</DisplayName>
 			<Description>#Lang(208)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<DefaultValue>100</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>title</Name>
@@ -151,7 +151,7 @@
 			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
 			<ColorGroup>2</ColorGroup>
 		</Attribute>
 		<Attribute>
@@ -223,7 +223,7 @@
 			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
 			<ColorGroup>2</ColorGroup>
 		</Attribute>
 		<Attribute>
@@ -235,14 +235,14 @@
 			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(409)|0)|(#Lang(411)|1))</CodeInterface>
 			<ColorGroup>2</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>style</Name>
 			<DisplayName>#Lang(121)</DisplayName>
 			<Description>#Lang(221)</Description>
-			<DefaultValue></DefaultValue>
+			<DefaultValue>#%(id)s caption {font: 18px Arial;text-align:left;margin-bottom:15px;}#%(id)s table.table {border-collapse:collapse;border:1px solid #d4d4d4;height:0px;}#%(id)s .th-cell {height:32px !important;background:#f5f5f5;text-align:left;padding-left:10px;border-bottom:2px solid #d4d4d4;}#%(id)s .thead {height:32px !important;background:#f5f5f5;}#%(id)s table.table td.cell {height:32px !important;text-align:left;padding-left:10px;}#%(id)s tr.even {background: #f0f0f0; } #%(id)s .row {cursor:pointer;}#%(id)s .row_selected {background:#effdff !important;}</DefaultValue>
 			<RegularExpressionValidation>.*</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
 			<Visible>1</Visible>
@@ -254,45 +254,33 @@
 			<Name>skin</Name>
 			<DisplayName>#Lang(122)</DisplayName>
 			<Description>#Lang(222)</Description>
-			<DefaultValue>4</DefaultValue>
+			<DefaultValue>1</DefaultValue>
 			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1)|(#Lang(419)|2)|(#Lang(421)|3)|(#Lang(422)|4))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(412)|0)|(#Lang(413)|1)|(#Lang(414)|2)|(#Lang(415)|3))</CodeInterface>
 			<ColorGroup>4</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>margins</Name>
+			<Name>cssclass</Name>
 			<DisplayName>#Lang(123)</DisplayName>
 			<Description>#Lang(223)</Description>
 			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>paddings</Name>
-			<DisplayName>#Lang(124)</DisplayName>
-			<Description>#Lang(224)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
+			<CodeInterface>TextField(100)</CodeInterface>
 			<ColorGroup>4</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>nocellclick</Name>
-			<DisplayName>#Lang(125)</DisplayName>
-			<Description>#Lang(225)</Description>
+			<DisplayName>#Lang(124)</DisplayName>
+			<Description>#Lang(224)</Description>
 			<DefaultValue></DefaultValue>
 			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
 			<Visible>0</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(1000)</CodeInterface>
@@ -300,99 +288,15 @@
 		</Attribute>
 		<Attribute>
 			<Name>tristate</Name>
-			<DisplayName>#Lang(126)</DisplayName>
-			<Description>#Lang(226)</Description>
+			<DisplayName>#Lang(125)</DisplayName>
+			<Description>#Lang(225)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(423)|1)|(#Lang(424)|0))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(416)|1)|(#Lang(417)|0))</CodeInterface>
 			<ColorGroup>3</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_top</Name>
-			<DisplayName>#Lang(127)</DisplayName>
-			<Description>#Lang(227)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_left</Name>
-			<DisplayName>#Lang(128)</DisplayName>
-			<Description>#Lang(228)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_width</Name>
-			<DisplayName>#Lang(129)</DisplayName>
-			<Description>#Lang(229)</Description>
-			<DefaultValue>200</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_height</Name>
-			<DisplayName>#Lang(131)</DisplayName>
-			<Description>#Lang(231)</Description>
-			<DefaultValue>100</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(132)</DisplayName>
-			<Description>#Lang(232)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(133)</DisplayName>
-			<Description>#Lang(233)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(425)|0)|(#Lang(426)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(134)</DisplayName>
-			<Description>#Lang(234)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(334)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(427)|0)|(#Lang(428)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
 		</Attribute>
 	</Attributes>
 	<Languages>
@@ -400,14 +304,14 @@
 			<Sentence ID="001">Datatable v3</Sentence>
 			<Sentence ID="002">The Datatable v3 type produces an object that represents some data in the datasheet view. The &apos;Header&apos; attribute defines the names of columns to display, the data are set as an array or dictionary in the &apos;Data&apos; attribute. This type supports single- and multi-selection of table lines.</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">CSS Class</Sentence>
+			<Sentence ID="101"></Sentence>
 			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Position</Sentence>
-			<Sentence ID="104">Top</Sentence>
-			<Sentence ID="105">Left</Sentence>
-			<Sentence ID="106">Width</Sentence>
-			<Sentence ID="107">Height</Sentence>
-			<Sentence ID="108">Display</Sentence>
+			<Sentence ID="103">Visibility</Sentence>
+			<Sentence ID="104">Z-Index</Sentence>
+			<Sentence ID="105">Top</Sentence>
+			<Sentence ID="106">Left</Sentence>
+			<Sentence ID="107">Width</Sentence>
+			<Sentence ID="108">Height</Sentence>
 			<Sentence ID="109">Title</Sentence>
 			<Sentence ID="111">Header</Sentence>
 			<Sentence ID="112">Show header</Sentence>
@@ -420,25 +324,17 @@
 			<Sentence ID="119">Drag-and-drop</Sentence>
 			<Sentence ID="121">Style</Sentence>
 			<Sentence ID="122">Skin</Sentence>
-			<Sentence ID="123">Margins</Sentence>
-			<Sentence ID="124">Paddings</Sentence>
-			<Sentence ID="125">No cellClick</Sentence>
-			<Sentence ID="126">Tri state</Sentence>
-			<Sentence ID="127">IDE_top</Sentence>
-			<Sentence ID="128">IDE_left</Sentence>
-			<Sentence ID="129">IDE_width</Sentence>
-			<Sentence ID="131">IDE_height</Sentence>
-			<Sentence ID="132">Z-Index</Sentence>
-			<Sentence ID="133">Visibility</Sentence>
-			<Sentence ID="134"></Sentence>
-			<Sentence ID="201">Names of CSS classes</Sentence>
+			<Sentence ID="123">CSS Class</Sentence>
+			<Sentence ID="124">No cellClick</Sentence>
+			<Sentence ID="125">Tri state</Sentence>
+			<Sentence ID="201"></Sentence>
 			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203">newAttribute23</Sentence>
-			<Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-			<Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-			<Sentence ID="206">Width of the object in pixels</Sentence>
-			<Sentence ID="207">Height of the object in pixels</Sentence>
-			<Sentence ID="208">newAttribute24</Sentence>
+			<Sentence ID="203">Visibility of the object</Sentence>
+			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
+			<Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
+			<Sentence ID="207">Width of the object in pixels</Sentence>
+			<Sentence ID="208">Height of the object in pixels</Sentence>
 			<Sentence ID="209">Title of the object to display</Sentence>
 			<Sentence ID="211">Header of the table, described in the array</Sentence>
 			<Sentence ID="212">Define if the header is shown or not</Sentence>
@@ -451,25 +347,17 @@
 			<Sentence ID="219">Define is drag-and-drop is used or not</Sentence>
 			<Sentence ID="221">CSS style of the object</Sentence>
 			<Sentence ID="222">Skin of the object</Sentence>
-			<Sentence ID="223">newAttribute25</Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225">List (comma separated) of columns, which haven&apos;t cellclick.</Sentence>
-			<Sentence ID="226">Use 3 states for checkboxes in multiselect mode</Sentence>
-			<Sentence ID="227">newAttribute27</Sentence>
-			<Sentence ID="228">newAttribute28</Sentence>
-			<Sentence ID="229">newAttribute29</Sentence>
-			<Sentence ID="231">newAttribute30</Sentence>
-			<Sentence ID="232">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="233">Visibility of the object</Sentence>
-			<Sentence ID="234"></Sentence>
+			<Sentence ID="223">Names of CSS classes</Sentence>
+			<Sentence ID="224">List (comma separated) of columns, which haven&apos;t cellclick.</Sentence>
+			<Sentence ID="225">Use 3 states for checkboxes in multiselect mode</Sentence>
 			<Sentence ID="301"></Sentence>
 			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="303">newAttribute23</Sentence>
+			<Sentence ID="303"></Sentence>
 			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="309"></Sentence>
 			<Sentence ID="311">Incorrect value, must be array</Sentence>
 			<Sentence ID="312"></Sentence>
@@ -482,43 +370,25 @@
 			<Sentence ID="319"></Sentence>
 			<Sentence ID="321"></Sentence>
 			<Sentence ID="322"></Sentence>
-			<Sentence ID="323">Incorrect value</Sentence>
+			<Sentence ID="323"></Sentence>
 			<Sentence ID="324">Incorrect value</Sentence>
 			<Sentence ID="325">Incorrect value</Sentence>
-			<Sentence ID="326">Incorrect value</Sentence>
-			<Sentence ID="327">newAttribute27</Sentence>
-			<Sentence ID="328">newAttribute28</Sentence>
-			<Sentence ID="329">newAttribute29</Sentence>
-			<Sentence ID="331">newAttribute30</Sentence>
-			<Sentence ID="332">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="334"></Sentence>
-			<Sentence ID="401">Absolute</Sentence>
-			<Sentence ID="402">Fixed</Sentence>
-			<Sentence ID="403">Relative</Sentence>
-			<Sentence ID="404">Static</Sentence>
-			<Sentence ID="405">Block</Sentence>
-			<Sentence ID="406">Inline</Sentence>
-			<Sentence ID="407">Flex</Sentence>
-			<Sentence ID="408">Inline-block</Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">No</Sentence>
-			<Sentence ID="412">Yes</Sentence>
-			<Sentence ID="413">Single</Sentence>
-			<Sentence ID="414">Multi</Sentence>
-			<Sentence ID="415">No</Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403">No</Sentence>
+			<Sentence ID="404">Yes</Sentence>
+			<Sentence ID="405">No</Sentence>
+			<Sentence ID="406">Yes</Sentence>
+			<Sentence ID="407">Single</Sentence>
+			<Sentence ID="408">Multi</Sentence>
+			<Sentence ID="409">No</Sentence>
+			<Sentence ID="411">Yes</Sentence>
+			<Sentence ID="412">User defined</Sentence>
+			<Sentence ID="413">Default</Sentence>
+			<Sentence ID="414">EOF</Sentence>
+			<Sentence ID="415">ProSuite</Sentence>
 			<Sentence ID="416">Yes</Sentence>
-			<Sentence ID="417">User defined</Sentence>
-			<Sentence ID="418">Default</Sentence>
-			<Sentence ID="419">EOF</Sentence>
-			<Sentence ID="421">ProSuite</Sentence>
-			<Sentence ID="422">Empty</Sentence>
-			<Sentence ID="423">Yes</Sentence>
-			<Sentence ID="424">No</Sentence>
-			<Sentence ID="425">No</Sentence>
-			<Sentence ID="426">Yes</Sentence>
-			<Sentence ID="427"></Sentence>
-			<Sentence ID="428"></Sentence>
+			<Sentence ID="417">No</Sentence>
 			<Sentence ID="501">Hide the object</Sentence>
 			<Sentence ID="502">Show the object</Sentence>
 			<Sentence ID="503">Select all the rows</Sentence>
@@ -536,25 +406,17 @@
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
 			<Sentence ID="518"></Sentence>
-			<Sentence ID="519">Add new CSS class</Sentence>
-			<Sentence ID="520">Remove CSS class</Sentence>
 			<Sentence ID="601"></Sentence>
 			<Sentence ID="602"></Sentence>
 			<Sentence ID="603"></Sentence>
 			<Sentence ID="604"></Sentence>
 			<Sentence ID="605"></Sentence>
-			<Sentence ID="606">addClass</Sentence>
-			<Sentence ID="607">removeClass</Sentence>
 			<Sentence ID="701">fade</Sentence>
 			<Sentence ID="702"></Sentence>
 			<Sentence ID="703"></Sentence>
-			<Sentence ID="704">Name of CSS class</Sentence>
-			<Sentence ID="705">Name of CSS class</Sentence>
 			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
 			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
 			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="804">className</Sentence>
-			<Sentence ID="805">className</Sentence>
 			<Sentence ID="901">cellData</Sentence>
 			<Sentence ID="902">cellData</Sentence>
 			<Sentence ID="903">cellData</Sentence>
@@ -582,14 +444,14 @@
 			<Sentence ID="001">Datatable v3</Sentence>
 			<Sentence ID="002">Represents the data in the datasheet view</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">CSS Class</Sentence>
+			<Sentence ID="101"></Sentence>
 			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103"></Sentence>
-			<Sentence ID="104">Top</Sentence>
-			<Sentence ID="105">Left</Sentence>
-			<Sentence ID="106">Width</Sentence>
-			<Sentence ID="107">Height</Sentence>
-			<Sentence ID="108"></Sentence>
+			<Sentence ID="103">Visibility</Sentence>
+			<Sentence ID="104">Z-Index</Sentence>
+			<Sentence ID="105">Top</Sentence>
+			<Sentence ID="106">Left</Sentence>
+			<Sentence ID="107">Width</Sentence>
+			<Sentence ID="108">Height</Sentence>
 			<Sentence ID="109">Title</Sentence>
 			<Sentence ID="111">Header</Sentence>
 			<Sentence ID="112">Show header</Sentence>
@@ -602,25 +464,17 @@
 			<Sentence ID="119">Drag-and-drop</Sentence>
 			<Sentence ID="121">Style</Sentence>
 			<Sentence ID="122">Skin</Sentence>
-			<Sentence ID="123"></Sentence>
+			<Sentence ID="123">CSS Class</Sentence>
 			<Sentence ID="124"></Sentence>
 			<Sentence ID="125"></Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="128"></Sentence>
-			<Sentence ID="129"></Sentence>
-			<Sentence ID="131"></Sentence>
-			<Sentence ID="132">Z-Index</Sentence>
-			<Sentence ID="133">Visibility</Sentence>
-			<Sentence ID="134"></Sentence>
-			<Sentence ID="201">Names of CSS classes</Sentence>
+			<Sentence ID="201"></Sentence>
 			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203"></Sentence>
-			<Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
-			<Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
-			<Sentence ID="206">Width of the object in pixels</Sentence>
-			<Sentence ID="207">Height of the object in pixels</Sentence>
-			<Sentence ID="208"></Sentence>
+			<Sentence ID="203">Visibility of the object</Sentence>
+			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="205">Spacing between the top edge of the container and the object in pixels</Sentence>
+			<Sentence ID="206">Spacing between the left edge of the container and the object in pixels</Sentence>
+			<Sentence ID="207">Width of the object in pixels</Sentence>
+			<Sentence ID="208">Height of the object in pixels</Sentence>
 			<Sentence ID="209">Title of the object to display</Sentence>
 			<Sentence ID="211">Header of the table, described in the array</Sentence>
 			<Sentence ID="212">Define if the header is shown or not</Sentence>
@@ -633,17 +487,9 @@
 			<Sentence ID="219">Define is drag-and-drop is used or not</Sentence>
 			<Sentence ID="221">CSS style of the object</Sentence>
 			<Sentence ID="222">Skin of the object</Sentence>
-			<Sentence ID="223"></Sentence>
+			<Sentence ID="223">Names of CSS classes</Sentence>
 			<Sentence ID="224"></Sentence>
 			<Sentence ID="225"></Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="228"></Sentence>
-			<Sentence ID="229"></Sentence>
-			<Sentence ID="231"></Sentence>
-			<Sentence ID="232">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="233">Visibility of the object</Sentence>
-			<Sentence ID="234"></Sentence>
 			<Sentence ID="301"></Sentence>
 			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
 			<Sentence ID="303"></Sentence>
@@ -651,7 +497,7 @@
 			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="309"></Sentence>
 			<Sentence ID="311">Incorrect value, must be array</Sentence>
 			<Sentence ID="312"></Sentence>
@@ -667,40 +513,22 @@
 			<Sentence ID="323"></Sentence>
 			<Sentence ID="324"></Sentence>
 			<Sentence ID="325"></Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="328"></Sentence>
-			<Sentence ID="329"></Sentence>
-			<Sentence ID="331"></Sentence>
-			<Sentence ID="332">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="334"></Sentence>
 			<Sentence ID="401"></Sentence>
 			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">No</Sentence>
-			<Sentence ID="412">Yes</Sentence>
-			<Sentence ID="413">Single</Sentence>
-			<Sentence ID="414">Multi</Sentence>
-			<Sentence ID="415">No</Sentence>
-			<Sentence ID="416">Yes</Sentence>
-			<Sentence ID="417">User defined</Sentence>
-			<Sentence ID="418">Default</Sentence>
-			<Sentence ID="419">EOF</Sentence>
-			<Sentence ID="421">ProSuite</Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
-			<Sentence ID="424"></Sentence>
-			<Sentence ID="425">No</Sentence>
-			<Sentence ID="426">Yes</Sentence>
-			<Sentence ID="427"></Sentence>
-			<Sentence ID="428"></Sentence>
+			<Sentence ID="403">No</Sentence>
+			<Sentence ID="404">Yes</Sentence>
+			<Sentence ID="405">No</Sentence>
+			<Sentence ID="406">Yes</Sentence>
+			<Sentence ID="407">Single</Sentence>
+			<Sentence ID="408">Multi</Sentence>
+			<Sentence ID="409">No</Sentence>
+			<Sentence ID="411">Yes</Sentence>
+			<Sentence ID="412">User defined</Sentence>
+			<Sentence ID="413">Default</Sentence>
+			<Sentence ID="414">EOF</Sentence>
+			<Sentence ID="415">ProSuite</Sentence>
+			<Sentence ID="416"></Sentence>
+			<Sentence ID="417"></Sentence>
 			<Sentence ID="501">Hide the object</Sentence>
 			<Sentence ID="502">Show the object</Sentence>
 			<Sentence ID="503">Select all the rows</Sentence>
@@ -718,25 +546,17 @@
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
 			<Sentence ID="518"></Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="520"></Sentence>
 			<Sentence ID="601"></Sentence>
 			<Sentence ID="602"></Sentence>
 			<Sentence ID="603"></Sentence>
 			<Sentence ID="604"></Sentence>
 			<Sentence ID="605"></Sentence>
-			<Sentence ID="606"></Sentence>
-			<Sentence ID="607"></Sentence>
 			<Sentence ID="701">fade</Sentence>
 			<Sentence ID="702"></Sentence>
 			<Sentence ID="703"></Sentence>
-			<Sentence ID="704"></Sentence>
-			<Sentence ID="705"></Sentence>
 			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
 			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
 			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="804"></Sentence>
-			<Sentence ID="805"></Sentence>
 			<Sentence ID="901">cellData</Sentence>
 			<Sentence ID="902">cellData</Sentence>
 			<Sentence ID="903">cellData</Sentence>
@@ -764,14 +584,14 @@
 			<Sentence ID="001">Таблица данных v3</Sentence>
 			<Sentence ID="002">Представление данных в виде таблицы</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">Класс CSS</Sentence>
+			<Sentence ID="101"></Sentence>
 			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103"></Sentence>
-			<Sentence ID="104">Сверху</Sentence>
-			<Sentence ID="105">Слева</Sentence>
-			<Sentence ID="106">Ширина</Sentence>
-			<Sentence ID="107">Высота</Sentence>
-			<Sentence ID="108"></Sentence>
+			<Sentence ID="103">Отображение</Sentence>
+			<Sentence ID="104">Позиция</Sentence>
+			<Sentence ID="105">Сверху</Sentence>
+			<Sentence ID="106">Слева</Sentence>
+			<Sentence ID="107">Ширина</Sentence>
+			<Sentence ID="108">Высота</Sentence>
 			<Sentence ID="109">Заголовок</Sentence>
 			<Sentence ID="111">Заголовок</Sentence>
 			<Sentence ID="112">Отобразить заголовок</Sentence>
@@ -784,25 +604,17 @@
 			<Sentence ID="119">Перемещение</Sentence>
 			<Sentence ID="121">Стиль</Sentence>
 			<Sentence ID="122">Оформление</Sentence>
-			<Sentence ID="123"></Sentence>
+			<Sentence ID="123">Класс CSS</Sentence>
 			<Sentence ID="124"></Sentence>
 			<Sentence ID="125"></Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="128"></Sentence>
-			<Sentence ID="129"></Sentence>
-			<Sentence ID="131"></Sentence>
-			<Sentence ID="132">Позиция</Sentence>
-			<Sentence ID="133">Отображение</Sentence>
-			<Sentence ID="134"></Sentence>
-			<Sentence ID="201">Имена классов CSS</Sentence>
+			<Sentence ID="201"></Sentence>
 			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-			<Sentence ID="203"></Sentence>
-			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="206">Ширина объекта в пикселях</Sentence>
-			<Sentence ID="207">Высота объекта в пикселях</Sentence>
-			<Sentence ID="208"></Sentence>
+			<Sentence ID="203">Режим отображения объекта</Sentence>
+			<Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="205">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="206">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="207">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="208">Высота объекта в пикселях</Sentence>
 			<Sentence ID="209">Заголовок объекта</Sentence>
 			<Sentence ID="211">Заголовок таблицы, описанный в виде массива</Sentence>
 			<Sentence ID="212">Показывать заголовок или нет</Sentence>
@@ -815,17 +627,9 @@
 			<Sentence ID="219">Использовать перетаскивание или нет</Sentence>
 			<Sentence ID="221">Стиль CSS</Sentence>
 			<Sentence ID="222">Оформление объекта</Sentence>
-			<Sentence ID="223"></Sentence>
+			<Sentence ID="223">Имена классов CSS</Sentence>
 			<Sentence ID="224"></Sentence>
 			<Sentence ID="225"></Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="228"></Sentence>
-			<Sentence ID="229"></Sentence>
-			<Sentence ID="231"></Sentence>
-			<Sentence ID="232">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="233">Режим отображения объекта</Sentence>
-			<Sentence ID="234"></Sentence>
 			<Sentence ID="301"></Sentence>
 			<Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
 			<Sentence ID="303"></Sentence>
@@ -833,7 +637,7 @@
 			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="309"></Sentence>
 			<Sentence ID="311">Неправильное значение, должен быть массив</Sentence>
 			<Sentence ID="312"></Sentence>
@@ -849,40 +653,22 @@
 			<Sentence ID="323"></Sentence>
 			<Sentence ID="324"></Sentence>
 			<Sentence ID="325"></Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="328"></Sentence>
-			<Sentence ID="329"></Sentence>
-			<Sentence ID="331"></Sentence>
-			<Sentence ID="332">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="334"></Sentence>
 			<Sentence ID="401"></Sentence>
 			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">Нет</Sentence>
-			<Sentence ID="412">Да</Sentence>
-			<Sentence ID="413">Одиночное</Sentence>
-			<Sentence ID="414">Множественное</Sentence>
-			<Sentence ID="415">Нет</Sentence>
-			<Sentence ID="416">Да</Sentence>
-			<Sentence ID="417">Определено пользователем</Sentence>
-			<Sentence ID="418">По умолчанию</Sentence>
-			<Sentence ID="419">EOF</Sentence>
-			<Sentence ID="421">ProSuite</Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
-			<Sentence ID="424"></Sentence>
-			<Sentence ID="425">Нет</Sentence>
-			<Sentence ID="426">Да</Sentence>
-			<Sentence ID="427"></Sentence>
-			<Sentence ID="428"></Sentence>
+			<Sentence ID="403">Нет</Sentence>
+			<Sentence ID="404">Да</Sentence>
+			<Sentence ID="405">Нет</Sentence>
+			<Sentence ID="406">Да</Sentence>
+			<Sentence ID="407">Одиночное</Sentence>
+			<Sentence ID="408">Множественное</Sentence>
+			<Sentence ID="409">Нет</Sentence>
+			<Sentence ID="411">Да</Sentence>
+			<Sentence ID="412">Определено пользователем</Sentence>
+			<Sentence ID="413">По умолчанию</Sentence>
+			<Sentence ID="414">EOF</Sentence>
+			<Sentence ID="415">ProSuite</Sentence>
+			<Sentence ID="416"></Sentence>
+			<Sentence ID="417"></Sentence>
 			<Sentence ID="501">Скрыть объект</Sentence>
 			<Sentence ID="502">Отобразить объект</Sentence>
 			<Sentence ID="503">Выделить все строки</Sentence>
@@ -900,25 +686,17 @@
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
 			<Sentence ID="518"></Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="520"></Sentence>
 			<Sentence ID="601"></Sentence>
 			<Sentence ID="602"></Sentence>
 			<Sentence ID="603"></Sentence>
 			<Sentence ID="604"></Sentence>
 			<Sentence ID="605"></Sentence>
-			<Sentence ID="606"></Sentence>
-			<Sentence ID="607"></Sentence>
 			<Sentence ID="701">Исчезновение</Sentence>
 			<Sentence ID="702"></Sentence>
 			<Sentence ID="703"></Sentence>
-			<Sentence ID="704"></Sentence>
-			<Sentence ID="705"></Sentence>
 			<Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
 			<Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
 			<Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="804"></Sentence>
-			<Sentence ID="805"></Sentence>
 			<Sentence ID="901">cellData</Sentence>
 			<Sentence ID="902">cellData</Sentence>
 			<Sentence ID="903">cellData</Sentence>
@@ -972,6 +750,11 @@
 			mLvumLawNVFoZd0uqjOq7WE0gxR+bu4yxrr2YRquSMYStJfuLx7D/h1ryPfVcXDgV9fKirLmt/0B
 			S3OUMiv43hzCjeLbnuwK95bP4WaxEg4RGUrEwyRtlRmL/X0qu0Rbfjxx+j41tAxFUrvDaM/+F2AA
 			3tc//lMhXzcAAAAASUVORK5CYII=
+		</Resource>
+		<Resource ID="168eab1b-d9e1-9d79-01ce-0211fc938fbf" Type="png" Name="picture">
+			iVBORw0KGgoAAAANSUhEUgAAAAcAAAAbCAIAAAA/JAJkAAAAXklEQVR42o3KtxHAIADAQHv/Uck5
+			gwewClT+6T3nPL9e1r33ta61QOecoGOMa+29g7bWQGutoKUU0JwzaEoJNMYIGkIA9d6DOudArbWg
+			xphr1VqDKqVApZTXKoS4fT86dk2k+FpeSgAAAABJRU5ErkJggg==
 		</Resource>
 		<Resource ID="5a36a105-aea5-cf81-2586-089c91dadd01" Type="png" Name="Icon">
 			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACx
@@ -1127,859 +910,575 @@
 
 
 class VDOM_datatable_v3(VDOM_object):
-    def check_unit(self, value):
-        return value + "px" if value.isdigit() else value
 
-    def render(self, contents=""):
-        idn = (self.id).replace("-", "_")
-        id = "o_" + idn
-        zindex = "z-index: %s;" % self.zindex if int(self.zindex) != 0 else ""
-        display = "none" if self.visible == "0" else self.displaying
-        position = self.positioning if self.positioning and self.positioning != "static" else ""
+	def render(self, contents=""):
 
-        styles = {
-            "z-index": zindex,
-            "display": display,
-            "position": position,
-            "width": self.check_unit(self.width),
-            "height": self.check_unit(self.height),
-            "margin": self.margins,
-            "padding": self.paddings,
-            "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left),
-        }
-        if self.positioning == "static":
-            styles["top"] = styles["left"] = ""
+		idn = (self.id).replace('-', '_')
+		id = u'o_' + idn
 
-        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+		display = u" display:none; " if self.visible == "0" else u""
 
-        cssclasses = " ".join([param.strip() for param in [self.cssclass, "vdom_datatablev3"] if param.strip()])
-        multiselect = "multiselect" if self.selectionmode == "1" else ""
-        tristate = "tristate" if self.tristate == "1" else ""
+		style = u"""{display}z-index: {zind}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px"""\
+			.format(display = display, zind = self.zindex, top = self.top, left = self.left, height = self.height, width = self.width)
 
-        classes = [param for param in [cssclasses, multiselect, tristate] if param]
+		cssclass = u'class="datatablev3 {usercss} {multiselect} {tristate}"'.format(
+				usercss     = (self.cssclass).replace('"', '') if self.cssclass else "",
+				multiselect = u"multiselect" if self.selectionmode == "1" else "",
+				tristate    = u"tristate" if self.tristate == "1" else "" )
 
-        cssclass = 'class="{}"'.format(" ".join(classes))
+		if self.header:
+			try:
+				header = json.loads(self.header)
+				if isinstance(header, int):
+					raise Exception (u"Incorrect value in header %s" % self.header)
+			except:
+				raise Exception (u"Incorrect value in header %s" % self.header)
+		else:
+			header = []
+		if self.data:
+			try:
+				src_data = json.loads(self.data)
+				if isinstance(src_data, int):
+					raise Exception (u"Incorrect value in data %s" % self.data)
+			except:
+				raise Exception (u"Incorrect value in data %s" % self.data)
+		else:
+			src_data = []
 
-        if self.header:
-            try:
-                header = json.loads(self.header)
-                if isinstance(header, int):
-                    raise Exception("Incorrect value in header %s" % self.header)
-            except Exception:
-                raise Exception("Incorrect value in header %s" % self.header)
-        else:
-            header = []
-        if self.data:
-            try:
-                src_data = json.loads(self.data)
-                if isinstance(src_data, int):
-                    raise Exception("Incorrect value in data %s" % self.data)
-            except Exception:
-                raise Exception("Incorrect value in data %s" % self.data)
-        else:
-            src_data = []
+		try:
+			key = json.loads(self.key) #self.key if isinstance(self.key, str) else json.loads(self.key)
+		except:
+			key = self.key
 
-        try:
-            key = json.loads(self.key)  # self.key if isinstance(self.key, str) else json.loads(self.key)
-        except Exception:
-            key = self.key
+		if self.hiddenfields:
+			try:
+				hidden = json.loads(self.hiddenfields)
+				if isinstance(hidden, int):
+					hidden = [hidden]
+			except:
+				if self.hiddenfields in header:
+					hidden = [self.hiddenfields]
+				else:
+					raise Exception (u"Incorrect value in hidden fields  %s" % self.hiddenfields)
+		else:
+			hidden = []
 
-        if self.hiddenfields:
-            try:
-                hidden = json.loads(self.hiddenfields)
-                if isinstance(hidden, int):
-                    hidden = [hidden]
-            except Exception:
-                if self.hiddenfields in header:
-                    hidden = [self.hiddenfields]
-                else:
-                    raise Exception("Incorrect value in hidden fields  %s" % self.hiddenfields)
-        else:
-            hidden = []
+		data = []
+		keys = []
+		for value in src_data:
+			if len(header) == len(value):
+				if isinstance(value, list):
+					row = dict(zip(header, value))
+					data.append(row)
+					if key and key in header:
+						keys.append(row[key])
+				else:
+					data.append(value)
+					if key and key in header:
+						keys.append( value[key] )
 
-        data = []
-        keys = []
-        for value in src_data:
-            if len(header) == len(value):
-                if isinstance(value, list):
-                    row = dict(zip(header, value))
-                    data.append(row)
-                    if key and key in header:
-                        keys.append(row[key])
-                else:
-                    data.append(value)
-                    if key and key in header:
-                        keys.append(value[key])
+		js_multiselect = u""
+		js_singleselect = u""
 
-        js_multiselect = ""
-        js_singleselect = ""
+		if self.selectedrows:
 
-        if self.selectedrows:
-            try:
-                selectedRows = json.loads("%s" % self.selectedrows)
-                if isinstance(selectedRows, list):
-                    js_multiselect = (
-                        """
-window.selectedRows_"""
-                        + id
-                        + """ = """
-                        + json.dumps(selectedRows)
-                        + """;
-for (var j in window.selectedRows_"""
-                        + id
-                        + """){
-    if (typeof(window.selectedRows_"""
-                        + id
-                        + """[j])=="string"){
-        for (var i=0; i < window.keys_"""
-                        + id
-                        + """.length; i++){
-            if (window.selectedRows_"""
-                        + id
-                        + """[j] == window.keys_"""
-                        + id
-                        + """[i]){
-                $j("#"""
-                        + id
-                        + """ table tr").attr('index', function(index, attr){
-                    if (attr == i+1){
-                        $j(this).children("td").children("input").attr('checked', 'checked');
-                        $j(this).addClass('row_selected');
-                    }
-                });
-            }
-        }
-    }
-    else if (typeof(window.selectedRows_"""
-                        + id
-                        + """[j])=="number"){
-        $j("#"""
-                        + id
-                        + """ table tr").attr('index', function(index, attr){
-            if (attr == window.selectedRows_"""
-                        + id
-                        + """[j]){
-                $j(this).children("td").children("input").attr('checked', 'checked');
-                $j(this).addClass('row_selected');
-            }
-        });
-    }
+			try:
+				selectedRows = json.loads(u'%s' % self.selectedrows)
+				if isinstance(selectedRows, list):
+					js_multiselect = u"""
+window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
+for (var j in window.selectedRows_"""+id+"""){
+	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
+		for (var i=0; i < window.keys_"""+id+""".length; i++){
+			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){
+				$j("#"""+id+""" table tr").attr('index', function(index, attr){
+					if (attr == i+1){
+						$j(this).children("td").children("input").attr('checked', 'checked');
+						$j(this).addClass('row_selected');
+					}
+				});
+			}
+		}
+	}
+	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){
+		$j("#"""+id+""" table tr").attr('index', function(index, attr){
+			if (attr == window.selectedRows_"""+id+"""[j]){
+				$j(this).children("td").children("input").attr('checked', 'checked');
+				$j(this).addClass('row_selected');
+			}
+		});
+	}
 }
 """
-                    )
 
-                    js_singleselect = (
-                        """
-window.selectedRows_"""
-                        + id
-                        + """ = """
-                        + json.dumps(selectedRows)
-                        + """;
-for (var j in window.selectedRows_"""
-                        + id
-                        + """){
-    if (typeof(window.selectedRows_"""
-                        + id
-                        + """[j])=="string"){
-        for (var i=0; i < window.keys_"""
-                        + id
-                        + """.length; i++){
-            if (window.selectedRows_"""
-                        + id
-                        + """[j] == window.keys_"""
-                        + id
-                        + """[i]){
-                $j("#"""
-                        + id
-                        + """ table tr").attr('index', function(index, attr){
-                    if (attr == i+1){
-                        $j(this).addClass('row_selected');
-                    }
-                });
-            }
-        }
-    }
-    else if (typeof(window.selectedRows_"""
-                        + id
-                        + """[j])=="number"){
-        $j("#"""
-                        + id
-                        + """ table tr").attr('index', function(index, attr){
-            if (attr == window.selectedRows_"""
-                        + id
-                        + """[j]){
-                $j(this).addClass('row_selected');
-            }
-        });
-    }
+					js_singleselect = u"""
+window.selectedRows_"""+id+""" = """+json.dumps(selectedRows)+""";
+for (var j in window.selectedRows_"""+id+"""){
+	if (typeof(window.selectedRows_"""+id+"""[j])=="string"){
+		for (var i=0; i < window.keys_"""+id+""".length; i++){
+			if (window.selectedRows_"""+id+"""[j] == window.keys_"""+id+"""[i]){
+				$j("#"""+id+""" table tr").attr('index', function(index, attr){
+					if (attr == i+1){
+						$j(this).addClass('row_selected');
+					}
+				});
+			}
+		}
+	}
+	else if (typeof(window.selectedRows_"""+id+"""[j])=="number"){
+		$j("#"""+id+""" table tr").attr('index', function(index, attr){
+			if (attr == window.selectedRows_"""+id+"""[j]){
+				$j(this).addClass('row_selected');
+			}
+		});
+	}
 }
 """
-                    )
 
-                # else:
-                # raise Exception (u"Attribute must be list or dict (in tristate mode)")
-                elif not isinstance(selectedRows, dict):
-                    raise Exception("Attribute must be list or dict (in tristate mode)")
+				#else:
+				#	raise Exception (u"Attribute must be list or dict (in tristate mode)")
+				elif not isinstance(selectedRows, dict):
+					raise Exception (u"Attribute must be list or dict (in tristate mode)")
 
-            except Exception:
-                raise Exception("Incorrect value in selected rows")
+			except:
+				raise Exception (u"Incorrect value in selected rows")
 
-        else:
-            selectedRows = {} if self.tristate == "1" else []
+		else:
+			selectedRows = {} if self.tristate == "1" else []
 
-        js_headerselect = (
-            """
-$j("#"""
-            + id
-            + """ table tr th:not([checkbox])").click(function(){
-    var hname_"""
-            + id
-            + """ = $j(this).html();
-    execEventBinded('"""
-            + idn
-            + """', "headerselected", {headername: hname_"""
-            + id
-            + """});
+		js_headerselect = u"""
+$j("#"""+id+""" table tr th:not([checkbox])").click(function(){
+	var hname_"""+id+""" = $j(this).html();
+	execEventBinded('"""+idn+"""', "headerselected", {headername: hname_"""+id+"""});
 });
 """
-        )
-        js_multiselect += (
-            """
-window.selectionmode_"""
-            + id
-            + """ = 'multi';
-window.tristate_"""
-            + id
-            + """ = """
-            + ("true" if self.tristate == "1" else "false")
-            + """;
+		js_multiselect += u"""
+window.selectionmode_"""+id+""" = 'multi';
+window.tristate_"""+id+""" = """ + ("true" if self.tristate == "1" else "false") + """;
 
 /* click on checkbox in header */
-$j("#"""
-            + id
-            + """ table tr th input:checkbox").click(function(){
-    vdom_dtv3_triBoxClick(this);
-    $j("#"""
-            + id
-            + """ table tr td input.ms").parent().find('em').hide(0);
-    if (window.tristate_"""
-            + id
-            + """) {
-        params_"""
-            + id
-            + """ = {};
-        if (this.checked) {
-            $j("#"""
-            + id
-            + """ table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
-                params_"""
-            + id
-            + """[window.keys_"""
-            + id
-            + """[i]] = "1";
-            });
-        } else {
-            $j("#"""
-            + id
-            + """ table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
-        }
-        $j("#"""
-            + id
-            + """ table tr td input:checkbox").siblings('em').hide(0);
-    } else {
-        params_"""
-            + id
-            + """ = [];
-        if (this.checked) {
-            $j("#"""
-            + id
-            + """ table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
-                params_"""
-            + id
-            + """.push(window.keys_"""
-            + id
-            + """[i]);
-            });
-        } else {
-            $j("#"""
-            + id
-            + """ table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
-        }
-    }
-    if (window.tristate_"""
-            + id
-            + """) {
-        execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: JSON.stringify(params_"""
-            + id
-            + """)});
-    } else {
-        execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: params_"""
-            + id
-            + """});
-    }
+$j("#"""+id+""" table tr th input:checkbox").click(function(){
+	vdom_dtv3_triBoxClick(this);
+	$j("#"""+id+""" table tr td input.ms").parent().find('em').hide(0);
+	if (window.tristate_"""+id+""") {
+		params_"""+id+""" = {};
+		if (this.checked) {
+			$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "1";
+			});
+		} else {
+			$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		}
+		$j("#"""+id+""" table tr td input:checkbox").siblings('em').hide(0);
+	} else {
+		params_"""+id+""" = [];
+		if (this.checked) {
+			$j("#"""+id+""" table tr td input:checkbox").attr('checked', 'checked').parent().parent().addClass('row_selected').each(function(i, e){
+				params_"""+id+""".push(window.keys_"""+id+"""[i]);
+			});
+		} else {
+			$j("#"""+id+""" table tr td input:checkbox").removeAttr('checked').parent().parent().removeClass('row_selected');
+		}
+	}
+	if (window.tristate_"""+id+""") {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	} else {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+	}
 });
 
 /* click on ckeckbox in row */
-$j("#"""
-            + id
-            + """ table tr td input:checkbox").click(function(){
-    vdom_dtv3_triBoxClick(this);
-    if (this.checked) {
-        $j(this).parent().parent().addClass('row_selected');
-    } else {
-        $j(this).parent().parent().removeClass('row_selected');
-    }
-    if (window.tristate_"""
-            + id
-            + """) {
-        params_"""
-            + id
-            + """ = {};
-        $j("#"""
-            + id
-            + """ table tr td input:checkbox").each(function(i, e){
-            if ($j(this).parent().find('em:visible').length > 0) {
-                params_"""
-            + id
-            + """[window.keys_"""
-            + id
-            + """[i]] = "2";
-            } else if (this.checked) {
-                params_"""
-            + id
-            + """[window.keys_"""
-            + id
-            + """[i]] = "1";
-            }
-        });
-        if ($j("#"""
-            + id
-            + """ table tr td input:checkbox").length == $j("#"""
-            + id
-            + """ table tr td input:checked").length) {
-            $j("#"""
-            + id
-            + """ table tr th input:checkbox").attr('checked', 'checked');
-        } else {
-            $j("#"""
-            + id
-            + """ table tr th input:checkbox").removeAttr('checked');
-        }
-        /*$j("#"""
-            + id
-            + """ table tr th input:checkbox").siblings('em').hide(0);*/
-    } else {
-        params_"""
-            + id
-            + """ = [];
-        $j("#"""
-            + id
-            + """ table tr td input:checkbox").each(function(i, e){
-            if (this.checked) {
-                params_"""
-            + id
-            + """.push(window.keys_"""
-            + id
-            + """[i]);
-            }
-        });
-        if ($j("#"""
-            + id
-            + """ table tr td input:checkbox").length == $j("#"""
-            + id
-            + """ table tr td input:checked").length) {
-            $j("#"""
-            + id
-            + """ table tr th input:checkbox").attr('checked', 'checked');
-        } else {
-            $j("#"""
-            + id
-            + """ table tr th input:checkbox").removeAttr('checked');
-        }
-    }
-    if (window.tristate_"""
-            + id
-            + """) {
-        execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: JSON.stringify(params_"""
-            + id
-            + """)});
-    } else {
-        execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: params_"""
-            + id
-            + """});
-    }
+$j("#"""+id+""" table tr td input:checkbox").click(function(){
+	vdom_dtv3_triBoxClick(this);
+	if (this.checked) {
+		$j(this).parent().parent().addClass('row_selected');
+	} else {
+		$j(this).parent().parent().removeClass('row_selected');
+	}
+	if (window.tristate_"""+id+""") {
+		params_"""+id+""" = {};
+		$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+			if ($j(this).parent().find('em:visible').size() > 0) {
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "2";
+			} else if (this.checked) {
+				params_"""+id+"""[window.keys_"""+id+"""[i]] = "1";
+			}
+		});
+		if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
+			$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+		} else {
+			$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+		}
+		/*$j("#"""+id+""" table tr th input:checkbox").siblings('em').hide(0);*/
+	} else {
+		params_"""+id+""" = [];
+		$j("#"""+id+""" table tr td input:checkbox").each(function(i, e){
+			if (this.checked) {
+				params_"""+id+""".push(window.keys_"""+id+"""[i]);
+			}
+		});
+		if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
+			$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
+		} else {
+			$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
+		}
+	}
+	if (window.tristate_"""+id+""") {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+	} else {
+		execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+	}
 });
 
-if ($j("#"""
-            + id
-            + """ table tr td input:checkbox").length == $j("#"""
-            + id
-            + """ table tr td input:checked").length) {
-    $j("#"""
-            + id
-            + """ table tr th input:checkbox").attr('checked', 'checked');
+if ($j("#"""+id+""" table tr td input:checkbox").size() == $j("#"""+id+""" table tr td input:checked").size()) {
+	$j("#"""+id+""" table tr th input:checkbox").attr('checked', 'checked');
 } else {
-    $j("#"""
-            + id
-            + """ table tr th input:checkbox").removeAttr('checked');
+	$j("#"""+id+""" table tr th input:checkbox").removeAttr('checked');
 }
 """
-        )
 
-        js_cellclick = (
-            """
+		js_cellclick = u"""
 
-if (window.selectionmode_"""
-            + id
-            + """ === 'multi') {
-    """
-            + id
-            + """_tds = $j("#"""
-            + id
-            + """:last table tr.row td:not(:nth-child(1))");
+if (window.selectionmode_"""+id+""" === 'multi') {
+	"""+id+"""_tds = $j("#"""+id+""":last table tr.row td:not(:nth-child(1))");
 } else {
-    """
-            + id
-            + """_tds = $j("#"""
-            + id
-            + """:last table tr.row td");
+	"""+id+"""_tds = $j("#"""+id+""":last table tr.row td");
 }
-"""
-            + id
-            + """_doo = false;
+"""+id+"""_doo = false;
 
-$j("""
-            + id
-            + """_tds).bind('click dblclick', function(e){
+$j("""+id+"""_tds).bind('click dblclick', function(e){
 
-    var t = $j(this);
-    var cell_data = t.html(), cell_index = t.attr("index");
-    var header_data = header_"""
-            + id
-            + """[cell_index - 1];
-    var param = window.keys_"""
-            + id
-            + """[(t.parent().attr("index"))-1];
-    params_"""
-            + id
-            + """[0] = window.keys_"""
-            + id
-            + """[(t.parent().attr("index"))-1];
+	var t = $j(this);
+	var cell_data = t.html(), cell_index = t.attr("index");
+	var header_data = header_""" + id + """[cell_index - 1];
+	var param = window.keys_"""+id+"""[(t.parent().attr("index"))-1];
+	params_"""+id+"""[0] = window.keys_"""+id+"""[(t.parent().attr("index"))-1];
 
-    if (e.type == 'dblclick') {
-        """
-            + id
-            + """_doo = false;
+	if (e.type == 'dblclick') {
+		"""+id+"""_doo = false;
 
-        /* double click */
-        execEventBinded('"""
-            + idn
-            + """', "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
+		/* double click */
+		execEventBinded('"""+idn+"""', "celldblclick", {keyField:param, cellData:cell_data, headerData:header_data});
 
-    } else {
-        if (typeof """
-            + id
-            + """_tout === 'undefined') {
-            """
-            + id
-            + """_tout = setTimeout(function() {
-                if ("""
-            + id
-            + """_doo == true) {
+	} else {
+		if (typeof """+id+"""_tout === 'undefined') {
+			"""+id+"""_tout = setTimeout(function() {
+				if ("""+id+"""_doo == true) {
 
-                    /* click */
-                    if(window.selectionmode_"""
-            + id
-            + """ != 'multi'){
-                        $j("#"""
-            + id
-            + """ table tr.row").removeClass('row_selected');
-                        t.parent().addClass('row_selected');
-                        if ("""
-            + ("true" if self.tristate == "1" else "false")
-            + """) {
-                            execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: JSON.stringify(params_"""
-            + id
-            + """)});
-                        } else {
-                            execEventBinded('"""
-            + idn
-            + """', "rowsselected", {keyList: params_"""
-            + id
-            + """});
-                        }
-                    } else {
-                        $j("#"""
-            + id
-            + """ table tr.row").removeClass('row_clicked');
-                        t.parent().addClass('row_clicked');
-                    }
-                    execEventBinded('"""
-            + idn
-            + """', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
-                    $j("#"""
-            + id
-            + """ table tr.row").removeClass('active');
-                    t.parent().addClass('active');
-                }
-                delete """
-            + id
-            + """_tout;
-            }, 200);
-        }
-        """
-            + id
-            + """_doo = true;
-    }
+					/* click */
+					if(window.selectionmode_"""+id+""" != 'multi'){
+						$j("#"""+id+""" table tr.row").removeClass('row_selected');
+						t.parent().addClass('row_selected');
+						if (""" + ("true" if self.tristate == "1" else "false") + """) {
+							execEventBinded('"""+idn+"""', "rowsselected", {keyList: JSON.stringify(params_"""+id+""")});
+						} else {
+							execEventBinded('"""+idn+"""', "rowsselected", {keyList: params_"""+id+"""});
+						}
+					} else {
+						$j("#"""+id+""" table tr.row").removeClass('row_clicked');
+						t.parent().addClass('row_clicked');
+					}
+					execEventBinded('"""+idn+"""', "cellclick", {keyField:param, cellData:cell_data, headerData:header_data});
+					$j("#"""+id+""" table tr.row").removeClass('active');
+					t.parent().addClass('active');
+				}
+				delete """+id+"""_tout;
+			}, 200);
+		}
+		"""+id+"""_doo = true;
+	}
 
-    return false;
+	return false;
 
 });
 """
-        )
 
-        tdata = ""
-        theader = ""
-        vheader = [h for h in header if h not in hidden]
-        nn = 1
-        classfirst = "first"
-        classlast = ""
+		tdata = u""
+		theader = u""
+		vheader = [h for h in header if h not in hidden]
+		nn = 1
+		classfirst = u"first"
+		classlast = u""
 
-        if vheader:
-            theader = (
-                '<tr header class="thead"><th checkbox class="th-cell th-cell-0"><div class="tri"><input id="{0}" type="checkbox" /><label for="{0}"></label><em></em></div></th>'.format(
-                    str(id) + "tri"
-                )
-                if self.selectionmode == "1"
-                else '<tr header class="thead">'
-            )
-            for index, colname in zip(range(len(vheader)), vheader):
-                theader += '<th index="' + str(index + 1) + '" class="th-cell th-cell-' + str(index + 1) + '">' + str(colname) + "</th>"
+		if vheader:
+			theader = u'<tr header class="thead"><th checkbox class="th-cell th-cell-0"><div class="tri"><input id="{0}" type="checkbox" /><label for="{0}"></label><em></em></div></th>'.format(str(id)+"tri") if self.selectionmode == "1" else u'<tr header class="thead">'
+			for (index, colname) in zip(range(len(vheader)), vheader):
+				theader += u'<th index="'+str(index+1)+'" class="th-cell th-cell-'+str(index+1)+'">' + str(colname) + u'</th>'
 
-            theader += "</tr>"
+			theader += u'</tr>'
 
-        lendata = len(data)
-        for row_i, row in zip(range(lendata), data):
-            if nn > 1:
-                classfirst = ""
-            if nn >= lendata:
-                classlast = "last"
-            nn += 1
+		lendata = len(data)
+		for (row_i, row) in zip(range(lendata), data):
 
-            # if (row_i + 1) % 2:
-            # tdata += u'<tr index="'+str(row_i+1)+'" class="row row-'+str(row_i+1)+' oddrow%(active)s '+classfirst+' '+classlast+'">' % {
-            # "active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""
-            # }
-            # else:
-            # tdata += u'<tr index="'+str(row_i+1)+'" class="row row-'+str(row_i+1)+' even%(active)s '+classfirst+' '+classlast+'">' % {
-            # "active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""
-            # }
-            tdata += '<tr index="%(row)s" class="row row-%(row)s %(even)s %(active)s %(classfirst)s %(classlast)s">' % {
-                "classfirst": classfirst,
-                "classlast": classlast,
-                "row": str(row_i + 1),
-                "active": "active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else "",
-                "even": "oddrow" if (row_i + 1) % 2 else "even",
-            }
+			if nn > 1: classfirst = u""
+			if nn >= lendata: classlast = u"last"
+			nn += 1
 
-            if isinstance(selectedRows, dict) and self.tristate == "1" and self.selectionmode == "1":
-                checked = ""
-                visible = 'style="display:none"'
-                for index in selectedRows:
-                    if int(index) == int(keys[row_i]):
-                        if int(selectedRows[index]) == 1:
-                            checked = 'checked="checked"'
-                        elif int(selectedRows[index]) == 2:
-                            visible = ""
+			#if (row_i + 1) % 2:
+			#	tdata += u'<tr index="'+str(row_i+1)+'" class="row row-'+str(row_i+1)+' oddrow%(active)s '+classfirst+' '+classlast+'">' % {
+			#		"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""
+			#	}
+			#else:
+			#	tdata += u'<tr index="'+str(row_i+1)+'" class="row row-'+str(row_i+1)+' even%(active)s '+classfirst+' '+classlast+'">' % {
+			#		"active": u" active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u""
+			#	}
+			tdata += u'<tr index="%(row)s" class="row row-%(row)s %(even)s %(active)s %(classfirst)s %(classlast)s">' % {
+				"classfirst": classfirst,
+				"classlast":  classlast,
+				"row":        str(row_i + 1),
+				"active":     u"active" if self.rowactive and self.rowactive in keys and keys[row_i] == self.rowactive else u"",
+				"even":       u"oddrow" if (row_i + 1) % 2 else u"even"
+			}
 
-                tristate = '<div class="tri"><input type="checkbox" {checked} /><em {visible}></em></div>'.format(checked=checked, visible=visible)
-            else:
-                # tristate = u'<input type="checkbox" />'
-                tristate = '<input id={0} type="checkbox" /><label for={0}></label>'.format(str(id) + str(row_i))
+			if isinstance(selectedRows, dict) and self.tristate == "1" and self.selectionmode == "1":
+				checked  = ''
+				visible = u'style="display:none"'
+				for index in selectedRows:
+					if int(index) == int(keys[row_i]):
+						if int(selectedRows[index]) == 1:
+							checked  = u'checked="checked"'
+						elif int(selectedRows[index]) == 2:
+							visible = ''
 
-            # tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox" />%s</td>' % tristate if self.selectionmode == "1" else ""
-            tdata += '<td checkbox align="center" class="cell cell-0">%s</td>' % tristate if self.selectionmode == "1" else ""
-            if vheader:
-                for index, col in zip(range(len(vheader)), vheader):
-                    try:
-                        tdata += (
-                            '<td index="'
-                            + str(index + 1)
-                            + '" class="cell cell-'
-                            + str(row_i + 1)
-                            + "_"
-                            + str(index + 1)
-                            + " cell-"
-                            + str(index + 1)
-                            + '">'
-                            + str(row[col])
-                            + "</td>"
-                        )
-                    except Exception:
-                        raise Exception("In row (%s) no column %s" % (json.dumps(row), col))
-            else:
-                for index, val in zip(range(len(row)), row):
-                    tdata += '<td class="cell cell-' + str(index + 1) + '">' + str(val) + "</td>"
-            tdata += "</tr>"
+				tristate = u'<div class="tri"><input type="checkbox" {checked} /><em {visible}></em></div>'.format(
+					checked = checked,
+					visible = visible )
+			else:
+				#tristate = u'<input type="checkbox" />'
+				tristate = u'<input id={0} type="checkbox" /><label for={0}></label>'.format(str(id) + str(row_i))
 
-        if self.draggable == "1":
-            js_drag = """
+			#tdata += u'<td checkbox align="center" class="cell cell-0"><input type="checkbox" />%s</td>' % tristate if self.selectionmode == "1" else ""
+			tdata += u'<td checkbox align="center" class="cell cell-0">%s</td>' % tristate if self.selectionmode == "1" else ""
+			if vheader:
+				for (index, col) in zip(range(len(vheader)), vheader):
+					try:
+						tdata += u'<td index="'+str(index+1)+'" class="cell cell-'+str(row_i+1)+'_'+str(index+1)+' cell-'+str(index+1)+'">' + str(row[col]) + u'</td>'
+					except:
+						raise Exception ("In row (%s) no column %s" % (json.dumps(row), col))
+			else:
+				for (index, val) in zip(range(len(row)), row):
+					tdata += u'<td class="cell cell-'+str(index+1)+'">' + str(val) + u'</td>'
+			tdata += u"</tr>"
+
+		if self.draggable == '1':
+			js_drag = u"""
 $j('#%(id)s tr').draggable({
-    connectToDynatree: true
-    ,appendTo: 'body'
-    ,containment: 'document'
-    ,zIndex: 99999
-    ,opacity: 0.6
-    ,helper: 'clone'
-    ,option: 'accept'
-    ,cursor: 'default'
-    ,cursorAt: { left: -2, top: 4 }
-    ,start: function(e,u){
-        execEventBinded('%(idn)s', "dragstart", {itemid: u.helper.attr('index')});
-    }
+	connectToDynatree: true
+	,appendTo: 'body'
+	,containment: 'document'
+	,zIndex: 99999
+	,opacity: 0.6
+	,helper: 'clone'
+	,option: 'accept'
+	,cursor: 'default'
+	,cursorAt: { left: -2, top: 4 }
+	,start: function(e,u){
+		execEventBinded('%(idn)s', "dragstart", {itemid: u.helper.attr('index')});
+	}
 });
-""" % {"id": id, "idn": idn}
-        else:
-            js_drag = ""
+""" % { "id": id, "idn": idn }
+		else:
+			js_drag = ""
 
-        if VDOM_CONFIG_1["DEBUG"] == "1":
-            debug_info = "objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
-        else:
-            debug_info = ""
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='%s' objname='%s' ver='%s'" % (self.type.name, self.name, self.type.version)
+		else:
+			debug_info = u""
 
-        select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick + js_singleselect
+		select = js_multiselect + js_cellclick if self.selectionmode == "1" else js_cellclick + js_singleselect
 
-        result = """
+		result = u"""
 <div %(debug_info)s id='%(id)s' style='%(style)s' %(cssclass)s>
-    <style type="text/css">
-        %(selfstyle)s
-    </style>
-    <table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
-        <caption>%(title)s</caption>
-        %(theader)s
-        <tbody>
-            %(tdata)s
-        </tbody>
-    </table>
-    <script type="text/javascript">
-        $q(function(){
-            var id_%(id)s = '%(id)s';
-            window.keys_%(id)s = %(keys)s;
-            window.header_%(id)s = %(vheader)s;
-            var params_%(id)s = [];
-            %(select)s
-            %(js_headerselect)s
-            %(js_drag)s
-            execEventBinded('%(idn)s', 'load', {width:$q('#%(id)s').outerWidth(),height:$q('#%(id)s').outerHeight()});
-        });
-    </script>
+	<style type="text/css">
+		%(selfstyle)s
+	</style>
+	<table width="100%%" height="100%%" border="2" cellpadding="5" class="table">
+		<caption>%(title)s</caption>
+		%(theader)s
+		<tbody>
+			%(tdata)s
+		</tbody>
+	</table>
+	<script type="text/javascript">
+		$q(function(){
+			var id_%(id)s = '%(id)s';
+			window.keys_%(id)s = %(keys)s;
+			window.header_%(id)s = %(vheader)s;
+			var params_%(id)s = [];
+			%(select)s
+			%(js_headerselect)s
+			%(js_drag)s
+			execEventBinded('%(idn)s', 'load', {width:$q('#%(id)s').outerWidth(),height:$q('#%(id)s').outerHeight()});
+		});
+	</script>
 </div>""" % {
-            "keys": json.dumps(keys),
-            "vheader": json.dumps(vheader),
-            "debug_info": debug_info,
-            "js_drag": js_drag,
-            # "name":            self.name,
-            "select": select,
-            "js_headerselect": js_headerselect,
-            "id": id,
-            "idn": idn,
-            "style": styles_str,
-            "selfstyle": self.style % {"id": id},
-            "cssclass": cssclass,
-            "title": self.title,
-            "theader": "<thead>%s</thead>" % theader if self.showheader == "1" else "",
-            "tdata": tdata,
-        }
+				"keys":            json.dumps(keys),
+				"vheader":         json.dumps(vheader),
+				"debug_info":      debug_info,
+				"js_drag":         js_drag,
+				"name":            self.name,
+				"select":          select,
+				"js_headerselect": js_headerselect,
+				"id":              id,
+				"idn":             idn,
+				"style":           style,
+				"selfstyle":       self.style % {"id": id},
+				"cssclass":        cssclass,
+				"title":           self.title,
+				"theader":         u"<thead>%s</thead>" % theader if self.showheader == '1' else '',
+				"tdata":           tdata }
 
-        return VDOM_object.render(self, contents=result)
+		return VDOM_object.render(self, contents=result)
 
-    def wysiwyg(self, contents=""):
-        from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
 
-        self.width, self.height, self.top, self.left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
+	def wysiwyg(self, contents=""):
+		from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
 
-        # parse data
-        try:
-            header = json.loads(self.header)
-        except Exception:
-            header = []
+		# parse data
+		try:
+			header = json.loads(self.header)
+		except:
+			header = []
 
-        try:
-            src_data = json.loads(self.data)
-        except Exception:
-            src_data = []
+		try:
+			src_data = json.loads(self.data)
+		except:
+			src_data = []
 
-        data = []
-        theader = ""
-        tdata = ""
+		data = []
+		theader = ""
+		tdata = ""
 
-        if len(src_data) == 0 and len(header) == 0:
-            image_id = "f7e008b4-3eef-3269-b004-089c613a538b"
+		if len(src_data) == 0 and len(header) == 0:
+			image_id = "f7e008b4-3eef-3269-b004-089c613a538b"
 
-            result = get_empty_wysiwyg_value(self, image_id)
+			result = get_empty_wysiwyg_value(self, image_id)
 
-            return VDOM_object.wysiwyg(self, contents=result)
+			return VDOM_object.wysiwyg(self, contents=result)
 
-        # collect data
-        for value in src_data:
-            if isinstance(value, list) and len(header) == len(value):
-                row = dict(zip(header, value))
-                data.append(row)
-            else:
-                data.append(value)
 
-        # generate table header
-        for colname in header:
-            theader += """<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
-                        <text fontsize="14" color="#000000" textalign="center">
-                            {colname}
-                        </text>
-                    </cell>""".format(colname=str(colname))
+		# collect data
+		for value in src_data:
+			if isinstance(value, list) and len(header) == len(value):
+				row = dict(zip(header, value))
+				data.append(row)
+			else:
+				data.append(value)
 
-        # generate table data
-        for row in data:
-            tdata += """<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">"""
-            if header and len(header) == len(row):
-                for col in header:
-                    tdata += """<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
-                                <text fontsize="12" color="#000000" textalign="center">
-                                    {cell_data}
-                                </text>
-                            </cell>""".format(cell_data=str(row[col]))
-            else:
-                for val in row:
-                    tdata += """<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
-                                <text fontsize="12" color="#000000" textalign="center">
-                                    {cell_data}
-                                </text>
-                            </cell>""".format(cell_data=str(val))
+		# generate table header
+		for colname in header:
+			theader += \
+				u"""<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
+						<text fontsize="14" color="#000000" textalign="center">
+							{colname}
+						</text>
+					</cell>""".format(colname = str(colname))
 
-            tdata += "</row>"
+		# generate table data
+		for row in data:
+			tdata += u"""<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">"""
+			if header and len(header) == len(row):
+				for col in header:
+					tdata += \
+						u"""<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
+								<text fontsize="12" color="#000000" textalign="center">
+									{cell_data}
+								</text>
+							</cell>""".format(cell_data = str(row[col]))
+			else:
+				for val in row:
+					tdata += \
+						u"""<cell backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
+								<text fontsize="12" color="#000000" textalign="center">
+									{cell_data}
+								</text>
+							</cell>""".format(cell_data = str(val))
 
-        # collect result
-        result = """<container name="{name}" id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}" width="{width}" height="{height}">
-                    <table zindex="{zindex}" top="0" left="0" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1" >
-                        <row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
-                            {theader}
-                        </row>
-                        {tdata}
-                    </table>
-                    {contents}
-                </container>
-            """.format(
-            id=self.id,
-            zindex=self.zindex,
-            hierarchy=self.hierarchy,
-            top=self.top,
-            left=self.left,
-            width=self.width,
-            height=self.height,
-            theader=theader,
-            tdata=tdata,
-            contents=contents,
-            name=self.name,
-        )
+			tdata += u"</row>"
 
-        return VDOM_object.wysiwyg(self, contents=result)
+		# collect result
+		result = \
+			u"""<container name="{name}" id="{id}" zindex="{zindex}" hierarchy="{hierarchy}" top="{top}" left="{left}" width="{width}" height="{height}">
+					<table zindex="{zindex}" top="0" left="0" width="{width}" height="{height}" backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1" >
+						<row backgroundcolor="#f0f0f0" bordercolor="#000000" borderwidth="1">
+							{theader}
+						</row>
+						{tdata}
+					</table>
+					{contents}
+				</container>
+			""".format(
+					id = self.id,
+					zindex = self.zindex,
+					hierarchy = self.hierarchy,
+					top = self.top, left = self.left,
+					width = self.width, height = self.height,
+					theader = theader,
+					tdata = tdata,
+					contents = contents,
+					name = self.name)
+
+		return VDOM_object.wysiwyg(self, contents=result)
 
 
 # def set_attr(app_id, object_id, param):
 def on_update(object, attributes):
-    o = object
-    modifications = {}
 
-    for attr in ["left", "width", "height", "top"]:
-        if attr in attributes:
-            attr_value = attributes[attr]
-            obj_value = o.attributes.get(attr, "").lower()
-
-            if obj_value.isdigit() and attr_value.isdigit():
-                modifications[attr] = attr_value + "px"
-                modifications["ide_" + attr] = attr_value
-            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-                modifications[attr] = attr_value.rstrip("px") + "px"
-                modifications["ide_" + attr] = attr_value.rstrip("px")
-            elif attr_value.isdigit() or "px" in attr_value:
-                modifications[attr] = attr_value if "px" in attr_value else obj_value
-                modifications["ide_" + attr] = attr_value.rstrip("px")
-            else:
-                modifications[attr] = attr_value
-    attributes.update(modifications)
-
-    empty = ""
-
-    users = """\
-#%(id)s {
-
-}
-"""
-
-    eof_style = """
+	eof_style = """
 #%(id)s caption
 {
 }
 
 #%(id)s table.table
 {
-    border-collapse:collapse;
-    border: none;
-    height: 0;
+	border-collapse:collapse;
+	border: none;
+	height: 0;
 }
 
 #%(id)s .thead
 {
-    font-size: 12px;
-    text-align: left;
-    color: #7d7d4f;
-    padding: 0 6px;
+	font-size: 12px;
+	text-align: left;
+	color: #7d7d4f;
+	padding: 0 6px;
 }
 
 #%(id)s .th-cell
 {
-    background: #efefec;
-    border: none;
-    padding-left: 6px;
-    font-size: 12px;
+	background: #efefec;
+	border: none;
+	padding-left: 6px;
+	font-size: 12px;
 }
 
 
 #%(id)s .th-cell-0
 {
-    width: 10px;
-    -webkit-border-radius: 6px 0px 0px 6px;
-    -moz-border-radius: 6px 0px 0px 6px;
-    border-radius: 6px 0px 0px 6px;
+	width: 10px;
+	-webkit-border-radius: 6px 0px 0px 6px;
+	-moz-border-radius: 6px 0px 0px 6px;
+	border-radius: 6px 0px 0px 6px;
 }
 
 /* Set this to the last header cell. Here we had 4 header cell, so I put it to 3.*/
 #%(id)s .th-cell-3
 {
-    width: 10px;
-    padding: 0 16px;
-    -webkit-border-radius: 0px 6px 6px 0px;
-    -moz-border-radius: 0px 6px 6px 0px;
-    border-radius: 0px 6px 6px 0px;
+	width: 10px;
+	padding: 0 16px;
+	-webkit-border-radius: 0px 6px 6px 0px;
+	-moz-border-radius: 0px 6px 6px 0px;
+	border-radius: 0px 6px 6px 0px;
 }
 
 #%(id)s table.table td.cell
 {
-    border: none;
+	border: none;
 }
 
 #%(id)s table.table td.cell:hover
 {
-    color: #006699;
+	color: #006699;
 }
 
 #%(id)s tr.even
@@ -1992,139 +1491,128 @@ def on_update(object, attributes):
 
 #%(id)s .row:hover
 {
-    background: #fafafa !important;
+	background: #fafafa !important;
 }
 
 #%(id)s .row_selected
 {
-    background: #effdff !important;
+	background: #effdff !important;
 }"""
 
-    css = """
+	css = """
 #%(id)s caption {
-    font: 18px Arial;
-    text-align: left;
-    margin-bottom: 15px;
+	font: 18px Arial;
+	text-align: left;
+	margin-bottom: 15px;
 }
 
 #%(id)s table.table {
-    border-collapse: collapse;
-    border: 1px solid #d4d4d4;
-    height: 0;
+	border-collapse: collapse;
+	border: 1px solid #d4d4d4;
+	height: 0;
 }
 
 #%(id)s .th-cell {
-    height: 32px !important;
-    background: #f5f5f5;
-    text-align: left;
-    padding-left: 10px;
-    border-bottom: 2px solid #d4d4d4;
+	height: 32px !important;
+	background: #f5f5f5;
+	text-align: left;
+	padding-left: 10px;
+	border-bottom: 2px solid #d4d4d4;
 }
 
 #%(id)s .thead {
-    height: 32px !important;
-    background: #f5f5f5;
+	height: 32px !important;
+	background: #f5f5f5;
 }
 
 #%(id)s table.table td.cell {
-    height: 32px !important;
-    text-align: left;
-    padding-left: 10px;
+	height: 32px !important;
+	text-align: left;
+	padding-left: 10px;
 }
 #%(id)s tr.even {
-    background: #f0f0f0;
+	background: #f0f0f0;
 }
 #%(id)s .row {
-    cursor: pointer;
+	cursor: pointer;
 }
 #%(id)s .row_selected {
-    background: #effdff !important;
+	background: #effdff !important;
 }
 """
-    pro_suite = """
+	pro_suite = """
 #%(id)s table{
-    height: 0 !important;
-    border-collapse: collapse;
-    border: none;
-    margin-top: 10px;
+	height: 0 !important;
+	border-collapse: collapse;
+	border: none;
+	margin-top: 10px;
 }
 #%(id)s caption{
-    text-align: left;
-    font-size: 18px;
-    margin-bottom: 15px;
+	text-align: left;
+	font-size: 18px;
+	margin-bottom: 15px;
 }
 #%(id)s table .thead {
-    background: #fff url("/168eab1b-d9e1-9d79-01ce-0211fc938fbf.png") bottom right repeat-x;
-    border: none;
-    border-top: 1px solid #ececec;
-    border-bottom: 1px solid #ececec;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+	background: #fff url("/168eab1b-d9e1-9d79-01ce-0211fc938fbf.png") bottom right repeat-x;
+	border: none;
+	border-top: 1px solid #ececec;
+	border-bottom: 1px solid #ececec;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 #%(id)s table .thead .th-cell {
-    border: none;
-    text-align:left;
+	border: none;
+	text-align:left;
 }
 #%(id)s table .thead .th-cell-0 {
-    border: none;
-    border-left:1px solid #ececec;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
-    width:32px;
+	border: none;
+	border-left:1px solid #ececec;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	width:32px;
 }
 #%(id)s table .thead .th-cell-2 {
-    border: none;
-    border-right:1px solid #ececec;
-    border-radius: 4px;
-    -moz-border-radius:4px;
-    -webkit-border-radius: 4px;
+	border: none;
+	border-right:1px solid #ececec;
+	border-radius: 4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius: 4px;
 }
 #%(id)s table tr td{
-    border: none;
-    text-align: left;
-    border-bottom: 1px dotted #bfbfbf;
-    line-height: 27px;
+	border: none;
+	text-align: left;
+	border-bottom: 1px dotted #bfbfbf;
+	line-height: 27px;
 }"""
 
-    # o = application.objects.search(object_id)
-    o = object
+	# o = application.objects.search(object_id)
+	o = object
 
-    # set attributes
+	# set attributes
 
-    # if "skin" in param:
-    # 	if param["skin"]["value"] == "1":
-    # 		o.set_attributes({"style": css})
-    # 	elif param["skin"]["value"] == "2":
-    # 		o.set_attributes({"style": eof_style})
-    # 	elif param["skin"]["value"] == "3":
-    # 		o.set_attributes({"style": pro_suite})
-    # if "style" in param and param["style"]["value"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:
-    # 	o.set_attributes({"skin": 0})
-    skin_mapping = {"0": users, "1": css, "2": eof_style, "3": pro_suite, "4": empty}
-    if "skin" in attributes:
-        skin = attributes["skin"]
-        if skin in skin_mapping:
-            attributes.update(style=skin_mapping[skin])
-        else:
-            attributes.update(skin="0")
+	# if "skin" in param:
+	# 	if param["skin"]["value"] == "1":
+	# 		o.set_attributes({"style": css})
+	# 	elif param["skin"]["value"] == "2":
+	# 		o.set_attributes({"style": eof_style})
+	# 	elif param["skin"]["value"] == "3":
+	# 		o.set_attributes({"style": pro_suite})
+	# if "style" in param and param["style"]["value"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:
+	# 	o.set_attributes({"skin": 0})
+	if "skin" in attributes:
+		if attributes["skin"] == "1":
+			attributes.update(skin=css)
+		elif attributes["skin"] == "2":
+			attributes.update(skin=eof_style)
+		elif attributes["skin"] == "3":
+			attributes.update(skin=pro_suite)
+	if "style" in attributes and attributes["style"] and o.attributes.style != css and o.attributes.style != eof_style and o.attributes.style != pro_suite:
+		attributes.update(skin="0")
 
-    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-        attributes.update(skin="0")
-
-    return ""
-
-
-def on_compile(object, attributes):
-    for attr in ["left", "width", "height", "top"]:
-        obj_value = object.attributes[attr]
-
-        if obj_value.isdigit() or "px" in obj_value:
-            object.attributes[attr] = obj_value.rstrip("px") + "px"
-            object.attributes["ide_" + attr] = obj_value.rstrip("px")
-]]>
-	</SourceCode>
+	return ""
+	]]></SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<script type='text/javascript'>
 
@@ -2148,12 +1636,47 @@ $(function(){
 </script>
 
 <style type="text/css">
-    .vdom_datatablev3 {
 
-    }
-    .vdom_datatablev3.multiselect.tristate div.tri {
-	
-    }
+.datatablev3.multiselect.tristate div.tri {
+	position: relative;
+	height: 20px;
+}
+
+.datatablev3.multiselect.tristate div.tri input {
+	z-index: 10;  
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: transparent;
+	opacity: 0.7;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+}
+
+.datatablev3.multiselect.tristate div.tri em {
+	z-index: 1;
+	background: #6c6;
+	width: 7px;
+	height: 8px;
+	display: block;
+	position: absolute;
+	top: 5px;
+	left: 7px;
+	overflow: hidden;
+	padding: 0;
+	margin: 0;
+}
+
+.lt-ie9 .datatablev3.multiselect.tristate div.tri em {
+	left: 6px;
+}
+
+.lt-ie8 .datatablev3.multiselect.tristate div.tri em {
+	left: 7px;
+	top: 7px;
+}
 
 </style>]]></Library>
 	</Libraries>
@@ -2234,14 +1757,6 @@ $(function(){
 		</Events>
 		<Actions>
 			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-				<Action Name="addClass" DisplayName="#Lang(606)" Description="#Lang(519)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(804)" Description="#Lang(704)" DefaultValue="" RegularExpressionValidation="" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).addClass(className);]]>
-					</SourceCode>
-				</Action>
 				<Action Name="hide" DisplayName="#Lang(601)" Description="#Lang(501)">
 					<Parameters>
 						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation="^\d+$" Interface="" />
@@ -2250,12 +1765,12 @@ $(function(){
 <![CDATA[vdom_ui_hide(this.domCont, fade);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="removeClass" DisplayName="#Lang(607)" Description="#Lang(520)">
+				<Action Name="show" DisplayName="#Lang(602)" Description="#Lang(502)">
 					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(805)" Description="#Lang(705)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation="^\d+$" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[$q(this.domCont).removeClass(className);]]>
+<![CDATA[vdom_ui_show(this.domCont, fade);]]>
 					</SourceCode>
 				</Action>
 				<Action Name="selectAll" DisplayName="#Lang(603)" Description="#Lang(503)">
@@ -2306,14 +1821,6 @@ if (selectionmode == 'multi') {
 		execEventBinded(id.substring(2, id.length), "rowsselected", {keyList: keys});
 	}
 }]]>
-					</SourceCode>
-				</Action>
-				<Action Name="show" DisplayName="#Lang(602)" Description="#Lang(502)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation="^\d+$" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_show(this.domCont, fade);]]>
 					</SourceCode>
 				</Action>
 			</Container>

@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_listv2</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.64.1</Version>
+		<Version>1.12.1</Version>
 		<Category>Standard</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(e1246b00-381e-4b32-bad7-4a647a08d557)</Icon>
@@ -17,342 +17,29 @@
 		<Resizable>3</Resizable>
 		<OptimizationPriority>1</OptimizationPriority>
 		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, dialog_2, dialog_3, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
-		<Handlers>on_compile, on_update</Handlers>
+		<Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, smartfolderdata, flexcontainer</Containers>
 		<Languages>en_US, fr_FR, ru_RU</Languages>
 	</Information>
 	<Attributes>
 		<Attribute>
-			<Name>classname</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(199)</DisplayName>
+			<Description>#Lang(299)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(399)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>DropDown((#Lang(499)|0)|(#Lang(499)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>positioning</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
-			<DefaultValue>static</DefaultValue>
-			<RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>width</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>height</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<Description>#Lang(207)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^\d{0,4}$|^auto$|\d{0,4}(px)|\d{0,4}(em)|\d{0,4}(rem)|^\d{0,4}(%)$|^\d{0,4}(vh)$|^\d{0,4}(vw)$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>displaying</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<Description>#Lang(208)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>data</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<Description>#Lang(209)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectedrows</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectionmode</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>layout</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>activeitem</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>droppable</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>clickclass</Name>
-			<DisplayName>#Lang(116)</DisplayName>
-			<Description>#Lang(216)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(1000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>skindata</Name>
-			<DisplayName>#Lang(117)</DisplayName>
-			<Description>#Lang(217)</Description>
-			<DefaultValue>2</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1)|(#Lang(419)|2))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>style</Name>
-			<DisplayName>#Lang(118)</DisplayName>
-			<Description>#Lang(218)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(100000)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>skin</Name>
-			<DisplayName>#Lang(119)</DisplayName>
-			<Description>#Lang(219)</Description>
-			<DefaultValue>2</DefaultValue>
-			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(421)|0)|(#Lang(422)|1)|(#Lang(423)|2))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>margins</Name>
-			<DisplayName>#Lang(121)</DisplayName>
-			<Description>#Lang(221)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>paddings</Name>
-			<DisplayName>#Lang(122)</DisplayName>
-			<Description>#Lang(222)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectablerows</Name>
-			<DisplayName>#Lang(123)</DisplayName>
-			<Description>#Lang(223)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>droppablerows</Name>
-			<DisplayName>#Lang(124)</DisplayName>
-			<Description>#Lang(224)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10000)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>selectonclick</Name>
-			<DisplayName>#Lang(125)</DisplayName>
-			<Description>#Lang(225)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[0-4]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(424)|0)|(#Lang(425)|1)|(#Lang(426)|2)|(#Lang(427)|3)|(#Lang(428)|4))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_top</Name>
-			<DisplayName>#Lang(126)</DisplayName>
-			<Description>#Lang(226)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_left</Name>
-			<DisplayName>#Lang(127)</DisplayName>
-			<Description>#Lang(227)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_width</Name>
-			<DisplayName>#Lang(128)</DisplayName>
-			<Description>#Lang(228)</Description>
-			<DefaultValue>150</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_height</Name>
-			<DisplayName>#Lang(129)</DisplayName>
-			<Description>#Lang(229)</Description>
-			<DefaultValue>200</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(131)</DisplayName>
-			<Description>#Lang(231)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(331)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(2)</CodeInterface>
@@ -360,27 +47,219 @@
 		</Attribute>
 		<Attribute>
 			<Name>visible</Name>
-			<DisplayName>#Lang(132)</DisplayName>
-			<Description>#Lang(232)</Description>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
 			<DefaultValue>1</DefaultValue>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(332)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(429)|0)|(#Lang(431)|1))</CodeInterface>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(133)</DisplayName>
-			<Description>#Lang(233)</Description>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
 			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(333)</ErrorValidationMessage>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(432)|0)|(#Lang(433)|1))</CodeInterface>
+			<CodeInterface>TextField(2)</CodeInterface>
 			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue>150</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>data</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectedrows</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectionmode</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>layout</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>activeitem</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>droppable</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>clickclass</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(318)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(218)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>style</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue>#%(id)s li.selected { background: #fdeeb5; } #%(id)s li.active { background: #fbdf75 !important; }</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(100000)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>classname</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(1000)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectablerows</Name>
+			<DisplayName>#Lang(119)</DisplayName>
+			<Description>#Lang(219)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>droppablerows</Name>
+			<DisplayName>#Lang(110)</DisplayName>
+			<Description>#Lang(210)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(310)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>selectonclick</Name>
+			<DisplayName>#Lang(120)</DisplayName>
+			<Description>#Lang(220)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[0-4]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(320)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(420)|0)|(#Lang(421)|1)|(#Lang(422)|2)|(#Lang(423)|3)|(#Lang(424)|4))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
 		</Attribute>
 	</Attributes>
 	<Languages>
@@ -388,977 +267,324 @@
 			<Sentence ID="001">List v2</Sentence>
 			<Sentence ID="002">The List type produces an object displayed as a horizontal or vertical list.</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">CSS class</Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
 			<Sentence ID="104">Top</Sentence>
 			<Sentence ID="105">Left</Sentence>
 			<Sentence ID="106">Width</Sentence>
 			<Sentence ID="107">Height</Sentence>
-			<Sentence ID="108">Display</Sentence>
-			<Sentence ID="109">Data</Sentence>
-			<Sentence ID="111">Selected rows</Sentence>
-			<Sentence ID="112">Selection mode</Sentence>
-			<Sentence ID="113">Layout</Sentence>
-			<Sentence ID="114">Active item</Sentence>
-			<Sentence ID="115">Drop enable</Sentence>
-			<Sentence ID="116">Click on</Sentence>
-			<Sentence ID="117">Skin Data</Sentence>
-			<Sentence ID="118">Style</Sentence>
-			<Sentence ID="119">Skin</Sentence>
-			<Sentence ID="121">Margins</Sentence>
-			<Sentence ID="122">Paddings</Sentence>
-			<Sentence ID="123">Selectable rows</Sentence>
-			<Sentence ID="124">Droppable rows</Sentence>
-			<Sentence ID="125">Select on</Sentence>
-			<Sentence ID="126">IDE_top</Sentence>
-			<Sentence ID="127">IDE_left</Sentence>
-			<Sentence ID="128">IDE_width</Sentence>
-			<Sentence ID="129">IDE_height</Sentence>
-			<Sentence ID="131">Z-Index</Sentence>
-			<Sentence ID="132">Visibility</Sentence>
-			<Sentence ID="133"></Sentence>
-			<Sentence ID="201">The necessary CSS code applied to all objects within the container.</Sentence>
-			<Sentence ID="202">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
-			<Sentence ID="203">newAttribute22</Sentence>
+			<Sentence ID="108">Data</Sentence>
+			<Sentence ID="109">Selected rows</Sentence>
+			<Sentence ID="110">Droppable rows</Sentence>
+			<Sentence ID="111">Selection mode</Sentence>
+			<Sentence ID="112">Layout</Sentence>
+			<Sentence ID="113">Active item</Sentence>
+			<Sentence ID="114">Drop enable</Sentence>
+			<Sentence ID="115">Style</Sentence>
+			<Sentence ID="116">Skin</Sentence>
+			<Sentence ID="117">CSS class</Sentence>
+			<Sentence ID="118">Click on</Sentence>
+			<Sentence ID="119">Selectable rows</Sentence>
+			<Sentence ID="120">Select on</Sentence>
+			<Sentence ID="201">The order of rendering the object on the page. The objects with identical values of the Hierarchy attribute are rendered in the order they are written in the XML-file of the VDOM application.</Sentence>
+			<Sentence ID="202">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
+			<Sentence ID="203">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of &apos;Z-Index&apos; attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
 			<Sentence ID="204">Spacing in pixels between the object and the top border of the container, in which the object is situated.</Sentence>
 			<Sentence ID="205">Spacing in pixels between the object and the left border of the container, in which the object is situated.</Sentence>
-			<Sentence ID="206">The width of the object.</Sentence>
-			<Sentence ID="207">The height of the object.</Sentence>
-			<Sentence ID="208">newAttribute24</Sentence>
-			<Sentence ID="209">The data in JSON (JavaScript Object Notation) format.</Sentence>
-			<Sentence ID="211">The list of keys displayed as checked, specified by the &apos;Data&apos; attribute.</Sentence>
-			<Sentence ID="212">The mode of selecting the rows.</Sentence>
-			<Sentence ID="213">The way of items disposition inside the object.</Sentence>
-			<Sentence ID="214">The key displayed as selected and specified in the &apos;Data&apos; attribute.</Sentence>
-			<Sentence ID="215">The dragability of the object&apos;s items. If it is set to &apos;No&apos;, the records are not draggable, if &apos;Yes&apos;---the records can be dragged and dropped.</Sentence>
-			<Sentence ID="216">CSS class name, mouse click will be binded on element which contains this class</Sentence>
-			<Sentence ID="217">newAttribute29</Sentence>
-			<Sentence ID="218">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the &apos;User defined&apos;.</Sentence>
-			<Sentence ID="219">newAttribute23</Sentence>
-			<Sentence ID="221">newAttribute20</Sentence>
-			<Sentence ID="222">newAttribute21</Sentence>
-			<Sentence ID="223">Incorrect value</Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225">Select item on click or click + ctrl or manual</Sentence>
-			<Sentence ID="226">newAttribute25</Sentence>
-			<Sentence ID="227">newAttribute26</Sentence>
-			<Sentence ID="228">newAttribute27</Sentence>
-			<Sentence ID="229">newAttribute28</Sentence>
-			<Sentence ID="231">The position in visual hierarchy of objects. If you have several objects in one container situated on each other, the value of &apos;Z-Index&apos; attribute indicates the order of their displaying. The larger the value is, the upper the object is situated.</Sentence>
-			<Sentence ID="232">The visibility of the object. In any case the object will exist on the web page, this attribute only makes it invisible.</Sentence>
-			<Sentence ID="233"></Sentence>
-			<Sentence ID="301">Incorrect value</Sentence>
-			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="303">newAttribute22</Sentence>
+			<Sentence ID="206">The width of the object in pixels.</Sentence>
+			<Sentence ID="207">The height of the object in pixels.</Sentence>
+			<Sentence ID="208">The data in JSON (JavaScript Object Notation) format.</Sentence>
+			<Sentence ID="209">The list of keys displayed as checked, specified by the &apos;Data&apos; attribute.</Sentence>
+			<Sentence ID="210"></Sentence>
+			<Sentence ID="211">The mode of selecting the rows.</Sentence>
+			<Sentence ID="212">The way of items disposition inside the object.</Sentence>
+			<Sentence ID="213">The key displayed as selected and specified in the &apos;Data&apos; attribute.</Sentence>
+			<Sentence ID="214">The dragability of the object&apos;s items. If it is set to &apos;No&apos;, the records are not draggable, if &apos;Yes&apos;---the records can be dragged and dropped.</Sentence>
+			<Sentence ID="215">The CSS style of the object. If the user changes CSS style, the Skin attribute is changed to the &apos;User defined&apos;.</Sentence>
+			<Sentence ID="216">The skin of the object.</Sentence>
+			<Sentence ID="217">The necessary CSS code applied to all objects within the container.</Sentence>
+			<Sentence ID="218">Incorrect value</Sentence>
+			<Sentence ID="219">Incorrect value</Sentence>
+			<Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
+			<Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="302"></Sentence>
+			<Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
 			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Incorrect value</Sentence>
 			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="310">Incorrect value</Sentence>
 			<Sentence ID="311">Incorrect value</Sentence>
 			<Sentence ID="312">Incorrect value</Sentence>
-			<Sentence ID="313">Incorrect value</Sentence>
-			<Sentence ID="314"></Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314">Incorrect value</Sentence>
 			<Sentence ID="315">Incorrect value</Sentence>
-			<Sentence ID="316">Incorrect value</Sentence>
-			<Sentence ID="317">newAttribute29</Sentence>
-			<Sentence ID="318">Incorrect value</Sentence>
-			<Sentence ID="319">newAttribute23</Sentence>
-			<Sentence ID="321">Incorrect value.</Sentence>
-			<Sentence ID="322">Incorrect value.</Sentence>
-			<Sentence ID="323">Incorrect value</Sentence>
-			<Sentence ID="324">Incorrect value</Sentence>
-			<Sentence ID="325">Incorrect value</Sentence>
-			<Sentence ID="326">newAttribute25</Sentence>
-			<Sentence ID="327">newAttribute26</Sentence>
-			<Sentence ID="328">newAttribute27</Sentence>
-			<Sentence ID="329">newAttribute28</Sentence>
-			<Sentence ID="331">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="332"></Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="401">Absolute</Sentence>
-			<Sentence ID="402">Fixed</Sentence>
-			<Sentence ID="403">Relative</Sentence>
-			<Sentence ID="404">Static</Sentence>
-			<Sentence ID="405">Block</Sentence>
-			<Sentence ID="406">Inline</Sentence>
-			<Sentence ID="407">Flex</Sentence>
-			<Sentence ID="408">Inline-block</Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">Single</Sentence>
-			<Sentence ID="412">Multi</Sentence>
-			<Sentence ID="413">Vertical</Sentence>
-			<Sentence ID="414">Horizontal</Sentence>
-			<Sentence ID="415">No</Sentence>
-			<Sentence ID="416">Yes</Sentence>
-			<Sentence ID="417">User data</Sentence>
-			<Sentence ID="418">Example</Sentence>
-			<Sentence ID="419"></Sentence>
-			<Sentence ID="421">User defined</Sentence>
-			<Sentence ID="422">Default</Sentence>
-			<Sentence ID="423">Empty</Sentence>
-			<Sentence ID="424">Click</Sentence>
-			<Sentence ID="425">Ctrl + Click</Sentence>
-			<Sentence ID="426">Double Click</Sentence>
-			<Sentence ID="427">Ctrl + Double Click</Sentence>
-			<Sentence ID="428">Manual</Sentence>
-			<Sentence ID="429">No</Sentence>
-			<Sentence ID="431">Yes</Sentence>
-			<Sentence ID="432"></Sentence>
-			<Sentence ID="433"></Sentence>
-			<Sentence ID="501">The test action.</Sentence>
-			<Sentence ID="502">The test action.</Sentence>
-			<Sentence ID="503">Hide the object.</Sentence>
-			<Sentence ID="504">The test action.</Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317">Incorrect value</Sentence>
+			<Sentence ID="318">CSS class name, mouse click will be binded on element which contains this class</Sentence>
+			<Sentence ID="319">Incorrect value</Sentence>
+			<Sentence ID="320">Incorrect value</Sentence>
+			<Sentence ID="401">No</Sentence>
+			<Sentence ID="402">Yes</Sentence>
+			<Sentence ID="403">Single</Sentence>
+			<Sentence ID="404">Multi</Sentence>
+			<Sentence ID="405">Vertical</Sentence>
+			<Sentence ID="406">Horizontal</Sentence>
+			<Sentence ID="407">No</Sentence>
+			<Sentence ID="408">Yes</Sentence>
+			<Sentence ID="409">User defined</Sentence>
+			<Sentence ID="411">Default</Sentence>
+			<Sentence ID="420">Click</Sentence>
+			<Sentence ID="421">Ctrl + Click</Sentence>
+			<Sentence ID="422">Double Click</Sentence>
+			<Sentence ID="423">Ctrl + Double Click</Sentence>
+			<Sentence ID="424">Manual</Sentence>
+			<Sentence ID="501">Hide the object.</Sentence>
+			<Sentence ID="502">Select all rows.</Sentence>
+			<Sentence ID="503">Deselect all rows.</Sentence>
+			<Sentence ID="504">Show the object.</Sentence>
 			<Sentence ID="505">The test action.</Sentence>
-			<Sentence ID="506">The test action.</Sentence>
-			<Sentence ID="507">Select all rows.</Sentence>
-			<Sentence ID="508">Deselect all rows.</Sentence>
-			<Sentence ID="509"></Sentence>
-			<Sentence ID="511">Show the object.</Sentence>
-			<Sentence ID="512">The test action.</Sentence>
-			<Sentence ID="513">Toggle CSS class</Sentence>
-			<Sentence ID="514">Deselect all rows.</Sentence>
-			<Sentence ID="515">Deselect all rows.</Sentence>
-			<Sentence ID="516">The test action.</Sentence>
-			<Sentence ID="517">Deselect all rows.</Sentence>
-			<Sentence ID="518">Deselect all rows.</Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
-			<Sentence ID="522"></Sentence>
-			<Sentence ID="523"></Sentence>
-			<Sentence ID="524"></Sentence>
-			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527"></Sentence>
-			<Sentence ID="528"></Sentence>
-			<Sentence ID="529"></Sentence>
-			<Sentence ID="531"></Sentence>
-			<Sentence ID="532">Add new CSS class</Sentence>
-			<Sentence ID="533">Remove CSS class</Sentence>
-			<Sentence ID="601">toggle</Sentence>
-			<Sentence ID="602">toggle</Sentence>
-			<Sentence ID="603">hide</Sentence>
-			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="506">The custom event.</Sentence>
+			<Sentence ID="507">Drop the item.</Sentence>
+			<Sentence ID="508">Click the item of the object.</Sentence>
+			<Sentence ID="509">Double-click the item of the object.</Sentence>
+			<Sentence ID="511">Click the checkbox.</Sentence>
+			<Sentence ID="601">hide</Sentence>
+			<Sentence ID="602">show</Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604">show</Sentence>
 			<Sentence ID="605">toggle</Sentence>
-			<Sentence ID="606">toggle</Sentence>
-			<Sentence ID="607">show</Sentence>
-			<Sentence ID="608"></Sentence>
-			<Sentence ID="609"></Sentence>
-			<Sentence ID="611">show</Sentence>
-			<Sentence ID="612">toggle</Sentence>
-			<Sentence ID="613">toggleClass</Sentence>
-			<Sentence ID="614"></Sentence>
-			<Sentence ID="615"></Sentence>
-			<Sentence ID="616">toggle</Sentence>
-			<Sentence ID="617"></Sentence>
-			<Sentence ID="618"></Sentence>
-			<Sentence ID="619">addClass</Sentence>
-			<Sentence ID="620">removeClass</Sentence>
-			<Sentence ID="701">id</Sentence>
-			<Sentence ID="702">id</Sentence>
-			<Sentence ID="703">fade</Sentence>
-			<Sentence ID="704">id</Sentence>
-			<Sentence ID="705">id</Sentence>
-			<Sentence ID="706">id</Sentence>
-			<Sentence ID="707">id</Sentence>
-			<Sentence ID="708">id</Sentence>
-			<Sentence ID="709">id</Sentence>
-			<Sentence ID="711">id</Sentence>
-			<Sentence ID="712">id</Sentence>
-			<Sentence ID="713">id</Sentence>
-			<Sentence ID="714"></Sentence>
-			<Sentence ID="715">fade</Sentence>
-			<Sentence ID="716">id</Sentence>
-			<Sentence ID="717">className</Sentence>
-			<Sentence ID="718">id</Sentence>
-			<Sentence ID="719">id</Sentence>
-			<Sentence ID="721">id</Sentence>
-			<Sentence ID="722">id</Sentence>
-			<Sentence ID="723">id</Sentence>
-			<Sentence ID="724">id</Sentence>
-			<Sentence ID="725">id</Sentence>
-			<Sentence ID="726">Name of CSS class</Sentence>
-			<Sentence ID="727">Name of CSS class</Sentence>
-			<Sentence ID="801">id</Sentence>
-			<Sentence ID="802">id</Sentence>
-			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="804">id</Sentence>
-			<Sentence ID="805">id</Sentence>
-			<Sentence ID="806">id</Sentence>
-			<Sentence ID="807">id</Sentence>
-			<Sentence ID="808">id</Sentence>
-			<Sentence ID="809">id</Sentence>
-			<Sentence ID="811">id</Sentence>
-			<Sentence ID="812">id</Sentence>
-			<Sentence ID="813">id</Sentence>
-			<Sentence ID="814"></Sentence>
-			<Sentence ID="815">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="816">id</Sentence>
-			<Sentence ID="817">Name of CSS class</Sentence>
-			<Sentence ID="818">id</Sentence>
-			<Sentence ID="819">id</Sentence>
-			<Sentence ID="821">id</Sentence>
-			<Sentence ID="822">id</Sentence>
-			<Sentence ID="823">id</Sentence>
-			<Sentence ID="824">id</Sentence>
-			<Sentence ID="825">id</Sentence>
-			<Sentence ID="826">className</Sentence>
-			<Sentence ID="827">className</Sentence>
-			<Sentence ID="901"></Sentence>
+			<Sentence ID="701">fade</Sentence>
+			<Sentence ID="702">fade</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="901">Parameter</Sentence>
 			<Sentence ID="902"></Sentence>
-			<Sentence ID="903"></Sentence>
-			<Sentence ID="904"></Sentence>
+			<Sentence ID="903">List element id</Sentence>
+			<Sentence ID="904">List element id</Sentence>
 			<Sentence ID="905"></Sentence>
-			<Sentence ID="906"></Sentence>
-			<Sentence ID="907"></Sentence>
-			<Sentence ID="908"></Sentence>
-			<Sentence ID="909"></Sentence>
-			<Sentence ID="911"></Sentence>
-			<Sentence ID="912"></Sentence>
-			<Sentence ID="913"></Sentence>
-			<Sentence ID="914"></Sentence>
-			<Sentence ID="915"></Sentence>
-			<Sentence ID="916"></Sentence>
-			<Sentence ID="917"></Sentence>
-			<Sentence ID="918"></Sentence>
-			<Sentence ID="919"></Sentence>
-			<Sentence ID="921"></Sentence>
-			<Sentence ID="922"></Sentence>
-			<Sentence ID="923"></Sentence>
-			<Sentence ID="924"></Sentence>
-			<Sentence ID="925"></Sentence>
-			<Sentence ID="926"></Sentence>
-			<Sentence ID="927"></Sentence>
-			<Sentence ID="928"></Sentence>
-			<Sentence ID="929"></Sentence>
-			<Sentence ID="931"></Sentence>
-			<Sentence ID="932"></Sentence>
-			<Sentence ID="933"></Sentence>
-			<Sentence ID="934"></Sentence>
-			<Sentence ID="935"></Sentence>
-			<Sentence ID="936"></Sentence>
-			<Sentence ID="937"></Sentence>
-			<Sentence ID="938"></Sentence>
-			<Sentence ID="939"></Sentence>
-			<Sentence ID="941"></Sentence>
-			<Sentence ID="942"></Sentence>
-			<Sentence ID="943"></Sentence>
 		</Language>
 		<Language Code="fr_FR">
 			<Sentence ID="001">List v2</Sentence>
 			<Sentence ID="002">Used to insert horizontal or vertical list</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">CSS class</Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103"></Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
 			<Sentence ID="104">Top</Sentence>
 			<Sentence ID="105">Left</Sentence>
 			<Sentence ID="106">Width</Sentence>
 			<Sentence ID="107">Height</Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="109">Data</Sentence>
-			<Sentence ID="111">Selected rows</Sentence>
-			<Sentence ID="112">Selection mode</Sentence>
-			<Sentence ID="113">Layout</Sentence>
-			<Sentence ID="114">Selected item</Sentence>
-			<Sentence ID="115">Drag-and-drop</Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118">Style</Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="123">Selectable rows</Sentence>
-			<Sentence ID="124">Droppable rows</Sentence>
-			<Sentence ID="125">Select on</Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="128"></Sentence>
-			<Sentence ID="129"></Sentence>
-			<Sentence ID="131">Z-Index</Sentence>
-			<Sentence ID="132">Visibility</Sentence>
-			<Sentence ID="133"></Sentence>
-			<Sentence ID="201">Names of CSS classes</Sentence>
-			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203"></Sentence>
+			<Sentence ID="108">Data</Sentence>
+			<Sentence ID="109">Selected rows</Sentence>
+			<Sentence ID="110">Droppable rows</Sentence>
+			<Sentence ID="111">Selection mode</Sentence>
+			<Sentence ID="112">Layout</Sentence>
+			<Sentence ID="113">Selected item</Sentence>
+			<Sentence ID="114">Drag-and-drop</Sentence>
+			<Sentence ID="115">Style</Sentence>
+			<Sentence ID="116">Skin</Sentence>
+			<Sentence ID="117">CSS class</Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="119">Selectable rows</Sentence>
+			<Sentence ID="120">Select on</Sentence>
+			<Sentence ID="201">Order of rendering the object on the page</Sentence>
+			<Sentence ID="202">Visibility of the object</Sentence>
+			<Sentence ID="203">Position in visual hierarchy of objects</Sentence>
 			<Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
 			<Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
 			<Sentence ID="206">Width of the object in pixels</Sentence>
 			<Sentence ID="207">Height of the object in pixels</Sentence>
-			<Sentence ID="208"></Sentence>
-			<Sentence ID="209">Data in JSON format</Sentence>
-			<Sentence ID="211">Rows which should be checked</Sentence>
-			<Sentence ID="212">Mode of row selecting</Sentence>
-			<Sentence ID="213">Way of displaying the list</Sentence>
-			<Sentence ID="214">Set class &quot;active&quot; to item with this identifier</Sentence>
-			<Sentence ID="215">Define is drag-and-drop is used or not</Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218">CSS style of the object</Sentence>
+			<Sentence ID="208">Data in JSON format</Sentence>
+			<Sentence ID="209">Rows which should be checked</Sentence>
+			<Sentence ID="210"></Sentence>
+			<Sentence ID="211">Mode of row selecting</Sentence>
+			<Sentence ID="212">Way of displaying the list</Sentence>
+			<Sentence ID="213">Set class &quot;active&quot; to item with this identifier</Sentence>
+			<Sentence ID="214">Define is drag-and-drop is used or not</Sentence>
+			<Sentence ID="215">CSS style of the object</Sentence>
+			<Sentence ID="216">Define the skin of the object</Sentence>
+			<Sentence ID="217">Names of CSS classes</Sentence>
+			<Sentence ID="218"></Sentence>
 			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="223"></Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225">Select item on click or click + ctrl or manual</Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="228"></Sentence>
-			<Sentence ID="229"></Sentence>
-			<Sentence ID="231">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="232">Visibility of the object</Sentence>
-			<Sentence ID="233"></Sentence>
-			<Sentence ID="301">Incorrect value</Sentence>
-			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="303"></Sentence>
+			<Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
+			<Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="302"></Sentence>
+			<Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
 			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Incorrect value</Sentence>
 			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="310">Incorrect value</Sentence>
 			<Sentence ID="311">Incorrect value</Sentence>
 			<Sentence ID="312">Incorrect value</Sentence>
-			<Sentence ID="313">Incorrect value</Sentence>
-			<Sentence ID="314"></Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314">Incorrect value</Sentence>
 			<Sentence ID="315">Incorrect value</Sentence>
 			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318">Incorrect value</Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323">Incorrect value</Sentence>
-			<Sentence ID="324">Incorrect value</Sentence>
-			<Sentence ID="325">Incorrect value</Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="328"></Sentence>
-			<Sentence ID="329"></Sentence>
-			<Sentence ID="331">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="332"></Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">Single</Sentence>
-			<Sentence ID="412">Multi</Sentence>
-			<Sentence ID="413">Vertical</Sentence>
-			<Sentence ID="414">Horizontal</Sentence>
-			<Sentence ID="415">No</Sentence>
-			<Sentence ID="416">Yes</Sentence>
-			<Sentence ID="417"></Sentence>
-			<Sentence ID="418"></Sentence>
-			<Sentence ID="419"></Sentence>
-			<Sentence ID="421"></Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
-			<Sentence ID="424">Click</Sentence>
-			<Sentence ID="425">Ctrl + Click</Sentence>
-			<Sentence ID="426">Double Click</Sentence>
-			<Sentence ID="427">Ctrl + Double Click</Sentence>
-			<Sentence ID="428">Manual</Sentence>
-			<Sentence ID="429">No</Sentence>
-			<Sentence ID="431">Yes</Sentence>
-			<Sentence ID="432"></Sentence>
-			<Sentence ID="433"></Sentence>
-			<Sentence ID="501">toggle</Sentence>
-			<Sentence ID="502">toggle</Sentence>
-			<Sentence ID="503">Hide the object</Sentence>
-			<Sentence ID="504">toggle</Sentence>
+			<Sentence ID="317">Incorrect value</Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319">Incorrect value</Sentence>
+			<Sentence ID="320">Incorrect value</Sentence>
+			<Sentence ID="401">No</Sentence>
+			<Sentence ID="402">Yes</Sentence>
+			<Sentence ID="403">Single</Sentence>
+			<Sentence ID="404">Multi</Sentence>
+			<Sentence ID="405">Vertical</Sentence>
+			<Sentence ID="406">Horizontal</Sentence>
+			<Sentence ID="407">No</Sentence>
+			<Sentence ID="408">Yes</Sentence>
+			<Sentence ID="409">User defined</Sentence>
+			<Sentence ID="411">Default</Sentence>
+			<Sentence ID="420">Click</Sentence>
+			<Sentence ID="421">Ctrl + Click</Sentence>
+			<Sentence ID="422">Double Click</Sentence>
+			<Sentence ID="423">Ctrl + Double Click</Sentence>
+			<Sentence ID="424">Manual</Sentence>
+			<Sentence ID="501">Hide the object</Sentence>
+			<Sentence ID="502">Select all the rows</Sentence>
+			<Sentence ID="503">Deselect all the rows</Sentence>
+			<Sentence ID="504">Show the object</Sentence>
 			<Sentence ID="505">toggle</Sentence>
-			<Sentence ID="506">toggle</Sentence>
-			<Sentence ID="507">Select all the rows</Sentence>
-			<Sentence ID="508">Deselect all the rows</Sentence>
+			<Sentence ID="506"></Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
 			<Sentence ID="509"></Sentence>
-			<Sentence ID="511">Show the object</Sentence>
-			<Sentence ID="512">toggle</Sentence>
-			<Sentence ID="513"></Sentence>
-			<Sentence ID="514">Deselect all the rows</Sentence>
-			<Sentence ID="515">Deselect all the rows</Sentence>
-			<Sentence ID="516">toggle</Sentence>
-			<Sentence ID="517">Deselect all the rows</Sentence>
-			<Sentence ID="518">Deselect all the rows</Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
-			<Sentence ID="522"></Sentence>
-			<Sentence ID="523"></Sentence>
-			<Sentence ID="524"></Sentence>
-			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527"></Sentence>
-			<Sentence ID="528"></Sentence>
-			<Sentence ID="529"></Sentence>
-			<Sentence ID="531"></Sentence>
-			<Sentence ID="532"></Sentence>
-			<Sentence ID="533"></Sentence>
-			<Sentence ID="601">toggle</Sentence>
-			<Sentence ID="602">toggle</Sentence>
-			<Sentence ID="603">hide</Sentence>
-			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="601">hide</Sentence>
+			<Sentence ID="602">show</Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604">show</Sentence>
 			<Sentence ID="605">toggle</Sentence>
-			<Sentence ID="606">toggle</Sentence>
-			<Sentence ID="607">show</Sentence>
-			<Sentence ID="608"></Sentence>
-			<Sentence ID="609"></Sentence>
-			<Sentence ID="611">show</Sentence>
-			<Sentence ID="612">toggle</Sentence>
-			<Sentence ID="613"></Sentence>
-			<Sentence ID="614"></Sentence>
-			<Sentence ID="615"></Sentence>
-			<Sentence ID="616">toggle</Sentence>
-			<Sentence ID="617"></Sentence>
-			<Sentence ID="618"></Sentence>
-			<Sentence ID="619"></Sentence>
-			<Sentence ID="620"></Sentence>
-			<Sentence ID="701">id</Sentence>
-			<Sentence ID="702">id</Sentence>
-			<Sentence ID="703">fade</Sentence>
-			<Sentence ID="704">id</Sentence>
-			<Sentence ID="705">id</Sentence>
-			<Sentence ID="706">id</Sentence>
-			<Sentence ID="707">id</Sentence>
-			<Sentence ID="708">id</Sentence>
-			<Sentence ID="709">id</Sentence>
-			<Sentence ID="711">id</Sentence>
-			<Sentence ID="712">id</Sentence>
-			<Sentence ID="713">id</Sentence>
-			<Sentence ID="714"></Sentence>
-			<Sentence ID="715">fade</Sentence>
-			<Sentence ID="716">id</Sentence>
-			<Sentence ID="717"></Sentence>
-			<Sentence ID="718">id</Sentence>
-			<Sentence ID="719">id</Sentence>
-			<Sentence ID="721">id</Sentence>
-			<Sentence ID="722">id</Sentence>
-			<Sentence ID="723">id</Sentence>
-			<Sentence ID="724">id</Sentence>
-			<Sentence ID="725">id</Sentence>
-			<Sentence ID="726"></Sentence>
-			<Sentence ID="727"></Sentence>
-			<Sentence ID="801">id</Sentence>
-			<Sentence ID="802">id</Sentence>
-			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="804">id</Sentence>
-			<Sentence ID="805">id</Sentence>
-			<Sentence ID="806">id</Sentence>
-			<Sentence ID="807">id</Sentence>
-			<Sentence ID="808">id</Sentence>
-			<Sentence ID="809">id</Sentence>
-			<Sentence ID="811">id</Sentence>
-			<Sentence ID="812">id</Sentence>
-			<Sentence ID="813">id</Sentence>
-			<Sentence ID="814"></Sentence>
-			<Sentence ID="815">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="816">id</Sentence>
-			<Sentence ID="817"></Sentence>
-			<Sentence ID="818">id</Sentence>
-			<Sentence ID="819">id</Sentence>
-			<Sentence ID="821">id</Sentence>
-			<Sentence ID="822">id</Sentence>
-			<Sentence ID="823">id</Sentence>
-			<Sentence ID="824">id</Sentence>
-			<Sentence ID="825">id</Sentence>
-			<Sentence ID="826"></Sentence>
-			<Sentence ID="827"></Sentence>
-			<Sentence ID="901"></Sentence>
+			<Sentence ID="701">fade</Sentence>
+			<Sentence ID="702">fade</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="901">Parametr</Sentence>
 			<Sentence ID="902"></Sentence>
-			<Sentence ID="903"></Sentence>
-			<Sentence ID="904"></Sentence>
+			<Sentence ID="903">list element id</Sentence>
+			<Sentence ID="904">list element id</Sentence>
 			<Sentence ID="905"></Sentence>
-			<Sentence ID="906"></Sentence>
-			<Sentence ID="907"></Sentence>
-			<Sentence ID="908"></Sentence>
-			<Sentence ID="909"></Sentence>
-			<Sentence ID="911"></Sentence>
-			<Sentence ID="912"></Sentence>
-			<Sentence ID="913"></Sentence>
-			<Sentence ID="914"></Sentence>
-			<Sentence ID="915"></Sentence>
-			<Sentence ID="916"></Sentence>
-			<Sentence ID="917"></Sentence>
-			<Sentence ID="918"></Sentence>
-			<Sentence ID="919"></Sentence>
-			<Sentence ID="921"></Sentence>
-			<Sentence ID="922"></Sentence>
-			<Sentence ID="923"></Sentence>
-			<Sentence ID="924"></Sentence>
-			<Sentence ID="925"></Sentence>
-			<Sentence ID="926"></Sentence>
-			<Sentence ID="927"></Sentence>
-			<Sentence ID="928"></Sentence>
-			<Sentence ID="929"></Sentence>
-			<Sentence ID="931"></Sentence>
-			<Sentence ID="932"></Sentence>
-			<Sentence ID="933"></Sentence>
-			<Sentence ID="934"></Sentence>
-			<Sentence ID="935"></Sentence>
-			<Sentence ID="936"></Sentence>
-			<Sentence ID="937"></Sentence>
-			<Sentence ID="938"></Sentence>
-			<Sentence ID="939"></Sentence>
-			<Sentence ID="941"></Sentence>
-			<Sentence ID="942"></Sentence>
-			<Sentence ID="943"></Sentence>
 		</Language>
 		<Language Code="ru_RU">
 			<Sentence ID="001">Список v2</Sentence>
 			<Sentence ID="002">Используется для добавления горизонтальных или вертикальных списков</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">Класс CSS</Sentence>
-			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103"></Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Позиция</Sentence>
 			<Sentence ID="104">Сверху</Sentence>
 			<Sentence ID="105">Слева</Sentence>
 			<Sentence ID="106">Ширина</Sentence>
 			<Sentence ID="107">Высота</Sentence>
-			<Sentence ID="108"></Sentence>
-			<Sentence ID="109">Данные</Sentence>
-			<Sentence ID="111">Выбранные ряды</Sentence>
-			<Sentence ID="112">Режим выбора</Sentence>
-			<Sentence ID="113">Слой</Sentence>
-			<Sentence ID="114">Выбранные элементы</Sentence>
-			<Sentence ID="115">Перетаскивание</Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118">Стиль</Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="123">Selectable rows</Sentence>
-			<Sentence ID="124">Droppable rows</Sentence>
-			<Sentence ID="125">Select on</Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="128"></Sentence>
-			<Sentence ID="129"></Sentence>
-			<Sentence ID="131">Позиция</Sentence>
-			<Sentence ID="132">Отображение</Sentence>
-			<Sentence ID="133"></Sentence>
-			<Sentence ID="201">Имена классов CSS</Sentence>
-			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-			<Sentence ID="203"></Sentence>
+			<Sentence ID="108">Данные</Sentence>
+			<Sentence ID="109">Выбранные ряды</Sentence>
+			<Sentence ID="110">Droppable rows</Sentence>
+			<Sentence ID="111">Режим выбора</Sentence>
+			<Sentence ID="112">Слой</Sentence>
+			<Sentence ID="113">Выбранные элементы</Sentence>
+			<Sentence ID="114">Перетаскивание</Sentence>
+			<Sentence ID="115">Стиль</Sentence>
+			<Sentence ID="116">Оформление</Sentence>
+			<Sentence ID="117">Класс CSS</Sentence>
+			<Sentence ID="118"></Sentence>
+			<Sentence ID="119">Selectable rows</Sentence>
+			<Sentence ID="120">Select on</Sentence>
+			<Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+			<Sentence ID="202">Отображение объекта</Sentence>
+			<Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
 			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
 			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
 			<Sentence ID="206">Ширина объекта в пикселях</Sentence>
 			<Sentence ID="207">Высота объекта в пикселях</Sentence>
-			<Sentence ID="208"></Sentence>
-			<Sentence ID="209">Данные в формате JSON</Sentence>
-			<Sentence ID="211">Ряды</Sentence>
-			<Sentence ID="212">Режим выборки рядов</Sentence>
-			<Sentence ID="213">Способ отображения списка</Sentence>
-			<Sentence ID="214">Set class &quot;active&quot; to item with this identifier</Sentence>
-			<Sentence ID="215">Использование перемещения</Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218">Стиль CSS</Sentence>
+			<Sentence ID="208">Данные в формате JSON</Sentence>
+			<Sentence ID="209">Ряды</Sentence>
+			<Sentence ID="210"></Sentence>
+			<Sentence ID="211">Режим выборки рядов</Sentence>
+			<Sentence ID="212">Способ отображения списка</Sentence>
+			<Sentence ID="213">Set class &quot;active&quot; to item with this identifier</Sentence>
+			<Sentence ID="214">Использование перемещения</Sentence>
+			<Sentence ID="215">Стиль CSS</Sentence>
+			<Sentence ID="216">Оформление объекта</Sentence>
+			<Sentence ID="217">Имена классов CSS</Sentence>
+			<Sentence ID="218"></Sentence>
 			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="223"></Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225">Select item on click or click + ctrl or manual</Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="228"></Sentence>
-			<Sentence ID="229"></Sentence>
-			<Sentence ID="231">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="232">Отображение объекта</Sentence>
-			<Sentence ID="233"></Sentence>
-			<Sentence ID="301">Неправильное значение</Sentence>
-			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-			<Sentence ID="303"></Sentence>
+			<Sentence ID="220">Select item on click or click + ctrl or manual</Sentence>
+			<Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="302"></Sentence>
+			<Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
 			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="308"></Sentence>
+			<Sentence ID="308">Неправильное значение</Sentence>
 			<Sentence ID="309">Неправильное значение</Sentence>
+			<Sentence ID="310">Incorrect value</Sentence>
 			<Sentence ID="311">Неправильное значение</Sentence>
 			<Sentence ID="312">Неправильное значение</Sentence>
-			<Sentence ID="313">Неправильное значение</Sentence>
-			<Sentence ID="314"></Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314">Неправильное значение</Sentence>
 			<Sentence ID="315">Неправильное значение</Sentence>
 			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318">Неправильное значение</Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323">Incorrect value</Sentence>
-			<Sentence ID="324">Incorrect value</Sentence>
-			<Sentence ID="325">Incorrect value</Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="328"></Sentence>
-			<Sentence ID="329"></Sentence>
-			<Sentence ID="331">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-			<Sentence ID="332"></Sentence>
-			<Sentence ID="333"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">Одиночный</Sentence>
-			<Sentence ID="412">Множественный</Sentence>
-			<Sentence ID="413">Вертикальный</Sentence>
-			<Sentence ID="414">Горизонтальный</Sentence>
-			<Sentence ID="415">Нет</Sentence>
-			<Sentence ID="416">Да</Sentence>
-			<Sentence ID="417"></Sentence>
-			<Sentence ID="418"></Sentence>
-			<Sentence ID="419"></Sentence>
-			<Sentence ID="421"></Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
-			<Sentence ID="424">Click</Sentence>
-			<Sentence ID="425">Ctrl + Click</Sentence>
-			<Sentence ID="426">Double Click</Sentence>
-			<Sentence ID="427">Ctrl + Double Click</Sentence>
-			<Sentence ID="428">Manual</Sentence>
-			<Sentence ID="429">Нет</Sentence>
-			<Sentence ID="431">Да</Sentence>
-			<Sentence ID="432"></Sentence>
-			<Sentence ID="433"></Sentence>
-			<Sentence ID="501">Переключение</Sentence>
-			<Sentence ID="502">Переключение</Sentence>
-			<Sentence ID="503">Скрыть объект</Sentence>
-			<Sentence ID="504">Переключение</Sentence>
+			<Sentence ID="317">Неправильное значение</Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319">Incorrect value</Sentence>
+			<Sentence ID="320">Incorrect value</Sentence>
+			<Sentence ID="401">Нет</Sentence>
+			<Sentence ID="402">Да</Sentence>
+			<Sentence ID="403">Одиночный</Sentence>
+			<Sentence ID="404">Множественный</Sentence>
+			<Sentence ID="405">Вертикальный</Sentence>
+			<Sentence ID="406">Горизонтальный</Sentence>
+			<Sentence ID="407">Нет</Sentence>
+			<Sentence ID="408">Да</Sentence>
+			<Sentence ID="409">Определено пользователем</Sentence>
+			<Sentence ID="411">По умолчанию</Sentence>
+			<Sentence ID="420">Click</Sentence>
+			<Sentence ID="421">Ctrl + Click</Sentence>
+			<Sentence ID="422">Double Click</Sentence>
+			<Sentence ID="423">Ctrl + Double Click</Sentence>
+			<Sentence ID="424">Manual</Sentence>
+			<Sentence ID="501">Скрыть объект</Sentence>
+			<Sentence ID="502">Выбрать все ряды</Sentence>
+			<Sentence ID="503">Отменить выделение всех рядов</Sentence>
+			<Sentence ID="504">Показать объект</Sentence>
 			<Sentence ID="505">Переключение</Sentence>
-			<Sentence ID="506">Переключение</Sentence>
-			<Sentence ID="507">Выбрать все ряды</Sentence>
-			<Sentence ID="508">Отменить выделение всех рядов</Sentence>
+			<Sentence ID="506"></Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
 			<Sentence ID="509"></Sentence>
-			<Sentence ID="511">Показать объект</Sentence>
-			<Sentence ID="512">Переключение</Sentence>
-			<Sentence ID="513"></Sentence>
-			<Sentence ID="514">Отменить выделение всех рядов</Sentence>
-			<Sentence ID="515">Отменить выделение всех рядов</Sentence>
-			<Sentence ID="516">Переключение</Sentence>
-			<Sentence ID="517">Отменить выделение всех рядов</Sentence>
-			<Sentence ID="518">Отменить выделение всех рядов</Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
-			<Sentence ID="522"></Sentence>
-			<Sentence ID="523"></Sentence>
-			<Sentence ID="524"></Sentence>
-			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527"></Sentence>
-			<Sentence ID="528"></Sentence>
-			<Sentence ID="529"></Sentence>
-			<Sentence ID="531"></Sentence>
-			<Sentence ID="532"></Sentence>
-			<Sentence ID="533"></Sentence>
-			<Sentence ID="601">toggle</Sentence>
-			<Sentence ID="602">toggle</Sentence>
-			<Sentence ID="603">Скрыть</Sentence>
-			<Sentence ID="604">toggle</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="601">Скрыть</Sentence>
+			<Sentence ID="602">Показать</Sentence>
+			<Sentence ID="603"></Sentence>
+			<Sentence ID="604">Показать</Sentence>
 			<Sentence ID="605">toggle</Sentence>
-			<Sentence ID="606">toggle</Sentence>
-			<Sentence ID="607">Показать</Sentence>
-			<Sentence ID="608"></Sentence>
-			<Sentence ID="609"></Sentence>
-			<Sentence ID="611">Показать</Sentence>
-			<Sentence ID="612">toggle</Sentence>
-			<Sentence ID="613"></Sentence>
-			<Sentence ID="614"></Sentence>
-			<Sentence ID="615"></Sentence>
-			<Sentence ID="616">toggle</Sentence>
-			<Sentence ID="617"></Sentence>
-			<Sentence ID="618"></Sentence>
-			<Sentence ID="619"></Sentence>
-			<Sentence ID="620"></Sentence>
-			<Sentence ID="701">id</Sentence>
-			<Sentence ID="702">id</Sentence>
-			<Sentence ID="703">Исчезновение</Sentence>
-			<Sentence ID="704">id</Sentence>
-			<Sentence ID="705">id</Sentence>
-			<Sentence ID="706">id</Sentence>
-			<Sentence ID="707">id</Sentence>
-			<Sentence ID="708">id</Sentence>
-			<Sentence ID="709">id</Sentence>
-			<Sentence ID="711">id</Sentence>
-			<Sentence ID="712">id</Sentence>
-			<Sentence ID="713">id</Sentence>
-			<Sentence ID="714"></Sentence>
-			<Sentence ID="715">Исчезновение</Sentence>
-			<Sentence ID="716">id</Sentence>
-			<Sentence ID="717"></Sentence>
-			<Sentence ID="718">id</Sentence>
-			<Sentence ID="719">id</Sentence>
-			<Sentence ID="721">id</Sentence>
-			<Sentence ID="722">id</Sentence>
-			<Sentence ID="723">id</Sentence>
-			<Sentence ID="724">id</Sentence>
-			<Sentence ID="725">id</Sentence>
-			<Sentence ID="726"></Sentence>
-			<Sentence ID="727"></Sentence>
-			<Sentence ID="801">id</Sentence>
-			<Sentence ID="802">id</Sentence>
-			<Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="804">id</Sentence>
-			<Sentence ID="805">id</Sentence>
-			<Sentence ID="806">id</Sentence>
-			<Sentence ID="807">id</Sentence>
-			<Sentence ID="808">id</Sentence>
-			<Sentence ID="809">id</Sentence>
-			<Sentence ID="811">id</Sentence>
-			<Sentence ID="812">id</Sentence>
-			<Sentence ID="813">id</Sentence>
-			<Sentence ID="814"></Sentence>
-			<Sentence ID="815">Время исчезновения в миллисекундах</Sentence>
-			<Sentence ID="816">id</Sentence>
-			<Sentence ID="817"></Sentence>
-			<Sentence ID="818">id</Sentence>
-			<Sentence ID="819">id</Sentence>
-			<Sentence ID="821">id</Sentence>
-			<Sentence ID="822">id</Sentence>
-			<Sentence ID="823">id</Sentence>
-			<Sentence ID="824">id</Sentence>
-			<Sentence ID="825">id</Sentence>
-			<Sentence ID="826"></Sentence>
-			<Sentence ID="827"></Sentence>
-			<Sentence ID="901"></Sentence>
+			<Sentence ID="701">Исчезновение</Sentence>
+			<Sentence ID="702">Исчезновение</Sentence>
+			<Sentence ID="703">id</Sentence>
+			<Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="803">id</Sentence>
+			<Sentence ID="901">Параметр</Sentence>
 			<Sentence ID="902"></Sentence>
-			<Sentence ID="903"></Sentence>
-			<Sentence ID="904"></Sentence>
+			<Sentence ID="903">Идентификатор элемента списка</Sentence>
+			<Sentence ID="904">Идентификатор элемента списка</Sentence>
 			<Sentence ID="905"></Sentence>
-			<Sentence ID="906"></Sentence>
-			<Sentence ID="907"></Sentence>
-			<Sentence ID="908"></Sentence>
-			<Sentence ID="909"></Sentence>
-			<Sentence ID="911"></Sentence>
-			<Sentence ID="912"></Sentence>
-			<Sentence ID="913"></Sentence>
-			<Sentence ID="914"></Sentence>
-			<Sentence ID="915"></Sentence>
-			<Sentence ID="916"></Sentence>
-			<Sentence ID="917"></Sentence>
-			<Sentence ID="918"></Sentence>
-			<Sentence ID="919"></Sentence>
-			<Sentence ID="921"></Sentence>
-			<Sentence ID="922"></Sentence>
-			<Sentence ID="923"></Sentence>
-			<Sentence ID="924"></Sentence>
-			<Sentence ID="925"></Sentence>
-			<Sentence ID="926"></Sentence>
-			<Sentence ID="927"></Sentence>
-			<Sentence ID="928"></Sentence>
-			<Sentence ID="929"></Sentence>
-			<Sentence ID="931"></Sentence>
-			<Sentence ID="932"></Sentence>
-			<Sentence ID="933"></Sentence>
-			<Sentence ID="934"></Sentence>
-			<Sentence ID="935"></Sentence>
-			<Sentence ID="936"></Sentence>
-			<Sentence ID="937"></Sentence>
-			<Sentence ID="938"></Sentence>
-			<Sentence ID="939"></Sentence>
-			<Sentence ID="941"></Sentence>
-			<Sentence ID="942"></Sentence>
-			<Sentence ID="943"></Sentence>
 		</Language>
 	</Languages>
 	<Resources>
-		<Resource ID="193df497-a2da-4beb-9072-afa082581c5c" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
-			jCAtsCEkETZSbdJswkNKaCskRBcwt6CGSoBZVbQ4qdoGhxBaMIYkLRQ5NE1Ioy6SdlHluryyIPuu
-			aHcg/gCqqsEvwMbPsd2ZATu01y4sOtLVtX3nzm/O+c75xjJ0OKwfW0GlUpFYLCY2v9WMU6kUoT+D
-			skCJlPlKlEgkUK4hk8tINBKFF6svXHl5eUI0GgXnnJPwZ0cBhYWFJBKJiGP2MVxUVMQB6GSD+Hw+
-			mBifcNFNCsFgUAoY/MgKBkMNmyg2NDXg0dFRDujt7UX9/f3I7/cjACmPRory8/N5BI4JBwcEAgEp
-			4OrgNTj/5nnidrvFqtNVuLPzPQ4YGRlBbW1tqL6+Puf2GxsbydLCEkxOTrr0er2wvb0tBXz6yWdg
-			MpmIx+sRz56rxl1YoBNSMHzrFhq0XkWrq6uSCGQyGUomk6iiooIYDUYegVqtFnZ3d6WAoc9tUKRW
-			k1A4LF6zXceqYh1J0Qjy6DPlCTTw+rzgGHfk1uDmjRHQVVaRUGBXHHj3ElasPCGJZArUl1pQYWMb
-			IkcnH9WAXgoK8B8n8pejY1BsrCNhn0fsOVeMdy0CiUcRVIwPo+2qC0h28wMEGhlT9dXiMjlSRJMo
-			UFNHtF88hUfz37vUxSWC588/pIAJuwP0BjMJ+b3ildNa7O/HJB5HUDliQ8nm91Fq6QekUMHhnjMq
-			IFk8hWKvV5LU5S5wzjpdhdoiwe9xSwF3bt8BlVZHyy0sfthzBWsSYULXAqTRIaTRZ9KRLUVyliK/
-			H+xjdpeqoEAI7u9LATNfz8Brp06R/f198fI7b+Nff/ud0BoHU20tumB+43iRvV6YnJh0FTBANg3u
-			Oed4mdKJIq0+3IE7eB/YhoZQb18fslgsSKFQ8MZKD7lczsuU9ggZvjHMy1Sn0wkMJgF8d/8BmM1m
-			DiCJOO7oOAAMUUDf/wF4NP8ISktLSTgUFi82XMRra2s8RUajEdHIjk3RsV7049OfQKNRE+qE3E3p
-			JB4BNT1UUlJyIg0c9v9otNmZWTCZTcTn9YmQD7i9vf1AA5sNDQwMoOnpaW4V6RQxm0inqLa2llDR
-			wD5ud9ENCSwaqVVct2VELtbrcE9PTwbQ1dXFzY4tygDszs4H9pkBmpqayNTUFDz7+ZlLq9UKOzs7
-			UgCtYWCmFQgGRXOdGS8uLjBnZcIjjDHfLbvSu6epRLSkMynyuD2wsrziotad/cC5e/suzQDQ7o2J
-			fRYLLi0rJRsbGxCn7Uxf4oseHekUsSjY6ffyr5ewuLCYGzD91TTUGAyEhifKFTLc3d1N6CJA76il
-			pQVtbW39w67TqWIpKisrI9XV1bC8uMwbLRQKZRF51glnz5whe3t7osfrxlarlWvAFt/c3OSAXINp
-			N/PNDDxfeu7SaDTZz4Nv5+5DeXk5oXQxEglj5z0+AVpbW1FnZyei4vNG+/dgkSiVShKPxWF5aZmn
-			iJ7rUsDDBw9BIVfQMyDBRaa1T2ilQJzEEX05I3A2AH1Gdvw7sPDLQm7A4/nHwP5+0BeoBnLq1YRH
-			wHatgAOLoOZM3fOVVfDvhwAm7Pr6uovOFwghGcDfTBa9Nz1vVyYAAAAASUVORK5CYII=
-		</Resource>
 		<Resource ID="92de1d12-fb07-41e5-a288-50f6fc80112a" Type="js" Name="vdom_listv2.js">
-			KGZ1bmN0aW9uICgkKSB7CiAgICBmdW5jdGlvbiBnZXRPYmpJRChvYmopIHsKICAgICAgdmFyIGlk
-			ID0gb2JqLmF0dHIoImlkIik7CiAgICAgIHJldHVybiBpZC5zdWJzdHJpbmcoMiwgaWQubGVuZ3Ro
-			KTsKICAgIH0KICAKICAgIGZ1bmN0aW9uIGhhc011bHRpU2VsZWN0KG9iaikgewogICAgICByZXR1
-			cm4gb2JqLmF0dHIoInNlbGVjdGlvbm1vZGUiKSA9PSAibXVsdGlzZWxlY3Rpb24iID8gdHJ1ZSA6
-			IGZhbHNlOwogICAgfQogIAogICAgZnVuY3Rpb24gZ2V0U2VsZWN0T25DbGljayhvYmopIHsKICAg
-			ICAgcmV0dXJuIG9iai5hdHRyKCJzZWxlY3Qtb24tY2xpY2siKTsKICAgIH0KICAKICAgIGZ1bmN0
-			aW9uIHJhaXNlQ2xpY2tFdmVudChldnQsIHZkb21MaXN0X3YyLCBvYmosIGlzX2RibCwgaXNfY3Ry
-			bCkgewogICAgICB2YXIgaXNfY2hpbGQgPSBmYWxzZTsKICAgICAgdmFyIGxpX29iajsKICAKICAg
-			ICAgaWYgKG9iai5nZXQoMCkubm9kZU5hbWUudG9Mb3dlckNhc2UoKSAhPSAibGkiICYmICFvYmou
-			YXR0cigiaXRlbWlkIikpIHsKICAgICAgICBpc19jaGlsZCA9IHRydWU7CiAgICAgICAgbGlfb2Jq
-			ID0gb2JqLmNsb3Nlc3QoImxpW2l0ZW1pZF0iKTsKICAgICAgfSBlbHNlIHsKICAgICAgICBsaV9v
-			YmogPSBvYmo7CiAgICAgIH0KICAKICAgICAgdmFyIGl0ZW1faWQgPSBsaV9vYmouYXR0cigiaXRl
-			bWlkIik7CiAgICAgIHZhciBldnRfbmFtZSA9CiAgICAgICAgIml0ZW0iICsgKGlzX2N0cmwgPyAi
-			Y3RybCIgOiAiIikgKyAoaXNfZGJsID8gImRibCIgOiAiIikgKyAiY2xpY2siOwogIAogICAgICBp
-			ZiAoIWlzX2NoaWxkKSB7CiAgICAgICAgdmFyIHNlbGVjdF9vbl9jbGljayA9IGdldFNlbGVjdE9u
-			Q2xpY2sodmRvbUxpc3RfdjIpOwogICAgICAgIHZhciBuZWVkX3NlbGVjdCA9CiAgICAgICAgICAo
-			c2VsZWN0X29uX2NsaWNrID09ICJjdHJsZGJsY2xpY2siICYmIGlzX2RibCAmJiBpc19jdHJsKSB8
-			fAogICAgICAgICAgKHNlbGVjdF9vbl9jbGljayA9PSAiZGJsY2xpY2siICYmIGlzX2RibCkgfHwK
-			ICAgICAgICAgIChzZWxlY3Rfb25fY2xpY2sgPT0gImN0cmxjbGljayIgJiYgaXNfY3RybCkgfHwK
-			ICAgICAgICAgIHNlbGVjdF9vbl9jbGljayA9PSAiY2xpY2siOwogIAogICAgICAgIGlmIChuZWVk
-			X3NlbGVjdCkgewogICAgICAgICAgdmRvbUxpc3RfdjIudmRvbUxpc3RfdjIoCiAgICAgICAgICAg
-			IGhhc011bHRpU2VsZWN0KHZkb21MaXN0X3YyKSA/ICJ0b29nbGVTZWxlY3Rpb24iIDogIm1hcmtB
-			c1NlbGVjdGVkIiwKICAgICAgICAgICAgW2l0ZW1faWRdCiAgICAgICAgICApOwogICAgICAgIH0K
-			ICAgICAgfQogIAogICAgICB2YXIgY2hpbGRfZGF0YSA9ICFpc19jaGlsZAogICAgICAgID8gIiIK
-			ICAgICAgICA6IEpTT04uc3RyaW5naWZ5KHsKICAgICAgICAgICAgY2xhc3M6IG9iai5hdHRyKCJj
-			bGFzcyIpLAogICAgICAgICAgICB0YWc6IG9iai5nZXQoMCkubm9kZU5hbWUudG9Mb3dlckNhc2Uo
-			KSwKICAgICAgICAgICAgbmFtZTogb2JqLmF0dHIoIm5hbWUiKSwKICAgICAgICAgICAgaWQ6IG9i
-			ai5hdHRyKCJpZCIpLAogICAgICAgICAgfSk7CiAgCiAgICAgIHZkb21MaXN0X3YyLnZkb21MaXN0
-			X3YyKCJtYXJrQXNBY3RpdmUiLCBpdGVtX2lkKTsKICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9i
-			aklEKHZkb21MaXN0X3YyKSwgZXZ0X25hbWUsIHsKICAgICAgICBpdGVtaWQ6IGl0ZW1faWQsCiAg
-			ICAgICAgc2VsZWN0ZWQ6IHZkb21MaXN0X3YyLnZkb21MaXN0X3YyKCJnZXRTZWxlY3RlZElEcyIp
-			LAogICAgICAgIFg6IGV2dC5wYWdlWCwKICAgICAgICBZOiBldnQucGFnZVksCiAgICAgICAgY2hp
-			bGQ6IGNoaWxkX2RhdGEsCiAgICAgIH0pOwogICAgfQogIAogICAgZnVuY3Rpb24gcmFpc2VJdGVt
-			U2VsZWN0ZWRFdmVudCh2ZG9tTGlzdF92MikgewogICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2Jq
-			SUQodmRvbUxpc3RfdjIpLCAicm93c3NlbGVjdGVkIiwgewogICAgICAgIHNlbGVjdGVkOiB2ZG9t
-			TGlzdF92Mi52ZG9tTGlzdF92MigiZ2V0U2VsZWN0ZWRJRHMiKSwKICAgICAgfSk7CiAgICB9CiAg
-			CiAgICBmdW5jdGlvbiB0b29nbGVTZWxlY3Rpb24oaXRlbSkgewogICAgICBpZiAoaXRlbS5oYXND
-			bGFzcygic2VsZWN0YWJsZSIpKSB7CiAgICAgICAgaWYgKGl0ZW0uaGFzQ2xhc3MoInNlbGVjdGVk
-			IikpIHsKICAgICAgICAgIGl0ZW0ucmVtb3ZlQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgfSBl
-			bHNlIHsKICAgICAgICAgIGl0ZW0uYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgfQogICAg
-			ICB9CiAgICB9CiAgCiAgICB2YXIgbWV0aG9kcyA9IHsKICAgICAgc2V0RGF0YTogZnVuY3Rpb24g
-			KGRhdGEpIHsKICAgICAgICB0cnkgewogICAgICAgICAgZGF0YSA9IEpTT04ucGFyc2UoZGF0YSk7
-			CiAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgICAgIGNvbnNvbGUuZXJyb3IoZXJyb3Ip
-			OwogICAgICAgICAgZGF0YSA9IGRhdGE7CiAgICAgICAgfQogICAgICAgICQoIj51bCIsIHRoaXMp
-			LmVtcHR5KCk7CiAgICAgICAgbGV0IGluZGV4ID0gMDsKICAgICAgICBjb25zdCBkYXRhTGVuZ3Ro
-			ID0gT2JqZWN0LmtleXMoZGF0YSkubGVuZ3RoOwogICAgICAgIChBcnJheS5pc0FycmF5KGRhdGEp
-			ID8gZGF0YSA6IE9iamVjdC5lbnRyaWVzKGRhdGEpKS5mb3JFYWNoKChba2V5LCB2YWx1ZV0pID0+
-			IHsKICAgICAgICAgIGNvbnN0IGNzc0NsYXNzID0gYAogICAgICAgICAgICAgICAgICBsaXN0LWl0
-			ZW0tJHtpbmRleH0gCiAgICAgICAgICAgICAgICAgICR7aW5kZXggPT0gMCA/ICJsaXN0LWl0ZW0t
-			Zmlyc3QiIDogIiJ9IAogICAgICAgICAgICAgICAgICAke2luZGV4ID09IGRhdGFMZW5ndGggLSAx
-			ID8gImxpc3QtaXRlbS1sYXN0IiA6ICIifQogICAgICAgICAgICAgICAgICAke2luZGV4ICUgMiA9
-			PSAwID8gImxpc3QtaXRlbS1vZGQiIDogIiJ9CiAgICAgICAgICAgICAgYDsKICAgICAgICAgICQo
-			Ij51bCIsIHRoaXMpLmFwcGVuZCgKICAgICAgICAgICAgYDxsaSBpdGVtaWQ9IiR7a2V5fSIgY2xh
-			c3M9IiR7Y3NzQ2xhc3N9Ij4ke3ZhbHVlfTwvbGk+YAogICAgICAgICAgKTsKICAgICAgICAgIGlu
-			ZGV4Kys7CiAgICAgICAgfSk7CiAgICAgIH0sCiAgCiAgICAgIGdldFNlbGVjdGVkSURzOiBmdW5j
-			dGlvbiAoKSB7CiAgICAgICAgaWRzID0gW107CiAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0uc2Vs
-			ZWN0ZWQiLCB0aGlzKS5lYWNoKGZ1bmN0aW9uICgpIHsKICAgICAgICAgIGlkcy5wdXNoKCQodGhp
-			cykuYXR0cigiaXRlbWlkIikpOwogICAgICAgIH0pOwogICAgICAgIHJldHVybiBpZHM7CiAgICAg
-			IH0sCiAgCiAgICAgIGdldFNlbGVjdGVkSXRlbXM6IGZ1bmN0aW9uICgpIHsKICAgICAgICByZXR1
-			cm4gJCgiPnVsPmxpW2l0ZW1pZF0uc2VsZWN0ZWQiLCB0aGlzKTsKICAgICAgfSwKICAKICAgICAg
-			dG9vZ2xlU2VsZWN0aW9uOiBmdW5jdGlvbiAoaWRzLCByYWlzZUV2ZW50KSB7CiAgICAgICAgaWYg
-			KHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiKSB7CiAgICAgICAgICBpZiAoaGFzTXVsdGlTZWxl
-			Y3QodGhpcykpIHsKICAgICAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0iLCB0aGlzKS5lYWNoKGZ1
-			bmN0aW9uICgpIHsKICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCh0aGlzKSk7CiAgICAg
-			ICAgICAgIH0pOwogICAgICAgICAgfQogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICBpZiAoaGFz
-			TXVsdGlTZWxlY3QodGhpcykpIHsKICAgICAgICAgICAgZm9yICh2YXIgaSBpbiBpZHMpIHsKICAg
-			ICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCgnPnVsPmxpW2l0ZW1pZD0iJyArIGlkc1tpXSAr
-			ICciXScsIHRoaXMpKTsKICAgICAgICAgICAgfQogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAg
-			ICAgdG9vZ2xlU2VsZWN0aW9uKCQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbMF0gKyAnIl0nLCB0
-			aGlzKSk7CiAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAg
-			ICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwK
-			ICAKICAgICAgbWFya0FzU2VsZWN0ZWQ6IGZ1bmN0aW9uIChpZHMsIHJhaXNlRXZlbnQpIHsKICAg
-			ICAgICBpZiAodHlwZW9mIGlkcyA9PT0gInVuZGVmaW5lZCIpIHsKICAgICAgICAgIGlmIChoYXNN
-			dWx0aVNlbGVjdCh0aGlzKSkgewogICAgICAgICAgICAkKCI+dWw+bGlbaXRlbWlkXS5zZWxlY3Rh
-			YmxlIiwgdGhpcykuYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgICB9CiAgICAgICAgfSBl
-			bHNlIHsKICAgICAgICAgIGlmIChoYXNNdWx0aVNlbGVjdCh0aGlzKSkgewogICAgICAgICAgICBm
-			b3IgKHZhciBpIGluIGlkcykgewogICAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBp
-			ZHNbaV0gKyAnIl0uc2VsZWN0YWJsZScsIHRoaXMpLmFkZENsYXNzKAogICAgICAgICAgICAgICAg
-			InNlbGVjdGVkIgogICAgICAgICAgICAgICk7CiAgICAgICAgICAgIH0KICAgICAgICAgIH0gZWxz
-			ZSB7CiAgICAgICAgICAgIHZhciBuZXdfc2VsX2l0ZW0gPSAkKAogICAgICAgICAgICAgICc+dWw+
-			bGlbaXRlbWlkPSInICsgaWRzWzBdICsgJyJdLnNlbGVjdGFibGUnLAogICAgICAgICAgICAgIHRo
-			aXMKICAgICAgICAgICAgKTsKICAgICAgICAgICAgaWYgKG5ld19zZWxfaXRlbS5sZW5ndGgpIHsK
-			ICAgICAgICAgICAgICAkKCI+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlLnNlbGVjdGVkIiwgdGhp
-			cykucmVtb3ZlQ2xhc3MoCiAgICAgICAgICAgICAgICAic2VsZWN0ZWQiCiAgICAgICAgICAgICAg
-			KTsKICAgICAgICAgICAgICBuZXdfc2VsX2l0ZW0uYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAg
-			ICAgICAgIH0KICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgaWYgKHJhaXNlRXZlbnQpIHsK
-			ICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7CiAgICAgICAgfQogICAgICB9
-			LAogIAogICAgICB1bm1hcmtBc1NlbGVjdGVkOiBmdW5jdGlvbiAoaWRzLCByYWlzZUV2ZW50KSB7
-			CiAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiKSB7CiAgICAgICAgICAkKCI+
-			dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlIiwgdGhpcykucmVtb3ZlQ2xhc3MoInNlbGVjdGVkIik7
-			CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgIGZvciAodmFyIGkgaW4gaWRzKSB7CiAgICAgICAg
-			ICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbaV0gKyAnIl0uc2VsZWN0ZWQnLCB0aGlzKS5y
-			ZW1vdmVDbGFzcygKICAgICAgICAgICAgICAic2VsZWN0ZWQiCiAgICAgICAgICAgICk7CiAgICAg
-			ICAgICB9CiAgICAgICAgfQogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAgICAgICAgICByYWlz
-			ZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgbWFy
-			a0FzQWN0aXZlOiBmdW5jdGlvbiAoaXRlbWlkKSB7CiAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0u
-			YWN0aXZlIiwgdGhpcykucmVtb3ZlQ2xhc3MoImFjdGl2ZSIpOwogICAgICAgICQoJz51bD5saVtp
-			dGVtaWQ9IicgKyBpdGVtaWQgKyAnIl0nLCB0aGlzKS5hZGRDbGFzcygiYWN0aXZlIik7CiAgICAg
-			IH0sCiAgCiAgICAgIG1hcmtBc0luYWN0aXZlOiBmdW5jdGlvbiAoaXRlbWlkKSB7CiAgICAgICAg
-			aWYgKGl0ZW1pZCkgewogICAgICAgICAgJCgnPnVsPmxpW2l0ZW1pZD0iJyArIGl0ZW1pZCArICci
-			XScsIHRoaXMpLnJlbW92ZUNsYXNzKCJhY3RpdmUiKTsKICAgICAgICB9IGVsc2UgewogICAgICAg
-			ICAgJCgiPnVsPmxpW2l0ZW1pZF0uYWN0aXZlIiwgdGhpcykucmVtb3ZlQ2xhc3MoImFjdGl2ZSIp
-			OwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgbXVsdGlTZWxlY3Rpb25Nb2RlOiBmdW5jdGlv
-			biAoKSB7CiAgICAgICAgdGhpcy5hdHRyKCJzZWxlY3Rpb25tb2RlIiwgIm11bHRpc2VsZWN0aW9u
-			Iik7CiAgICAgIH0sCiAgCiAgICAgIHNpbmdsZVNlbGVjdGlvbk1vZGU6IGZ1bmN0aW9uICgpIHsK
-			ICAgICAgICB0aGlzLmF0dHIoInNlbGVjdGlvbm1vZGUiLCAic2luZ2xlc2VsZWN0aW9uIik7CiAg
-			ICAgIH0sCiAgCiAgICAgIHRvb2dsZVNlbGVjdGlvbk1vZGU6IGZ1bmN0aW9uICgpIHsKICAgICAg
-			ICBpZiAoaGFzTXVsdGlTZWxlY3QodGhpcykpIHsKICAgICAgICAgIHRoaXMuYXR0cigic2VsZWN0
-			aW9ubW9kZSIsICJzaW5nbGVzZWxlY3Rpb24iKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAg
-			dGhpcy5hdHRyKCJzZWxlY3Rpb25tb2RlIiwgIm11bHRpc2VsZWN0aW9uIik7CiAgICAgICAgfQog
-			ICAgICB9LAogIAogICAgICByZW1vdmVJdGVtczogZnVuY3Rpb24gKGlkcywgc3RhcnQsIGxlbmd0
-			aCwgcmFpc2VFdmVudCkgewogICAgICAgIGlmIChpZHMpIHsKICAgICAgICAgIGZvciAodmFyIGkg
-			aW4gaWRzKSB7CiAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbaV0gKyAnIl0n
-			LCB0aGlzKS5yZW1vdmUoKTsKICAgICAgICAgIH0KICAgICAgICB9IGVsc2UgaWYgKHR5cGVvZiBz
-			dGFydCAhPT0gInVuZGVmaW5lZCIpIHsKICAgICAgICAgIGxlbmd0aCA9IGxlbmd0aCB8fCAxOwog
-			ICAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0iLCB0aGlzKQogICAgICAgICAgICAuc2xpY2Uoc3Rh
-			cnQsIHN0YXJ0ICsgbGVuZ3RoKQogICAgICAgICAgICAucmVtb3ZlKCk7CiAgICAgICAgfSBlbHNl
-			IHsKICAgICAgICAgICQoIj51bD5saVtpdGVtaWRdIiwgdGhpcykucmVtb3ZlKCk7CiAgICAgICAg
-			fQogIAogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAgICAgICAgICByYWlzZUl0ZW1TZWxlY3Rl
-			ZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgaW5pdDogZnVuY3Rpb24g
-			KG9wdGlvbnMpIHsKICAgICAgICB2YXIgdmRvbUxpc3RfdjIgPSB0aGlzOwogICAgICAgIHZhciBv
-			YmpfaWQgPSB2ZG9tTGlzdF92Mi5hdHRyKCJpZCIpOwogIAogICAgICAgIGlmIChvcHRpb25zWyJk
-			cm9wcGFibGUiXSkgewogICAgICAgICAgJCgiPnVsPmxpLmRyb3BwYWJsZSIsIHRoaXMpLmRyb3Bw
-			YWJsZSh7CiAgICAgICAgICAgIGFkZENsYXNzZXM6IGZhbHNlLAogICAgICAgICAgICBob3ZlckNs
-			YXNzOiAidWktc3RhdGUtYWN0aXZlIiwKICAgICAgICAgICAgdG9sZXJhbmNlOiAicG9pbnRlciIs
-			CiAgICAgICAgICAgIGRyb3A6IGZ1bmN0aW9uIChldiwgdWkpIHsKICAgICAgICAgICAgICBleGVj
-			RXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbUxpc3RfdjIpLCAiZHJvcCIsIHsKICAgICAgICAgICAg
-			ICAgIGl0ZW1pZDogJCh0aGlzKS5hdHRyKCJpdGVtaWQiKSwKICAgICAgICAgICAgICB9KTsKICAg
-			ICAgICAgICAgfSwKICAgICAgICAgIH0pOwogICAgICAgIH0KICAKICAgICAgICB2YXIgc2VsZWN0
-			b3JzID0gWyI+dWw+bGkiXTsKICAgICAgICBpZiAob3B0aW9uc1siY2xpY2tDbGFzc2VzIl0pIHsK
-			ICAgICAgICAgIHZhciBjbGFzc2VzID0gb3B0aW9uc1siY2xpY2tDbGFzc2VzIl07CiAgICAgICAg
-			ICBjbGFzc2VzLmZvckVhY2goaSA9PiB7CiAgICAgICAgICAgIHNlbGVjdG9ycy5wdXNoKHNlbGVj
-			dG9yc1swXSArICIgIiArIGNsYXNzZXNbaV0pOwogICAgICAgICAgfSk7IAogICAgICAgIH0KICAK
-			ICAgICAgICAkKHRoaXMpLm9uKCJjbGljayBkYmxjbGljayIsIHNlbGVjdG9ycy5qb2luKCIsIiks
-			IGZ1bmN0aW9uIChlKSB7CiAgICAgICAgICBpZiAoZS5wcmV2ZW50RGVmYXVsdCkgewogICAgICAg
-			ICAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICBl
-			LnJldHVyblZhbHVlID0gZmFsc2U7CiAgICAgICAgICB9CiAgCiAgICAgICAgICB2YXIgJHRoaXMg
-			PSAkKGUudGFyZ2V0KTsKICAKICAgICAgICAgIGlmIChlLnR5cGUgPT0gImRibGNsaWNrIikgewog
-			ICAgICAgICAgICAkdGhpcy5kYXRhKCJpc1NpbmdsZUNsaWNrIiwgZmFsc2UpOwogICAgICAgICAg
-			ICBpZiAoZS5jdHJsS2V5IHx8IGUubWV0YUtleSkgewogICAgICAgICAgICAgIHJhaXNlQ2xpY2tF
-			dmVudChlLCB2ZG9tTGlzdF92MiwgJHRoaXMsIHRydWUsIHRydWUpOwogICAgICAgICAgICB9IGVs
-			c2UgewogICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCB2ZG9tTGlzdF92MiwgJHRoaXMs
-			IHRydWUsIGZhbHNlKTsKICAgICAgICAgICAgfQogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAg
-			ICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7CiAgICAgICAgICAgICAgaWYgKCR0aGlzLmRhdGEo
-			ImlzU2luZ2xlQ2xpY2siKSA9PSB0cnVlKSB7CiAgICAgICAgICAgICAgICBpZiAoZS5jdHJsS2V5
-			IHx8IGUubWV0YUtleSkgewogICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgdmRv
-			bUxpc3RfdjIsICR0aGlzLCBmYWxzZSwgdHJ1ZSk7CiAgICAgICAgICAgICAgICB9IGVsc2Ugewog
-			ICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgdmRvbUxpc3RfdjIsICR0aGlzLCBm
-			YWxzZSwgZmFsc2UpOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIH0KICAgICAgICAg
-			ICAgfSwgMjAwKTsKICAgICAgICAgICAgJHRoaXMuZGF0YSgiaXNTaW5nbGVDbGljayIsIHRydWUp
-			OwogICAgICAgICAgfQogICAgICAgICAgcmV0dXJuIGZhbHNlOwogICAgICAgIH0pOwogICAgICB9
-			LAogICAgfTsKICAKICAgICQuZm4udmRvbUxpc3RfdjIgPSBmdW5jdGlvbiAobWV0aG9kKSB7CiAg
-			ICAgIGlmIChtZXRob2RzW21ldGhvZF0pIHsKICAgICAgICByZXR1cm4gbWV0aG9kc1ttZXRob2Rd
-			LmFwcGx5KAogICAgICAgICAgdGhpcywKICAgICAgICAgIEFycmF5LnByb3RvdHlwZS5zbGljZS5j
-			YWxsKGFyZ3VtZW50cywgMSkKICAgICAgICApOwogICAgICB9IGVsc2UgaWYgKHR5cGVvZiBtZXRo
-			b2QgPT0gIm9iamVjdCIgfHwgIW1ldGhvZCkgewogICAgICAgIHJldHVybiBtZXRob2RzLmluaXQu
-			YXBwbHkodGhpcywgYXJndW1lbnRzKTsKICAgICAgfSBlbHNlIHsKICAgICAgICAkLmVycm9yKCJW
-			RE9NIExpc3QgVjI6IHVua25vd24gbWV0aG9kICIgKyBtZXRob2QpOwogICAgICB9CiAgICB9Owog
-			IH0pKGpRdWVyeSk7
+			KGZ1bmN0aW9uICgkKSB7CiAgICBmdW5jdGlvbiBnZXRPYmpJRChvYmopIHsKICAgICAgdmFyIGlkID0gb2JqLmF0dHIoImlkIik7CiAgICAgIHJldHVybiBpZC5zdWJzdHJpbmcoMiwgaWQubGVuZ3RoKTsKICAgIH0KICAKICAgIGZ1bmN0aW9uIGhhc011bHRpU2VsZWN0KG9iaikgewogICAgICByZXR1cm4gb2JqLmF0dHIoInNlbGVjdGlvbm1vZGUiKSA9PSAibXVsdGlzZWxlY3Rpb24iID8gdHJ1ZSA6IGZhbHNlOwogICAgfQogIAogICAgZnVuY3Rpb24gZ2V0U2VsZWN0T25DbGljayhvYmopIHsKICAgICAgcmV0dXJuIG9iai5hdHRyKCJzZWxlY3Qtb24tY2xpY2siKTsKICAgIH0KICAKICAgIGZ1bmN0aW9uIHJhaXNlQ2xpY2tFdmVudChldnQsIHZkb21MaXN0X3YyLCBvYmosIGlzX2RibCwgaXNfY3RybCkgewogICAgICB2YXIgaXNfY2hpbGQgPSBmYWxzZTsKICAgICAgdmFyIGxpX29iajsKICAKICAgICAgaWYgKG9iai5nZXQoMCkubm9kZU5hbWUudG9Mb3dlckNhc2UoKSAhPSAibGkiICYmICFvYmouYXR0cigiaXRlbWlkIikpIHsKICAgICAgICBpc19jaGlsZCA9IHRydWU7CiAgICAgICAgbGlfb2JqID0gb2JqLmNsb3Nlc3QoImxpW2l0ZW1pZF0iKTsKICAgICAgfSBlbHNlIHsKICAgICAgICBsaV9vYmogPSBvYmo7CiAgICAgIH0KICAKICAgICAgdmFyIGl0ZW1faWQgPSBsaV9vYmouYXR0cigiaXRlbWlkIik7CiAgICAgIHZhciBldnRfbmFtZSA9CiAgICAgICAgIml0ZW0iICsgKGlzX2N0cmwgPyAiY3RybCIgOiAiIikgKyAoaXNfZGJsID8gImRibCIgOiAiIikgKyAiY2xpY2siOwogIAogICAgICBpZiAoIWlzX2NoaWxkKSB7CiAgICAgICAgdmFyIHNlbGVjdF9vbl9jbGljayA9IGdldFNlbGVjdE9uQ2xpY2sodmRvbUxpc3RfdjIpOwogICAgICAgIHZhciBuZWVkX3NlbGVjdCA9CiAgICAgICAgICAoc2VsZWN0X29uX2NsaWNrID09ICJjdHJsZGJsY2xpY2siICYmIGlzX2RibCAmJiBpc19jdHJsKSB8fAogICAgICAgICAgKHNlbGVjdF9vbl9jbGljayA9PSAiZGJsY2xpY2siICYmIGlzX2RibCkgfHwKICAgICAgICAgIChzZWxlY3Rfb25fY2xpY2sgPT0gImN0cmxjbGljayIgJiYgaXNfY3RybCkgfHwKICAgICAgICAgIHNlbGVjdF9vbl9jbGljayA9PSAiY2xpY2siOwogIAogICAgICAgIGlmIChuZWVkX3NlbGVjdCkgewogICAgICAgICAgdmRvbUxpc3RfdjIudmRvbUxpc3RfdjIoCiAgICAgICAgICAgIGhhc011bHRpU2VsZWN0KHZkb21MaXN0X3YyKSA/ICJ0b29nbGVTZWxlY3Rpb24iIDogIm1hcmtBc1NlbGVjdGVkIiwKICAgICAgICAgICAgW2l0ZW1faWRdCiAgICAgICAgICApOwogICAgICAgIH0KICAgICAgfQogIAogICAgICB2YXIgY2hpbGRfZGF0YSA9ICFpc19jaGlsZAogICAgICAgID8gIiIKICAgICAgICA6IEpTT04uc3RyaW5naWZ5KHsKICAgICAgICAgICAgY2xhc3M6IG9iai5hdHRyKCJjbGFzcyIpLAogICAgICAgICAgICB0YWc6IG9iai5nZXQoMCkubm9kZU5hbWUudG9Mb3dlckNhc2UoKSwKICAgICAgICAgICAgbmFtZTogb2JqLmF0dHIoIm5hbWUiKSwKICAgICAgICAgICAgaWQ6IG9iai5hdHRyKCJpZCIpLAogICAgICAgICAgfSk7CiAgCiAgICAgIHZkb21MaXN0X3YyLnZkb21MaXN0X3YyKCJtYXJrQXNBY3RpdmUiLCBpdGVtX2lkKTsKICAgICAgZXhlY0V2ZW50QmluZGVkKGdldE9iaklEKHZkb21MaXN0X3YyKSwgZXZ0X25hbWUsIHsKICAgICAgICBpdGVtaWQ6IGl0ZW1faWQsCiAgICAgICAgc2VsZWN0ZWQ6IHZkb21MaXN0X3YyLnZkb21MaXN0X3YyKCJnZXRTZWxlY3RlZElEcyIpLAogICAgICAgIFg6IGV2dC5wYWdlWCwKICAgICAgICBZOiBldnQucGFnZVksCiAgICAgICAgY2hpbGQ6IGNoaWxkX2RhdGEsCiAgICAgIH0pOwogICAgfQogIAogICAgZnVuY3Rpb24gcmFpc2VJdGVtU2VsZWN0ZWRFdmVudCh2ZG9tTGlzdF92MikgewogICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbUxpc3RfdjIpLCAicm93c3NlbGVjdGVkIiwgewogICAgICAgIHNlbGVjdGVkOiB2ZG9tTGlzdF92Mi52ZG9tTGlzdF92MigiZ2V0U2VsZWN0ZWRJRHMiKSwKICAgICAgfSk7CiAgICB9CiAgCiAgICBmdW5jdGlvbiB0b29nbGVTZWxlY3Rpb24oaXRlbSkgewogICAgICBpZiAoaXRlbS5oYXNDbGFzcygic2VsZWN0YWJsZSIpKSB7CiAgICAgICAgaWYgKGl0ZW0uaGFzQ2xhc3MoInNlbGVjdGVkIikpIHsKICAgICAgICAgIGl0ZW0ucmVtb3ZlQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgIGl0ZW0uYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgfQogICAgICB9CiAgICB9CiAgCiAgICB2YXIgbWV0aG9kcyA9IHsKICAgICAgc2V0RGF0YTogZnVuY3Rpb24gKGRhdGEpIHsKICAgICAgICB0cnkgewogICAgICAgICAgZGF0YSA9IEpTT04ucGFyc2UoZGF0YSk7CiAgICAgICAgfSBjYXRjaCAoZXJyb3IpIHsKICAgICAgICAgIGNvbnNvbGUuZXJyb3IoZXJyb3IpOwogICAgICAgICAgZGF0YSA9IGRhdGE7CiAgICAgICAgfQogICAgICAgICQoIj51bCIsIHRoaXMpLmVtcHR5KCk7CiAgICAgICAgbGV0IGluZGV4ID0gMDsKICAgICAgICBjb25zdCBkYXRhTGVuZ3RoID0gT2JqZWN0LmtleXMoZGF0YSkubGVuZ3RoOwogICAgICAgIChBcnJheS5pc0FycmF5KGRhdGEpID8gZGF0YSA6IE9iamVjdC5lbnRyaWVzKGRhdGEpKS5mb3JFYWNoKChba2V5LCB2YWx1ZV0pID0+IHsKICAgICAgICAgIGNvbnN0IGNzc0NsYXNzID0gYAogICAgICAgICAgICAgICAgICBsaXN0LWl0ZW0tJHtpbmRleH0gCiAgICAgICAgICAgICAgICAgICR7aW5kZXggPT0gMCA/ICJsaXN0LWl0ZW0tZmlyc3QiIDogIiJ9IAogICAgICAgICAgICAgICAgICAke2luZGV4ID09IGRhdGFMZW5ndGggLSAxID8gImxpc3QtaXRlbS1sYXN0IiA6ICIifQogICAgICAgICAgICAgICAgICAke2luZGV4ICUgMiA9PSAwID8gImxpc3QtaXRlbS1vZGQiIDogIiJ9CiAgICAgICAgICAgICAgYDsKICAgICAgICAgICQoIj51bCIsIHRoaXMpLmFwcGVuZCgKICAgICAgICAgICAgYDxsaSBpdGVtaWQ9IiR7a2V5fSIgY2xhc3M9IiR7Y3NzQ2xhc3N9Ij4ke3ZhbHVlfTwvbGk+YAogICAgICAgICAgKTsKICAgICAgICAgIGluZGV4Kys7CiAgICAgICAgfSk7CiAgICAgIH0sCiAgCiAgICAgIGdldFNlbGVjdGVkSURzOiBmdW5jdGlvbiAoKSB7CiAgICAgICAgaWRzID0gW107CiAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0uc2VsZWN0ZWQiLCB0aGlzKS5lYWNoKGZ1bmN0aW9uICgpIHsKICAgICAgICAgIGlkcy5wdXNoKCQodGhpcykuYXR0cigiaXRlbWlkIikpOwogICAgICAgIH0pOwogICAgICAgIHJldHVybiBpZHM7CiAgICAgIH0sCiAgCiAgICAgIGdldFNlbGVjdGVkSXRlbXM6IGZ1bmN0aW9uICgpIHsKICAgICAgICByZXR1cm4gJCgiPnVsPmxpW2l0ZW1pZF0uc2VsZWN0ZWQiLCB0aGlzKTsKICAgICAgfSwKICAKICAgICAgdG9vZ2xlU2VsZWN0aW9uOiBmdW5jdGlvbiAoaWRzLCByYWlzZUV2ZW50KSB7CiAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiKSB7CiAgICAgICAgICBpZiAoaGFzTXVsdGlTZWxlY3QodGhpcykpIHsKICAgICAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0iLCB0aGlzKS5lYWNoKGZ1bmN0aW9uICgpIHsKICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCh0aGlzKSk7CiAgICAgICAgICAgIH0pOwogICAgICAgICAgfQogICAgICAgIH0gZWxzZSB7CiAgICAgICAgICBpZiAoaGFzTXVsdGlTZWxlY3QodGhpcykpIHsKICAgICAgICAgICAgZm9yICh2YXIgaSBpbiBpZHMpIHsKICAgICAgICAgICAgICB0b29nbGVTZWxlY3Rpb24oJCgnPnVsPmxpW2l0ZW1pZD0iJyArIGlkc1tpXSArICciXScsIHRoaXMpKTsKICAgICAgICAgICAgfQogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgdG9vZ2xlU2VsZWN0aW9uKCQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbMF0gKyAnIl0nLCB0aGlzKSk7CiAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgbWFya0FzU2VsZWN0ZWQ6IGZ1bmN0aW9uIChpZHMsIHJhaXNlRXZlbnQpIHsKICAgICAgICBpZiAodHlwZW9mIGlkcyA9PT0gInVuZGVmaW5lZCIpIHsKICAgICAgICAgIGlmIChoYXNNdWx0aVNlbGVjdCh0aGlzKSkgewogICAgICAgICAgICAkKCI+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlIiwgdGhpcykuYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgICB9CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgIGlmIChoYXNNdWx0aVNlbGVjdCh0aGlzKSkgewogICAgICAgICAgICBmb3IgKHZhciBpIGluIGlkcykgewogICAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbaV0gKyAnIl0uc2VsZWN0YWJsZScsIHRoaXMpLmFkZENsYXNzKAogICAgICAgICAgICAgICAgInNlbGVjdGVkIgogICAgICAgICAgICAgICk7CiAgICAgICAgICAgIH0KICAgICAgICAgIH0gZWxzZSB7CiAgICAgICAgICAgIHZhciBuZXdfc2VsX2l0ZW0gPSAkKAogICAgICAgICAgICAgICc+dWw+bGlbaXRlbWlkPSInICsgaWRzWzBdICsgJyJdLnNlbGVjdGFibGUnLAogICAgICAgICAgICAgIHRoaXMKICAgICAgICAgICAgKTsKICAgICAgICAgICAgaWYgKG5ld19zZWxfaXRlbS5sZW5ndGgpIHsKICAgICAgICAgICAgICAkKCI+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlLnNlbGVjdGVkIiwgdGhpcykucmVtb3ZlQ2xhc3MoCiAgICAgICAgICAgICAgICAic2VsZWN0ZWQiCiAgICAgICAgICAgICAgKTsKICAgICAgICAgICAgICBuZXdfc2VsX2l0ZW0uYWRkQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgICAgIH0KICAgICAgICAgIH0KICAgICAgICB9CiAgICAgICAgaWYgKHJhaXNlRXZlbnQpIHsKICAgICAgICAgIHJhaXNlSXRlbVNlbGVjdGVkRXZlbnQodGhpcyk7CiAgICAgICAgfQogICAgICB9LAogIAogICAgICB1bm1hcmtBc1NlbGVjdGVkOiBmdW5jdGlvbiAoaWRzLCByYWlzZUV2ZW50KSB7CiAgICAgICAgaWYgKHR5cGVvZiBpZHMgPT09ICJ1bmRlZmluZWQiKSB7CiAgICAgICAgICAkKCI+dWw+bGlbaXRlbWlkXS5zZWxlY3RhYmxlIiwgdGhpcykucmVtb3ZlQ2xhc3MoInNlbGVjdGVkIik7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgIGZvciAodmFyIGkgaW4gaWRzKSB7CiAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbaV0gKyAnIl0uc2VsZWN0ZWQnLCB0aGlzKS5yZW1vdmVDbGFzcygKICAgICAgICAgICAgICAic2VsZWN0ZWQiCiAgICAgICAgICAgICk7CiAgICAgICAgICB9CiAgICAgICAgfQogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgbWFya0FzQWN0aXZlOiBmdW5jdGlvbiAoaXRlbWlkKSB7CiAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0uYWN0aXZlIiwgdGhpcykucmVtb3ZlQ2xhc3MoImFjdGl2ZSIpOwogICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpdGVtaWQgKyAnIl0nLCB0aGlzKS5hZGRDbGFzcygiYWN0aXZlIik7CiAgICAgIH0sCiAgCiAgICAgIG1hcmtBc0luYWN0aXZlOiBmdW5jdGlvbiAoaXRlbWlkKSB7CiAgICAgICAgaWYgKGl0ZW1pZCkgewogICAgICAgICAgJCgnPnVsPmxpW2l0ZW1pZD0iJyArIGl0ZW1pZCArICciXScsIHRoaXMpLnJlbW92ZUNsYXNzKCJhY3RpdmUiKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0uYWN0aXZlIiwgdGhpcykucmVtb3ZlQ2xhc3MoImFjdGl2ZSIpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgbXVsdGlTZWxlY3Rpb25Nb2RlOiBmdW5jdGlvbiAoKSB7CiAgICAgICAgdGhpcy5hdHRyKCJzZWxlY3Rpb25tb2RlIiwgIm11bHRpc2VsZWN0aW9uIik7CiAgICAgIH0sCiAgCiAgICAgIHNpbmdsZVNlbGVjdGlvbk1vZGU6IGZ1bmN0aW9uICgpIHsKICAgICAgICB0aGlzLmF0dHIoInNlbGVjdGlvbm1vZGUiLCAic2luZ2xlc2VsZWN0aW9uIik7CiAgICAgIH0sCiAgCiAgICAgIHRvb2dsZVNlbGVjdGlvbk1vZGU6IGZ1bmN0aW9uICgpIHsKICAgICAgICBpZiAoaGFzTXVsdGlTZWxlY3QodGhpcykpIHsKICAgICAgICAgIHRoaXMuYXR0cigic2VsZWN0aW9ubW9kZSIsICJzaW5nbGVzZWxlY3Rpb24iKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgdGhpcy5hdHRyKCJzZWxlY3Rpb25tb2RlIiwgIm11bHRpc2VsZWN0aW9uIik7CiAgICAgICAgfQogICAgICB9LAogIAogICAgICByZW1vdmVJdGVtczogZnVuY3Rpb24gKGlkcywgc3RhcnQsIGxlbmd0aCwgcmFpc2VFdmVudCkgewogICAgICAgIGlmIChpZHMpIHsKICAgICAgICAgIGZvciAodmFyIGkgaW4gaWRzKSB7CiAgICAgICAgICAgICQoJz51bD5saVtpdGVtaWQ9IicgKyBpZHNbaV0gKyAnIl0nLCB0aGlzKS5yZW1vdmUoKTsKICAgICAgICAgIH0KICAgICAgICB9IGVsc2UgaWYgKHR5cGVvZiBzdGFydCAhPT0gInVuZGVmaW5lZCIpIHsKICAgICAgICAgIGxlbmd0aCA9IGxlbmd0aCB8fCAxOwogICAgICAgICAgJCgiPnVsPmxpW2l0ZW1pZF0iLCB0aGlzKQogICAgICAgICAgICAuc2xpY2Uoc3RhcnQsIHN0YXJ0ICsgbGVuZ3RoKQogICAgICAgICAgICAucmVtb3ZlKCk7CiAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICQoIj51bD5saVtpdGVtaWRdIiwgdGhpcykucmVtb3ZlKCk7CiAgICAgICAgfQogIAogICAgICAgIGlmIChyYWlzZUV2ZW50KSB7CiAgICAgICAgICByYWlzZUl0ZW1TZWxlY3RlZEV2ZW50KHRoaXMpOwogICAgICAgIH0KICAgICAgfSwKICAKICAgICAgaW5pdDogZnVuY3Rpb24gKG9wdGlvbnMpIHsKICAgICAgICB2YXIgdmRvbUxpc3RfdjIgPSB0aGlzOwogICAgICAgIHZhciBvYmpfaWQgPSB2ZG9tTGlzdF92Mi5hdHRyKCJpZCIpOwogIAogICAgICAgIGlmIChvcHRpb25zWyJkcm9wcGFibGUiXSkgewogICAgICAgICAgJCgiPnVsPmxpLmRyb3BwYWJsZSIsIHRoaXMpLmRyb3BwYWJsZSh7CiAgICAgICAgICAgIGFkZENsYXNzZXM6IGZhbHNlLAogICAgICAgICAgICBob3ZlckNsYXNzOiAidWktc3RhdGUtYWN0aXZlIiwKICAgICAgICAgICAgdG9sZXJhbmNlOiAicG9pbnRlciIsCiAgICAgICAgICAgIGRyb3A6IGZ1bmN0aW9uIChldiwgdWkpIHsKICAgICAgICAgICAgICBleGVjRXZlbnRCaW5kZWQoZ2V0T2JqSUQodmRvbUxpc3RfdjIpLCAiZHJvcCIsIHsKICAgICAgICAgICAgICAgIGl0ZW1pZDogJCh0aGlzKS5hdHRyKCJpdGVtaWQiKSwKICAgICAgICAgICAgICB9KTsKICAgICAgICAgICAgfSwKICAgICAgICAgIH0pOwogICAgICAgIH0KICAKICAgICAgICB2YXIgc2VsZWN0b3JzID0gWyI+dWw+bGkiXTsKICAgICAgICBpZiAob3B0aW9uc1siY2xpY2tDbGFzc2VzIl0pIHsKICAgICAgICAgIHZhciBjbGFzc2VzID0gb3B0aW9uc1siY2xpY2tDbGFzc2VzIl07CiAgICAgICAgICBjbGFzc2VzLmZvckVhY2goaSA9PiB7CiAgICAgICAgICAgIHNlbGVjdG9ycy5wdXNoKHNlbGVjdG9yc1swXSArICIgIiArIGNsYXNzZXNbaV0pOwogICAgICAgICAgfSk7IAogICAgICAgIH0KICAKICAgICAgICAkKHRoaXMpLm9uKCJjbGljayBkYmxjbGljayIsIHNlbGVjdG9ycy5qb2luKCIsIiksIGZ1bmN0aW9uIChlKSB7CiAgICAgICAgICBpZiAoZS5wcmV2ZW50RGVmYXVsdCkgewogICAgICAgICAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICBlLnJldHVyblZhbHVlID0gZmFsc2U7CiAgICAgICAgICB9CiAgCiAgICAgICAgICB2YXIgJHRoaXMgPSAkKGUudGFyZ2V0KTsKICAKICAgICAgICAgIGlmIChlLnR5cGUgPT0gImRibGNsaWNrIikgewogICAgICAgICAgICAkdGhpcy5kYXRhKCJpc1NpbmdsZUNsaWNrIiwgZmFsc2UpOwogICAgICAgICAgICBpZiAoZS5jdHJsS2V5IHx8IGUubWV0YUtleSkgewogICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCB2ZG9tTGlzdF92MiwgJHRoaXMsIHRydWUsIHRydWUpOwogICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgIHJhaXNlQ2xpY2tFdmVudChlLCB2ZG9tTGlzdF92MiwgJHRoaXMsIHRydWUsIGZhbHNlKTsKICAgICAgICAgICAgfQogICAgICAgICAgfSBlbHNlIHsKICAgICAgICAgICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7CiAgICAgICAgICAgICAgaWYgKCR0aGlzLmRhdGEoImlzU2luZ2xlQ2xpY2siKSA9PSB0cnVlKSB7CiAgICAgICAgICAgICAgICBpZiAoZS5jdHJsS2V5IHx8IGUubWV0YUtleSkgewogICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgdmRvbUxpc3RfdjIsICR0aGlzLCBmYWxzZSwgdHJ1ZSk7CiAgICAgICAgICAgICAgICB9IGVsc2UgewogICAgICAgICAgICAgICAgICByYWlzZUNsaWNrRXZlbnQoZSwgdmRvbUxpc3RfdjIsICR0aGlzLCBmYWxzZSwgZmFsc2UpOwogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIH0KICAgICAgICAgICAgfSwgMjAwKTsKICAgICAgICAgICAgJHRoaXMuZGF0YSgiaXNTaW5nbGVDbGljayIsIHRydWUpOwogICAgICAgICAgfQogICAgICAgICAgcmV0dXJuIGZhbHNlOwogICAgICAgIH0pOwogICAgICB9LAogICAgfTsKICAKICAgICQuZm4udmRvbUxpc3RfdjIgPSBmdW5jdGlvbiAobWV0aG9kKSB7CiAgICAgIGlmIChtZXRob2RzW21ldGhvZF0pIHsKICAgICAgICByZXR1cm4gbWV0aG9kc1ttZXRob2RdLmFwcGx5KAogICAgICAgICAgdGhpcywKICAgICAgICAgIEFycmF5LnByb3RvdHlwZS5zbGljZS5jYWxsKGFyZ3VtZW50cywgMSkKICAgICAgICApOwogICAgICB9IGVsc2UgaWYgKHR5cGVvZiBtZXRob2QgPT0gIm9iamVjdCIgfHwgIW1ldGhvZCkgewogICAgICAgIHJldHVybiBtZXRob2RzLmluaXQuYXBwbHkodGhpcywgYXJndW1lbnRzKTsKICAgICAgfSBlbHNlIHsKICAgICAgICAkLmVycm9yKCJWRE9NIExpc3QgVjI6IHVua25vd24gbWV0aG9kICIgKyBtZXRob2QpOwogICAgICB9CiAgICB9OwogIH0pKGpRdWVyeSk7
 		</Resource>
 		<Resource ID="9e9518f1-60ab-4cb3-a329-a8fc78530c54" Type="jpg" Name="Icon">
 			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
@@ -1486,10 +712,36 @@
 			U/o1kHqs1Z/NVGrqcW6nZxpmMlizDCe3ecMwZrG08nUJEkNjHR/SAjq/b8H2VnqG5MxaPj6oVEjg
 			MvcNhv/18z8CDAAJmfCaKsJmmwAAAABJRU5ErkJggg==
 		</Resource>
+		<Resource ID="193df497-a2da-4beb-9072-afa082581c5c" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEpklEQVR42q2Wy09bRxTGx/YBY2xj
+			jCAtsCEkETZSbdJswkNKaCskRBcwt6CGSoBZVbQ4qdoGhxBaMIYkLRQ5NE1Ioy6SdlHluryyIPuu
+			aHcg/gCqqsEvwMbPsd2ZATu01y4sOtLVtX3nzm/O+c75xjJ0OKwfW0GlUpFYLCY2v9WMU6kUoT+D
+			skCJlPlKlEgkUK4hk8tINBKFF6svXHl5eUI0GgXnnJPwZ0cBhYWFJBKJiGP2MVxUVMQB6GSD+Hw+
+			mBifcNFNCsFgUAoY/MgKBkMNmyg2NDXg0dFRDujt7UX9/f3I7/cjACmPRory8/N5BI4JBwcEAgEp
+			4OrgNTj/5nnidrvFqtNVuLPzPQ4YGRlBbW1tqL6+Puf2GxsbydLCEkxOTrr0er2wvb0tBXz6yWdg
+			MpmIx+sRz56rxl1YoBNSMHzrFhq0XkWrq6uSCGQyGUomk6iiooIYDUYegVqtFnZ3d6WAoc9tUKRW
+			k1A4LF6zXceqYh1J0Qjy6DPlCTTw+rzgGHfk1uDmjRHQVVaRUGBXHHj3ElasPCGJZArUl1pQYWMb
+			IkcnH9WAXgoK8B8n8pejY1BsrCNhn0fsOVeMdy0CiUcRVIwPo+2qC0h28wMEGhlT9dXiMjlSRJMo
+			UFNHtF88hUfz37vUxSWC588/pIAJuwP0BjMJ+b3ildNa7O/HJB5HUDliQ8nm91Fq6QekUMHhnjMq
+			IFk8hWKvV5LU5S5wzjpdhdoiwe9xSwF3bt8BlVZHyy0sfthzBWsSYULXAqTRIaTRZ9KRLUVyliK/
+			H+xjdpeqoEAI7u9LATNfz8Brp06R/f198fI7b+Nff/ud0BoHU20tumB+43iRvV6YnJh0FTBANg3u
+			Oed4mdKJIq0+3IE7eB/YhoZQb18fslgsSKFQ8MZKD7lczsuU9ggZvjHMy1Sn0wkMJgF8d/8BmM1m
+			DiCJOO7oOAAMUUDf/wF4NP8ISktLSTgUFi82XMRra2s8RUajEdHIjk3RsV7049OfQKNRE+qE3E3p
+			JB4BNT1UUlJyIg0c9v9otNmZWTCZTcTn9YmQD7i9vf1AA5sNDQwMoOnpaW4V6RQxm0inqLa2llDR
+			wD5ud9ENCSwaqVVct2VELtbrcE9PTwbQ1dXFzY4tygDszs4H9pkBmpqayNTUFDz7+ZlLq9UKOzs7
+			UgCtYWCmFQgGRXOdGS8uLjBnZcIjjDHfLbvSu6epRLSkMynyuD2wsrziotad/cC5e/suzQDQ7o2J
+			fRYLLi0rJRsbGxCn7Uxf4oseHekUsSjY6ffyr5ewuLCYGzD91TTUGAyEhifKFTLc3d1N6CJA76il
+			pQVtbW39w67TqWIpKisrI9XV1bC8uMwbLRQKZRF51glnz5whe3t7osfrxlarlWvAFt/c3OSAXINp
+			N/PNDDxfeu7SaDTZz4Nv5+5DeXk5oXQxEglj5z0+AVpbW1FnZyei4vNG+/dgkSiVShKPxWF5aZmn
+			iJ7rUsDDBw9BIVfQMyDBRaa1T2ilQJzEEX05I3A2AH1Gdvw7sPDLQm7A4/nHwP5+0BeoBnLq1YRH
+			wHatgAOLoOZM3fOVVfDvhwAm7Pr6uovOFwghGcDfTBa9Nz1vVyYAAAAASUVORK5CYII=
+		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[import collections
+<![CDATA[
+import collections
 import json
+
 
 CLICK_N_SELECT = (
   "click",
@@ -1510,7 +762,7 @@ class VDOM_listv2(VDOM_object):
         try:
             value = json.loads(prop, *args, **kwargs)
 
-        except Exception:
+        except Exception as ex:
             if prop:
                 raise Exception(u"Can't parse '%s'. It must be '%s'" % (pname, ptype.__name__))
 
@@ -1518,13 +770,9 @@ class VDOM_listv2(VDOM_object):
 
         return value
 
-    def check_unit(self, value):
-        return value + "px" if value.isdigit() else value
-    
     def render(self, contents=""):
 
         obj_id = self.id.replace('-', '_')
-        zindex = u"%s" % self.zindex if int(self.zindex) != 0 else u""
 
         items = self.parse_property("data", dict, object_pairs_hook=collections.OrderedDict)
         selected_rows = self.parse_property("selectedrows", list)
@@ -1547,25 +795,6 @@ class VDOM_listv2(VDOM_object):
         result = []
         index = 1
         is_first = True
-        
-        display = u"none" if self.visible == "0" else self.displaying
-        position = u"{pos}".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
-        
-        styles = {
-            "z-index": zindex,
-            "display": display,
-            "position": position,
-            "width": self.check_unit(self.width),
-            "height": self.check_unit(self.height),
-            "margin": self.margins,
-            "padding": self.paddings,
-            "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left)
-        }
-        if self.positioning == "static":
-            styles["top"] = styles["left"] = ""
-        
-        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
 
         for key, value in items.items():
             
@@ -1596,371 +825,158 @@ class VDOM_listv2(VDOM_object):
           "droppable": self.droppable == "1",
           "clickClasses": self.clickclass.strip().split(),
         }
-        usercss = "<style type='text/css'>"
-        if self.layout == "1":
-            usercss += "#o_%(id)s ul li {\n display: inline; \n} \n" % {"id": obj_id}
-        if self.style:
-            usercss += self.style % {"id": "o_" + obj_id}
-        usercss += "</style>"
-        if not self.style and self.layout != "1":
-            usercss = ""
 
         output = u"""
-<div
-    id="o_{id}"
-    name="{name}"
-    objtype="listv2"
-    ver="{version}"
-    style="{styles}"
-    class="{css_class}"
-    selectionmode="{selectionmode}"
-    select-on-click="{selectonclick}"
->
-    <ul>{content}</ul>
-</div>
-{usercss}
-<script type="text/javascript">$(document).ready(function(){{$("#o_{id}").vdomList_v2({options});}});</script>""" 
+            <div
+                id="o_{id}"
+                name="{name}"
+                objtype="listv2"
+                ver="{version}"
+                style="{display}; z-index: {zindex}; position: absolute; top: {top}px; left: {left}px; height: {height}px; width: {width}px;"
+                class="{css_class}"
+                selectionmode="{selectionmode}"
+                select-on-click="{selectonclick}"
+            >
+            <ul>{content}</ul>
+        </div>
+        <style type="text/css">
+            #o_{id} ul {{
+                list-style: none outside none;
+                margin: 0;
+                padding: 0;
+            }}
+            #o_{id} ul li {{
+                display: {item_display};
+            }}
+            {css}
+        </style>
+        <script type="text/javascript">$(document).ready(function(){{$("#o_{id}").vdomList_v2({options});}});</script>""" 
 
         contents += output.format(
             version=self.type.version,
             name=self.name,
-            css_class=' '.join([self.classname, 'vdom_listv2']).strip(),
+            css_class=self.classname,
             content="".join(result),
             id=obj_id,
-            usercss = usercss,
-            styles=styles_str,
+            css=self.style % {"id": "o_" + obj_id},
+            display=u"display:none;" if self.visible == "0" else u"",
+            zindex=self.zindex,
+            top=self.top,
+            left=self.left,
+            height=self.height,
+            width=self.width,
+            item_display="inline" if self.layout == "1" else "list-item",
             options=json.dumps(options),
             selectionmode="multiselection" if multi_selection else "singleselection",
             selectonclick=CLICK_N_SELECT[int(self.selectonclick)],
         )
 
         return VDOM_object.render(self, contents=contents)        
-        
             
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
-        self.width, self.height, self.top, self.left = [
-            int(self.ide_width), int(self.ide_height), 
-            int(self.ide_top), int(self.ide_left)
-        ]
-        
         image_id = "e1246b00-381e-4b32-bad7-4a647a08d557"
         result = get_empty_wysiwyg_value(self, image_id)
         return VDOM_object.wysiwyg(self, contents=result)
-
-def on_update(object, attributes):
-    o = object
-    modifications = {}
-    
-    for attr in ["left", "width", "height", "top"]:
-        if attr in attributes:
-            attr_value = attributes[attr]
-            obj_value = o.attributes.get(attr, '').lower()
-            
-            if obj_value.isdigit() and attr_value.isdigit():
-                modifications[attr] = attr_value + "px"
-                modifications["ide_"+ attr] = attr_value
-            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-                modifications[attr] = attr_value.rstrip("px") + "px"
-                modifications["ide_"+ attr] = attr_value.rstrip("px")
-            elif attr_value.isdigit() or "px" in attr_value:
-                modifications[attr] = attr_value if "px" in attr_value else obj_value
-                modifications["ide_"+ attr] = attr_value.rstrip("px")
-            else:
-                modifications[attr] = attr_value
-
-    attributes.update(modifications)
-    
-    empty = ""
-    
-    default = u"""\
-#%(id)s li.selected {
-    background: #fdeeb5; 
-}
-#%(id)s li.active {
-    background: #fbdf75 !important; 
-}
-"""
-
-    users = u"""\
-#%(id)s {
-
-}
-"""
-    
-    skin_mapping = {
-        "0": users,
-        "1": default,
-        "2": empty
-    }
-    if "skin" in attributes:
-        skin = attributes["skin"]
-        if skin in skin_mapping:
-            attributes.update(style=skin_mapping[skin])
-        else:
-            attributes.update(skin="0")
-            
-    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-        attributes.update(skin="0")
-        
-    data_example = u"""\
-{"item1": "value 1", "item2": "Value 2", "item3": "Value3"}
-"""
-
-    data_map = {
-        "data_ex": data_example,
-        "empty": u""
-    }
-    
-    if "skindata" in attributes:
-        skindata = attributes["skindata"]
-        if skindata == "1":
-            attributes.update(data=data_example)
-        else:
-            attributes.update(data=u"")
-    
-    if "data" in attributes:
-        if attributes.get("data") not in data_map.values():
-            attributes.update(skindata="0")
-    
-    return ""
-            
-def on_compile(object, attributes):
-    for attr in ["left", "width", "height", "top"]:
-        obj_value = object.attributes[attr]
-        
-        if obj_value.isdigit() or "px" in obj_value:
-            object.attributes[attr] = obj_value.rstrip("px") + "px"
-            object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]>
+]]>
 	</SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<script defer type="text/javascript" src="/92de1d12-fb07-41e5-a288-50f6fc80112a.res"></script>]]></Library>
-		<Library Target="html"><![CDATA[<style type="text/css">
-        .vdom_listv2 {
-            
-        }
-</style>]]></Library>
 	</Libraries>
 	<E2VDOM>
 		<Events>
 			<UserInterfaceEvents>
-				<Event Name="childitemclick" Description="#Lang(519)">
+				<Event Name="itemctrldblclick" Description="#Lang(509)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(901)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(902)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
 						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(904)" Order="0"/>
-						<Parameter Name="child" Description="#Lang(905)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="childitemctrlclick" Description="#Lang(521)">
+				<Event Name="rowsselected" Description="#Lang(511)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(906)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(907)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(908)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(909)" Order="0"/>
-						<Parameter Name="child" Description="#Lang(911)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(905)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="childitemctrldblclick" Description="#Lang(522)">
+				<Event Name="itemclick" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(912)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(913)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(914)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(915)" Order="0"/>
-						<Parameter Name="child" Description="#Lang(916)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="childitemdblclick" Description="#Lang(523)">
+				<Event Name="drop" Description="#Lang(507)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(917)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(918)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(919)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(921)" Order="0"/>
-						<Parameter Name="child" Description="#Lang(922)" Order="0"/>
+						<Parameter Name="params" Description="#Lang(902)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="custom" Description="#Lang(524)">
+				<Event Name="itemdblclick" Description="#Lang(509)">
 					<Parameters>
-						<Parameter Name="param" Description="#Lang(923)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="drop" Description="#Lang(525)">
+				<Event Name="childitemclick" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="params" Description="#Lang(924)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="child" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="itemclick" Description="#Lang(526)">
+				<Event Name="childitemdblclick" Description="#Lang(509)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(925)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(926)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(927)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(928)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="child" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="itemctrlclick" Description="#Lang(527)">
+				<Event Name="custom" Description="#Lang(506)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(929)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(931)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(932)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(933)" Order="0"/>
+						<Parameter Name="param" Description="#Lang(901)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="itemctrldblclick" Description="#Lang(528)">
+				<Event Name="childitemctrlclick" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(934)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(935)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(936)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(937)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="child" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="itemdblclick" Description="#Lang(529)">
+				<Event Name="itemctrlclick" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="itemid" Description="#Lang(938)" Order="0"/>
-						<Parameter Name="selected" Description="#Lang(939)" Order="0"/>
-						<Parameter Name="X" Description="#Lang(941)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(942)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="rowsselected" Description="#Lang(531)">
+				<Event Name="childitemctrldblclick" Description="#Lang(509)">
 					<Parameters>
-						<Parameter Name="selected" Description="#Lang(943)" Order="0"/>
+						<Parameter Name="itemid" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="selected" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="child" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
 			</UserInterfaceEvents>
 		</Events>
 		<Actions>
 			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-				<Action Name="activateItem" DisplayName="#Lang(601)" Description="#Lang(501)">
+				<Action Name="toogleItems" DisplayName="#Lang(603)" Description="#Lang(503)">
 					<Parameters>
-						<Parameter Name="item" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsActive", item);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="addClass" DisplayName="#Lang(619)" Description="#Lang(532)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(826)" Description="#Lang(726)" DefaultValue="" RegularExpressionValidation="" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).addClass(className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="deactivateItem" DisplayName="#Lang(602)" Description="#Lang(502)">
-					<Parameters>
-						<Parameter Name="item" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsInactive", item);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="hide" DisplayName="#Lang(603)" Description="#Lang(503)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="multiSelectionMode" DisplayName="#Lang(604)" Description="#Lang(504)">
-					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("multiSelectionMode");]]>
-					</SourceCode>
-				</Action>
-				<Action Name="removeAll" DisplayName="#Lang(605)" Description="#Lang(505)">
-					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("removeItems", undefined, undefined, undefined, raiseEvent);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="removeClass" DisplayName="#Lang(620)" Description="#Lang(533)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(827)" Description="#Lang(727)" DefaultValue="" RegularExpressionValidation="" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).removeClass(className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="removeItem" DisplayName="#Lang(606)" Description="#Lang(506)">
-					<Parameters>
-						<Parameter Name="idlist" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="start" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="length" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="raiseEvent" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("removeItems", idlist, start, length, raiseEvent);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="selectAll" DisplayName="#Lang(607)" Description="#Lang(507)">
-					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(711)" Description="#Lang(811)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsSelected", undefined, raiseEvent);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="selectItems" DisplayName="#Lang(608)" Description="#Lang(508)">
-					<Parameters>
-						<Parameter Name="idlist" DisplayName="#Lang(712)" Description="#Lang(812)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="raiseEvent" DisplayName="#Lang(713)" Description="#Lang(813)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[var idlist = eval(idlist);
-if (typeof idlist === 'object')
-  $("#" + this.domCont.id).vdomList_v2("markAsSelected", idlist, raiseEvent);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="setData" DisplayName="#Lang(609)" Description="#Lang(509)">
-					<Parameters>
-						<Parameter Name="data" DisplayName="#Lang(714)" Description="#Lang(814)" DefaultValue="{}" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("setData", data);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="show" DisplayName="#Lang(611)" Description="#Lang(511)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(715)" Description="#Lang(815)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_show(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="singleSelectionMode" DisplayName="#Lang(612)" Description="#Lang(512)">
-					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(716)" Description="#Lang(816)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("singleSelectionMode");]]>
-					</SourceCode>
-				</Action>
-				<Action Name="toggleClass" DisplayName="#Lang(613)" Description="#Lang(513)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(717)" Description="#Lang(817)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).toggleClass(className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="toogleAll" DisplayName="#Lang(614)" Description="#Lang(514)">
-					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(718)" Description="#Lang(818)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("toogleSelection", undefined, raiseEvent);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="toogleItems" DisplayName="#Lang(615)" Description="#Lang(515)">
-					<Parameters>
-						<Parameter Name="idlist" DisplayName="#Lang(719)" Description="#Lang(819)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="raiseEvent" DisplayName="#Lang(721)" Description="#Lang(821)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="idlist" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
 <![CDATA[var idlist = eval(idlist);
@@ -1968,31 +984,133 @@ if (typeof idlist === 'object')
   $("#" + this.domCont.id).vdomList_v2("toogleSelection", idlist, raiseEvent);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="toogleSelectionMode" DisplayName="#Lang(616)" Description="#Lang(516)">
+				<Action Name="hide" DisplayName="#Lang(601)" Description="#Lang(501)">
 					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(722)" Description="#Lang(822)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("toogleSelectionMode");]]>
+<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="unselectAll" DisplayName="#Lang(617)" Description="#Lang(517)">
+				<Action Name="deactivateItem" DisplayName="#Lang(605)" Description="#Lang(505)">
 					<Parameters>
-						<Parameter Name="raiseEvent" DisplayName="#Lang(723)" Description="#Lang(823)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="item" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[$("#" + this.domCont.id).vdomList_v2("unmarkAsSelected", undefined, raiseEvent);]]>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsInactive", item);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="unselectItems" DisplayName="#Lang(618)" Description="#Lang(518)">
+				<Action Name="show" DisplayName="#Lang(604)" Description="#Lang(504)">
 					<Parameters>
-						<Parameter Name="idlist" DisplayName="#Lang(724)" Description="#Lang(824)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="raiseEvent" DisplayName="#Lang(725)" Description="#Lang(825)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_show(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="unselectItems" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="idlist" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
 <![CDATA[var idlist = eval(idlist);
 if (typeof idlist === 'object')
   $("#" + this.domCont.id).vdomList_v2("unmarkAsSelected", idlist, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="selectItems" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="idlist" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var idlist = eval(idlist);
+if (typeof idlist === 'object')
+  $("#" + this.domCont.id).vdomList_v2("markAsSelected", idlist, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="selectAll" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsSelected", undefined, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeAll" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("removeItems", undefined, undefined, undefined, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="multiSelectionMode" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("multiSelectionMode");]]>
+					</SourceCode>
+				</Action>
+				<Action Name="unselectAll" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("unmarkAsSelected", undefined, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="activateItem" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="item" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("markAsActive", item);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeItem" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="idlist" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="start" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="length" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("removeItems", idlist, start, length, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toogleSelectionMode" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("toogleSelectionMode");]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toogleAll" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("toogleSelection", undefined, raiseEvent);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="singleSelectionMode" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="raiseEvent" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="true" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$("#" + this.domCont.id).vdomList_v2("singleSelectionMode");]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setData" DisplayName="#Lang(603)" Description="#Lang(603)">
+					<Parameters>
+						<Parameter Name="data" DisplayName="#Lang(603)" Description="#Lang(603)" DefaultValue="{}" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+                        <![CDATA[$("#" + this.domCont.id).vdomList_v2("setData", data);]]>
 					</SourceCode>
 				</Action>
 			</Container>

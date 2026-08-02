@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_formradiobutton</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.138.6200</Version>
+		<Version>1.125.6200</Version>
 		<Category>Form</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(6e44879e-be94-26a2-3c44-171a9761d118)</Icon>
@@ -18,281 +18,28 @@
 		<OptimizationPriority>1</OptimizationPriority>
 		<Container>1</Container>
 		<Containers>formradiogroup</Containers>
-		<Handlers>on_update, on_compile</Handlers>
-		<Languages>en_US, fr_FR, ru_RU</Languages>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
 	</Information>
 	<Attributes>
 		<Attribute>
-			<Name>classname</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(199)</DisplayName>
+			<Description>#Lang(299)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(399)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(50)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>DropDown((#Lang(499)|0)|(#Lang(499)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>top</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>left</Name>
-			<DisplayName>#Lang(107)</DisplayName>
-			<Description>#Lang(207)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>width</Name>
-			<DisplayName>#Lang(108)</DisplayName>
-			<Description>#Lang(208)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>height</Name>
-			<DisplayName>#Lang(109)</DisplayName>
-			<Description>#Lang(209)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>positioning</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
-			<DefaultValue>static</DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|static)|(#Lang(406)|absolute)|(#Lang(407)|fixed)|(#Lang(408)|relative))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>displaying</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(409)|)|(#Lang(411)|block)|(#Lang(412)|flex)|(#Lang(413)|inline)|(#Lang(414)|inline-block))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>state</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>disable</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(417)|0)|(#Lang(418)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>label</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
-			<DefaultValue>RadioButton</DefaultValue>
-			<RegularExpressionValidation>^.+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(100)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>align</Name>
-			<DisplayName>#Lang(116)</DisplayName>
-			<Description>#Lang(216)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(419)|0)|(#Lang(421)|1))</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>value</Name>
-			<DisplayName>#Lang(117)</DisplayName>
-			<Description>#Lang(217)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^.+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(100)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>tabindex</Name>
-			<DisplayName>#Lang(118)</DisplayName>
-			<Description>#Lang(218)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(4)</CodeInterface>
-			<ColorGroup>2</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_top</Name>
-			<DisplayName>#Lang(119)</DisplayName>
-			<Description>#Lang(219)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_left</Name>
-			<DisplayName>#Lang(121)</DisplayName>
-			<Description>#Lang(221)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_width</Name>
-			<DisplayName>#Lang(122)</DisplayName>
-			<Description>#Lang(222)</Description>
-			<DefaultValue>100</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_height</Name>
-			<DisplayName>#Lang(123)</DisplayName>
-			<Description>#Lang(223)</Description>
-			<DefaultValue>18</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>style</Name>
-			<DisplayName>#Lang(124)</DisplayName>
-			<Description>#Lang(224)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>skin</Name>
-			<DisplayName>#Lang(125)</DisplayName>
-			<Description>#Lang(225)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(422)|0)|(#Lang(423)|1))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>margins</Name>
-			<DisplayName>#Lang(126)</DisplayName>
-			<Description>#Lang(226)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>paddings</Name>
-			<DisplayName>#Lang(127)</DisplayName>
-			<Description>#Lang(227)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(2)</CodeInterface>
@@ -300,27 +47,159 @@
 		</Attribute>
 		<Attribute>
 			<Name>visible</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
 			<DefaultValue>1</DefaultValue>
 			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
 			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue>100</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue>18</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>state</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>disable</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|0)|(#Lang(406)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>label</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue>RadioButton</DefaultValue>
+			<RegularExpressionValidation>^.+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>align</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>value</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^.+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>tabindex</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>classname</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(50)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
 		</Attribute>
 	</Attributes>
 	<Languages>
@@ -328,495 +207,321 @@
 			<Sentence ID="001">Form radiobutton</Sentence>
 			<Sentence ID="002">The Form radiobutton type produces an object that allows user to select a single option from a group of variants. It can be contained only in the Form radiogroup object.</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Visibility</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">CSS Class</Sentence>
-			<Sentence ID="106">Top</Sentence>
-			<Sentence ID="107">Left</Sentence>
-			<Sentence ID="108">Width</Sentence>
-			<Sentence ID="109">Height</Sentence>
-			<Sentence ID="111">Position</Sentence>
-			<Sentence ID="112">Display</Sentence>
-			<Sentence ID="113">State</Sentence>
-			<Sentence ID="114">Disable</Sentence>
-			<Sentence ID="115">Label</Sentence>
-			<Sentence ID="116">Label align</Sentence>
-			<Sentence ID="117">Value</Sentence>
-			<Sentence ID="118">TabIndex</Sentence>
-			<Sentence ID="119">IDE_top</Sentence>
-			<Sentence ID="121">IDE_left</Sentence>
-			<Sentence ID="122">IDE_width</Sentence>
-			<Sentence ID="123">IDE_height</Sentence>
-			<Sentence ID="124">Style</Sentence>
-			<Sentence ID="125">Skin</Sentence>
-			<Sentence ID="126">Margins</Sentence>
-			<Sentence ID="127">Paddings</Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Order of rendering the object on the page</Sentence>
-			<Sentence ID="203">Visibility of the object</Sentence>
-			<Sentence ID="204">Position in visual hierarchy of objects</Sentence>
-			<Sentence ID="205">Names of CSS classes</Sentence>
-			<Sentence ID="206">Spacing between the top edge of the container and the object in pixels</Sentence>
-			<Sentence ID="207">Spacing between the left edge of the container and the object in pixels</Sentence>
-			<Sentence ID="208">Width of the object in pixels</Sentence>
-			<Sentence ID="209">Height of the object in pixels</Sentence>
-			<Sentence ID="211">newAttribute23</Sentence>
-			<Sentence ID="212">newAttribute24</Sentence>
-			<Sentence ID="213">Initial state of the object</Sentence>
-			<Sentence ID="214">Define if the object is disabled or not</Sentence>
-			<Sentence ID="215">Label to the right of the object</Sentence>
-			<Sentence ID="216">Define the alignment of the label</Sentence>
-			<Sentence ID="217">Returned value of the object</Sentence>
-			<Sentence ID="218">Index number of switching the elements on pressing the tab key</Sentence>
-			<Sentence ID="219">newAttribute15</Sentence>
-			<Sentence ID="221">newAttribute16</Sentence>
-			<Sentence ID="222">newAttribute17</Sentence>
-			<Sentence ID="223">newAttribute18</Sentence>
-			<Sentence ID="224">newAttribute19</Sentence>
-			<Sentence ID="225">newAttribute20</Sentence>
-			<Sentence ID="226">newAttribute21</Sentence>
-			<Sentence ID="227">newAttribute22</Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="304">Incorrect value, must be even integer from 0 to 99</Sentence>
-			<Sentence ID="305">Incorrect value</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">State</Sentence>
+			<Sentence ID="109">Disable</Sentence>
+			<Sentence ID="111">Label</Sentence>
+			<Sentence ID="112">Label align</Sentence>
+			<Sentence ID="113">Value</Sentence>
+			<Sentence ID="114">TabIndex</Sentence>
+			<Sentence ID="115">CSS Class</Sentence>
+			<Sentence ID="201">Order of rendering the object on the page</Sentence>
+			<Sentence ID="202">Visibility of the object</Sentence>
+			<Sentence ID="203">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="204">Spacing between the top edge of the container and the object in pixels</Sentence>
+			<Sentence ID="205">Spacing between the left edge of the container and the object in pixels</Sentence>
+			<Sentence ID="206">Width of the object in pixels</Sentence>
+			<Sentence ID="207">Height of the object in pixels</Sentence>
+			<Sentence ID="208">Initial state of the object</Sentence>
+			<Sentence ID="209">Define if the object is disabled or not</Sentence>
+			<Sentence ID="211">Label to the right of the object</Sentence>
+			<Sentence ID="212">Define the alignment of the label</Sentence>
+			<Sentence ID="213">Returned value of the object</Sentence>
+			<Sentence ID="214">Index number of switching the elements on pressing the tab key</Sentence>
+			<Sentence ID="215">Names of CSS classes</Sentence>
+			<Sentence ID="301">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
+			<Sentence ID="303">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="304">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="305">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
 			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
-			<Sentence ID="311">newAttribute23</Sentence>
-			<Sentence ID="312">newAttribute24</Sentence>
+			<Sentence ID="308">Incorrect value</Sentence>
+			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="311">Incorrect value</Sentence>
+			<Sentence ID="312"></Sentence>
 			<Sentence ID="313">Incorrect value</Sentence>
-			<Sentence ID="314">Incorrect value</Sentence>
+			<Sentence ID="314">Incorrect value, must be positive integer</Sentence>
 			<Sentence ID="315">Incorrect value</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Incorrect value</Sentence>
-			<Sentence ID="318">Incorrect value, must be positive integer</Sentence>
-			<Sentence ID="319">newAttribute15</Sentence>
-			<Sentence ID="321">newAttribute16</Sentence>
-			<Sentence ID="322">newAttribute17</Sentence>
-			<Sentence ID="323">newAttribute18</Sentence>
-			<Sentence ID="324">newAttribute19</Sentence>
-			<Sentence ID="325">newAttribute20</Sentence>
-			<Sentence ID="326">Incorrect value.</Sentence>
-			<Sentence ID="327">Incorrect value.</Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Invisible</Sentence>
-			<Sentence ID="404">Visible</Sentence>
-			<Sentence ID="405">Static</Sentence>
-			<Sentence ID="406">Absolute</Sentence>
-			<Sentence ID="407">Fixed</Sentence>
-			<Sentence ID="408">Relative</Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">Block</Sentence>
-			<Sentence ID="412">Flex</Sentence>
-			<Sentence ID="413">Inline</Sentence>
-			<Sentence ID="414">Inline-block</Sentence>
-			<Sentence ID="415">Unchecked</Sentence>
-			<Sentence ID="416">Checked</Sentence>
-			<Sentence ID="417">No</Sentence>
-			<Sentence ID="418">Yes</Sentence>
-			<Sentence ID="419">Right</Sentence>
-			<Sentence ID="421">Left</Sentence>
-			<Sentence ID="422">User defined</Sentence>
-			<Sentence ID="423">Empty</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">Unchecked</Sentence>
+			<Sentence ID="404">Checked</Sentence>
+			<Sentence ID="405">No</Sentence>
+			<Sentence ID="406">Yes</Sentence>
+			<Sentence ID="407">Right</Sentence>
+			<Sentence ID="408">Left</Sentence>
 			<Sentence ID="501">Check the radiobutton</Sentence>
-			<Sentence ID="502">Check the radiobutton</Sentence>
-			<Sentence ID="503">Make the object disabled</Sentence>
-			<Sentence ID="504">Make the object enabled</Sentence>
-			<Sentence ID="505">Hide the object</Sentence>
-			<Sentence ID="506">Move the object to a new position</Sentence>
-			<Sentence ID="507">Check the radiobutton</Sentence>
-			<Sentence ID="508">Show the object</Sentence>
-			<Sentence ID="509">Set new CSS style of the object</Sentence>
-			<Sentence ID="511">Show the object</Sentence>
+			<Sentence ID="502">Make the object disabled</Sentence>
+			<Sentence ID="503">Make the object enabled</Sentence>
+			<Sentence ID="504">Hide the object</Sentence>
+			<Sentence ID="505">Move the object to a new position</Sentence>
+			<Sentence ID="506">Set new CSS style of the object</Sentence>
+			<Sentence ID="507">Show the object</Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
 			<Sentence ID="512"></Sentence>
 			<Sentence ID="513"></Sentence>
 			<Sentence ID="514"></Sentence>
 			<Sentence ID="515"></Sentence>
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
 			<Sentence ID="601">check</Sentence>
-			<Sentence ID="602">check</Sentence>
-			<Sentence ID="603">disable</Sentence>
-			<Sentence ID="604">enable</Sentence>
-			<Sentence ID="605">Hide</Sentence>
-			<Sentence ID="606">moveTo</Sentence>
-			<Sentence ID="607">check</Sentence>
-			<Sentence ID="608">Show</Sentence>
-			<Sentence ID="609">setStyle</Sentence>
-			<Sentence ID="611">Show</Sentence>
+			<Sentence ID="602">disable</Sentence>
+			<Sentence ID="603">enable</Sentence>
+			<Sentence ID="604">Hide</Sentence>
+			<Sentence ID="605">moveTo</Sentence>
+			<Sentence ID="606">setStyle</Sentence>
+			<Sentence ID="607">Show</Sentence>
 			<Sentence ID="701">Fade</Sentence>
-			<Sentence ID="702">Fade</Sentence>
-			<Sentence ID="703">newX</Sentence>
-			<Sentence ID="704">newY</Sentence>
-			<Sentence ID="705">Effect</Sentence>
+			<Sentence ID="702">newX</Sentence>
+			<Sentence ID="703">newY</Sentence>
+			<Sentence ID="704">Effect</Sentence>
+			<Sentence ID="705">cssStyleValue</Sentence>
 			<Sentence ID="706">Fade</Sentence>
-			<Sentence ID="707"></Sentence>
-			<Sentence ID="708">cssStyleValue</Sentence>
-			<Sentence ID="709">Fade</Sentence>
 			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-			<Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-			<Sentence ID="805">Visual effect of moving, time is indicated in milliseconds</Sentence>
+			<Sentence ID="802">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+			<Sentence ID="803">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+			<Sentence ID="804">Visual effect of moving, time is indicated in milliseconds</Sentence>
+			<Sentence ID="805">CSS Style value</Sentence>
 			<Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="807"></Sentence>
-			<Sentence ID="808">CSS Style value</Sentence>
-			<Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="901">Current Y-value</Sentence>
-			<Sentence ID="902">Current Y-value</Sentence>
+			<Sentence ID="901">New value for radiobutton</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
 			<Sentence ID="903">Current Y-value</Sentence>
-			<Sentence ID="904">Current Y-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
 			<Sentence ID="905">Current Y-value</Sentence>
-			<Sentence ID="906">Current Y-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
 			<Sentence ID="907">Current Y-value</Sentence>
-			<Sentence ID="908">Current Y-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
 			<Sentence ID="909">Current Y-value</Sentence>
-			<Sentence ID="911">Current Y-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
 			<Sentence ID="912">Current Y-value</Sentence>
-			<Sentence ID="913">Current Y-value</Sentence>
+			<Sentence ID="913">Current X-value</Sentence>
 			<Sentence ID="914">Current Y-value</Sentence>
-			<Sentence ID="915">Current Y-value</Sentence>
+			<Sentence ID="915">Current X-value</Sentence>
 			<Sentence ID="916">Current Y-value</Sentence>
-			<Sentence ID="917">Current Y-value</Sentence>
+			<Sentence ID="917">Current X-value</Sentence>
 			<Sentence ID="918">Current Y-value</Sentence>
 		</Language>
 		<Language Code="fr_FR">
 			<Sentence ID="001">Bouton Radio de Formulaire</Sentence>
 			<Sentence ID="002">Bouton Radio de Formulaire</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hiérarchie</Sentence>
-			<Sentence ID="103">Visibilité</Sentence>
-			<Sentence ID="104">Z-Index</Sentence>
-			<Sentence ID="105">Class</Sentence>
-			<Sentence ID="106">Haut</Sentence>
-			<Sentence ID="107">Gauche</Sentence>
-			<Sentence ID="108">Largeur</Sentence>
-			<Sentence ID="109">Hauteur</Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112"></Sentence>
-			<Sentence ID="113">Etat</Sentence>
-			<Sentence ID="114">Disable</Sentence>
-			<Sentence ID="115">Texte</Sentence>
-			<Sentence ID="116">Label align</Sentence>
-			<Sentence ID="117">Valeur</Sentence>
-			<Sentence ID="118">TabIndex</Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="123"></Sentence>
-			<Sentence ID="124"></Sentence>
-			<Sentence ID="125"></Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
-			<Sentence ID="203">Afficher ou cacher l&apos;objet</Sentence>
-			<Sentence ID="204">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
-			<Sentence ID="205">CSS class name</Sentence>
-			<Sentence ID="206">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="207">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="208">Largeur de l&apos;objet en pixels</Sentence>
-			<Sentence ID="209">Hauteur de l&apos;objet en pixels</Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212"></Sentence>
-			<Sentence ID="213">Etat initial du bouton radio</Sentence>
-			<Sentence ID="214">Define if the radiobutton is disabled or not</Sentence>
-			<Sentence ID="215">Texte à droite du bouton radio</Sentence>
-			<Sentence ID="216">Define the alignment of the label</Sentence>
-			<Sentence ID="217">Retourne la valeur du bouton radio</Sentence>
-			<Sentence ID="218">Tab index of the object on the page</Sentence>
-			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="223"></Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225"></Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="101">Hiérarchie</Sentence>
+			<Sentence ID="102">Visibilité</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106">Largeur</Sentence>
+			<Sentence ID="107">Hauteur</Sentence>
+			<Sentence ID="108">Etat</Sentence>
+			<Sentence ID="109">Disable</Sentence>
+			<Sentence ID="111">Texte</Sentence>
+			<Sentence ID="112">Label align</Sentence>
+			<Sentence ID="113">Valeur</Sentence>
+			<Sentence ID="114">TabIndex</Sentence>
+			<Sentence ID="115">Class</Sentence>
+			<Sentence ID="201">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="202">Afficher ou cacher l&apos;objet</Sentence>
+			<Sentence ID="203">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="204">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="205">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="206">Largeur de l&apos;objet en pixels</Sentence>
+			<Sentence ID="207">Hauteur de l&apos;objet en pixels</Sentence>
+			<Sentence ID="208">Etat initial du bouton radio</Sentence>
+			<Sentence ID="209">Define if the radiobutton is disabled or not</Sentence>
+			<Sentence ID="211">Texte à droite du bouton radio</Sentence>
+			<Sentence ID="212">Define the alignment of the label</Sentence>
+			<Sentence ID="213">Retourne la valeur du bouton radio</Sentence>
+			<Sentence ID="214">Tab index of the object on the page</Sentence>
+			<Sentence ID="215">CSS class name</Sentence>
+			<Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="302">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="305">Incorrect value</Sentence>
+			<Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="311"></Sentence>
+			<Sentence ID="308">Valeur Incorrecte</Sentence>
+			<Sentence ID="309">Incorrect value</Sentence>
+			<Sentence ID="311">Valeur Incorrecte</Sentence>
 			<Sentence ID="312"></Sentence>
 			<Sentence ID="313">Valeur Incorrecte</Sentence>
-			<Sentence ID="314">Incorrect value</Sentence>
-			<Sentence ID="315">Valeur Incorrecte</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Valeur Incorrecte</Sentence>
-			<Sentence ID="318">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323"></Sentence>
-			<Sentence ID="324"></Sentence>
-			<Sentence ID="325"></Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Invisible</Sentence>
-			<Sentence ID="404">Visible</Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413"></Sentence>
-			<Sentence ID="414"></Sentence>
-			<Sentence ID="415">Non-coché</Sentence>
-			<Sentence ID="416">Coché</Sentence>
-			<Sentence ID="417">No</Sentence>
-			<Sentence ID="418">Yes</Sentence>
-			<Sentence ID="419">Right</Sentence>
-			<Sentence ID="421">Left</Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
+			<Sentence ID="314">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="315">Incorrect value</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
+			<Sentence ID="403">Non-coché</Sentence>
+			<Sentence ID="404">Coché</Sentence>
+			<Sentence ID="405">No</Sentence>
+			<Sentence ID="406">Yes</Sentence>
+			<Sentence ID="407">Right</Sentence>
+			<Sentence ID="408">Left</Sentence>
 			<Sentence ID="501">Check the radiobutton</Sentence>
-			<Sentence ID="502">Check the radiobutton</Sentence>
-			<Sentence ID="503">Make the object disabled</Sentence>
-			<Sentence ID="504">Make the object enabled</Sentence>
-			<Sentence ID="505">Hide the object</Sentence>
-			<Sentence ID="506">Move object to selected point</Sentence>
-			<Sentence ID="507">Check the radiobutton</Sentence>
-			<Sentence ID="508">Show the object</Sentence>
-			<Sentence ID="509">Set new CSS style</Sentence>
-			<Sentence ID="511">Show the object</Sentence>
+			<Sentence ID="502">Make the object disabled</Sentence>
+			<Sentence ID="503">Make the object enabled</Sentence>
+			<Sentence ID="504">Hide the object</Sentence>
+			<Sentence ID="505">Move object to selected point</Sentence>
+			<Sentence ID="506">Set new CSS style</Sentence>
+			<Sentence ID="507">Show the object</Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
 			<Sentence ID="512"></Sentence>
 			<Sentence ID="513"></Sentence>
 			<Sentence ID="514"></Sentence>
 			<Sentence ID="515"></Sentence>
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
 			<Sentence ID="601">check</Sentence>
-			<Sentence ID="602">check</Sentence>
-			<Sentence ID="603">disable</Sentence>
-			<Sentence ID="604">enable</Sentence>
-			<Sentence ID="605">Hide</Sentence>
-			<Sentence ID="606">moveTo</Sentence>
-			<Sentence ID="607">check</Sentence>
-			<Sentence ID="608">Show</Sentence>
-			<Sentence ID="609">setStyle</Sentence>
-			<Sentence ID="611">Show</Sentence>
+			<Sentence ID="602">disable</Sentence>
+			<Sentence ID="603">enable</Sentence>
+			<Sentence ID="604">Hide</Sentence>
+			<Sentence ID="605">moveTo</Sentence>
+			<Sentence ID="606">setStyle</Sentence>
+			<Sentence ID="607">Show</Sentence>
 			<Sentence ID="701">Fade</Sentence>
-			<Sentence ID="702">Fade</Sentence>
-			<Sentence ID="703">newX</Sentence>
-			<Sentence ID="704">newY</Sentence>
-			<Sentence ID="705">Effect</Sentence>
+			<Sentence ID="702">newX</Sentence>
+			<Sentence ID="703">newY</Sentence>
+			<Sentence ID="704">Effect</Sentence>
+			<Sentence ID="705">cssStyleValue</Sentence>
 			<Sentence ID="706">Fade</Sentence>
-			<Sentence ID="707"></Sentence>
-			<Sentence ID="708">cssStyleValue</Sentence>
-			<Sentence ID="709">Fade</Sentence>
 			<Sentence ID="801">Fade time</Sentence>
-			<Sentence ID="802">Fade time</Sentence>
-			<Sentence ID="803">X-coordinate of new point</Sentence>
-			<Sentence ID="804">Y-coordinate of new point</Sentence>
-			<Sentence ID="805">Visual effect by moving</Sentence>
-			<Sentence ID="806">Fade time</Sentence>
-			<Sentence ID="807"></Sentence>
-			<Sentence ID="808">New CSS style value</Sentence>
-			<Sentence ID="809">Time of appearance</Sentence>
-			<Sentence ID="901">Current Y-value</Sentence>
-			<Sentence ID="902">Current Y-value</Sentence>
+			<Sentence ID="802">X-coordinate of new point</Sentence>
+			<Sentence ID="803">Y-coordinate of new point</Sentence>
+			<Sentence ID="804">Visual effect by moving</Sentence>
+			<Sentence ID="805">New CSS style value</Sentence>
+			<Sentence ID="806">Time of appearance</Sentence>
+			<Sentence ID="901">New value for radiobutton</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
 			<Sentence ID="903">Current Y-value</Sentence>
-			<Sentence ID="904">Current Y-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
 			<Sentence ID="905">Current Y-value</Sentence>
-			<Sentence ID="906">Current Y-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
 			<Sentence ID="907">Current Y-value</Sentence>
-			<Sentence ID="908">Current Y-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
 			<Sentence ID="909">Current Y-value</Sentence>
-			<Sentence ID="911">Current Y-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
 			<Sentence ID="912">Current Y-value</Sentence>
-			<Sentence ID="913">Current Y-value</Sentence>
+			<Sentence ID="913">Current X-value</Sentence>
 			<Sentence ID="914">Current Y-value</Sentence>
-			<Sentence ID="915">Current Y-value</Sentence>
+			<Sentence ID="915">Current X-value</Sentence>
 			<Sentence ID="916">Current Y-value</Sentence>
-			<Sentence ID="917">Current Y-value</Sentence>
+			<Sentence ID="917">Current X-value</Sentence>
 			<Sentence ID="918">Current Y-value</Sentence>
 		</Language>
 		<Language Code="ru_RU">
 			<Sentence ID="001">Радиокнопка формы</Sentence>
 			<Sentence ID="002">Кнопка для выбора одного варианта из многих</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103">Отображение</Sentence>
-			<Sentence ID="104">Позиция</Sentence>
-			<Sentence ID="105">Класс CSS</Sentence>
-			<Sentence ID="106">Сверху</Sentence>
-			<Sentence ID="107">Слева</Sentence>
-			<Sentence ID="108">Ширина</Sentence>
-			<Sentence ID="109">Высота</Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112"></Sentence>
-			<Sentence ID="113">Состояние</Sentence>
-			<Sentence ID="114">Отключить</Sentence>
-			<Sentence ID="115">Метка</Sentence>
-			<Sentence ID="116">Выравнивание метки</Sentence>
-			<Sentence ID="117">Значение</Sentence>
-			<Sentence ID="118">Tab индекс</Sentence>
-			<Sentence ID="119"></Sentence>
-			<Sentence ID="121"></Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="123"></Sentence>
-			<Sentence ID="124"></Sentence>
-			<Sentence ID="125"></Sentence>
-			<Sentence ID="126"></Sentence>
-			<Sentence ID="127"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
-			<Sentence ID="203">Режим отображения объектов</Sentence>
-			<Sentence ID="204">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="205">Имена классов CSS</Sentence>
-			<Sentence ID="206">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="207">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="208">Ширина объекта в пикселях</Sentence>
-			<Sentence ID="209">Высота объекта в пикселях</Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212"></Sentence>
-			<Sentence ID="213">Начальное состояние радиокнопки</Sentence>
-			<Sentence ID="214">Определяет, используется радиокнопка или нет</Sentence>
-			<Sentence ID="215">Текст справа от радиокнопки</Sentence>
-			<Sentence ID="216">Определяет выравнивание метки</Sentence>
-			<Sentence ID="217">Возвращаемое значение радиокнопки</Sentence>
-			<Sentence ID="218">Tab индекс объекта на странице</Sentence>
-			<Sentence ID="219"></Sentence>
-			<Sentence ID="221"></Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="223"></Sentence>
-			<Sentence ID="224"></Sentence>
-			<Sentence ID="225"></Sentence>
-			<Sentence ID="226"></Sentence>
-			<Sentence ID="227"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-			<Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
-			<Sentence ID="304">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-			<Sentence ID="305">Неправильное значение</Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Позиция</Sentence>
+			<Sentence ID="104">Сверху</Sentence>
+			<Sentence ID="105">Слева</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
+			<Sentence ID="108">Состояние</Sentence>
+			<Sentence ID="109">Отключить</Sentence>
+			<Sentence ID="111">Метка</Sentence>
+			<Sentence ID="112">Выравнивание метки</Sentence>
+			<Sentence ID="113">Значение</Sentence>
+			<Sentence ID="114">Tab индекс</Sentence>
+			<Sentence ID="115">Класс CSS</Sentence>
+			<Sentence ID="201">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+			<Sentence ID="202">Режим отображения объектов</Sentence>
+			<Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="206">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="207">Высота объекта в пикселях</Sentence>
+			<Sentence ID="208">Начальное состояние радиокнопки</Sentence>
+			<Sentence ID="209">Определяет, используется радиокнопка или нет</Sentence>
+			<Sentence ID="211">Текст справа от радиокнопки</Sentence>
+			<Sentence ID="212">Определяет выравнивание метки</Sentence>
+			<Sentence ID="213">Возвращаемое значение радиокнопки</Sentence>
+			<Sentence ID="214">Tab индекс объекта на странице</Sentence>
+			<Sentence ID="215">Имена классов CSS</Sentence>
+			<Sentence ID="301">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+			<Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="311"></Sentence>
+			<Sentence ID="308">Неправильное значение, должен быть указан 0 или 1</Sentence>
+			<Sentence ID="309">Неправильное значение</Sentence>
+			<Sentence ID="311">Неправильное значение</Sentence>
 			<Sentence ID="312"></Sentence>
-			<Sentence ID="313">Неправильное значение, должен быть указан 0 или 1</Sentence>
-			<Sentence ID="314">Неправильное значение</Sentence>
+			<Sentence ID="313">Неправильное значение</Sentence>
+			<Sentence ID="314">Неправильное значение, должно быть целое положительное число</Sentence>
 			<Sentence ID="315">Неправильное значение</Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317">Неправильное значение</Sentence>
-			<Sentence ID="318">Неправильное значение, должно быть целое положительное число</Sentence>
-			<Sentence ID="319"></Sentence>
-			<Sentence ID="321"></Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="323"></Sentence>
-			<Sentence ID="324"></Sentence>
-			<Sentence ID="325"></Sentence>
-			<Sentence ID="326"></Sentence>
-			<Sentence ID="327"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403">Не отображать</Sentence>
-			<Sentence ID="404">Отображать</Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413"></Sentence>
-			<Sentence ID="414"></Sentence>
-			<Sentence ID="415">Не отмечена</Sentence>
-			<Sentence ID="416">Отмечена</Sentence>
-			<Sentence ID="417">Нет</Sentence>
-			<Sentence ID="418">Да</Sentence>
-			<Sentence ID="419">По правому краю</Sentence>
-			<Sentence ID="421">По левому краю</Sentence>
-			<Sentence ID="422"></Sentence>
-			<Sentence ID="423"></Sentence>
+			<Sentence ID="401">Не отображать</Sentence>
+			<Sentence ID="402">Отображать</Sentence>
+			<Sentence ID="403">Не отмечена</Sentence>
+			<Sentence ID="404">Отмечена</Sentence>
+			<Sentence ID="405">Нет</Sentence>
+			<Sentence ID="406">Да</Sentence>
+			<Sentence ID="407">По правому краю</Sentence>
+			<Sentence ID="408">По левому краю</Sentence>
 			<Sentence ID="501">Отметить радиокнопку</Sentence>
-			<Sentence ID="502">Отметить радиокнопку</Sentence>
-			<Sentence ID="503">Не использовать радиокнопку</Sentence>
-			<Sentence ID="504">Использовать радиокнопку</Sentence>
-			<Sentence ID="505">Скрыть объект</Sentence>
-			<Sentence ID="506">Сдвинуть объект в заданную точку</Sentence>
-			<Sentence ID="507">Отметить радиокнопку</Sentence>
-			<Sentence ID="508">Показать объект</Sentence>
-			<Sentence ID="509">Установить новый стиль CSS</Sentence>
-			<Sentence ID="511">Показать объект</Sentence>
+			<Sentence ID="502">Не использовать радиокнопку</Sentence>
+			<Sentence ID="503">Использовать радиокнопку</Sentence>
+			<Sentence ID="504">Скрыть объект</Sentence>
+			<Sentence ID="505">Сдвинуть объект в заданную точку</Sentence>
+			<Sentence ID="506">Установить новый стиль CSS</Sentence>
+			<Sentence ID="507">Показать объект</Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
 			<Sentence ID="512"></Sentence>
 			<Sentence ID="513"></Sentence>
 			<Sentence ID="514"></Sentence>
 			<Sentence ID="515"></Sentence>
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
-			<Sentence ID="518"></Sentence>
-			<Sentence ID="519"></Sentence>
-			<Sentence ID="521"></Sentence>
 			<Sentence ID="601">Отметить</Sentence>
-			<Sentence ID="602">Отметить</Sentence>
-			<Sentence ID="603">Не использовать</Sentence>
-			<Sentence ID="604">Использовать</Sentence>
-			<Sentence ID="605">Скрыть</Sentence>
-			<Sentence ID="606">Сдвинуть</Sentence>
-			<Sentence ID="607">Отметить</Sentence>
-			<Sentence ID="608">Показать</Sentence>
-			<Sentence ID="609">Установить стиль</Sentence>
-			<Sentence ID="611">Показать</Sentence>
+			<Sentence ID="602">Не использовать</Sentence>
+			<Sentence ID="603">Использовать</Sentence>
+			<Sentence ID="604">Скрыть</Sentence>
+			<Sentence ID="605">Сдвинуть</Sentence>
+			<Sentence ID="606">Установить стиль</Sentence>
+			<Sentence ID="607">Показать</Sentence>
 			<Sentence ID="701">Исчезновение</Sentence>
-			<Sentence ID="702">Исчезновение</Sentence>
-			<Sentence ID="703">Координата по оси X</Sentence>
-			<Sentence ID="704">Координата по оси Y</Sentence>
-			<Sentence ID="705">Эффект</Sentence>
-			<Sentence ID="706">Исчезновение</Sentence>
-			<Sentence ID="707"></Sentence>
-			<Sentence ID="708">Стиль</Sentence>
-			<Sentence ID="709">Появление</Sentence>
+			<Sentence ID="702">Координата по оси X</Sentence>
+			<Sentence ID="703">Координата по оси Y</Sentence>
+			<Sentence ID="704">Эффект</Sentence>
+			<Sentence ID="705">Стиль</Sentence>
+			<Sentence ID="706">Появление</Sentence>
 			<Sentence ID="801">Время исчезновения</Sentence>
-			<Sentence ID="802">Время исчезновения</Sentence>
-			<Sentence ID="803">Координата новой точки по оси X</Sentence>
-			<Sentence ID="804">Координата новой точки по оси Y</Sentence>
-			<Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
-			<Sentence ID="806">Время исчезновения</Sentence>
-			<Sentence ID="807"></Sentence>
-			<Sentence ID="808">Новое значение стиля</Sentence>
-			<Sentence ID="809">Время появления в миллисекундах</Sentence>
-			<Sentence ID="901">Текущее значение Y</Sentence>
-			<Sentence ID="902">Текущее значение Y</Sentence>
+			<Sentence ID="802">Координата новой точки по оси X</Sentence>
+			<Sentence ID="803">Координата новой точки по оси Y</Sentence>
+			<Sentence ID="804">Визуальный эффект при перетаскивании</Sentence>
+			<Sentence ID="805">Новое значение стиля</Sentence>
+			<Sentence ID="806">Время появления в миллисекундах</Sentence>
+			<Sentence ID="901">Новое значение радиокнопки</Sentence>
+			<Sentence ID="902">Текущее значение X</Sentence>
 			<Sentence ID="903">Текущее значение Y</Sentence>
-			<Sentence ID="904">Текущее значение Y</Sentence>
+			<Sentence ID="904">Текущее значение X</Sentence>
 			<Sentence ID="905">Текущее значение Y</Sentence>
-			<Sentence ID="906">Текущее значение Y</Sentence>
+			<Sentence ID="906">Текущее значение X</Sentence>
 			<Sentence ID="907">Текущее значение Y</Sentence>
-			<Sentence ID="908">Текущее значение Y</Sentence>
+			<Sentence ID="908">Текущее значение X</Sentence>
 			<Sentence ID="909">Текущее значение Y</Sentence>
-			<Sentence ID="911">Текущее значение Y</Sentence>
+			<Sentence ID="911">Текущее значение X</Sentence>
 			<Sentence ID="912">Текущее значение Y</Sentence>
-			<Sentence ID="913">Текущее значение Y</Sentence>
+			<Sentence ID="913">Текущее значение X</Sentence>
 			<Sentence ID="914">Текущее значение Y</Sentence>
-			<Sentence ID="915">Текущее значение Y</Sentence>
+			<Sentence ID="915">Текущее значение X</Sentence>
 			<Sentence ID="916">Текущее значение Y</Sentence>
-			<Sentence ID="917">Текущее значение Y</Sentence>
+			<Sentence ID="917">Текущее значение X</Sentence>
 			<Sentence ID="918">Текущее значение Y</Sentence>
 		</Language>
 	</Languages>
@@ -946,245 +651,198 @@
 	</Resources>
 	<SourceCode>
 <![CDATA[class VDOM_formradiobutton(VDOM_object):
-    def check_unit(self, value):
-        return value + "px" if value.isdigit() else value
 
-    def render(self, contents=""):
-        zind = "%s" % self.zindex if int(self.zindex) != 0 else ""
-        display = "none" if self.visible == "0" else self.displaying
-        disable = "disabled='disabled'" if self.disable == "1" else ""
-        position = "{pos}".format(pos=self.positioning) if self.positioning != "static" else ""
+	def render(self, contents=""):
+		display = u"display:none;" if self.visible == "0" else u""
+		classn = u"""class="%s" """ % self.classname if self.classname else u""
+		disable = u"disabled='disabled'" if self.disable == "1" else u""
+		
+		if self.parent and self.parent.type.class_name == "VDOM_formradiogroup":
+			name = self.parent.name
+			state = [u"", u"""checked="checked" """][int(self.attributes["state"])]
+			style = u"""z-index: {zind}; position: absolute; top: {top}px; left: {left}px;
+						width: {width}px; height: {height}px; font: 14px tahoma; overflow: hidden; {display}"""\
+					.format(zind = self.zindex, top = self.top, left = self.left, 
+							width = self.width, height = self.height, display = display)
 
-        if self.parent and self.parent.type.class_name == "VDOM_formradiogroup":
-            name = self.parent.name
-            state = ["", """checked="checked" """][int(self.attributes["state"])]
-            styles = {
-                "z-index": zind,
-                "display": display,
-                "position": position,
-                "width": self.check_unit(self.width),
-                "height": self.check_unit(self.height),
-                "margin": self.margins,
-                "padding": self.paddings,
-                "top": self.check_unit(self.top),
-                "left": self.check_unit(self.left),
-            }
-            if self.positioning == "static":
-                styles["top"] = styles["left"] = ""
-            style = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+			clean_id = (self.id).replace('-', '_')
+			id = u"o_%s" % clean_id
+			
+			label_pos = ["position: absolute; left: 20px",
+						 "position: absolute; left: 0px"][int(self.align)]
+			button_pos = ["position: absolute; left: 0px",
+						  "position: absolute; left: {left}px".format(left =  int(self.width) - 20)][int(self.align)]			   
+			
+			
+			result = \
+				u"""<div id="%(id)s" style="%(style)s">
+						<input %(classn)s name="%(name)s" type="radio" %(state)s tabindex="%(tabind)s" 
+							value="%(value)s" id="inp_%(id)s" style="%(inp_style)s" %(disable)s/>
+						<label for="inp_%(id)s" style="%(lbl_style)s" title="%(label)s">%(label)s</label>
+						%(contents)s
+					</div>
+					<script type="text/javascript">
+						jQuery(document).ready(function(){
+							jQuery("#inp_%(id)s").change(function(){
+								execEventBinded("%(clean_id)s", "change", { Value: jQuery("#inp_%(id)s").val() });});
+						});
+					</script>
+				""" % { "id": id, "style": style, "classn": classn,
+						"name": name, "state": state, "tabind": self.tabindex, "value": self.value,
+						"inp_style": button_pos, "disable": disable, "lbl_style": label_pos, 
+						"label": self.label, "contents": contents, "clean_id": clean_id}
+		else:
+			result = u""
 
-            clean_id = (self.id).replace("-", "_")
-            id = "o_%s" % clean_id
-            fixw = self.check_unit(self.width)
-            css = "<style>\n" + self.style % {"id": id} + "</style>" if self.style else ""
+		return VDOM_object.render(self, contents=result)
 
-            if int(self.align) == 0:
-                label_pos = "position: absolute; left: 20px"
-                button_pos = "position: absolute; left: 0px"
-            else:
-                label_pos = "position: absolute; left: 20px"
-                if fixw and fixw != "auto":
-                    button_pos = "position: absolute; right: calc({width} - 20px)".format(width=fixw)
-                else:
-                    button_pos = "position: absolute; left: 0px"
-
-            result = """<div id="%(id)s" style="%(style)s" class="%(classn)s vdom_formradiobutton">
-                        <input name="%(name)s" type="radio" %(state)s tabindex="%(tabind)s" 
-                            value="%(value)s" id="inp_%(id)s" style="%(inp_style)s" %(disable)s/>
-                        <label for="inp_%(id)s" style="%(lbl_style)s" title="%(label)s">%(label)s</label>
-                        %(contents)s
-                    </div>
-                    %(css)s
-                    <script type="text/javascript">
-                        jQuery(document).ready(function(){
-                            jQuery("#inp_%(id)s").change(function(){
-                                execEventBinded("%(clean_id)s", "change", { Value: jQuery("#inp_%(id)s").val() });});
-                        });
-                    </script>
-                """ % {
-                "id": id,
-                "style": style,
-                "classn": self.classname,
-                "name": name,
-                "state": state,
-                "tabind": self.tabindex,
-                "value": self.value,
-                "inp_style": button_pos,
-                "disable": disable,
-                "lbl_style": label_pos,
-                "label": self.label,
-                "contents": contents,
-                "clean_id": clean_id,
-                "css": css,
-            }
-        else:
-            result = ""
-
-        return VDOM_object.render(self, contents=result)
-
-    def wysiwyg(self, contents=""):
-        width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
-
-        label_left = 16 if self.align == "0" else 1
-        label_width = width - label_left
-
-        label = """<text top="-1" left="{left}" width="{label_width}" height="{label_height}">{label}</text>
-            """.format(left=label_left, label_width=label_width, label_height=height, label=self.label)
-
-        circle_x = 10 if self.align == "0" else width - 10
-        circle_color = "#888888" if self.disable == "1" else "#000000"
-
-        state_circle = ""
-        if int(self.state):  # checked
-            state_circle = """<circle cx="{circle_x}" cy="8.5" r="2" fill="{circle_color}" stroke="{circle_color}"/>
-                """.format(circle_x=circle_x, circle_color=circle_color)
-
-        circle = """<svg>
-                    <circle cx="{circle_x}" cy="8.5" r="4.5" fill="#EEEEEE" stroke="{circle_color}"/>
-                    {state_circle}
-                </svg>
-            """.format(circle_x=circle_x, circle_color=circle_color, state_circle=state_circle)
-
-        result = """<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-                            top="{top}" left="{left}" width="{width}" height="{height}">
-                    {circle}
-                    {label}
-                    {contents}
-                </container>
-            """.format(
-            id=self.id,
-            vis=self.visible,
-            zind=self.zindex,
-            hierarchy=self.hierarchy,
-            order=self.order,
-            top=top,
-            left=left,
-            name=self.name,
-            width=width,
-            height=height,
-            label=label,
-            circle=circle,
-            contents=contents,
-        )
-
-        return VDOM_object.wysiwyg(self, contents=result)
-
-
-def on_update(object, attributes):
-    o = object
-    mods = {}
-
-    for attr in ["left", "width", "height", "top"]:
-        if attr in attributes:
-            attr_value = attributes[attr]
-            obj_value = o.attributes.get(attr, "").lower()
-
-            if obj_value.isdigit() and attr_value.isdigit():
-                mods[attr] = attr_value + "px"
-                mods["ide_" + attr] = attr_value
-            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-                mods[attr] = attr_value.rstrip("px") + "px"
-                mods["ide_" + attr] = attr_value.rstrip("px")
-            elif attr_value.isdigit() or "px" in attr_value:
-                mods[attr] = attr_value if "px" in attr_value else obj_value
-                mods["ide_" + attr] = attr_value.rstrip("px")
-            else:
-                mods[attr] = attr_value
-    attributes.update(mods)
-
-    users = """
-#%(id)s {
-
-}
-"""
-    skin_mapping = {"0": users, "1": ""}
-    if "skin" in attributes:
-        skin = attributes["skin"]
-        if skin in skin_mapping:
-            attributes.update(style=skin_mapping[skin])
-        else:
-            attributes.update(skin="0")
-
-    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-        attributes.update(skin="0")
-
-
-def on_compile(object, attributes):
-    for attr in ["left", "width", "height", "top"]:
-        obj_value = object.attributes[attr]
-        if obj_value.isdigit() or "px" in obj_value:
-            object.attributes[attr] = obj_value.rstrip("px") + "px"
-            object.attributes["ide_" + attr] = obj_value.rstrip("px")
-]]>
+	def wysiwyg(self, contents=""):
+		
+		label_left = 16 if self.align == "0" else 1
+		label_width = int(self.width)-label_left
+		
+		label = \
+			u"""<text top="-1" left="{left}" width="{label_width}" height="{label_height}">{label}</text>
+			""".format(
+					left = label_left,
+					label_width = label_width, 
+					label_height = self.height,
+					label = self.label)
+		
+		circle_x = 10 if self.align == "0" else int(self.width) - 10
+		circle_color = u"#888888" if self.disable=="1" else "#000000"
+		
+		state_circle = u""
+		if int(self.state): # checked
+			state_circle = \
+				u"""<circle cx="{circle_x}" cy="8.5" r="2" fill="{circle_color}" stroke="{circle_color}"/>
+				""".format(
+					circle_x = circle_x,
+					circle_color = circle_color)
+		
+		circle = \
+			u"""<svg>
+					<circle cx="{circle_x}" cy="8.5" r="4.5" fill="#EEEEEE" stroke="{circle_color}"/>
+					{state_circle}
+				</svg>
+			""".format(
+					circle_x = circle_x, 
+					circle_color = circle_color,
+					state_circle = state_circle)
+					
+		result = \
+			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+							top="{top}" left="{left}" width="{width}" height="{height}">
+					{circle}
+					{label}
+					{contents}
+				</container>
+			""".format(
+					id = self.id, vis = self.visible, zind = self.zindex, 
+					hierarchy = self.hierarchy, order = self.order, 
+					top = self.top, left = self.left, name = self.name,
+					width = self.width, height = self.height,
+					label = label, 
+					circle = circle, 
+					contents = contents)
+									
+		
+		return VDOM_object.wysiwyg(self, contents=result)]]>
 	</SourceCode>
-	<Libraries>
-		<Library Target="html"><![CDATA[<style type="text/css">
-        .vdom_formradiobutton {
-
-       }
-
-</style>]]></Library>
-	</Libraries>
 	<E2VDOM>
 		<Events>
 			<UserInterfaceEvents>
-				<Event Name="mouseup" Description="#Lang(512)">
+				<Event Name="mouseup" Description="#Lang(517)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(901)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(902)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(917)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(918)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mousemove" Description="#Lang(513)">
+				<Event Name="mousemove" Description="#Lang(514)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(911)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(912)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mousedown" Description="#Lang(514)">
+				<Event Name="mousedown" Description="#Lang(513)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(905)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(906)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(908)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(909)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="dblclick" Description="#Lang(515)">
+				<Event Name="dblclick" Description="#Lang(512)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(907)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(908)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(906)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(907)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mouseout" Description="#Lang(516)">
+				<Event Name="mouseout" Description="#Lang(515)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(909)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(911)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(913)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(914)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="ctrlclick" Description="#Lang(517)">
+				<Event Name="ctrlclick" Description="#Lang(511)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(912)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(913)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(905)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mouseover" Description="#Lang(518)">
+				<Event Name="mouseover" Description="#Lang(516)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(914)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(915)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(915)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(916)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="click" Description="#Lang(519)">
+				<Event Name="click" Description="#Lang(509)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(916)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(917)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(902)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(903)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="change" Description="#Lang(521)">
+				<Event Name="change" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="Value" Description="#Lang(918)" Order="0"/>
+						<Parameter Name="Value" Description="#Lang(901)" Order="0"/>
 					</Parameters>
 				</Event>
 			</UserInterfaceEvents>
 		</Events>
 		<Actions>
 			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="disable" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<SourceCode>
+<![CDATA[jQuery('#inp_'+this.domCont.id).attr('disabled', 'disabled');]]>
+					</SourceCode>
+				</Action>
+				<Action Name="hide" DisplayName="#Lang(604)" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(607)" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_show(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="check" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<SourceCode>
+<![CDATA[jQuery('#inp_'+this.domCont.id).attr('checked', 'checked');]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
 				<Action Name="addClass" DisplayName="#Lang(601)" Description="#Lang(501)">
 					<Parameters>
 						<Parameter Name="className" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
@@ -1193,69 +851,35 @@ def on_compile(object, attributes):
 <![CDATA[$q(this.domCont).addClass(className);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="check" DisplayName="#Lang(602)" Description="#Lang(502)">
-					<SourceCode>
-<![CDATA[jQuery('#inp_'+this.domCont.id).attr('checked', 'checked');]]>
-					</SourceCode>
-				</Action>
-				<Action Name="disable" DisplayName="#Lang(603)" Description="#Lang(503)">
-					<SourceCode>
-<![CDATA[jQuery('#inp_'+this.domCont.id).attr('disabled', 'disabled');]]>
-					</SourceCode>
-				</Action>
-				<Action Name="enable" DisplayName="#Lang(604)" Description="#Lang(504)">
+				<Action Name="enable" DisplayName="#Lang(603)" Description="#Lang(503)">
 					<SourceCode>
 <![CDATA[jQuery('#inp_'+this.domCont.id).removeAttr('disabled');]]>
 					</SourceCode>
 				</Action>
-				<Action Name="hide" DisplayName="#Lang(605)" Description="#Lang(505)">
+				<Action Name="moveTo" DisplayName="#Lang(605)" Description="#Lang(505)">
 					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="moveTo" DisplayName="#Lang(606)" Description="#Lang(506)">
-					<Parameters>
-						<Parameter Name="newX" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="newY" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="Effect" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="newX" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="newY" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="Effect" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
 <![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="removeClass" DisplayName="#Lang(607)" Description="#Lang(507)">
+				<Action Name="setStyle" DisplayName="#Lang(606)" Description="#Lang(506)">
 					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).removeClass(className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="setClass" DisplayName="#Lang(608)" Description="#Lang(508)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).attr('class',className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="setStyle" DisplayName="#Lang(609)" Description="#Lang(509)">
-					<Parameters>
-						<Parameter Name="cssStyleValue" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="cssStyleValue" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
 <![CDATA[jQuery(this).attr('style', cssStyleValue);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="show" DisplayName="#Lang(611)" Description="#Lang(511)">
+				<Action Name="setClass" DisplayName="#Lang(607)" Description="#Lang(507)">
 					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="className" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[vdom_ui_show(this.domCont, fade);]]>
+<![CDATA[$q(this.domCont).attr('class',className);]]>
 					</SourceCode>
 				</Action>
 			</Container>

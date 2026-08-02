@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_webdavcontainer</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.4.6720</Version>
+		<Version>1.4.6720</Version>
 		<Category>Standard</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(4968d3de-dc60-c927-365d-5b6c252d631c)</Icon>
@@ -211,12 +211,11 @@
 class VDOM_webdavcontainer(VDOM_object):
 
     def wysiwyg(self, contents=""):
-        result = "<container name=\"%s\" id=\"%s\" visible=\"%s\" hierarchy=\"%s\" >%s</container>" % (
-            self.name, self.id, self.visible, self.hierarchy, contents)
+        result = "<container name=\"%s\" id=\"%s\" visible=\"%s\" hierarchy=\"%s\" >%s</container>" % (self.name, self.id, self.visible, self.hierarchy, contents)
         return VDOM_object.wysiwyg(self, contents=result)
 
 
-# def set_name(application_id, object_id, param):
+#def set_name(application_id, object_id, param):
 def on_rename(object):
     actions = {"authentication": ["path", "user", "password"],
                "getResourseProperties": ["path"],
@@ -233,11 +232,9 @@ def on_rename(object):
             # object.create_action(act, "")
             object.actions.new(act)
     sharePath = "/" + object.name
-    oldSharePath = managers.webdav_manager.get_webdav_share_path(
-        application_id, object_id)
+    oldSharePath = managers.webdav_manager.get_webdav_share_path(application_id, object_id)
     if oldSharePath and oldSharePath != sharePath:
-        managers.webdav_manager.del_webdav(
-            application_id, object_id, oldSharePath)
+        managers.webdav_manager.del_webdav(application_id, object_id, oldSharePath)
     managers.webdav_manager.add_webdav(application_id, object_id, sharePath)
 
 
@@ -245,11 +242,8 @@ def on_rename(object):
 def on_delete(object):
     application_id = object.application.id
     object_id = object.id
-    SharePath = managers.webdav_manager.get_webdav_share_path(
-        application_id, object_id)
+    SharePath = managers.webdav_manager.get_webdav_share_path(application_id, object_id)
     if SharePath:
-        managers.webdav_manager.del_webdav(
-            application_id, object_id, SharePath)
-]]>
+        managers.webdav_manager.del_webdav(application_id, object_id, SharePath)]]>
 	</SourceCode>
 </Type>

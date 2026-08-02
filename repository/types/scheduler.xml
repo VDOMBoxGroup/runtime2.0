@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_scheduler</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.2</Version>
+		<Version>1.2</Version>
 		<Category>Additional</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(a0955637-e4dd-4cd1-933b-540c46acf37f)</Icon>
@@ -5565,13 +5565,20 @@
 		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_scheduler(VDOM_object):
+<![CDATA[import json
+class VDOM_scheduler(VDOM_object):
     def render(self, contents=""):
-        WOID = (self.id).replace("-", "_")
-        ID = "o_" + WOID
+        WOID = (self.id).replace('-', '_')
+        ID = 'o_' + WOID
 
-        DEBUG_INFO = {"objname": self.name, "objtype": "scheduler", "js_lib": "dhtmlx scheduler", "id": ID, "version": self.type.version}
-        DEBUG_INFO_STRING = " ".join([str(key) + "='" + str(value) + "'" for key, value in DEBUG_INFO.items()])
+        DEBUG_INFO = {
+          "objname": self.name,
+          "objtype": "scheduler",
+          "js_lib": "dhtmlx scheduler",
+          "id": ID,
+          "version": self.type.version
+        }
+        DEBUG_INFO_STRING = " ".join([str(key)+"='"+str(value)+"'" for key, value in DEBUG_INFO.items()])
 
         DISPLAY = lambda v: "none" if v == "0" else None
         SIZE_CONVERT = lambda v: str(v) + "px"
@@ -5584,14 +5591,14 @@
             "width": SIZE_CONVERT(self.width),
             "height": SIZE_CONVERT(self.height),
         }
-        STYLES_STRING_FORMAT = ";".join([str(key) + ":" + str(value) for key, value in STYLES.items() if value])
+        STYLES_STRING_FORMAT = ";".join([str(key)+":"+str(value) for key, value in STYLES.items() if value])
 
-        STYLES_STRING = """<style>.%(id)s { %(styles)s }</style>""" % {"id": ID, "styles": STYLES_STRING_FORMAT}
+        STYLES_STRING = """<style>.%(id)s { %(styles)s }</style>""" % { "id":ID, "styles": STYLES_STRING_FORMAT }
         STYLES_STRING = STYLES_STRING.replace(" ", "")
 
-        SCRIPT_CONFIG = """<script data-meta='CONFIG'>$(document).ready(() => {%(js_code)s});</script>""" % {"js_code": self.schedulerconfig}
+        SCRIPT_CONFIG = """<script data-meta='CONFIG'>$(document).ready(() => {%(js_code)s});</script>""" % { 'js_code': self.schedulerconfig }
 
-        TIMELINE_CONFIG = """<script data-meta='TIMELINE CONFIG'>$(document).ready(() => {%(js_code)s});</script>""" % {"js_code": self.timelineconfig}
+        TIMELINE_CONFIG = """<script data-meta='TIMELINE CONFIG'>$(document).ready(() => {%(js_code)s});</script>""" % { 'js_code': self.timelineconfig }
 
         INIT_SCRIPT = """
           <script data-meta='scheduler init script'>
@@ -5602,7 +5609,7 @@
               scheduler.parse(`%(data)s`, "json");
             })
           </script>
-        """ % {"id": ID, "data": self.data, "start_date": self.startdate, "end_date": self.enddate}
+        """ % { "id": ID, "data": self.data, "start_date": self.startdate, "end_date": self.enddate }
 
         HARDCODE_CONFIG = """
            <script data-meta='TYPE CONFIG'>
@@ -5637,7 +5644,7 @@
               });
             })
            </script>
-        """ % {"id": ID, "show_lightbox": self.showlightbox}
+        """ % {'id': ID, "show_lightbox": self.showlightbox}
 
         TYPE_WRAPPER = """<div {debug_string} class='{id} {classname}'>{content}</div>"""
 
@@ -5655,7 +5662,12 @@
 
         CONTENT = """{}{}{}""".format(STYLES_STRING, TYPE_HTML, SCRIPTS)
 
-        RESULT = TYPE_WRAPPER.format(debug_string=DEBUG_INFO_STRING, classname=self.cssclass, id=ID, content=CONTENT)
+        RESULT = TYPE_WRAPPER.format(
+          debug_string=DEBUG_INFO_STRING,
+          classname=self.cssclass,
+          id=ID,
+          content=CONTENT
+        )
 
         return VDOM_object.render(self, contents=RESULT)
 
@@ -5665,8 +5677,7 @@
         image_id = "a0955637-e4dd-4cd1-933b-540c46acf37f"
         result = get_empty_wysiwyg_value(self, image_id)
 
-        return VDOM_object.wysiwyg(self, contents=result)
-]]>
+        return VDOM_object.wysiwyg(self, contents=result)]]>
 	</SourceCode>
 	<Libraries>
 		<Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/7693eb8b-3cd2-4270-920c-8e62336ac4a7.css" />]]></Library>

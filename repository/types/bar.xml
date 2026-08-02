@@ -6,7 +6,7 @@
 		<DisplayName>#Lang(001)</DisplayName>
 		<ClassName>VDOM_bar</ClassName>
 		<Description>#Lang(002)</Description>
-		<Version>2.35.6201</Version>
+		<Version>1.15.6201</Version>
 		<Category>Standard</Category>
 		<InterfaceType>1</InterfaceType>
 		<Icon>#Res(fb92b09e-aeae-24e8-c529-0856a9314220)</Icon>
@@ -17,30 +17,53 @@
 		<Resizable>3</Resizable>
 		<OptimizationPriority>1</OptimizationPriority>
 		<Container>1</Container>
-		<Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, dialog_3, vdomclass, flexcontainer</Containers>
-		<Handlers>on_update, on_compile</Handlers>
-		<Languages>en_US, fr_FR, ru_RU</Languages>
+		<Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
 	</Information>
 	<Attributes>
 		<Attribute>
-			<Name>classname</Name>
-			<DisplayName>#Lang(101)</DisplayName>
-			<Description>#Lang(201)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(199)</DisplayName>
+			<Description>#Lang(299)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(399)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(500)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>DropDown((#Lang(499)|0)|(#Lang(499)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>hierarchy</Name>
-			<DisplayName>#Lang(102)</DisplayName>
-			<Description>#Lang(202)</Description>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
 			<DefaultValue>0</DefaultValue>
 			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
 			<CodeInterface>TextField(2)</CodeInterface>
@@ -48,69 +71,57 @@
 		</Attribute>
 		<Attribute>
 			<Name>top</Name>
-			<DisplayName>#Lang(103)</DisplayName>
-			<Description>#Lang(203)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
+			<CodeInterface>TextField(4)</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>left</Name>
-			<DisplayName>#Lang(104)</DisplayName>
-			<Description>#Lang(204)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
+			<CodeInterface>TextField(4)</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>width</Name>
-			<DisplayName>#Lang(105)</DisplayName>
-			<Description>#Lang(205)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
+			<CodeInterface>TextField(4)</CodeInterface>
 			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>height</Name>
-			<DisplayName>#Lang(106)</DisplayName>
-			<Description>#Lang(206)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(10)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>positioning</Name>
 			<DisplayName>#Lang(107)</DisplayName>
 			<Description>#Lang(207)</Description>
-			<DefaultValue>static</DefaultValue>
-			<RegularExpressionValidation>^(static|fixed|absolute|relative)$</RegularExpressionValidation>
+			<DefaultValue>50</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|fixed)|(#Lang(403)|relative)|(#Lang(404)|static))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
 		</Attribute>
 		<Attribute>
 			<Name>color</Name>
 			<DisplayName>#Lang(108)</DisplayName>
 			<Description>#Lang(208)</Description>
-			<DefaultValue></DefaultValue>
+			<DefaultValue>000000</DefaultValue>
 			<RegularExpressionValidation>^(#?[0-9A-Fa-f]{6})?$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
 			<Visible>1</Visible>
@@ -119,148 +130,16 @@
 			<ColorGroup>4</ColorGroup>
 		</Attribute>
 		<Attribute>
-			<Name>displaying</Name>
+			<Name>classname</Name>
 			<DisplayName>#Lang(109)</DisplayName>
 			<Description>#Lang(209)</Description>
 			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
 			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
 			<Visible>1</Visible>
 			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(405)|block)|(#Lang(406)|inline)|(#Lang(407)|flex)|(#Lang(408)|inline-block)|(#Lang(409)|))</CodeInterface>
+			<CodeInterface>TextField(500)</CodeInterface>
 			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>style</Name>
-			<DisplayName>#Lang(111)</DisplayName>
-			<Description>#Lang(211)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>MultiLine(10000)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>skin</Name>
-			<DisplayName>#Lang(112)</DisplayName>
-			<Description>#Lang(212)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>margins</Name>
-			<DisplayName>#Lang(113)</DisplayName>
-			<Description>#Lang(213)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>paddings</Name>
-			<DisplayName>#Lang(114)</DisplayName>
-			<Description>#Lang(214)</Description>
-			<DefaultValue></DefaultValue>
-			<RegularExpressionValidation>^[ \t]*(((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto)[ \t]+){0,3}((-?\d{0,4}\.?\d{1,2})(px|em|ex|pt|cm|mm|in|%)|auto|)[ \t]*$|^$|^[ \t]*inherit[ \t]*$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(32)</CodeInterface>
-			<ColorGroup>4</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_top</Name>
-			<DisplayName>#Lang(115)</DisplayName>
-			<Description>#Lang(215)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_left</Name>
-			<DisplayName>#Lang(116)</DisplayName>
-			<Description>#Lang(216)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_width</Name>
-			<DisplayName>#Lang(117)</DisplayName>
-			<Description>#Lang(217)</Description>
-			<DefaultValue>50</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>ide_height</Name>
-			<DisplayName>#Lang(118)</DisplayName>
-			<Description>#Lang(218)</Description>
-			<DefaultValue>50</DefaultValue>
-			<RegularExpressionValidation>.*</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
-			<Visible>0</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(8)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>zindex</Name>
-			<DisplayName>#Lang(119)</DisplayName>
-			<Description>#Lang(219)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>TextField(2)</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>visible</Name>
-			<DisplayName>#Lang(121)</DisplayName>
-			<Description>#Lang(221)</Description>
-			<DefaultValue>1</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
-		</Attribute>
-		<Attribute>
-			<Name>stateful</Name>
-			<DisplayName>#Lang(122)</DisplayName>
-			<Description>#Lang(222)</Description>
-			<DefaultValue>0</DefaultValue>
-			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
-			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
-			<Visible>1</Visible>
-			<InterfaceType>0</InterfaceType>
-			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
-			<ColorGroup>1</ColorGroup>
 		</Attribute>
 	</Attributes>
 	<Languages>
@@ -268,81 +147,35 @@
 			<Sentence ID="001">Bar</Sentence>
 			<Sentence ID="002">The Bar type produces an object displayed as a bar with specified color. It is usually used in the function of a colored base for other objects.</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101">CSS Class</Sentence>
-			<Sentence ID="102">Hierarchy</Sentence>
-			<Sentence ID="103">Top</Sentence>
-			<Sentence ID="104">Left</Sentence>
-			<Sentence ID="105">Width</Sentence>
-			<Sentence ID="106">Height</Sentence>
-			<Sentence ID="107">Position</Sentence>
+			<Sentence ID="101">Hierarchy</Sentence>
+			<Sentence ID="102">Visibility</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
 			<Sentence ID="108">Color</Sentence>
-			<Sentence ID="109">Display</Sentence>
-			<Sentence ID="111">Style</Sentence>
-			<Sentence ID="112">Skin</Sentence>
-			<Sentence ID="113">Margins</Sentence>
-			<Sentence ID="114">Paddings</Sentence>
-			<Sentence ID="115">IDE_top</Sentence>
-			<Sentence ID="116">IDE_left</Sentence>
-			<Sentence ID="117">IDE_width</Sentence>
-			<Sentence ID="118">IDE_height</Sentence>
-			<Sentence ID="119">Z-Index</Sentence>
-			<Sentence ID="121">Visibility</Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="201">The name of the CSS class.</Sentence>
-			<Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
-			<Sentence ID="203">Spacing from the top edge of the parent object to the current object.</Sentence>
-			<Sentence ID="204">Spacing from the left edge of the parent object to the current object.</Sentence>
-			<Sentence ID="205">Width of the object in pixels.</Sentence>
-			<Sentence ID="206">Height of the object in pixels.</Sentence>
-			<Sentence ID="207">newAttribute12</Sentence>
+			<Sentence ID="109">CSS Class</Sentence>
+			<Sentence ID="201">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+			<Sentence ID="202">Visibility of the object</Sentence>
+			<Sentence ID="203">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+			<Sentence ID="204">Spacing from the top edge of the parent object to the current object in pixels.</Sentence>
+			<Sentence ID="205">Spacing from the left edge of the parent object to the current object in pixels.</Sentence>
+			<Sentence ID="206">Width of the object in pixels.</Sentence>
+			<Sentence ID="207">Height of the object in pixels.</Sentence>
 			<Sentence ID="208">Color of the object or object&apos;s text. It represents an HTML color code (for example, #FFFFFF - white, #FF0000 - red).</Sentence>
-			<Sentence ID="209">newAttribute13</Sentence>
-			<Sentence ID="211">newAttribute18</Sentence>
-			<Sentence ID="212">newAttribute19</Sentence>
-			<Sentence ID="213">newAttribute10</Sentence>
-			<Sentence ID="214">newAttribute11</Sentence>
-			<Sentence ID="215">newAttribute14</Sentence>
-			<Sentence ID="216">newAttribute15</Sentence>
-			<Sentence ID="217">newAttribute16</Sentence>
-			<Sentence ID="218">newAttribute17</Sentence>
-			<Sentence ID="219">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
-			<Sentence ID="221">Visibility of the object</Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301">Incorrect value.</Sentence>
-			<Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+			<Sentence ID="209">The name of the CSS class.</Sentence>
+			<Sentence ID="301">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+			<Sentence ID="302">Incorrect value, must be either 0 or 1</Sentence>
 			<Sentence ID="303">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
 			<Sentence ID="304">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-			<Sentence ID="305">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
+			<Sentence ID="305">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
 			<Sentence ID="306">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
-			<Sentence ID="307">newAttribute12</Sentence>
+			<Sentence ID="307">Incorrect value, must be positive integer from 0 to 999999.</Sentence>
 			<Sentence ID="308">Incorrect value, must be six hexadecimal digits</Sentence>
-			<Sentence ID="309"></Sentence>
-			<Sentence ID="311"></Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313">Incorrect value.</Sentence>
-			<Sentence ID="314">Incorrect value.</Sentence>
-			<Sentence ID="315">newAttribute14</Sentence>
-			<Sentence ID="316">newAttribute15</Sentence>
-			<Sentence ID="317">newAttribute16</Sentence>
-			<Sentence ID="318">newAttribute17</Sentence>
-			<Sentence ID="319">Incorrect value, must be positive integer from 0 to 9999.</Sentence>
-			<Sentence ID="321">Incorrect value, must be either 0 or 1</Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401">Absolute</Sentence>
-			<Sentence ID="402">Fixed</Sentence>
-			<Sentence ID="403">Relative</Sentence>
-			<Sentence ID="404">Static</Sentence>
-			<Sentence ID="405">Block</Sentence>
-			<Sentence ID="406">Inline</Sentence>
-			<Sentence ID="407">Flex</Sentence>
-			<Sentence ID="408">Inline-block</Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411">User defined</Sentence>
-			<Sentence ID="412">Empty</Sentence>
-			<Sentence ID="413">Invisible</Sentence>
-			<Sentence ID="414">Visible</Sentence>
-			<Sentence ID="415"></Sentence>
-			<Sentence ID="416"></Sentence>
+			<Sentence ID="309">Incorrect value.</Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
 			<Sentence ID="501">Set new color of the object</Sentence>
 			<Sentence ID="502">Change the cursor type when it points at the object</Sentence>
 			<Sentence ID="503">Start dragging the object</Sentence>
@@ -356,7 +189,7 @@
 			<Sentence ID="512">Start changing the width of the object</Sentence>
 			<Sentence ID="513">Start changing the size of the object</Sentence>
 			<Sentence ID="514">Start changing the height of the object</Sentence>
-			<Sentence ID="515">Toggle CSS class</Sentence>
+			<Sentence ID="515"></Sentence>
 			<Sentence ID="516"></Sentence>
 			<Sentence ID="517"></Sentence>
 			<Sentence ID="518"></Sentence>
@@ -366,9 +199,6 @@
 			<Sentence ID="523"></Sentence>
 			<Sentence ID="524"></Sentence>
 			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527">Add new CSS class</Sentence>
-			<Sentence ID="528">Remove CSS class</Sentence>
 			<Sentence ID="601">changeColor</Sentence>
 			<Sentence ID="602">changeCursor</Sentence>
 			<Sentence ID="603">dragStart</Sentence>
@@ -382,9 +212,6 @@
 			<Sentence ID="612">startResizeX</Sentence>
 			<Sentence ID="613">startResizeXY</Sentence>
 			<Sentence ID="614">startResizeY</Sentence>
-			<Sentence ID="615">toggleClass</Sentence>
-			<Sentence ID="616">addClass</Sentence>
-			<Sentence ID="617">removeClass</Sentence>
 			<Sentence ID="701">NewColor</Sentence>
 			<Sentence ID="702">cursorType</Sentence>
 			<Sentence ID="703">Fade</Sentence>
@@ -396,9 +223,6 @@
 			<Sentence ID="709">Height</Sentence>
 			<Sentence ID="711">Transparency</Sentence>
 			<Sentence ID="712">Fade</Sentence>
-			<Sentence ID="713">className</Sentence>
-			<Sentence ID="714">Name of CSS class</Sentence>
-			<Sentence ID="715">Name of CSS class</Sentence>
 			<Sentence ID="801">New color value in hexadecimal</Sentence>
 			<Sentence ID="802">New cursor type</Sentence>
 			<Sentence ID="803">Fade time</Sentence>
@@ -410,111 +234,62 @@
 			<Sentence ID="809">New value of height</Sentence>
 			<Sentence ID="811">The value of transparency</Sentence>
 			<Sentence ID="812">Fade effect, time is indicated in milliseconds</Sentence>
-			<Sentence ID="813">Name of CSS class</Sentence>
-			<Sentence ID="814">className</Sentence>
-			<Sentence ID="815">className</Sentence>
-			<Sentence ID="901">Current Y-value</Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
 			<Sentence ID="902">Current Y-value</Sentence>
-			<Sentence ID="903">Current Y-value</Sentence>
-			<Sentence ID="904">Current Y-value</Sentence>
+			<Sentence ID="903">Cursor position</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
 			<Sentence ID="905">Current Y-value</Sentence>
-			<Sentence ID="906">Current Y-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
 			<Sentence ID="907">Current Y-value</Sentence>
-			<Sentence ID="908">Current Y-value</Sentence>
-			<Sentence ID="909">Current Y-value</Sentence>
+			<Sentence ID="908">Cursor position</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
 			<Sentence ID="911">Current Y-value</Sentence>
-			<Sentence ID="912">Current Y-value</Sentence>
+			<Sentence ID="912">Current X-value</Sentence>
 			<Sentence ID="913">Current Y-value</Sentence>
-			<Sentence ID="914">Current Y-value</Sentence>
+			<Sentence ID="914">Current X-value</Sentence>
 			<Sentence ID="915">Current Y-value</Sentence>
-			<Sentence ID="916">Current Y-value</Sentence>
+			<Sentence ID="916">Current X-value</Sentence>
 			<Sentence ID="917">Current Y-value</Sentence>
-			<Sentence ID="918">Current Y-value</Sentence>
+			<Sentence ID="918">Current X-value</Sentence>
 			<Sentence ID="919">Current Y-value</Sentence>
-			<Sentence ID="921">Current Y-value</Sentence>
+			<Sentence ID="921">Current X-value</Sentence>
 			<Sentence ID="922">Current Y-value</Sentence>
-			<Sentence ID="923">Current Y-value</Sentence>
+			<Sentence ID="923">Current X-value</Sentence>
 			<Sentence ID="924">Current Y-value</Sentence>
 		</Language>
 		<Language Code="fr_FR">
 			<Sentence ID="001">Barre</Sentence>
 			<Sentence ID="002">Barre de couleur</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Hiérarchie</Sentence>
-			<Sentence ID="103">Haut</Sentence>
-			<Sentence ID="104">Gauche</Sentence>
-			<Sentence ID="105">Largeur</Sentence>
-			<Sentence ID="106">Hauteur</Sentence>
-			<Sentence ID="107"></Sentence>
+			<Sentence ID="101">Hiérarchie</Sentence>
+			<Sentence ID="102">Visibilité</Sentence>
+			<Sentence ID="103">Z-Index</Sentence>
+			<Sentence ID="104">Haut</Sentence>
+			<Sentence ID="105">Gauche</Sentence>
+			<Sentence ID="106">Largeur</Sentence>
+			<Sentence ID="107">Hauteur</Sentence>
 			<Sentence ID="108">Couleur</Sentence>
 			<Sentence ID="109"></Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112"></Sentence>
-			<Sentence ID="113"></Sentence>
-			<Sentence ID="114"></Sentence>
-			<Sentence ID="115"></Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118"></Sentence>
-			<Sentence ID="119">Z-Index</Sentence>
-			<Sentence ID="121">Visibilité</Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
-			<Sentence ID="203">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="204">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
-			<Sentence ID="205">Largeur de l&apos;objet en pixels</Sentence>
-			<Sentence ID="206">Hauteur de l&apos;objet en pixels</Sentence>
-			<Sentence ID="207"></Sentence>
+			<Sentence ID="201">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="202">Afficher ou cacher l&apos;objet</Sentence>
+			<Sentence ID="203">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="204">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="205">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="206">Largeur de l&apos;objet en pixels</Sentence>
+			<Sentence ID="207">Hauteur de l&apos;objet en pixels</Sentence>
 			<Sentence ID="208">Couleur de l&apos;object</Sentence>
 			<Sentence ID="209"></Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212"></Sentence>
-			<Sentence ID="213"></Sentence>
-			<Sentence ID="214"></Sentence>
-			<Sentence ID="215"></Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218"></Sentence>
-			<Sentence ID="219">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
-			<Sentence ID="221">Afficher ou cacher l&apos;objet</Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="301">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="302">Valeur Incorrecte, must be 0 or 1</Sentence>
 			<Sentence ID="303">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="304">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="307"></Sentence>
+			<Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
 			<Sentence ID="308">Valeur Incorrecte, doit être de six chiffres hexadécimaux</Sentence>
 			<Sentence ID="309"></Sentence>
-			<Sentence ID="311"></Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313"></Sentence>
-			<Sentence ID="314"></Sentence>
-			<Sentence ID="315"></Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319">Valeur Incorrecte, doit être positive</Sentence>
-			<Sentence ID="321">Valeur Incorrecte, must be 0 or 1</Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413">Invisible</Sentence>
-			<Sentence ID="414">Visible</Sentence>
-			<Sentence ID="415"></Sentence>
-			<Sentence ID="416"></Sentence>
+			<Sentence ID="401">Invisible</Sentence>
+			<Sentence ID="402">Visible</Sentence>
 			<Sentence ID="501">Visibilité</Sentence>
 			<Sentence ID="502">Visibilité</Sentence>
 			<Sentence ID="503">Start drag action</Sentence>
@@ -538,9 +313,6 @@
 			<Sentence ID="523"></Sentence>
 			<Sentence ID="524"></Sentence>
 			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527"></Sentence>
-			<Sentence ID="528"></Sentence>
 			<Sentence ID="601">Visibilité</Sentence>
 			<Sentence ID="602">Visibilité</Sentence>
 			<Sentence ID="603">dragStart</Sentence>
@@ -554,9 +326,6 @@
 			<Sentence ID="612">startResizeX</Sentence>
 			<Sentence ID="613">startResizeXY</Sentence>
 			<Sentence ID="614">startResizeY</Sentence>
-			<Sentence ID="615"></Sentence>
-			<Sentence ID="616"></Sentence>
-			<Sentence ID="617"></Sentence>
 			<Sentence ID="701">Valeur Incorrecte, must be 0 or 1</Sentence>
 			<Sentence ID="702">Valeur Incorrecte, must be 0 or 1</Sentence>
 			<Sentence ID="703">Fade</Sentence>
@@ -568,9 +337,6 @@
 			<Sentence ID="709">Height</Sentence>
 			<Sentence ID="711">Transparency</Sentence>
 			<Sentence ID="712">Fade</Sentence>
-			<Sentence ID="713"></Sentence>
-			<Sentence ID="714"></Sentence>
-			<Sentence ID="715"></Sentence>
 			<Sentence ID="801">Valeur Incorrecte, must be 0 or 1</Sentence>
 			<Sentence ID="802">Valeur Incorrecte, must be 0 or 1</Sentence>
 			<Sentence ID="803">Fade time</Sentence>
@@ -582,111 +348,62 @@
 			<Sentence ID="809">New height value</Sentence>
 			<Sentence ID="811">New transparency value</Sentence>
 			<Sentence ID="812">Time of appearance</Sentence>
-			<Sentence ID="813"></Sentence>
-			<Sentence ID="814"></Sentence>
-			<Sentence ID="815"></Sentence>
-			<Sentence ID="901">Current Y-value</Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
 			<Sentence ID="902">Current Y-value</Sentence>
-			<Sentence ID="903">Current Y-value</Sentence>
-			<Sentence ID="904">Current Y-value</Sentence>
+			<Sentence ID="903">Cursor position</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
 			<Sentence ID="905">Current Y-value</Sentence>
-			<Sentence ID="906">Current Y-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
 			<Sentence ID="907">Current Y-value</Sentence>
-			<Sentence ID="908">Current Y-value</Sentence>
-			<Sentence ID="909">Current Y-value</Sentence>
+			<Sentence ID="908">Cursor position</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
 			<Sentence ID="911">Current Y-value</Sentence>
-			<Sentence ID="912">Current Y-value</Sentence>
+			<Sentence ID="912">Current X-value</Sentence>
 			<Sentence ID="913">Current Y-value</Sentence>
-			<Sentence ID="914">Current Y-value</Sentence>
+			<Sentence ID="914">Current X-value</Sentence>
 			<Sentence ID="915">Current Y-value</Sentence>
-			<Sentence ID="916">Current Y-value</Sentence>
+			<Sentence ID="916">Current X-value</Sentence>
 			<Sentence ID="917">Current Y-value</Sentence>
-			<Sentence ID="918">Current Y-value</Sentence>
+			<Sentence ID="918">Current X-value</Sentence>
 			<Sentence ID="919">Current Y-value</Sentence>
-			<Sentence ID="921">Current Y-value</Sentence>
+			<Sentence ID="921">Current X-value</Sentence>
 			<Sentence ID="922">Current Y-value</Sentence>
-			<Sentence ID="923">Current Y-value</Sentence>
+			<Sentence ID="923">Current X-value</Sentence>
 			<Sentence ID="924">Current Y-value</Sentence>
 		</Language>
 		<Language Code="ru_RU">
 			<Sentence ID="001">Прямоугольник</Sentence>
 			<Sentence ID="002">Прямоугольник заданного цвета</Sentence>
 			<Sentence ID="003"></Sentence>
-			<Sentence ID="101"></Sentence>
-			<Sentence ID="102">Иерархия</Sentence>
-			<Sentence ID="103">Сверху</Sentence>
-			<Sentence ID="104">Слева</Sentence>
-			<Sentence ID="105">Ширина</Sentence>
-			<Sentence ID="106">Высота</Sentence>
-			<Sentence ID="107"></Sentence>
+			<Sentence ID="101">Иерархия</Sentence>
+			<Sentence ID="102">Отображение</Sentence>
+			<Sentence ID="103">Позиция</Sentence>
+			<Sentence ID="104">Сверху</Sentence>
+			<Sentence ID="105">Слева</Sentence>
+			<Sentence ID="106">Ширина</Sentence>
+			<Sentence ID="107">Высота</Sentence>
 			<Sentence ID="108">Цвет</Sentence>
 			<Sentence ID="109"></Sentence>
-			<Sentence ID="111"></Sentence>
-			<Sentence ID="112"></Sentence>
-			<Sentence ID="113"></Sentence>
-			<Sentence ID="114"></Sentence>
-			<Sentence ID="115"></Sentence>
-			<Sentence ID="116"></Sentence>
-			<Sentence ID="117"></Sentence>
-			<Sentence ID="118"></Sentence>
-			<Sentence ID="119">Позиция</Sentence>
-			<Sentence ID="121">Отображение</Sentence>
-			<Sentence ID="122"></Sentence>
-			<Sentence ID="201"></Sentence>
-			<Sentence ID="202">Приоритет в потоке гипертекста</Sentence>
-			<Sentence ID="203">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="204">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
-			<Sentence ID="205">Ширина объекта в пикселях</Sentence>
-			<Sentence ID="206">Высота объекта в пикселях</Sentence>
-			<Sentence ID="207"></Sentence>
+			<Sentence ID="201">Приоритет в потоке гипертекста</Sentence>
+			<Sentence ID="202">Режим отображения объекта</Sentence>
+			<Sentence ID="203">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="204">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="205">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="206">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="207">Высота объекта в пикселях</Sentence>
 			<Sentence ID="208">Цвет объекта</Sentence>
 			<Sentence ID="209"></Sentence>
-			<Sentence ID="211"></Sentence>
-			<Sentence ID="212"></Sentence>
-			<Sentence ID="213"></Sentence>
-			<Sentence ID="214"></Sentence>
-			<Sentence ID="215"></Sentence>
-			<Sentence ID="216"></Sentence>
-			<Sentence ID="217"></Sentence>
-			<Sentence ID="218"></Sentence>
-			<Sentence ID="219">Положение в визуальной иерархии объектов</Sentence>
-			<Sentence ID="221">Режим отображения объекта</Sentence>
-			<Sentence ID="222"></Sentence>
-			<Sentence ID="301"></Sentence>
-			<Sentence ID="302">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="303">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="301">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="302">Неправильное значение, должен быть указан 0 или 1</Sentence>
+			<Sentence ID="303">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
 			<Sentence ID="304">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="305">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
-			<Sentence ID="307"></Sentence>
+			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
 			<Sentence ID="308">Неправильное значение, должно быть указано шесть шестнадцатеричных цифр</Sentence>
 			<Sentence ID="309"></Sentence>
-			<Sentence ID="311"></Sentence>
-			<Sentence ID="312"></Sentence>
-			<Sentence ID="313"></Sentence>
-			<Sentence ID="314"></Sentence>
-			<Sentence ID="315"></Sentence>
-			<Sentence ID="316"></Sentence>
-			<Sentence ID="317"></Sentence>
-			<Sentence ID="318"></Sentence>
-			<Sentence ID="319">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
-			<Sentence ID="321">Неправильное значение, должен быть указан 0 или 1</Sentence>
-			<Sentence ID="322"></Sentence>
-			<Sentence ID="401"></Sentence>
-			<Sentence ID="402"></Sentence>
-			<Sentence ID="403"></Sentence>
-			<Sentence ID="404"></Sentence>
-			<Sentence ID="405"></Sentence>
-			<Sentence ID="406"></Sentence>
-			<Sentence ID="407"></Sentence>
-			<Sentence ID="408"></Sentence>
-			<Sentence ID="409"></Sentence>
-			<Sentence ID="411"></Sentence>
-			<Sentence ID="412"></Sentence>
-			<Sentence ID="413">Не отображать</Sentence>
-			<Sentence ID="414">Отображать</Sentence>
-			<Sentence ID="415"></Sentence>
-			<Sentence ID="416"></Sentence>
+			<Sentence ID="401">Не отображать</Sentence>
+			<Sentence ID="402">Отображать</Sentence>
 			<Sentence ID="501">Изменить цвет объекта</Sentence>
 			<Sentence ID="502">Изменить вид курсора</Sentence>
 			<Sentence ID="503">Начать операцию перетаскивания</Sentence>
@@ -710,9 +427,6 @@
 			<Sentence ID="523"></Sentence>
 			<Sentence ID="524"></Sentence>
 			<Sentence ID="525"></Sentence>
-			<Sentence ID="526"></Sentence>
-			<Sentence ID="527"></Sentence>
-			<Sentence ID="528"></Sentence>
 			<Sentence ID="601">Изменить цвет</Sentence>
 			<Sentence ID="602">Изменить курсор</Sentence>
 			<Sentence ID="603">Начать перетаскивание</Sentence>
@@ -726,9 +440,6 @@
 			<Sentence ID="612">Начать изменение ширины</Sentence>
 			<Sentence ID="613">Начать изменение размеров</Sentence>
 			<Sentence ID="614">Начать изменение высоты</Sentence>
-			<Sentence ID="615"></Sentence>
-			<Sentence ID="616"></Sentence>
-			<Sentence ID="617"></Sentence>
 			<Sentence ID="701">Новый цвет</Sentence>
 			<Sentence ID="702">Изменить тип курсора</Sentence>
 			<Sentence ID="703">Исчезновение</Sentence>
@@ -740,9 +451,6 @@
 			<Sentence ID="709">Высота</Sentence>
 			<Sentence ID="711">Прозрачность</Sentence>
 			<Sentence ID="712">Исчезновение</Sentence>
-			<Sentence ID="713"></Sentence>
-			<Sentence ID="714"></Sentence>
-			<Sentence ID="715"></Sentence>
 			<Sentence ID="801">Новое значение цвета</Sentence>
 			<Sentence ID="802">Новый тип курсора</Sentence>
 			<Sentence ID="803">Время исчезновения</Sentence>
@@ -754,208 +462,31 @@
 			<Sentence ID="809">Новое значение высоты</Sentence>
 			<Sentence ID="811">Новое значение прозрачности</Sentence>
 			<Sentence ID="812">Время исчезновения</Sentence>
-			<Sentence ID="813"></Sentence>
-			<Sentence ID="814"></Sentence>
-			<Sentence ID="815"></Sentence>
-			<Sentence ID="901">Текущее значение Y</Sentence>
+			<Sentence ID="901">Текущее значение X</Sentence>
 			<Sentence ID="902">Текущее значение Y</Sentence>
-			<Sentence ID="903">Текущее значение Y</Sentence>
-			<Sentence ID="904">Текущее значение Y</Sentence>
+			<Sentence ID="903">Позиция курсора</Sentence>
+			<Sentence ID="904">Текущее значение X</Sentence>
 			<Sentence ID="905">Текущее значение Y</Sentence>
-			<Sentence ID="906">Текущее значение Y</Sentence>
+			<Sentence ID="906">Текущее значение X</Sentence>
 			<Sentence ID="907">Текущее значение Y</Sentence>
-			<Sentence ID="908">Текущее значение Y</Sentence>
-			<Sentence ID="909">Текущее значение Y</Sentence>
+			<Sentence ID="908">Позиция курсора</Sentence>
+			<Sentence ID="909">Текущее значение X</Sentence>
 			<Sentence ID="911">Текущее значение Y</Sentence>
-			<Sentence ID="912">Текущее значение Y</Sentence>
+			<Sentence ID="912">Текущее значение X</Sentence>
 			<Sentence ID="913">Текущее значение Y</Sentence>
-			<Sentence ID="914">Текущее значение Y</Sentence>
+			<Sentence ID="914">Текущее значение X</Sentence>
 			<Sentence ID="915">Текущее значение Y</Sentence>
-			<Sentence ID="916">Текущее значение Y</Sentence>
+			<Sentence ID="916">Текущее значение X</Sentence>
 			<Sentence ID="917">Текущее значение Y</Sentence>
-			<Sentence ID="918">Текущее значение Y</Sentence>
+			<Sentence ID="918">Текущее значение X</Sentence>
 			<Sentence ID="919">Текущее значение Y</Sentence>
-			<Sentence ID="921">Текущее значение Y</Sentence>
+			<Sentence ID="921">Текущее значение X</Sentence>
 			<Sentence ID="922">Текущее значение Y</Sentence>
-			<Sentence ID="923">Текущее значение Y</Sentence>
+			<Sentence ID="923">Текущее значение X</Sentence>
 			<Sentence ID="924">Текущее значение Y</Sentence>
 		</Language>
 	</Languages>
 	<Resources>
-		<Resource ID="0f26dbf6-71ae-1393-1af9-0857faf4c541" Type="png" Name="bar16.png">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
-			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
-			IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
-			ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
-			cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
-			PSJ4bXAuaWlkOjczMTRBOEUzMUZFNTExRTE5MTREQzVDREE3RDJEQzhEIiB4bXBNTTpEb2N1bWVu
-			dElEPSJ4bXAuZGlkOjczMTRBOEU0MUZFNTExRTE5MTREQzVDREE3RDJEQzhEIj4gPHhtcE1NOkRl
-			cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzMxNEE4RTExRkU1MTFFMTkxNERD
-			NUNEQTdEMkRDOEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NzMxNEE4RTIxRkU1MTFFMTkx
-			NERDNUNEQTdEMkRDOEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
-			dGE+IDw/eHBhY2tldCBlbmQ9InIiPz6ajnLgAAACeklEQVR42qRTS0wTURS988q0dFop9sPHItWg
-			qXbhBjFKSIyJcWNiTHAHMSEGElygm5bKRmNkZ2J0o6wwspBGSCQuDAkBjbJoUAsixYS29uMwZTr9
-			DgUqSL0zaRtC0AW+5OTOe++cM/e+9y4F+xz5fF6OpLjgdDrz+zUriaXomf1m8n73uUM/uYCQyJz/
-			VwYSyO6NcrX6nRAXzkxMfjyqYZiJQCDQtVNQRHGUFT88cwv1rpdDQCuVNoquALKdxYzsZT23HQMT
-			U9Oarud1j/bKpGTAMMwHKa7Es9DSdBJq9OUwPPwKHA47XLrS9vC6dczYcq4xhxQlYgwNZ2SDuXmv
-			Ta1mokShqJcWmhutIK6uw1aehu5bfTA6OgKez25y3Nrc2//m8mYetjcaqk6fQOo1+RYYRjNIEUVN
-			LLUhZ5LOZCG8HANfiAOWT0GDrQm2seS3r2cUJGmLhOPzqqnFwVakDkh8KsrHc1xMVLqGnpXqOnvh
-			qmySSIqARwZ6nRYOHzLC4vynp+70g0z1MWVvgXqKyqyu81pGZYqnRIgsC/AjvAIRToAkzimKAsPB
-			A1CPYjbsH7nZ2f5CXUG87Y9rJ1EsldxBUOwS8E/BCA++IAchlocEigkhUGXQgcVsAjEtvJfEKPCh
-			2I+xv5CBl8rlNvX+MBeY8wZ1bDQOaXENaFqB4gowV+thM5f92tHeei+dSoU6B81fdtygGcESlYpO
-			bP1av8hyfDItZkGlLINaUyXU1RhgTUxOd99ou4/iKJJndz0BVj7E4szRd9cCKsOTIxZLk7FSm/Uv
-			LYzfsfeM4xYnvTPE772aidrlSiOsiCrEFiJUwF+7kfrfdv4jwAAY5xV87aQgRwAAAABJRU5ErkJg
-			gg==
-		</Resource>
-		<Resource ID="5b988c49-df25-0c84-2a54-08583fddc70a" Type="png" Name="bar24.png">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-			bWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
-			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
-			MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
-			b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
-			Ok9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0QjU0RjZFMDExQkM4MDk5RkU5QzUy
-			NDc4RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjVCRTE3MjFGMjIxMUUxODM5QkI4MTk2
-			QzJGNEI2RiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjVCRTE3MTFGMjIxMUUxODM5QkI4
-			MTk2QzJGNEI2RiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3Mi
-			PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5NEEyNUM5QTRG
-			MTZFMTExQTQxNURENUVEMTNGQzBGQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0
-			QjU0RjZFMDExQkM4MDk5RkU5QzUyNDc4RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRG
-			PiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PugEM1oAAAJ9SURBVHjaYmCAgoqKiv8M
-			RIL////DMYpmEH3+whXRazfunHz45Pm9N+8+2RMygAld8u///we37z5ktnP3IUUBft5df//+jcJq
-			KxSwwBjnL16VW7l8McPl6w809QyMGJ7cvcBQXFzEVlfftPTdh89saQtkFmBzDdyAP3//HgHR8goK
-			DI6WOgx3JPkYVqxYzZCWnslQVlk7pyvoppgAHzcHUAkbEG8EGngapJ754uVrWuoa2iE37j6Vev38
-			IUNKQhTD5y/fGT5++cmgqKbHcOfeQ4ZrN24zKWvzOs47lm518OYSo6cfbko9eHNhFcgApm/ffy66
-			df+5uIKiItglHz99ZXj07DXDnYfPGZ6++sCgrGUKDBcGhhUL97OoCLreePT2Mvv+6/ODgUpngtQz
-			bth26K+YuATTptXz4P6ycAwAG/Lu/WcGYLAxCPHzMMhKiTB8ePW48/i/4odAJdOgSvVYRMXFP1sY
-			qvCrKlYyPH72huH+o5cMD568Ynj/4TMDIyMjg4ggH4McUPPTR3fXZKXGzEidL/0YFONALAfExky8
-			rD8Pvn73ieHB41cMdx48Z3j49BUDMNQZmJiYGMSE+RnkpUUZPn98cxCouQ6o+QEopoG4FeqCa8wP
-			Hjx8rG1gEQq0lf3J8zcMHz59Y2BlZWYQF+FnkJEUZvjz6+ul/MzE/MjJ/BeQYu8sEM8B4hvMd+7c
-			fvH6zbv3PELSVl++/eRkZ2NlkBAVYJAWF2L49vn90eK8tLKnT58cNw7gQ0/qn8GBCOXwySqouvpH
-			pCVqaagZiQjwfL17++rOytI8UOI5D3U2SlKGAUYkcVYgVgdiMVC6AuKHUIw1L8AAQIABAEb1IN3r
-			VkStAAAAAElFTkSuQmCC
-		</Resource>
-		<Resource ID="beb4fd88-7fc2-4079-8a82-ffe1b9743352" Type="jpg" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-			bWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
-			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
-			MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
-			b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
-			Ok9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0QjU0RjZFMDExQkM4MDk5RkU5QzUy
-			NDc4RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozOTQ0QzAwMzFGMjAxMUUxODY2MkE0RTND
-			RjA0NDlGNiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozOTQ0QzAwMjFGMjAxMUUxODY2MkE0
-			RTNDRjA0NDlGNiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3Mi
-			PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQTlBRjdFQzUw
-			MTZFMTExQTQxNURENUVEMTNGQzBGQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0
-			QjU0RjZFMDExQkM4MDk5RkU5QzUyNDc4RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRG
-			PiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph2GS94AAAGeSURBVHjalJK7SgNBFIbn
-			zK5gopLYqgmLpNDGSqu0voGgjSIKigQR09iI+ATmASx8C7EQKzsrEURUiIgXhJDKvWZunpnZXZNO
-			h2F2d+Z8+58z/4GLqkv+M3R0bf8IHIcABQBCaXqiFE6lpBLCTK4YezltaUDEEQKgQ4GAHjpeSrOK
-			FOAMmVRBhEEKYChkCsQoSK1ApJCMKd4HEArUcQ0ANtzb3Bupzdj3u+aGURApwAMfFaRWoDafyuq2
-			jQ7aT9H7qwi+Jf4+B0QUAGZCqc1qqFQeX6jj/u3OskgSgllhJZxLzvpqoA6+6LsiZPb4BNf4840W
-			R/GIR6Etw6akSxSBL0JfJhEeiygsTHm4OTxRmWudlefruCOjUJiZKZhrtQreVtMWGn99OIVi0H7U
-			V4JuoC15DTKJwfpF6eTSGj7vD3e715faO2MIxmsjfwHG8HKmGwfV9QZ+9rqdztV57rcBpIFVBvQS
-			XG20//xws7LY1zvGPvNvKwjYfO5YCTK/BgZu2qywNQyJ9bjmmytNDDCYSu46MX1l4aw1/jx+BBgA
-			ozYJA9oVOksAAAAASUVORK5CYII=
-		</Resource>
-		<Resource ID="e39f6c0d-4e88-4a5e-89a9-d831597b9707" Type="png" Name="Icon">
-			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-			bWFnZVJlYWR5ccllPAAAAQVQTFRFE3GuXKbXWZa/XaXUh7/g1+n0zdDTBGWmAHPAYKfVnqCkXKTU
-			gbzeqM/ogbzfpMzngLzee7ndW5fAnJ6iFmadAG+7VJK8c7PaUJ7Rhb/gAHXDAmSm1+n1SJnOstTq
-			QpbNz9HUUKHRocvmztHTLY3MBGaopKaqFHKyEHzBYqnZnJ6hicDggLvezc/SfbrdUZ7RYarYE3Cu
-			V5W/Y57D1un0aa3X2er1tdbsdLTbAHC7D2mmfrvgra+y0dPVW6XW2Or0AHC8YafVa67YAHC/W6TT
-			a67ZAHK+XqXUE3KyT6LSYajVT53RAXG8fLndXKTTLI/JAHO/ebjdf7ve/v7+AHG8////////hQZk
-			dgAAAFd0Uk5T////////////////////////////////////////////////////////////////
-			//////////////////////////////////////////////////8AvmM14wAAAKBJREFUeNqEyEUC
-			gkAUANBRLAQR7O7u7u5WZP7c/ygO4AJXvuVDigIDwaKqTrtzUBCNnvymxEarU9fDqgW/X5hthuBH
-			nMkYtfvlN/j+jjGGEHww3wAFYrIosRwNTxYAEQJLKbw5suy6HEgBoUGG53S8Gbomc5MZ0cL1vI0x
-			xqtttPKNkh+rHHanHm6M/0Tm8NJE8l49EsU2Up18BUI+AgwAb8M4Y1Bmo+AAAAAASUVORK5CYIJM
-			Ir7GwP0a5tqoCV1UVYXYSpwSEkpS7h6KUQo8eIPrZK6U3VxCJgcGBuBTacTsMZyzyYS3s9twbOD4
-			+S+/vKggqwtt+yhNIQjuEYGk9I0iK41gq1ab+ROEQ1pXgNQsG+B/8y2vo+BEEZnSSPJZHIArjaYe
-			vVmEpSmkyHPTLy5eaEs5fWgMjvZ3x7STuQqE27iOdHu8kGa6ks7jZ8buIobfB4NTIx+9RclAajPl
-			5Kdorh9rrhRtu1CFkmm1dS3pJlyKdCbdedbWPBjx3PUmZTyijZ4e/aggzZrNgHbSZB257jc5lqaM
-			3qLcFVcg0ogNtZyKFYVE7QrQ1K7pvzu7r9KCVU9H0p0wBFlVg0stsnO5NY+0DjgK8Uw0tSsmS4z6
-			FNSce1MfzUAHdeQYrsusytpdD7Ip5iz/CCsuME800FStJyarYV90b5VJY8BBHSVWrzcCeo3Wkwea
-			KHXCRSjgiqZ11WTl+VLDwdTkgVUPZpgax3LNB5TKH6wysJtvbqK8AxegpIBzfnig2T1zn8l6pqu5
-			4g2qDNiJEcFGWAgTL+24jF6lFf0+iHiD3d1ddwQ1lZupxk1JkwEfDmi5asNOsdZ8bnb78PpSGWCP
-			2V0ERcd9YB1MV+WE4TLVeHwjyW9SLped0VPE6JHpKuy1c+TvKZ0XK+x6HU220jLVU/C6Ooli43eo
-			P+loK0xHTcfrLAVf2+xaaoRpcGjwsszobLFY9IFko4dfTm2lOJN8JF1TlU3YufYwUbZm1VsC1TXN
-			3xd/rXI9UqkUXqO7n4lB55hmGaMUgilpp0jlRlTV87t0OiVFPCcgueyyc+/YTZP1gOrIno19IKPI
-			noKM2YrDJv4H/MuqiGygUQVilVkLXkeYCBthJEYnKE8UIAU7Qsi8NjY2eADwgoE3uroz4h0w2o7J
-			ukB1zWFLjgmqFyNINzJVnenhsSoI4/n6BPnohFWzXJBkovIXqKOVn1dgcnLSSw5UNcCwc2w7yuZb
-			m6wcjGxkU7XJ/1Rk03bYpL6RvZWVFVY7drKz/bONbbGc2WHUDTgySBpJ3RmlatWE1dUVP5O6fO6w
-			2k4rVCzIl2ttDwqzLLlP8RoHdnV1lZVWmJ660EP3fadcKruMstEIBhZmCrpjmvQ6thqHkyc/h6Gh
-			IRwQhfspn7j5sR2TTTdJDA7yUZWiK2dQUepM31wmB/FY3GGTOWfj5bWwNPaXTM+NbpoEko0UF0OH
-			xcVFKJaKzqAIP5a+17JkiSDter0joLrkl6K/EkbTxZcvmU66rKPwZ93TSQRJVaB2A4sbiHQOWAeD
-			34jai2cvoFQqudcLwK1Ml0yW5DAlE6EP9Ud9v3j+gszQpxsJu8YF6bigzGgsEgkHoqgHUogLFgdo
-			8eUi7OX3PLAccDdN1vNR3VV6b2+P9d0IpC7prUnBNBzuY8tUoimmBdMsaXrRRVCShDpaWlqG8fFx
-			ODtxxg3n3TRZmVHbtmAtkWCFMPJPg/kl8MRA+GXd/49nU9ylHKChvpAXUXXZT4U5CD81PF/QDchk
-			0iz7OHNmHEZOjjRUlJKCw5isaLlcDhLv30OhUMTlmJhGFDbYoMgggQn9ESBJCBthVOlRHLFBjxk0
-			KRgJWw+y6YjhHmm0E2trsPRqGd5milC161Ilr95xWYStJ/F7S1tF+OGfP8Aa3tvGexpskA0G1qeL
-			5gVNmSiSUMhglkYYRVK/0BcOzVq4VPJdzG8UBOp0ZrjM0pHG9HmyABmcI08eCcFg1IBCqQYRvb1E
-			YhuZ38ybsIWSyDkF91FkMYQAa3zR4LIpt3qdM0kpImeSH1XnofOCvHp5HI6EZ0vFssSqBLYRSGN/
-			xBNtC9eXz9fz8D7jKPwZgg5pSlP2tovVA6ryIQRXdTOf/Tg9M7WZ2Awo5bpIHsMmA503QsYts1Ld
-			n8M2AsxAGtI5D1LcaitoGesfKhJb1UP7qOeXVZlEH0AXJCX8tExjR43pRtjceZQ2RqAtx8im5VU8
-			Y1YPiu4mFAIw+Y9ct1lNlcCy69CN5txbl/zT8KxIzskloWTf6GP+GRObPmQHuk8bKUTO6/+ymCt1
-			nlQ4EdgQnVOg4EC3diqQL9WgW01EeupHcyN+MBvaD1Z35vX7jYpj92SAqg+k57eCSZdVpoTDaBGn
-			EeGX3Xxy5oLVvSDoBU1/Ei+KBLS6AWeThx8o3/Fxj5VHfPUhz4Q9VgVgwzfih5lK2vFRw5DM1c3B
-			tQZm6+jMcwjftp1g7L+NLs3WmaoYHVUqSAnQYspxpx6NmXEvmmueCFZMd3I5RdaNjhS4aG4nLE0f
-			SfARuGPWTF6kFit1raHTaxJIXdd789CX7h0MOlK9yAPpSKXKXOdOcE9So9n8tmVZMbNqMmZ9NVSp
-			SKU2AN2rB75ygJHLqyqviLggzTLtQIsF2WwIlD9XvFEsFVhhySuWyc9ZvA51yW97AlRK9eRasq/W
-			jFJDXQvFAn2l4S6VhvkZPTHGSfhObifHJmenhusH7I4q70zvIaPChYJ9CrCk44ftLCULt5tttGqa
-			iOIX/ormO5/c2nCCk8KL1lJJlF7LivSiyeVXuSCncH0oE1rfWAPTNOcP2mDVSrsblUrlaXIzyVIs
-			GaQ4VyRFesaoBEyRBptAbm5tQrlSpuznxoHR+6APydbn5uaubOe2HyHgmYtfXGRZtRIQocjfv6nD
-			gwcPvKK2XOBWA48upByV5aY8V3XyVCc5N85P7+tDnFP8eP12mdbDbW2o6miLXH9//9Xz0xfgxIkT
-			0IcL2j5cw4b6+vAcj6EQOwqhBS8dw/ycPmdCqxEEXatZrIyKA8gq6nSsmPwovyde42cmu6YC2ewH
-			ePVqEfYKe21vkWvL3mhHFsr3k5OTSjqdmqUIOHhikId83beyYe8Z/oWxbnhpIoGlo1hKkRA7TMR5
-			zXLfE5/b/DUVrF8uviRzpcDz3UG7xToGKgFemJqaepzJZmazH7IDI8MjEI5E/CADq3+x2pEfFVCz
-			LAJQYzuvBSj3XAIq3qPHlz/++0eIv4/HEPyfEeS9jny90+CAYGPT09P3S6VS+N3P7y4VCgUYHByE
-			SCQSWCqpbpItXpN/kV8KAAKEOK8JYDXvvR2c4p48eQJP/vOE/JE2Jv8FQS53qnfXtpqfO3cOfvfb
-			KcBBcH2U+S33TVoCCtadfNRmgOiRAgn5p2l6Pru0vMR2YL9+vSxWIR9/q3kTwLQx4tqxY8cmzp45
-			C+cvXICxsTEYGRlx/JObMzNd7JV8VLBJQFPpNCQSCVhaegXxeByZ3InBp/LjgSagfT8HCYfDMDo6
-			CtFoFMZOj/FSpVMKWV9bZ4846NEfVeDhU/85SBtsyyK3GHykH/j8X4ABAMt0ykeFnO2FAAAAAElF
-			TkSuQmCCfVf8aX0tLyxrKEMjo6VFPh/+uwmyWnPx4NjsO21DpWnYG06LJLf8OOmjHWlZXXFHIC0Q
-			oCwUCI+ipQIx0POO65ytVb0EKdlbYKMmo8Qdg0QNxxCJSu5NTONQE64G4j6nrU3ajtMJnZ3SNHgX
-			0nN6exqyGhXAQAsyLt7lkqnHlNU+7YkhsgBYojoPDRK14VD2GAhH4J2PgXIGjgh/Bjo9ahpWFCWZ
-			0ajpZsdp1Xpg0+JmWXlhfjmzMueWANpG+4t1H5XVZFyLOlpTtIhIqB7EH1Ih2KoTcdNxc7IAzs0x
-			xV/P6EUfyZrRuyxVllAye7Fi56sCZx7Jf78wT/8xWdwKnDmmxECvFX36x7c36VuDW4H7XmD2ynLa
-			szZ5QPj3566K2eg6cNWANqXGhGhUUSyMJNjYotL5uztVAc8B4FmKwkGzAaSSaBgqAnilr0THDo3K
-			iw1kFEFlnX58c4NuQKJsVjsB2cl/7gX05ZEcHX65F0YB0gt9SSBCtCsrdfqvdUu8BPdFgNkgUQ0S
-			AY0f1ZSiRR6NQJmCob7nkP6cTtaHkv6VbZFHcgSZ/7ND3erltQIFhQ36+V0D6gbfZu5vkihsqmgl
-			Uzc+PtCepoFB+M56WbIXTtcIKeE6Yl27aFEKeSzbIKeYbI+WFUgZ1ecAwWdP0Lhsp7lS/ya0/TSr
-			ioA0zSj6MGO7FX9rpigsPlDpWa2IDlbYeOGCwobKwX4T8Ib8URfXuNhWh1upV6U+ZXAWju4aorKu
-			JOzs71mrfJ/75suesx0pmgPLrnMvkVTfQsx6Jg1mZbBmDFaRUioFoDb8aH1TpWigRNNOgZBqUrFb
-			u3uVFjK2lC4pMXm04xIbpJgF4OhssSklDKkYkxvl71GOXYqdigqmKoA203BfiHZc9MOOwj8FUuXJ
-			VU8mvd9qXpO002zamwjcTyEwGOWA2IoSclFnAE0zUBfxplmSipxkGVIgW5fRXP3pP1D2Y+ScXIvl
-			pDxKmCmaeCI9F4r2y3se/WyqSn/1xwfpmYEuDF5NEnkDKtqTsyKf2qgVZjaUqoRmXBMgTQ1SpkLq
-			M83S3BEozytCqm+UysUPWrLZRLFMSTaNuNVJ43pGfE0M1LA2BcdTXRk6ctAW/oBTbQRnqmMN+r5X
-			pLb5gJ4eyNHR4Sy+AxYNMpLn7raOhGMGLqS5AMqxNZuXzwU2kFCxJJ5gx1Uqxl5T+67jnuk/OCDg
-			ODjGufQxv3yPSoW8ipQidtYq7kQxZ5LI4vJLE9NKySQx8SuM6QdSz1V7X01U8T5SaQeZUlffsNio
-			h4jIq9WoXK7Q3P27PDu/69oj4xGrUv4TNnnqmbFn5MGK0m1VDeSg2lLRieO60eeuLGrkAXEiP6eb
-			HTG3GUmXBymIwEiHwarSap7E07IHCG5edM6f64Hh2Teu/ZbLJZq+M02VaoVXhL62Gxb7EST4RrVa
-			HV1YXDgxNDSsAgbOCmCnbgRIHbtCUsm9aIAeAA3WsWPJijQBsu6hw94WKGlVteeKRbzXx9E9OkhY
-			RPAPkJ8l50Ife/lNpOuvrOXXPpuauhXNdW6fYtDq2VBci5IBJ4pJGTgPApuBbnwukt8h3Uo+t/lY
-			T2XcuHWdVtdW97Wg6lHrjGKwpXLp/BfXv6BisbjjhFHDHIvRuFgjTuYBIgX1F4DQhjiHbLZjc/v8
-			zdYAk6xCuXL1Ck85nN8PyEeuHNMbr8hCe29sbMxYXl6aYHvr7uqOO281SYNVNE7Yo3Ntq2LH2OtU
-			SquwHxGO7Ot+fE1/HkTnXLBmkFBXJp6/3mu12GMDTQCePHTo0IWVhysTD1cfdvT19lEaPq0BpN0E
-			UpdME5KTVSYRu3JpRoOKjxNA9TWesvjF//2CZu/OzgD8awB57rEWYD1uiMaLlcbHx98tl8vpqdtT
-			L7Eqd3d3ixNPZjxxBpSY6tDxrAagQejjugZW37q2vp6nixcv0sVfXWRV5YXJ3wfI61/ZUnOerviD
-			Zw4RBkExb8S6qYTb2SqdRqwLQNqtaDZVDFuja9evyQrsGzeuf3VLzff68UBbW9voyPAIHTl6lAYH
-			B6mvr0/ZZ1ySMeWtbKNamgx0aXmZ5ubm6Nq1L2h2dhaSXP/6/HhgF9ANPwdhN9Lf309ZhJODA4Px
-			4ipW4fv37hPYXKYlYQq6kPX1/TnIPqSdbMlthn5PP/D5fwEGAEJNlSBV/V2tAAAAAElFTkSuQmCC
-		</Resource>
 		<Resource ID="fb92b09e-aeae-24e8-c529-0856a9314220" Type="png" Name="Icon">
 			iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
 			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
@@ -1063,60 +594,217 @@
 			ByZ+o5rTC3zu78xa/rRZhJjoSAOwgtA5eXdQDvuNtM0a85yY01D+c77pyZrvxMw78ho/PDuW31r9
 			UX6ftXjM/xFgAP/JSid6cdB2AAAAAElFTkSuQmCC
 		</Resource>
+		<Resource ID="0f26dbf6-71ae-1393-1af9-0857faf4c541" Type="png" Name="bar16.png">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			bWFnZVJlYWR5ccllPAAAAyBpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
+			IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
+			ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
+			cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBXaW5kb3dzIiB4bXBNTTpJbnN0YW5jZUlE
+			PSJ4bXAuaWlkOjczMTRBOEUzMUZFNTExRTE5MTREQzVDREE3RDJEQzhEIiB4bXBNTTpEb2N1bWVu
+			dElEPSJ4bXAuZGlkOjczMTRBOEU0MUZFNTExRTE5MTREQzVDREE3RDJEQzhEIj4gPHhtcE1NOkRl
+			cml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6NzMxNEE4RTExRkU1MTFFMTkxNERD
+			NUNEQTdEMkRDOEQiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6NzMxNEE4RTIxRkU1MTFFMTkx
+			NERDNUNEQTdEMkRDOEQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1l
+			dGE+IDw/eHBhY2tldCBlbmQ9InIiPz6ajnLgAAACeklEQVR42qRTS0wTURS988q0dFop9sPHItWg
+			qXbhBjFKSIyJcWNiTHAHMSEGElygm5bKRmNkZ2J0o6wwspBGSCQuDAkBjbJoUAsixYS29uMwZTr9
+			DgUqSL0zaRtC0AW+5OTOe++cM/e+9y4F+xz5fF6OpLjgdDrz+zUriaXomf1m8n73uUM/uYCQyJz/
+			VwYSyO6NcrX6nRAXzkxMfjyqYZiJQCDQtVNQRHGUFT88cwv1rpdDQCuVNoquALKdxYzsZT23HQMT
+			U9Oarud1j/bKpGTAMMwHKa7Es9DSdBJq9OUwPPwKHA47XLrS9vC6dczYcq4xhxQlYgwNZ2SDuXmv
+			Ta1mokShqJcWmhutIK6uw1aehu5bfTA6OgKez25y3Nrc2//m8mYetjcaqk6fQOo1+RYYRjNIEUVN
+			LLUhZ5LOZCG8HANfiAOWT0GDrQm2seS3r2cUJGmLhOPzqqnFwVakDkh8KsrHc1xMVLqGnpXqOnvh
+			qmySSIqARwZ6nRYOHzLC4vynp+70g0z1MWVvgXqKyqyu81pGZYqnRIgsC/AjvAIRToAkzimKAsPB
+			A1CPYjbsH7nZ2f5CXUG87Y9rJ1EsldxBUOwS8E/BCA++IAchlocEigkhUGXQgcVsAjEtvJfEKPCh
+			2I+xv5CBl8rlNvX+MBeY8wZ1bDQOaXENaFqB4gowV+thM5f92tHeei+dSoU6B81fdtygGcESlYpO
+			bP1av8hyfDItZkGlLINaUyXU1RhgTUxOd99ou4/iKJJndz0BVj7E4szRd9cCKsOTIxZLk7FSm/Uv
+			LYzfsfeM4xYnvTPE772aidrlSiOsiCrEFiJUwF+7kfrfdv4jwAAY5xV87aQgRwAAAABJRU5ErkJg
+			gg==
+		</Resource>
+		<Resource ID="5b988c49-df25-0c84-2a54-08583fddc70a" Type="png" Name="bar24.png">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAOCAYAAAAmL5yKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			bWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
+			MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
+			b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
+			Ok9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0QjU0RjZFMDExQkM4MDk5RkU5QzUy
+			NDc4RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDowNjVCRTE3MjFGMjIxMUUxODM5QkI4MTk2
+			QzJGNEI2RiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDowNjVCRTE3MTFGMjIxMUUxODM5QkI4
+			MTk2QzJGNEI2RiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3Mi
+			PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5NEEyNUM5QTRG
+			MTZFMTExQTQxNURENUVEMTNGQzBGQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0
+			QjU0RjZFMDExQkM4MDk5RkU5QzUyNDc4RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRG
+			PiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PugEM1oAAAJ9SURBVHjaYmCAgoqKiv8M
+			RIL////DMYpmEH3+whXRazfunHz45Pm9N+8+2RMygAld8u///we37z5ktnP3IUUBft5df//+jcJq
+			KxSwwBjnL16VW7l8McPl6w809QyMGJ7cvcBQXFzEVlfftPTdh89saQtkFmBzDdyAP3//HgHR8goK
+			DI6WOgx3JPkYVqxYzZCWnslQVlk7pyvoppgAHzcHUAkbEG8EGngapJ754uVrWuoa2iE37j6Vev38
+			IUNKQhTD5y/fGT5++cmgqKbHcOfeQ4ZrN24zKWvzOs47lm518OYSo6cfbko9eHNhFcgApm/ffy66
+			df+5uIKiItglHz99ZXj07DXDnYfPGZ6++sCgrGUKDBcGhhUL97OoCLreePT2Mvv+6/ODgUpngtQz
+			bth26K+YuATTptXz4P6ycAwAG/Lu/WcGYLAxCPHzMMhKiTB8ePW48/i/4odAJdOgSvVYRMXFP1sY
+			qvCrKlYyPH72huH+o5cMD568Ynj/4TMDIyMjg4ggH4McUPPTR3fXZKXGzEidL/0YFONALAfExky8
+			rD8Pvn73ieHB41cMdx48Z3j49BUDMNQZmJiYGMSE+RnkpUUZPn98cxCouQ6o+QEopoG4FeqCa8wP
+			Hjx8rG1gEQq0lf3J8zcMHz59Y2BlZWYQF+FnkJEUZvjz6+ul/MzE/MjJ/BeQYu8sEM8B4hvMd+7c
+			fvH6zbv3PELSVl++/eRkZ2NlkBAVYJAWF2L49vn90eK8tLKnT58cNw7gQ0/qn8GBCOXwySqouvpH
+			pCVqaagZiQjwfL17++rOytI8UOI5D3U2SlKGAUYkcVYgVgdiMVC6AuKHUIw1L8AAQIABAEb1IN3r
+			VkStAAAAAElFTkSuQmCC
+		</Resource>
+		<Resource ID="e39f6c0d-4e88-4a5e-89a9-d831597b9707" Type="png" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			bWFnZVJlYWR5ccllPAAAAQVQTFRFE3GuXKbXWZa/XaXUh7/g1+n0zdDTBGWmAHPAYKfVnqCkXKTU
+			gbzeqM/ogbzfpMzngLzee7ndW5fAnJ6iFmadAG+7VJK8c7PaUJ7Rhb/gAHXDAmSm1+n1SJnOstTq
+			QpbNz9HUUKHRocvmztHTLY3MBGaopKaqFHKyEHzBYqnZnJ6hicDggLvezc/SfbrdUZ7RYarYE3Cu
+			V5W/Y57D1un0aa3X2er1tdbsdLTbAHC7D2mmfrvgra+y0dPVW6XW2Or0AHC8YafVa67YAHC/W6TT
+			a67ZAHK+XqXUE3KyT6LSYajVT53RAXG8fLndXKTTLI/JAHO/ebjdf7ve/v7+AHG8////////hQZk
+			dgAAAFd0Uk5T////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////8AvmM14wAAAKBJREFUeNqEyEUC
+			gkAUANBRLAQR7O7u7u5WZP7c/ygO4AJXvuVDigIDwaKqTrtzUBCNnvymxEarU9fDqgW/X5hthuBH
+			nMkYtfvlN/j+jjGGEHww3wAFYrIosRwNTxYAEQJLKbw5suy6HEgBoUGG53S8Gbomc5MZ0cL1vI0x
+			xqtttPKNkh+rHHanHm6M/0Tm8NJE8l49EsU2Up18BUI+AgwAb8M4Y1Bmo+AAAAAASUVORK5CYIJM
+			Ir7GwP0a5tqoCV1UVYXYSpwSEkpS7h6KUQo8eIPrZK6U3VxCJgcGBuBTacTsMZyzyYS3s9twbOD4
+			+S+/vKggqwtt+yhNIQjuEYGk9I0iK41gq1ab+ROEQ1pXgNQsG+B/8y2vo+BEEZnSSPJZHIArjaYe
+			vVmEpSmkyHPTLy5eaEs5fWgMjvZ3x7STuQqE27iOdHu8kGa6ks7jZ8buIobfB4NTIx+9RclAajPl
+			5Kdorh9rrhRtu1CFkmm1dS3pJlyKdCbdedbWPBjx3PUmZTyijZ4e/aggzZrNgHbSZB257jc5lqaM
+			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
+		</Resource>
+		<Resource ID="beb4fd88-7fc2-4079-8a82-ffe1b9743352" Type="jpg" Name="Icon">
+			iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
+			bWFnZVJlYWR5ccllPAAAA2RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
+			bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
+			eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEz
+			NDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
+			dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
+			dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
+			MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
+			b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
+			Ok9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0QjU0RjZFMDExQkM4MDk5RkU5QzUy
+			NDc4RCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozOTQ0QzAwMzFGMjAxMUUxODY2MkE0RTND
+			RjA0NDlGNiIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozOTQ0QzAwMjFGMjAxMUUxODY2MkE0
+			RTNDRjA0NDlGNiIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IFdpbmRvd3Mi
+			PiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoxQTlBRjdFQzUw
+			MTZFMTExQTQxNURENUVEMTNGQzBGQyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo3Q0I5NjU0
+			QjU0RjZFMDExQkM4MDk5RkU5QzUyNDc4RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRG
+			PiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ph2GS94AAAGeSURBVHjalJK7SgNBFIbn
+			zK5gopLYqgmLpNDGSqu0voGgjSIKigQR09iI+ATmASx8C7EQKzsrEURUiIgXhJDKvWZunpnZXZNO
+			h2F2d+Z8+58z/4GLqkv+M3R0bf8IHIcABQBCaXqiFE6lpBLCTK4YezltaUDEEQKgQ4GAHjpeSrOK
+			FOAMmVRBhEEKYChkCsQoSK1ApJCMKd4HEArUcQ0ANtzb3Bupzdj3u+aGURApwAMfFaRWoDafyuq2
+			jQ7aT9H7qwi+Jf4+B0QUAGZCqc1qqFQeX6jj/u3OskgSgllhJZxLzvpqoA6+6LsiZPb4BNf4840W
+			R/GIR6Etw6akSxSBL0JfJhEeiygsTHm4OTxRmWudlefruCOjUJiZKZhrtQreVtMWGn99OIVi0H7U
+			V4JuoC15DTKJwfpF6eTSGj7vD3e715faO2MIxmsjfwHG8HKmGwfV9QZ+9rqdztV57rcBpIFVBvQS
+			XG20//xws7LY1zvGPvNvKwjYfO5YCTK/BgZu2qywNQyJ9bjmmytNDDCYSu46MX1l4aw1/jx+BBgA
+			ozYJA9oVOksAAAAASUVORK5CYII=
+		</Resource>
 	</Resources>
 	<SourceCode>
-<![CDATA[class VDOM_bar(VDOM_object):
-    
-    def check_unit(self, value):
-        return value + "px" if value.isdigit() else value
+<![CDATA[
+class VDOM_bar(VDOM_object):
 
     def render(self, contents=""):
-        display = u"none" if self.visible == "0" else self.displaying
+        display = u"display:none;" if self.visible == "0" else u""
 
-        style_zindex = u"z-index: %s;" % self.zindex if int(self.zindex) != 0 else u"" # 123
-        backgrnd = u"background: #{color}".format(color=self.color) if self.color else u""
-        position = u"position: {pos};".format(pos=self.positioning) if self.positioning and self.positioning != "static" else u""
-        
-        styles = {
-            "display": display,
-            "width": self.check_unit(self.width),
-            "height": self.check_unit(self.height),
-            "margin": self.margins,
-            "padding": self.paddings,
-            "top": self.check_unit(self.top),
-            "left": self.check_unit(self.left)
-        }
-        if self.positioning == "static":
-            styles["top"] = styles["left"] = ""
-        
-        styles_str = " ".join(["{}: {};".format(key, value) for key, value in styles.items() if value])
+        style_zindex = u"z-index:%s;" % self.zindex if int(self.zindex) != 0 else u"" # 123
 
-        style = (u"""{zind} {pos} {styles} {color}""")\
-                .format(
-                    zind = style_zindex, pos = position,
-                    styles = styles_str, color = backgrnd)
+        classname = u'class="%s"' % self.classname if self.classname else u""
+
+        style = (u"""{display} {zind} position: {pos}; top: {top}px; left: {left}px;"""
+             u"""width: {width}px; height: {height}px; background: #{color}""")\
+            .format(
+                display = display, zind = style_zindex, pos = self.position,
+                top = self.top, left = self.left,
+                width = self.width, height = self.height, color = self.color)
 
         id = u"o_" + (self.id).replace('-', '_')
-        css = u"<style>\n" + self.style % {"id": id} + u"</style>" if self.style else u""
 
         if VDOM_CONFIG_1["DEBUG"] == "1":
             debug_info = u"objtype='bar' objname='%s' ver='%s'" % (self.name, self.type.version)
         else:
             debug_info = u""
 
-        result = u"""{css}\
-                    <div {debug_info} id="{id}" style="{style}" class="{classname}">{contents}</div>""".format(
+        result = u"""<div {debug_info} id="{id}" style="{style}" {classname}>{contents}</div>""".format(
             debug_info = debug_info,
-            id = id, css = css,
+            id = id,
             style = style,
-            classname = ' '.join([self.classname, 'vdom_bar']).strip(),
+            classname = classname,
             contents = contents )
 
         return VDOM_object.render(self, contents=result)
-        
+
 
     def wysiwyg(self, contents=""):
-        width, height, top, left = [int(self.ide_width), int(self.ide_height), int(self.ide_top), int(self.ide_left)]
 
         result = \
             u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}"
@@ -1129,156 +817,96 @@
             """.format(
                     id = self.id, vis = self.visible, zind = self.zindex,
                     hierarchy = self.hierarchy, order = self.order,
-                    top = top, left = left, width = width, height = height,
-                    color = self.color or "000000", contents = contents, name = self.name)
+                    top = self.top, left = self.left, width = self.width, height = self.height,
+                    color = self.color, contents = contents, name = self.name)
 
         return VDOM_object.wysiwyg(self, contents=result)
-
-def on_update(object, attributes):
-    o = object
-    modifications = {}
-
-    for attr in ["left", "width", "height", "top"]:
-        if attr in attributes:
-            attr_value = attributes[attr]
-            obj_value = o.attributes.get(attr, '').lower()
-            
-            if obj_value.isdigit() and attr_value.isdigit():
-                modifications[attr] = attr_value + "px"
-                modifications["ide_"+ attr] = attr_value
-            elif obj_value.endswith("px") and (attr_value.isdigit() or "px" in attr_value):
-                modifications[attr] = attr_value.rstrip("px") + "px"
-                modifications["ide_"+ attr] = attr_value.rstrip("px")
-            elif attr_value.isdigit() or "px" in attr_value:
-                modifications[attr] = attr_value if "px" in attr_value else obj_value
-                modifications["ide_"+ attr] = attr_value.rstrip("px")
-            else:
-                modifications[attr] = attr_value
-                
-    attributes.update(modifications)
-    
-    users = u"""\
-#%(id)s {
-
-}
-"""
-    
-    skin_mapping = {
-        "0": users,
-        "1": ""
-    }
-    if "skin" in attributes:
-        skin = attributes["skin"]
-        if skin in skin_mapping:
-            attributes.update(style=skin_mapping[skin])
-        else:
-            attributes.update(skin="0")
-            
-    if "style" in attributes and attributes.get("style") not in skin_mapping.values():
-        attributes.update(skin="0")
-    
-    return ""
-    
-            
-def on_compile(object, attributes):
-    for attr in ["left", "width", "height", "top"]:
-        obj_value = object.attributes[attr]
-        
-        if obj_value.isdigit() or "px" in obj_value:
-            object.attributes[attr] = obj_value.rstrip("px") + "px"
-            object.attributes["ide_"+ attr] = obj_value.rstrip("px")]]>
+]]>
 	</SourceCode>
-	<Libraries>
-		<Library Target="html"><![CDATA[<style type="text/css">
-        .vdom_bar {
-            
-        }
-
-</style>]]></Library>
-	</Libraries>
 	<E2VDOM>
 		<Events>
 			<UserInterfaceEvents>
-				<Event Name="mouseup" Description="#Lang(516)">
+				<Event Name="mouseup" Description="#Lang(525)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(901)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(902)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(923)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(924)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mousemove" Description="#Lang(517)">
+				<Event Name="mousemove" Description="#Lang(522)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(903)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(916)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(917)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mousedown" Description="#Lang(518)">
+				<Event Name="mousedown" Description="#Lang(521)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(905)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(906)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(914)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(915)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mouseout" Description="#Lang(519)">
+				<Event Name="mouseout" Description="#Lang(523)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(907)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(908)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(918)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(919)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="ctrlclick" Description="#Lang(521)">
+				<Event Name="ctrlclick" Description="#Lang(518)">
 					<Parameters>
 						<Parameter Name="X" Description="#Lang(909)" Order="0"/>
 						<Parameter Name="Y" Description="#Lang(911)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="corner" Description="#Lang(522)">
+				<Event Name="corner" Description="#Lang(517)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(912)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(913)" Order="0"/>
-						<Parameter Name="pos" Description="#Lang(914)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(906)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(907)" Order="0"/>
+						<Parameter Name="pos" Description="#Lang(908)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="mouseover" Description="#Lang(523)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(915)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(916)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="border" Description="#Lang(524)">
-					<Parameters>
-						<Parameter Name="X" Description="#Lang(917)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(918)" Order="0"/>
-						<Parameter Name="pos" Description="#Lang(919)" Order="0"/>
-					</Parameters>
-				</Event>
-				<Event Name="click" Description="#Lang(525)">
+				<Event Name="mouseover" Description="#Lang(524)">
 					<Parameters>
 						<Parameter Name="X" Description="#Lang(921)" Order="0"/>
 						<Parameter Name="Y" Description="#Lang(922)" Order="0"/>
 					</Parameters>
 				</Event>
-				<Event Name="dblclick" Description="#Lang(526)">
+				<Event Name="border" Description="#Lang(515)">
 					<Parameters>
-						<Parameter Name="X" Description="#Lang(923)" Order="0"/>
-						<Parameter Name="Y" Description="#Lang(924)" Order="0"/>
+						<Parameter Name="X" Description="#Lang(901)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(902)" Order="0"/>
+						<Parameter Name="pos" Description="#Lang(903)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="click" Description="#Lang(516)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(904)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(905)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="dblclick" Description="#Lang(519)">
+					<Parameters>
+						<Parameter Name="X" Description="#Lang(912)" Order="0"/>
+						<Parameter Name="Y" Description="#Lang(913)" Order="0"/>
 					</Parameters>
 				</Event>
 			</UserInterfaceEvents>
 		</Events>
 		<Actions>
 			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-				<Action Name="addClass" DisplayName="#Lang(616)" Description="#Lang(527)">
+				<Action Name="resizeTo" DisplayName="#Lang(608)" Description="#Lang(508)">
 					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(814)" Description="#Lang(714)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+						<Parameter Name="width" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="height" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[$q(this.domCont).addClass(className);]]>
+<![CDATA[$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]>
 					</SourceCode>
 				</Action>
-				<Action Name="changeColor" DisplayName="#Lang(601)" Description="#Lang(501)">
+				<Action Name="hide" DisplayName="#Lang(605)" Description="#Lang(505)">
 					<Parameters>
-						<Parameter Name="NewColor" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="fade" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[this.domCont.style.backgroundColor = NewColor;]]>
+<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
 					</SourceCode>
 				</Action>
 				<Action Name="changeCursor" DisplayName="#Lang(602)" Description="#Lang(502)">
@@ -1289,22 +917,34 @@ def on_compile(object, attributes):
 <![CDATA[this.domCont.style.cursor = cursorType;]]>
 					</SourceCode>
 				</Action>
-				<Action Name="dragStart" DisplayName="#Lang(603)" Description="#Lang(503)">
-					<SourceCode>
-<![CDATA[vdom_ui_dragStart(this.domCont);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="dragStop" DisplayName="#Lang(604)" Description="#Lang(504)">
-					<SourceCode>
-<![CDATA[vdom_ui_dragStop();]]>
-					</SourceCode>
-				</Action>
-				<Action Name="hide" DisplayName="#Lang(605)" Description="#Lang(505)">
+				<Action Name="show" DisplayName="#Lang(611)" Description="#Lang(511)">
 					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="fade" DisplayName="#Lang(712)" Description="#Lang(812)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
+<![CDATA[vdom_ui_show(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="startResizeXY" DisplayName="#Lang(613)" Description="#Lang(513)">
+					<SourceCode>
+<![CDATA[vdom_ui_startResizeXY(this.domCont);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setTransparency" DisplayName="#Lang(609)" Description="#Lang(509)">
+					<Parameters>
+						<Parameter Name="value" DisplayName="#Lang(711)" Description="#Lang(811)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var nn = parseInt(value,10) / 100;
+$q(this.domCont).css('opacity', nn);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="moveZindexTo" DisplayName="#Lang(607)" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="newZindex" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]>
 					</SourceCode>
 				</Action>
 				<Action Name="moveTo" DisplayName="#Lang(606)" Description="#Lang(506)">
@@ -1317,56 +957,14 @@ def on_compile(object, attributes):
 <![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="moveZindexTo" DisplayName="#Lang(607)" Description="#Lang(507)">
-					<Parameters>
-						<Parameter Name="newZindex" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
+				<Action Name="dragStart" DisplayName="#Lang(603)" Description="#Lang(503)">
 					<SourceCode>
-<![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]>
+<![CDATA[vdom_ui_dragStart(this.domCont);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="removeClass" DisplayName="#Lang(617)" Description="#Lang(528)">
-					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(815)" Description="#Lang(715)" DefaultValue="" RegularExpressionValidation="" Interface="" />
-					</Parameters>
+				<Action Name="dragStop" DisplayName="#Lang(604)" Description="#Lang(504)">
 					<SourceCode>
-<![CDATA[$q(this.domCont).removeClass(className);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="resizeTo" DisplayName="#Lang(608)" Description="#Lang(508)">
-					<Parameters>
-						<Parameter Name="width" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-						<Parameter Name="height" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]>
-					</SourceCode>
-				</Action>
-				<Action Name="setTransparency" DisplayName="#Lang(609)" Description="#Lang(509)">
-					<Parameters>
-						<Parameter Name="value" DisplayName="#Lang(711)" Description="#Lang(811)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[var nn = parseInt(value,10) / 100;
-$q(this.domCont).css('opacity', nn);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="show" DisplayName="#Lang(611)" Description="#Lang(511)">
-					<Parameters>
-						<Parameter Name="fade" DisplayName="#Lang(712)" Description="#Lang(812)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
-					</Parameters>
-					<SourceCode>
-<![CDATA[vdom_ui_show(this.domCont, fade);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="startResizeX" DisplayName="#Lang(612)" Description="#Lang(512)">
-					<SourceCode>
-<![CDATA[vdom_ui_startResizeX(this.domCont);]]>
-					</SourceCode>
-				</Action>
-				<Action Name="startResizeXY" DisplayName="#Lang(613)" Description="#Lang(513)">
-					<SourceCode>
-<![CDATA[vdom_ui_startResizeXY(this.domCont);]]>
+<![CDATA[vdom_ui_dragStop();]]>
 					</SourceCode>
 				</Action>
 				<Action Name="startResizeY" DisplayName="#Lang(614)" Description="#Lang(514)">
@@ -1374,12 +972,17 @@ $q(this.domCont).css('opacity', nn);]]>
 <![CDATA[vdom_ui_startResizeY(this.domCont);]]>
 					</SourceCode>
 				</Action>
-				<Action Name="toggleClass" DisplayName="#Lang(615)" Description="#Lang(515)">
+				<Action Name="startResizeX" DisplayName="#Lang(612)" Description="#Lang(512)">
+					<SourceCode>
+<![CDATA[vdom_ui_startResizeX(this.domCont);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="changeColor" DisplayName="#Lang(601)" Description="#Lang(501)">
 					<Parameters>
-						<Parameter Name="className" DisplayName="#Lang(713)" Description="#Lang(813)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="NewColor" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
 					</Parameters>
 					<SourceCode>
-<![CDATA[$q(this.domCont).toggleClass(className);]]>
+<![CDATA[this.domCont.style.backgroundColor = NewColor;]]>
 					</SourceCode>
 				</Action>
 			</Container>
