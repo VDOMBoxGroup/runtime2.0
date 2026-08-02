@@ -23,8 +23,12 @@ import settings
 
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
+        # No delete_on_close: it only exists from python 3.12 and this runtime is
+        # pinned to 3.11 by js2py, so passing it raised TypeError here and lost
+        # every upload over cgi's 1000-byte in-memory threshold. It is redundant
+        # anyway - delete=False already keeps the file after close.
         return tempfile.NamedTemporaryFile("w+b", prefix="vdomupload",
-                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False, delete_on_close=False)
+                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
 
 
 @weak("_handler")

@@ -1,13 +1,47 @@
 import os
+import tempfile
 import builtins
 
 
 class File_argument:
     def __init__(self, fileobj, name):
         """File argument wrapper for uploaded files"""
-        self.fileobj = fileobj
+        self.fileobj = self.__spool(fileobj)
         self.name = self.__try_decode(name)
         self.autoremove = True
+
+    def __spool(self, fileobj):
+        """Guarantee the upload is a named file on disk.
+
+        cgi.FieldStorage only calls make_file() once an upload passes 1000
+        bytes; below that it keeps the content in a BytesIO, which has no
+        .name. Everything downstream assumes there is one - Attachment reopens
+        the file by name once the request that received it is over, and remove()
+        deletes it by path. Under Python 2 that assumption held often enough to
+        go unnoticed; under Python 3 a small upload reached Attachment as a
+        closed BytesIO and raised
+
+            AttributeError: '_io.BytesIO' object has no attribute 'name'
+
+        from inside the application's exception handler, so the upload failed
+        with no file stored and a success notification on screen.
+
+        Spooling here makes the two paths identical whatever the size.
+        """
+        if getattr(fileobj, "name", None) is not None:
+            return fileobj
+        # VDOM_CONFIG is injected into builtins by startup, as request.py uses it
+        spooled = tempfile.NamedTemporaryFile(
+            "w+b", prefix="vdomupload", dir=VDOM_CONFIG["TEMP-DIRECTORY"],  # noqa: F821
+            delete=False)
+        try:
+            fileobj.seek(0)
+            spooled.write(fileobj.read())
+        finally:
+            spooled.flush()
+            fileobj.close()
+        spooled.seek(0)
+        return spooled
 
     def __getitem__(self, key):
         if not isinstance(key, int):
@@ -38,7 +72,9 @@ class File_argument:
                 try:
                     os.remove(filepath)
                 except Exception as e:
-                    debug(e.message)
+                    # py3: BaseException.message is gone - reporting the failure
+                    # must not itself raise AttributeError
+                    debug(str(e))  # noqa: F821
             self.fileobj = None  # TODO: maybe not none bug StringIO()?
 
     def close(self):
