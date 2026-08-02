@@ -189,7 +189,6 @@ class Memory(object):
             managers.file_manager.cleanup_directory(category, uuid, remove=True)
 
     def cleanup_application_infrastructure(self, uuid, remove_databases=True, remove_storage=True):
-        return
         entities = [file_access.APPLICATION, file_access.RESOURCE, file_access.LIBRARY, file_access.CACHE]
         if remove_databases:
             entities.append(file_access.DATABASE)
