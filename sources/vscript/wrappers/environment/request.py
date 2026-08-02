@@ -39,8 +39,11 @@ class v_argumentscollection(generic):
             except KeyError:
                 return v_empty
             try:
-                if isinstance(value, str):
-                    return string(str(value.decode("utf-8", "ignore")))
+                # py3: str where python 2 meant bytes - decoding a str raises
+                # AttributeError, so reading any request argument from VScript
+                # failed here
+                if isinstance(value, bytes):
+                    return string(value.decode("utf-8", "ignore"))
                 else:
                     return string(str(value))
 

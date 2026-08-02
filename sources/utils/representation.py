@@ -127,17 +127,28 @@ def represent(value, width=-1, limit=None, ellipsis="..."):
         else:
             return result
 
+    def escape(text):
+        """Escape non-printables and quotes, and stay text throughout.
+
+        py3: encode("unicode-escape") returns bytes, so the replace() that
+        followed it was given str arguments and raised "a bytes-like object is
+        required, not 'str'". This module renders the locals of a traceback, so
+        the failure landed while reporting another failure and replaced it.
+        """
+        return text.encode("unicode-escape").decode("ascii").replace("\"", "\\\"")
+
     def string(ellipsis="..."):
         if isinstance(value, str):
             prefix, extra = "u", 3
-            encoding = "unicode-escape"
-            result = value.encode(encoding).replace("\"", "\\\"")
-        elif isinstance(value,bytes):
+            result = escape(value)
+        elif isinstance(value, bytes):
             prefix, extra = "b", 2
-            encoding = "unicode-escape"
-            result = str(value).encode(encoding).replace(b"\"", b"\\\"")
+            result = escape(value.decode("latin-1"))
         else:
-            result = str(value).encode("unicode-escape").replace("\"", "\\\"")
+            # this branch never set prefix or extra, so reaching it raised
+            # UnboundLocalError two lines later - true under python 2 as well
+            prefix, extra = "", 2
+            result = escape(str(value))
 
         if width is None or len(result) + extra <= width:
             return "%s\"%s\"" % (prefix, result)
