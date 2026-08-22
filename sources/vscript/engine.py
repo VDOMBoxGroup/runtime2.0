@@ -195,7 +195,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
         except exitloop:
             error_class, error, traceback = sys.exc_info()
             try:
-                raise errors.invalid_exit_statement.with_traceback(traceback)
+                raise errors.invalid_exit_statement().with_traceback(traceback)
             finally:
                 del traceback
         except AttributeError:
@@ -212,7 +212,7 @@ def vexecute(code, source, object=None, namespace=None, environment=None, use=No
             error_class, error, traceback = sys.exc_info()
             try:
                 if is_vscript(traceback):
-                    raise errors.type_mismatch.with_traceback(traceback)
+                    raise errors.type_mismatch().with_traceback(traceback)
                 raise
             finally:
                 del traceback

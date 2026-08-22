@@ -21,10 +21,17 @@ class empty(subtype):
     is_empty = property(lambda self: self is v_empty)
 
     def __div__(self, another):
+        return self.__truediv__(another)
+
+    def __truediv__(self, another):
+        # Python 3 dispatches "/" to __truediv__, never to __div__. This
+        # override existed only on __div__, so subtype.__truediv__ ran instead
+        # and dividing Empty reported division_by_zero where VBScript reports
+        # overflow. Keep the mapping here, where it is now reached.
         try:
-            return subtype.__div__(self, another)
+            return subtype.__truediv__(self, another)
         except errors.division_by_zero:
-            raise errors.overflow.with_traceback(sys.exc_info()[2])
+            raise errors.overflow().with_traceback(sys.exc_info()[2])
 
     def __invert__(self):
         return integer(-1)
