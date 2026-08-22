@@ -226,7 +226,12 @@ class subtype(primitive):
         simple = another.as_simple
         try:
             return self.pow_table.get(type(simple), unknown)(self, simple)
-        except ValueError:
+        except (ValueError, TypeError):
+            # Raising a negative number to a fractional power - "true^3.456",
+            # which is (-1)**3.456 - raised ValueError in Python 2. Python 3
+            # returns a complex number instead, and it is the float() around it
+            # that objects, with a TypeError. VBScript reports the same invalid
+            # procedure call either way, so both land here.
             raise errors.invalid_procedure_call().with_traceback(
                 sys.exc_info()[2])
         except OverflowError:

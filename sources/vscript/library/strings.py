@@ -21,9 +21,13 @@ def v_strcomp(string1, string2, compare=None):
         raise errors.invalid_procedure_call(name=u"strcomp")
     if string1 is v_null or string2 is v_null:
         return v_null
-    else:
-        return integer(string1.lower() == string2.lower()) if compare \
-            else integer(string1 == string2)
+    if compare:
+        string1, string2 = string1.lower(), string2.lower()
+    # StrComp answers -1, 0 or 1. This was cmp(), which Python 3 removed, and
+    # the conversion turned it into an equality test - so it returned 1 for
+    # equal strings and 0 for everything else: the inverse of the answer, with
+    # the ordering thrown away.
+    return integer((string1 > string2) - (string1 < string2))
 
 
 def v_replace(expression, find, replacewith, start=None, count=None, compare=None):
