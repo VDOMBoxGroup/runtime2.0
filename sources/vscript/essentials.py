@@ -1,5 +1,6 @@
 
 import types
+from importlib import import_module
 import random
 import re
 from . import errors
@@ -180,3 +181,22 @@ class exitdo(exitloop):
 
 class exitfor(exitloop):
     pass
+
+
+def vimport(package, name, namespace, names):
+    """Import a VScript library into the caller's namespace.
+
+    "use" emitted "from <name> import ..." with the BARE library name. The
+    scripting finder cannot resolve that: a plugin library is registered as
+    "<application>:<context>.<name>", and a bare name matches its regex not at
+    all - the lookup returns None and the import fails. It only ever worked for
+    modules importable under their own name.
+
+    Emitting the qualified name is not an option either: it holds ":" and "-",
+    so "from <application>:<context>.<name> import x" is a syntax error. Hence
+    a call - import_module takes the name as a string, where the statement
+    could not.
+    """
+    module = import_module("%s.%s" % (package, name) if package else name)
+    for each in names:
+        namespace[each] = getattr(module, each)

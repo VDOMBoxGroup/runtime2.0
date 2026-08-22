@@ -492,8 +492,16 @@ class vuse(vstatement):
         self.import_names = []
 
     def compose(self, ident):
-        return ((self.line, ident, "from %s import %s" % (self.name, ", ".join(self.import_names))),) \
-            if self.import_names else ()
+        if not self.import_names:
+            return ()
+        # A packaged library cannot be reached by a "from ... import"
+        # statement: its name carries ":" and "-". Go through vimport,
+        # which resolves it the way vuse did at compile time.
+        if self.package:
+            return ((self.line, ident, "vimport(%r, %r, globals(), %r)"
+                     % (self.package, self.name, self.import_names)),)
+        return ((self.line, ident, "from %s import %s"
+                 % (self.name, ", ".join(self.import_names))),)
 
 
 class vpython(vstatement):
