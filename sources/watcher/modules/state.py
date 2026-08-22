@@ -62,7 +62,7 @@ def state(options):
                     else:
                         yield "<object id=\"%08X\" type=\"%s\"/>" % (id(value), get_type_name(value))
                     yield "</attribute>"
-                except:
+                except Exception:
                     yield "<attribute name=\"%s\"/>"
             yield "</attributes>"
             yield "</object>"
@@ -72,7 +72,7 @@ def state(options):
         yield "<reply>"
         try:
             usage = resource.getrusage(resource.RUSAGE_SELF)
-        except:
+        except Exception:
             yield "<process id=\"%d\"/>" % os.getpid()
         else:
             yield "<process id=\"%d\">" % os.getpid()

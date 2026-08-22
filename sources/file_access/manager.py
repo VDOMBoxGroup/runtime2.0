@@ -49,7 +49,7 @@ class FileManager(object):
         for arguments in queries:
             try:
                 self.write(*arguments)
-            except:
+            except Exception:
                 log.error("Unable to save %s, details below\n%s" %
                     (self.locate(arguments[:3]), format_exception_trace(locals=True, separate=True)))
 

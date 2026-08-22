@@ -72,7 +72,7 @@ def builder(parser):
                 sections["Objects"]._value += 1
                 try:
                     type = managers.memory.types[Type]
-                except:
+                except Exception:
                     types[Type] = None
                 else:
                     types[Type] = type

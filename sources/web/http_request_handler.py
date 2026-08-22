@@ -48,7 +48,7 @@ class HeaderHandler(object):
 
             try:
                 fault = int(attrs[id(d)][(SOAPpy.NS.ENV, "mustUnderstand")])
-            except:  # noqa
+            except Exception:  # noqa
                 fault = 0
 
             if fault:
@@ -76,7 +76,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         """call base class constructor"""
         try:
             http.server.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
-        except:  # noqa
+        except Exception:  # noqa
             raise
 
     def start_response(self, status, response_headers, exc_info=None):
@@ -301,7 +301,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         try:
             if self.__request.nokeepalive:  # TODO: Check if this is really needed somewhere
                 self.close_connection = 1
-        except:  # noqa
+        except Exception:  # noqa
             # debug("EXCEPTION WHEN DO GET %s"%self)
             # print dir(self)
             raise
@@ -496,7 +496,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         try:
             del self.__request.vdom
             del self.__request
-        except:  # noqa
+        except Exception:  # noqa
             pass
 
     def redirect(self, to):
@@ -544,7 +544,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             tp = None
             try:
                 tp = mngr.get_type(typeid)
-            except:  # noqa
+            except Exception:  # noqa
                 pass
             if tp:
                 typename = tp.name
@@ -557,7 +557,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             app = None
             try:
                 app = mngr.get_application(appid)
-            except:  # noqa
+            except Exception:  # noqa
                 pass
             if app:
                 appname = app.name
@@ -740,7 +740,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                         f = getattr(f, i)
             try:
                 pass  # DEBUG
-            except:  # noqa
+            except Exception:  # noqa
                 info = sys.exc_info()
                 try:
                     resp = SOAPpy.buildSOAP(
@@ -941,7 +941,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                     debug(resp)
 
                     SOAPpy.debugFooter(s)
-                except:  # noqa
+                except Exception:  # noqa
                     pass
 
             # resp = xml.sax.saxutils.unescape(resp)

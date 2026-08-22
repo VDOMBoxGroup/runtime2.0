@@ -62,7 +62,7 @@ class SmartThread(Thread):
         finally:
             try:
                 self.cleanup()
-            except:
+            except Exception:
                 sys.excepthook(*sys.exc_info())
 
     def stop(self):

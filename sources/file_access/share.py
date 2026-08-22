@@ -45,7 +45,7 @@ class VDOM_share(object):
             data = f.read(size)
             f.close()
             return data
-        except:
+        except Exception:
             if f:
                 f.close()
             return None
@@ -59,7 +59,7 @@ class VDOM_share(object):
         try:
             f = open(os.path.join(self.__path, name), mode)
             return f
-        except:
+        except Exception:
             if f:
                 f.close()
             return None
@@ -82,7 +82,7 @@ class VDOM_share(object):
                 f.write(data)
             f.close()
             return True
-        except:
+        except Exception:
             if f:
                 f.close()
             return False
@@ -90,14 +90,14 @@ class VDOM_share(object):
         try:
             shutil.copy(tempfile_obj.name, os.path.join(self.__path, name))
             return True
-        except:
+        except Exception:
             return False
     def mkdir(self, name):
         """create directory, can create intermediate directories, return True on success and False on error"""
         try:
             os.makedirs(os.path.join(self.__path, name))
             return True
-        except:
+        except Exception:
             return False
 
     def rmdir(self, name):
@@ -105,7 +105,7 @@ class VDOM_share(object):
         try:
             shutil.rmtree(os.path.join(self.__path, name))
             return True
-        except:
+        except Exception:
             return False
 
     def rmfile(self, name):
@@ -113,7 +113,7 @@ class VDOM_share(object):
         try:
             os.remove(os.path.join(self.__path, name))
             return True
-        except:
+        except Exception:
             return False
 
     def listdir(self, name="", sort=True):
@@ -130,7 +130,7 @@ class VDOM_share(object):
                 else:
                     x2.append(item)
             return x1 + x2
-        except:
+        except Exception:
             return None
 
     def rename(self, oldname, newname):
@@ -138,7 +138,7 @@ class VDOM_share(object):
         try:
             os.rename(os.path.join(self.__path, oldname), os.path.join(self.__path, newname))
             return True
-        except:
+        except Exception:
             return False
 
     def search(self, regexp="", start_dir="", recursive=False):
@@ -146,7 +146,7 @@ class VDOM_share(object):
         r = None
         try:
             r = os.walk(os.path.join(self.__path, start_dir))
-        except:
+        except Exception:
             return None
         if not recursive:
             for item in r:
@@ -181,7 +181,7 @@ class VDOM_share(object):
         try:
             shutil.copy(os.path.join(self.__path, source), os.path.join(self.__path, dest))
             return True
-        except:
+        except Exception:
             return False
 
     def copydir(self, source, dest):
@@ -189,14 +189,14 @@ class VDOM_share(object):
         try:
             shutil.copytree(os.path.join(self.__path, source), os.path.join(self.__path, dest))
             return True
-        except:
+        except Exception:
             return False
 
     def isdir(self, path=""):
         """check if path is a directory, return None on error"""
         try:
             return os.path.isdir(os.path.join(self.__path, path))
-        except:
+        except Exception:
             return None
 
     def size(self, path=""):
@@ -204,7 +204,7 @@ class VDOM_share(object):
         try:
             k = os.stat(os.path.join(self.__path, path))
             return k.st_size
-        except:
+        except Exception:
             return None
 
     def ctime(self, path=""):
@@ -212,7 +212,7 @@ class VDOM_share(object):
         try:
             k = os.stat(os.path.join(self.__path, path))
             return k.st_birthtime  # not available under Win32
-        except:
+        except Exception:
             return None
 
     def mtime(self, path=""):
@@ -220,5 +220,5 @@ class VDOM_share(object):
         try:
             k = os.stat(os.path.join(self.__path, path))
             return k.st_mtime
-        except:
+        except Exception:
             return None

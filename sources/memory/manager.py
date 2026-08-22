@@ -98,7 +98,7 @@ class Memory(object):
         for entity in entities:
             try:
                 entity.save()
-            except:  # noqa
+            except Exception:  # noqa
                 log.error("Unable to save %s, details below\n%s" %
                     (entity, format_exception_trace(locals=True, separate=True)))
 
@@ -276,9 +276,9 @@ class Memory(object):
                         "type": "sqlite"
                     }
                     debug("Database %s saved" % obj.name)
-                except:
+                except Exception:
                     pass
-        except:
+        except Exception:
             pass
 
         debug("Save storage...")
@@ -286,7 +286,7 @@ class Memory(object):
             tmpstordir = tempfile.mkdtemp("", "appupdate_", VDOM_CONFIG["TEMP-DIRECTORY"])
             storage_dir = os.path.join(settings.STORAGE_LOCATION, appid)
             copy_tree(storage_dir, tmpstordir)
-        except:
+        except Exception:
             pass
 
         # save resources in temp dir
@@ -302,9 +302,9 @@ class Memory(object):
                     if not ro.dependences:
                         shutil.copy2(rpath1 + "/" + ro.filename, tmpresdir)
                         res_numb += 1
-                except:
+                except Exception:
                     pass
-        except:
+        except Exception:
             pass
         debug("%s resources saved" % str(res_numb))
 
@@ -317,7 +317,7 @@ class Memory(object):
             cmd = """sh /opt/boot/ldap_backup.sh -g %s -b -o %s""" % (appid, os.path.abspath(tmpldapdir))
             out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
             out.wait()
-        except:
+        except Exception:
             pass
 
         # uninstall application but keep databases
@@ -390,7 +390,7 @@ class Memory(object):
                     if managers.database_manager.check_database(appid, old_db["id"]):
                         pass #keep old db for safety reasons
                         #managers.database_manager.delete_database(appid, old_db["id"])
-            except:
+            except Exception:
                 pass
             for path in dbs:
                 try:
@@ -398,34 +398,34 @@ class Memory(object):
                     data = f.read()
                     f.close()
                     managers.database_manager.add_database(appid, dbs[path], data)
-                except:
+                except Exception:
                     pass
 
             debug("Restore storage...")
             try:
                 storage_dir = os.path.join(settings.STORAGE_LOCATION, appid)
                 copy_tree(tmpstordir, storage_dir)
-            except:
+            except Exception:
                 pass
 
             # restore resources
             debug("Restore resources...")
             try:
                 os.mkdir(rpath1)
-            except:
+            except Exception:
                 pass
             r2 = os.listdir(tmpresdir)
             for item in r2:
                 try:
                     shutil.copy2(os.path.join(tmpresdir, item), os.path.join(rpath1, item))
-                except:
+                except Exception:
                     pass
             # restore ldap
             try:
                 cmd = """sh /opt/boot/ldap_backup.sh -g %s -r -i %s""" % (appid, tmpldapdir)
                 out = Popen(shlex.split(cmd), stdin=PIPE, bufsize=-1, stdout=PIPE, stderr=PIPE, close_fds=True)
                 out.wait()
-            except:
+            except Exception:
                 pass
 
         if tmpappdir and not keep_backup:
@@ -495,7 +495,7 @@ class Memory(object):
         except IOError as error:
             cleanup(context.uuid)
             raise Exception("Unable to read from %s: %s" % (description, error.strerror))
-        except:  # noqa
+        except Exception:  # noqa
             cleanup(context.uuid)
             raise
 
@@ -559,7 +559,7 @@ class Memory(object):
         except IOError as error:
             cleanup(context.uuid)
             raise Exception("Unable to read %s: %s" % (description, error.strerror))
-        except:  # noqa
+        except Exception:  # noqa
             cleanup(context.uuid)
             raise
 

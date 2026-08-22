@@ -273,7 +273,7 @@ class VDOM_databases(object):
     def __getattribute__(self, name):
         try:
             return object.__getattribute__(self, name)
-        except:
+        except Exception:
             # if getattr(VDOM_databases.__db, 'database', None) is None:
             #   VDOM_databases.__db.database = VDOM_database(name)
             # temporary to fix bug
@@ -366,10 +366,10 @@ class VDOM_application(object):
         else:
             try:
                 return managers.request_manager.current.app_id()
-            except:
+            except Exception:
                 try:
                     return managers.engine.application.id
-                except:
+                except Exception:
                     return None
 
     def _get_name(self):

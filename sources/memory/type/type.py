@@ -275,7 +275,7 @@ class MemoryType(MemoryTypeSketch):
                     if getattr(resource, "label", "") == "":
                         try:
                             resource_file = resource.get_fd()
-                        except:
+                        except Exception:
                             continue
                         file.write("\t\t<Resource ID=\"%s\" Type=\"%s\" Name=\"%s\">\n" % (id, resource.res_format, resource.name))
                         copy_as_base64(file, resource_file, indent="\t\t\t")

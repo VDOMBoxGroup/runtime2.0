@@ -53,12 +53,12 @@ class SmartServer(Singleton):
                 if on_ready:
                     on_ready()
                 self.main()
-            except:
+            except Exception:
                 sys.excepthook(*sys.exc_info())
         finally:
             try:
                 self.cleanup()
-            except:
+            except Exception:
                 sys.excepthook(*sys.exc_info())
 
     def stop(self):

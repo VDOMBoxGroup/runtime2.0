@@ -48,7 +48,7 @@ class Statistics(object):
     def _get_counters(self):
         try:
             request = managers.request_manager.current
-        except:
+        except Exception:
             return self._counters
         else:
             try:

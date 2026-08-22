@@ -26,7 +26,7 @@ def _get_linux_console_size():
         data = fcntl.ioctl(1, termios.TIOCGWINSZ, '1234')
         height, width = struct.unpack('hh', data)
         return width, height
-    except:
+    except Exception:
         pass
 
     try:
@@ -37,20 +37,20 @@ def _get_linux_console_size():
             return width, height
         finally:
             os.close(descriptor)
-    except:
+    except Exception:
         pass
 
     try:
         stdout, stderr = subprocess.Popen(("stty", "size"), stdout=subprocess.PIPE).communicate()
         height, width = tuple(int(value) for value in stdout.split())
         return width, height
-    except:
+    except Exception:
         pass
 
     try:
         height, width = tuple(int(os.getenv(value)) for value in ("LINES", "COLUMNS"))
         return width, height
-    except:
+    except Exception:
         pass
 
     return sys.maxsize, sys.maxsize

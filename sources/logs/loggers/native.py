@@ -156,7 +156,7 @@ class Logger(BaseLogger):
         except UnicodeDecodeError as e:
             log.error("nonascii data in native logger: %s" % e)
             return 0
-        except:
+        except Exception:
             with self._lock:
                 if entry[0] == actions.WRITE:
                     self._queue.extendleft(entries)

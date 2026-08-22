@@ -15,7 +15,7 @@ if not sys.platform.startswith("win"):
     direct = os.path.join(settings.TEMPORARY_LOCATION, "socket")
     try:
         s = socket.socket(socket.af.AF_UNIX, socket.SOCK_DGRAM)
-    except:
+    except Exception:
         # not availible
         pass
 
@@ -27,12 +27,12 @@ def console_debug(data):
         err = False
         try:
             s.sendto(data, p)
-        except:
+        except Exception:
             err = True
         if err:
             try:
                 os.remove(p)
-            except:
+            except Exception:
                 pass
     try:
         sess = managers.request_manager.get_request().session()
@@ -41,7 +41,7 @@ def console_debug(data):
             d = []
         d.append(data)
         sess.value("debug_data", d)
-    except:
+    except Exception:
         pass
 
 

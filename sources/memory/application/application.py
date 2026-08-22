@@ -321,7 +321,7 @@ class MemoryApplication(MemoryApplicationSketch):
                     if resource.label == "":
                         try:
                             resource_file = resource.get_fd()
-                        except:
+                        except Exception:
                             continue
                         file.write(u"\t\t<Resource ID=\"%s\" Type=\"%s\" Name=\"%s\">\n" % (
                         id, resource.res_format, resource.name))

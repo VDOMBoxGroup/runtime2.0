@@ -149,7 +149,7 @@ def generate_graph(objects, depth=DEFAULT_GRAPH_DEPTH,
                 if target is getattr(source, name):
                     elementary_edges.append((id(source), mapping.get(id(target), id(target)), name))
                     return
-            except:
+            except Exception:
                 pass
 
         if getattr(source, "cell_contents", None) is target:

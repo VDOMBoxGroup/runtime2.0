@@ -14,6 +14,6 @@ def run(identifier):
     with section():
         try:
             managers.memory.cleanup_application_infrastructure(identifier)
-        except:  # noqa
+        except Exception:  # noqa
             warn("unable to delete application")
             raise

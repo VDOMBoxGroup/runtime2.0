@@ -23,7 +23,7 @@ class HeaderHandler(object):
 
             try:
                 fault = int(attrs[id(d)][(SOAPpy.NS.ENV, 'mustUnderstand')])
-            except:
+            except Exception:
                 fault = 0
 
             if fault:
@@ -390,7 +390,7 @@ class VDOM_wsgi_request_handler(object):
         try:
             del(self.__request.vdom)
             del(self.__request)
-        except: pass
+        except Exception: pass
 
     def redirect(self, to):
         self.send_response(302)
@@ -433,7 +433,7 @@ class VDOM_wsgi_request_handler(object):
         for typeid in typelst:
             tp = None
             try: tp = mngr.get_type(typeid)
-            except: pass
+            except Exception: pass
             if tp:
                 typename = tp.name
                 if "" == typename:
@@ -444,7 +444,7 @@ class VDOM_wsgi_request_handler(object):
         for appid in applst:
             app = None
             try: app = mngr.get_application(appid)
-            except: pass
+            except Exception: pass
             if app:
                 appname = app.name
                 if "" == appname:
@@ -624,7 +624,7 @@ class VDOM_wsgi_request_handler(object):
                     l = method.split(".")
                     for i in l:
                         f = getattr(f, i)
-            except:
+            except Exception:
                 info = sys.exc_info()
                 try:
                     resp = SOAPpy.buildSOAP(SOAPpy.faultType("%s:Client" % SOAPpy.NS.ENV_T, "Method Not Found",
@@ -844,7 +844,7 @@ class VDOM_wsgi_request_handler(object):
                     debug(resp)
 
                     SOAPpy.debugFooter(s)
-                except: pass
+                except Exception: pass
 
             #resp = xml.sax.saxutils.unescape(resp)
             self.wfile.write(resp)
@@ -881,7 +881,7 @@ class VDOM_wsgi_request_handler(object):
             if separator<0:
                 language=VDOM_CONFIG["DEFAULT-LANGUAGE"]
             language=accept_language[0:]
-        except:
+        except Exception:
             language=VDOM_CONFIG["DEFAULT-LANGUAGE"]
 
         filename=VDOM_CONFIG["HTTP-ERROR-PAGES-DIRECTORY"]+"/"+str(code)+".htm"

@@ -166,7 +166,7 @@ class v_evalvariable(generic):
                 return TRUE_BOOLEAN
             else:
                 return FALSE_BOOLEAN
-        except:
+        except Exception:
             # NOTE: check this later
             return FALSE_BOOLEAN
 
@@ -223,7 +223,7 @@ class v_evalcontext(generic):
                 self._variables[name.as_string] = variable = v_evalvariable()
                 variable.v_loadvalue(value)
             return TRUE_BOOLEAN
-        except:
+        except Exception:
             # NOTE: check this later
             return FALSE_BOOLEAN
 

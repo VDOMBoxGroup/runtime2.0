@@ -157,7 +157,7 @@ class Logger(BaseLogger):
             extra.update(log=name, sublog=subname)
             self._logger.log(LOG_LEVELS[level], message,
                 extra={"timestamp": timestamp, "instance": self._instance, "extra": extra})
-        except:
+        except Exception:
             with self._lock:
                 self._queue.append((sublog, values))
             raise
