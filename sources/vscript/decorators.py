@@ -73,7 +73,7 @@ def get_function_wrapper(arguments, result, function):
     except KeyError:
         raise errors.python("Incorrect argument value")
     if leading:
-        if getattr(function, "im_self", None) is None:
+        if getattr(function, "__self__", None) is None:  # VAILS: Py3 (ex-`im_self`)
             handlers = (lambda self: self,) + handlers
         else:
             maximal -= 1

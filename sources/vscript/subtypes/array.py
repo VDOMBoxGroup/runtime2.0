@@ -169,6 +169,8 @@ class array(subtype):
 
     as_simple = property(lambda self: self)
     as_array = property(lambda self: self)
+    # VAILS — autorise l'accès membre `a.method` (variant.__getattr__ -> as_complex).
+    as_complex = property(lambda self: self)
 
     def is_array(self, *arguments, **keywords):
         if keywords:
@@ -196,6 +198,72 @@ class array(subtype):
 
     dimension = property(lambda self: len(self._subscripts))
     items = property(lambda self: self._items)
+
+    # VAILS — méthodes membres fluides (Tier 2 #7). `a.count`/`a.contains(x)`/…
+    def v_count(self):
+        from .integer import integer
+        return integer(len(self))
+
+    def v_contains(self, item):
+        from .boolean import boolean, true, false
+        target = item.as_string
+        for el in self:
+            if el.as_string == target:
+                return boolean(true)
+        return boolean(false)
+
+    def v_indexof(self, item):
+        from .integer import integer
+        target = item.as_string
+        i = 1
+        for el in self:
+            if el.as_string == target:
+                return integer(i)
+            i += 1
+        return integer(0)            # 0 si absent (cohérent avec InStr)
+
+    def v_join(self, delimiter=None):
+        from ..library.arrays import v_join
+        return v_join(self) if delimiter is None else v_join(self, delimiter)
+
+    def v_first(self):
+        for el in self:
+            return el.subtype
+        return v_empty
+
+    def v_last(self):
+        last = None
+        for el in self:
+            last = el
+        return last.subtype if last is not None else v_empty
+
+    # VAILS — méthodes FONCTIONNELLES (Tier 4). Prennent une fonction-valeur (`vfuncref`,
+    # issue d'une lambda inline `Function(x)…End Function` ou d'`AddressOf`) et l'appliquent.
+    # `func(el)` invoque la fonction (variant.__call__ -> vfuncref) et renvoie un subtype.
+    # Sémantique 1-D : un tableau multi-dim est parcouru à plat ; le résultat est 1-D.
+    def v_map(self, func):
+        # nouveau tableau : func appliquée à chaque élément.
+        return array([func(el).as_simple for el in self])
+
+    def v_filter(self, func):
+        # sous-tableau des éléments pour lesquels le prédicat func est vrai (vérité VScript).
+        return array([el.as_simple for el in self if bool(func(el))])
+
+    def v_reduce(self, func, init=None):
+        # repli (fold) : func(accumulateur, élément). Sans `init`, le 1er élément sert
+        # d'amorce ; tableau vide sans `init` -> Empty.
+        acc = init
+        started = init is not None
+        for el in self:
+            if started:
+                acc = func(acc, el)
+            else:
+                acc, started = el, True
+        return acc.subtype if started else v_empty
+
+    def v_tojson(self, pretty=None):
+        from ..extensions.jsons import v_tojson as _tojson
+        return _tojson(self, pretty)
 
     def subarray(self, *indices):
         if len(indices) >= len(self._subscripts):
@@ -225,9 +293,10 @@ class array(subtype):
     def ubound(self, dimension):
         if dimension < 1 or dimension > len(self._subscripts):
             raise errors.subscript_out_of_range
-        # NOTE: VBScript returns negative value
-        # if self._subscripts[dimension-1]<0:
-        #   raise errors.subscript_out_of_range
+        # VAILS: tableau dynamique vide (subscript négatif) -> UBound est une
+        # erreur en VScript (cf. tests/features/test_arrays.test_dynamic_array_ubound).
+        if self._subscripts[dimension - 1] < 0:
+            raise errors.subscript_out_of_range
         return self._subscripts[dimension - 1]
 
     def append(self, value):

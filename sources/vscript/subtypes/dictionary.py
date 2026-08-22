@@ -42,12 +42,35 @@ class dictionary(subtype):
 
     as_simple = property(lambda self: self)
     as_dictionary = property(lambda self: self)
+    # VAILS — autorise l'accès membre `d.method` (variant.__getattr__ -> as_complex).
+    as_complex = property(lambda self: self)
 
     def is_dictionary(self, function=None):
         return all((function(key, value) for key, value in self._items.items())) if function \
             else True
 
     items = property(lambda self: self._items)
+
+    # VAILS — méthodes membres fluides (Tier 2 #7). `d.count`/`d.has(k)`/`d.keys`/…
+    def v_count(self):
+        from .integer import integer
+        return integer(len(self._items))
+
+    def v_has(self, key):
+        from .boolean import boolean, true, false
+        return boolean(true) if key.subtype in self._items else boolean(false)
+
+    def v_keys(self):
+        from .array import array
+        return array(list(self._items.keys()))
+
+    def v_values(self):
+        from .array import array
+        return array(list(self._items.values()))
+
+    def v_tojson(self, pretty=None):
+        from ..extensions.jsons import v_tojson as _tojson
+        return _tojson(self, pretty)
 
     def __iter__(self):
         for item in self._items:

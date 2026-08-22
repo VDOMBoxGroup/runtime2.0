@@ -4,7 +4,7 @@ from .subtypes import mismatch, empty, null, integer, string, double, \
     nan, infinity, true, false, v_mismatch, v_empty, v_null, v_nothing, \
     v_true_value, v_false_value, ordereddictionary # noqa
 from .variables import variant, constant, permanent, shadow # noqa
-from .essentials import check, randomize, echo, concat, exitloop, exitdo, exitfor # noqa
+from .essentials import check, randomize, echo, concat, exitloop, exitdo, exitfor, vand, vor, vcoalesce, vget, vitems, venum_build, vfuncref, vcall0 # noqa
 from .conversions import as_is, as_value, as_specific, as_array, as_binary, \
     as_boolean, as_date, as_double, as_generic, as_integer, as_string, pack, unpack # noqa
 from .decorators import auto, native, vclass, vfunction, vsub, vproperty, vcollection # noqa

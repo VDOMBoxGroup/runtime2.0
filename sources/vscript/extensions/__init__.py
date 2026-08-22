@@ -1,6 +1,9 @@
 
 from .wscript import v_wscript
 from .regexp import v_regexp
+# IIf(condition, truepart, falsepart): the inline if VBScript has and the core
+# lacked. Both branches are evaluated, as VBScript does.
+from .vails_ext import v_iif
 from .list import v_list
 from .connection import v_connectionerror, v_proxy, v_connection
 from .jsons import v_asjson, v_tojson

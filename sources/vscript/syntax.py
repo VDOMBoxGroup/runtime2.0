@@ -2,6 +2,7 @@ from __future__ import absolute_import
 
 
 import ply.lex as lex
+from copy import deepcopy
 from . import errors, lexemes
 from .source import *
 
@@ -99,6 +100,16 @@ def p_name_continues_with_dot_call(p):
     p[0] = p[1].join(p[3][1])
 
 
+def p_name_continues_with_optdot_name(p):
+    """name : name OPTDOT NAME"""
+    p[0] = p[1].join_safe(p[3][1])
+
+
+def p_name_continues_with_optdot_call(p):
+    """name : call OPTDOT NAME"""
+    p[0] = p[1].join_safe(p[3][1])
+
+
 def p_call_continues_with_dot_name_expressions(p):
     """call : name '.' NAME '(' expressions ')'"""
     p[0] = p[1].join(p[3][1]).join(p[5])
@@ -146,7 +157,10 @@ def p_call_starts_with_name_expressions(p):
 
 def p_call_starts_with_name_empty_expressions(p):
     """call : NAME '(' ')'"""
-    p[0] = vname(p[1][1], line=p[1][0])
+    # VAILS — `f()` : marque la forme zéro-argument pour invoquer une fonction-valeur (vcall0).
+    node = vname(p[1][1], line=p[1][0])
+    node.zerocall = True
+    p[0] = node
 
 
 def p_name_starts_with_dot_name(p):
@@ -313,7 +327,9 @@ def p_negation_starts(p):
 
 def p_conjunction_continues(p):
     """conjunction : conjunction AND negation"""
-    p[0] = p[1].join(u"(%s) & (%s)", p[3])
+    # VAILS: court-circuit — la droite (lambda) n'est évaluée que si la gauche
+    # ne vaut pas déjà 0. Cf. essentials.vand.
+    p[0] = p[1].join(u"vand((%s), lambda: (%s))", p[3])
 
 
 def p_conjunction_starts(p):
@@ -323,7 +339,9 @@ def p_conjunction_starts(p):
 
 def p_disjunction_continues(p):
     """disjunction : disjunction OR conjunction"""
-    p[0] = p[1].join(u"(%s) | (%s)", p[3])
+    # VAILS: court-circuit — la droite (lambda) n'est évaluée que si la gauche
+    # ne vaut pas déjà -1. Cf. essentials.vor.
+    p[0] = p[1].join(u"vor((%s), lambda: (%s))", p[3])
 
 
 def p_disjunction_starts(p):
@@ -352,13 +370,32 @@ def p_inclusion_starts(p):
 
 
 def p_expression(p):
-    """expression : inclusion"""
+    """expression : coalescence"""
+    p[0] = p[1]
+
+
+def p_coalescence_continues(p):
+    """coalescence : coalescence COALESCE inclusion"""
+    # VAILS: `a ?? b` — droite différée (thunk) ; b seulement si a est Null/Empty.
+    p[0] = p[1].join(u"vcoalesce((%s), lambda: (%s))", p[3])
+
+
+def p_coalescence_starts(p):
+    """coalescence : inclusion"""
     p[0] = p[1]
 
 
 def p_value_number(p):
     """value : NUMBER"""
     p[0] = vexpression(u"integer(%s)" % p[1][1], line=p[1][0])
+
+
+def p_value_addressof(p):
+    """value : ADDRESSOF NAME"""
+    # VAILS — fonction de 1re classe : AddressOf nom -> vfuncref(v_nom). cf. essentials.vfuncref.
+    # (AddressOf obj.method n'est PAS ajouté : impossible sans conflit LALR, et une lambda
+    #  `Function(x) Return obj.method(x) End Function` couvre déjà la méthode liée.)
+    p[0] = vexpression(u"vfuncref(%s)" % p[2][1], line=p[1][0])
 
 
 def p_value_double(p):
@@ -431,6 +468,54 @@ def p_value_call(p):
 def p_value_parenthesis(p):
     """value : '(' expression ')'"""
     p[0] = p[2].apply(u"(%s)")
+
+
+# VAILS — lambda inline `Function(args) ... End Function` en position expression (Tier 4).
+# Parenthèses OBLIGATOIRES : `Function (` (expression) se distingue sans ambiguïté de
+# `Function NAME` (procédure nommée, niveau statement) sur un seul token de lookahead, et
+# les deux contextes sont disjoints (pas de production `statement : expression`). Ajout
+# vérifié à 0 conflit LALR. La valeur composée est `vfuncref(<lambda hissée>)`. cf. vlambda.
+def p_value_lambda(p):
+    """value : FUNCTION '(' arguments ')' statements END
+             | FUNCTION '(' arguments ')' statements END FUNCTION"""
+    p[0] = vexpression(u"%s", values=(vlambda(p[3], p[5], line=p[1][0]), ),
+                       line=p[1][0])
+
+
+# VAILS — littéraux tableau `[…]` et dictionnaire `{…}` (cf. TODO/vscript-modern.md)
+def p_value_array(p):
+    """value : '[' expressions ']'"""
+    p[0] = vexpression(u"array([%s])", values=(p[2], ), line=p[2].line)
+
+
+def p_value_array_empty(p):
+    """value : '[' ']'"""
+    p[0] = vexpression(u"array([])", line=p.lineno(1))
+
+
+def p_value_dictionary(p):
+    """value : '{' pairs '}'"""
+    p[0] = vexpression(u"dictionary({%s})", values=(p[2], ), line=p[2].line)
+
+
+def p_value_dictionary_empty(p):
+    """value : '{' '}'"""
+    p[0] = vexpression(u"dictionary({})", line=p.lineno(1))
+
+
+def p_pairs_starts(p):
+    """pairs : pair"""
+    p[0] = vexpressions(line=p[1].line).join(p[1])
+
+
+def p_pairs_continues(p):
+    """pairs : pairs ',' pair"""
+    p[0] = p[1].join(p[3])
+
+
+def p_pair(p):
+    """pair : expression ':' expression"""
+    p[0] = p[1].join(u"(%s): (%s)", p[3])
 
 
 def p_value_constants(p):
@@ -594,6 +679,31 @@ def p_statement_constant(p):
     p[0] = vconstant(vname(p[2][1], line=p[2][0]), p[4], line=p[1][0])
 
 
+def p_statement_enum(p):
+    """statement : ENUM NAME newline enum_members END ENUM"""
+    p[0] = venumdef(vname(p[2][1], line=p[2][0]), p[4], line=p[1][0])
+
+
+def p_enum_members_one(p):
+    """enum_members : enum_member newline"""
+    p[0] = [p[1]]
+
+
+def p_enum_members_more(p):
+    """enum_members : enum_members enum_member newline"""
+    p[0] = p[1] + [p[2]]
+
+
+def p_enum_member_bare(p):
+    """enum_member : NAME"""
+    p[0] = (p[1][1][2:], None)            # strip "v_" -> nom de membre minuscule
+
+
+def p_enum_member_value(p):
+    """enum_member : NAME '=' expression"""
+    p[0] = (p[1][1][2:], p[3])
+
+
 def p_statement_redim(p):
     """statement : redim"""
     p[0] = p[1]
@@ -627,6 +737,43 @@ def p_statement_assigment_set_name(p):
 def p_statement_assigment_set_call(p):
     """statement : SET call '=' expression"""
     p[0] = vcall(p[2].set(p[4]), line=p[1][0])
+
+
+# VAILS — assignations composées : `x op= e` => `x = x op (e)` (cf. TODO/vscript-modern.md).
+# Le nom est deepcopy() pour la lecture (le côté écriture/scope_names mute l'objet vname).
+def _compound(name, template, expr):
+    read = vexpression(u"%s", values=(deepcopy(name), ), line=name.line)
+    return vlet(name, read.join(template, expr), line=name.line)
+
+
+def p_statement_pluseq(p):
+    """statement : name PLUSEQ expression"""
+    p[0] = _compound(p[1], u"%s+(%s)", p[3])
+
+
+def p_statement_minuseq(p):
+    """statement : name MINUSEQ expression"""
+    p[0] = _compound(p[1], u"%s-(%s)", p[3])
+
+
+def p_statement_stareq(p):
+    """statement : name STAREQ expression"""
+    p[0] = _compound(p[1], u"%s*(%s)", p[3])
+
+
+def p_statement_slasheq(p):
+    """statement : name SLASHEQ expression"""
+    p[0] = _compound(p[1], u"%s/(%s)", p[3])
+
+
+def p_statement_backslasheq(p):
+    """statement : name BACKSLASHEQ expression"""
+    p[0] = _compound(p[1], u"%s//(%s)", p[3])
+
+
+def p_statement_ampeq(p):
+    """statement : name AMPEQ expression"""
+    p[0] = _compound(p[1], u"concat(%s, %s)", p[3])
 
 
 def p_statement_invoke_name(p):
@@ -745,6 +892,12 @@ def p_statement_for_each(p):
     p[0] = vforeach(vname(p[3][1], line=p[3][0]), p[5], p[6], line=p[1][0])
 
 
+def p_statement_for_each_kv(p):
+    """statement : FOR EACH NAME ',' NAME IN expression statements NEXT"""
+    p[0] = vforeachkv(vname(p[3][1], line=p[3][0]), vname(p[5][1], line=p[5][0]),
+                      p[7], p[8], line=p[1][0])
+
+
 def p_statement_for(p):
     """statement : FOR NAME '=' expression TO expression statements NEXT"""
     p[0] = vfor(vname(p[2][1], line=p[2][0]), (p[4], p[6]), p[7], line=p[1][0])
@@ -841,6 +994,16 @@ def p_statement_exit_sub(p):
 def p_statement_exit_property(p):
     """statement : EXIT PROPERTY"""
     p[0] = vexitproperty(line=p[1][0])
+
+
+def p_statement_return(p):
+    """statement : RETURN"""
+    p[0] = vreturn(line=p[1][0])
+
+
+def p_statement_return_expression(p):
+    """statement : RETURN expression"""
+    p[0] = vreturn(p[2], line=p[1][0])
 
 
 def p_statement_exit_do(p):
@@ -1343,6 +1506,42 @@ def p_declarations_starts_empty_array(p):
 def p_declarations_starts_array(p):
     """declarations : DIM NAME '(' subscripts ')'"""
     p[0] = vdeclarations(line=p[1][0]).join(
+        p[2][1], u"permanent(array(subscripts=%s, static=1))" % p[4])
+
+
+# VAILS — champs avec visibilité explicite. `Public x` est synonyme de `Dim x`
+# (champ public) ; `Private x` masque le champ de l'accès membre externe
+# (cf. source.vclass `_vs_private`). Les productions « continues » (`, NAME`)
+# sont partagées : la visibilité est portée par l'objet vdeclarations.
+def p_declarations_public_starts_variable(p):
+    """declarations : PUBLIC NAME"""
+    p[0] = vdeclarations(line=p[1][0]).join(p[2][1], u"variant()")
+
+
+def p_declarations_public_starts_empty_array(p):
+    """declarations : PUBLIC NAME '(' ')'"""
+    p[0] = vdeclarations(line=p[1][0]).join(p[2][1], u"variant(array())")
+
+
+def p_declarations_public_starts_array(p):
+    """declarations : PUBLIC NAME '(' subscripts ')'"""
+    p[0] = vdeclarations(line=p[1][0]).join(
+        p[2][1], u"permanent(array(subscripts=%s, static=1))" % p[4])
+
+
+def p_declarations_private_starts_variable(p):
+    """declarations : PRIVATE NAME"""
+    p[0] = vdeclarations(line=p[1][0], private=True).join(p[2][1], u"variant()")
+
+
+def p_declarations_private_starts_empty_array(p):
+    """declarations : PRIVATE NAME '(' ')'"""
+    p[0] = vdeclarations(line=p[1][0], private=True).join(p[2][1], u"variant(array())")
+
+
+def p_declarations_private_starts_array(p):
+    """declarations : PRIVATE NAME '(' subscripts ')'"""
+    p[0] = vdeclarations(line=p[1][0], private=True).join(
         p[2][1], u"permanent(array(subscripts=%s, static=1))" % p[4])
 
 

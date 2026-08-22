@@ -16,6 +16,8 @@ class string(subtype):
     name = property(lambda self: "String")
 
     as_simple = property(lambda self: self)
+    # VAILS — autorise l'accès membre `s.method` (variant.__getattr__ -> as_complex).
+    as_complex = property(lambda self: self)
     as_boolean = property(lambda self: bool(self))
     as_date = property(lambda self: float(self))
     as_double = property(lambda self: float(self))
@@ -92,6 +94,78 @@ class string(subtype):
             return "STRING@%08X:%r" % (id(self), self._value)
         else:
             return "STRING@%08X:<UNINITIALIZED>" % (id(self))
+
+    # VAILS — méthodes membres fluides (Tier 2 #7). `s.upper`/`s.trim`/… en plus des
+    # fonctions globales (UCase/Trim/…). Le membre 0-arg est auto-appelé par `check`.
+    # Délègue à la lib (parité de comportement) ; imports paresseux (cycle subtypes↔library).
+    def v_upper(self):
+        from ..library.strings import v_ucase
+        return v_ucase(self)
+
+    def v_lower(self):
+        from ..library.strings import v_lcase
+        return v_lcase(self)
+
+    def v_trim(self):
+        from ..library.strings import v_trim
+        return v_trim(self)
+
+    def v_ltrim(self):
+        from ..library.strings import v_ltrim
+        return v_ltrim(self)
+
+    def v_rtrim(self):
+        from ..library.strings import v_rtrim
+        return v_rtrim(self)
+
+    def v_len(self):
+        from ..library.strings import v_len
+        return v_len(self)
+
+    def v_reverse(self):
+        from ..library.strings import v_strreverse
+        return v_strreverse(self)
+
+    def v_split(self, delimiter=None):
+        from ..library.strings import v_split
+        return v_split(self) if delimiter is None else v_split(self, delimiter)
+
+    def v_replace(self, find, replacewith):
+        from ..library.strings import v_replace
+        return v_replace(self, find, replacewith)
+
+    def v_left(self, length):
+        from ..library.strings import v_left
+        return v_left(self, length)
+
+    def v_right(self, length):
+        from ..library.strings import v_right
+        return v_right(self, length)
+
+    def v_indexof(self, sub):
+        from ..library.strings import v_instr
+        return v_instr(self, sub)            # 1-based, 0 si absent (comme InStr)
+
+    def v_contains(self, sub):
+        from .boolean import boolean, true, false
+        return boolean(true) if sub.as_string in self._value else boolean(false)
+
+    def v_startswith(self, prefix):
+        from .boolean import boolean, true, false
+        return boolean(true) if self._value.startswith(prefix.as_string) else boolean(false)
+
+    def v_endswith(self, suffix):
+        from .boolean import boolean, true, false
+        return boolean(true) if self._value.endswith(suffix.as_string) else boolean(false)
+
+    # JSON — parse la chaîne en array/dictionary/scalaire (réciproque de `d.ToJson`).
+    # `s.FromJson` / `s.AsJson` (nom VDOM) / `s.ParseJson` — délègue à l'extension jsons.
+    def v_fromjson(self):
+        from ..extensions.jsons import v_fromjson as _fromjson
+        return _fromjson(self)
+
+    v_asjson = v_fromjson
+    v_parsejson = v_fromjson
 
 
 from .boolean import boolean, true, false  # noqa: E402

@@ -7,7 +7,15 @@ class variable(primitive):
 
     def __getattr__(self, name):
         try:
-            return getattr(self.as_complex, name)
+            complex = self.as_complex
+            # VAILS — champs `Private` d'une classe : l'accès membre EXTERNE (`a.x`)
+            # passe par ici (a est un variant) ; l'accès interne `self.v_x` est un
+            # accès attribut direct sur l'instance brute et ne passe PAS par __getattr__.
+            # `_vs_private` (frozenset) est posé sur la classe générée par vclass.
+            private = getattr(complex, "_vs_private", None)
+            if private is not None and name in private:
+                raise errors.object_has_no_property(name)
+            return getattr(complex, name)
         except AttributeError:
             raise errors.object_has_no_property(
                 name).with_traceback(sys.exc_info()[2])

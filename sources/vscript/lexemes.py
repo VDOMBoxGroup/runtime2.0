@@ -5,7 +5,7 @@ from . import errors
 
 prefix = u"v_"
 
-reserved = (u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE", u"USE",
+reserved = (u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FALSE", u"USE", u"ADDRESSOF",
             u"BYVAL", u"BYREF", u"CALL", u"PROPERTY", u"GET", u"LET", u"SET", u"SUB", u"FUNCTION",
             u"CLASS", u"PUBLIC", u"PRIVATE", u"DEFAULT", u"NEW", u"WITH", u"INHERITS", u"MYBASE", u"MYCLASS", u"ME",
             # u"PROTECTED", u"FRIEND",
@@ -13,7 +13,7 @@ reserved = (u"DIM", u"MOD", u"IS", u"NOT", u"AND", u"OR", u"XOR", u"TRUE", u"FAL
             # u"OVERRIDABLE", u"OVERRIDES", u"NOTOVERRIDABLE", u"MUSTOVERRIDE",
             u"IF", u"THEN", u"ELSE", u"ELSEIF", u"SELECT", u"CASE", u"DO", u"LOOP", u"WHILE", u"UNTIL", u"WEND",
             u"FOR", u"EACH", u"IN", u"TO", u"STEP", u"NEXT", u"TRY", u"CATCH", u"AS", u"FINALLY", u"THROW",
-            u"END", u"EXIT", u"CONST", u"REDIM", u"PRESERVE", u"ERASE", u"RANDOMIZE", u"PRINT", u"TOUCH",
+            u"END", u"EXIT", u"RETURN", u"ENUM", u"CONST", u"REDIM", u"PRESERVE", u"ERASE", u"RANDOMIZE", u"PRINT", u"TOUCH",
             u"EMPTY", u"NOTHING", u"NULL", u"NAN", u"INFINITY")
 tokens = reserved + (u"PYTHON",
                      u"VCR", u"VCRLF", u"VFORMFEED", u"VLF", u"VNEWLINE", u"VNULLCHAR", u"VNULLSTRING",
@@ -21,9 +21,13 @@ tokens = reserved + (u"PYTHON",
                      u"VGENERALDATE", u"VLONGDATE", u"VSHORTDATE", u"VLONGTIME", u"VSHORTTIME", u"VUSEDEFAULT", u"VTRUE", u"VFALSE",
                      u"VUSESYSTEMDAYOFWEEK", u"VSUNDAY", u"VMONDAY", u"VTUESDAY", u"VWEDNESDAY", u"VTHURSDAY", u"VFRIDAY", u"VSATURDAY",
                      u"VUSESYSTEM", u"VFIRSTJAN1", u"VFIRSTFOURDAYS", u"VFIRSTFULLWEEK",
-                     u"REM", u"NE", u"LE", u"GE", u"NUMBER", u"DOUBLE", u"DATE", u"STRING", u"NAME", u"NEWLINE")
+                     u"REM", u"NE", u"LE", u"GE", u"NUMBER", u"DOUBLE", u"DATE", u"STRING", u"NAME", u"NEWLINE",
+                     # VAILS — modernisation : coalescing + assignations composées
+                     u"COALESCE", u"PLUSEQ", u"MINUSEQ", u"STAREQ", u"SLASHEQ", u"BACKSLASHEQ", u"AMPEQ",
+                     u"OPTDOT")
 literals = [u'&', u'(', u')', u'*', u'+', u',', u'-', u'.',
-            u'/', u':', u'<', u'=', u'>', u'\\', u'^']
+            u'/', u':', u'<', u'=', u'>', u'\\', u'^',
+            u'[', u']', u'{', u'}']   # VAILS — littéraux tableau/dictionnaire
 
 
 words = reserved
@@ -280,6 +284,47 @@ def t_ge(t):
     return t
 
 
+# VAILS — opérateurs composés (fonctions = prioritaires sur les littéraux `+ - * / \ & ?`)
+def t_coalesce(t):
+    r'\?\?'
+    t.type = u"COALESCE"; t.value = (t.lexer.lineno, u"??"); return t
+
+
+def t_optdot(t):
+    r'\?\.'
+    t.type = u"OPTDOT"; t.value = (t.lexer.lineno, u"?."); return t
+
+
+def t_pluseq(t):
+    r'\+='
+    t.type = u"PLUSEQ"; t.value = (t.lexer.lineno, u"+="); return t
+
+
+def t_minuseq(t):
+    r'-='
+    t.type = u"MINUSEQ"; t.value = (t.lexer.lineno, u"-="); return t
+
+
+def t_stareq(t):
+    r'\*='
+    t.type = u"STAREQ"; t.value = (t.lexer.lineno, u"*="); return t
+
+
+def t_slasheq(t):
+    r'/='
+    t.type = u"SLASHEQ"; t.value = (t.lexer.lineno, u"/="); return t
+
+
+def t_backslasheq(t):
+    r'\\='
+    t.type = u"BACKSLASHEQ"; t.value = (t.lexer.lineno, u"\\="); return t
+
+
+def t_ampeq(t):
+    r'&='
+    t.type = u"AMPEQ"; t.value = (t.lexer.lineno, u"&="); return t
+
+
 def t_comment(t):
     r'\'[^\n]*'
     pass
@@ -319,6 +364,188 @@ def t_date(t):
     return t
 
 
+# VAILS — modernisation : interpolation de chaîne `$"… {expr} …"`.
+# Expansion au niveau LEXER (aucun changement de grammaire → zéro conflit PLY) :
+# la chaîne interpolée est réécrite en source VScript équivalente
+#   `("" & "litéral" & (expr) & …)`   (le `&` compose déjà en `concat(...)`)
+# puis re-lue en place par le pipeline normal. Échappements `\n \t \r \\ \" {{ }}`
+# pris en charge UNIQUEMENT dans `$"…"` (les `"…"` classiques sont inchangés, donc
+# les chemins Windows `"C:\dir"` restent littéraux).
+def _split_pipes(s):
+    u"""Découpe `expr | f | g(args)` sur les `|` de niveau supérieur (hors parenthèses/
+    crochets/accolades et hors chaînes `"…"`). `|` n'est utilisé par aucun opérateur
+    VScript → libre comme séparateur de pipe."""
+    out, cur, depth, instr = [], [], 0, False
+    i, n = 0, len(s)
+    while i < n:
+        c = s[i]
+        if instr:
+            cur.append(c)
+            if c == u"\"":
+                if i + 1 < n and s[i + 1] == u"\"":
+                    cur.append(u"\"")
+                    i += 2
+                    continue
+                instr = False
+            i += 1
+            continue
+        if c == u"\"":
+            instr = True
+            cur.append(c)
+            i += 1
+            continue
+        if c in u"([{":
+            depth += 1
+        elif c in u")]}":
+            depth -= 1
+        elif c == u"|" and depth == 0:
+            out.append(u"".join(cur))
+            cur = []
+            i += 1
+            continue
+        cur.append(c)
+        i += 1
+    out.append(u"".join(cur))
+    return out
+
+
+def _compose_interp(content):
+    u"""Compose une interpolation `{ expr | f | g(a) }` : la valeur est passée en
+    PREMIER argument de chaque étage de pipe (chaînable). `f` → `f((acc))`,
+    `g(a)` → `g((acc), a)`."""
+    segs = _split_pipes(content)
+    acc = u"(" + segs[0].strip() + u")"
+    for stage in segs[1:]:
+        stage = stage.strip()
+        if stage.endswith(u")") and u"(" in stage:
+            k = stage.index(u"(")
+            fname = stage[:k].strip()
+            inner = stage[k + 1:-1].strip()
+            acc = fname + u"(" + acc + (u", " + inner if inner else u"") + u")"
+        else:
+            acc = stage + u"(" + acc + u")"
+    return acc
+
+
+def _expand_fstring(raw):
+    parts = []
+    lit = []
+
+    def flush():
+        if lit:
+            parts.append(u'"' + u"".join(lit) + u'"')
+            del lit[:]
+
+    i, n = 0, len(raw)
+    while i < n:
+        c = raw[i]
+        if c == u"{":
+            if i + 1 < n and raw[i + 1] == u"{":
+                lit.append(u"{")
+                i += 2
+                continue
+            j = raw.find(u"}", i + 1)
+            if j == -1:
+                raise errors.syntax_error(u"Unterminated '{' in interpolated string")
+            flush()
+            parts.append(_compose_interp(raw[i + 1:j]))
+            i = j + 1
+            continue
+        if c == u"}":
+            if i + 1 < n and raw[i + 1] == u"}":
+                lit.append(u"}")
+                i += 2
+                continue
+            lit.append(u"}")
+            i += 1
+            continue
+        if c == u"\\" and i + 1 < n:
+            nxt = raw[i + 1]
+            ctrl = {u"n": u"vblf", u"t": u"vbtab", u"r": u"vbcr"}
+            if nxt in ctrl:
+                flush()
+                parts.append(ctrl[nxt])
+                i += 2
+                continue
+            if nxt == u"\\":
+                lit.append(u"\\")
+                i += 2
+                continue
+            if nxt == u"\"":
+                lit.append(u"\"\"")
+                i += 2
+                continue
+            if nxt in (u"{", u"}"):
+                lit.append(nxt)
+                i += 2
+                continue
+            lit.append(u"\\")
+            i += 1
+            continue
+        lit.append(c)
+        i += 1
+    flush()
+    return (u'("" & ' + u" & ".join(parts) + u")") if parts else u'("")'
+
+
+def expand_fstrings(src):
+    u"""Pré-passage source→source : étend `$"… {expr} …"` en concaténation VScript
+    `("" & "lit" & (expr) & …)` AVANT le lexing. Respecte les frontières — on saute
+    les chaînes classiques `"…"` (avec `""` échappé) et les commentaires `'…` — donc
+    un `$` à l'intérieur d'une chaîne/commentaire n'est jamais pris pour un f-string.
+    Les `"` à l'intérieur d'un `{…}` interpolé sont tolérés (on saute jusqu'au `}`)."""
+    if u"$\"" not in src:
+        return src
+    out = []
+    i, n = 0, len(src)
+    while i < n:
+        c = src[i]
+        if c == u"\"":                       # chaîne classique — copiée telle quelle
+            j = i + 1
+            while j < n:
+                if src[j] == u"\"":
+                    if j + 1 < n and src[j + 1] == u"\"":
+                        j += 2
+                        continue
+                    j += 1
+                    break
+                if src[j] == u"\n":
+                    break
+                j += 1
+            out.append(src[i:j])
+            i = j
+            continue
+        if c == u"'":                        # commentaire jusqu'à la fin de ligne
+            j = src.find(u"\n", i)
+            j = n if j == -1 else j
+            out.append(src[i:j])
+            i = j
+            continue
+        if c == u"$" and i + 1 < n and src[i + 1] == u"\"":   # f-string
+            j = i + 2
+            while j < n:
+                if src[j] == u"\"":
+                    if j + 1 < n and src[j + 1] == u"\"":
+                        j += 2
+                        continue
+                    break
+                if src[j] == u"{":           # saute l'interpolation (peut contenir des ")
+                    k = src.find(u"}", j + 1)
+                    if k == -1:
+                        break
+                    j = k + 1
+                    continue
+                if src[j] == u"\n":
+                    break
+                j += 1
+            out.append(_expand_fstring(src[i + 2:j]))
+            i = j + 1
+            continue
+        out.append(c)
+        i += 1
+    return u"".join(out)
+
+
 def t_string(t):
     r'\"([^\"\n]|(\"\"))*\"'
     t.type = u"STRING"
@@ -327,10 +554,19 @@ def t_string(t):
 
 
 def t_character(t):
+    # VAILS — littéral hexadécimal NUMÉRIQUE `&H1F` -> 31 (avant : caractère chr(),
+    # divergence vs VBScript). Aucun test cœur ne dépendait de l'ancien comportement.
     r'\&[Hh][0-9A-Fa-f]+'
-    # print("STRING!!!")
-    t.type = u"STRING"
-    t.value = (t.lexer.lineno, chr(int(t.value[2:], 16)))
+    t.type = u"NUMBER"
+    t.value = (t.lexer.lineno, str(int(t.value[2:], 16)))
+    return t
+
+
+def t_binary_literal(t):
+    # VAILS — littéral binaire numérique `&B1010` -> 10.
+    r'\&[Bb][01]+'
+    t.type = u"NUMBER"
+    t.value = (t.lexer.lineno, str(int(t.value[2:], 2)))
     return t
 
 

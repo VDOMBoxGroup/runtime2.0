@@ -48,6 +48,10 @@ class ordereddictionary(subtype):
 
     items = property(lambda self: self._items)
 
+    def v_tojson(self, pretty=None):
+        from ..extensions.jsons import v_tojson as _tojson
+        return _tojson(self, pretty)
+
     def __iter__(self):
         for item in self._items:
             yield variant(item)

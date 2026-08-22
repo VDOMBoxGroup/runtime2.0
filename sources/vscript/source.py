@@ -9,15 +9,15 @@ import settings
 __all__ = ["vname", "vmybase", "vme", "vmyclass", "vnames",
            "vexpression", "vexpressions",
            "vsubscripts", "varguments", "vstatements", "vdeclarations", "vredim",
-           "verase", "vlet", "vset", "vuse", "vpython", "vconstant", "vcall",
+           "verase", "vlet", "vset", "vuse", "vpython", "vconstant", "venumdef", "vcall",
            "velseif", "velseifs", "vifthen", "vifthenelse",
            "vselectcase", "vselectcases", "vselect", "vselectelse",
            "vdoloop", "vdowhileloop", "vdountilloop", "vdoloopwhile", "vdoloopuntil",
-           "vforeach", "vfor", "vforstep",
+           "vforeach", "vforeachkv", "vfor", "vforstep",
            "vtrycatch", "vtrycatches", "vtry", "vtryfinally", "vthrow",
-           "vwith", "vexitfunction", "vexitsub", "vexitproperty", "vexitdo", "vexitfor",
+           "vwith", "vexitfunction", "vexitsub", "vexitproperty", "vexitdo", "vexitfor", "vreturn",
            "vrandomize", "vprint", "vtouch", "vglobals",
-           "vfunction", "vsub", "vpropertyget", "vpropertylet", "vpropertyset",
+           "vfunction", "vsub", "vlambda", "vpropertyget", "vpropertylet", "vpropertyset",
            "vinherits", "vclass", "vsource"]
 
 
@@ -66,6 +66,14 @@ class vname:
                 self.string = "check(%s)" % self.string
             self.string = "%s.%s" % (self.string, value)
             self.check = 1
+        return self
+
+    def join_safe(self, value):
+        # VAILS — optional chaining `obj?.member` : compose en vget(obj, "v_member"),
+        # qui renvoie Empty si obj est Null/Empty/Nothing (sinon accès membre normal).
+        # Chaînable (`a?.b?.c` -> vget(vget(a, "v_b"), "v_c")). cf. essentials.vget.
+        self.string = "vget(%s, %r)" % (self.string, value)
+        self.check = 0
         return self
 
     def let(self, value):
@@ -123,6 +131,12 @@ class vname:
     def __str__(self):
         result = self.string % (
             ("self.%s" % self.base if self.member else self.base, ) + self.values)
+        # VAILS — `f()` à zéro argument (Tier 4) : invoque une fonction-valeur via `vcall0`
+        # (no-op pour un non-appelable -> compat `x()` == `x`). Uniquement sur la forme pure
+        # `f()` (drapeau zerocall, aucun indice) ; pas en position d'lvalue (let/set effacent
+        # le drapeau).
+        if getattr(self, "zerocall", False) and not self.values:
+            result = "vcall0(%s)" % result
         return "check(%s)" % result if self.check else result
 
 
@@ -351,8 +365,11 @@ class vstatement:
 
 class vdeclarations(dict, vstatement):
 
-    def __init__(self, line=None):
+    def __init__(self, line=None, private=False):
         vstatement.__init__(self, line)
+        # VAILS — visibilité des champs (`Private x` vs `Dim`/`Public x`). Sert à
+        # `vclass` pour construire `_vs_private` (champs masqués de l'extérieur).
+        self.private = private
 
     def join(self, name, value):
         if name in self:
@@ -811,6 +828,37 @@ class vforeach(vstatement):
         return contents
 
 
+class vforeachkv(vstatement):
+    # VAILS — `For Each k, v In dict` (Tier 3) : déstructuration clé/valeur via vitems.
+
+    def __init__(self, key, value, collection, statements, line=None):
+        vstatement.__init__(self, line)
+        self.key = key
+        self.key.check = 0
+        self.value = value
+        self.value.check = 0
+        self.collection = collection
+        self.statements = statements
+
+    def scope_names(self, mysource, myclass, myprocedure):
+        vstatement.scope_names(self, mysource, myclass, myprocedure)
+        self.key.scope_names(mysource, myclass, myprocedure)
+        self.value.scope_names(mysource, myclass, myprocedure)
+        self.collection.scope_names(mysource, myclass, myprocedure)
+        self.statements.scope_names(mysource, myclass, myprocedure)
+
+    def compose(self, ident):
+        contents = [(self.line, ident, "for %s, %s in vitems(%s):" % (self.key, self.value, self.collection)),
+                    (self.line, ident+1, "try:")]
+        contents.extend(self.statements.compose(ident+2))
+        contents.append((self.line, ident+1, "except exitfor:"))
+        contents.append((self.line, ident+2, "break"))
+        contents.append((self.line, ident+1, "finally:"))
+        contents.append((self.line, ident+2, "%s=variant()" % self.key))
+        contents.append((self.line, ident+2, "%s=variant()" % self.value))
+        return contents
+
+
 class vfor(vstatement):
 
     def __init__(self, variable, range, statements, line=None):
@@ -1030,6 +1078,64 @@ class vexitproperty(vstatement):
         return ((self.line, ident, self.string),)
 
 
+class vreturn(vstatement):
+    # VAILS — `Return [expr]` (Tier 2 #5). Sucre : `Return expr` pose le résultat de la
+    # fonction courante PUIS sort ; `Return` nu = `Exit Function`/`Exit Sub`. L'ancienne
+    # forme `nomfonction = expr` reste valide (même slot `result`).
+
+    def __init__(self, value=None, line=None):
+        vstatement.__init__(self, line)
+        self.value = value
+
+    def scope_names(self, mysource, myclass, myprocedure):
+        if isinstance(myprocedure, (vfunction, vpropertyget)):
+            self.has_result = True
+            self.exit = "return %s.%s" % (python_result, python_value)
+        elif isinstance(myprocedure, (vsub, vpropertyletset)):
+            self.has_result = False
+            self.exit = "return v_mismatch"
+        else:
+            raise errors.expected_function(line=self.line)
+        if self.value is not None:
+            if not self.has_result:
+                raise errors.expected_function(line=self.line)  # `Return expr` hors Function/Get
+            self.value.scope_names(mysource, myclass, myprocedure)
+
+    def compose(self, ident):
+        if self.value is not None:
+            return ((self.line, ident, "%s(let=%s)" % (python_result, self.value)),
+                    (self.line, ident, self.exit))
+        return ((self.line, ident, self.exit),)
+
+
+class venumdef(vstatement):
+    # VAILS — `Enum NAME ... End Enum` (Tier 3). Compose en
+    # `v_<name>(let=venum_build([("membre", valeur|None), ...]))`. Membre -> entier
+    # (auto-incrément), accès `NAME.Membre`. cf. essentials.venum / venum_build.
+
+    def __init__(self, name, members, line=None):
+        vstatement.__init__(self, line)
+        self.name = name           # vname (nom de l'enum)
+        self.name.check = 0
+        self.members = members     # [(nom_minuscule, vexpression|None)]
+
+    def scope_names(self, mysource, myclass, myprocedure):
+        vstatement.scope_names(self, mysource, myclass, myprocedure)
+        self.name.scope_names(mysource, myclass, myprocedure)
+        for _name, expr in self.members:
+            if expr is not None:
+                expr.scope_names(mysource, myclass, myprocedure)
+
+    def compose(self, ident):
+        parts = []
+        for member_name, expr in self.members:
+            if expr is None:
+                parts.append("(%r, None)" % member_name)
+            else:
+                parts.append("(%r, %s)" % (member_name, expr))
+        return ((self.line, ident, "%s(set=venum_build([%s]))" % (self.name, ", ".join(parts))),)
+
+
 class vexitdo(vstatement):
 
     def __init__(self, line=None):
@@ -1122,6 +1228,9 @@ class vprocedure(vstatement):
         self.cachenames = {}
         self.statements.insert(0, vdefinename(self.name))
         self.precede = []
+        # VAILS — lambdas inline (Tier 4) hissées comme def Python imbriqués dans le
+        # corps de cette procédure (closures en lecture via upvalues). cf. vlambda.
+        self.lambdas = []
 
     def insert(self, *lines):
         for line in lines:
@@ -1162,6 +1271,11 @@ class vprocedure(vstatement):
         initialization.extend(
             [(self.line, ident + 1, "=".join([_f for _f in [", ".join([name for name, value in dims]),
                                                              ", ".join([value for name, value in dims])] if _f]))])
+        # VAILS — hissage : les lambdas définies dans ce corps sont émises en def
+        # imbriqués juste après l'initialisation, donc visibles avant leur usage et
+        # capturant les locaux englobants (upvalues Python). cf. vlambda.
+        for lamfn in self.lambdas:
+            initialization.extend(lamfn.compose(ident + 1))
         contents.extend(self.statements.compose(
             ident + 1, precede=initialization))
         return contents
@@ -1202,6 +1316,49 @@ class vsub(vprocedure):
                                   if self.name not in (python_constructor, python_destructor) else None)
 
 
+class vlambda:
+    # VAILS — lambda inline `Function(args) ... End Function` en position EXPRESSION
+    # (Tier 4). Pas de `lambda` Python possible (corps = statements, pas une expression) :
+    # on hisse (lambda lifting) un def Python imbriqué dans la procédure englobante —
+    # ce qui donne les closures EN LECTURE gratuitement (upvalues Python) — ou au niveau
+    # module. La valeur de l'expression est `vfuncref(<nom_synthétique>)`, réutilisant la
+    # machinerie fonction-de-1re-classe d'`AddressOf`. cf. essentials.vfuncref.
+    #
+    # Le nom synthétique `vlambda_<n>` ne commence PAS par le préfixe `v_` des identifiants
+    # utilisateur -> aucune collision possible avec une variable VScript.
+    #
+    # Capture LECTURE + ÉCRITURE : une variable VScript est une boîte `variant` mutable et
+    # `x = …` compile en `v_x(let=…)` (mutation en place, JAMAIS un rebind du nom Python).
+    # La closure partage donc la boîte par référence : muter un local englobant depuis la
+    # lambda se propage à l'appelant et l'état persiste entre appels (upvalues mutables, à la
+    # Lua) — aucun `nonlocal` requis. Seul un `Dim` interne crée une nouvelle boîte (shadow).
+
+    def __init__(self, arguments, statements, line=None):
+        self.line = line
+        self.arguments = arguments
+        self.statements = statements
+        self.synth = None
+
+    def scope_names(self, mysource, myclass, myprocedure):
+        if self.synth is not None:
+            return  # idempotent — déjà hissée
+        self.synth = "vlambda_%d" % mysource.next_lambda_id()
+        lamfn = vfunction(self.synth, self.arguments, self.statements, line=self.line)
+        lamfn.collect_names({})  # collecte params + Dim locaux de la lambda
+        # Capture : les locaux de la procédure englobante deviennent des noms nus (member=0)
+        # SANS ré-initialisation (valeur None -> pas de ligne d'init qui les masquerait) ; le
+        # def imbriqué les voit comme upvalues Python. La mutation passe par la boîte variant
+        # partagée (lecture ET écriture, cf. docstring) -> pas de `nonlocal` nécessaire.
+        if myprocedure is not None:
+            for nm in myprocedure.names:
+                lamfn.cachenames.setdefault(nm, None)
+        lamfn.scope_names(mysource, myclass, None)
+        (myprocedure.lambdas if myprocedure is not None else mysource.lambdas).append(lamfn)
+
+    def __str__(self):
+        return "vfuncref(%s)" % self.synth
+
+
 class vproperty(vstatement):
 
     def __init__(self, name, get=None, let=None, set=None, line=None):
@@ -1217,7 +1374,14 @@ class vproperty(vstatement):
             arguments.append(len(self.let.arguments))
         if self.set:
             arguments.append(len(self.set.arguments))
-        if len(arguments) > 1 and sum(arguments) / 3 != arguments[0]:
+        # VAILS — un property peut combiner get+let, get+set ou let+set (pas
+        # seulement les trois ensemble). Tous les accesseurs doivent exposer le
+        # même nombre d'arguments « indices » (pour get : len(args)+1 ; pour
+        # let/set : len(args), l'argument valeur en plus). Le contrôle d'origine
+        # `sum/3 == arguments[0]` ne valait QUE si get+let+set étaient présents
+        # tous les trois — il rejetait à tort toute paire (get+let typique d'une
+        # propriété lecture/écriture). On vérifie désormais l'égalité des comptes.
+        if len(arguments) > 1 and any(a != arguments[0] for a in arguments[1:]):
             raise errors.inconsistent_arguments_number(line=self.line)
         return [(self.line, ident, "def %s(self, *arguments, **keywords):" % self.name),
                 (self.line, ident+1, "if \"let\" in keywords:"),
@@ -1345,6 +1509,10 @@ class vclass(vstatement):
         self.inherits = None
         self.native = None
         self.parent = None
+        # VAILS — noms (v_-préfixés) des champs déclarés `Private` dans ce corps de
+        # classe. Émis en `_vs_private` (frozenset) et appliqués à l'accès membre
+        # externe (cf. variables.variable.__getattr__).
+        self.private_names = set()
 
     def collect_names(self, names):
         vstatement.collect_names(self, names)
@@ -1353,6 +1521,11 @@ class vclass(vstatement):
         names[self.name] = self
         self.names = {}
         self.statements.collect_names(self.names)
+        # VAILS — champs `Private` de ce corps : les déclarations sont des éléments
+        # directs de la liste de statements (cf. grammaire cstatements_c).
+        for statement in self.statements:
+            if isinstance(statement, vdeclarations) and statement.private:
+                self.private_names.update(statement.keys())
         self.default = self.names.get(python_default, None)
         self.constructor = self.names.get(vscript_constructor, None)
         self.destructor = self.names.get(vscript_destructor, None)
@@ -1408,6 +1581,17 @@ class vclass(vstatement):
     def compose(self, ident):
         contents = [(self.line, ident, "class %s(%s):" %
                      (self.name, self.inherits or "generic"))]
+        # VAILS — `_vs_private` : union des champs privés de cette classe et de toute
+        # la chaîne d'héritage (un enfant qui redéclare `_vs_private` masquerait sinon
+        # les privés du parent via l'héritage Python). Appliqué à l'accès membre externe.
+        private = set(self.private_names)
+        parent = self.parent
+        while parent is not None:
+            private |= getattr(parent, "private_names", set())
+            parent = getattr(parent, "parent", None)
+        if private:
+            contents.append((self.line, ident + 1, "_vs_private = frozenset({%s})" %
+                             ", ".join(repr(name) for name in sorted(private))))
         contents.extend(self.statements.compose(ident+1))
         return contents
 
@@ -1470,7 +1654,15 @@ class vsource:
         self.names = vsourcenames(environment)
         self.statements = statements
         self.package = package
+        # VAILS — lambdas (Tier 4) hissées au niveau module (myprocedure is None) +
+        # compteur de noms synthétiques uniques pour ce module.
+        self.lambdas = []
+        self._lambda_counter = 0
         self.collect_names()
+
+    def next_lambda_id(self):
+        self._lambda_counter += 1
+        return self._lambda_counter
 
     def collect_names(self):
         self.statements.collect_names(self.names)
@@ -1491,6 +1683,10 @@ class vsource:
         contents = [(None, ident, "from vscript import *")]
         if self.package:
             contents.insert(0, (None, 0, "__package__=\"%s\"" % self.package))
-        contents.extend(self.statements.compose(
-            ident=0, precede=self.names.compose(ident)))
+        # VAILS — lambdas de niveau module : émises en def avant les statements qui les
+        # utilisent (capturent les globals du module).
+        precede = self.names.compose(ident)
+        for lamfn in self.lambdas:
+            precede.extend(lamfn.compose(0))
+        contents.extend(self.statements.compose(ident=0, precede=precede))
         return contents
