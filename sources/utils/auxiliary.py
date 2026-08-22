@@ -1,6 +1,8 @@
 
 def enquote(value):
-    return "\"%s\"" % value.encode("unicode_escape").replace("\"", "\\\"")
+    # encode() answers bytes in py3, and replacing str inside bytes raises
+    # TypeError - so come back to text first, the way representation.py does.
+    return "\"%s\"" % value.encode("unicode_escape").decode("ascii").replace("\"", "\\\"")
 
 
 def headline(value):
