@@ -1,5 +1,6 @@
 import managers
 from traceback import print_exc
+from utils.exception import exception_message
 
 
 class InvalidParamsException(Exception):
@@ -62,7 +63,7 @@ def run(request):
                 if isinstance(ret, str):
                     ret = ret.encode("utf8", "ignore")
         except InvalidParamsException as ex:
-            request.write(f"<ERROR>{ex.message}</ERROR>".encode())
+            request.write(f"<ERROR>{exception_message(ex)}</ERROR>".encode())
         except Exception as e:
             print_exc()
             request.write(f"<ERROR>{e}</ERROR>" % e)

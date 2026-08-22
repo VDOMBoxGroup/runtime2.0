@@ -4,6 +4,7 @@ import json
 
 from copy import copy
 import sys
+from utils.exception import exception_message
 if sys.version_info[0] < 3:
     from collections import Mapping, MutableMapping
 else:
@@ -326,7 +327,7 @@ class VDOMObject(object):
         except BaseException as error:
             if xmldata.strip():
                 if isinstance(error, vdomxml.ParsingException):
-                    raise VDOMXMLParsingError(error.message,
+                    raise VDOMXMLParsingError(exception_message(error),
                                               getattr(error, "line", None), getattr(error, "column", None))
                 else:
                     raise

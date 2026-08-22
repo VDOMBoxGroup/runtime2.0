@@ -11,6 +11,7 @@ from .. import actions
 from ..packer import create_packer
 from ..stream import LogSocketStream
 from ..logger import BaseLogger
+from utils.exception import exception_message
 
 
 COUNTDOWN = 3.0
@@ -150,7 +151,7 @@ class Logger(BaseLogger):
                         entry[2].pack_into(self._stream, *entry[3])
                 return 0
             except OSError as error:
-                log.error(error.strerror or error.message)
+                log.error(error.strerror or exception_message(error))
                 self._stream = None
         except UnicodeDecodeError as e:
             log.error("nonascii data in native logger: %s" % e)

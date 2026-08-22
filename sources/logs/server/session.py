@@ -12,6 +12,7 @@ from ..stream import LogSocketStream, NoDataException, ShutdownException
 from ..loggers import Logger
 from .reader import LogReader
 from .writer import LogWriter
+from utils.exception import exception_message
 
 
 COUNTDOWN = 3.0
@@ -159,5 +160,5 @@ class LogServerSession(SmartDaemon):
             except ShutdownException:
                 break
             except socket.error as error:
-                server_log.error(error.strerror or error.message)
+                server_log.error(error.strerror or exception_message(error))
                 self.halt()

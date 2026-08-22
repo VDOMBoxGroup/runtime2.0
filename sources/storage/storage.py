@@ -10,6 +10,7 @@ from utils.exception import VDOM_exception
 from utils.mutex import VDOM_named_mutex_auto
 import settings
 from .daemon import VDOM_storage_writer
+from utils.exception import exception_message
 
 _save_sql = "INSERT OR REPLACE INTO Resource_index (res_id, app_id, filename, name, res_type,res_format) VALUES (?, ?,?,?,?,?)"
 # __update_sql = "UPDATE Resource_index filename=?, name =? , res_type = ?, res_format = ? WHERE res_id=? "
@@ -277,7 +278,7 @@ class VDOM_storage(object):
             return data
         except Exception as e:
             debug("Error reading object '%s' from the storage" % key)
-            debug(e.message)
+            debug(exception_message(e))
             return None
 
     def write_object(self, key, object):
@@ -287,7 +288,7 @@ class VDOM_storage(object):
             data = pickle.dumps(object)
         except Exception as e:
             debug("Error writing object '%s' to the storage" % key)
-            debug(e.message)
+            debug(exception_message(e))
             return False
         return self.write(key, data)
 
@@ -298,7 +299,7 @@ class VDOM_storage(object):
             data = pickle.dumps(object)
         except Exception as e:
             debug("Error writing object '%s' to the storage" % key)
-            debug(e.message)
+            debug(exception_message(e))
             return False
         return self.write_async(key, data)
 

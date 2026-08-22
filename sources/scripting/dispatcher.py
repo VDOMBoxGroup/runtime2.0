@@ -9,6 +9,7 @@ from utils.properties import roproperty
 from utils.tracing import format_exception_trace, show_exception_trace
 
 import managers
+from utils.exception import exception_message
 
 # import utils
 # from utils.exception import *
@@ -111,7 +112,7 @@ class Dispatcher(object):
         try:
             managers.engine.execute(action)
         except Exception as error:
-            if hasattr(error, "message") and isinstance(error.message, str):
+            if hasattr(error, "message") and isinstance(exception_message(error), str):
                 message = str(error).encode("utf8")
             else:
                 message = str(error)

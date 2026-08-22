@@ -5,6 +5,7 @@ from suds.client import Client
 # import SOAPpy
 
 from utils.exception import VDOMServiceCallError
+from utils.exception import exception_message
 
 
 __version__ = '0.1.6'
@@ -72,7 +73,7 @@ class VDOMServiceSingleThread(object):
             if ret:
                 raise VDOMServiceCallError(str(ret))
             else:
-                raise VDOMServiceCallError(ex.message)
+                raise VDOMServiceCallError(exception_message(ex))
 
         if ret == 'None':
             raise VDOMServiceCallError('Session is closed')

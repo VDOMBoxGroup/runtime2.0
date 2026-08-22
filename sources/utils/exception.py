@@ -1,4 +1,23 @@
 
+def exception_message(error):
+    """What "error.message" used to give in Python 2.
+
+    Python 3 removed BaseException.message, so "except Exception as ex: ...
+    ex.message" raises AttributeError from inside the handler and destroys the
+    error it was meant to report - the failure then surfaces somewhere else, or
+    not at all.
+
+    A plain str(error) is not enough: several exception classes here and in the
+    application set self.message themselves - vscript.errors, scripting.object,
+    memory.vdomxml and memory.vdomjson among them - and some callers use that
+    value as a lookup key. So the attribute wins where it exists, and str()
+    covers the rest, which for a single-argument exception is the same string
+    Python 2 gave. That makes this a safe replacement at every call site.
+    """
+    message = getattr(error, "message", None)
+    return message if message is not None else str(error)
+
+
 class VDOM_exception(Exception):
 
     def __init__(self, desc=""):

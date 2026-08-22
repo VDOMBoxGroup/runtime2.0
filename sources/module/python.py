@@ -4,6 +4,7 @@ import sys
 from .module import VDOM_module
 from utils.exception import VDOM_exception
 import admin # noqa
+from utils.exception import exception_message
 
 
 class VDOM_module_python(VDOM_module):
@@ -22,10 +23,10 @@ class VDOM_module_python(VDOM_module):
             if script_name.isalnum():
                 exec("admin." + script_name + ".run(request)")
         except VDOM_exception as e:
-            if e.message != "Authentication failed": #TODO: replace it with VDOM_exception_auth_failed
+            if exception_message(e) != "Authentication failed": #TODO: replace it with VDOM_exception_auth_failed
                 # traceback.print_exc(file=debugfile)
                 sys.excepthook(*sys.exc_info())
-            debug("Error: %s" % e.message)
+            debug("Error: %s" % exception_message(e))
         except Exception as e:
             debug("Error: %s" % e)
             # traceback.print_exc(file=debugfile)

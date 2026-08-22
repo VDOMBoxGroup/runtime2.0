@@ -9,6 +9,7 @@ from .exceptions import AbortingError, ParsingException, \
 from .subparsers import elements, nothing
 from .auxiliary import empty_builder, uncover, lower as lower_decorator
 from .legacy import LegacyInterface
+from utils.exception import exception_message
 
 
 MISSING = "MISSING"
@@ -221,7 +222,7 @@ class Parser(LegacyInterface):
             error.column = self._parser.CurrentColumnNumber
 
             if self._supress:
-                self.notify(error.message)
+                self.notify(exception_message(error))
             else:
                 raise
         except AbortingError as error:

@@ -7,6 +7,7 @@ from memory import VSCRIPT_EXTENSION, PYTHON_EXTENSION, SYMBOLS_EXTENSION, BYTEC
 from ..constants import LISTING, SYMBOLS, BYTECODE
 from ..bytecode import Bytecode
 from ..exceptions import SourceSyntaxError, RequirePrecompileError
+from utils.exception import exception_message
 
 
 vengine = import_module("vscript.engine")
@@ -32,7 +33,7 @@ class VScriptBytecode(Bytecode):
             else:
                 raise
         except (verrors.invalid_character, verrors.syntax_error) as error:
-            raise SourceSyntaxError(error.message, lineno=error.line)
+            raise SourceSyntaxError(exception_message(error), lineno=error.line)
         bytecode = python_compile(listing, signature or executable.signature, "exec")
         return cls(executable, bytecode, listing=listing, symbols=symbols)
 

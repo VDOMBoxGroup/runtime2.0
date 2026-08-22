@@ -75,6 +75,7 @@ from version import SERVER_VERSION as VDOM_server_version
 
 # NOTE: this dirty hack is needed because soap utils override server ones
 from importlib import import_module
+from utils.exception import exception_message
 
 show_exception_trace = import_module("utils.tracing").show_exception_trace
 verificators = import_module("utils.verificators")
@@ -611,7 +612,7 @@ class VDOM_web_services_server:
             import traceback
 
             traceback.print_exc(file=debugfile)
-            raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), e.message)
+            raise SOAPpy.faultType(struct_check_error, _("Structure validation error (1)"), exception_message(e))
         finally:
             if x:
                 x.delete()
@@ -817,7 +818,7 @@ class VDOM_web_services_server:
             return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
         except Exception as e:
             show_exception_trace(label="SOAP Copy Object", locals=True)
-            return self.__format_error(e.message)
+            return self.__format_error(exception_message(e))
 
     def move_object(self, sid, skey, appid, parentid, objid):
         raise NotImplementedError
@@ -870,7 +871,7 @@ class VDOM_web_services_server:
             return self.__get_object(copy_obj) + ("\n<ApplicationID>%s</ApplicationID>" % appid)
         except Exception as e:
             show_exception_trace(label="SOAP Move Object", locals=True)
-            return self.__format_error(e.message)
+            return self.__format_error(exception_message(e))
 
     def delete_object(self, sid, skey, appid, objid):
         """delete object from application"""
@@ -1557,7 +1558,7 @@ class VDOM_web_services_server:
             except Exception as e:
                 if server_actions_element:
                     server_actions_element.delete()
-                raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
+                raise SOAPpy.faultType(event_format_error, _("XML error"), exception_message(e))
 
         xml_client_action = "<ClientActions>\n"
         if obj:
@@ -1600,7 +1601,7 @@ class VDOM_web_services_server:
         except Exception as e:
             if client_actions_element:
                 client_actions_element.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
+            raise SOAPpy.faultType(event_format_error, _("XML error"), exception_message(e))
         if copy_object:
             appl.set_e2vdom_actions(copy_object, client_actions_element)
             if server_actions_element:
@@ -1657,7 +1658,7 @@ class VDOM_web_services_server:
         except Exception as e:
             if events_element:
                 events_element.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
+            raise SOAPpy.faultType(event_format_error, _("XML error"), exception_message(e))
 
         tgt_app.set_e2vdom_events(new_obj, events_element)
         events_element.delete()
@@ -2243,7 +2244,7 @@ class VDOM_web_services_server:
         except Exception as e:
             if root:
                 root.delete()
-            raise SOAPpy.faultType(event_format_error, _("XML error"), e.message)
+            raise SOAPpy.faultType(event_format_error, _("XML error"), exception_message(e))
         root.name = "Actions"
         if obj:
             obj.set_actions(root)
@@ -2629,10 +2630,10 @@ class VDOM_web_services_server:
             return managers.dispatcher.dispatch_remote_method(obj, func_name, xml_param, session_id=session_id)
         except Exception as error:
             if hasattr(error, "message"):
-                if isinstance(error.message, str):
-                    message = error.message.encode("utf8")
+                if isinstance(exception_message(error), str):
+                    message = exception_message(error).encode("utf8")
                 else:
-                    message = error.message
+                    message = exception_message(error)
             else:
                 message = str(error)
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
@@ -2650,10 +2651,10 @@ class VDOM_web_services_server:
             managers.engine.execute(action)
         except Exception as error:
             if hasattr(error, "message"):
-                if isinstance(error.message, str):
-                    message = error.message.encode("utf8")
+                if isinstance(exception_message(error), str):
+                    message = exception_message(error).encode("utf8")
                 else:
-                    message = error.message
+                    message = exception_message(error)
             else:
                 message = str(error)
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
@@ -2988,7 +2989,7 @@ class VDOM_web_services_server:
                     try:
                         _new_obj.set_name(_name)
                     except VDOM_exception as e:
-                        debug(e.message)
+                        debug(exception_message(e))
                 # set attributes
                 for aname in _attr_map:
                     _new_obj.set_attribute(aname, _attr_map[aname], False)
