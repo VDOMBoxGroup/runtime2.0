@@ -271,6 +271,28 @@ class v_xmlattributemap(generic):
     def __init__(self, attributes):
         self._attributes = attributes
 
+    def __call__(self, *arguments, **keywords):
+        """Attributes("id") and Attributes(0).
+
+        v_attributes() already ends in "collection if index is None else
+        collection(index)", so it has always meant to call this - and there was
+        no __call__, so every indexed access raised
+        "Object doesn't support this property or method" with no name in it.
+        Only Attributes.Item(n) worked, and only by index.
+
+        A string looks the attribute up by name, which is what a named node map
+        is for; a number keeps the positional form v_xmlnodelist offers.
+        """
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("attributes")
+        if len(arguments) != 1:
+            raise errors.wrong_number_of_arguments
+        key = arguments[0]
+        if isinstance(key, string):
+            node = self._attributes.getNamedItem(key.as_string)
+            return v_nothing if node is None else v_xmlattribute(node)
+        return v_xmlattribute(self._attributes.item(key.as_integer))
+
     def v_length(self, **keywords):
         if "let" in keywords or "set" in keywords:
             raise errors.object_has_no_property("length")
