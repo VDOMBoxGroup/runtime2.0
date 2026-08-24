@@ -546,6 +546,33 @@ def expand_fstrings(src):
     return u"".join(out)
 
 
+def t_verbatim_string(t):
+    # A string that may span lines, written @"...". The ordinary literal
+    # cannot: its pattern excludes a newline on purpose, so a missing closing
+    # quote stays a one-line mistake instead of swallowing the rest of the
+    # file. That protection is worth keeping, so this is a separate, opt-in
+    # form rather than a loosening of the existing one.
+    #
+    # "@" was free: it appears in no other rule and in no literal.
+    #
+    # Triple quotes were the obvious choice and are not available. Four quotes
+    # is already how a lone double-quote is written, and this repository uses
+    # it - lib_vails.vb and lib_console.vb both do. A triple-quote delimiter
+    # would have re-read that as an opening delimiter and broken working code.
+    #
+    # Escaping is the same as everywhere else in the language - two quotes are
+    # one quote - so there is one rule to know rather than two. The alternation
+    # cannot cross a lone closing quote, which is what stops a literal that
+    # ends in a quote from being cut one character short. That exact mistake is
+    # live in the VAILS parser today, in its << >> rule.
+    r'@\"([^\"]|(\"\"))*\"'
+    t.type = u"STRING"
+    start = t.lexer.lineno
+    t.lexer.lineno += t.value.count(u"\n")
+    t.value = (start, str(t.value[2:-1].replace(u"\"\"", u"\"")))
+    return t
+
+
 def t_string(t):
     r'\"([^\"\n]|(\"\"))*\"'
     t.type = u"STRING"
