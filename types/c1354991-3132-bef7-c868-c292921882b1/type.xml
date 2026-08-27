@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+	<Information>
+		<ID>c1354991-3132-bef7-c868-c292921882b1</ID>
+		<Name>cropper</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_cropper</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.492.0</Version>
+		<Category>Additional</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(905dbdb8-e199-6069-34f6-c297723ed941)</Icon>
+		<EditorIcon>#Res(88f489e8-30f8-4795-f019-c29847172908)</EditorIcon>
+		<StructureIcon>#Res(4731ad61-47fc-1a6a-c785-c2984e96ea96)</StructureIcon>
+		<Dynamic>0</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>1</Container>
+		<Containers>htmlcontainer, dialog, dialog_2, container, tablecell, form, vdomclass, flexcontainer</Containers>
+		<Handlers>on_compile, on_update</Handlers>
+		<Languages>en_US</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>classname</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(500)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>static</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|absolute)|(#Lang(402)|static)|(#Lang(403)|relative)|(#Lang(404)|fixed))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^(\d+(px|em|rem|vh|vw|%$)?|auto)?$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(10)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>displaying</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|)|(#Lang(406)|block)|(#Lang(407)|inline)|(#Lang(408)|flex)|(#Lang(409)|inline-block))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>crop_width</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue>300</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(5)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>crop_height</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(5)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>value</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>File()</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>database64</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine()</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>fill_container</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(411)|0)|(#Lang(412)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>preview_mode</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(413)|0)|(#Lang(414)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hide_render</Name>
+			<DisplayName>#Lang(116)</DisplayName>
+			<Description>#Lang(216)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(415)|0)|(#Lang(416)|1))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>scale</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(417)|0.5)|(#Lang(418)|1)|(#Lang(419)|1.5)|(#Lang(421)|2)|(#Lang(422)|2.5))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>style</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(218)</Description>
+			<DefaultValue>#%(id)s .preview-cropper {
+  margin-bottom: 15px;
+  border: 1px solid #b5c3cf !important;
+  position: static !important;
+  overflow: hidden !important;
+  background-color: #f2f2f2;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#%(id)s .cropper_holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#%(id)s .cropper-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#%(id)s .cropper-modal-dialog[open] {
+  opacity: 1;
+  pointer-events: inherit;
+}
+
+#%(id)s .cropper-modal-dialog {
+  z-index: 10000 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  padding: 0px;
+}
+
+#%(id)s .dialog_cropper::backdrop {
+  background: rgba(47, 47, 47, 0.6);
+}
+
+#%(id)s .cropper-content {
+  padding: 0px 50px 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#%(id)s .cropper-modal-dialog .cropper-wrapper {
+  background-color: white;
+  max-height: 100%%;
+  overflow: hidden;
+}
+
+#%(id)s .cropper-content .btn_wrapper {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%%;
+}
+
+#%(id)s .dialog_cropper .title-bar {
+  position: relative;
+  background-color: #fff !important;
+  padding: 1px;
+  font-size: 10px;
+  text-align: center;
+}
+
+#%(id)s .dialog_cropper .title-bar h2 {
+  color: #262626;
+  font-size: 16px !important;
+  padding: 30px 50px !important;
+  padding-bottom: 15px !important;
+  font-weight: 600;
+  margin: 0px !important;
+  text-align: left !important;
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn {
+  outline: none;
+  background: url(&quot;&quot;) !important;
+  font: 0 / 0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent !important;
+  border: 0;
+  display: block;
+  position: absolute;
+  right: 20px !important;
+  top: 20px !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0;
+  padding: 0;
+  z-index: 10000;
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn:before {
+  display: block;
+  content: &quot;&quot;;
+  width: 1px;
+  height: 100%%;
+  background-color: #3e3e3e;
+  position: absolute;
+  right: 50%%;
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn:after {
+  display: block;
+  content: &quot;&quot;;
+  width: 1px;
+  height: 100%%;
+  background-color: #3e3e3e;
+  position: absolute;
+  right: 50%%;
+  -webkit-transition: all 0.15s ease;
+  transition: all 0.15s ease;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn:hover {
+  border: 0px inset #999999 !important;
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn:hover:before {
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90eg);
+  width: 2px !important;
+}
+
+#%(id)s .dialog_cropper .title-bar a.close_btn:hover:after {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  width: 2px !important;
+}
+
+#%(id)s .btn_wrapper .yes_btn {
+  position: static !important;
+  display: inline !important;
+  width: initial !important;
+  text-align: center !important;
+  margin-top: 0px;
+  padding: 12px 20px;
+  background: #262626;
+  height: auto !important;
+  border-radius: 5px;
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: 0px;
+  cursor: pointer;
+  margin-right: 5px;
+  opacity: 0.9;
+}
+
+#%(id)s .btn_wrapper .yes_btn:hover {
+  opacity: 1;
+}
+
+#%(id)s .btn_wrapper .no_btn {
+  position: static !important;
+  display: inline !important;
+  width: initial !important;
+  text-align: center !important;
+  margin-top: 0px;
+  padding: 12px 20px;
+  background: transparent;
+  height: auto !important;
+  border-radius: 5px;
+  color: #262626 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: 0px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+#%(id)s .btn_wrapper .no_btn:hover {
+  background-color: #f3f5f7 !important;
+}
+
+#%(id)s .btn_wrapper .plus_btn,
+#%(id)s .btn_wrapper .minus_btn {
+  position: static !important;
+  display: inline !important;
+  width: initial !important;
+  text-align: center !important;
+  margin-top: 0px;
+  padding: 12px 20px;
+  background: transparent;
+  height: 39px !important;
+  border-radius: 5px;
+  color: #262626 !important;
+  font-weight: 600;
+  font-size: 13px !important;
+  border: 0px;
+  cursor: pointer;
+  margin-right: 5px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+
+#%(id)s .btn_wrapper .plus_btn {
+  background-image: url(/fdbc57b2-2e93-1161-53cd-e198a01f3a26.svg);
+}
+
+#%(id)s .btn_wrapper .minus_btn {
+  background-image: url(/e5b8c78f-c753-d954-4eeb-e198aa7e9e8a.svg);
+}
+
+#%(id)s .btn_wrapper .plus_btn:hover,
+#%(id)s .minus_btn:hover {
+  background-color: #F2F3F3;
+}</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine()</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>skin</Name>
+			<DisplayName>#Lang(119)</DisplayName>
+			<Description>#Lang(219)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(423)|0)|(#Lang(424)|1)|(#Lang(425)|2))</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>form_uploader_class</Name>
+			<DisplayName>#Lang(121)</DisplayName>
+			<Description>#Lang(221)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField()</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>guid_image_field_name</Name>
+			<DisplayName>#Lang(122)</DisplayName>
+			<Description>#Lang(222)</Description>
+			<DefaultValue>image-guid</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(30)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>data_image_field_name</Name>
+			<DisplayName>#Lang(123)</DisplayName>
+			<Description>#Lang(223)</Description>
+			<DefaultValue>image-url</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(30)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(124)</DisplayName>
+			<Description>#Lang(224)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(125)</DisplayName>
+			<Description>#Lang(225)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(426)|1)|(#Lang(427)|0))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_top</Name>
+			<DisplayName>#Lang(126)</DisplayName>
+			<Description>#Lang(226)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_left</Name>
+			<DisplayName>#Lang(127)</DisplayName>
+			<Description>#Lang(227)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_height</Name>
+			<DisplayName>#Lang(128)</DisplayName>
+			<Description>#Lang(228)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(328)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>ide_width</Name>
+			<DisplayName>#Lang(129)</DisplayName>
+			<Description>#Lang(229)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(329)</ErrorValidationMessage>
+			<Visible>0</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Cropper Editor</Sentence>
+			<Sentence ID="002">Description</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101">CSS Class</Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Position</Sentence>
+			<Sentence ID="104">Top</Sentence>
+			<Sentence ID="105">Left</Sentence>
+			<Sentence ID="106">Width</Sentence>
+			<Sentence ID="107">Height</Sentence>
+			<Sentence ID="108">Display</Sentence>
+			<Sentence ID="109">Crop Width</Sentence>
+			<Sentence ID="111">Crop Height</Sentence>
+			<Sentence ID="112">Value</Sentence>
+			<Sentence ID="113">Data Base64</Sentence>
+			<Sentence ID="114">Fill to container size</Sentence>
+			<Sentence ID="115">Preview Mode</Sentence>
+			<Sentence ID="116">Hide on render</Sentence>
+			<Sentence ID="117">Scale</Sentence>
+			<Sentence ID="118">Style</Sentence>
+			<Sentence ID="119">Skin</Sentence>
+			<Sentence ID="121">Form-upload Class</Sentence>
+			<Sentence ID="122">Name of the form field with image guid</Sentence>
+			<Sentence ID="123">Name of the form field with image data</Sentence>
+			<Sentence ID="124">Z-Index</Sentence>
+			<Sentence ID="125">Visibility</Sentence>
+			<Sentence ID="126">IDE_top</Sentence>
+			<Sentence ID="127">IDE_left</Sentence>
+			<Sentence ID="128">IDE_height</Sentence>
+			<Sentence ID="129">IDE_width</Sentence>
+			<Sentence ID="201">Incorrect value</Sentence>
+			<Sentence ID="202">Order of rendering the object on the page. By default the value of hierarchy is 0, that means, that the object will be rendered in the order it is written in the XML-file of the VDOM application.</Sentence>
+			<Sentence ID="203">newAttribute8</Sentence>
+			<Sentence ID="204">newAttribute4</Sentence>
+			<Sentence ID="205">newAttribute3</Sentence>
+			<Sentence ID="206">newAttribute7</Sentence>
+			<Sentence ID="207">newAttribute2</Sentence>
+			<Sentence ID="208">newAttribute9</Sentence>
+			<Sentence ID="209">newAttribute14</Sentence>
+			<Sentence ID="211">newAttribute15</Sentence>
+			<Sentence ID="212">The image’s resource identifier. If both database64 and Value parameters are set, the prior will be the Value attribute.</Sentence>
+			<Sentence ID="213">The image’s resource identifier. If both database64 and Value parameters are set, the prior will be the Value attribute.</Sentence>
+			<Sentence ID="214">If “Yes” is selected, the picture will be created without transparent fields, i.e. in the same view as it is placed in the editor</Sentence>
+			<Sentence ID="215">Displays a clickable preview image in place of the editor, which, when clicked, will open the dialog with the editor.</Sentence>
+			<Sentence ID="216">Hides the component when rendering and shows it when the image is uploaded</Sentence>
+			<Sentence ID="217">newAttribute21</Sentence>
+			<Sentence ID="218">newAttribute10</Sentence>
+			<Sentence ID="219">newAttribute20</Sentence>
+			<Sentence ID="221">newAttribute11</Sentence>
+			<Sentence ID="222">newAttribute22</Sentence>
+			<Sentence ID="223">newAttribute23</Sentence>
+			<Sentence ID="224">Position in visual hierarchy of objects. If you have several objects in one container situated on each other, the z-index indicates the order of their displaying. The larger z-index is, the upper the object lies.</Sentence>
+			<Sentence ID="225">Visibility of the object.</Sentence>
+			<Sentence ID="226">newAttribute16</Sentence>
+			<Sentence ID="227">newAttribute17</Sentence>
+			<Sentence ID="228">newAttribute18</Sentence>
+			<Sentence ID="229">newAttribute19</Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Incorrect value, must be positive integer from 0 to 99.</Sentence>
+			<Sentence ID="303">newAttribute8</Sentence>
+			<Sentence ID="304">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="305">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="306">newAttribute7</Sentence>
+			<Sentence ID="307">newAttribute2</Sentence>
+			<Sentence ID="308">newAttribute9</Sentence>
+			<Sentence ID="309">newAttribute14</Sentence>
+			<Sentence ID="311">newAttribute15</Sentence>
+			<Sentence ID="312"></Sentence>
+			<Sentence ID="313">Incorrect value</Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316"></Sentence>
+			<Sentence ID="317">newAttribute21</Sentence>
+			<Sentence ID="318">newAttribute10</Sentence>
+			<Sentence ID="319">newAttribute20</Sentence>
+			<Sentence ID="321">newAttribute11</Sentence>
+			<Sentence ID="322">newAttribute22</Sentence>
+			<Sentence ID="323">newAttribute23</Sentence>
+			<Sentence ID="324">Incorrect value, must be positive integer</Sentence>
+			<Sentence ID="325">Incorrect value, must be either 0 or 1.</Sentence>
+			<Sentence ID="326">newAttribute16</Sentence>
+			<Sentence ID="327">newAttribute17</Sentence>
+			<Sentence ID="328">newAttribute18</Sentence>
+			<Sentence ID="329">newAttribute19</Sentence>
+			<Sentence ID="401">Absolute</Sentence>
+			<Sentence ID="402">Static</Sentence>
+			<Sentence ID="403">Relative</Sentence>
+			<Sentence ID="404">Fixed</Sentence>
+			<Sentence ID="405"></Sentence>
+			<Sentence ID="406">Block</Sentence>
+			<Sentence ID="407">Inline</Sentence>
+			<Sentence ID="408">Flex</Sentence>
+			<Sentence ID="409">Inline-block</Sentence>
+			<Sentence ID="411">No</Sentence>
+			<Sentence ID="412">Yes</Sentence>
+			<Sentence ID="413">Off</Sentence>
+			<Sentence ID="414">On</Sentence>
+			<Sentence ID="415">No</Sentence>
+			<Sentence ID="416">Yes</Sentence>
+			<Sentence ID="417">0.5</Sentence>
+			<Sentence ID="418">1</Sentence>
+			<Sentence ID="419">1.5</Sentence>
+			<Sentence ID="421">2</Sentence>
+			<Sentence ID="422">2.5</Sentence>
+			<Sentence ID="423">Empty</Sentence>
+			<Sentence ID="424">FlowFusion</Sentence>
+			<Sentence ID="425">User defined</Sentence>
+			<Sentence ID="426">Yes</Sentence>
+			<Sentence ID="427">No</Sentence>
+			<Sentence ID="501">Add new CSS class</Sentence>
+			<Sentence ID="502">methodName6</Sentence>
+			<Sentence ID="503">methodName0</Sentence>
+			<Sentence ID="504">Remove CSS class</Sentence>
+			<Sentence ID="505">methodName3</Sentence>
+			<Sentence ID="506">methodName4</Sentence>
+			<Sentence ID="507">methodName1</Sentence>
+			<Sentence ID="508">Toggle CSS class</Sentence>
+			<Sentence ID="509">methodName2</Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="601">addClass</Sentence>
+			<Sentence ID="602">clearCropper</Sentence>
+			<Sentence ID="603">hide</Sentence>
+			<Sentence ID="604">removeClass</Sentence>
+			<Sentence ID="605">imageStart</Sentence>
+			<Sentence ID="606">setImageFile</Sentence>
+			<Sentence ID="607">show</Sentence>
+			<Sentence ID="608">toggleClass</Sentence>
+			<Sentence ID="609">updateClass</Sentence>
+			<Sentence ID="701">className</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703">className</Sentence>
+			<Sentence ID="704">imageData</Sentence>
+			<Sentence ID="705">imageFile</Sentence>
+			<Sentence ID="706">Fade</Sentence>
+			<Sentence ID="707">className</Sentence>
+			<Sentence ID="708">newClass</Sentence>
+			<Sentence ID="801">Name of CSS class</Sentence>
+			<Sentence ID="802"></Sentence>
+			<Sentence ID="803">Name of CSS class</Sentence>
+			<Sentence ID="804">scriptName0</Sentence>
+			<Sentence ID="805">scriptName0</Sentence>
+			<Sentence ID="806">scriptName0</Sentence>
+			<Sentence ID="807">Name of CSS class</Sentence>
+			<Sentence ID="808">scriptName0</Sentence>
+			<Sentence ID="901">newParameter0</Sentence>
+		</Language>
+	</Languages>
+	<Libraries>
+		<Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/e9f9999a-fc8d-f8d1-bb8c-c2c43a1792bb.css" />]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/1312fe39-ba9e-839f-4ff1-c2c431f3d4e2.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/bc195d80-6ffd-74af-42c6-94c6065e96c6.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/e3869852-efe4-7ee7-f555-9694d8ed7092.js'></script>]]></Library>
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="cancelClicked" Description="#Lang(511)"/>
+				<Event Name="saveClicked" Description="#Lang(512)">
+					<Parameters>
+						<Parameter Name="imagedata" Description="#Lang(901)" Order="0"/>
+					</Parameters>
+				</Event>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="addClass" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).addClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="clearCropper" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<SourceCode>
+<![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).data('MyImageCropper').clearCropper();]]>
+					</SourceCode>
+				</Action>
+				<Action Name="hide" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(this.domCont).hide(fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(604)" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setImageData" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="imageData" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ imgData: imageData});]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setImageFile" DisplayName="#Lang(606)" Description="#Lang(506)">
+					<Parameters>
+						<Parameter Name="imageFile" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="evt_param(&apos;uploaded&apos;)[0]" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ imgFile: imageFile});]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(607)" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(this.domCont).show(fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="toggleClass" DisplayName="#Lang(608)" Description="#Lang(508)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(this.domCont).toggleClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="updateClass" DisplayName="#Lang(609)" Description="#Lang(509)">
+					<Parameters>
+						<Parameter Name="newClass" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="" RegularExpressionValidation="" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$(`#${this.domCont.id} .cropper-wrapper`).MyImageCropper({ uploadClass: newClass});]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
+</Type>

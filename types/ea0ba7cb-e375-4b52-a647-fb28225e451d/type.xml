@@ -1,0 +1,1036 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+	<Information>
+		<ID>ea0ba7cb-e375-4b52-a647-fb28225e451d</ID>
+		<Name>gantt</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_gantt</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.5.2</Version>
+		<Category>Additional</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(b45e4301-fae1-98de-b355-a2ce418f89fb)</Icon>
+		<EditorIcon>#Res(0fb8f2c5-8feb-1da9-6303-a2cf84550545)</EditorIcon>
+		<StructureIcon>#Res(2c3ca31c-4d5d-9632-734c-a2ce5bc319c7)</StructureIcon>
+		<Dynamic>1</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>1</Container>
+		<Containers>htmlcontainer</Containers>
+		<Languages>en_US, fr_FR, ru_RU</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>stateful</Name>
+			<DisplayName>#Lang(101)</DisplayName>
+			<Description>#Lang(201)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(301)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(401)|0)|(#Lang(402)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(102)</DisplayName>
+			<Description>#Lang(202)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(302)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(103)</DisplayName>
+			<Description>#Lang(203)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(303)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(403)|0)|(#Lang(404)|1))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning1</Name>
+			<DisplayName>#Lang(104)</DisplayName>
+			<Description>#Lang(204)</Description>
+			<DefaultValue>absolute</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(304)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(405)|absolute)|(#Lang(406)|static)|(#Lang(407)|relative))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(105)</DisplayName>
+			<Description>#Lang(205)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(305)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(106)</DisplayName>
+			<Description>#Lang(206)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(306)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(107)</DisplayName>
+			<Description>#Lang(207)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(307)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(108)</DisplayName>
+			<Description>#Lang(208)</Description>
+			<DefaultValue>130</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(308)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(109)</DisplayName>
+			<Description>#Lang(209)</Description>
+			<DefaultValue>22</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(309)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>columns</Name>
+			<DisplayName>#Lang(111)</DisplayName>
+			<Description>#Lang(211)</Description>
+			<DefaultValue>[
+          { name: &quot;text&quot;, tree: true, width: 200, resize: true, label: &quot;Mission&quot; },
+          { name: &quot;start_date&quot;, align: &quot;center&quot;, width: 100, resize: true, label: &quot;Start date&quot; },
+          { name: &quot;duration&quot;, align: &quot;center&quot;, width: 100, resize: true, label: &quot;Duration&quot; },
+          { name: &quot;add&quot;, width: 44, resize: true, hide: false }
+        ]</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(311)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>data</Name>
+			<DisplayName>#Lang(112)</DisplayName>
+			<Description>#Lang(212)</Description>
+			<DefaultValue>{
+          &quot;data&quot;: [
+            {
+              &quot;id&quot;: 1,
+              &quot;redactor&quot;: &quot;Natalu VULCAN&quot;,
+              &quot;text&quot;: &quot;BOREALIS CHIMIE SAS GRANDPUITS&quot;,
+              &quot;start_date&quot;: &quot;&quot;,
+              &quot;duration&quot;: 0,
+              &quot;progress&quot;: 0.4,
+              &quot;open&quot;: true,
+              &quot;editable&quot;: false,
+              &quot;readonly&quot;: true
+            },
+            {
+              &quot;id&quot;: 2,
+              &quot;redactor&quot;: &quot;&quot;,
+              &quot;text&quot;: &quot;REUNION&quot;,
+              &quot;start_date&quot;: &quot;02-04-2018&quot;,
+              &quot;duration&quot;: 24,
+              &quot;progress&quot;: 0.6,
+              &quot;parent&quot;: 1,
+              &quot;open&quot;: true
+            },
+            {
+              &quot;id&quot;: 3,
+              &quot;redactor&quot;: &quot;Konstantin DZUBA&quot;,
+              &quot;text&quot;: &quot;Deplacement&quot;,
+              &quot;start_date&quot;: &quot;05-04-2018&quot;,
+              &quot;duration&quot;: 68,
+              &quot;progress&quot;: 0.6,
+              &quot;parent&quot;: 2
+            },
+            {
+              &quot;id&quot;: 4,
+              &quot;redactor&quot;: &quot;Danil ERMOLENKO&quot;,
+              &quot;text&quot;: &quot;Prise de nodes&quot;,
+              &quot;start_date&quot;: &quot;11-04-2018&quot;,
+              &quot;duration&quot;: 15,
+              &quot;progress&quot;: 0.6,
+              &quot;parent&quot;: 2,
+              &quot;deadlines&quot;: true
+            }
+          ],
+          &quot;links&quot;: [
+            { &quot;id&quot;: 1, &quot;source&quot;: 1, &quot;target&quot;: 2, &quot;type&quot;: &quot;1&quot; },
+            { &quot;id&quot;: 2, &quot;source&quot;: 2, &quot;target&quot;: 3, &quot;type&quot;: &quot;0&quot; },
+            { &quot;id&quot;: 3, &quot;source&quot;: 3, &quot;target&quot;: 4, &quot;type&quot;: &quot;0&quot; }
+          ]
+        }</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(312)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>startdate</Name>
+			<DisplayName>#Lang(113)</DisplayName>
+			<Description>#Lang(213)</Description>
+			<DefaultValue>new Date()</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(313)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>enddate</Name>
+			<DisplayName>#Lang(114)</DisplayName>
+			<Description>#Lang(214)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>durationunit</Name>
+			<DisplayName>#Lang(115)</DisplayName>
+			<Description>#Lang(215)</Description>
+			<DefaultValue>day</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(315)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(408)|minute)|(#Lang(409)|hour)|(#Lang(411)|day)|(#Lang(412)|week)|(#Lang(413)|month)|(#Lang(414)|year))</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>durationstep</Name>
+			<DisplayName>#Lang(116)</DisplayName>
+			<Description>#Lang(216)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(316)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>showlightbox</Name>
+			<DisplayName>#Lang(117)</DisplayName>
+			<Description>#Lang(217)</Description>
+			<DefaultValue>true</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(317)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(415)|true)|(#Lang(416)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>rounddnddates</Name>
+			<DisplayName>#Lang(118)</DisplayName>
+			<Description>#Lang(218)</Description>
+			<DefaultValue>false</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(318)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(417)|true)|(#Lang(418)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>worktime</Name>
+			<DisplayName>#Lang(119)</DisplayName>
+			<Description>#Lang(219)</Description>
+			<DefaultValue>false</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(319)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(419)|true)|(#Lang(421)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>correctworktime</Name>
+			<DisplayName>#Lang(121)</DisplayName>
+			<Description>#Lang(221)</Description>
+			<DefaultValue>false</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(321)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(422)|true)|(#Lang(423)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>showtodaymarker</Name>
+			<DisplayName>#Lang(122)</DisplayName>
+			<Description>#Lang(222)</Description>
+			<DefaultValue>false</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(322)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(424)|true)|(#Lang(425)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>autoscheduling</Name>
+			<DisplayName>#Lang(123)</DisplayName>
+			<Description>#Lang(223)</Description>
+			<DefaultValue>false</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(323)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(426)|true)|(#Lang(427)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>mincolumnwidth</Name>
+			<DisplayName>#Lang(124)</DisplayName>
+			<Description>#Lang(224)</Description>
+			<DefaultValue>10</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(324)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(500)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>classname</Name>
+			<DisplayName>#Lang(125)</DisplayName>
+			<Description>#Lang(225)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>^.*$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(325)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(500)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>highlightweekend</Name>
+			<DisplayName>#Lang(126)</DisplayName>
+			<Description>#Lang(226)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(326)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>Color()</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zoom</Name>
+			<DisplayName>#Lang(127)</DisplayName>
+			<Description>#Lang(227)</Description>
+			<DefaultValue>{
+					minColumnWidth: 50,
+					maxColumnWidth: 50,
+					levels: [
+						[
+							{ unit: &quot;month&quot;, format: &quot;%M %Y&quot;, step: 1, css: () =&gt; &apos;&apos; },
+							{
+								unit: &quot;week&quot;, step: 1, format: function (date) {
+									const dateToStr = gantt.date.date_to_str(&quot;%d %M&quot;);
+									const endDate = gantt.date.add(date, -6, &quot;day&quot;);
+									return dateToStr(date) + &quot; - &quot; + dateToStr(endDate);
+								}
+							}
+						],
+						[
+							{
+								unit: &quot;week&quot;, step: 1, format: function (date) {
+									const dateToStr = gantt.date.date_to_str(&quot;%d %M&quot;);
+									const endDate = gantt.date.add(date, -6, &quot;day&quot;);
+									return dateToStr(date) + &quot; - &quot; + dateToStr(endDate);
+								}
+							},
+							{ unit: &quot;day&quot;, format: &quot;%d&quot;, step: 1 }
+						],
+						[
+							{ unit: &quot;day&quot;, format: &quot;%d %M&quot;, step: 1 },
+							{ unit: &quot;hour&quot;, format: &quot;%H:%i&quot;, step: 1 }
+						]
+					],
+					useKey: &quot;ctrlKey&quot;,
+					trigger: &quot;wheel&quot;,
+					element: function () {
+						return gantt_o_0b1e8527_f6dd_4096_9fff_19772a921696.$root.querySelector(&quot;.gantt_task&quot;);
+					}
+				}</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(327)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine(10000)</CodeInterface>
+			<ColorGroup>2</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="001">Gantt</Sentence>
+			<Sentence ID="002">The gantt chart</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101"></Sentence>
+			<Sentence ID="102">Hierarchy</Sentence>
+			<Sentence ID="103">Visibility</Sentence>
+			<Sentence ID="104"></Sentence>
+			<Sentence ID="105">Z-Index</Sentence>
+			<Sentence ID="106">Top</Sentence>
+			<Sentence ID="107">Left</Sentence>
+			<Sentence ID="108">Width</Sentence>
+			<Sentence ID="109">Height</Sentence>
+			<Sentence ID="111">Columns</Sentence>
+			<Sentence ID="112">Data</Sentence>
+			<Sentence ID="113">Start date</Sentence>
+			<Sentence ID="114">End date</Sentence>
+			<Sentence ID="115">Duration unit</Sentence>
+			<Sentence ID="116">Duration step</Sentence>
+			<Sentence ID="117">Show lightbox</Sentence>
+			<Sentence ID="118">Round dnd dates</Sentence>
+			<Sentence ID="119">Work time</Sentence>
+			<Sentence ID="121">Correct work time</Sentence>
+			<Sentence ID="122">Show today marker</Sentence>
+			<Sentence ID="123">Auto scheduling</Sentence>
+			<Sentence ID="124">Min column width</Sentence>
+			<Sentence ID="125">CSS Class</Sentence>
+			<Sentence ID="126">Highlight weekend</Sentence>
+			<Sentence ID="127">Zoom config</Sentence>
+			<Sentence ID="201"></Sentence>
+			<Sentence ID="202">Order of rendering the object on the page</Sentence>
+			<Sentence ID="203">Visibility of the object</Sentence>
+			<Sentence ID="204"></Sentence>
+			<Sentence ID="205">Position in visual hierarchy of objects</Sentence>
+			<Sentence ID="206">Spacing between the top edge of the container and the object in pixels</Sentence>
+			<Sentence ID="207">Spacing between the left edge of the container and the object in pixels</Sentence>
+			<Sentence ID="208">Width of the object in pixels</Sentence>
+			<Sentence ID="209">Height of the object in pixels</Sentence>
+			<Sentence ID="211">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="212">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="213">Add support zooming time scale</Sentence>
+			<Sentence ID="214">Add support zooming time scale</Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="219"></Sentence>
+			<Sentence ID="221"></Sentence>
+			<Sentence ID="222"></Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="224"></Sentence>
+			<Sentence ID="225">CSS class name</Sentence>
+			<Sentence ID="226">Color to highlight the weekend</Sentence>
+			<Sentence ID="227"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
+			<Sentence ID="304"></Sentence>
+			<Sentence ID="305">Incorrect value, must be even integer from 0 to 99</Sentence>
+			<Sentence ID="306">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="307">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="308">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="309">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="311">Invalid data for gantt chart</Sentence>
+			<Sentence ID="312">Invalid data for gantt chart</Sentence>
+			<Sentence ID="313">Error in zooming</Sentence>
+			<Sentence ID="314">Error in zooming</Sentence>
+			<Sentence ID="315">Error in zooming</Sentence>
+			<Sentence ID="316">Incorrect value, must be even positive integer</Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321"></Sentence>
+			<Sentence ID="322"></Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="324"></Sentence>
+			<Sentence ID="325">Names of CSS classes</Sentence>
+			<Sentence ID="326">Error in highlight weekend</Sentence>
+			<Sentence ID="327"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403">Invisible</Sentence>
+			<Sentence ID="404">Visible</Sentence>
+			<Sentence ID="405">CSS Class</Sentence>
+			<Sentence ID="406">Style</Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408">minute</Sentence>
+			<Sentence ID="409">hour</Sentence>
+			<Sentence ID="411">day</Sentence>
+			<Sentence ID="412">week</Sentence>
+			<Sentence ID="413">month</Sentence>
+			<Sentence ID="414">year</Sentence>
+			<Sentence ID="415">Yes</Sentence>
+			<Sentence ID="416">No</Sentence>
+			<Sentence ID="417">Yes</Sentence>
+			<Sentence ID="418">No</Sentence>
+			<Sentence ID="419">Yes</Sentence>
+			<Sentence ID="421">No</Sentence>
+			<Sentence ID="422">Yes</Sentence>
+			<Sentence ID="423">No</Sentence>
+			<Sentence ID="424">Yes</Sentence>
+			<Sentence ID="425">No</Sentence>
+			<Sentence ID="426">Yes</Sentence>
+			<Sentence ID="427">No</Sentence>
+			<Sentence ID="501">Hide the object</Sentence>
+			<Sentence ID="502">Show the object</Sentence>
+			<Sentence ID="503">Hide the object</Sentence>
+			<Sentence ID="504">Add new CSS class.</Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506">Set new CSS style of the object</Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516"></Sentence>
+			<Sentence ID="517"></Sentence>
+			<Sentence ID="601">Hide</Sentence>
+			<Sentence ID="602">Show</Sentence>
+			<Sentence ID="603">Hide</Sentence>
+			<Sentence ID="604">addClass</Sentence>
+			<Sentence ID="605">setData</Sentence>
+			<Sentence ID="606">setStyle</Sentence>
+			<Sentence ID="607">Set date range</Sentence>
+			<Sentence ID="608">Set config</Sentence>
+			<Sentence ID="609">setClass</Sentence>
+			<Sentence ID="611">Zoom in</Sentence>
+			<Sentence ID="612">Zoom out</Sentence>
+			<Sentence ID="701">Fade</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703">Fade</Sentence>
+			<Sentence ID="704">className</Sentence>
+			<Sentence ID="705">data</Sentence>
+			<Sentence ID="706">cssStyleValue</Sentence>
+			<Sentence ID="707">Start date</Sentence>
+			<Sentence ID="708">End date</Sentence>
+			<Sentence ID="709">config</Sentence>
+			<Sentence ID="711">value</Sentence>
+			<Sentence ID="712"></Sentence>
+			<Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
+			<Sentence ID="804">The name of the CSS class.</Sentence>
+			<Sentence ID="805"></Sentence>
+			<Sentence ID="806">CSS style value</Sentence>
+			<Sentence ID="807"></Sentence>
+			<Sentence ID="808"></Sentence>
+			<Sentence ID="809"></Sentence>
+			<Sentence ID="811"></Sentence>
+			<Sentence ID="812"></Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
+			<Sentence ID="903">Current X-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
+			<Sentence ID="905">Current X-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
+			<Sentence ID="907">Current X-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="001">Gantt</Sentence>
+			<Sentence ID="002">The gantt chart</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101"></Sentence>
+			<Sentence ID="102">Hiérarchie</Sentence>
+			<Sentence ID="103">Visibilité</Sentence>
+			<Sentence ID="104"></Sentence>
+			<Sentence ID="105">Z-Index</Sentence>
+			<Sentence ID="106">Haut</Sentence>
+			<Sentence ID="107">Gauche</Sentence>
+			<Sentence ID="108">Largeur</Sentence>
+			<Sentence ID="109">Hauteur</Sentence>
+			<Sentence ID="111">Columns</Sentence>
+			<Sentence ID="112">Data</Sentence>
+			<Sentence ID="113">Start date</Sentence>
+			<Sentence ID="114">End date</Sentence>
+			<Sentence ID="115">Duration unit</Sentence>
+			<Sentence ID="116">Duration step</Sentence>
+			<Sentence ID="117">Show lightbox</Sentence>
+			<Sentence ID="118">Round dnd dates</Sentence>
+			<Sentence ID="119">Work time</Sentence>
+			<Sentence ID="121">Correct work time</Sentence>
+			<Sentence ID="122">Show today marker</Sentence>
+			<Sentence ID="123">Auto scheduling</Sentence>
+			<Sentence ID="124">Min column width</Sentence>
+			<Sentence ID="125">Class</Sentence>
+			<Sentence ID="126"></Sentence>
+			<Sentence ID="127">Zoom config</Sentence>
+			<Sentence ID="201"></Sentence>
+			<Sentence ID="202">Hiérarchie de l&apos;objet, ordre de chargement de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="203">Afficher ou cacher l&apos;objet</Sentence>
+			<Sentence ID="204"></Sentence>
+			<Sentence ID="205">Niveau de superposition de l&apos;objet par rapport aux autres</Sentence>
+			<Sentence ID="206">Distance depuis le bord haut de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="207">Distance depuis le bord gauche de l&apos;objet parent en pixels</Sentence>
+			<Sentence ID="208">Largeur de l&apos;objet en pixels</Sentence>
+			<Sentence ID="209">Hauteur de l&apos;objet en pixels</Sentence>
+			<Sentence ID="211">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="212">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="213"></Sentence>
+			<Sentence ID="214"></Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="219"></Sentence>
+			<Sentence ID="221"></Sentence>
+			<Sentence ID="222"></Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="224"></Sentence>
+			<Sentence ID="225">CSS class name</Sentence>
+			<Sentence ID="226"></Sentence>
+			<Sentence ID="227"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
+			<Sentence ID="304"></Sentence>
+			<Sentence ID="305">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="306">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="307">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="308">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="309">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="311">Invalid data for gantt chart</Sentence>
+			<Sentence ID="312">Invalid data for gantt chart</Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316">Valeur Incorrecte, doit être positive</Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321"></Sentence>
+			<Sentence ID="322"></Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="324"></Sentence>
+			<Sentence ID="325">Incorrect value</Sentence>
+			<Sentence ID="326"></Sentence>
+			<Sentence ID="327"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403">Invisible</Sentence>
+			<Sentence ID="404">Visible</Sentence>
+			<Sentence ID="405">Class</Sentence>
+			<Sentence ID="406">Style</Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408">minute</Sentence>
+			<Sentence ID="409">hour</Sentence>
+			<Sentence ID="411">day</Sentence>
+			<Sentence ID="412">week</Sentence>
+			<Sentence ID="413">month</Sentence>
+			<Sentence ID="414">year</Sentence>
+			<Sentence ID="415"></Sentence>
+			<Sentence ID="416"></Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="419"></Sentence>
+			<Sentence ID="421"></Sentence>
+			<Sentence ID="422"></Sentence>
+			<Sentence ID="423"></Sentence>
+			<Sentence ID="424"></Sentence>
+			<Sentence ID="425"></Sentence>
+			<Sentence ID="426"></Sentence>
+			<Sentence ID="427"></Sentence>
+			<Sentence ID="501">Hide the object</Sentence>
+			<Sentence ID="502">Show the object</Sentence>
+			<Sentence ID="503">Hide the object</Sentence>
+			<Sentence ID="504">Add new CSS class.</Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506">Set new CSS style</Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516"></Sentence>
+			<Sentence ID="517"></Sentence>
+			<Sentence ID="601">Hide</Sentence>
+			<Sentence ID="602">Show</Sentence>
+			<Sentence ID="603">Hide</Sentence>
+			<Sentence ID="604">addClass</Sentence>
+			<Sentence ID="605">setData</Sentence>
+			<Sentence ID="606">setStyle</Sentence>
+			<Sentence ID="607">Set date range</Sentence>
+			<Sentence ID="608">Set config</Sentence>
+			<Sentence ID="609">setClass</Sentence>
+			<Sentence ID="611">Zoom in</Sentence>
+			<Sentence ID="612">Zoom out</Sentence>
+			<Sentence ID="701">Fade</Sentence>
+			<Sentence ID="702">Fade</Sentence>
+			<Sentence ID="703">Fade</Sentence>
+			<Sentence ID="704">className</Sentence>
+			<Sentence ID="705">data</Sentence>
+			<Sentence ID="706">cssStyleValue</Sentence>
+			<Sentence ID="707">Start date</Sentence>
+			<Sentence ID="708">End date</Sentence>
+			<Sentence ID="709">config</Sentence>
+			<Sentence ID="711">value</Sentence>
+			<Sentence ID="712"></Sentence>
+			<Sentence ID="801">Fade time</Sentence>
+			<Sentence ID="802">Time of appearance</Sentence>
+			<Sentence ID="803">Fade time</Sentence>
+			<Sentence ID="804">The name of the CSS class.</Sentence>
+			<Sentence ID="805"></Sentence>
+			<Sentence ID="806">New CSS style value</Sentence>
+			<Sentence ID="807"></Sentence>
+			<Sentence ID="808"></Sentence>
+			<Sentence ID="809"></Sentence>
+			<Sentence ID="811"></Sentence>
+			<Sentence ID="812"></Sentence>
+			<Sentence ID="901">Current X-value</Sentence>
+			<Sentence ID="902">Current X-value</Sentence>
+			<Sentence ID="903">Current X-value</Sentence>
+			<Sentence ID="904">Current X-value</Sentence>
+			<Sentence ID="905">Current X-value</Sentence>
+			<Sentence ID="906">Current X-value</Sentence>
+			<Sentence ID="907">Current X-value</Sentence>
+			<Sentence ID="908">Current X-value</Sentence>
+			<Sentence ID="909">Current X-value</Sentence>
+			<Sentence ID="911">Current X-value</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="001">Gantt</Sentence>
+			<Sentence ID="002">The gantt chart</Sentence>
+			<Sentence ID="003"></Sentence>
+			<Sentence ID="101"></Sentence>
+			<Sentence ID="102">Иерархия</Sentence>
+			<Sentence ID="103">Отображение</Sentence>
+			<Sentence ID="104"></Sentence>
+			<Sentence ID="105">Позиция</Sentence>
+			<Sentence ID="106">Сверху</Sentence>
+			<Sentence ID="107">Слева</Sentence>
+			<Sentence ID="108">Ширина</Sentence>
+			<Sentence ID="109">Высота</Sentence>
+			<Sentence ID="111">Columns</Sentence>
+			<Sentence ID="112">Data</Sentence>
+			<Sentence ID="113">Start date</Sentence>
+			<Sentence ID="114">End date</Sentence>
+			<Sentence ID="115">Duration unit</Sentence>
+			<Sentence ID="116">Duration step</Sentence>
+			<Sentence ID="117">Show lightbox</Sentence>
+			<Sentence ID="118">Round dnd dates</Sentence>
+			<Sentence ID="119">Work time</Sentence>
+			<Sentence ID="121">Correct work time</Sentence>
+			<Sentence ID="122">Show today marker</Sentence>
+			<Sentence ID="123">Auto scheduling</Sentence>
+			<Sentence ID="124">Min column width</Sentence>
+			<Sentence ID="125">Класс CSS</Sentence>
+			<Sentence ID="126"></Sentence>
+			<Sentence ID="127">Zoom config</Sentence>
+			<Sentence ID="201"></Sentence>
+			<Sentence ID="202">Порядок визуализации объекта в ходе загрузки страницы</Sentence>
+			<Sentence ID="203">Неправильное значение, должен быть указан 0 или 1</Sentence>
+			<Sentence ID="204"></Sentence>
+			<Sentence ID="205">Положение в визуальной иерархии объектов</Sentence>
+			<Sentence ID="206">Расстояние от верхней границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="207">Расстояние от левой границы родительского контейнера до объекта в пикселях</Sentence>
+			<Sentence ID="208">Ширина объекта в пикселях</Sentence>
+			<Sentence ID="209">Высота объекта в пикселях</Sentence>
+			<Sentence ID="211">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="212">Specific dhtmlx gantt data</Sentence>
+			<Sentence ID="213"></Sentence>
+			<Sentence ID="214"></Sentence>
+			<Sentence ID="215"></Sentence>
+			<Sentence ID="216"></Sentence>
+			<Sentence ID="217"></Sentence>
+			<Sentence ID="218"></Sentence>
+			<Sentence ID="219"></Sentence>
+			<Sentence ID="221"></Sentence>
+			<Sentence ID="222"></Sentence>
+			<Sentence ID="223"></Sentence>
+			<Sentence ID="224"></Sentence>
+			<Sentence ID="225">Имя класса CSS</Sentence>
+			<Sentence ID="226"></Sentence>
+			<Sentence ID="227"></Sentence>
+			<Sentence ID="301"></Sentence>
+			<Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="303">Неправильное значение</Sentence>
+			<Sentence ID="304"></Sentence>
+			<Sentence ID="305">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
+			<Sentence ID="306">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="307">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="308">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="309">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="311">Invalid data for gantt chart</Sentence>
+			<Sentence ID="312">Invalid data for gantt chart</Sentence>
+			<Sentence ID="313"></Sentence>
+			<Sentence ID="314"></Sentence>
+			<Sentence ID="315"></Sentence>
+			<Sentence ID="316">Неправильное значение, должно быть указано целое положительное число</Sentence>
+			<Sentence ID="317"></Sentence>
+			<Sentence ID="318"></Sentence>
+			<Sentence ID="319"></Sentence>
+			<Sentence ID="321"></Sentence>
+			<Sentence ID="322"></Sentence>
+			<Sentence ID="323"></Sentence>
+			<Sentence ID="324"></Sentence>
+			<Sentence ID="325">Неправильное значение</Sentence>
+			<Sentence ID="326"></Sentence>
+			<Sentence ID="327"></Sentence>
+			<Sentence ID="401"></Sentence>
+			<Sentence ID="402"></Sentence>
+			<Sentence ID="403">Не отображать</Sentence>
+			<Sentence ID="404">Отображать</Sentence>
+			<Sentence ID="405">Класс CSS</Sentence>
+			<Sentence ID="406">Style</Sentence>
+			<Sentence ID="407"></Sentence>
+			<Sentence ID="408">minute</Sentence>
+			<Sentence ID="409">hour</Sentence>
+			<Sentence ID="411">day</Sentence>
+			<Sentence ID="412">week</Sentence>
+			<Sentence ID="413">month</Sentence>
+			<Sentence ID="414">year</Sentence>
+			<Sentence ID="415"></Sentence>
+			<Sentence ID="416"></Sentence>
+			<Sentence ID="417"></Sentence>
+			<Sentence ID="418"></Sentence>
+			<Sentence ID="419"></Sentence>
+			<Sentence ID="421"></Sentence>
+			<Sentence ID="422"></Sentence>
+			<Sentence ID="423"></Sentence>
+			<Sentence ID="424"></Sentence>
+			<Sentence ID="425"></Sentence>
+			<Sentence ID="426"></Sentence>
+			<Sentence ID="427"></Sentence>
+			<Sentence ID="501">Скрыть объект</Sentence>
+			<Sentence ID="502">Показать объект</Sentence>
+			<Sentence ID="503">Скрыть объект</Sentence>
+			<Sentence ID="504">Add new CSS class.</Sentence>
+			<Sentence ID="505"></Sentence>
+			<Sentence ID="506">Установить новый стиль CSS</Sentence>
+			<Sentence ID="507"></Sentence>
+			<Sentence ID="508"></Sentence>
+			<Sentence ID="509"></Sentence>
+			<Sentence ID="511"></Sentence>
+			<Sentence ID="512"></Sentence>
+			<Sentence ID="513"></Sentence>
+			<Sentence ID="514"></Sentence>
+			<Sentence ID="515"></Sentence>
+			<Sentence ID="516"></Sentence>
+			<Sentence ID="517"></Sentence>
+			<Sentence ID="601">Скрыть</Sentence>
+			<Sentence ID="602">Показать</Sentence>
+			<Sentence ID="603">Скрыть</Sentence>
+			<Sentence ID="604">addClass</Sentence>
+			<Sentence ID="605">setData</Sentence>
+			<Sentence ID="606">Установить стиль</Sentence>
+			<Sentence ID="607">Set date range</Sentence>
+			<Sentence ID="608">Set config</Sentence>
+			<Sentence ID="609">setClass</Sentence>
+			<Sentence ID="611">Zoom in</Sentence>
+			<Sentence ID="612">Zoom out</Sentence>
+			<Sentence ID="701">Исчезновение</Sentence>
+			<Sentence ID="702">Появление</Sentence>
+			<Sentence ID="703">Исчезновение</Sentence>
+			<Sentence ID="704">className</Sentence>
+			<Sentence ID="705">data</Sentence>
+			<Sentence ID="706">Стиль CSS</Sentence>
+			<Sentence ID="707">Start date</Sentence>
+			<Sentence ID="708">End date</Sentence>
+			<Sentence ID="709">config</Sentence>
+			<Sentence ID="711">value</Sentence>
+			<Sentence ID="712"></Sentence>
+			<Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="802">Время появления в миллисекундах</Sentence>
+			<Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
+			<Sentence ID="804">The name of the CSS class.</Sentence>
+			<Sentence ID="805"></Sentence>
+			<Sentence ID="806">Новое значение стиля</Sentence>
+			<Sentence ID="807"></Sentence>
+			<Sentence ID="808"></Sentence>
+			<Sentence ID="809"></Sentence>
+			<Sentence ID="811"></Sentence>
+			<Sentence ID="812"></Sentence>
+			<Sentence ID="901">Текущее значение X</Sentence>
+			<Sentence ID="902">Текущее значение X</Sentence>
+			<Sentence ID="903">Текущее значение X</Sentence>
+			<Sentence ID="904">Текущее значение X</Sentence>
+			<Sentence ID="905">Текущее значение X</Sentence>
+			<Sentence ID="906">Текущее значение X</Sentence>
+			<Sentence ID="907">Текущее значение X</Sentence>
+			<Sentence ID="908">Текущее значение X</Sentence>
+			<Sentence ID="909">Текущее значение X</Sentence>
+			<Sentence ID="911">Текущее значение X</Sentence>
+		</Language>
+	</Languages>
+	<Libraries>
+		<Library Target="html"><![CDATA[<script type="text/javascript" src="/2ae311a4-683b-3abd-898d-a2da1cb0b26e.js"></script>]]></Library>
+		<Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/0cbebd51-a314-ea49-120e-a2d9fe72f5c9.css" />]]></Library>
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="dblclick" Description="#Lang(516)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(907)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(908)" Order="0"/>
+					</Parameters>
+				</Event>
+				<Event Name="onAfterTaskDelete" Description="#Lang(515)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(905)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(906)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onAfterTaskUpdate" Description="#Lang(517)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(909)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(911)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onTaskClick" Description="#Lang(514)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(903)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(904)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onTaskDblClick" Description="#Lang(513)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(901)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(902)" Order="1"/>
+					</Parameters>
+				</Event>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="addClass" DisplayName="#Lang(604)" Description="#Lang(504)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(704)" Description="#Lang(804)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).addClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="hide" DisplayName="#Lang(601)" Description="#Lang(501)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(701)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_hide(this.domCont, fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="removeClass" DisplayName="#Lang(603)" Description="#Lang(503)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(703)" Description="#Lang(803)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).removeClass(className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setClass" DisplayName="#Lang(609)" Description="#Lang(509)">
+					<Parameters>
+						<Parameter Name="className" DisplayName="#Lang(712)" Description="#Lang(812)" DefaultValue="" RegularExpressionValidation=".*" Interface="setClass" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).attr('class',className);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setConfig" DisplayName="#Lang(608)" Description="#Lang(508)">
+					<Parameters>
+						<Parameter Name="config" DisplayName="#Lang(709)" Description="#Lang(809)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="value" DisplayName="#Lang(711)" Description="#Lang(811)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[window[`gantt_${this.name}`].config[config] = value;]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setData" DisplayName="#Lang(605)" Description="#Lang(505)">
+					<Parameters>
+						<Parameter Name="data" DisplayName="#Lang(705)" Description="#Lang(805)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[window[`gantt_${this.name}`].parse(data);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setDateRange" DisplayName="#Lang(607)" Description="#Lang(507)">
+					<Parameters>
+						<Parameter Name="startDate" DisplayName="#Lang(707)" Description="#Lang(807)" DefaultValue="&apos;2020-01-01&apos;" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="endDate" DisplayName="#Lang(708)" Description="#Lang(808)" DefaultValue="&apos;2020-01-05&apos;" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[window[`gantt_${this.name}`].config.start_date = new Date(startDate);
+							window[`gantt_${this.name}`].config.end_date = new Date(endDate);
+							window[`gantt_${this.name}`].render();]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setStyle" DisplayName="#Lang(606)" Description="#Lang(506)">
+					<Parameters>
+						<Parameter Name="cssStyleValue" DisplayName="#Lang(706)" Description="#Lang(806)" DefaultValue="" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[var t=$q(this.domCont);t.attr('style', t.attr('style') + ';' + cssStyleValue);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(602)" Description="#Lang(502)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(702)" Description="#Lang(802)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[vdom_ui_show(this.domCont, fade);window[`gantt_${this.name}`].render()]]>
+					</SourceCode>
+				</Action>
+				<Action Name="zoomIn" DisplayName="#Lang(611)" Description="#Lang(511)">
+					<SourceCode>
+<![CDATA[window[`gantt_${this.name}`].ext.zoom.zoomIn()]]>
+					</SourceCode>
+				</Action>
+				<Action Name="zoomOut" DisplayName="#Lang(612)" Description="#Lang(512)">
+					<SourceCode>
+<![CDATA[window[`gantt_${this.name}`].ext.zoom.zoomOut()]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
+</Type>

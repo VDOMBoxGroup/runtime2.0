@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Type>
+	<Information>
+		<ID>64d09544-7b17-4920-b68a-79a1c9df62d5</ID>
+		<Name>scheduler</Name>
+		<DisplayName>#Lang(001)</DisplayName>
+		<ClassName>VDOM_scheduler</ClassName>
+		<Description>#Lang(002)</Description>
+		<Version>2.2</Version>
+		<Category>Additional</Category>
+		<InterfaceType>1</InterfaceType>
+		<Icon>#Res(a0955637-e4dd-4cd1-933b-540c46acf37f)</Icon>
+		<EditorIcon>#Res(1c731386-bbca-407d-a99b-63414183e22b)</EditorIcon>
+		<StructureIcon>#Res(f46c4232-c554-48b2-a330-9b3cb0cc7ba7)</StructureIcon>
+		<Dynamic>1</Dynamic>
+		<Moveable>1</Moveable>
+		<Resizable>3</Resizable>
+		<OptimizationPriority>1</OptimizationPriority>
+		<Container>1</Container>
+		<Containers>htmlcontainer, dialog, container, flexcontainer</Containers>
+		<Languages>en_US, ru_RU, fr_FR</Languages>
+	</Information>
+	<Attributes>
+		<Attribute>
+			<Name>hierarchy</Name>
+			<DisplayName>#Lang(014)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d+$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>visible</Name>
+			<DisplayName>#Lang(020)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>1</DefaultValue>
+			<RegularExpressionValidation>^[01]$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(011)|1)|(#Lang(012)|0))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>positioning1</Name>
+			<DisplayName>#Lang(021)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>absolute</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(122)|absolute)|(#Lang(123)|static)|(#Lang(124)|relative))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>zindex</Name>
+			<DisplayName>#Lang(015)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^\d{1,2}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(2)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>top</Name>
+			<DisplayName>#Lang(016)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>left</Name>
+			<DisplayName>#Lang(017)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>0</DefaultValue>
+			<RegularExpressionValidation>^auto$|\d{0,4}|^$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>width</Name>
+			<DisplayName>#Lang(018)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>300</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>height</Name>
+			<DisplayName>#Lang(019)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>200</DefaultValue>
+			<RegularExpressionValidation>^\d{1,4}$</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(4)</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>cssclass</Name>
+			<DisplayName>#Lang(013)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue></DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>data</Name>
+			<DisplayName>#Lang(029)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>{&quot;data&quot;:[{&quot;redactor&quot;:&quot;1&quot;,&quot;start_date&quot;:&quot;2017-03-02&quot;,&quot;end_date&quot;:&quot;2017-03-23&quot;,&quot;text&quot;:&quot;A-12&quot;,&quot;id&quot;:&quot;1&quot;},{&quot;redactor&quot;:&quot;2&quot;,&quot;start_date&quot;:&quot;2017-03-07&quot;,&quot;end_date&quot;:&quot;2017-03-21&quot;,&quot;text&quot;:&quot;A-45&quot;,&quot;id&quot;:&quot;2&quot;},{&quot;redactor&quot;:&quot;3&quot;,&quot;start_date&quot;:&quot;2017-03-06&quot;,&quot;end_date&quot;:&quot;2017-03-14&quot;,&quot;text&quot;:&quot;A-58&quot;,&quot;id&quot;:&quot;3&quot;},{&quot;redactor&quot;:&quot;4&quot;,&quot;start_date&quot;:&quot;2017-03-04&quot;,&quot;end_date&quot;:&quot;2017-03-18&quot;,&quot;text&quot;:&quot;A-28&quot;,&quot;id&quot;:&quot;4&quot;}],&quot;collections&quot;:{&quot;redactors&quot;:[{&quot;key&quot;:&quot;1&quot;,&quot;full_name&quot;:&quot;Marie-Sophie&quot;,&quot;label&quot;:&quot;Marie-Sophie DE SAIRGINE&quot;,&quot;number&quot;:&quot;0678 22 14 56&quot;,&quot;description&quot;:&quot;Programmer&quot;,&quot;employment_type&quot;:&quot;Freelance&quot;,&quot;end_time&quot;:&quot;2020-10-01&quot;},{&quot;key&quot;:&quot;2&quot;,&quot;full_name&quot;:&quot;Nicolas KORBOULEWSKY&quot;,&quot;label&quot;:&quot;Nicolas KORBOULEWSKY&quot;,&quot;number&quot;:&quot;0678 22 14 56&quot;,&quot;description&quot;:&quot;Programmer&quot;,&quot;employment_type&quot;:&quot;Permament&quot;,&quot;end_time&quot;:&quot;2020-10-02&quot;},{&quot;key&quot;:&quot;3&quot;,&quot;full_name&quot;:&quot;Marie&quot;,&quot;label&quot;:&quot;Marie-Sophie&quot;,&quot;number&quot;:&quot;0678 22 14 56&quot;,&quot;description&quot;:&quot;Programmer&quot;,&quot;employment_type&quot;:&quot;Permament&quot;,&quot;end_time&quot;:&quot;2020-10-03&quot;}]}}</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine()</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>startdate</Name>
+			<DisplayName>#Lang(030)</DisplayName>
+			<Description>#Lang(032)</Description>
+			<DefaultValue>2017-03-01</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>enddate</Name>
+			<DisplayName>#Lang(031)</DisplayName>
+			<Description>#Lang(032)</Description>
+			<DefaultValue>2017-03-30</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>TextField(100)</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>schedulerconfig</Name>
+			<DisplayName>#Lang(034)</DisplayName>
+			<Description>#Lang(032)</Description>
+			<DefaultValue>//===============
+        //Configuration
+        //===============
+        scheduler.locale.labels.section_custom = &quot;Section&quot;;
+        scheduler.config.details_on_create = true;
+        scheduler.config.details_on_dblclick = true;
+        scheduler.config.mark_now = true;
+        scheduler.date.timeline_start = scheduler.date.month_start;
+        scheduler.config.hour_size_px = 20000;
+
+        //Mark weekends.
+        scheduler.addMarkedTimespan({
+          days: [0, 6],
+          zones: &quot;fullday&quot;,
+          css: &quot;timeline_weekend&quot;,
+        });
+
+        // Hide header where we can change view and nanigate on dates
+        scheduler.xy.nav_height = 0;
+
+        // Modal fields configuration
+        scheduler.config.lightbox.sections = [
+          {
+            name: &quot;description&quot;,
+            height: 130,
+            map_to: &quot;text&quot;,
+            type: &quot;textarea&quot;,
+            focus: true,
+          },
+          {
+            name: &quot;custom&quot;,
+            height: 23,
+            type: &quot;select&quot;,
+            options: scheduler.serverList(&quot;redactors&quot;),
+            map_to: &quot;redactor&quot;,
+          },
+          { name: &quot;time&quot;, height: 72, type: &quot;time&quot;, map_to: &quot;auto&quot; },
+        ];
+        scheduler.getRedactorByKey = (key) =&gt; {
+          return scheduler.serverList(&quot;redactors&quot;).find((el) =&gt; el.key === key);
+        };
+
+        //On hover on task
+        scheduler.templates.tooltip_text = function (start, end, event) {
+          var redactor = scheduler.getRedactorByKey(event.redactor) || {
+            label: &quot;&quot;,
+          };
+
+          var html = [];
+          html.push(`Booking: &lt;b&gt;${event.text}&lt;/b&gt;`);
+          html.push(`Redactor: &lt;b&gt;${redactor.label}&lt;/b&gt;`);
+          html.push(`Check-in: &lt;b&gt;${start}&lt;/b&gt;`);
+          html.push(`Check-out: &lt;b&gt;${end}&lt;/b&gt;`);
+          return html.join(&quot;&lt;br&gt;&quot;);
+        };
+
+        const eventDateFormat = scheduler.date.date_to_str(&quot;%d %M %Y&quot;);
+        scheduler.templates.event_bar_text = function (start, end, event) {
+          const startDate = eventDateFormat(event.start_date);
+          const endDate = eventDateFormat(event.end_date);
+          const redactor = scheduler.getRedactorByKey(event.redactor);
+          return [
+            event.text + &quot;&lt;br /&gt;&quot;,
+            startDate + &quot; - &quot; + endDate,
+            &quot;&lt;div class=&apos;booking_status booking-option&apos;&gt;&quot; + redactor.label + &quot;&lt;/div&gt;&quot;,
+          ].join(&quot;&quot;);
+        };</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine()</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>timelineconfig</Name>
+			<DisplayName>#Lang(033)</DisplayName>
+			<Description>#Lang(032)</Description>
+			<DefaultValue>//===============
+          //Timeline configuration
+          //===============
+          scheduler.createTimelineView({
+            name: &quot;timeline&quot;,
+            x_unit: &quot;day&quot;,
+            x_date: &quot;%j&quot;,
+            x_step: 1,
+            x_size: 31,
+            section_autoheight: false,
+            y_unit: scheduler.serverList(&quot;redactors&quot;),
+            y_property: &quot;redactor&quot;,
+            render: &quot;bar&quot;,
+            round_position: true,
+            event_dy: &quot;full&quot;,
+            dy: 60,
+            dx: 400,
+            second_scale: {
+              x_unit: &quot;month&quot;,
+              x_date: &quot;%F, %Y&quot;,
+            },
+          });
+
+          // Header labels config
+          var headerHTML =
+            &quot;&lt;div class=&apos;timeline_item_cell&apos;&gt;Redacteur&lt;/div&gt;&quot; +
+            &quot;&lt;div class=&apos;timeline_item_cell&apos;&gt;Fin de la redaction&lt;/div&gt;&quot;;
+          scheduler.locale.labels.timeline_scale_header = headerHTML;
+
+          scheduler.templates.timeline_scale_label = function (key, label, section) {
+            const imgSrc = &quot;https://www.svgrepo.com/show/57853/avatar.svg&quot;;
+            return [
+              &quot;&lt;div class=&apos;timeline_item_cell&apos;&gt;&quot; +
+                `&lt;img class=&apos;redactor-image&apos; src=&apos;${imgSrc}&apos;/&gt;` +
+                `&lt;div class=&apos;redactor-info-wrapper&apos;&gt;` +
+                `&lt;span class=&apos;redactor-name&apos;&gt;${section.label}&lt;/span&gt;` +
+                `&lt;span&gt;${section.number}&lt;/span&gt;` +
+                `&lt;span&gt;${section.description} / ${section.employment_type}&lt;/span&gt;` +
+                `&lt;/div&gt;` +
+                &quot;&lt;/div&gt;&quot;,
+              &quot;&lt;div class=&apos;timeline_item_cell room_status&apos;&gt;&quot;,
+              &quot;&lt;span class=&apos;status-label&apos;&gt;&quot; +
+                scheduler.getRedactorByKey(key).end_time +
+                &quot;&lt;/span&gt;&quot;,
+              &quot;&lt;/div&gt;&quot;,
+            ].join(&quot;&quot;);
+          };</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(004)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>MultiLine()</CodeInterface>
+			<ColorGroup>4</ColorGroup>
+		</Attribute>
+		<Attribute>
+			<Name>showlightbox</Name>
+			<DisplayName>#Lang(043)</DisplayName>
+			<Description>#Lang(000)</Description>
+			<DefaultValue>true</DefaultValue>
+			<RegularExpressionValidation>.*</RegularExpressionValidation>
+			<ErrorValidationMessage>#Lang(000)</ErrorValidationMessage>
+			<Visible>1</Visible>
+			<InterfaceType>0</InterfaceType>
+			<CodeInterface>DropDown((#Lang(011)|true)|(#Lang(012)|false))</CodeInterface>
+			<ColorGroup>1</ColorGroup>
+		</Attribute>
+	</Attributes>
+	<Languages>
+		<Language Code="en_US">
+			<Sentence ID="000">Default help field</Sentence>
+			<Sentence ID="001">Scheduler</Sentence>
+			<Sentence ID="002">JavaScript Event Calendar (Based on DHTMLX)</Sentence>
+			<Sentence ID="004">Default validation message</Sentence>
+			<Sentence ID="009">Rows count</Sentence>
+			<Sentence ID="010">Show toolbar</Sentence>
+			<Sentence ID="011">Yes</Sentence>
+			<Sentence ID="012">No</Sentence>
+			<Sentence ID="013">Css class</Sentence>
+			<Sentence ID="014">Hierarchy</Sentence>
+			<Sentence ID="015">Z-Index</Sentence>
+			<Sentence ID="016">Top</Sentence>
+			<Sentence ID="017">Left</Sentence>
+			<Sentence ID="018">Width</Sentence>
+			<Sentence ID="019">Height</Sentence>
+			<Sentence ID="020">Visibility</Sentence>
+			<Sentence ID="021">Position</Sentence>
+			<Sentence ID="022">absolute</Sentence>
+			<Sentence ID="023">static</Sentence>
+			<Sentence ID="024">relative</Sentence>
+			<Sentence ID="025">Hide</Sentence>
+			<Sentence ID="026">Show</Sentence>
+			<Sentence ID="028">Fade</Sentence>
+			<Sentence ID="029">Data</Sentence>
+			<Sentence ID="030">Start date</Sentence>
+			<Sentence ID="031">End date</Sentence>
+			<Sentence ID="032">JS format Date.parse([])</Sentence>
+			<Sentence ID="033">Timeline config</Sentence>
+			<Sentence ID="034">Scheduler config</Sentence>
+			<Sentence ID="035">On parse</Sentence>
+			<Sentence ID="036">On templates ready</Sentence>
+			<Sentence ID="037">Set x_size value</Sentence>
+			<Sentence ID="038">x_size</Sentence>
+			<Sentence ID="039">Integer value</Sentence>
+			<Sentence ID="040">Set date range</Sentence>
+			<Sentence ID="041">Date</Sentence>
+			<Sentence ID="042">Set date</Sentence>
+			<Sentence ID="043">Show lightbox</Sentence>
+		</Language>
+		<Language Code="fr_FR">
+			<Sentence ID="000">Default help field</Sentence>
+			<Sentence ID="001">Spreadsheet_v2</Sentence>
+			<Sentence ID="002">JavaScript Event Calendar (Based on DHTMLX)</Sentence>
+			<Sentence ID="004">Default validation message</Sentence>
+			<Sentence ID="009">Rows count</Sentence>
+			<Sentence ID="010">Show toolbar</Sentence>
+			<Sentence ID="011">Yes</Sentence>
+			<Sentence ID="012">No</Sentence>
+			<Sentence ID="013">Css class</Sentence>
+			<Sentence ID="014">Hierarchy</Sentence>
+			<Sentence ID="015">Z-Index</Sentence>
+			<Sentence ID="016">Top</Sentence>
+			<Sentence ID="017">Left</Sentence>
+			<Sentence ID="018">Width</Sentence>
+			<Sentence ID="019">Height</Sentence>
+			<Sentence ID="020">Visibility</Sentence>
+			<Sentence ID="021">Position</Sentence>
+			<Sentence ID="022">absolute</Sentence>
+			<Sentence ID="023">static</Sentence>
+			<Sentence ID="024">relative</Sentence>
+			<Sentence ID="025">Hide</Sentence>
+			<Sentence ID="026">Show</Sentence>
+			<Sentence ID="028">Fade</Sentence>
+			<Sentence ID="029">Data</Sentence>
+			<Sentence ID="030">Start date</Sentence>
+			<Sentence ID="031">End date</Sentence>
+			<Sentence ID="032">JS format Date.parse([])</Sentence>
+			<Sentence ID="033">Timeline config</Sentence>
+			<Sentence ID="034">Scheduler config</Sentence>
+			<Sentence ID="035">On parse</Sentence>
+			<Sentence ID="036">On templates ready</Sentence>
+			<Sentence ID="037">Set x_size value</Sentence>
+			<Sentence ID="038">x_size</Sentence>
+			<Sentence ID="039">Integer value</Sentence>
+			<Sentence ID="040">Set date range</Sentence>
+			<Sentence ID="041">Date</Sentence>
+			<Sentence ID="042">Set date</Sentence>
+			<Sentence ID="043">Show lightbox</Sentence>
+		</Language>
+		<Language Code="ru_RU">
+			<Sentence ID="000">Default help field</Sentence>
+			<Sentence ID="001">Spreadsheet_v2</Sentence>
+			<Sentence ID="002">JavaScript Event Calendar (Based on DHTMLX)</Sentence>
+			<Sentence ID="004">Default validation message</Sentence>
+			<Sentence ID="009">Rows count</Sentence>
+			<Sentence ID="010">Show toolbar</Sentence>
+			<Sentence ID="011">Yes</Sentence>
+			<Sentence ID="012">No</Sentence>
+			<Sentence ID="013">Css class</Sentence>
+			<Sentence ID="014">Hierarchy</Sentence>
+			<Sentence ID="015">Z-Index</Sentence>
+			<Sentence ID="016">Top</Sentence>
+			<Sentence ID="017">Left</Sentence>
+			<Sentence ID="018">Width</Sentence>
+			<Sentence ID="019">Height</Sentence>
+			<Sentence ID="020">Visibility</Sentence>
+			<Sentence ID="021">Position</Sentence>
+			<Sentence ID="022">absolute</Sentence>
+			<Sentence ID="023">static</Sentence>
+			<Sentence ID="024">relative</Sentence>
+			<Sentence ID="025">Hide</Sentence>
+			<Sentence ID="026">Show</Sentence>
+			<Sentence ID="028">Fade</Sentence>
+			<Sentence ID="029">Data</Sentence>
+			<Sentence ID="030">Start date</Sentence>
+			<Sentence ID="031">End date</Sentence>
+			<Sentence ID="032">JS format Date.parse([])</Sentence>
+			<Sentence ID="033">Timeline config</Sentence>
+			<Sentence ID="034">Scheduler config</Sentence>
+			<Sentence ID="035">On parse</Sentence>
+			<Sentence ID="036">On templates ready</Sentence>
+			<Sentence ID="037">Set x_size value</Sentence>
+			<Sentence ID="038">x_size</Sentence>
+			<Sentence ID="039">Integer value</Sentence>
+			<Sentence ID="040">Set date range</Sentence>
+			<Sentence ID="041">Date</Sentence>
+			<Sentence ID="042">Set date</Sentence>
+			<Sentence ID="043">Show lightbox</Sentence>
+		</Language>
+	</Languages>
+	<Libraries>
+		<Library Target="html"><![CDATA[<link rel="stylesheet" type="text/css" href="/7693eb8b-3cd2-4270-920c-8e62336ac4a7.css" />]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/2be5dc9b-5c1c-4c34-b590-c41b69ea544e.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/99bf051c-c2b8-4da1-8faa-79cfbf3f426e.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/ff3c01c1-98f0-4211-a80f-2148d1b40c9f.js'></script>]]></Library>
+		<Library Target="html"><![CDATA[<script type='text/javascript' src='/89123004-0fff-403d-8a65-bac50b7d5d53.js'></script>]]></Library>
+	</Libraries>
+	<E2VDOM>
+		<Events>
+			<UserInterfaceEvents>
+				<Event Name="onTemplatesReady" Description="#Lang(036)"/>
+				<Event Name="onEventDeleted" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(000)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(000)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onEventChanged" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(000)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(000)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onClick" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="id" Description="#Lang(000)" Order="0"/>
+						<Parameter Name="value" Description="#Lang(000)" Order="1"/>
+					</Parameters>
+				</Event>
+				<Event Name="onParse" Description="#Lang(035)"/>
+			</UserInterfaceEvents>
+		</Events>
+		<Actions>
+			<Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
+				<Action Name="hide" DisplayName="#Lang(125)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(128)" Description="#Lang(801)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).hide(fade);]]>
+					</SourceCode>
+				</Action>
+				<Action Name="show" DisplayName="#Lang(126)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="fade" DisplayName="#Lang(128)" Description="#Lang(805)" DefaultValue="0" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[$q(this.domCont).show(fade);scheduler.render();]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setX_size" DisplayName="#Lang(037)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="x_size" DisplayName="#Lang(038)" Description="#Lang(039)" DefaultValue="7" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[scheduler.getView().x_size=x_size;scheduler.setCurrentView();]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setData" DisplayName="#Lang(043)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="data" DisplayName="#Lang(029)" Description="#Lang(000)" DefaultValue="&apos;{}&apos;" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[scheduler.parse(data)]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setDate" DisplayName="#Lang(042)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="date" DisplayName="#Lang(041)" Description="#Lang(032)" DefaultValue="&apos;2020-01-01&apos;" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[scheduler.setCurrentView(new Date(date))]]>
+					</SourceCode>
+				</Action>
+				<Action Name="setDateRange" DisplayName="#Lang(040)" Description="#Lang(000)">
+					<Parameters>
+						<Parameter Name="startDate" DisplayName="#Lang(041)" Description="#Lang(032)" DefaultValue="&apos;2020-01-01&apos;" RegularExpressionValidation=".*" Interface="" />
+						<Parameter Name="endDate" DisplayName="#Lang(041)" Description="#Lang(032)" DefaultValue="&apos;2020-01-01&apos;" RegularExpressionValidation=".*" Interface="" />
+					</Parameters>
+					<SourceCode>
+<![CDATA[scheduler.getView().setRange(new Date(startDate), new Date(endDate))]]>
+					</SourceCode>
+				</Action>
+			</Container>
+		</Actions>
+	</E2VDOM>
+</Type>
