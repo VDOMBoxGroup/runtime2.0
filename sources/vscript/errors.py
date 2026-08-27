@@ -200,6 +200,25 @@ class variable_is_undefined(generic):
         generic.__init__(self, message="Variable is undefined%s" % details, line=line)
 
 
+class procedure_is_undefined(generic):
+    """A name called with arguments that resolves to nothing.
+
+    Distinct from variable_is_undefined because the remedy is different: this
+    one is almost always a missing `use` for the library that defines it, and
+    saying so is the whole point - the alternative was a "Type mismatch" at run
+    time that named neither the call nor the library.
+    """
+    number = 501
+
+    def __init__(self, name=None, line=None):
+        details = ": '%s'" % (name[2:] if name.startswith("v_") else name) if name else ""
+        generic.__init__(
+            self,
+            message="Unknown procedure%s - is a 'use' missing for the library "
+                    "that defines it?" % details,
+            line=line)
+
+
 class name_redefined(generic):
     number = 1041
 

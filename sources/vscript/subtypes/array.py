@@ -293,10 +293,24 @@ class array(subtype):
     def ubound(self, dimension):
         if dimension < 1 or dimension > len(self._subscripts):
             raise errors.subscript_out_of_range
-        # VAILS: tableau dynamique vide (subscript négatif) -> UBound est une
-        # erreur en VScript (cf. tests/features/test_arrays.test_dynamic_array_ubound).
-        if self._subscripts[dimension - 1] < 0:
-            raise errors.subscript_out_of_range
+        # An empty array has an upper bound of -1, which is what VBScript
+        # answers and what makes the ordinary idiom work by itself:
+        #
+        #     rows = Database("X").Query("select …")
+        #     For i = 0 To UBound(rows)      ' no rows -> 0 to -1 -> no turn
+        #
+        # This used to raise subscript_out_of_range instead, so every caller
+        # that might get no rows had to wrap UBound in a Try purely to learn
+        # that a list was empty - and one that forgot died on a query that
+        # simply matched nothing, which is not an error anywhere else in the
+        # language. LBound already returns 0 for the same array, so the pair
+        # 0 / -1 is the signature of "empty" that VBScript code tests for.
+        #
+        # `Dim a()` - declared, never dimensioned - answers -1 here too, where
+        # VBScript raises. The two are the same value in this representation
+        # (`_subscripts == [-1]`) and telling them apart would mean a third
+        # state on every array, for a case where -1 only makes the loop above
+        # do nothing.
         return self._subscripts[dimension - 1]
 
     def append(self, value):

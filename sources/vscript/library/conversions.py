@@ -32,7 +32,33 @@ def v_isnull(value):
 
 
 def v_isnumeric(value):
-    return boolean(true if isinstance(value.subtype, (integer, double)) else false)
+    """Can this be read as a number?
+
+    It used to answer on the *subtype* alone, so IsNumeric("1") was False -
+    while VBScript, whose whole point is that a value arriving as text may
+    still be a number, answers True. Every value coming out of a form, a query
+    string or a CSV is a string, which is exactly where the question is asked.
+
+    What it cost, measured: a filter built the literal `"1"` instead of `1`
+    because IsNumeric said the text was not a number, and the CSV column
+    holding an int matched none of it - an empty, clean, entirely wrong answer.
+
+    Leading and trailing blanks are allowed, as VBScript allows them. A blank
+    string is not a number, which float() agrees with.
+    """
+    subtype = value.subtype
+    if isinstance(subtype, (integer, double, boolean)):
+        return boolean(true)
+    if isinstance(subtype, string):
+        text = subtype.as_string.strip()
+        if not text:
+            return boolean(false)
+        try:
+            float(text)
+        except (TypeError, ValueError):
+            return boolean(false)
+        return boolean(true)
+    return boolean(false)
 
 
 def v_isobject(value):

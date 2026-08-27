@@ -116,6 +116,34 @@ class vname:
             self.member = 0
             if self.base not in mysource.using[self.base].import_names:
                 mysource.using[self.base].import_names.append(self.base)
+        # Nothing above matched: not a local, not a class member, not a name of
+        # this source, not imported by a "use".
+        #
+        # Without Option Explicit the language then invents a variable, which is
+        # right for `x = 1` and wrong the moment the name carries arguments:
+        # `errorJson("boom")` becomes `variant()("boom")`, an Empty called with
+        # an argument, and the whole diagnosis a caller ever gets is
+        #
+        #     VScript runtime error: Type mismatch
+        #
+        # at run time, naming neither the function nor the library it should
+        # have come from. It cost an afternoon: a macro declaring `use lib_files`
+        # and calling lib_core's errorJson - reachable only because lib_files
+        # imports what *it* references, `use` being a selective import - failed
+        # in the Catch, and then in the Catch's own errorJson, so the route died
+        # twice and answered nothing. That reads as a dead route, not as a
+        # missing `use`.
+        #
+        # An argument list on a name that resolves to nothing is never a
+        # variable being introduced: a variant that has never been assigned
+        # cannot be called and cannot be indexed. Say so here, where the name is
+        # still in hand.
+        #
+        # Only with arguments. A bare `x`, and `x()` which the language treats
+        # as `x` for compatibility, keep the old behaviour: those are the forms
+        # where an implicit variable is what the writer meant.
+        elif self.values and any(len(group) for group in self.values):
+            raise errors.procedure_is_undefined(self.base, line=self.line)
         elif myprocedure and no_explicit:
             self.member = 0
             myprocedure.names[self.base] = "variant()"

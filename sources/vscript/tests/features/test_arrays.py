@@ -46,9 +46,15 @@ class TestArrays(VScriptTestCase):
             next""").is_integer(6)
 
     def test_dynamic_array_ubound(self):
-        with raises(errors.subscript_out_of_range):
-            self.evaluate("dim a()", let="ubound(a)").is_integer(0)
-        with raises(errors.subscript_out_of_range):
-            self.evaluate("a=array()", let="ubound(a)").is_integer(0)
-        self.evaluate("a=array(1)", let="ubound(a)").is_integer(0)
-        self.evaluate("a=array(1, 2, 3)", let="ubound(a)").is_integer(3)
+        # An empty array bounds 0 to -1, as in VBScript. UBound used to raise
+        # subscript_out_of_range on it, which made every caller that could get
+        # no rows wrap the call in a Try just to learn that a list was empty.
+        # LBound still answers 0, so `for i = 0 to ubound(a)` runs no turn.
+        assert self.evaluate("a=array()", let="ubound(a)").is_integer(-1)
+        assert self.evaluate("a=array()", let="lbound(a)").is_integer(0)
+        assert self.evaluate("dim a()", let="ubound(a)").is_integer(-1)
+        # The three lines below carried no assert, so nothing checked them and
+        # the last one expected 3 for a three-element array. UBound is the
+        # highest index, not the count.
+        assert self.evaluate("a=array(1)", let="ubound(a)").is_integer(0)
+        assert self.evaluate("a=array(1, 2, 3)", let="ubound(a)").is_integer(2)

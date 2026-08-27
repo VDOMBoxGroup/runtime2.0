@@ -23,12 +23,33 @@ import settings
 
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
+        # cgi keeps a part in memory until it passes 1000 bytes, then calls
+        # this and copies what it has into the result. Which mode that file
+        # needs is not ours to choose: cgi writes str for an ordinary field and
+        # bytes for an uploaded file, and it says which through _binary_file.
+        #
+        # Returning a binary file for both meant an ordinary field larger than
+        # 1000 bytes raised
+        #     TypeError: a bytes-like object is required, not 'str'
+        # while cgi was parsing, before any application code ran. The exception
+        # left the request without a response and the connection was closed, so
+        # the browser reported only "TypeError: Failed to fetch" and nothing was
+        # written to server.log. Measured: a multipart body went through at
+        # 1134 bytes and died at 1139. Uploads were unaffected - a file part is
+        # binary - which is why this looked like a size limit on posting rather
+        # than a mode error.
+        #
         # No delete_on_close: it only exists from python 3.12 and this runtime is
         # pinned to 3.11 by js2py, so passing it raised TypeError here and lost
         # every upload over cgi's 1000-byte in-memory threshold. It is redundant
         # anyway - delete=False already keeps the file after close.
-        return tempfile.NamedTemporaryFile("w+b", prefix="vdomupload",
-                                           dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
+        if self._binary_file:
+            return tempfile.NamedTemporaryFile(
+                "w+b", prefix="vdomupload",
+                dir=VDOM_CONFIG["TEMP-DIRECTORY"], delete=False)
+        return tempfile.NamedTemporaryFile(
+            "w+", prefix="vdomupload", dir=VDOM_CONFIG["TEMP-DIRECTORY"],
+            delete=False, encoding=self.encoding, newline="\n")
 
 
 @weak("_handler")
@@ -91,8 +112,15 @@ class VDOM_request(object):
                     self.postdata = handler.rfile.read(
                         int(self.__headers.header("Content-length")))
         except Exception as e:
-            raise  # TODO: PY3
-            debug("Error while reading socket: %s" % e)
+            # Log before re-raising. The bare raise that used to be here left
+            # the debug() below unreachable, so a body that failed to parse
+            # produced no line anywhere: no response, connection closed,
+            # nothing in server.log, no macro fired - and the browser saying
+            # only "TypeError: Failed to fetch". That silence is what made the
+            # multipart mode defect above cost an afternoon.
+            debug("Error while reading request body: %s: %s"
+                  % (type(e).__name__, e))
+            raise
 
         try:
             args.update(urllib.parse.parse_qs(env["QUERY_STRING"], True))
@@ -228,7 +256,15 @@ class VDOM_request(object):
                 # self.wfile.write('\n')
             else:
                 self.__stdout.write(string)
-                self.__stdout.write(b'\n')
+                # The newline separates successive writes when a page is
+                # rendered from many fragments. In binary it is corruption: a
+                # 7858-byte PNG written by a macro came back as 7859 bytes, the
+                # image intact with a stray 0x0A after IEND, and nothing
+                # anywhere said why. Guarded on binary mode, so only a caller
+                # that asked for binary is affected and no page rendering
+                # changes.
+                if not self.__binary:
+                    self.__stdout.write(b'\n')
 
     def write_handler(self, handler):
         """writing into stream from file handler"""

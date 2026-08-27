@@ -102,21 +102,25 @@ class VDOM_wsgi_request_handler(object):
             env['REMOTE_HOST'] = host
         env['REMOTE_ADDR'] = self.client_address[0]
 
-        if self.headers.typeheader is None:
-            env['CONTENT_TYPE'] = self.headers.type
-        else:
-            env['CONTENT_TYPE'] = self.headers.typeheader
+        # py3: mimetools.Message is gone. typeheader, type, getheader and
+        # headers.headers were all its API; email.message.Message has none of
+        # them, so this raised AttributeError the moment it ran - which is the
+        # whole WebDAV path, since do_WebDAV() calls get_environ(). Measured
+        # before the fix: OPTIONS /dav and PROPFIND /dav/ both closed the
+        # connection with no response at all.
+        declared = self.headers.get('content-type')
+        env['CONTENT_TYPE'] = declared if declared else self.headers.get_content_type()
 
-        length = self.headers.getheader('content-length')
+        length = self.headers.get('content-length')
         if length:
             env['CONTENT_LENGTH'] = length
         script_name = env.get('SCRIPT_NAME')
         if script_name:
             env['SCRIPT_NAME'] = script_name.rstrip("/")
 
-        for h in self.headers.headers:
-            k,v = h.split(':',1)
-            k=k.replace('-','_').upper(); v=v.strip()
+        for name, value in self.headers.items():
+            k = name.replace('-', '_').upper()
+            v = value.strip()
             if k in env:
                 continue                    # skip content length, type,etc.
             if 'HTTP_'+k in env:
