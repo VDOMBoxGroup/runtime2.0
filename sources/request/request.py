@@ -337,20 +337,51 @@ class VDOM_request(object):
         self.redirect_to = url_to
 
     def add_header(self, name, value):
-        """add header"""
+        """add header
+
+        The name is lowercased, as everywhere else in VDOM_dictionary - push,
+        remove, add and __contains__ all do it. This method was the one place
+        that did not, and it wrote straight into the dictionary.
+
+        A header name is case-insensitive by definition, but the dictionary is
+        not: `Content-type` and `content-type` were two entries, and
+        `send_headers` iterates entries. Both went out on the wire. Chrome
+        refuses such a response - `fetch` fails with "Failed to fetch" and an
+        `<img>` never loads - while a tolerant client merges them, which is why
+        the fault was invisible from a script and fatal from a browser.
+        """
         headers = self.__headers_out.headers()
-        headers[name] = value
+        headers[name.lower()] = value
 
     def send_file(self, filename, length, handler, content_type=None, cache_control=True):
-        """send response as a downloadable file"""
+        """send response as a downloadable file
+
+        The Content-Disposition below is a default, not a decision: a caller
+        that already set one keeps it.
+
+        It matters because this method is the point of no return. It ends in
+        `set_nocache()`, which calls `send_response`, `send_headers` and
+        `end_headers` - the headers go out on the socket here. Anything set
+        afterwards is written to a dictionary nobody reads again, silently.
+
+        So a caller had no way to choose how its body is presented: setting the
+        header before was overwritten here, and setting it after was too late.
+        Concretely, a vhtml macro serving a file could never offer a download -
+        with a content type given, which is the normal case, the `inline`
+        branch was taken whatever the macro asked - and the name came from
+        `filename`, which its caller derives from the URL. On a route like
+        /file/{node} that is the node's guid, so downloads arrived named after
+        an identifier.
+        """
         f_content_type = content_type if content_type else "application/octet-stream"
         self.add_header("Content-type", f_content_type)
-        if content_type:
-            self.add_header("Content-Disposition",
-                            "inline; filename=\"%s\"" % filename)
-        else:
-            self.add_header("Content-Disposition",
-                            "attachment; filename=\"%s\"" % filename)
+        if "content-disposition" not in self.__headers_out.headers():
+            if content_type:
+                self.add_header("Content-Disposition",
+                                "inline; filename=\"%s\"" % filename)
+            else:
+                self.add_header("Content-Disposition",
+                                "attachment; filename=\"%s\"" % filename)
 
         if cache_control is None:
             pass
