@@ -383,7 +383,13 @@ class VDOM_request(object):
                 self.add_header("Content-Disposition",
                                 "attachment; filename=\"%s\"" % filename)
 
-        if cache_control is None:
+        # Cache-Control is a default here too, for the same reason as the
+        # disposition above: a caller that already set one knows something this
+        # method does not. A thumbnail named after its node, its page and its
+        # dpi never changes, so it asks for a year; without this it was handed
+        # no-store and re-fetched on every scroll.
+        deja_pose = "cache-control" in self.__headers_out.headers()
+        if cache_control is None or deja_pose:
             pass
         elif cache_control is True:
             self.add_header("Cache-Control", "max-age=86400")
