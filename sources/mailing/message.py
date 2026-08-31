@@ -2,6 +2,11 @@ from collections import namedtuple
 import threading
 import time
 import email
+# `import email` ne garantit pas ses sous-modules : `email.header` est
+# utilise par `entete_lisible`, et compter sur un import indirect est le
+# genre de dependance qui tient jusqu'au jour ou elle ne tient plus.
+import email.header
+import email.utils
 from email import encoders
 from email.mime.nonmultipart import MIMENonMultipart
 from email.mime.text import MIMEText
@@ -15,25 +20,35 @@ import re
 MailContentType = namedtuple("MailContentType", "type, charset, params")
 
 
+def entete_lisible(brut, codecs=["utf8", "cp1252", "latin1"]):
+    """An RFC 2047 header, put back together as text.
+
+    `=?UTF-8?B?RGV2aXM=?= <a@b.fr>` is **several** pieces, some encoded and some
+    not, and a subject in two languages has two of the first kind. Taking only
+    `[0]`, as this file used to, kept the first word of a subject and dropped
+    the rest.
+
+    It used to call `email.Header.decode_header`, which is Python 2 - the name
+    is `email.header` now. The AttributeError was swallowed by the `except`
+    below, so nothing broke: subject, sender and recipient simply came back
+    **empty**, and had been doing so since the port.
+    """
+    if not brut:
+        return ""
+    morceaux = []
+    for texte, codec in email.header.decode_header(brut):
+        if isinstance(texte, bytes):
+            morceaux.append(decode_strings(texte, [codec] + codecs if codec else codecs))
+        else:
+            morceaux.append(texte)
+    return "".join(morceaux)
+
+
 def mail_to_dict(mail, codecs=["utf8", "cp1252", "latin1"]):
     result = {}
-    try:
-        subject = email.Header.decode_header(mail.get("Subject"))
-        result["subject"] = subject[0][0].decode(subject[0][1]) if subject[0][1] else decode_strings(subject[0][0], codecs)
-    except Exception:
-        result["subject"] = ""
-
-    try:
-        from_email = email.Header.decode_header(mail.get("From"))
-        result["from_email"] = from_email[0][0].decode(from_email[0][1]) if from_email[0][1] else decode_strings(from_email[0][0], codecs)
-    except Exception:
-        result["from_email"] = ""
-
-    try:
-        to_email = email.Header.decode_header(mail.get("To"))
-        result["to_email"] = to_email[0][0].decode(to_email[0][1]) if to_email[0][1] else decode_strings(to_email[0][0], codecs)
-    except Exception:
-        result["to_email"] = ""
+    result["subject"] = entete_lisible(mail.get("Subject"), codecs)
+    result["from_email"] = entete_lisible(mail.get("From"), codecs)
+    result["to_email"] = entete_lisible(mail.get("To"), codecs)
 
     if mail.get("Date"):
         date = mail.get("Date")
@@ -313,112 +328,111 @@ class Message:
         return msg
 
     def parse_body(self, mail):
-        body = ""
-        # self.content_type = MailContentType("text/html","utf8",{})
-        body_charset = "utf8"
-        # TODO: check this code for multipart messages with different attachments
-        if mail.is_multipart():
-            for part in mail.walk():
-                if part.get_content_maintype() == "multipart":
-                    boundary = ""
-                    double_data = "False"
+        """The body, and the attachments, out of a parsed message.
 
-                    for p in range(len(part.get_payload())):
-                        if part.get_boundary() and boundary == part.get_boundary():
-                            double_data = "True"
-                        else:
-                            double_data = "False"
-                        boundary = part.get_boundary()
-                        for subpart in part.get_payload(p).walk():
-                            if "content-disposition" in subpart and "attachment" in subpart["content-disposition"]:
-                                oAttach = subpart.get_payload()
-                                guid = str(uuid4())
+        Rewritten rather than patched, and the reason is in one line of the
+        version before: `body += base64.b64decode(...)`. In Python 3 that
+        returns **bytes**, `body` is a `str`, and the concatenation raises -
+        into an `except: pass`. So a base64 message, which is most of them,
+        arrived with an empty body and no complaint.
 
-                                # application.storage.write(guid, base64.b64decode(oAttach))
+        `get_payload(decode=True)` does what those branches were doing by hand -
+        base64, quoted-printable, 7bit - and it does it right. What is left to
+        decide here is what belongs to the body and what is an attachment.
+        """
+        self.attach = []
+        morceaux = []
 
-                                attachment_object = MailAttachment()
-                                attachment_object.guid = guid
+        for part in mail.walk():
+            if part.get_content_maintype() == "multipart":
+                continue
 
-                                if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
-                                    try:
-                                        attachment_object.data = quopri.decodestring(oAttach)
-                                    except Exception:
-                                        pass
-                                else:
-                                    try:
-                                        attachment_object.data = base64.b64decode(oAttach)
-                                    except Exception:
-                                        pass
+            disposition = str(part.get("Content-Disposition") or "")
+            nom = part.get_filename()
 
-                                # attachment_object.data = base64.b64decode(oAttach)
+            # An attachment is one that says so, or one that carries a file
+            # name. The second half matters: plenty of senders attach a PDF
+            # with no disposition at all.
+            if "attachment" in disposition.lower() or nom:
+                piece = MailAttachment()
+                piece.guid = str(uuid4())
+                try:
+                    piece.data = part.get_payload(decode=True) or b""
+                except Exception:
+                    piece.data = b""
+                piece.filename = entete_lisible(nom) or ("piece-" + piece.guid[:8])
+                piece.content_type = part.get_content_maintype() or "application"
+                piece.content_subtype = part.get_content_subtype() or "octet-stream"
+                piece.mail_id = ""
+                piece.location = "inbox"
+                # `inline` with a content-id is an image *of* the body - a
+                # signature logo, a chart - and not a document someone meant to
+                # send. The distinction is kept so the screen can resolve
+                # `cid:` references instead of listing them as files.
+                piece.inline_disposition = ("inline" in disposition.lower()
+                                            or bool(part.get("Content-ID")))
+                piece.content_id = str(part.get("Content-ID") or "").strip("<>")
+                self.attach.append(piece)
+                continue
 
-                                try:
-                                    filename = email.Header.decode_header(subpart.get_filename())
-                                    attachment_object.filename = filename[0][0].decode(filename[0][1]) if filename[0][1] else filename[0][0]
-                                except Exception:
-                                    attachment_object.filename = subpart.get_filename()
+            sorte = part.get_content_type()
+            if sorte not in ("text/plain", "text/html"):
+                continue
 
-                                attachment_object.mail_id = ""
-                                attachment_object.location = "inbox"
+            try:
+                octets = part.get_payload(decode=True)
+            except Exception:
+                octets = None
+            if octets is None:
+                continue
 
-                                self.attach.append(attachment_object)
-                            else:
-                                if double_data == "True":
-                                    body = ""
-                                if "Content-Type" in subpart and "charset" in subpart["Content-Type"]:
-                                    body_charset = subpart["Content-Type"].split("=")[1]
-                                    self.content_charset = body_charset.strip('"')
-                                    body_content_type = subpart["Content-Type"].split(";")[0]
-                                    self.content_type = body_content_type
-                                if "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "base64":
-                                    try:
-                                        body += base64.b64decode(subpart.get_payload())
-                                    except Exception:
-                                        pass
-                                elif "Content-Transfer-Encoding" in subpart and subpart["Content-Transfer-Encoding"].lower() == "quoted-printable":
-                                    try:
-                                        body += quopri.decodestring(subpart.get_payload())
-                                    except Exception:
-                                        pass
-                                else:
-                                    if not isinstance(subpart.get_payload(), list):
-                                        body += subpart.get_payload()
+            codec = part.get_content_charset() or self.content_charset or "utf8"
+            morceaux.append((sorte, decode_strings(octets, [codec, "utf8", "cp1252", "latin1"])))
 
+        # HTML wins when both are there: a sender who writes both means the
+        # plain part as a fallback, and showing the fallback to someone whose
+        # screen can render the other is showing them the lesser of the two.
+        html = [t for (s2, t) in morceaux if s2 == "text/html"]
+        plein = [t for (s2, t) in morceaux if s2 == "text/plain"]
+        if html:
+            self.body = "".join(html)
+            self.content_type = "text/html"
+        elif plein:
+            self.body = "".join(plein)
+            self.content_type = "text/plain"
         else:
-            if "Content-Type" in mail and "charset" in mail["Content-Type"]:
-                body_charset = mail["Content-Type"].split("=")[1]
-                self.content_charset = body_charset.strip('"')
-                body_content_type = mail["Content-Type"].split(";")[0]
-                self.content_type = body_content_type
-            if "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "base64":
-                try:
-                    body += base64.b64decode(mail.get_payload())
-                except Exception:
-                    pass
-            elif "Content-Transfer-Encoding" in mail and mail["Content-Transfer-Encoding"].lower() == "quoted-printable":
-                try:
-                    body += quopri.decodestring(mail.get_payload())
-                except Exception:
-                    pass
-            else:
-                if not isinstance(mail.get_payload(), list):
-                    body += mail.get_payload()
-        self.body = decode_strings(body, [body_charset, "utf8", "cp1252"])
+            self.body = ""
+
+        self.content_charset = mail.get_content_charset() or "utf-8"
 
 
 def decode_strings(text, codecs_list):
+    """Bytes to text, trying the codecs in order.
+
+    **Strictly**, and that is the whole fix. This used to decode with
+    `"ignore"`, which never raises: decoding latin-1 bytes as UTF-8 silently
+    *dropped* every byte it could not read and returned a shortened string. The
+    loop therefore always stopped on the first codec, and the ones after it were
+    dead code. Measured: `b"La Vénitienne"` with `["utf8", "latin1"]` came
+    back as `"La Vnitienne"` - an accent gone, and no error anywhere.
+
+    Strict decoding makes a wrong codec fail, so the next one gets its turn.
+    `"replace"` is kept for the end, because a message that cannot be decoded at
+    all should still be readable-ish rather than empty.
+    """
     if type(text) is str:
         return text
+    if text is None:
+        return ""
 
-    # if unknown encoding, try decode with latin1
-    codecs = codecs_list + ["latin1"]
-
-    result = ""
-    for codec in codecs:
+    vus = []
+    for codec in list(codecs_list) + ["utf8", "cp1252", "latin1"]:
+        if not codec or codec in vus:
+            continue
+        vus.append(codec)
         try:
-            result = text.decode(codec, "ignore")
-            return result
-        except Exception:
+            return text.decode(codec)
+        except (UnicodeDecodeError, LookupError):
             continue
 
-    return result
+    return text.decode("utf8", "replace")
