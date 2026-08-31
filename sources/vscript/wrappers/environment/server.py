@@ -96,6 +96,29 @@ class v_mailattachment(generic):
         else:
             return string(self._value.content_subtype)
 
+    def v_database64(self, **keywords):
+        """Les octets de la piece, en base64.
+
+        `Data` rend un binaire, et `CreateFile` du noyau attend un *buffer*
+        VScript - lui donner les octets echoue sur
+        `'bytes' object has no attribute 'handler'`. Le plugin sait deja
+        fabriquer un buffer a partir de base64 : c'est ce qu'il fait pour une
+        piece deposee par l'API. Une seule facon de ranger des octets, donc,
+        plutot qu'une deuxieme a maintenir.
+        """
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("database64")
+        import base64 as _b64
+        octets = self._value.data or b""
+        if isinstance(octets, str):
+            octets = octets.encode("latin1", "replace")
+        return string(_b64.b64encode(octets).decode("ascii"))
+
+    def v_size(self, **keywords):
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("size")
+        return integer(len(self._value.data or b""))
+
     def v_inline(self, **keywords):
         """Une image du corps, ou un document ?
 
@@ -212,12 +235,30 @@ class v_mailmessage(generic):
             return string(self._value.priority)
 
     def v_contenttype(self, **keywords):
+        """`text/html` or `text/plain`, as the parsed body settled it.
+
+        This answered the empty string, always. `parse_body` works the type out
+        while choosing which part is the body, so the information was there and
+        simply never handed over - and a caller asking "is this HTML" got "" and
+        concluded it was not, on every single message.
+        """
         if "let" in keywords:
-            keywords["let"].as_string
+            self._value.content_type = keywords["let"].as_string
         elif "set" in keywords:
             raise errors.object_has_no_property("contenttype")
         else:
-            return string("")
+            return string(self._value.content_type or "")
+
+    def v_date(self, **keywords):
+        """When the message was sent, UTC, `YYYY-MM-DD HH:MM:SS`.
+
+        The date the sender's server wrote, not the moment we fetched it: a
+        first fetch brings in months of mail at once, and stamping it all with
+        the time of the fetch makes a mailbox where everything arrived today.
+        """
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("date")
+        return string(self._value.date or "")
 
     def v_charset(self, **keywords):
         if "let" in keywords:
@@ -243,6 +284,19 @@ class v_mailmessage(generic):
                 return v_mailattachment(self._value.attach[index.as_integer])
         else:
             return v_mailattachmentcollection(self._value.attach)
+
+    def v_attachmentcount(self, **keywords):
+        """Combien de pieces, en un nombre.
+
+        `Len(msg.Attachments)` ne marche pas : la fonction `Len` de VScript
+        passe par `as_simple`, et une collection indexable n'en a pas - elle
+        veut un indice. La collection porte bien un `__len__`, mais personne ne
+        peut l'atteindre depuis un script. Une propriete, donc, plutot qu'une
+        boucle qui compterait jusqu'a l'erreur.
+        """
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("attachmentcount")
+        return integer(len(self._value.attach))
 
     def v_addattachment(self, attachment):
         self._value.attach.append(
@@ -323,6 +377,37 @@ class SmtpSettings(object):
         self.smtp_over_ssl = 0
 
 
+def dire_le_mail(erreur):
+    """What a mail failure actually said, fit to show someone.
+
+    `imaplib` raises with the server's raw line, which is **bytes**, so
+    `str(e)` yields `b'[AUTHENTICATIONFAILED] Authentication failed.'` -
+    quotes, prefix and all - and that string travels unchanged to the dialog
+    where someone is trying to work out why their password is refused. The
+    sentence the server wrote is the useful part; the Python repr around it is
+    not.
+
+    `[AUTHENTICATIONFAILED]` is kept: it is an IMAP response code meant for a
+    program, and the one part of the answer that survives whichever language
+    the server chose to write the rest in.
+    """
+    args = list(getattr(erreur, "args", ()) or ())
+    # The first argument is not always the message. `SSLCertVerificationError`
+    # carries `(1, "[SSL: CERTIFICATE_VERIFY_FAILED] ...")` - the errno first -
+    # and reading args[0] answered the dialog with the single character "1".
+    # The last one that is text is the sentence, on every exception seen here.
+    detail = ""
+    for candidat in reversed(args):
+        if isinstance(candidat, bytes):
+            candidat = candidat.decode("utf-8", "replace")
+        if isinstance(candidat, str) and candidat.strip():
+            detail = candidat.strip()
+            break
+    if not detail:
+        detail = str(erreur).strip()
+    return detail or erreur.__class__.__name__
+
+
 class v_imapconnection(generic):
     """Une boite qu'on lit, et qu'on ne vide pas.
 
@@ -359,7 +444,7 @@ class v_imapconnection(generic):
         try:
             return integer(self._client.select(nom))
         except Exception as e:
-            raise mailserver_error(str(e))
+            raise mailserver_error(dire_le_mail(e))
 
     def v_uids(self, since=None):
         """Les identifiants du dossier ouvert, du plus ancien au plus recent.
@@ -378,7 +463,7 @@ class v_imapconnection(generic):
         try:
             message = self._client.fetch(uid.as_integer)
         except Exception as e:
-            raise mailserver_error(str(e))
+            raise mailserver_error(dire_le_mail(e))
         return v_nothing if message is None else v_mailmessage(message)
 
     def v_countmessages(self):
@@ -477,7 +562,7 @@ class v_mailer(generic):
                 secure=True if secure is None else secure.as_boolean,
                 insecure=False if insecure is None else insecure.as_boolean)
         except Exception as e:
-            raise mailserver_error(str(e))
+            raise mailserver_error(dire_le_mail(e))
         try:
             client.user(login.as_string, password.as_string)
         except Exception as e:
@@ -485,24 +570,53 @@ class v_mailer(generic):
                 client.quit()
             except Exception:
                 pass
-            raise mailserver_error(str(e))
+            raise mailserver_error(dire_le_mail(e))
         return v_imapconnection(client)
 
     def v_send(self, message):
         return integer(managers.email_manager.send(message.as_specific(v_mailmessage).value))
 
     def v_send_via(self, message, smtp_settings):
+        """Send one message through the given SMTP account, and wait for it.
+
+        Every failure here becomes a `mailserver_error`, which a macro can
+        catch. It used to leak whatever Python raised - an empty `Recipients`
+        surfaced as `TypeError: Argument of type 'NoneType' is not iterable`,
+        reported as an *internal error*, and VScript's `Try` does not catch
+        those: the macro died where it stood and the route answered 404. A
+        caller cannot be expected to validate on our behalf what we are the
+        only ones to know about.
+        """
         settings = smtp_settings.as_specific(v_smtpsettings)
-        email_manager = VDOM_email_manager(config=settings, daemon=False)
-        msg_id = email_manager.send(message.as_specific(v_mailmessage).value)
-        if msg_id >= 0:
+        brut = message.as_specific(v_mailmessage).value
+
+        # Checked here rather than left to `smtplib`, because these two are the
+        # ones a caller actually gets wrong, and the messages smtplib gives for
+        # them name neither field.
+        if not (brut.to_email or "").strip():
+            raise mailserver_error("no recipient")
+        # `get_opt` and not the attribute: `as_specific` answers the *wrapper*,
+        # which holds the settings in `_value` and exposes them by their
+        # `SMTP-SERVER-ADDRESS` name - the same accessor the mail manager uses.
+        if not str(settings.get_opt("SMTP-SERVER-ADDRESS") or "").strip():
+            raise mailserver_error("no SMTP server configured")
+
+        try:
+            email_manager = VDOM_email_manager(config=settings, daemon=False)
+            msg_id = email_manager.send(brut)
+            if msg_id is None or msg_id < 0:
+                raise mailserver_error("the mailer refused the message")
             email_manager.work()
             ret = email_manager.check(msg_id)
-            if ret:
-                print(ret)
-                msg_id = -1
-        else:
-            msg_id = -1
+        except errors.generic:
+            # Already a VScript error - it says what it means, and wrapping it
+            # a second time would only add a layer to read through.
+            raise
+        except Exception as e:
+            raise mailserver_error(dire_le_mail(e))
+        if ret:
+            raise mailserver_error(dire_le_mail(ret) if isinstance(ret, Exception)
+                                   else str(ret))
         return integer(msg_id)
 
     def v_receive(self, server, port, login, password, secure=None, index=None, delete=None):

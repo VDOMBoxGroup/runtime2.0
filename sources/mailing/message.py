@@ -1,4 +1,5 @@
 from collections import namedtuple
+import datetime
 import threading
 import time
 import email
@@ -44,19 +45,50 @@ def entete_lisible(brut, codecs=["utf8", "cp1252", "latin1"]):
     return "".join(morceaux)
 
 
+def _quand(entete):
+    """The instant a message was sent, in UTC, as `YYYY-MM-DD HH:MM:SS`.
+
+    Three things were wrong with what stood here, and each of them shows only
+    on real mail:
+
+      * the format was `%d %b %Y`, so **the time of day was dropped**. A mailbox
+        sorted by date then had every message of a day arrive at midnight, in
+        an order that was not theirs;
+      * `parsedate` answers `None` on a header it cannot read - and there are
+        such headers in any real mailbox - and `strftime(None)` raises. One
+        malformed date failed the whole fetch;
+      * `mktime` reads the tuple as *local* time, ignoring the offset the
+        header carries. A message sent at 09:00 in Tokyo was filed at 09:00
+        here.
+
+    `parsedate_to_datetime` keeps the offset, so the instant is preserved and
+    converted once, to UTC - which is what SQLite's `datetime('now')` writes,
+    so the two are comparable.
+    """
+    quand = None
+    if entete:
+        try:
+            quand = email.utils.parsedate_to_datetime(entete)
+        except (TypeError, ValueError):
+            quand = None
+    if quand is None:
+        quand = datetime.datetime.now(datetime.timezone.utc)
+    elif quand.tzinfo is None:
+        # A date without an offset is the sender's local time, and we have no
+        # way to know which one that is. Reading it as UTC is a choice, and the
+        # only one that does not invent an offset.
+        quand = quand.replace(tzinfo=datetime.timezone.utc)
+    quand = quand.astimezone(datetime.timezone.utc)
+    return quand.strftime("%Y-%m-%d %H:%M:%S"), str(int(quand.timestamp()))
+
+
 def mail_to_dict(mail, codecs=["utf8", "cp1252", "latin1"]):
     result = {}
     result["subject"] = entete_lisible(mail.get("Subject"), codecs)
     result["from_email"] = entete_lisible(mail.get("From"), codecs)
     result["to_email"] = entete_lisible(mail.get("To"), codecs)
 
-    if mail.get("Date"):
-        date = mail.get("Date")
-        result["date"] = time.strftime("%d %b %Y", email.utils.parsedate(date))
-        result["date_in_sec"] = str(time.mktime(email.utils.parsedate(date)))
-    else:
-        result["date"] = time.strftime("%d %b %Y")
-        result["date_in_sec"] = str(time.mktime(time.localtime()))
+    result["date"], result["date_in_sec"] = _quand(mail.get("Date"))
 
     # try:
     # mail_type = email.Header.decode_header(mail.get('Content-Type'))
@@ -270,6 +302,27 @@ class Message:
         if self.headers:
             for key, value in self.headers.items():
                 msg[key] = value
+
+        # `Message-ID` and `Date` are required by RFC 5322, and nothing here
+        # wrote either of them. It is not a formality: Gmail refuses outright -
+        #
+        #   550-5.7.1 Messages missing a valid Message-ID header are not accepted
+        #
+        # so every message this server has ever sent to a Gmail address bounced.
+        # The local SMTP relay accepts them, which is why it looks like sending
+        # works right up until the recipient is at a strict provider.
+        #
+        # Set only when absent, so a caller that threads a conversation by
+        # supplying its own identifiers keeps them.
+        if "Message-ID" not in msg:
+            # The domain is taken from the sender, so the identifier belongs to
+            # the domain that sent it - a Message-ID pointing somewhere else is
+            # exactly what spam filters look for.
+            _, adresse = email.utils.parseaddr(self.from_email or "")
+            domaine = adresse.split("@")[-1] if "@" in adresse else None
+            msg["Message-ID"] = email.utils.make_msgid(domain=domaine)
+        if "Date" not in msg:
+            msg["Date"] = email.utils.formatdate(localtime=True)
 
         return msg.as_string()
 
