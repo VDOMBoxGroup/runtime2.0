@@ -20,6 +20,27 @@ from soap.wsdl import methods as wsdl_methods
 class VDOM_http_server(socketserver.ThreadingTCPServer):
     """VDOM threading http server class"""
 
+    # The listen backlog. `socketserver` defaults it to 5, and this class never
+    # said otherwise - so the server listened with `listen(5)`.
+    #
+    # Five is not the number of clients, it is the number of connections the
+    # kernel will hold *while waiting to be accepted*. Beyond it, the OS answers
+    # new connections with an RST, and the browser reports
+    # `net::ERR_CONNECTION_RESET` on whichever resources happened to be in that
+    # burst - the large ones first, because they hold their connection longest.
+    #
+    # One page opening another in an iframe is enough to exceed it: both fetch
+    # from the same host at the same moment, and a modern browser opens six
+    # sockets per host for each of them. Measured here on a page of 28 scripts
+    # and 5 stylesheets loaded inside the desktop shell: two scripts reset out
+    # of thirty-three, intermittently, while the very same page loaded on its
+    # own was always fine.
+    #
+    # 128 is the usual figure for a server socket, and the kernel caps it at
+    # `somaxconn` anyway. It costs nothing: an entry in the accept queue is a
+    # few bytes, and threads are still created one per accepted connection.
+    request_queue_size = 128
+
     def __init__(self, server_address, request_handler_class):
         """constructor"""
         self.__server_address = server_address
