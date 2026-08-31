@@ -28,6 +28,9 @@ class mailserver_already_connected(mailserver_error):
             self, message=u"Already connected", line=line)
 
 
+# Definie ici et non dans `errors` : onze `raise errors.mailserver_closed_connection`
+# trainaient dans ce fichier et levaient un AttributeError au lieu de l'erreur
+# voulue - dans des chemins d'echec, donc sans que personne le voie.
 class mailserver_closed_connection(mailserver_error):
 
     def __init__(self, line=None):
@@ -92,6 +95,23 @@ class v_mailattachment(generic):
             raise errors.object_has_no_property("contentsubtype")
         else:
             return string(self._value.content_subtype)
+
+    def v_inline(self, **keywords):
+        """Une image du corps, ou un document ?
+
+        Une signature, un logo, un graphique : ils arrivent comme pieces
+        jointes mais ne sont pas des documents qu'on a voulu envoyer. Les
+        distinguer est ce qui permet a un ecran de resoudre les `cid:` du
+        corps au lieu de lister cinq images sous chaque message.
+        """
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("inline")
+        return boolean(bool(getattr(self._value, "inline_disposition", False)))
+
+    def v_contentid(self, **keywords):
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("contentid")
+        return string(getattr(self._value, "content_id", None) or "")
 
 
 class v_mailattachmentcollection(generic):
@@ -262,32 +282,32 @@ class v_mailconnection(generic):
 
     def v_receive(self, index=None, delete=None):
         if not self._client:
-            raise errors.mailserver_closed_connection
+            raise mailserver_closed_connection
         message = self._client.fetch_message(0 if index is None else index.as_integer,
                                              False if delete is None else delete.as_boolean)
         return v_nothing if message is None else v_mailmessage(message)
 
     def v_receiveall(self, offset=None, limit=None, delete=None):
         if not self._client:
-            raise errors.mailserver_closed_connection
+            raise mailserver_closed_connection
         messages = self._client.fetch_all_messages(0 if offset is None else offset.as_integer,
                                                    None if limit is None else limit.as_integer, False if delete is None else delete.as_boolean)
         return array(items=[v_mailmessage(message) for message in messages])
 
     def v_countmessages(self):
         if not (self._client and self._client.connected):
-            raise errors.mailserver_closed_connection
+            raise mailserver_closed_connection
         return integer(len(self._client))
 
     def v_delete(self, index):
         if not (self._client and self._client.connected):
-            raise errors.mailserver_closed_connection
+            raise mailserver_closed_connection
         self._client.delete(index.as_integer)
         return v_mismatch
 
     def v_quit(self, force=False):
         if not (self._client and self._client.connected):
-            raise errors.mailserver_closed_connection
+            raise mailserver_closed_connection
         self._client.quit()
         return v_mismatch
 
@@ -301,6 +321,75 @@ class SmtpSettings(object):
         self.smtp_server_password = ""
         self.smtp_server_sender = ""
         self.smtp_over_ssl = 0
+
+
+class v_imapconnection(generic):
+    """Une boite qu'on lit, et qu'on ne vide pas.
+
+    La surface est volontairement mince : lister les dossiers, en ouvrir un,
+    demander les identifiants, prendre un message. La boucle appartient a
+    l'appelant, qui seul sait par combien il veut avancer et quand s'arreter -
+    sept mille messages ne se relevent pas d'un trait, et c'est le macro qui
+    tient le compte de ce qu'il a deja.
+    """
+
+    def __init__(self, client=None):
+        generic.__init__(self)
+        self._client = client
+
+    def v_isconnected(self, **keywords):
+        if "let" in keywords or "set" in keywords:
+            raise errors.object_has_no_property("isconnected")
+        return boolean(bool(self._client and self._client.connected))
+
+    def v_folders(self):
+        if not self._client:
+            raise mailserver_closed_connection
+        return array(items=[string(nom) for nom in self._client.folders()])
+
+    def v_openfolder(self, folder=None):
+        """Ouvrir un dossier. **Pas `Select`** : c'est un mot-cle de VScript
+        (`Select Case`), et une methode qui en porte le nom casse l'appelant et
+        non la bibliotheque - `Invalid token 'select'` a la ligne de l'appel,
+        dans un fichier qui n'a rien fait de mal. Voir TIPS VDOM/vscript.md, qui
+        ouvre la-dessus."""
+        if not self._client:
+            raise mailserver_closed_connection
+        nom = "INBOX" if folder is None else folder.as_string
+        try:
+            return integer(self._client.select(nom))
+        except Exception as e:
+            raise mailserver_error(str(e))
+
+    def v_uids(self, since=None):
+        """Les identifiants du dossier ouvert, du plus ancien au plus recent.
+
+        `since` est ce qui evite de tout reprendre a chaque releve : le serveur
+        ne rend que ce qui est arrive apres.
+        """
+        if not self._client:
+            raise mailserver_closed_connection
+        depuis = 0 if since is None else since.as_integer
+        return array(items=[integer(u) for u in self._client.uids(depuis)])
+
+    def v_fetch(self, uid):
+        if not self._client:
+            raise mailserver_closed_connection
+        try:
+            message = self._client.fetch(uid.as_integer)
+        except Exception as e:
+            raise mailserver_error(str(e))
+        return v_nothing if message is None else v_mailmessage(message)
+
+    def v_countmessages(self):
+        if not self._client:
+            raise mailserver_closed_connection
+        return integer(self._client.message_count)
+
+    def v_quit(self):
+        if self._client:
+            self._client.quit()
+        return v_mismatch
 
 
 class v_smtpsettings(generic):
@@ -373,6 +462,32 @@ class v_mailer(generic):
                                   secure=False if secure is None else secure.as_boolean)
         return v_mailconnection(client)
 
+    def v_connectimap(self, server, port, login, password, secure=None, insecure=None):
+        """Ouvrir un compte IMAP, authentification comprise.
+
+        En un appel et non deux, contrairement a `Connect` puis `User` du cote
+        POP3 : une connexion IMAP sans identifiants ne permet rien du tout, et
+        laisser un objet a moitie ouvert entre les deux appels est un etat que
+        personne ne veut manipuler.
+        """
+        from mailing.imap import VDOM_Imap_client
+        try:
+            client = VDOM_Imap_client(
+                server.as_string, port.as_integer,
+                secure=True if secure is None else secure.as_boolean,
+                insecure=False if insecure is None else insecure.as_boolean)
+        except Exception as e:
+            raise mailserver_error(str(e))
+        try:
+            client.user(login.as_string, password.as_string)
+        except Exception as e:
+            try:
+                client.quit()
+            except Exception:
+                pass
+            raise mailserver_error(str(e))
+        return v_imapconnection(client)
+
     def v_send(self, message):
         return integer(managers.email_manager.send(message.as_specific(v_mailmessage).value))
 
@@ -440,7 +555,7 @@ class v_mailer(generic):
         try:
             client.user(login.as_string, password.as_string)
             if not client.connected:
-                raise errors.mailserver_closed_connection()
+                raise mailserver_closed_connection()
             count = len(client)
         except Exception as e:
             raise mailserver_error(str(e))
