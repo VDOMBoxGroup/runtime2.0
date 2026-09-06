@@ -8,9 +8,13 @@ cache/*
 data/*
 resources/*
 temp/*
-# types/ is versioned: a type is server code, and the TinyMCE type now
-# carries the document font the LimeOS renderer has to match. Ignoring it
-# meant that setting lived on one disk, in two copies, under no history.
+# types/ is the installed-type directory of the default instance - the one
+# `run-server.bat` starts with no -c. Nothing here runs that instance: LimeOS
+# points TYPES-LOCATION at VDOM-SERVER-RUN/types, so this copy drifted, and 86
+# of its 89 types no longer match what serves. Versioning it put a decoy in the
+# tree that looked like "the types" and was not. `repository/types/*.xml` is
+# the versioned form of a type; this is a build output of `manage deploy`.
+/types/
 fonts/*
 sources/*.xml
 .DS_Store

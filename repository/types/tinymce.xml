@@ -381,6 +381,26 @@ class VDOM_tinymce(VDOM_object):
                     'alignright alignjustify | bullist numlist outdent indent | ' +
                     'removeformat | ' +
                     'link image',
+                  /* The document font, stated so that nothing depends on a
+                     default. The content stylesheet above carries only the
+                     visualblocks decoration and declares no font at all, so
+                     without this the author was looking at the browser default
+                     for an unstyled iframe - Times New Roman 16px - while the
+                     PDF came out in something else. Must stay equal to
+                     DOC_FONT in the LimeOS library `model_template.py`. */
+                  content_style:
+                    "html, body, div, span, p, li, ul, ol, table, thead, tbody,"
+                    + " tr, th, td, h1, h2, h3, h4, h5, h6"
+                    + " { font-family: Helvetica, Arial, sans-serif; }"
+                    + " html, body, div, span, p, li, ul, ol, table, thead,"
+                    + " tbody, tr, th, td { font-size: 12pt; }"
+                    + " h1 { font-size: 20pt; } h2 { font-size: 15pt; }"
+                    + " h3 { font-size: 13pt; }",
+                  font_formats:
+                    "Helvetica=Helvetica,Arial,sans-serif;"
+                    + "Arial=arial,helvetica,sans-serif;"
+                    + "Courier=courier new,courier,monospace;"
+                    + "Times New Roman=times new roman,times,serif",
                   paste_data_images: true,
                   fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
                   setup: (editor) => {
