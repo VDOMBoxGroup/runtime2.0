@@ -21,6 +21,41 @@ import managers
 import settings
 
 
+def content_disposition_name(filename):
+    """The filename parameters of a Content-Disposition header.
+
+    Returns both forms, because neither alone is enough:
+
+        filename="devis.pdf"; filename*=UTF-8''devis%20%C3%A9t%C3%A9.pdf
+
+    A header goes onto the socket through BaseHTTPRequestHandler.send_header,
+    which encodes it latin-1. So a name with an accent cannot travel in the
+    plain `filename` - it raises UnicodeEncodeError after the response has
+    started, which the client sees as a connection dropped mid-download. The
+    plain form is therefore reduced to ASCII, and the real name travels in
+    `filename*` (RFC 5987), which every browser prefers when both are present.
+
+    Bytes are accepted and decoded. Under Python 2 a caller wrote
+    `node.name.encode('utf8')` and the raw bytes went into the header; under
+    Python 3 the same line makes "%s" produce b'devis.pdf', quotes included, so
+    files arrived named after their own repr. Four call sites did it, three of
+    them without ever raising. Decoding here means no caller has to know how an
+    HTTP header is encoded - which is the reason they got it wrong.
+    """
+    if isinstance(filename, bytes):
+        filename = filename.decode("utf-8", "replace")
+    else:
+        filename = str(filename)
+    # A quote or a backslash would end the quoted string early, and a path
+    # separator would let a caller propose a name that is not one.
+    filename = filename.replace("\\", "_").replace('"', "_")
+    filename = filename.replace("/", "_")
+    filename = "".join(" " if character < " " else character for character in filename)
+    plain = filename.encode("ascii", "replace").decode("ascii")
+    quoted = urllib.parse.quote(filename, safe="")
+    return "filename=\"%s\"; filename*=UTF-8''%s" % (plain, quoted)
+
+
 class MFSt(FieldStorage):
     def make_file(self, binary=None):
         # cgi keeps a part in memory until it passes 1000 bytes, then calls
@@ -376,12 +411,9 @@ class VDOM_request(object):
         f_content_type = content_type if content_type else "application/octet-stream"
         self.add_header("Content-type", f_content_type)
         if "content-disposition" not in self.__headers_out.headers():
-            if content_type:
-                self.add_header("Content-Disposition",
-                                "inline; filename=\"%s\"" % filename)
-            else:
-                self.add_header("Content-Disposition",
-                                "attachment; filename=\"%s\"" % filename)
+            disposition = "inline" if content_type else "attachment"
+            self.add_header("Content-Disposition",
+                            "%s; %s" % (disposition, content_disposition_name(filename)))
 
         # Cache-Control is a default here too, for the same reason as the
         # disposition above: a caller that already set one knows something this
