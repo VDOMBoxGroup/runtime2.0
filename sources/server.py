@@ -5,7 +5,7 @@ from startup import server  # noqa
 import settings
 import managers
 
-from logs import VDOM_log_manager
+from logs import VDOM_log_manager, console
 from startup import ImportManager
 from storage import VDOM_storage
 from file_access import VDOM_file_manager  # VDOM_share
@@ -49,5 +49,32 @@ managers.register("soap_server", VDOM_soap_server)
 managers.register("webdav_manager", VDOM_webdav_manager, lazy=True)
 managers.register("server", VDOM_server)
 
-on_prepare = (lambda: managers.memory.applications.default) if settings.PRELOAD_DEFAULT_APPLICATION else None
-managers.server.start(on_prepare)
+# Load the default application before anything can be served.
+#
+# This used to be passed to start() as on_ready, which SmartServer calls after
+# prepare() - and prepare() is what starts the web server. So the application
+# was loaded while the port was already accepting, and every request arriving
+# in that window ran against an application that was still coming up.
+#
+# That window is where an application upgrades itself. Loading an application
+# runs its `applicationonstart` action (MemoryApplicationGhost.on_start), which
+# is the only place a schema migration can happen: an application deployed by
+# swapping a container image is never installed or updated at runtime, it is
+# simply present at the next start. Serving requests during that migration
+# means serving them against a half-migrated schema, and the symptom is a 500
+# naming a column that does not exist yet.
+#
+# Loading it here, before start(), closes the window: by the time the port is
+# open the application is up and its schema is current.
+if settings.PRELOAD_DEFAULT_APPLICATION:
+    try:
+        managers.memory.applications.default
+    except Exception as error:
+        # Do not refuse to start. A container that exits on a broken
+        # application restarts in a loop and there is no way in to diagnose it;
+        # one that serves errors can at least be reached and read.
+        console.error("unable to preload the default application: %s" % error)
+        from traceback import print_exc
+        print_exc()
+
+managers.server.start()
