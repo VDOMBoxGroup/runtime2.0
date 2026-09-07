@@ -5,7 +5,7 @@ from startup import server  # noqa
 import settings
 import managers
 
-from logs import VDOM_log_manager, console
+from logs import VDOM_log_manager, console, log
 from startup import ImportManager
 from storage import VDOM_storage
 from file_access import VDOM_file_manager  # VDOM_share
@@ -68,11 +68,14 @@ managers.register("server", VDOM_server)
 # open the application is up and its schema is current.
 if settings.PRELOAD_DEFAULT_APPLICATION:
     try:
-        managers.memory.applications.default
+        log.write("Preload the default application")
+        subject = managers.memory.applications.default
+        log.write("Preloaded %s" % (subject or "nothing: no application installed"))
     except Exception as error:
         # Do not refuse to start. A container that exits on a broken
         # application restarts in a loop and there is no way in to diagnose it;
         # one that serves errors can at least be reached and read.
+        log.error("unable to preload the default application: %s" % error)
         console.error("unable to preload the default application: %s" % error)
         from traceback import print_exc
         print_exc()

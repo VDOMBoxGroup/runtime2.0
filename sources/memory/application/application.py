@@ -1,4 +1,6 @@
 import codecs
+import os.path
+import sys
 from builtins import map
 from collections import defaultdict
 from io import StringIO
@@ -231,15 +233,43 @@ class MemoryApplication(MemoryApplicationSketch):
     current_language = rwproperty("_current_language", _set_current_language)
 
     def on_start(self):
-        if settings.SERVER:
-            action = self.actions.get(APPLICATION_START_CONTEXT)
-            if action and action.source_code:
-                try:
-                    managers.engine.execute(action)
-                except Exception as e:
-                    print(f"Exception while application:onstart execution: {e}")
-                    from traceback import print_exc
-                    print_exc()
+        """Run the application's start action, and say what happened.
+
+        This is where an application deployed by swapping a container image
+        brings its own schema forward, so every way of not running it has to
+        leave a trace. It used to leave none: the guard returned silently, a
+        missing action was indistinguishable from a working one, and a failure
+        went to print() - which reaches a console nobody reads and never the
+        log. A site would come up on the wrong schema and answer 500 on a
+        column that does not exist, with nothing anywhere saying why.
+        """
+        if not settings.SERVER:
+            # settings.SERVER is not configuration. The settings importer sets
+            # it to (basename of argv[0], without extension, == "server"), so a
+            # server started under any other name - a wrapper script, an entry
+            # point, python -m - has it False and every application start
+            # action in the instance is dead.
+            log.warning("%s: start action skipped, settings.SERVER is false. "
+                        "It is derived from argv[0], which is %s; it has to be "
+                        "server.py for start actions to run."
+                        % (self, os.path.basename(sys.argv[0]) or "empty"))
+            return
+
+        action = self.actions.get(APPLICATION_START_CONTEXT)
+        if not action or not action.source_code:
+            log.write("%s: no %s action to run" % (self, APPLICATION_START_CONTEXT))
+            return
+
+        log.write("%s: run %s" % (self, APPLICATION_START_CONTEXT))
+        try:
+            managers.engine.execute(action)
+        except Exception as error:
+            # Into the log, not into print(). The start action is the last
+            # thing that runs before the port opens, and if it fails that is
+            # the one line worth having.
+            log.error("%s: %s failed: %s" % (self, APPLICATION_START_CONTEXT, error))
+            from traceback import format_exc
+            log.error(format_exc())
 
     def cleanup(self):
         for library in self._libraries.values():
