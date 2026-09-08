@@ -124,7 +124,19 @@ class VDOM_request(object):
 
                     request_body = handler.rfile.read(request_body_size)
                     params = json.loads(request_body)
-                    args = {key: params[key] for key in params}
+                    # Shape a JSON body like the form branch below: every value
+                    # a list. Everything downstream assumes list-shaped args -
+                    # `args["sid"][0]` indexes one a few lines down, and a macro
+                    # reads Event.Data, which surfaces only a list-shaped value.
+                    # Left as scalars, a JSON field read back empty: a Custom GPT
+                    # posting application/json reached its macro with an empty
+                    # body, indistinguishable from no body at all.
+                    if isinstance(params, dict):
+                        args = {
+                            key: value if isinstance(value, list) else [value]
+                            for key, value in params.items()}
+                    else:
+                        args["rawdata"] = request_body
 
                 # TODO: check situation with SOAP and SOAP-POST-URL
                 elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
