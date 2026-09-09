@@ -69,6 +69,22 @@ class VDOM_response(object):
         if value:
             managers.request_manager.current.set_nocache()
 
+    def _get_status(self):
+        return managers.request_manager.current.retcode
+
+    def _set_status(self, value):
+        """The status line the next send_file will use.
+
+        Set it before writing anything: set_nocache reads it when it sends the
+        headers, and after that the line is on the socket. Without this a
+        script could only answer 200 or go through send_htmlcode, which writes
+        the buffered output and leaves the runtime to append its own error page
+        behind it.
+        """
+        managers.request_manager.current.retcode = int(value)
+
+    status = property(_get_status, _set_status)
+
     headers = property(lambda self: self._headers)
     cookies = property(_get_cookies)
     binary = property(_get_binary, _set_binary)

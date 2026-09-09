@@ -265,9 +265,16 @@ class VDOM_request(object):
         return self.__binary
 
     def set_nocache(self):
-        """switch output to no cache mode"""
+        """switch output to no cache mode
+
+        The status line is `retcode`, which is 200 until something sets it.
+        It used to be the literal 200, so every answer that went out this way -
+        send_file among them - was a success whatever it carried. A health
+        endpoint could then report that a site was broken, with a 200, and no
+        monitoring system had anything to alert on.
+        """
         if not self.__nocache:
-            self._handler.send_response(200)
+            self._handler.send_response(self.retcode or 200)
             self._handler.send_headers()
             self._handler.end_headers()  # TODO!
             self.wfile.write(self.output())
