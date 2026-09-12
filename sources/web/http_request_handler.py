@@ -514,9 +514,13 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             debug(format_exception_trace())
             raise
         finally:
-            debug("WebDAV %s %s -> %s %d o %.0f ms" % (
+            # Recu autant qu'envoye : sans le premier, un depot de 400 Mo se lit
+            # comme quelques kilo-octets - la reponse d'un PUT ne pese rien - et
+            # le debit reel reste invisible.
+            debug("WebDAV %s %s -> %s recu %s o envoye %d o %.0f ms" % (
                 environ.get("REQUEST_METHOD"), _chemin_lisible(environ),
-                etat["code"], etat["octets"], 1000 * (time.time() - debut)))
+                etat["code"], self.headers.get("content-length") or 0,
+                etat["octets"], 1000 * (time.time() - debut)))
 
     def do_GET(self):
         """serve a GET request"""

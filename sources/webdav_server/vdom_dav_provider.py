@@ -257,6 +257,7 @@ class VDOM_resource(_DAVResource):
         ret = managers.dispatcher.dispatch_action(
             self._app_id, self._obj_id, func_name, "", xml_data)
         if ret:
+            self._oublier_verrous_et_proprietes()
             return True
         else:
             if self.path == "/":
@@ -266,6 +267,32 @@ class VDOM_resource(_DAVResource):
                     self._app_id, self._obj_id, posixpath.normpath(util.get_uri_parent(self.path)))
 
             raise DAVError(HTTP_FORBIDDEN)
+
+    def _oublier_verrous_et_proprietes(self):
+        """Ce qui etait accroche a ce chemin part avec lui.
+
+        wsgidav n'appelle remove_all_locks nulle part : c'est le fournisseur qui
+        supprime qui nettoie. Le sien le fait dans delete() ; ici, handle_delete
+        rend True - "j'ai tout fait" - et wsgidav repond aussitot 204 sans
+        toucher au gestionnaire de verrous.
+
+        Le verrou survivait donc a la ressource, pose sur une URL qui n'existait
+        plus. Un client de fichiers qui recopie fait exactement cela :
+
+            PROPFIND 404 -> PUT 201 -> LOCK 200 -> DELETE 204 -> PUT 201 -> LOCK 423
+
+        il supprime et recree, et son propre verrou d'avant lui barre la route.
+        L'explorateur Windows traduit ce 423 par un conflit de noms - "un fichier
+        du meme nom existe deja" - sur un dossier vide, ce qui ne mene a rien.
+        """
+        try:
+            self.remove_all_properties(recursive=True)
+        except Exception as e:
+            debug("WebDAV: proprietes de %s non nettoyees: %s" % (self.path, e))
+        try:
+            self.remove_all_locks(recursive=True)
+        except Exception as e:
+            debug("WebDAV: verrous de %s non liberes: %s" % (self.path, e))
 
     def handle_copy(self, dest_path, *, depth_infinity):
         func_name = "copy"
@@ -286,6 +313,8 @@ class VDOM_resource(_DAVResource):
         ret = managers.dispatcher.dispatch_action(
             self._app_id, self._obj_id, func_name, "", xml_data)
         if ret:
+            # La source n'existe plus : ce qui la verrouillait non plus.
+            self._oublier_verrous_et_proprietes()
             return True
 
         raise DAVError(HTTP_FORBIDDEN)
