@@ -1,3 +1,11 @@
+"""Surcharge de RequestServer, **non cablee**.
+
+wsgidav 4 instancie son propre RequestServer depuis RequestResolver, le dernier
+element de la pile d'intergiciels ; ce module n'est importe que par __init__ et
+sa classe n'est utilisee nulle part. Ses noms d'API ont ete portes vers wsgidav
+4 pour qu'il ne soit pas un piege si quelqu'un le rebranche, mais **rien ici
+n'est exerce** : ne pas le rebrancher sans le tester.
+"""
 
 
 import wsgidav.request_server
@@ -21,7 +29,7 @@ class VDOM_webdav_request_server(RequestServer):
         provider = self._davProvider
         srcRes = provider.get_resource_inst(srcPath, environ)
         srcParentRes = provider.get_resource_inst(
-            util.getUriParent(srcPath), environ)
+            util.get_uri_parent(srcPath), environ)
 
         # --- Check source -----------------------------------------------------
 
@@ -33,12 +41,12 @@ class VDOM_webdav_request_server(RequestServer):
         if not environ.setdefault("HTTP_OVERWRITE", "T") in ("T", "F"):
             # Overwrite defaults to 'T'
             self._fail(HTTP_BAD_REQUEST, "Invalid Overwrite header.")
-        if util.getContentLength(environ) != 0:
+        if util.get_content_length(environ) != 0:
             # RFC 2518 defined support for <propertybehavior>.
             # This was dropped with RFC 4918.
             # Still clients may send it (e.g. DAVExplorer 0.9.1 File-Copy) sends
             # <A:propertybehavior xmlns:A="DAV:"> <A:keepalive>*</A:keepalive>
-            body = environ["wsgi.input"].read(util.getContentLength(environ))
+            body = environ["wsgi.input"].read(util.get_content_length(environ))
             environ["wsgidav.all_input_read"] = 1
             _logger.info("Ignored copy/move  body: '%s'..." % body[:50])
 
@@ -100,7 +108,7 @@ class VDOM_webdav_request_server(RequestServer):
         destExists = destRes is not None
 
         destParentRes = provider.get_resource_inst(
-            util.getUriParent(destPath), environ)
+            util.get_uri_parent(destPath), environ)
 
         if not destParentRes or not destParentRes.isCollection:
             self._fail(HTTP_CONFLICT,
@@ -124,7 +132,7 @@ class VDOM_webdav_request_server(RequestServer):
 
         if srcPath == destPath:
             self._fail(HTTP_FORBIDDEN, "Cannot copy/move source onto itself")
-        elif util.isEqualOrChildUri(srcPath, destPath):
+        elif util.is_equal_or_child_uri(srcPath, destPath):
             self._fail(HTTP_FORBIDDEN, "Cannot copy/move source below itself")
 
         if destExists and environ["HTTP_OVERWRITE"] != "T":
@@ -235,7 +243,7 @@ class VDOM_webdav_request_server(RequestServer):
             # Skip this resource, if there was a failure copying a parent
             parentError = False
             for ignorePath in list(ignoreDict.keys()):
-                if util.isEqualOrChildUri(ignorePath, sRes.path):
+                if util.is_equal_or_child_uri(ignorePath, sRes.path):
                     parentError = True
                     break
             if parentError:
@@ -282,7 +290,7 @@ class VDOM_webdav_request_server(RequestServer):
                 # Skip collections that contain errors (unmoved resources)
                 childError = False
                 for ignorePath in list(ignoreDict.keys()):
-                    if util.isEqualOrChildUri(sRes.path, ignorePath):
+                    if util.is_equal_or_child_uri(sRes.path, ignorePath):
                         childError = True
                         break
                 if childError:

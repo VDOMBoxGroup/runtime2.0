@@ -45,17 +45,27 @@ def lru_cache(maxsize=100):
 
         def invalidate(app_id, obj_id, path):
             cache.last_access = datetime.now()
-            key = (app_id, obj_id, path.encode("utf8"))
+            # str, et non path.encode("utf8") : tout le reste du cache est
+            # indexe par un chemin texte - get_properties, get_children - donc
+            # la cle en octets ne correspondait a rien et l'entree visee n'etait
+            # jamais marquee. En Python 2 les deux etaient le meme objet.
+            key = (app_id, obj_id, path)
             with lock:
                 try:
-
                     result = cache.pop(key)
                     cache[key] = (result[0], 1)
                 except Exception:
                     pass
-                for key in cache:
-                    if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(util.toUnicode(path), util.toUnicode(key[2])):
-                        cache.pop(key, None)
+                # list(cache) : on supprime pendant le parcours, et en Python 3
+                # iterer un dictionnaire qu'on modifie leve
+                #     RuntimeError: OrderedDict mutated during iteration
+                # C'est ce qui faisait echouer toute ecriture apres coup : le
+                # fichier etait bien ecrit, puis l'invalidation levait et le
+                # client recevait 500.
+                for cle in list(cache):
+                    if (cle[0], cle[1]) == (app_id, obj_id) and util.is_child_uri(
+                            util.to_unicode_safe(path), util.to_unicode_safe(cle[2])):
+                        cache.pop(cle, None)
 
         def get_children_names(app_id, obj_id, path):
             cache.last_access = datetime.now()
@@ -73,9 +83,9 @@ def lru_cache(maxsize=100):
                     cache[(app_id, obj_id, path)] = (parent[0], 0)
             # else:
             # for key in cache:
-            # if (key[0], key[1]) == (app_id, obj_id) and util.isChildUri(path, key[2]) and \
-            # os.path.normpath(path) == os.path.normpath(util.getUriParent(key[2])):
-            # cnames.append(util.getUriName(key[2]))
+            # if (key[0], key[1]) == (app_id, obj_id) and util.is_child_uri(path, key[2]) and \
+            # os.path.normpath(path) == os.path.normpath(util.get_uri_parent(key[2])):
+            # cnames.append(util.get_uri_name(key[2]))
             return cnames
 
         def get_children(app_id, obj_id, path):
@@ -92,7 +102,7 @@ def lru_cache(maxsize=100):
                 with lock:
                     cache.pop((app_id, obj_id, path))
                     for name, child in ret.items():
-                        cache[(app_id, obj_id, util.joinUri(path, name))] = (
+                        cache[(app_id, obj_id, util.join_uri(path, name))] = (
                             child, 0)
                     cache[(app_id, obj_id, path)] = (parent[0], 0)
             return ret
@@ -109,8 +119,10 @@ def lru_cache(maxsize=100):
 
         def change_parents_property(app_id, obj_id, path, propname, value):
             change_property_value(app_id, obj_id, path, propname, value)
-            for key in cache:
-                if (key[0], key[1]) == (app_id, obj_id) and posixpath.normpath(util.getUriParent(path)) == os.path.normpath(key[2]):
+            # list(cache) : change_property_value ecrit dans le cache, donc
+            # parcourir la vue pendant ce temps leve comme ci-dessus.
+            for key in list(cache):
+                if (key[0], key[1]) == (app_id, obj_id) and posixpath.normpath(util.get_uri_parent(path)) == os.path.normpath(key[2]):
                     change_parents_property(
                         app_id, obj_id, key[2], propname, value)
 

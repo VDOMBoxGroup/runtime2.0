@@ -59,6 +59,63 @@ class HeaderHandler(object):
 _contexts = dict()
 
 
+class VDOM_bounded_input(object):
+    """wsgi.input, borne par Content-Length.
+
+    La specification WSGI demande un flux d'entree qui rend b"" a la fin du
+    corps de la requete. On y passait self.rfile, la socket telle quelle, qui
+    ne finit jamais : apres le corps, read() attend la requete suivante.
+
+    wsgidav lit le corps d'un PUT avec
+
+        while True:
+            buf = environ["wsgi.input"].read(block_size)
+            if buf == b"": break
+
+    donc un PUT restait bloque jusqu'a ce que le client abandonne - cinq
+    minutes, mesurees - et le fichier n'arrivait qu'a la fermeture de la
+    connexion. Ce n'est pas propre a wsgidav : toute application WSGI qui lit
+    son corps ainsi se serait arretee la.
+    """
+
+    def __init__(self, stream, length):
+        self._stream = stream
+        self._left = max(0, int(length or 0))
+
+    def read(self, size=-1):
+        if self._left <= 0:
+            return b""
+        if size is None or size < 0:
+            size = self._left
+        data = self._stream.read(min(size, self._left))
+        self._left -= len(data)
+        return data
+
+    def readline(self, size=-1):
+        if self._left <= 0:
+            return b""
+        if size is None or size < 0:
+            size = self._left
+        data = self._stream.readline(min(size, self._left))
+        self._left -= len(data)
+        return data
+
+    def readlines(self, hint=-1):
+        lignes = []
+        while True:
+            ligne = self.readline()
+            if not ligne:
+                return lignes
+            lignes.append(ligne)
+
+    def __iter__(self):
+        while True:
+            ligne = self.readline()
+            if not ligne:
+                return
+            yield ligne
+
+
 class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     """VDOM http request handler"""
 
@@ -101,7 +158,20 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         cookies = self.__request.response_cookies()
         if "sid" in cookies:
             cookies["sid"]["path"] = "/"
-            self.wfile.write("%s\r\n" % cookies.output())
+            # send_header, et non une ecriture directe dans wfile : celle-ci
+            # passait une str a un flux binaire, donc
+            #     TypeError: a bytes-like object is required, not 'str'
+            # levee au milieu de l'envoi des en-tetes. Le fil de traitement
+            # mourait la, le client voyait la connexion fermee sans reponse, et
+            # WebDAV ne marchait pas du tout - c'etait le dernier maillon.
+            #
+            # cookies.output() rend une ligne "Set-Cookie: ..." par cookie ;
+            # chacune devient un en-tete, ce qui evite aussi d'ecrire a la main
+            # dans le bloc d'en-tetes.
+            for ligne in cookies.output().split("\r\n"):
+                nom, _, valeur = ligne.partition(":")
+                if valeur:
+                    self.send_header(nom.strip(), valeur.strip())
 
         self.end_headers()
         # print response_headers
@@ -112,7 +182,9 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     def get_environ(self):
         env = self.__request.environment().environment().copy()
         # env = {}
-        env["wsgi.input"] = self.rfile
+        # Borne par Content-Length : voir VDOM_bounded_input.
+        env["wsgi.input"] = VDOM_bounded_input(
+            self.rfile, self.headers.get("content-length") or 0)
         env["wsgi.errors"] = sys.stderr
         env["wsgi.version"] = (1, 0)
         env["wsgi.run_once"] = False
@@ -132,6 +204,18 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         if host != self.client_address[0]:
             env["REMOTE_HOST"] = host
         env["REMOTE_ADDR"] = self.client_address[0]
+
+        # L'en-tete Host tel quel, port compris. L'environnement interne de VDOM
+        # le range ampute de son port, et un environ WSGI doit porter l'en-tete
+        # verbatim : wsgidav compare le "Destination" d'un MOVE ou d'un COPY a
+        # HTTP_HOST, donc "127.0.0.1" contre "127.0.0.1:8082" ne correspondait
+        # pas et tout deplacement repondait
+        #     502 Source and destination must have the same host name.
+        # Un client reel - l'explorateur Windows, le Finder - envoie toujours une
+        # destination absolue, donc renommer un fichier ne marchait jamais.
+        entete_host = self.headers.get("host")
+        if entete_host:
+            env["HTTP_HOST"] = entete_host
 
         # py3: mimetools.Message is gone. typeheader, type, getheader and
         # headers.headers were all its API; email.message.Message has none of
@@ -274,22 +358,32 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                     ("Content-Length", "0"),
                     ("DAV", "1,2"),
                     ("Server", "DAV/2"),
-                    ("Date", util.getRfc1123Time()),
+                    ("Date", util.get_rfc1123_time()),
                 ],
             )
             return
 
         if environ["REQUEST_METHOD"] == "PROPFIND" and environ["PATH_INFO"] in ("/", "*"):
-            providers = list(self.wsgidav_app.providerMap.keys())
+            providers = list(self.wsgidav_app.provider_map.keys())
             if providers:
                 # Need some testing if this approach will work
                 environ["PATH_INFO"] = providers[0]
             else:
                 self.send_error(404, self.responses[404][0])
                 return
-        # print "<<<%s %s"%(environ["REQUEST_METHOD"], environ["PATH_INFO"])
-        for v in application(environ, self.start_response):
-            self.wfile.write(v)
+        # La boucle WSGI, sous garde. Sans elle, une exception levee par
+        # wsgidav ou par le fournisseur tuait le fil de traitement : le client
+        # recevait "Remote end closed connection without response" et le journal
+        # ne portait rien. C'est ainsi que le portage a ete debogue a l'aveugle.
+        try:
+            for v in application(environ, self.start_response):
+                self.wfile.write(v)
+        except Exception as error:
+            from utils.tracing import format_exception_trace
+            debug("WebDAV %s %s: %s" % (environ.get("REQUEST_METHOD"),
+                                        environ.get("PATH_INFO"), error))
+            debug(format_exception_trace())
+            raise
 
     def do_GET(self):
         """serve a GET request"""
