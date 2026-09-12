@@ -187,6 +187,16 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         except Exception:  # noqa
             raise
 
+    def corps_entierement_lu(self):
+        """Dit que le corps de la requete a ete consomme en entier.
+
+        Appele par ce qui le lit - voir request.py. Le chemin WebDAV passe par
+        VDOM_bounded_input, qui sait compter ce qui reste ; les autres lisent
+        directement dans rfile un nombre d'octets qu'ils connaissent, et seul
+        l'appelant sait qu'il est alle au bout.
+        """
+        self._corps_lu = True
+
     def _corps_epuise(self, plafond=1 << 20):
         """Vide le reste du corps de la requete ; dit si la connexion reste sure.
 
@@ -207,6 +217,8 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         except ValueError:
             return False
         if declare <= 0:
+            return True
+        if getattr(self, "_corps_lu", False):
             return True
         corps = getattr(self, "_corps", None)
         if corps is None:
@@ -401,6 +413,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             method = getattr(self, mname)
             self._longueur_annoncee = False
             self._corps = None
+            self._corps_lu = False
             method()
             # Le corps non lu ne doit pas rester dans la connexion.
             #
