@@ -97,17 +97,19 @@ class VDOM_resource(_DAVResource):
         return True
 
     def support_etag(self):
-        """wsgidav 4 le demande, et sa version de base leve NotImplementedError.
+        """Non : cette application n'a pas d'ETag.
 
-        C'est ce qui rendait 500 tout ce qui touchait un fichier : apres un PUT,
-        do_PUT appelle support_etag() pour poser l'en-tete ETag, et l'exception
-        - qui n'est pas une DAVError - etait convertie en 500 par ErrorPrinter.
-        Les collections passaient, parce que rien ne le leur demande.
+        wsgidav 4 le demande, et sa version de base leve NotImplementedError -
+        c'est ce qui rendait 500 tout ce qui touchait un fichier, puisque do_PUT
+        l'appelle pour poser l'en-tete.
 
-        La reponse est celle que la classe de base aurait donnee si elle avait
-        eu une valeur par defaut : oui quand la ressource a un etag.
+        Repondre "self.get_etag() is not None" serait correct et couteux :
+        getResourseProperties et getMembers rendent tous deux "getetag": None,
+        toujours. On payait donc une lecture complete des proprietes apres
+        chaque ecriture pour apprendre qu'il n'y a pas d'ETag. Le jour ou
+        l'application en fournira un, cette methode changera avec elle.
         """
-        return self.get_etag() is not None
+        return False
 
     def get_content(self):
         """Open content as a stream for reading.
@@ -133,6 +135,10 @@ class VDOM_resource(_DAVResource):
 
     def create_empty_resource(self, name):
         assert self.is_collection
+        # Le chemin va exister : oublier qu'on l'a vu absent.
+        memoire = self.provider._absents()
+        if memoire is not None:
+            memoire.discard(posixpath.normpath(util.join_uri(self.path, name)))
         # func_name = "createResource"
         return self.provider.create_resource_inst(self.path, name, self.environ)
 
@@ -148,6 +154,13 @@ class VDOM_resource(_DAVResource):
 
     def create_collection(self, name):
         assert self.is_collection
+        # Le chemin va exister : oublier qu'on l'a vu absent, sinon la relecture
+        # juste apres le croit toujours absent et MKCOL repond 403 alors que le
+        # dossier vient d'etre cree. Mesure : c'est exactement ce qui est arrive
+        # quand la memoire a ete posee sans cette ligne.
+        memoire = self.provider._absents()
+        if memoire is not None:
+            memoire.discard(posixpath.normpath(util.join_uri(self.path, name)))
         func_name = "createCollection"
         xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
         ret = managers.dispatcher.dispatch_action(
@@ -322,6 +335,34 @@ class VDOM_Provider(DAVProvider):
 # r = ""
 #     return r
 
+    @staticmethod
+    def _absents():
+        """Les chemins deja constates absents pendant CETTE requete.
+
+        get_properties ne met en cache que les reponses non vides, donc chaque
+        interrogation d'un chemin inexistant coute un aller-retour vers le
+        moteur. wsgidav en fait deux pour le meme fichier au debut d'un PUT -
+        do_PUT, puis _evaluate_if_headers - et le fichier n'existe pas encore
+        les deux fois.
+
+        La memoire est portee par l'objet requete : elle nait et meurt avec
+        elle, donc un fichier cree ailleurs entre deux requetes est vu
+        normalement. Mettre l'absence dans le cache global serait plus rapide et
+        faux.
+        """
+        try:
+            requete = managers.request_manager.current
+        except Exception:
+            return None
+        memoire = getattr(requete, "_dav_absents", None)
+        if memoire is None:
+            memoire = set()
+            try:
+                requete._dav_absents = memoire
+            except Exception:
+                return None
+        return memoire
+
     def get_resource_inst(self, path, environ, preloaded=None):
         """Return info dictionary for path.
 
@@ -329,6 +370,9 @@ class VDOM_Provider(DAVProvider):
         """
         self._count_get_resource_inst += 1
         path = posixpath.normpath(path or "/")
+        memoire = self._absents()
+        if memoire is not None and not preloaded and path in memoire:
+            return None
         try:
             if self.application and self.obj:
                 if preloaded:
@@ -342,6 +386,8 @@ class VDOM_Provider(DAVProvider):
                         raise DAVError(HTTP_REQUEST_TIMEOUT)
 
                 if not res or res[0] is None:
+                    if memoire is not None:
+                        memoire.add(path)
                     return None
                 else:
                     is_collection = res[0]["resourcetype"] == "Directory"
