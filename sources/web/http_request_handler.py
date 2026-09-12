@@ -121,6 +121,21 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
 
     server_version = SERVER_NAME  # server version string
 
+    # HTTP/1.1, et non le defaut HTTP/1.0 de http.server.
+    #
+    # parse_request conditionne DEUX choses a cet attribut, et il s'execute
+    # avant la methode do_* : la connexion persistante, et "Expect:
+    # 100-continue". En 1.0 le serveur fermait apres chaque reponse - une
+    # connexion TCP et un fil par requete - et un client qui deposait 500 Mo
+    # les envoyait en entier avant d'apprendre qu'il n'avait pas le droit
+    # d'ecrire.
+    #
+    # Ce que 1.1 exige en retour : une reponse sans Content-Length laisserait le
+    # client attendre un corps qui ne vient jamais, la ou en 1.0 la fermeture de
+    # la connexion lui servait de fin de message. La regle est posee dans
+    # handle_one_request, au seul endroit qui voit toutes les reponses.
+    protocol_version = "HTTP/1.1"
+
     def __init__(self, request, client_address, server, args=None):
         """constructor"""
         setattr(threading.current_thread(), THREAD_ATTRIBUTE_NAME, self)
@@ -135,6 +150,12 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             http.server.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
         except Exception:  # noqa
             raise
+
+    def send_header(self, keyword, value):
+        """Comme la classe de base, en retenant si la longueur a ete annoncee."""
+        if keyword.lower() == "content-length":
+            self._longueur_annoncee = True
+        return http.server.SimpleHTTPRequestHandler.send_header(self, keyword, value)
 
     def start_response(self, status, response_headers, exc_info=None):
         if exc_info:
@@ -308,7 +329,19 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                 self.send_error(501, "Unsupported method (%r)" % self.command)
                 return
             method = getattr(self, mname)
+            self._longueur_annoncee = False
             method()
+            # Garder la connexion seulement si la reponse a dit sa taille.
+            #
+            # En HTTP/1.1 un client lit jusqu'a Content-Length. Une reponse qui
+            # n'en annonce pas le laisserait attendre indefiniment, alors qu'en
+            # 1.0 la fermeture de la connexion lui servait de fin de message.
+            # Plutot que verifier une a une les cinq methodes do_*, la regle est
+            # posee ici, au seul endroit qui les voit toutes : pas de longueur
+            # annoncee, pas de connexion gardee. On y perd le gain sur ces
+            # reponses-la, jamais la correction.
+            if not getattr(self, "_longueur_annoncee", False):
+                self.close_connection = True
             # actually send the response if not already done.
             self.wfile.flush()
         except socket.timeout as e:
