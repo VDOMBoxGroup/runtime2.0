@@ -165,6 +165,13 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     # handle_one_request, au seul endroit qui voit toutes les reponses.
     protocol_version = "HTTP/1.1"
 
+    # Nagle retient un petit envoi en esperant le suivant, et l'acquittement
+    # differe de l'autre bout attend le contraire : les deux s'attendent, et une
+    # reponse courte peut trainer des dizaines de millisecondes pour rien. Une
+    # reponse WebDAV tient presque toujours en un ou deux envois, et les en-tetes
+    # partent avant le corps - exactement le cas ou ce couple se declenche.
+    disable_nagle_algorithm = True
+
     def __init__(self, request, client_address, server, args=None):
         """constructor"""
         setattr(threading.current_thread(), THREAD_ATTRIBUTE_NAME, self)

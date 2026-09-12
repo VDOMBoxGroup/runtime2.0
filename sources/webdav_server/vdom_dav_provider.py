@@ -35,7 +35,11 @@ _logger = logging.getLogger(__name__)
 BUFFER_SIZE = 8192
 
 
-@lru_cache(maxsize=1000)
+# 20000, et non 1000 : chaque fichier vu occupe une entree, et un PROPFIND sur un
+# dossier de travail en pose autant qu'il contient de fichiers. A 1000, un seul
+# dossier un peu fourni evincait tout le reste, et chaque relecture repartait
+# vers le moteur. Une entree pese quelques centaines d'octets.
+@lru_cache(maxsize=20000)
 def get_properties(app_id, obj_id, path):
     props = managers.dispatcher.dispatch_action(
         app_id, obj_id, "getResourseProperties", "", """{"path": "%s"}""" % path)

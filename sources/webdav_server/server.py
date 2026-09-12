@@ -78,6 +78,10 @@ class VDOM_webdav_manager(object):
                 "default_to_digest": True,  # Updated to use new key
             },
             "verbose": 0,
+            # 64 Kio par bloc au lieu des 8 Kio par defaut de wsgidav : c'est la
+            # taille des lectures et des ecritures pendant un GET ou un PUT, donc
+            # huit fois moins d'allers-retours pour un gros fichier.
+            "block_size": 65536,
             "middleware_stack": _pile_middleware(),
         })
         self.__index = {}
