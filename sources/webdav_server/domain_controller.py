@@ -179,13 +179,13 @@ class VDOM_domain_controller(BaseDomainController):
             digest = authGetDigest(self._application.id, obj_id, user_name)
             if digest:
                 session["dav_digest"] = digest
-        # Rien n'est pose dans la session ici. wsgidav demande A1 AVANT de
-        # verifier la reponse du client : marquer l'utilisateur a cet instant
-        # revient a croire quiconque sait nommer un utilisateur. La ligne qui
-        # posait dav_user ne donnait pas l'acces aux donnees - l'application
-        # n'etait pas connectee pour autant - mais elle faisait repondre oui a
-        # require_authentication, donc toute la suite de la session passait sans
-        # aucune authentification, et echouait en 500 au lieu de 401.
+        # Nothing is put into the session here. wsgidav asks for A1 BEFORE it
+        # verifies the client's response: marking the user at that moment means
+        # believing anyone who can name a user. The line that used to set
+        # dav_user did not hand over any data - the application was still not
+        # signed in - but it made require_authentication answer yes, so the rest
+        # of that session went through with no authentication at all, and failed
+        # with 500 instead of 401.
         return digest or False
 
 

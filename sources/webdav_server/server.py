@@ -19,13 +19,12 @@ import managers
 
 
 class _VDOM_log_handler(logging.Handler):
-    """Renvoie les journaux de wsgidav vers celui du serveur.
+    """Route wsgidav's logging into the server's own log.
 
-    wsgidav ecrit par le module logging, qui n'aboutissait nulle part ici :
-    ErrorPrinter attrape toute exception du fournisseur, la journalise et rend
-    500. Le client voyait donc "500" et le journal du serveur ne portait rien -
-    on ne pouvait pas savoir ce qui avait echoue. C'est ce qui a rendu ce
-    portage aveugle.
+    wsgidav writes through the logging module, which went nowhere here:
+    ErrorPrinter catches every provider exception, logs it and returns 500. So
+    the client saw "500" and the server log carried nothing - there was no way
+    to know what had failed. That is what made this port blind.
     """
 
     def emit(self, record):
@@ -46,20 +45,19 @@ def _brancher_journal_wsgidav():
 
 
 def _pile_middleware():
-    """La pile de wsgidav, plus l'ouverture de session applicative.
+    """wsgidav's stack, plus the application sign-in.
 
-    Celle qui etait ecrite ici etait dans l'ordre inverse - wsgidav applique le
-    premier element comme le plus exterieur, donc le navigateur de repertoire
-    touchait le fournisseur avant toute authentification - et il lui manquait
-    RequestResolver, que wsgidav annote "doit etre le dernier" parce que c'est
-    lui qui dirige la methode DAV vers la ressource. On part donc de celle de
-    wsgidav, et on n'y ajoute qu'une chose, a une place qui compte : juste apres
-    HTTPAuthenticator, donc apres la verification des identifiants et avant que
-    quoi que ce soit n'atteigne le fournisseur.
+    The one written here was in reverse order - wsgidav applies the first item
+    as the outermost, so the directory browser reached the provider before any
+    authentication - and it was missing RequestResolver, which wsgidav annotates
+    "must be the last" because it is what routes a DAV method to the resource.
+    So we start from wsgidav's own and add exactly one thing, in the place that
+    matters: right after HTTPAuthenticator, hence after the credentials have
+    been checked and before anything reaches the provider.
     """
-    pile = list(DEFAULT_CONFIG["middleware_stack"])
-    pile.insert(pile.index(HTTPAuthenticator) + 1, VDOM_application_login)
-    return pile
+    stack = list(DEFAULT_CONFIG["middleware_stack"])
+    stack.insert(stack.index(HTTPAuthenticator) + 1, VDOM_application_login)
+    return stack
 
 
 class VDOM_webdav_manager(object):
@@ -78,9 +76,9 @@ class VDOM_webdav_manager(object):
                 "default_to_digest": True,  # Updated to use new key
             },
             "verbose": 0,
-            # 64 Kio par bloc au lieu des 8 Kio par defaut de wsgidav : c'est la
-            # taille des lectures et des ecritures pendant un GET ou un PUT, donc
-            # huit fois moins d'allers-retours pour un gros fichier.
+            # 64 KiB per block instead of wsgidav's 8 KiB default: this is the
+            # size of the reads and writes during a GET or a PUT, so eight times
+            # fewer round trips on a large file.
             "block_size": 65536,
             "middleware_stack": _pile_middleware(),
         })
@@ -125,10 +123,9 @@ class VDOM_webdav_manager(object):
             try:
                 app.wsgidav_app = WsgiDAVApp(__conf)
             except Exception as e:
-                # Ecrit dans le journal, pas sur une sortie que personne ne lit :
-                # c'est exactement ainsi que "Could not resolve domain controller
-                # class" est reste invisible pendant que tous les partages
-                # etaient morts.
+                # Into the log, not onto an output nobody reads: that is
+                # exactly how "Could not resolve domain controller class" stayed
+                # invisible while every share was dead.
                 debug("WebDAV: application %s, aucun partage monte: %s" % (appid, e))
 
     def add_webdav(self, appid, objid, sharePath):

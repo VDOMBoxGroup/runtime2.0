@@ -123,12 +123,12 @@ class VDOM_request(object):
                         request_body_size = 0
 
                     request_body = handler.rfile.read(request_body_size)
-                    # Le corps a ete lu en entier : la connexion reste
-                    # reutilisable. Sans ce temoin, handle_one_request ne
-                    # peut pas le prouver et referme par precaution, ce qui
-                    # ramene une connexion jetable par appel - exactement ce
-                    # que HTTP/1.1 venait de supprimer.
-                    handler.corps_entierement_lu()
+                    # The body has been read in full: the connection stays
+                    # reusable. Without this witness, handle_one_request cannot
+                    # prove it and closes as a precaution, which brings back a
+                    # throwaway connection per call - exactly what HTTP/1.1 had
+                    # just removed.
+                    handler.body_fully_read()
                     params = json.loads(request_body)
                     # Shape a JSON body like the form branch below: every value
                     # a list. Everything downstream assumes list-shaped args -
@@ -147,12 +147,12 @@ class VDOM_request(object):
                 # TODO: check situation with SOAP and SOAP-POST-URL
                 elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
                     storage = MFSt(handler.rfile, headers, b"", env, True)
-                    # Le corps a ete lu en entier : la connexion reste
-                    # reutilisable. Sans ce temoin, handle_one_request ne
-                    # peut pas le prouver et referme par precaution, ce qui
-                    # ramene une connexion jetable par appel - exactement ce
-                    # que HTTP/1.1 venait de supprimer.
-                    handler.corps_entierement_lu()
+                    # The body has been read in full: the connection stays
+                    # reusable. Without this witness, handle_one_request cannot
+                    # prove it and closes as a precaution, which brings back a
+                    # throwaway connection per call - exactly what HTTP/1.1 had
+                    # just removed.
+                    handler.body_fully_read()
                     if storage.list is None and storage.value:
                         args["rawdata"] = storage.value
                     else:
@@ -170,12 +170,12 @@ class VDOM_request(object):
                 else:
                     self.postdata = handler.rfile.read(
                         int(self.__headers.header("Content-length")))
-                    # Le corps a ete lu en entier : la connexion reste
-                    # reutilisable. Sans ce temoin, handle_one_request ne
-                    # peut pas le prouver et referme par precaution, ce qui
-                    # ramene une connexion jetable par appel - exactement ce
-                    # que HTTP/1.1 venait de supprimer.
-                    handler.corps_entierement_lu()
+                    # The body has been read in full: the connection stays
+                    # reusable. Without this witness, handle_one_request cannot
+                    # prove it and closes as a precaution, which brings back a
+                    # throwaway connection per call - exactly what HTTP/1.1 had
+                    # just removed.
+                    handler.body_fully_read()
         except Exception as e:
             # Log before re-raising. The bare raise that used to be here left
             # the debug() below unreachable, so a body that failed to parse

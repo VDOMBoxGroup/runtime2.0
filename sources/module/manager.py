@@ -11,7 +11,7 @@ import managers
 import settings
 from utils.exception import VDOM_exception
 from utils.tracing import show_exception_trace
-from utils.corps import ecrire_par_blocs
+from utils.body import write_in_blocks
 
 from .resource import VDOM_module_resource
 from .python import VDOM_module_python
@@ -46,10 +46,10 @@ def onerror_handler(request_object, app):
             return (None, request_object.wholeAnswer.encode("utf-8"))
         else:
             if request_object.fh:
-                # Par blocs bornes, et non shutil.copyfileobj : voir utils/corps.
-                ecrire_par_blocs(request_object.fh, request_object.wfile,
-                                 annonce=_longueur_annoncee(request_object),
-                                 ou=_chemin(request_object), tracer=debug)
+                # Bounded blocks, not shutil.copyfileobj: see utils/body.
+                write_in_blocks(request_object.fh, request_object.wfile,
+                                announced=_announced_length(request_object),
+                                where=_request_path(request_object), trace=debug)
                 return (None, "")
             outp = request_object.output()
             if outp:
@@ -62,18 +62,18 @@ def onerror_handler(request_object, app):
 
 
 
-def _longueur_annoncee(request_object):
-    """La taille dite au client, si elle a ete posee - pour la comparer."""
+def _announced_length(request_object):
+    """The length told to the client, if one was set - to compare against."""
     try:
-        for nom, valeur in request_object.headers_out().headers().items():
-            if nom.lower() == "content-length":
-                return int(valeur)
+        for name, value in request_object.headers_out().headers().items():
+            if name.lower() == "content-length":
+                return int(value)
     except Exception:
         pass
     return None
 
 
-def _chemin(request_object):
+def _request_path(request_object):
     try:
         return request_object.environment().environment().get("REQUEST_URI", "?")
     except Exception:
@@ -259,14 +259,14 @@ class VDOM_module_manager(object):
                 #             os.remove(request_object.files[key][0].name)
 
                 if request_object.fh:
-                    # Par blocs bornes, et non shutil.copyfileobj : voir
-                    # utils/corps. C'est ce chemin-ci qui sert les ressources
-                    # d'une application - un app.js d'un mega-octet passait par
-                    # une seule ecriture, et arrivait tronque sans que rien ne
-                    # le dise.
-                    ecrire_par_blocs(request_object.fh, request_object.wfile,
-                                     annonce=_longueur_annoncee(request_object),
-                                     ou=_chemin(request_object), tracer=debug)
+                    # Bounded blocks, not shutil.copyfileobj: see utils/body.
+                    # This is the path that serves an application's resources -
+                    # a one-megabyte app.js went out in a single write and
+                    # arrived truncated with nothing anywhere saying so.
+                    write_in_blocks(request_object.fh, request_object.wfile,
+                                    announced=_announced_length(request_object),
+                                    where=_request_path(request_object),
+                                    trace=debug)
                     return (None, "")
 
                 outp = request_object.output()

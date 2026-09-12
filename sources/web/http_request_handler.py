@@ -60,22 +60,22 @@ _contexts = dict()
 
 
 class VDOM_bounded_input(object):
-    """wsgi.input, borne par Content-Length.
+    """wsgi.input, bounded by Content-Length.
 
-    La specification WSGI demande un flux d'entree qui rend b"" a la fin du
-    corps de la requete. On y passait self.rfile, la socket telle quelle, qui
-    ne finit jamais : apres le corps, read() attend la requete suivante.
+    The WSGI specification asks for an input stream that returns b"" at the end
+    of the request body. We passed self.rfile, the raw socket, which never ends:
+    past the body, read() waits for the next request.
 
-    wsgidav lit le corps d'un PUT avec
+    wsgidav reads a PUT body with
 
         while True:
             buf = environ["wsgi.input"].read(block_size)
             if buf == b"": break
 
-    donc un PUT restait bloque jusqu'a ce que le client abandonne - cinq
-    minutes, mesurees - et le fichier n'arrivait qu'a la fermeture de la
-    connexion. Ce n'est pas propre a wsgidav : toute application WSGI qui lit
-    son corps ainsi se serait arretee la.
+    so a PUT stayed blocked until the client gave up - five minutes, measured -
+    and the file only arrived when the connection closed. This is not specific
+    to wsgidav: any WSGI application reading its body that way would have
+    stopped there.
     """
 
     def __init__(self, stream, length):
@@ -101,48 +101,48 @@ class VDOM_bounded_input(object):
         return data
 
     def readlines(self, hint=-1):
-        lignes = []
+        lines = []
         while True:
-            ligne = self.readline()
-            if not ligne:
-                return lignes
-            lignes.append(ligne)
+            line = self.readline()
+            if not line:
+                return lines
+            lines.append(line)
 
     def __iter__(self):
         while True:
-            ligne = self.readline()
-            if not ligne:
+            line = self.readline()
+            if not line:
                 return
-            yield ligne
+            yield line
 
-    def vider(self, plafond):
-        """Consomme ce qui reste du corps. Dit si la connexion reste sure.
+    def drain(self, ceiling):
+        """Consume what is left of the body. Say whether the connection is safe.
 
-        Au-dela du plafond on renonce : vider cent megaoctets pour recuperer une
-        connexion coute plus cher que d'en ouvrir une autre.
+        Past the ceiling we give up: draining a hundred megabytes to recover one
+        connection costs more than opening another.
         """
         while self._left > 0:
-            if self._left > plafond:
+            if self._left > ceiling:
                 return False
-            bloc = self._stream.read(min(65536, self._left))
-            if not bloc:
+            block = self._stream.read(min(65536, self._left))
+            if not block:
                 return False
-            self._left -= len(bloc)
+            self._left -= len(block)
         return True
 
 
-def _chemin_lisible(environ):
-    """PATH_INFO en texte, pour le journal.
+def _readable_path(environ):
+    """PATH_INFO as text, for the log.
 
-    Il y porte les octets de l'URL relus en latin-1 - la convention WSGI - donc
-    l'ecrire tel quel donnerait "rA(c)sultats.docx" dans le journal, et un nom
-    accentue serait impossible a rapprocher de ce que montre le client.
+    It carries the URL's bytes read back as latin-1 - the WSGI convention - so
+    writing it as is would put "rA(c)sultats.docx" in the log, and an accented
+    name would be impossible to match against what the client shows.
     """
-    chemin = environ.get("PATH_INFO") or ""
+    path = environ.get("PATH_INFO") or ""
     try:
-        return chemin.encode("iso-8859-1").decode("utf-8")
+        return path.encode("iso-8859-1").decode("utf-8")
     except (UnicodeDecodeError, UnicodeEncodeError):
-        return chemin
+        return path
 
 
 class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
@@ -150,26 +150,25 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
 
     server_version = SERVER_NAME  # server version string
 
-    # HTTP/1.1, et non le defaut HTTP/1.0 de http.server.
+    # HTTP/1.1, not http.server's HTTP/1.0 default.
     #
-    # parse_request conditionne DEUX choses a cet attribut, et il s'execute
-    # avant la methode do_* : la connexion persistante, et "Expect:
-    # 100-continue". En 1.0 le serveur fermait apres chaque reponse - une
-    # connexion TCP et un fil par requete - et un client qui deposait 500 Mo
-    # les envoyait en entier avant d'apprendre qu'il n'avait pas le droit
-    # d'ecrire.
+    # parse_request gates TWO things on this attribute, and it runs before any
+    # do_* method: persistent connections, and "Expect: 100-continue". Under 1.0
+    # the server closed after every response - one TCP connection and one thread
+    # per request - and a client uploading 500 MB sent all of it before learning
+    # it had no write permission.
     #
-    # Ce que 1.1 exige en retour : une reponse sans Content-Length laisserait le
-    # client attendre un corps qui ne vient jamais, la ou en 1.0 la fermeture de
-    # la connexion lui servait de fin de message. La regle est posee dans
-    # handle_one_request, au seul endroit qui voit toutes les reponses.
+    # What 1.1 demands in return: a response with no Content-Length would leave
+    # the client waiting for a body that never ends, where under 1.0 closing the
+    # connection served as the end of the message. That rule lives in
+    # end_headers, the one place where it can still be announced in time.
     protocol_version = "HTTP/1.1"
 
-    # Nagle retient un petit envoi en esperant le suivant, et l'acquittement
-    # differe de l'autre bout attend le contraire : les deux s'attendent, et une
-    # reponse courte peut trainer des dizaines de millisecondes pour rien. Une
-    # reponse WebDAV tient presque toujours en un ou deux envois, et les en-tetes
-    # partent avant le corps - exactement le cas ou ce couple se declenche.
+    # Nagle holds a small send back hoping for the next one, while the delayed
+    # acknowledgement at the other end waits for the opposite: both wait, and a
+    # short response can idle for tens of milliseconds for nothing. A WebDAV
+    # response almost always fits in one or two sends, with headers going out
+    # before the body - exactly where that pair bites.
     disable_nagle_algorithm = True
 
     def __init__(self, request, client_address, server, args=None):
@@ -187,94 +186,80 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         except Exception:  # noqa
             raise
 
-    # 64 Kio, et non le bloc de shutil.
-    #
-    # shutil.copyfileobj lit COPY_BUFSIZE d'un coup, et cette constante vaut
-    # 1 Mio sous Windows : un fichier de 984 Ko partait donc en UNE lecture et
-    # UNE ecriture de 984 200 octets. Mesure sur ce serveur : 978 944 octets
-    # arrivaient - exactement 239 x 4096 - puis plus rien, et la connexion
-    # tombait 19 s plus tard. Quatre essais sur cinq, au meme octet, avec ou
-    # sans HTTP/1.1 : ce n'est pas le protocole, c'est l'ecriture d'un seul
-    # bloc trop gros. Le chemin WebDAV, qui ecrit par blocs de 64 Kio, sert
-    # 2 Mio sans broncher sur le meme serveur.
-    BLOC_REPONSE = 65536
-
-    def _ecrire_corps(self, source):
-        """Le corps de la reponse, par blocs bornes - voir utils/corps."""
-        from utils.corps import ecrire_par_blocs
-        ecrits = ecrire_par_blocs(
-            source, self.wfile,
-            annonce=getattr(self, "_longueur_attendue", None),
-            ou=self.path, tracer=debug)
-        attendu = getattr(self, "_longueur_attendue", None)
-        if attendu is not None and ecrits != attendu:
+    def _write_body(self, source):
+        """The response body, in bounded blocks - see utils/body."""
+        from utils.body import write_in_blocks
+        expected = getattr(self, "_length_expected", None)
+        written = write_in_blocks(source, self.wfile, announced=expected,
+                                  where=self.path, trace=debug)
+        if expected is not None and written != expected:
             self.close_connection = True
-        return ecrits
+        return written
 
-    def corps_entierement_lu(self):
-        """Dit que le corps de la requete a ete consomme en entier.
+    def body_fully_read(self):
+        """Say that the request body has been consumed in full.
 
-        Appele par ce qui le lit - voir request.py. Le chemin WebDAV passe par
-        VDOM_bounded_input, qui sait compter ce qui reste ; les autres lisent
-        directement dans rfile un nombre d'octets qu'ils connaissent, et seul
-        l'appelant sait qu'il est alle au bout.
+        Called by whatever reads it - see request.py. The WebDAV path goes
+        through VDOM_bounded_input, which can count what is left; the others
+        read a number of bytes they already know straight from rfile, and only
+        the caller knows it went to the end.
         """
-        self._corps_lu = True
+        self._body_read = True
 
-    def _corps_epuise(self, plafond=1 << 20):
-        """Vide le reste du corps de la requete ; dit si la connexion reste sure.
+    def _body_drained(self, ceiling=1 << 20):
+        """Drain the rest of the request body; say whether the connection is safe.
 
-        Trois cas. Sans corps annonce, il n'y a rien a faire. Avec un corps que
-        nous avons borne nous-memes - le chemin WebDAV - on peut le vider et
-        garder la connexion. Sinon on ne peut pas prouver qu'il a ete lu
-        entierement, et une connexion gardee sur un doute vaut moins qu'une
-        connexion refermee : c'est ce que faisait HTTP/1.0 pour toutes.
+        Three cases. With no announced body there is nothing to do. With a body
+        we bounded ourselves - the WebDAV path - we can drain it and keep the
+        connection. Otherwise we cannot prove it was read in full, and a
+        connection kept on a doubt is worth less than one reopened: that is what
+        HTTP/1.0 did for all of them.
 
-        Un corps decoupe en morceaux (Transfer-Encoding) n'est pas supporte ici
-        et n'annonce pas sa taille : la connexion se referme aussi.
+        A chunked body (Transfer-Encoding) is not supported here and announces
+        no length: the connection closes too.
         """
-        decoupe = (self.headers.get("transfer-encoding") or "").strip().lower()
-        if decoupe and decoupe != "identity":
+        encoding = (self.headers.get("transfer-encoding") or "").strip().lower()
+        if encoding and encoding != "identity":
             return False
         try:
-            declare = int(self.headers.get("content-length") or 0)
+            declared = int(self.headers.get("content-length") or 0)
         except ValueError:
             return False
-        if declare <= 0:
+        if declared <= 0:
             return True
-        if getattr(self, "_corps_lu", False):
+        if getattr(self, "_body_read", False):
             return True
-        corps = getattr(self, "_corps", None)
-        if corps is None:
+        body = getattr(self, "_body", None)
+        if body is None:
             return False
-        return corps.vider(plafond)
+        return body.drain(ceiling)
 
     def end_headers(self):
-        """Le client doit apprendre la fermeture AVANT le corps, pas apres.
+        """The client must learn of the close BEFORE the body, not after.
 
-        Une reponse qui n'annonce pas sa taille ne peut pas etre suivie d'une
-        autre sur la meme connexion : sa fin, c'est la fermeture. On le decidait
-        bien, mais apres coup - les en-tetes etaient deja partis, donc le client
-        gardait la connexion dans son pool et la reprenait morte au coup
-        suivant. Une requete sur huit echouait ainsi, instantanement, sans que
-        rien ne soit tronque : `ConnectionError`, sur une connexion que le
-        serveur avait fermee sans le dire.
+        A response that announces no length cannot be followed by another on the
+        same connection: closing is its end. We did decide that, but after the
+        fact - the headers had already gone out, so the client kept the
+        connection in its pool and picked it up dead on the next request. One
+        request in eight failed that way, instantly, with nothing truncated:
+        `ConnectionError`, on a connection the server had closed without saying
+        so.
 
-        Ici, c'est encore a temps : l'en-tete part avec les autres.
+        Here it is still in time: the header goes out with the others.
         """
-        if not getattr(self, "_longueur_annoncee", False):
+        if not getattr(self, "_length_announced", False):
             self.close_connection = True
             self.send_header("Connection", "close")
         return http.server.SimpleHTTPRequestHandler.end_headers(self)
 
     def send_header(self, keyword, value):
-        """Comme la classe de base, en retenant si la longueur a ete annoncee."""
+        """As the base class, remembering whether a length was announced."""
         if keyword.lower() == "content-length":
-            self._longueur_annoncee = True
+            self._length_announced = True
             try:
-                self._longueur_attendue = int(value)
+                self._length_expected = int(value)
             except (TypeError, ValueError):
-                self._longueur_attendue = None
+                self._length_expected = None
         return http.server.SimpleHTTPRequestHandler.send_header(self, keyword, value)
 
     def start_response(self, status, response_headers, exc_info=None):
@@ -299,20 +284,20 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         cookies = self.__request.response_cookies()
         if "sid" in cookies:
             cookies["sid"]["path"] = "/"
-            # send_header, et non une ecriture directe dans wfile : celle-ci
-            # passait une str a un flux binaire, donc
+            # send_header, not a direct write into wfile: that one passed a str
+            # to a binary stream, so
             #     TypeError: a bytes-like object is required, not 'str'
-            # levee au milieu de l'envoi des en-tetes. Le fil de traitement
-            # mourait la, le client voyait la connexion fermee sans reponse, et
-            # WebDAV ne marchait pas du tout - c'etait le dernier maillon.
+            # was raised in the middle of sending the headers. The worker thread
+            # died there, the client saw the connection closed with no response,
+            # and WebDAV did not work at all - this was the last link.
             #
-            # cookies.output() rend une ligne "Set-Cookie: ..." par cookie ;
-            # chacune devient un en-tete, ce qui evite aussi d'ecrire a la main
-            # dans le bloc d'en-tetes.
-            for ligne in cookies.output().split("\r\n"):
-                nom, _, valeur = ligne.partition(":")
-                if valeur:
-                    self.send_header(nom.strip(), valeur.strip())
+            # cookies.output() returns one "Set-Cookie: ..." line per cookie;
+            # each becomes a header, which also avoids writing into the header
+            # block by hand.
+            for line in cookies.output().split("\r\n"):
+                name, _, value = line.partition(":")
+                if value:
+                    self.send_header(name.strip(), value.strip())
 
         self.end_headers()
         # print response_headers
@@ -323,8 +308,8 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     def get_environ(self):
         env = self.__request.environment().environment().copy()
         # env = {}
-        # Borne par Content-Length : voir VDOM_bounded_input.
-        env["wsgi.input"] = self._corps = VDOM_bounded_input(
+        # Bounded by Content-Length: see VDOM_bounded_input.
+        env["wsgi.input"] = self._body = VDOM_bounded_input(
             self.rfile, self.headers.get("content-length") or 0)
         env["wsgi.errors"] = sys.stderr
         env["wsgi.version"] = (1, 0)
@@ -339,14 +324,14 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         else:
             path, query = self.path, ""
 
-        # Les octets de l'URL, relus en latin-1 - la convention WSGI (PEP 3333),
-        # pas le texte. unquote() decode en UTF-8 par defaut, donc un nom
-        # accentue arrivait ici comme du texte ; wsgidav applique ensuite
-        # re_encode_wsgi, c'est-a-dire encode("iso-8859-1").decode("utf-8"),
-        # et "resultats.docx" avec un e accent aigu echouait sur
+        # The URL's bytes read back as latin-1 - the WSGI convention of
+        # PEP 3333 - not text. unquote() decodes as UTF-8 by default, so an
+        # accented name arrived here already as text; wsgidav then applies
+        # re_encode_wsgi, that is encode("iso-8859-1").decode("utf-8"), and
+        # "resultats.docx" with an acute e failed on
         #     'utf-8' codec can't decode byte 0xe9 ... invalid continuation byte
-        # Un copier-coller depuis l'explorateur Windows ne survit pas au premier
-        # accent, et le PROPFIND est rejoue sans fin.
+        # A copy from Windows Explorer does not survive the first accent, and
+        # the PROPFIND is replayed forever.
         env["PATH_INFO"] = urllib.parse.unquote(path, encoding="iso-8859-1")
         env["QUERY_STRING"] = query
         host = self.address_string()
@@ -354,17 +339,17 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             env["REMOTE_HOST"] = host
         env["REMOTE_ADDR"] = self.client_address[0]
 
-        # L'en-tete Host tel quel, port compris. L'environnement interne de VDOM
-        # le range ampute de son port, et un environ WSGI doit porter l'en-tete
-        # verbatim : wsgidav compare le "Destination" d'un MOVE ou d'un COPY a
-        # HTTP_HOST, donc "127.0.0.1" contre "127.0.0.1:8082" ne correspondait
-        # pas et tout deplacement repondait
+        # The Host header verbatim, port included. VDOM's own environment
+        # stores it with the port stripped, and a WSGI environ must carry the
+        # header as sent: wsgidav compares a MOVE or COPY "Destination" against
+        # HTTP_HOST, so "127.0.0.1" against "127.0.0.1:8082" did not match and
+        # every move answered
         #     502 Source and destination must have the same host name.
-        # Un client reel - l'explorateur Windows, le Finder - envoie toujours une
-        # destination absolue, donc renommer un fichier ne marchait jamais.
-        entete_host = self.headers.get("host")
-        if entete_host:
-            env["HTTP_HOST"] = entete_host
+        # A real client - Windows Explorer, the Finder - always sends an
+        # absolute destination, so renaming a file never worked.
+        host_header = self.headers.get("host")
+        if host_header:
+            env["HTTP_HOST"] = host_header
 
         # py3: mimetools.Message is gone. typeheader, type, getheader and
         # headers.headers were all its API; email.message.Message has none of
@@ -457,37 +442,26 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                 self.send_error(501, "Unsupported method (%r)" % self.command)
                 return
             method = getattr(self, mname)
-            self._longueur_annoncee = False
-            self._corps = None
-            self._corps_lu = False
-            self._longueur_attendue = None
+            self._length_announced = False
+            self._body = None
+            self._body_read = False
+            self._length_expected = None
             method()
-            # Le corps non lu ne doit pas rester dans la connexion.
+            # An unread request body must not be left in the connection.
             #
-            # Une requete refusee avant d'avoir lu son corps - un 401 sur un PUT,
-            # un 409, un 403 - laisse ce corps dans la socket. En HTTP/1.0 la
-            # connexion se fermait juste apres et ces octets disparaissaient ;
-            # depuis qu'elle est gardee, ils se collent devant la requete
-            # suivante, dont la premiere ligne devient par exemple
+            # A request refused before its body was read - a 401 on a PUT, a
+            # 409, a 403 - leaves that body in the socket. Under HTTP/1.0 the
+            # connection closed right after and those bytes went with it; kept
+            # alive, they stick to the front of the next request, whose first
+            # line then reads, for example,
             #
-            #     xGET /dossier/fichier.txt HTTP/1.1
+            #     xGET /folder/file.txt HTTP/1.1
             #
-            # ou le "x" est le corps du PUT precedent. La requete d'apres repond
-            # alors n'importe quoi - un refus, un "existe deja" - sur un fichier
-            # qui n'a rien fait. Mesure : c'est exactement ce qu'on a lu dans le
-            # journal, "WebDAV xGET".
-            if not self._corps_epuise():
-                self.close_connection = True
-            # Garder la connexion seulement si la reponse a dit sa taille.
-            #
-            # En HTTP/1.1 un client lit jusqu'a Content-Length. Une reponse qui
-            # n'en annonce pas le laisserait attendre indefiniment, alors qu'en
-            # 1.0 la fermeture de la connexion lui servait de fin de message.
-            # Plutot que verifier une a une les cinq methodes do_*, la regle est
-            # posee ici, au seul endroit qui les voit toutes : pas de longueur
-            # annoncee, pas de connexion gardee. On y perd le gain sur ces
-            # reponses-la, jamais la correction.
-            if not getattr(self, "_longueur_annoncee", False):
+            # where the "x" is the previous PUT's body. The request after that
+            # answers something arbitrary - a refusal, an "already exists" -
+            # about a file that did nothing. Measured: that is exactly what the
+            # log showed, "WebDAV xGET".
+            if not self._body_drained():
                 self.close_connection = True
             # actually send the response if not already done.
             self.wfile.flush()
@@ -547,47 +521,47 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             providers = list(self.wsgidav_app.provider_map.keys())
             if providers:
                 # Need some testing if this approach will work
-                # Meme convention que ci-dessus : ce chemin repart vers
-                # wsgidav, qui va le relire en latin-1.
+                # Same convention as above: this path goes back to wsgidav,
+                # which will read it as latin-1.
                 environ["PATH_INFO"] = providers[0].encode("utf-8").decode("iso-8859-1")
             else:
                 self.send_error(404, self.responses[404][0])
                 return
-        # Une ligne par requete, quoi qu'il arrive. Une requete WebDAV qui
-        # echoue proprement - 405 "existe deja", 412, 423 verrouille - n'ecrivait
-        # rien du tout : seules les exceptions laissaient une trace. Un client de
-        # fichiers, lui, ne montre que "impossible de copier", sans dire lequel
-        # ni pourquoi, et on ne pouvait rapprocher les deux.
-        debut = time.time()
-        etat = {"code": "?", "octets": 0}
+        # One line per request, whatever happens. A WebDAV request that fails
+        # cleanly - 405 "already exists", 412, 423 locked - used to write nothing
+        # at all: only exceptions left a trace. A file client, meanwhile, shows
+        # only "cannot copy", without saying which or why, and there was no way
+        # to match the two.
+        started = time.time()
+        state = {"code": "?", "bytes": 0}
 
-        def demarrer_reponse(status, headers, exc_info=None):
-            etat["code"] = status.split(" ")[0]
+        def start_response(status, headers, exc_info=None):
+            state["code"] = status.split(" ")[0]
             return self.start_response(status, headers, exc_info)
 
-        # La boucle WSGI, sous garde. Sans elle, une exception levee par
-        # wsgidav ou par le fournisseur tuait le fil de traitement : le client
-        # recevait "Remote end closed connection without response" et le journal
-        # ne portait rien. C'est ainsi que le portage a ete debogue a l'aveugle.
+        # The WSGI loop, guarded. Without this, an exception raised by wsgidav
+        # or by the provider killed the worker thread: the client got "Remote
+        # end closed connection without response" and the log carried nothing.
+        # That is how this port was debugged blind.
         try:
-            for v in application(environ, demarrer_reponse):
-                etat["octets"] += len(v)
+            for v in application(environ, start_response):
+                state["bytes"] += len(v)
                 self.wfile.write(v)
         except Exception as error:
             from utils.tracing import format_exception_trace
-            etat["code"] = "EXC"
+            state["code"] = "EXC"
             debug("WebDAV %s %s: %s" % (environ.get("REQUEST_METHOD"),
-                                        _chemin_lisible(environ), error))
+                                        _readable_path(environ), error))
             debug(format_exception_trace())
             raise
         finally:
-            # Recu autant qu'envoye : sans le premier, un depot de 400 Mo se lit
-            # comme quelques kilo-octets - la reponse d'un PUT ne pese rien - et
-            # le debit reel reste invisible.
-            debug("WebDAV %s %s -> %s recu %s o envoye %d o %.0f ms" % (
-                environ.get("REQUEST_METHOD"), _chemin_lisible(environ),
-                etat["code"], self.headers.get("content-length") or 0,
-                etat["octets"], 1000 * (time.time() - debut)))
+            # Received as well as sent: without the first, a 400 MB upload reads
+            # as a few kilobytes - a PUT's response weighs nothing - and the real
+            # throughput stays invisible.
+            debug("WebDAV %s %s -> %s received %s b sent %d b %.0f ms" % (
+                environ.get("REQUEST_METHOD"), _readable_path(environ),
+                state["code"], self.headers.get("content-length") or 0,
+                state["bytes"], 1000 * (time.time() - started)))
 
     def do_GET(self):
         """serve a GET request"""
@@ -596,20 +570,20 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         self.create_request("get")
         f = self.on_request("get")
         if f:
-            self._ecrire_corps(f)
+            self._write_body(f)
             f.close()
         try:
-            # nokeepalive est pose par set_nocache, donc par TOUT send_file :
-            # chaque ressource servie refermait ainsi sa connexion - et, comme
-            # la decision tombe apres les en-tetes, sans le dire au client, qui
-            # la gardait dans son pool et la reprenait morte.
+            # nokeepalive is set by set_nocache, so by EVERY send_file: each
+            # resource served closed its connection that way - and, since the
+            # decision comes after the headers, without telling the client, who
+            # kept it in the pool and picked it up dead.
             #
-            # La vraie question n'est pas le cache mais le cadrage : une reponse
-            # qui annonce sa taille dit ou elle finit, et la connexion peut
-            # servir encore. Sans taille annoncee, la fermeture EST la fin du
-            # message - et end_headers l'a deja annoncee.
+            # The real question is not the cache but the framing: a response
+            # that announces its size says where it ends, and the connection can
+            # serve again. With no announced size, closing IS the end of the
+            # message - and end_headers has already announced it.
             if self.__request.nokeepalive and not getattr(
-                    self, "_longueur_annoncee", False):
+                    self, "_length_announced", False):
                 self.close_connection = 1
         except Exception:  # noqa
             # debug("EXCEPTION WHEN DO GET %s"%self)

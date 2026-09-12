@@ -35,10 +35,10 @@ _logger = logging.getLogger(__name__)
 BUFFER_SIZE = 8192
 
 
-# 20000, et non 1000 : chaque fichier vu occupe une entree, et un PROPFIND sur un
-# dossier de travail en pose autant qu'il contient de fichiers. A 1000, un seul
-# dossier un peu fourni evincait tout le reste, et chaque relecture repartait
-# vers le moteur. Une entree pese quelques centaines d'octets.
+# 20000, not 1000: every file seen takes one entry, and a PROPFIND on a working
+# folder puts in as many as it holds. At 1000, a single well-stocked folder
+# evicted everything else and every re-read went back to the engine. An entry
+# weighs a few hundred bytes.
 @lru_cache(maxsize=20000)
 def get_properties(app_id, obj_id, path):
     props = managers.dispatcher.dispatch_action(
@@ -101,17 +101,17 @@ class VDOM_resource(_DAVResource):
         return True
 
     def support_etag(self):
-        """Non : cette application n'a pas d'ETag.
+        """No: this application has no ETag.
 
-        wsgidav 4 le demande, et sa version de base leve NotImplementedError -
-        c'est ce qui rendait 500 tout ce qui touchait un fichier, puisque do_PUT
-        l'appelle pour poser l'en-tete.
+        wsgidav 4 asks for it, and its base version raises NotImplementedError -
+        which is what turned everything touching a file into a 500, since do_PUT
+        calls it to set the header.
 
-        Repondre "self.get_etag() is not None" serait correct et couteux :
-        getResourseProperties et getMembers rendent tous deux "getetag": None,
-        toujours. On payait donc une lecture complete des proprietes apres
-        chaque ecriture pour apprendre qu'il n'y a pas d'ETag. Le jour ou
-        l'application en fournira un, cette methode changera avec elle.
+        Answering "self.get_etag() is not None" would be correct and expensive:
+        getResourseProperties and getMembers both return "getetag": None,
+        always. So we paid a full property read after every write to learn there
+        is no ETag. The day the application provides one, this method changes
+        with it.
         """
         return False
 
@@ -139,10 +139,10 @@ class VDOM_resource(_DAVResource):
 
     def create_empty_resource(self, name):
         assert self.is_collection
-        # Le chemin va exister : oublier qu'on l'a vu absent.
-        memoire = self.provider._absents()
-        if memoire is not None:
-            memoire.discard(posixpath.normpath(util.join_uri(self.path, name)))
+        # The path is about to exist: forget having seen it missing.
+        missing = self.provider._known_missing()
+        if missing is not None:
+            missing.discard(posixpath.normpath(util.join_uri(self.path, name)))
         # func_name = "createResource"
         return self.provider.create_resource_inst(self.path, name, self.environ)
 
@@ -158,13 +158,13 @@ class VDOM_resource(_DAVResource):
 
     def create_collection(self, name):
         assert self.is_collection
-        # Le chemin va exister : oublier qu'on l'a vu absent, sinon la relecture
-        # juste apres le croit toujours absent et MKCOL repond 403 alors que le
-        # dossier vient d'etre cree. Mesure : c'est exactement ce qui est arrive
-        # quand la memoire a ete posee sans cette ligne.
-        memoire = self.provider._absents()
-        if memoire is not None:
-            memoire.discard(posixpath.normpath(util.join_uri(self.path, name)))
+        # The path is about to exist: forget having seen it missing, otherwise
+        # the re-read right after still believes it absent and MKCOL answers 403
+        # for a folder that has just been created. Measured: that is exactly
+        # what happened when the memo was added without this line.
+        missing = self.provider._known_missing()
+        if missing is not None:
+            missing.discard(posixpath.normpath(util.join_uri(self.path, name)))
         func_name = "createCollection"
         xml_data = """{"path": "%s", "name": "%s"}""" % (self.path, name)
         ret = managers.dispatcher.dispatch_action(
@@ -204,9 +204,9 @@ class VDOM_resource(_DAVResource):
             for name, child in self.get_member_children().items():
                 member = self.get_member(name, child)
                 if member is None:
-                    # Un enfant que le fournisseur ne sait pas construire n'est
-                    # pas une raison de perdre le listing entier. L'assert qui
-                    # etait ici emportait la reponse complete, en 500.
+                    # A child the provider cannot build is no reason to lose
+                    # the whole listing. The assert that used to be here took
+                    # the entire response down with it, as a 500.
                     debug("get_member_list: %s/%s introuvable, ignore" % (self.path, name))
                     continue
                 memberList.append(member)
@@ -249,7 +249,7 @@ class VDOM_resource(_DAVResource):
     def handle_delete(self):
         if self.provider.readonly:
             raise DAVError(HTTP_FORBIDDEN)
-        # Arguments nommes : la signature de wsgidav 4 est
+        # Keyword arguments: the wsgidav 4 signature is
         # check_write_permission(*, url, depth, token_list, principal).
         self.provider.lock_manager.check_write_permission(
             url=self.path,
@@ -261,7 +261,7 @@ class VDOM_resource(_DAVResource):
         ret = managers.dispatcher.dispatch_action(
             self._app_id, self._obj_id, func_name, "", xml_data)
         if ret:
-            self._oublier_verrous_et_proprietes()
+            self._forget_locks_and_properties()
             return True
         else:
             if self.path == "/":
@@ -272,31 +272,31 @@ class VDOM_resource(_DAVResource):
 
             raise DAVError(HTTP_FORBIDDEN)
 
-    def _oublier_verrous_et_proprietes(self):
-        """Ce qui etait accroche a ce chemin part avec lui.
+    def _forget_locks_and_properties(self):
+        """Whatever was attached to this path goes with it.
 
-        wsgidav n'appelle remove_all_locks nulle part : c'est le fournisseur qui
-        supprime qui nettoie. Le sien le fait dans delete() ; ici, handle_delete
-        rend True - "j'ai tout fait" - et wsgidav repond aussitot 204 sans
-        toucher au gestionnaire de verrous.
+        wsgidav calls remove_all_locks nowhere: the provider that deletes does
+        its own cleanup. Theirs does it inside delete(); here, handle_delete
+        returns True - "I handled everything" - and wsgidav answers 204 at once
+        without touching the lock manager.
 
-        Le verrou survivait donc a la ressource, pose sur une URL qui n'existait
-        plus. Un client de fichiers qui recopie fait exactement cela :
+        So the lock outlived the resource, held on a URL that no longer existed.
+        A file client recopying does exactly this:
 
             PROPFIND 404 -> PUT 201 -> LOCK 200 -> DELETE 204 -> PUT 201 -> LOCK 423
 
-        il supprime et recree, et son propre verrou d'avant lui barre la route.
-        L'explorateur Windows traduit ce 423 par un conflit de noms - "un fichier
-        du meme nom existe deja" - sur un dossier vide, ce qui ne mene a rien.
+        it deletes and recreates, and its own earlier lock blocks its way.
+        Windows Explorer reports that 423 as a name conflict - "a file with the
+        same name already exists" - about an empty folder, which leads nowhere.
         """
         try:
             self.remove_all_properties(recursive=True)
         except Exception as e:
-            debug("WebDAV: proprietes de %s non nettoyees: %s" % (self.path, e))
+            debug("WebDAV: properties of %s not cleaned up: %s" % (self.path, e))
         try:
             self.remove_all_locks(recursive=True)
         except Exception as e:
-            debug("WebDAV: verrous de %s non liberes: %s" % (self.path, e))
+            debug("WebDAV: locks on %s not released: %s" % (self.path, e))
 
     def handle_copy(self, dest_path, *, depth_infinity):
         func_name = "copy"
@@ -317,8 +317,8 @@ class VDOM_resource(_DAVResource):
         ret = managers.dispatcher.dispatch_action(
             self._app_id, self._obj_id, func_name, "", xml_data)
         if ret:
-            # La source n'existe plus : ce qui la verrouillait non plus.
-            self._oublier_verrous_et_proprietes()
+            # The source no longer exists, and neither does what locked it.
+            self._forget_locks_and_properties()
             return True
 
         raise DAVError(HTTP_FORBIDDEN)
@@ -369,32 +369,30 @@ class VDOM_Provider(DAVProvider):
 #     return r
 
     @staticmethod
-    def _absents():
-        """Les chemins deja constates absents pendant CETTE requete.
+    def _known_missing():
+        """The paths already found absent during THIS request.
 
-        get_properties ne met en cache que les reponses non vides, donc chaque
-        interrogation d'un chemin inexistant coute un aller-retour vers le
-        moteur. wsgidav en fait deux pour le meme fichier au debut d'un PUT -
-        do_PUT, puis _evaluate_if_headers - et le fichier n'existe pas encore
-        les deux fois.
+        get_properties caches non-empty answers only, so every question about a
+        path that does not exist costs a round trip to the engine. wsgidav asks
+        twice for the same file at the start of a PUT - do_PUT, then
+        _evaluate_if_headers - and the file does not exist either time.
 
-        La memoire est portee par l'objet requete : elle nait et meurt avec
-        elle, donc un fichier cree ailleurs entre deux requetes est vu
-        normalement. Mettre l'absence dans le cache global serait plus rapide et
-        faux.
+        The memo is carried by the request object: it is born and dies with it,
+        so a file created elsewhere between two requests is seen normally.
+        Putting absence into the global cache would be faster and wrong.
         """
         try:
-            requete = managers.request_manager.current
+            request = managers.request_manager.current
         except Exception:
             return None
-        memoire = getattr(requete, "_dav_absents", None)
-        if memoire is None:
-            memoire = set()
+        missing = getattr(request, "_dav_known_missing", None)
+        if missing is None:
+            missing = set()
             try:
-                requete._dav_absents = memoire
+                request._dav_known_missing = missing
             except Exception:
                 return None
-        return memoire
+        return missing
 
     def get_resource_inst(self, path, environ, preloaded=None):
         """Return info dictionary for path.
@@ -403,8 +401,8 @@ class VDOM_Provider(DAVProvider):
         """
         self._count_get_resource_inst += 1
         path = posixpath.normpath(path or "/")
-        memoire = self._absents()
-        if memoire is not None and not preloaded and path in memoire:
+        missing = self._known_missing()
+        if missing is not None and not preloaded and path in missing:
             return None
         try:
             if self.application and self.obj:
@@ -419,8 +417,8 @@ class VDOM_Provider(DAVProvider):
                         raise DAVError(HTTP_REQUEST_TIMEOUT)
 
                 if not res or res[0] is None:
-                    if memoire is not None:
-                        memoire.add(path)
+                    if missing is not None:
+                        missing.add(path)
                     return None
                 else:
                     is_collection = res[0]["resourcetype"] == "Directory"

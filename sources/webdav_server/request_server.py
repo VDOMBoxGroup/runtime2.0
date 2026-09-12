@@ -1,10 +1,10 @@
 """Surcharge de RequestServer, **non cablee**.
 
-wsgidav 4 instancie son propre RequestServer depuis RequestResolver, le dernier
-element de la pile d'intergiciels ; ce module n'est importe que par __init__ et
-sa classe n'est utilisee nulle part. Ses noms d'API ont ete portes vers wsgidav
-4 pour qu'il ne soit pas un piege si quelqu'un le rebranche, mais **rien ici
-n'est exerce** : ne pas le rebrancher sans le tester.
+wsgidav 4 builds its own RequestServer from RequestResolver, the last item of
+the middleware stack; this module is imported only by __init__ and its class is
+used nowhere. Its API names were ported to wsgidav 4 so that it is not a trap if
+someone wires it back in, but **nothing here is exercised**: do not wire it back
+in without testing it.
 """
 
 
