@@ -115,6 +115,35 @@ class VDOM_bounded_input(object):
                 return
             yield ligne
 
+    def vider(self, plafond):
+        """Consomme ce qui reste du corps. Dit si la connexion reste sure.
+
+        Au-dela du plafond on renonce : vider cent megaoctets pour recuperer une
+        connexion coute plus cher que d'en ouvrir une autre.
+        """
+        while self._left > 0:
+            if self._left > plafond:
+                return False
+            bloc = self._stream.read(min(65536, self._left))
+            if not bloc:
+                return False
+            self._left -= len(bloc)
+        return True
+
+
+def _chemin_lisible(environ):
+    """PATH_INFO en texte, pour le journal.
+
+    Il y porte les octets de l'URL relus en latin-1 - la convention WSGI - donc
+    l'ecrire tel quel donnerait "rA(c)sultats.docx" dans le journal, et un nom
+    accentue serait impossible a rapprocher de ce que montre le client.
+    """
+    chemin = environ.get("PATH_INFO") or ""
+    try:
+        return chemin.encode("iso-8859-1").decode("utf-8")
+    except (UnicodeDecodeError, UnicodeEncodeError):
+        return chemin
+
 
 class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     """VDOM http request handler"""
@@ -150,6 +179,32 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             http.server.SimpleHTTPRequestHandler.__init__(self, request, client_address, server)
         except Exception:  # noqa
             raise
+
+    def _corps_epuise(self, plafond=1 << 20):
+        """Vide le reste du corps de la requete ; dit si la connexion reste sure.
+
+        Trois cas. Sans corps annonce, il n'y a rien a faire. Avec un corps que
+        nous avons borne nous-memes - le chemin WebDAV - on peut le vider et
+        garder la connexion. Sinon on ne peut pas prouver qu'il a ete lu
+        entierement, et une connexion gardee sur un doute vaut moins qu'une
+        connexion refermee : c'est ce que faisait HTTP/1.0 pour toutes.
+
+        Un corps decoupe en morceaux (Transfer-Encoding) n'est pas supporte ici
+        et n'annonce pas sa taille : la connexion se referme aussi.
+        """
+        decoupe = (self.headers.get("transfer-encoding") or "").strip().lower()
+        if decoupe and decoupe != "identity":
+            return False
+        try:
+            declare = int(self.headers.get("content-length") or 0)
+        except ValueError:
+            return False
+        if declare <= 0:
+            return True
+        corps = getattr(self, "_corps", None)
+        if corps is None:
+            return False
+        return corps.vider(plafond)
 
     def send_header(self, keyword, value):
         """Comme la classe de base, en retenant si la longueur a ete annoncee."""
@@ -204,7 +259,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         env = self.__request.environment().environment().copy()
         # env = {}
         # Borne par Content-Length : voir VDOM_bounded_input.
-        env["wsgi.input"] = VDOM_bounded_input(
+        env["wsgi.input"] = self._corps = VDOM_bounded_input(
             self.rfile, self.headers.get("content-length") or 0)
         env["wsgi.errors"] = sys.stderr
         env["wsgi.version"] = (1, 0)
@@ -338,7 +393,24 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                 return
             method = getattr(self, mname)
             self._longueur_annoncee = False
+            self._corps = None
             method()
+            # Le corps non lu ne doit pas rester dans la connexion.
+            #
+            # Une requete refusee avant d'avoir lu son corps - un 401 sur un PUT,
+            # un 409, un 403 - laisse ce corps dans la socket. En HTTP/1.0 la
+            # connexion se fermait juste apres et ces octets disparaissaient ;
+            # depuis qu'elle est gardee, ils se collent devant la requete
+            # suivante, dont la premiere ligne devient par exemple
+            #
+            #     xGET /dossier/fichier.txt HTTP/1.1
+            #
+            # ou le "x" est le corps du PUT precedent. La requete d'apres repond
+            # alors n'importe quoi - un refus, un "existe deja" - sur un fichier
+            # qui n'a rien fait. Mesure : c'est exactement ce qu'on a lu dans le
+            # journal, "WebDAV xGET".
+            if not self._corps_epuise():
+                self.close_connection = True
             # Garder la connexion seulement si la reponse a dit sa taille.
             #
             # En HTTP/1.1 un client lit jusqu'a Content-Length. Une reponse qui
@@ -414,19 +486,37 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             else:
                 self.send_error(404, self.responses[404][0])
                 return
+        # Une ligne par requete, quoi qu'il arrive. Une requete WebDAV qui
+        # echoue proprement - 405 "existe deja", 412, 423 verrouille - n'ecrivait
+        # rien du tout : seules les exceptions laissaient une trace. Un client de
+        # fichiers, lui, ne montre que "impossible de copier", sans dire lequel
+        # ni pourquoi, et on ne pouvait rapprocher les deux.
+        debut = time.time()
+        etat = {"code": "?", "octets": 0}
+
+        def demarrer_reponse(status, headers, exc_info=None):
+            etat["code"] = status.split(" ")[0]
+            return self.start_response(status, headers, exc_info)
+
         # La boucle WSGI, sous garde. Sans elle, une exception levee par
         # wsgidav ou par le fournisseur tuait le fil de traitement : le client
         # recevait "Remote end closed connection without response" et le journal
         # ne portait rien. C'est ainsi que le portage a ete debogue a l'aveugle.
         try:
-            for v in application(environ, self.start_response):
+            for v in application(environ, demarrer_reponse):
+                etat["octets"] += len(v)
                 self.wfile.write(v)
         except Exception as error:
             from utils.tracing import format_exception_trace
+            etat["code"] = "EXC"
             debug("WebDAV %s %s: %s" % (environ.get("REQUEST_METHOD"),
-                                        environ.get("PATH_INFO"), error))
+                                        _chemin_lisible(environ), error))
             debug(format_exception_trace())
             raise
+        finally:
+            debug("WebDAV %s %s -> %s %d o %.0f ms" % (
+                environ.get("REQUEST_METHOD"), _chemin_lisible(environ),
+                etat["code"], etat["octets"], 1000 * (time.time() - debut)))
 
     def do_GET(self):
         """serve a GET request"""
