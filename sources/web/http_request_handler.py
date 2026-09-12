@@ -187,6 +187,30 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         except Exception:  # noqa
             raise
 
+    # 64 Kio, et non le bloc de shutil.
+    #
+    # shutil.copyfileobj lit COPY_BUFSIZE d'un coup, et cette constante vaut
+    # 1 Mio sous Windows : un fichier de 984 Ko partait donc en UNE lecture et
+    # UNE ecriture de 984 200 octets. Mesure sur ce serveur : 978 944 octets
+    # arrivaient - exactement 239 x 4096 - puis plus rien, et la connexion
+    # tombait 19 s plus tard. Quatre essais sur cinq, au meme octet, avec ou
+    # sans HTTP/1.1 : ce n'est pas le protocole, c'est l'ecriture d'un seul
+    # bloc trop gros. Le chemin WebDAV, qui ecrit par blocs de 64 Kio, sert
+    # 2 Mio sans broncher sur le meme serveur.
+    BLOC_REPONSE = 65536
+
+    def _ecrire_corps(self, source):
+        """Le corps de la reponse, par blocs bornes - voir utils/corps."""
+        from utils.corps import ecrire_par_blocs
+        ecrits = ecrire_par_blocs(
+            source, self.wfile,
+            annonce=getattr(self, "_longueur_attendue", None),
+            ou=self.path, tracer=debug)
+        attendu = getattr(self, "_longueur_attendue", None)
+        if attendu is not None and ecrits != attendu:
+            self.close_connection = True
+        return ecrits
+
     def corps_entierement_lu(self):
         """Dit que le corps de la requete a ete consomme en entier.
 
@@ -225,10 +249,32 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             return False
         return corps.vider(plafond)
 
+    def end_headers(self):
+        """Le client doit apprendre la fermeture AVANT le corps, pas apres.
+
+        Une reponse qui n'annonce pas sa taille ne peut pas etre suivie d'une
+        autre sur la meme connexion : sa fin, c'est la fermeture. On le decidait
+        bien, mais apres coup - les en-tetes etaient deja partis, donc le client
+        gardait la connexion dans son pool et la reprenait morte au coup
+        suivant. Une requete sur huit echouait ainsi, instantanement, sans que
+        rien ne soit tronque : `ConnectionError`, sur une connexion que le
+        serveur avait fermee sans le dire.
+
+        Ici, c'est encore a temps : l'en-tete part avec les autres.
+        """
+        if not getattr(self, "_longueur_annoncee", False):
+            self.close_connection = True
+            self.send_header("Connection", "close")
+        return http.server.SimpleHTTPRequestHandler.end_headers(self)
+
     def send_header(self, keyword, value):
         """Comme la classe de base, en retenant si la longueur a ete annoncee."""
         if keyword.lower() == "content-length":
             self._longueur_annoncee = True
+            try:
+                self._longueur_attendue = int(value)
+            except (TypeError, ValueError):
+                self._longueur_attendue = None
         return http.server.SimpleHTTPRequestHandler.send_header(self, keyword, value)
 
     def start_response(self, status, response_headers, exc_info=None):
@@ -414,6 +460,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             self._longueur_annoncee = False
             self._corps = None
             self._corps_lu = False
+            self._longueur_attendue = None
             method()
             # Le corps non lu ne doit pas rester dans la connexion.
             #
@@ -549,11 +596,20 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         self.create_request("get")
         f = self.on_request("get")
         if f:
-            shutil.copyfileobj(f, self.wfile)
-            # self.copyfile(f, self.wfile)
+            self._ecrire_corps(f)
             f.close()
         try:
-            if self.__request.nokeepalive:  # TODO: Check if this is really needed somewhere
+            # nokeepalive est pose par set_nocache, donc par TOUT send_file :
+            # chaque ressource servie refermait ainsi sa connexion - et, comme
+            # la decision tombe apres les en-tetes, sans le dire au client, qui
+            # la gardait dans son pool et la reprenait morte.
+            #
+            # La vraie question n'est pas le cache mais le cadrage : une reponse
+            # qui annonce sa taille dit ou elle finit, et la connexion peut
+            # servir encore. Sans taille annoncee, la fermeture EST la fin du
+            # message - et end_headers l'a deja annoncee.
+            if self.__request.nokeepalive and not getattr(
+                    self, "_longueur_annoncee", False):
                 self.close_connection = 1
         except Exception:  # noqa
             # debug("EXCEPTION WHEN DO GET %s"%self)
