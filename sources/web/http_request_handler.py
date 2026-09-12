@@ -219,7 +219,15 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         else:
             path, query = self.path, ""
 
-        env["PATH_INFO"] = urllib.parse.unquote(path)
+        # Les octets de l'URL, relus en latin-1 - la convention WSGI (PEP 3333),
+        # pas le texte. unquote() decode en UTF-8 par defaut, donc un nom
+        # accentue arrivait ici comme du texte ; wsgidav applique ensuite
+        # re_encode_wsgi, c'est-a-dire encode("iso-8859-1").decode("utf-8"),
+        # et "resultats.docx" avec un e accent aigu echouait sur
+        #     'utf-8' codec can't decode byte 0xe9 ... invalid continuation byte
+        # Un copier-coller depuis l'explorateur Windows ne survit pas au premier
+        # accent, et le PROPFIND est rejoue sans fin.
+        env["PATH_INFO"] = urllib.parse.unquote(path, encoding="iso-8859-1")
         env["QUERY_STRING"] = query
         host = self.address_string()
         if host != self.client_address[0]:
@@ -400,7 +408,9 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             providers = list(self.wsgidav_app.provider_map.keys())
             if providers:
                 # Need some testing if this approach will work
-                environ["PATH_INFO"] = providers[0]
+                # Meme convention que ci-dessus : ce chemin repart vers
+                # wsgidav, qui va le relire en latin-1.
+                environ["PATH_INFO"] = providers[0].encode("utf-8").decode("iso-8859-1")
             else:
                 self.send_error(404, self.responses[404][0])
                 return
