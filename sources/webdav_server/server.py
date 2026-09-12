@@ -11,7 +11,8 @@ from wsgidav.lock_man.lock_storage import LockStorageDict
 from wsgidav.prop_man.property_manager import PropertyManager
 from wsgidav.lock_man.lock_manager import LockManager
 from .vdom_dav_provider import VDOM_Provider
-from .domain_controller import VDOM_domain_controller
+from .domain_controller import VDOM_domain_controller, VDOM_application_login
+from wsgidav.http_authenticator import HTTPAuthenticator
 from .vdom_dav_provider import get_properties
 import logging
 import managers
@@ -44,6 +45,23 @@ def _brancher_journal_wsgidav():
 
 
 
+def _pile_middleware():
+    """La pile de wsgidav, plus l'ouverture de session applicative.
+
+    Celle qui etait ecrite ici etait dans l'ordre inverse - wsgidav applique le
+    premier element comme le plus exterieur, donc le navigateur de repertoire
+    touchait le fournisseur avant toute authentification - et il lui manquait
+    RequestResolver, que wsgidav annote "doit etre le dernier" parce que c'est
+    lui qui dirige la methode DAV vers la ressource. On part donc de celle de
+    wsgidav, et on n'y ajoute qu'une chose, a une place qui compte : juste apres
+    HTTPAuthenticator, donc apres la verification des identifiants et avant que
+    quoi que ce soit n'atteigne le fournisseur.
+    """
+    pile = list(DEFAULT_CONFIG["middleware_stack"])
+    pile.insert(pile.index(HTTPAuthenticator) + 1, VDOM_application_login)
+    return pile
+
+
 class VDOM_webdav_manager(object):
 
     def __init__(self):
@@ -60,13 +78,7 @@ class VDOM_webdav_manager(object):
                 "default_to_digest": True,  # Updated to use new key
             },
             "verbose": 0,
-            # Pas de middleware_stack : celle de DEFAULT_CONFIG convient, et
-            # celle qui etait ecrite ici etait dans l'ordre inverse - wsgidav
-            # applique le premier element comme le plus exterieur, donc le
-            # navigateur de repertoire touchait le fournisseur avant que
-            # l'authentification n'ait eu lieu - et il lui manquait
-            # RequestResolver, que wsgidav annote "doit etre le dernier" parce
-            # que c'est lui qui dirige la methode DAV vers la ressource.
+            "middleware_stack": _pile_middleware(),
         })
         self.__index = {}
         self.__path_index = {}

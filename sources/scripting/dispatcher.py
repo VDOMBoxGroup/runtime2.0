@@ -117,7 +117,12 @@ class Dispatcher(object):
             else:
                 message = str(error)
             import SOAPpy
-            from .soap.errors import remote_method_call_error
+            # soap.errors, pas scripting.soap.errors : le module est a la racine
+            # de sources. Avec le point, ce chemin d'erreur levait lui-meme un
+            # ModuleNotFoundError, qui remplacait l'erreur qu'il venait
+            # rapporter - on lisait "No module named 'scripting.soap.errors'"
+            # a la place de la panne reelle, pour toute action en echec.
+            from soap.errors import remote_method_call_error
             raise SOAPpy.faultType(remote_method_call_error, _("Remote method call error"), message)
 
         response = request.session().value("response")

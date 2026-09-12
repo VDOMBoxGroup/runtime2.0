@@ -32,6 +32,41 @@ import json
 
 import managers
 from wsgidav.dc.base_dc import BaseDomainController
+from wsgidav.mw.base_mw import BaseMiddleware
+
+
+def already_signed_in(session):
+    """Whether the application already holds a user for this session.
+
+    Two keys, because the application has two ways in: `ProAdmin.login` - what
+    a password check goes through - leaves `current_user`, while
+    `ProAdmin.set_user`, used when the password was proved elsewhere, leaves
+    `sudo`. `current_user()` reads both, so anything asking "is someone logged
+    in" has to read both too. Reading only one is how the Digest path looked
+    signed in to wsgidav and empty to the application.
+
+    `dav_user` is deliberately not in this list: it says an HTTP credential was
+    seen, not that the application accepted anyone.
+    """
+    if session is None:
+        return False
+    return bool(session.get("sudo") or session.get("current_user"))
+
+
+def current_session():
+    """The current session, or None when there is no request.
+
+    wsgidav asks whether a share is anonymous while it is building the
+    application - wsgidav_app calls is_share_anonymous for each share, which
+    calls require_authentication(share, None). That happens on the startup
+    thread, where request_manager.current raises "No request associated with
+    current thread". Raising there cost every share: the exception came out of
+    WsgiDAVApp(), no application ever got a wsgidav_app, and WebDAV was dead.
+    """
+    try:
+        return managers.request_manager.current.session()
+    except Exception:
+        return None
 
 
 def authAppUser(app_id, obj_id, user, password):
@@ -87,22 +122,6 @@ class VDOM_domain_controller(BaseDomainController):
         obj = self._application.objects.get(obj_name)
         return obj.id if obj else None
 
-    def _session(self):
-        """The current session, or None when there is no request.
-
-        wsgidav asks whether a share is anonymous while it is building the
-        application - wsgidav_app calls is_share_anonymous for each share, which
-        calls require_authentication(share, None). That happens on the startup
-        thread, where request_manager.current raises "No request associated with
-        current thread". Raising there cost every share: the exception came out
-        of WsgiDAVApp(), no application ever got a wsgidav_app, and WebDAV was
-        dead.
-        """
-        try:
-            return managers.request_manager.current.session()
-        except Exception:
-            return None
-
     def require_authentication(self, realm, environ):
         """A session that already carries a user does not authenticate again.
 
@@ -110,10 +129,10 @@ class VDOM_domain_controller(BaseDomainController):
         proved who is calling, and a share that answers "anonymous" there would
         be published without a password.
         """
-        session = self._session()
+        session = current_session()
         if session is None:
             return True
-        return "current_user" not in session and "dav_user" not in session
+        return not already_signed_in(session)
 
     def supports_http_digest_auth(self):
         # The application stores a digest for its users - see getDigest - so we
@@ -124,7 +143,7 @@ class VDOM_domain_controller(BaseDomainController):
         obj_id = realm
         if not self._application:
             return False
-        session = self._session()
+        session = current_session()
         if session is None:
             return False
         known = (self._application.id, obj_id, user_name, password)
@@ -152,7 +171,7 @@ class VDOM_domain_controller(BaseDomainController):
                 return False
             obj_id = shares[0]
 
-        session = self._session()
+        session = current_session()
         if session is None:
             return False
         digest = session.get("dav_digest")
@@ -160,7 +179,67 @@ class VDOM_domain_controller(BaseDomainController):
             digest = authGetDigest(self._application.id, obj_id, user_name)
             if digest:
                 session["dav_digest"] = digest
-        if not digest:
-            return False
-        session["dav_user"] = (self._application.id, obj_id, user_name, None)
-        return digest
+        # Rien n'est pose dans la session ici. wsgidav demande A1 AVANT de
+        # verifier la reponse du client : marquer l'utilisateur a cet instant
+        # revient a croire quiconque sait nommer un utilisateur. La ligne qui
+        # posait dav_user ne donnait pas l'acces aux donnees - l'application
+        # n'etait pas connectee pour autant - mais elle faisait repondre oui a
+        # require_authentication, donc toute la suite de la session passait sans
+        # aucune authentification, et echouait en 500 au lieu de 401.
+        return digest or False
+
+
+class VDOM_application_login(BaseMiddleware):
+    """Log the user wsgidav has authenticated into the application itself.
+
+    Two notions of "logged in" meet here. wsgidav proves who is calling, over
+    Basic or Digest. The actions behind every share ask the application -
+    `ProAdmin.current_user()` - and refuse the read when it answers nothing:
+
+        AuthorisationError: No one is logged in.
+        path .................. '/'
+        user .................. None
+
+    The Basic path happens to establish both at once: `basic_auth_user` checks
+    the password by calling the share's `authentication` action, and that action
+    logs the user in as a side effect. That is why a browser worked and the
+    Windows client did not - Windows refuses Basic over plain HTTP and uses
+    Digest, and nothing on the Digest path ever calls `authentication`.
+
+    Under wsgidav 1 a digest middleware called authDomainUser once the response
+    had been checked, for that side effect alone. Version 4 has no such hook:
+    `digest_auth_user` is asked for A1 *before* the client's response is
+    verified, so logging the user in there would hand the share to anyone who
+    can name a user - no password needed. It has to happen after.
+
+    So it happens here, right after HTTPAuthenticator and before anything
+    reaches the provider. `wsgidav.auth.user_name` is set only once the
+    credentials have been checked, which is exactly the guarantee that was
+    missing.
+    """
+
+    def __call__(self, environ, start_response):
+        try:
+            self._ouvrir(environ)
+        except Exception as e:
+            debug("WebDAV: ouverture de session impossible: %s" % e)
+        return self.next_app(environ, start_response)
+
+    def _ouvrir(self, environ):
+        user = environ.get("wsgidav.auth.user_name")
+        if not user:
+            # Anonymous share, or authentication skipped because the session
+            # already carries a user - see require_authentication.
+            return
+        session = current_session()
+        if session is None or already_signed_in(session):
+            return
+        provider = environ.get("wsgidav.provider")
+        obj = getattr(provider, "obj", None)
+        app = getattr(provider, "application", None)
+        if not obj or not app:
+            return
+        # An empty password on purpose: the action reads the Authorization
+        # scheme and, for Digest, sets the user without one. The password has
+        # already been proved - by the digest, or by basic_auth_user.
+        authAppUser(app.id, obj.id, user, "")
