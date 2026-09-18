@@ -188,7 +188,11 @@ class v_wholeconnection(generic):
     def v_open(self, url, login, password):
         self._url = url.as_string
         self._login = login.as_string
-        self._password = hashlib.md5(password.as_string).hexdigest()
+        # Python 3: hashlib.md5 wants bytes, not str. Passing the str raised a
+        # TypeError deep in the wrapper - uncatchable from VScript, so every
+        # `WHOLEConnection.Open` from a plugin macro crashed the request to the
+        # SPA fallback instead of connecting. Encode before hashing.
+        self._password = hashlib.md5(password.as_string.encode("utf-8")).hexdigest()
         try:
             self._service = VDOM_service.connect(
                 self._url, self._login, self._password, None)
