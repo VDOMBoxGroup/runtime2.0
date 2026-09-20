@@ -140,10 +140,13 @@ class LogServerSession(SmartDaemon):
         server_log.write("Start " + self.name)
 
     def cleanup(self):
+        # This used to also dump every thread's stack on each log-reader
+        # disconnect - `self.name + traceback.format_stack()`, which on Python 3
+        # raised `TypeError: can only concatenate str (not "list") to str`
+        # (format_stack returns a list) and buried the log under a stack wall
+        # every time a client closed. It was leftover debugging; "Stop" is the
+        # cleanup message.
         server_log.write("Stop " + self.name)
-        import traceback
-        server_log.write( self.name + traceback.format_stack())
-        
         self._stream = None
 
     _action_request = create_packer("B")

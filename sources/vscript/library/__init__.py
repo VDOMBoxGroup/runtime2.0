@@ -8,7 +8,7 @@ from .mathematics import v_abs, v_sgn, v_round, v_exp, v_int, v_fix, v_log, v_sq
     v_atn, v_cos, v_sin, v_tan, v_rnd
 from .strings import v_len, v_strcomp, v_replace, v_split, v_lcase, v_ucase, \
     v_instr, v_instrrev, v_left, v_right, v_mid, v_trim, v_ltrim, v_rtrim, \
-    v_space, v_string, v_strreverse, v_escape, v_unescape
+    v_space, v_string, v_strreverse, v_escape, v_unescape, v_md5
 from .chronology import v_date, v_time, v_now, v_timer, v_dateserial, v_datevalue, \
     v_datepart, v_timeserial, v_timevalue, v_year, v_month, v_day, v_weekday, \
     v_hour, v_minute, v_second, v_dateadd, v_datediff, v_monthname, v_weekdayname

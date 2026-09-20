@@ -1,4 +1,5 @@
 import codecs
+import hashlib
 
 from builtins import chr
 import re
@@ -197,3 +198,12 @@ def v_escape(string1):
 
 def v_unescape(string1):
     return string(string1.as_string.decode("url"))
+
+
+def v_md5(string1):
+    # The MD5 hex digest of a string, lower-case. VDOM apps that expose their
+    # own `login` action (PIS among them) store the password as an MD5 hash and
+    # compare it byte for byte against what the caller sends - so a client must
+    # hash before it invokes, and had no way to until this existed. hashlib
+    # wants bytes on Python 3; a str raised an uncatchable TypeError.
+    return string(hashlib.md5(string1.as_string.encode("utf-8")).hexdigest())
