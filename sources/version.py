@@ -1,21 +1,39 @@
 """What this server is, and which build of it is running.
 
-SERVER_VERSION is the product version. It has read "3.0.1" for years - a
-constant, derived from nothing - which is fine for a name and useless for the
-only question anyone asks of a running site: does it carry the fix?
+Both answers come from one string, and that string comes from git.
 
-Measured on 2026-09-20, four production sites and the development machine all
+SERVER_VERSION read "3.0.1" for years - a constant, derived from nothing. It
+survived the whole Python 3 portage, HTTP/1.1, the WebDAV rewrite and the block
+writer without moving once, so the number said nothing about what a site was
+running. Measured on 2026-09-20, four production sites and this machine all
 answered
 
     Server: VDOM v3 server 3.0.1 Python/3.11.16
 
-while the development machine was thirty-three commits ahead of them, carrying
-HTTP/1.1, the finished WebDAV port and the block writer that none of the others
-had. The header could not tell them apart, so nobody could - and the only way
-to answer "is the WebDAV fix deployed here?" was to find someone who remembered.
+while this machine was thirty-four commits ahead of them. The header could not
+tell them apart, so nobody could.
 
-SERVER_BUILD answers it, the way LimeOS already answers it for the application:
-`git describe --tags --always --dirty`, resolved once at import.
+So the version is a **tag**, the way LimeOS already does it for the application:
+
+    git tag 3.1.0 && git push origin 3.1.0
+
+`git describe` then names every build after that tag, and `SERVER_VERSION` is
+read back out of the name:
+
+    3.1.0                  the tagged commit itself      -> 3.1.0
+    3.1.0-34-g9884ca6      thirty-four commits past it   -> 3.1.0.34
+    3.1.0-34-g9884ca6-dirty  ... with local edits        -> 3.1.0.34
+
+The fourth component is the distance to the release, so the number moves on
+every commit instead of waiting for someone to remember to bump it. It is the
+build's own count, not a decision.
+
+`--match` keeps this to tags shaped `X.Y.Z`. The repository also carries
+`portage-1.2` and ticket tags like `10441`, and a version named after a ticket
+would be worse than a constant.
+
+SERVER_BUILD is the full describe string, headers and all, so `(3.1.0.34)` in
+the version still resolves to one commit: `(3.1.0-34-g9884ca6)`.
 
 Three sources, in order:
 
@@ -29,19 +47,34 @@ Three sources, in order:
 
 For the image build, one line is enough, before the sources are copied in:
 
-    git describe --tags --always --dirty > BUILD
+    git describe --tags --match '[0-9]*.[0-9]*.[0-9]*' --always --dirty > BUILD
+
+Until the first `X.Y.Z` tag exists, nothing above can name a version and
+SERVER_VERSION falls back to FALLBACK_VERSION - the number this server has
+always answered. Landing this file changes no site's version on its own; the
+tag does.
 """
 
 import os
+import re
 import subprocess
 
-REPOSITORY_VERSION = str(0o001)
-SERVER_VERSION = "3.0.%s" % REPOSITORY_VERSION
+#: What to answer when no version tag is reachable. This is the number every
+#: site has answered since 3.0 shipped, so a build with no tag keeps saying
+#: what it always said instead of claiming something new.
+FALLBACK_VERSION = "3.0.1"
+
+#: Only tags shaped X.Y.Z name a version. A glob, not a regexp: it is handed
+#: to `git describe --match`.
+VERSION_TAG_GLOB = "[0-9]*.[0-9]*.[0-9]*"
 
 UNKNOWN_BUILD = "unknown-build"
 
 _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 _STAMP = os.path.join(_ROOT, "BUILD")
+
+#: `3.1.0`, or `3.1.0-34-g9884ca6`, with an optional `-dirty` behind it.
+_DESCRIBED = re.compile(r"^(\d+\.\d+\.\d+)(?:-(\d+)-g[0-9a-f]+)?(?:-dirty)?$")
 
 
 def _stamped():
@@ -62,7 +95,8 @@ def _described():
     """
     try:
         result = subprocess.run(
-            ["git", "describe", "--tags", "--always", "--dirty"],
+            ["git", "describe", "--tags", "--match", VERSION_TAG_GLOB,
+             "--always", "--dirty"],
             cwd=_ROOT, capture_output=True, text=True, timeout=10)
     except (OSError, subprocess.SubprocessError):
         return None
@@ -71,6 +105,24 @@ def _described():
     return result.stdout.strip() or None
 
 
+def _version_of(build):
+    """The version a describe string names, or None if it names none.
+
+    A bare sha names none - that is a build whose history holds no version tag,
+    and it gets the fallback rather than a number invented on the spot.
+    """
+    found = _DESCRIBED.match(build or "")
+    if not found:
+        return None
+    release, distance = found.group(1), found.group(2)
+    return "%s.%s" % (release, distance) if distance else release
+
+
 SERVER_BUILD = _stamped() or _described() or UNKNOWN_BUILD
+SERVER_VERSION = _version_of(SERVER_BUILD) or FALLBACK_VERSION
+
+#: Kept for the callers that still read it. It is the patch component of the
+#: version and no longer a constant anyone edits.
+REPOSITORY_VERSION = SERVER_VERSION.split(".", 2)[-1]
 
 SERVER_NAME = "VDOM Server " + SERVER_VERSION
