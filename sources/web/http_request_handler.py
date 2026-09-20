@@ -27,7 +27,7 @@ import settings
 import managers
 
 
-from version import SERVER_NAME, SERVER_VERSION
+from version import SERVER_NAME, SERVER_VERSION, SERVER_BUILD
 from soap.wsdl import methods as soap_methods
 from utils.pages import compose_page, compose_trace
 
@@ -1320,5 +1320,14 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         pass
 
     def version_string(self):
-        """Return the server software version string."""
-        return "VDOM v3 server " + SERVER_VERSION + " " + self.sys_version
+        """Return the server software version string.
+
+        The build goes in the header because the header is the one answer a
+        site gives without a session, without the application, and even when
+        the application is broken - which is exactly when the question gets
+        asked. One `curl -I` now says which runtime a site is on:
+
+            Server: VDOM v3 server 3.0.1 (portage-1.2-33-g88f9719) Python/3.11.16
+        """
+        return "VDOM v3 server %s (%s) %s" % (
+            SERVER_VERSION, SERVER_BUILD, self.sys_version)
