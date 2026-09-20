@@ -250,6 +250,10 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         if not getattr(self, "_length_announced", False):
             self.close_connection = True
             self.send_header("Connection", "close")
+        # A response has now left for this request. send_error consults
+        # this: HTTP has no way to retract a status line already on the
+        # wire.
+        self._response_sent = True
         return http.server.SimpleHTTPRequestHandler.end_headers(self)
 
     def send_header(self, keyword, value):
@@ -443,6 +447,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                 return
             method = getattr(self, mname)
             self._length_announced = False
+            self._response_sent = False
             self._body = None
             self._body_read = False
             self._length_expected = None
@@ -1252,7 +1257,43 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         return self.__last_date_time_string
 
     def send_error(self, code, message=None, excinfo=None):
-        """send error"""
+        """Send an error page - unless this request has already been answered.
+
+        A second response cannot be sent. The status line of the first is
+        already on the wire and HTTP offers no way to take it back, so the
+        bytes written here do not become a response: they land inside the
+        body of the one already in flight.
+
+        That is not hypothetical. A macro that answered with
+        `send_htmlcode(403)` - the access-denied page of the vhtml router -
+        left `binary()` false, so handle_request fell through to its closing
+        `send_error(404)` at the end of do_request. Measured on
+        test.lime-os.app and on the development machine, every /timelime
+        request without a session came back as 1312 bytes reading
+
+            <p>You need to sign in to use this application.
+            HTTP/1.1 404 Not Found
+            Server: VDOM v3 server ...
+            <div class="heading">Error 404: Not Found</div>
+
+        - one response carrying another whole one, headers included. It has
+        been read as a stale session cookie, and half of that reading is
+        sound: a dead `sid` does fail authorisation, so the 403 is real.
+        The `Error 404` welded behind it is this defect, and it turned a
+        session problem into a hunt for a route that was never missing.
+
+        The caller cannot be trusted to know: `send_error` is reached from
+        eight places here, and whether headers have gone out depends on what
+        an application did three layers down. So the guard lives here. The
+        connection is closed rather than reused - whatever went out was
+        complete or it was not, and this is no longer the place to find out.
+        """
+        if getattr(self, "_response_sent", False):
+            self.log_error("code %d suppressed: this request has already "
+                           "been answered (%s %s)", code, self.command,
+                           self.path)
+            self.close_connection = True
+            return
         try:
             short, explanation = self.responses[code]
         except KeyError:
