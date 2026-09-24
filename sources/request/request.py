@@ -137,12 +137,17 @@ class VDOM_request(object):
                     # Left as scalars, a JSON field read back empty: a Custom GPT
                     # posting application/json reached its macro with an empty
                     # body, indistinguishable from no body at all.
+                    # Always expose the raw body under `rawdata`, list-shaped like
+                    # every other arg. A macro reads Event.Data("rawdata") and
+                    # parses it itself - the only way to reach a NESTED JSON body
+                    # (JSON-RPC / MCP: params.arguments.*) that the flat shaping
+                    # below cannot represent (Event.Data stringifies a dict to its
+                    # Python repr, which is not JSON). Additive: the flattened
+                    # top-level keys stay exactly as before for existing callers.
+                    args["rawdata"] = [request_body]
                     if isinstance(params, dict):
-                        args = {
-                            key: value if isinstance(value, list) else [value]
-                            for key, value in params.items()}
-                    else:
-                        args["rawdata"] = request_body
+                        for key, value in params.items():
+                            args[key] = value if isinstance(value, list) else [value]
 
                 # TODO: check situation with SOAP and SOAP-POST-URL
                 elif env["REQUEST_URI"] != VDOM_CONFIG["SOAP-POST-URL"]:
