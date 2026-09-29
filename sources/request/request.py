@@ -224,6 +224,13 @@ class VDOM_request(object):
 
         #  if sid not in args.get('sid', []):
         self.__response_cookies["sid"] = sid
+        # One session per site, not one per directory. Without a Path the
+        # browser scopes the cookie to the directory of the request that set
+        # it: a session born on /bestseller/api/reprise was only ever sent back
+        # to /bestseller/api/*, and /bestseller/file/* - same app, same user -
+        # started another, anonymous one and answered 403. Every response
+        # re-sets this cookie, so each sub-path could hold its own sid.
+        self.__response_cookies["sid"]["path"] = "/"
         if settings.SAME_SITE_NONE:
             self.__response_cookies["sid"]["secure"] = True
             self.__response_cookies["sid"]["samesite"] = "None"
