@@ -30,6 +30,7 @@ import managers
 from version import SERVER_NAME, SERVER_VERSION, SERVER_BUILD
 from soap.wsdl import methods as soap_methods
 from utils.pages import compose_page, compose_trace
+from utils.body import write_in_blocks
 
 # A class to describe how header messages are handled
 
@@ -1235,7 +1236,11 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
 
             # resp = xml.sax.saxutils.unescape(resp)
             print("Soap method call: %s, respsize: %s,resptime:%s" % (nsmethod.split(":")[-1], len(resp), time.time() - start_time))
-            self.wfile.write(resp)
+            # In bounded blocks, not one write: on Windows a single large write
+            # reached the client cut short and the connection died 19 s later
+            # (see utils/body). A 70 KB answer was enough, one call in two.
+            write_in_blocks(BytesIO(resp), self.wfile, announced=len(resp),
+                            where="SOAP " + nsmethod.split(":")[-1], trace=print)
             self.wfile.flush()
 
             # We should be able to shut down both a regular and an SSL
