@@ -6,7 +6,7 @@ import base64
 
 def encode_resource(data):
     """encode resource to be sent through web services"""
-    return base64.b64encode(zlib.compress(data))
+    return base64.b64encode(zlib.compress(data)).decode("ascii")
 
 
 def need_xml_escape(data):
