@@ -27,11 +27,13 @@ class VDOM_module_resource(VDOM_module):
         "dot": "application/msword",
         "xls": "application/msexcel",
         "htc": "text/x-component",
+        "woff": "font/woff",
+        "woff2": "font/woff2",
         "unknown": "application/octet-stream"
     }
 
     images = ["bmp", "jpg", "jpeg", "png", "gif", "svg"]
-    cached = images + ["css", "js"]
+    cached = images + ["css", "js", "woff", "woff2"]
 
     def getfile(self, application_id, fileurl):
         """ read file """
