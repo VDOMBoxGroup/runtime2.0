@@ -129,7 +129,9 @@ class VDOM_resource_manager(object):
                 if getattr(resource, "object_id", None):
                     self.__label_index.pop((resource.object_id, resource.label), None)  # TODO: fix labels resources
                 self.__main_index.pop(res_id)
-                if resource.name in self.__name_index:
+                # the name may now lead to another resource of the same name:
+                # it is dropped only when it leads to this one
+                if self.__name_index.get(resource.name.lower()) == res_id:
                     self.__name_index.pop(resource.name.lower())                
 
     def remove_resources(self):
