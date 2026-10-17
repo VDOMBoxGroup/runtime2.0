@@ -150,20 +150,15 @@ class VDOM_module_manager(object):
                 ret = "Application not found"
                 debug(ret)
                 return (None, ret)
-            # have no container id, try to redirect to the top level container
-            elif app.index:  # CHECK: if app.index_page:
-                # _o = app.search_object(app.index) # CHECK: _o = app.search_object(app.index_page)
-                _o = app.objects.catalog.get(app.index)
-                if _o:
-                    request_object.redirect("/%s.vdom" % _o.name.lower())
-                else:
-                    return (404, None)
-            # CHECK: len(app.get_objects_list()) > 0: # redirect to the first container
-            elif app.objects:
-                # CHECK: request_object.redirect("/%s.vdom" % app.get_objects_list()[0].name)
-                request_object.redirect("/%s.vdom" %
-                                        iter(app.objects.values()).next().name)
-            return (404, None)  # empty request
+            # "/" is the index container (or else the first one), answered in
+            # place: a redirect to /<name>.vdom showed the container name in
+            # the address, and the application never saw the request for "/".
+            index = app.objects.catalog.get(app.index) if app.index else None
+            if index is None and not app.index and app.objects:
+                index = next(iter(app.objects.values()))
+            if index is None:
+                return (404, None)  # empty request
+            url_parts = [index.name.lower()]
 
         request_type = url_parts[0].rpartition(
             ".")[2] if '.' in url_parts[0] else 'vdom'
