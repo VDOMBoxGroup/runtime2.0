@@ -152,3 +152,16 @@ class LogFile(object):
     def drop(self):
         if self._file:
             self._file.close()
+
+    def reset(self):
+        """Forget the open file, after a write it refused: the next write
+        opens it again."""
+        try:
+            self.drop()
+        except OSError:
+            pass
+        self._file = None
+        self._size = None
+        self._data = None
+        self._tell = None
+        self._index = deque()

@@ -9,6 +9,8 @@ from .file import EXTENSIONS, LogFile
 
 
 ROLLOVER_SIZE = 100 * 1024 * 1024
+# Entries kept while the file cannot be written, written with the next ones.
+PENDING_LIMIT = 10000
 
 
 class LogWriter(object):
@@ -19,6 +21,7 @@ class LogWriter(object):
         self._formatter = formatter
         self._readers = WeakSet()
         self._lock = Lock()
+        self._pending = deque(maxlen=PENDING_LIMIT)
         path = settings.LOGS_LOCATION
         for part in name.split("/")[:-1]:
             path = "%s/%s" % (path, part)
@@ -29,7 +32,19 @@ class LogWriter(object):
 
     def write(self, *entries):
         with self._lock:
-            self._files[0].write(*entries)
+            # A file another process holds a moment (a sync tool, an
+            # antivirus) refuses the write with an OSError. It used to reach
+            # the log session, whose "except socket.error" (an alias of
+            # OSError) stopped it for good: server.log was no longer written
+            # while the console went on. The entries wait for the next write.
+            entries = tuple(self._pending) + entries
+            try:
+                self._files[0].write(*entries)
+            except OSError:
+                self._files[0].reset()
+                self._pending = deque(entries, maxlen=PENDING_LIMIT)
+                return
+            self._pending.clear()
             count = len(entries)
             for reader in self._readers:
                 reader._index += count
