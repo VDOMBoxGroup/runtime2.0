@@ -22,6 +22,17 @@ RE_GUID = re.compile(
     "[0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12}", re.IGNORECASE)
 
 
+def _close_sent(request_object):
+    """Close the file a response was sent from (response.send_file). It was
+    left open until collected: on Windows an open file cannot be renamed or
+    deleted, so a resource just served could not be renamed (WinError 32)."""
+    handler, request_object.fh = request_object.fh, None
+    try:
+        handler.close()
+    except Exception:  # noqa - a handler without close, or closed already
+        pass
+
+
 @contextmanager
 def start_stop_request(actions):
     on_request_start = actions.get("requestonstart")
@@ -47,9 +58,12 @@ def onerror_handler(request_object, app):
         else:
             if request_object.fh:
                 # Bounded blocks, not shutil.copyfileobj: see utils/body.
-                write_in_blocks(request_object.fh, request_object.wfile,
-                                announced=_announced_length(request_object),
-                                where=_request_path(request_object), trace=debug)
+                try:
+                    write_in_blocks(request_object.fh, request_object.wfile,
+                                    announced=_announced_length(request_object),
+                                    where=_request_path(request_object), trace=debug)
+                finally:
+                    _close_sent(request_object)
                 return (None, "")
             outp = request_object.output()
             if outp:
@@ -258,10 +272,13 @@ class VDOM_module_manager(object):
                     # This is the path that serves an application's resources -
                     # a one-megabyte app.js went out in a single write and
                     # arrived truncated with nothing anywhere saying so.
-                    write_in_blocks(request_object.fh, request_object.wfile,
-                                    announced=_announced_length(request_object),
-                                    where=_request_path(request_object),
-                                    trace=debug)
+                    try:
+                        write_in_blocks(request_object.fh, request_object.wfile,
+                                        announced=_announced_length(request_object),
+                                        where=_request_path(request_object),
+                                        trace=debug)
+                    finally:
+                        _close_sent(request_object)
                     return (None, "")
 
                 outp = request_object.output()
