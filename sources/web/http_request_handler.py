@@ -10,6 +10,8 @@ import SOAPpy
 import threading
 import urllib.parse
 import select
+import xml.parsers.expat
+import xml.sax
 import http.server
 from wsgiref.util import guess_scheme
 from io import BytesIO
@@ -910,7 +912,24 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                 debug(data)
                 SOAPpy.debugFooter(s)
 
-            (r, header, body, attrs) = SOAPpy.parseSOAPRPC(data, header=1, body=1, attrs=1)
+            try:
+                (r, header, body, attrs) = SOAPpy.parseSOAPRPC(data, header=1, body=1, attrs=1)
+            except (xml.sax.SAXParseException, xml.parsers.expat.ExpatError) as error:
+                # A request that is not XML (a control character in an
+                # attribute was enough) gets a Client fault: nothing below
+                # catches it, and the connection used to drop unanswered.
+                fault = SOAPpy.faultType("%s:Client" % SOAPpy.NS.ENV_T, "Malformed request", str(error))
+                resp = SOAPpy.buildSOAP(fault, encoding=self.server.encoding, config=self.server.config,
+                                        namespace="http://services.vdom.net/VDOMServices")
+                if isinstance(resp, str):
+                    resp = resp.encode(self.server.encoding or "utf-8")
+                self.send_response(self.__request.fault_type_http_code)
+                self.send_header("Content-type", "text/xml")
+                self.send_header("Content-length", str(len(resp)))
+                self.end_headers()
+                self.wfile.write(resp)
+                self.wfile.flush()
+                return
 
             method = r._name
             args = r._aslist()
