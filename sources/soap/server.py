@@ -43,8 +43,6 @@ from .errors import (
     application_restore_error,
     param_syntax_error,
     obj_update_error,
-    obj_create_error,
-    res_add_error,
     lib_name_error,
     invalid_object_error,
 )
@@ -658,11 +656,12 @@ class VDOM_web_services_server:
 
         # decode resource data
         resdata = zlib.decompress(base64.b64decode(resdata))
+        # a refused id raises a plain error: proxy answers it as an error,
+        # where it would swallow a faultType into an empty answer
         if resid:
             resid = str(UUID(resid))
             if managers.resource_manager.get_resource(app.id, resid) is not None:
-                raise SOAPpy.faultType(res_add_error, _("Create resource error"),
-                                       _("A resource %s exists already") % resid)
+                raise KeyError("A resource %s exists already" % resid)
         new_resource_id = resid or str(uuid4())
         # app.create_resource(new_resource_id, restype, resname, resdata)
         create_resource(new_resource_id, restype, resname, resdata)
@@ -745,11 +744,10 @@ class VDOM_web_services_server:
                 raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
         else:
             parent = app
-        try:
-            obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(attr, False) if attr else None,
-                                     id=objid or None)
-        except (KeyError, ValueError) as error:
-            raise SOAPpy.faultType(obj_create_error, _("Create object error"), str(error))
+        # a refused id (taken, not a uuid) raises a plain error, answered as
+        # an error by proxy
+        obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(attr, False) if attr else None,
+                                 id=objid or None)
         # #debug("Created object " + str(ret))
 
         # if "" != attr:
@@ -2385,10 +2383,7 @@ class VDOM_web_services_server:
         if not verificators.complies(actionname, verificators.name):
             raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
 
-        try:
-            action = obj.actions.new(name=actionname, source_code=actionvalue, id=actionid or None)
-        except (KeyError, ValueError) as error:
-            raise SOAPpy.faultType(name_error, _("Create server action error"), str(error))
+        action = obj.actions.new(name=actionname, source_code=actionvalue, id=actionid or None)
         # app.sync()
         app.save()
         return '<Action ID="%s" Name="%s" ObjectID="%s"/>' % (action.id, action.name, objid)
