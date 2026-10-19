@@ -129,7 +129,11 @@ PROFILE_FILENAME_TEMPLATE = PROFILE_LOCATION + "/%s." + PROFILE_EXTENSION
 STORE_BYTECODE = False  # store executables bytecode on disk
 STORE_ACTIONS_BYTECODE = False  # store action bytecode on disk
 ANALYZE_SCRIPT_STRUCTURE = True  # analyze actions to collect dependencies
-HANDLE_NO_RESOURCE = False  # call onerror handler for app resource missing
+# call the application's requestonerror action for a missing resource (a path
+# with an extension): an application that routes its own URLs (/robots.txt,
+# /media/x.png) is never reached otherwise; one without that action still
+# gets the 404
+HANDLE_NO_RESOURCE = True
 
 # watcher
 
