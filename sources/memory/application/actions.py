@@ -4,7 +4,7 @@ if sys.version_info[0] < 3:
     from collections import MutableMapping
 else:
     from collections.abc import MutableMapping
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from utils.properties import lazy, weak, roproperty
 
@@ -80,9 +80,15 @@ class MemoryActions(MemoryBase, MutableMapping):
         return (MemoryActionRestorationSketch if restore
             else MemoryActionSketch)(self, handler=handler)
 
-    def new(self, name=None, source_code=None, handler=None):
+    def new(self, name=None, source_code=None, handler=None, id=None):
+        """A new action; `id` imposes its identifier, refused when another
+        action has it."""
         item = self.new_sketch(handler=handler)
-        item.id = str(uuid4())
+        if id:
+            id = str(UUID(id))
+            if id in self._all_items:
+                raise KeyError("An action %s exists already" % id)
+        item.id = id or str(uuid4())
         item.name = name
         if source_code is not None:
             item.source_code = source_code

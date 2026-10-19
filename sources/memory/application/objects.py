@@ -7,7 +7,7 @@ if sys.version_info[0] < 3:
 else:
     from collections.abc import MutableMapping
 from itertools import islice
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 import managers
 import security
@@ -158,9 +158,15 @@ class MemoryObjects(MemoryBase, MutableMapping):
             self._owner.application, None if self._owner.is_application else self._owner,
             virtual=virtual or self._owner.virtual, attributes=attributes)
 
-    def new(self, type, name=None, virtual=False, attributes=None):
+    def new(self, type, name=None, virtual=False, attributes=None, id=None):
+        """A new object; `id` imposes its identifier (a deployment that keeps
+        the identifiers of its source), refused when another object has it."""
         item = self.new_sketch(type, virtual=virtual, attributes=attributes)
-        item.id = str(uuid4())
+        if id:
+            id = str(UUID(id))
+            if id in self._all_items:
+                raise KeyError("An object %s exists already" % id)
+        item.id = id or str(uuid4())
         item.name = name
         return ~item
 

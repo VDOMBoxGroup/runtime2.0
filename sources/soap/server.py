@@ -43,6 +43,8 @@ from .errors import (
     application_restore_error,
     param_syntax_error,
     obj_update_error,
+    obj_create_error,
+    res_add_error,
     lib_name_error,
     invalid_object_error,
 )
@@ -63,7 +65,7 @@ from .utils.semaphore import VDOM_semaphore
 from .utils.mutex import VDOM_named_mutex_auto
 from .utils.exception import VDOM_exception_sec, VDOM_exception_element, VDOM_exception_param, VDOM_exception
 from . import soaputils
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 # from memory.xml_object import xml_object # memory.
 from .xml_object import xml_object
@@ -634,8 +636,8 @@ class VDOM_web_services_server:
         app.save()
         return self.__success()
 
-    def set_resource(self, sid, skey, appid, restype, resname, resdata):
-        """set application resource"""
+    def set_resource(self, sid, skey, appid, restype, resname, resdata, resid=""):
+        """set application resource; `resid` imposes its identifier"""
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
 
@@ -656,7 +658,12 @@ class VDOM_web_services_server:
 
         # decode resource data
         resdata = zlib.decompress(base64.b64decode(resdata))
-        new_resource_id = str(uuid4())
+        if resid:
+            resid = str(UUID(resid))
+            if managers.resource_manager.get_resource(app.id, resid) is not None:
+                raise SOAPpy.faultType(res_add_error, _("Create resource error"),
+                                       _("A resource %s exists already") % resid)
+        new_resource_id = resid or str(uuid4())
         # app.create_resource(new_resource_id, restype, resname, resdata)
         create_resource(new_resource_id, restype, resname, resdata)
 
@@ -691,8 +698,8 @@ class VDOM_web_services_server:
         managers.resource_manager.delete_resource(appid, resid, True)
         return "<Resource>%s</Resource>" % resid
 
-    def create_object(self, sid, skey, appid, parentid, typeid, name, attr):
-        """create object in the application"""
+    def create_object(self, sid, skey, appid, parentid, typeid, name, attr, objid=""):
+        """create object in the application; `objid` imposes its identifier"""
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
 
@@ -738,7 +745,11 @@ class VDOM_web_services_server:
                 raise SOAPpy.faultType(parent_object_error, _("Create object error"), _("Parent object not found"))
         else:
             parent = app
-        obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(attr, False) if attr else None)
+        try:
+            obj = parent.objects.new(type, name=name or None, attributes=self.__parse_attr(attr, False) if attr else None,
+                                     id=objid or None)
+        except (KeyError, ValueError) as error:
+            raise SOAPpy.faultType(obj_create_error, _("Create object error"), str(error))
         # #debug("Created object " + str(ret))
 
         # if "" != attr:
@@ -2357,8 +2368,8 @@ class VDOM_web_services_server:
 
     # addition to server actions API
 
-    def create_server_action(self, sid, skey, appid, objid, actionname, actionvalue):
-        """create server action"""
+    def create_server_action(self, sid, skey, appid, objid, actionname, actionvalue, actionid=""):
+        """create server action; `actionid` imposes its identifier"""
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
 
@@ -2374,7 +2385,10 @@ class VDOM_web_services_server:
         if not verificators.complies(actionname, verificators.name):
             raise SOAPpy.faultType(name_error, _("Incorrect server action name"), "")
 
-        action = obj.actions.new(name=actionname, source_code=actionvalue)
+        try:
+            action = obj.actions.new(name=actionname, source_code=actionvalue, id=actionid or None)
+        except (KeyError, ValueError) as error:
+            raise SOAPpy.faultType(name_error, _("Create server action error"), str(error))
         # app.sync()
         app.save()
         return '<Action ID="%s" Name="%s" ObjectID="%s"/>' % (action.id, action.name, objid)

@@ -121,8 +121,8 @@ def list_resources(sid, skey, ownerid, _SOAPContext):
 
 # create object in the application
 
-def create_object(sid, skey, appid, parentid, typeid, name, attr, _SOAPContext):
-    return proxy([managers.soap_server.create_object, sid, skey, appid, parentid, typeid, name, attr])
+def create_object(sid, skey, appid, parentid, typeid, name, attr, objid="", _SOAPContext=None):
+    return proxy([managers.soap_server.create_object, sid, skey, appid, parentid, typeid, name, attr, objid])
 
 
 # create objects in the application
@@ -227,8 +227,8 @@ def set_name(sid, skey, appid, objid, name, _SOAPContext):
 
 # set application resource
 
-def set_resource(sid, skey, appid, restype, resname, resdata, _SOAPContext):
-    return proxy([managers.soap_server.set_resource, sid, skey, appid, restype, resname, resdata])
+def set_resource(sid, skey, appid, restype, resname, resdata, resid="", _SOAPContext=None):
+    return proxy([managers.soap_server.set_resource, sid, skey, appid, restype, resname, resdata, resid])
 
 
 # update application resource
@@ -365,8 +365,8 @@ def set_events_structure(sid, skey, appid, objid, events, _SOAPContext):
     return proxy([managers.soap_server.set_events_structure, sid, skey, appid, objid, events])
 
 
-def create_server_action(sid, skey, appid, objid, actionname, actionvalue, _SOAPContext):
-    return proxy([managers.soap_server.create_server_action, sid, skey, appid, objid, actionname, actionvalue])
+def create_server_action(sid, skey, appid, objid, actionname, actionvalue, actionid="", _SOAPContext=None):
+    return proxy([managers.soap_server.create_server_action, sid, skey, appid, objid, actionname, actionvalue, actionid])
 
 
 def delete_server_action(sid, skey, appid, objid, actionid, _SOAPContext):
