@@ -89,6 +89,19 @@ class ScriptManager(object):
                 else:
                     self._threads[thread] = overall, counter - 1, deadline
 
+    def extend(self, value):
+        """The current thread's deadline no sooner than `value` seconds from
+        now: a stream that keeps writing is not a script that hangs."""
+        thread = current_thread()
+        with self._lock:
+            try:
+                overall, counter, deadline = self._threads[thread]
+            except KeyError:
+                pass
+            else:
+                if deadline is not None:
+                    self._threads[thread] = overall, counter, max(deadline, time() + value)
+
     def prolong(self, value):
         thread = current_thread()
         with self._lock:

@@ -1,5 +1,6 @@
 """request module represents the request got by the VDOM server"""
 import sys
+import time
 import tempfile
 import urllib.parse
 from io import BytesIO, StringIO
@@ -88,8 +89,18 @@ class MFSt(FieldStorage):
 
 
 @weak("_handler")
+class StreamClosed(Exception):
+    """A stream can go no further: its client left, or it lasted
+    STREAM_MAX_DURATION. The action stops what it was producing."""
+
+
 class VDOM_request(object):
     """VDOM server request object"""
+
+    # True once the response goes out while it is made: the status line and
+    # the headers are on the socket, the body follows write by write, and the
+    # handler sends nothing more (http_request_handler.on_request)
+    streaming = False
 
     # ------------------------------------------------------------
     def __init__(self, arguments):
@@ -322,6 +333,38 @@ class VDOM_request(object):
         self.__nocache = True
         self.nokeepalive = True
         self.retcode = code
+
+    def start_stream(self, content_type="text/event-stream"):
+        """Send the status line and the headers now, the body to follow by
+        stream_write. No length is announced: the connection closes at the
+        end of the response. A proxy is asked not to buffer it."""
+        if self.streaming:
+            return
+        headers = self.headers_out().headers()
+        headers["content-type"] = content_type
+        headers["cache-control"] = "no-cache"
+        headers["x-accel-buffering"] = "no"
+        self.binary(True)
+        self.set_nocache()
+        self.streaming = True
+        self._stream_started = time.time()
+
+    def stream_write(self, data):
+        """Send `data` (bytes or text) at once. StreamClosed when the client
+        left or the stream lasted STREAM_MAX_DURATION."""
+        if not self.streaming:
+            self.start_stream()
+        if time.time() - self._stream_started > settings.STREAM_MAX_DURATION:
+            raise StreamClosed("The stream lasted %d seconds" % settings.STREAM_MAX_DURATION)
+        if isinstance(data, str):
+            data = data.encode("utf-8")
+        try:
+            self.wfile.write(data)
+        except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError) as error:
+            raise StreamClosed("The client left: %s" % error)
+        # alive: the session is used, the script is not hanging
+        self.__session.update()
+        managers.script_manager.extend(settings.SCRIPT_TIMEOUT)
 
     def set_application_id(self, application_id):
         self.__app_id = application_id

@@ -1,6 +1,9 @@
 
 
+import json
+
 import managers
+from request.request import StreamClosed
 
 
 class VDOM_headers(object):
@@ -123,3 +126,42 @@ class VDOM_response(object):
     def send_htmlcode(self, code=200):
         managers.request_manager.current.send_htmlcode(code)
         managers.engine.terminate()
+
+    # -- a response sent while it is made -------------------------------
+    # The status (response.status) and the headers (response.headers) are
+    # set before the first write; each write then leaves at once. The stream
+    # ends with the action: response.terminate(), or stream() returning.
+    # StreamClosed is raised by a write once the client has left.
+
+    StreamClosed = StreamClosed
+
+    def stream(self, source, content_type="text/event-stream"):
+        """Send what `source` produces as it comes: an iterable of bytes or
+        text, or a function given `write`; then end the response."""
+        request = managers.request_manager.current
+        request.start_stream(content_type)
+        if callable(source):
+            source(request.stream_write)
+        else:
+            for chunk in source:
+                request.stream_write(chunk)
+        managers.engine.terminate()
+
+    def sse(self, data=None, event=None, id=None):
+        """One Server-Sent Event: `data` (text, or any value sent as JSON),
+        an `event` name and an `id` when given. The stream starts with the
+        first one."""
+        if not isinstance(data, str):
+            data = json.dumps(data)
+        lines = []
+        if id is not None:
+            lines.append("id: %s" % id)
+        if event:
+            lines.append("event: %s" % event)
+        lines.extend("data: %s" % line for line in data.split("\n"))
+        managers.request_manager.current.stream_write("\n".join(lines) + "\n\n")
+
+    def ping(self):
+        """A comment line: keeps the stream and the proxies in front of it
+        awake while nothing else is to be sent."""
+        managers.request_manager.current.stream_write(": ping\n\n")

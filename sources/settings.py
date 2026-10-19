@@ -134,6 +134,10 @@ ANALYZE_SCRIPT_STRUCTURE = True  # analyze actions to collect dependencies
 # /media/x.png) is never reached otherwise; one without that action still
 # gets the 404
 HANDLE_NO_RESOURCE = True
+# a response sent while it is made (response.stream, response.sse): it lives
+# as long as it keeps writing, each write giving it SCRIPT_TIMEOUT more, and
+# never longer than this many seconds
+STREAM_MAX_DURATION = 3600
 
 # watcher
 

@@ -707,6 +707,10 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             debug(e)
             return None
 
+        # a response sent while it was made (response.stream, response.sse)
+        # is complete on the socket: nothing more is sent for it
+        if self.__request.streaming:
+            return None
         # check redirect
         if self.__request.redirect_to:
             return self.redirect(self.__request.redirect_to)
