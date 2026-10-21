@@ -253,6 +253,9 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
         if not getattr(self, "_length_announced", False):
             self.close_connection = True
             self.send_header("Connection", "close")
+        # `Server` does not survive a reverse proxy - nginx puts its own - so
+        # the runtime's identity also goes under a name proxies pass through.
+        self.send_header("X-VDOM-Server", self.version_string())
         # A response has now left for this request. send_error consults
         # this: HTTP has no way to retract a status line already on the
         # wire.

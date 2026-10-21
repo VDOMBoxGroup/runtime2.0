@@ -1,6 +1,7 @@
 """web services server"""
 
 import gc
+import sys
 import time
 import re
 import zlib
@@ -70,7 +71,7 @@ from .xml_object import xml_object
 from database.dbobject import VDOM_sql_query
 
 # from utils.app_management import import_application, update_application, uninstall_application
-from version import SERVER_VERSION as VDOM_server_version
+from version import SERVER_VERSION as VDOM_server_version, SERVER_BUILD as VDOM_server_build, CAPABILITIES as VDOM_capabilities
 
 
 # NOTE: this dirty hack is needed because soap utils override server ones
@@ -291,6 +292,8 @@ class VDOM_web_services_server:
         ret += "<Hostname>%s</Hostname>" % managers.request_manager.get_request().app_vhname
         ret += "<Username>%s</Username>" % name
         ret += "<ServerVersion>%s</ServerVersion>" % VDOM_server_version
+        ret += "<ServerBuild><![CDATA[%s]]></ServerBuild>" % VDOM_server_build
+        ret += "<Capabilities><![CDATA[%s]]></Capabilities>" % " ".join(VDOM_capabilities)
         #       managers.request_manager.get_request().cookies().cookie("sid", sid)
         return ret
 
@@ -3209,11 +3212,13 @@ class VDOM_web_services_server:
         return file.getvalue()
 
     def server_information(self, sid, skey):
-        raise NotImplementedError
-
+        """What this runtime is: version, build, Python, capabilities."""
         if not self.__check_session(sid, skey):
             return self.__session_key_error()
         ret = "<Information>\n"
         ret += "<ServerVersion>%s</ServerVersion>\n" % VDOM_server_version
+        ret += "<ServerBuild><![CDATA[%s]]></ServerBuild>\n" % VDOM_server_build
+        ret += "<Python>%s</Python>\n" % sys.version.split()[0]
+        ret += "<Capabilities><![CDATA[%s]]></Capabilities>\n" % " ".join(VDOM_capabilities)
         ret += "</Information>\n"
         return ret

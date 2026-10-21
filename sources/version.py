@@ -35,8 +35,10 @@ would be worse than a constant.
 SERVER_BUILD is the full describe string, headers and all, so `(3.1.0.34)` in
 the version still resolves to one commit: `(3.1.0-34-g9884ca6)`.
 
-Three sources, in order:
+Four sources, in order:
 
+* the `VDOM_SERVER_BUILD` environment variable, for an image built where the
+  checkout could not be described: `docker build --build-arg` it through.
 * the `BUILD` file beside `sources/`, written by the image build. This is what
   a container has - there is no git checkout inside one.
 * `git describe`, for a development machine running from a clone.
@@ -53,6 +55,18 @@ Until the first `X.Y.Z` tag exists, nothing above can name a version and
 SERVER_VERSION falls back to FALLBACK_VERSION - the number this server has
 always answered. Landing this file changes no site's version on its own; the
 tag does.
+
+That fallback is also what a runtime from before this file answers, so the
+number alone cannot tell "old" from "new but unstamped". SERVER_BUILD can:
+every answer that carries the version carries the build beside it
+(`unknown-build` when nothing named it), and a runtime that answers no build
+at all predates this. Measured on 2026-10-21: a site answered `3.0.1` over
+SOAP with nothing else to go on, behind nginx, which drops `Server`.
+
+CAPABILITIES is what a client actually needs to know: whether this runtime
+does something, rather than which number first did it. A deploy tool checks
+for `imposed-ids` before creating objects, instead of guessing from a version
+that may be the fallback.
 """
 
 import os
@@ -79,6 +93,8 @@ _DESCRIBED = re.compile(r"^(\d+\.\d+\.\d+)(?:-(\d+)-g[0-9a-f]+)?(?:-dirty)?$")
 
 def _stamped():
     """What the image build wrote, if it wrote anything."""
+    if os.environ.get("VDOM_SERVER_BUILD", "").strip():
+        return os.environ["VDOM_SERVER_BUILD"].strip()
     try:
         with open(_STAMP, "r", encoding="utf-8") as handle:
             return handle.read().strip() or None
@@ -126,3 +142,16 @@ SERVER_VERSION = _version_of(SERVER_BUILD) or FALLBACK_VERSION
 REPOSITORY_VERSION = SERVER_VERSION.split(".", 2)[-1]
 
 SERVER_NAME = "VDOM Server " + SERVER_VERSION
+
+#: What this runtime does that an older one did not, by name. Add one here
+#: with the commit that brings it; never remove one.
+CAPABILITIES = (
+    "imposed-ids",      # create_object, create_server_action, set_resource take the id to use
+    "event-stream",     # a response can be streamed while it is made (Server-Sent Events)
+    "server-information",  # the SOAP method server_information answers
+)
+
+
+def identity():
+    """`3.1.0.19 (3.1.0-19-gb91d036)`: the version and the build that names it."""
+    return "%s (%s)" % (SERVER_VERSION, SERVER_BUILD)
