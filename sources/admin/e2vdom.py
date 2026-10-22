@@ -141,15 +141,6 @@ def calls_builder(parser):
     return document_handler
 
 
-def inside(obj, container_id):
-    """True when obj is the container or one of its descendants."""
-    while obj is not None:
-        if getattr(obj, "id", None) == container_id:
-            return True
-        obj = getattr(obj, "parent", None)
-    return False
-
-
 def disposable(session):
     """A session nothing used yet: the one made for this very request."""
     return session is not None and not session.on_start_executed \
@@ -233,13 +224,15 @@ def run(request):
             err = None
             try:
                 # print "E2VDOM >>>", ev.events
-                for event_info in ev.events:
+                if scope:
+                    # a BlueMail page: its events go to its plugin, through
+                    # the transport (admin/bluedynamic.py), and nowhere else
+                    from admin import bluedynamic
+                    r.update(bluedynamic.events(request, ev, scope))
+                for event_info in ev.events if not scope else ():
                     obj = app.objects.catalog.get(event_info.event_source_id)
                     if obj is None:
                         debug("Event: Incorrect source object")
-                        continue
-                    if scope and not inside(obj, scope["conteneur"]):
-                        debug("Event: BlueMail session used out of its container")
                         continue
                     h = app.events.catalog.get(
                         (event_info.event_source_id, event_info.event_name))  # all
@@ -250,9 +243,6 @@ def run(request):
                     # print "CALLEE >>>", callee
                     for callee in h.callees:
                         if not callee.is_action:
-                            continue
-                        if scope and not inside(callee.owner, scope["conteneur"]):
-                            debug("Event: BlueMail session used out of its container")
                             continue
                         params = event_info.event_parameters
                         params.update({

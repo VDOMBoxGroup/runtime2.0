@@ -1,20 +1,32 @@
-"""bluedynamic: what a plugin calls to be a BlueDynamic provider.
+"""bluedynamic: what a plugin, and the application that hosts it, call.
 
-From a python action:
+The plugin (any application that manages plugins: Tekitisy, LimeOS, ...):
 
     from scripting.packages import bluedynamic
     bluedynamic.declarer(manifeste)          # at each start or update
-    charge = bluedynamic.ticket()            # in the container a ticket opened
-    jeton = bluedynamic.rendre_mail(mail)    # at the end of a composer
+    charge = bluedynamic.ticket()            # while serving a BlueMail
+    jeton = bluedynamic.rendre_mail(mail)    # the end of a composition, if
+                                             # not answered by event or compose
 
-From VScript, the same as BlueDynamic_Declarer, BlueDynamic_Ticket and
-BlueDynamic_Rendre (vscript/wrappers/bluedynamic.py), with JSON strings.
+The host application, in the actions of its API container that the manifest
+names (api.get, api.event, api.compose, contract §8), routes to its plugin:
+
+    from scripting.packages import bluedynamic
+    bluedynamic.recevoir("event", lambda fournisseur: mes_plugins[fournisseur])
+
+From VScript: BlueDynamic_Declarer, BlueDynamic_Ticket and BlueDynamic_Rendre
+(vscript/wrappers/bluedynamic.py), with JSON strings.
 
 The formats are those of ProAdmin's contract (CONTRAT_BLUEDYNAMIC.md); the
 providers' folders are described in utils/bluedynamic.py.
 """
+import json
+
 import managers
 from utils import bluedynamic as core
+
+
+ACTIONS = "get", "event", "compose"
 
 
 def _application_id():
@@ -35,10 +47,11 @@ def _scope():
 
 
 def declarer(manifeste, cle_declaration=None, proadmin=None):
-    """Record the manifest (a dict, or its JSON) of a provider served by the
-    running application and declare it to ProAdmin (§2.2). The declaration
-    key, once given, is kept in the provider's folder: the next calls can
-    leave it out. Returns ProAdmin's answer, or {"ok": False, "motif": ...}."""
+    """Record the manifest (a dict, or its JSON) of a provider of the running
+    application and declare it to ProAdmin (§2.2). Its api.application is
+    this application. The declaration key, once given, is kept in the
+    provider's folder: the next calls can leave it out. Returns ProAdmin's
+    answer, or {"ok": False, "motif": ...}."""
     try:
         return core.declare(_application_id(), manifeste, cle_declaration, proadmin)
     except core.BlueDynamicError as error:
@@ -46,8 +59,8 @@ def declarer(manifeste, cle_declaration=None, proadmin=None):
 
 
 def ticket():
-    """The claims of the ticket that opened this session (§4), or None out
-    of a BlueMail session. A copy: changing it changes nothing."""
+    """The claims of the ticket of this BlueMail session (§4), or None out of
+    one. A copy: changing it changes nothing."""
     scope = _scope()
     return dict(scope["charge"]) if scope else None
 
@@ -59,5 +72,58 @@ def rendre_mail(mail):
 
         window.parent.postMessage({bd: "compose", jeton: jeton}, origine)
 
-    where origine is one of the ticket's "origines"."""
+    where origine is one of the ticket's "origines". Answering an event with
+    {"bd": "compose", "mail": ...} does the same, page included."""
     return core.render_mail(_scope(), mail)
+
+
+def recevoir(action, plugin):
+    """The whole of an API action of the host (§8), for its plugin.
+
+    `action` is "get", "event" or "compose". `plugin` gives, for the provider
+    id of the ticket, a function plugin(action, donnees) -> answer, where the
+    answer is a WHOLEXML (text), a mail (dict), or {"bd": "compose", "mail":
+    {...}} at the end of a composition; it may raise to refuse. `plugin` is
+    that function's dictionary by provider id, or a function of the id.
+
+    donnees is what the server sent (§8), with the ticket it holds: the
+    ticket in the call itself is not trusted. A call made out of a BlueMail
+    session (by /restapi.py, say) is refused.
+
+    The answer goes to session["response"], as the API's usual JSON:
+    ["success", answer] or ["error", motif]."""
+    request = managers.request_manager.current
+    session = request.session()
+    scope = session.bd_scope if session is not None else None
+    try:
+        if action not in ACTIONS:
+            raise core.BlueDynamicError("action", "Unknown action %s" % action)
+        if not scope:
+            raise core.BlueDynamicError("session", "Not a BlueMail session")
+        try:
+            donnees = json.loads(_argument(request, "xml_data") or "{}")
+        except ValueError:
+            raise core.BlueDynamicError("donnees", "xml_data is not JSON")
+        if not isinstance(donnees, dict):
+            raise core.BlueDynamicError("donnees", "xml_data is not an object")
+        donnees["ticket"] = dict(scope["charge"])
+        donnees["session"] = session.id()
+        handler = plugin.get(scope["fournisseur"]) if isinstance(plugin, dict) else plugin(scope["fournisseur"])
+        if handler is None:
+            raise core.BlueDynamicError("fournisseur", "No plugin for %s" % scope["fournisseur"])
+        result = ["success", handler(action, donnees)]
+    except core.BlueDynamicError as error:
+        result = ["error", error.motif, str(error)]
+    except Exception as error:  # noqa - the plugin's own failure, said to the server
+        result = ["error", "plugin", str(error)]
+    session["response"] = json.dumps(result, ensure_ascii=False)
+    return result
+
+
+def _argument(request, name):
+    value = request.arguments().arguments().get(name)
+    if isinstance(value, list):
+        value = value[0] if value else None
+    if isinstance(value, bytes):
+        value = value.decode("utf-8", "replace")
+    return value

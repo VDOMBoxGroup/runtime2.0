@@ -1,11 +1,17 @@
 """BlueDynamic on the server side (utils/bluedynamic.py, admin/bluedynamic.py,
-admin/e2vdom.py): tickets, proof, composer, the session kept in its container.
+admin/e2vdom.py, scripting/packages/bluedynamic.py): tickets, proof, the
+plugin's WHOLEXML rendered and its events, the composed mail, the session
+kept to its own interface.
 
 ProAdmin is played by a key pair made here and its JWKS, served by a stand-in
-for fetch_json; nothing goes on the network.
+for fetch_json; nothing goes on the network. The host application and its
+plugin are stand-ins too: the API action calls recevoir() as a real host
+would, and the engine renders a VDOMXML as its own text (the evaluation by
+the real engine is not what these tests look at).
 """
 import base64
 import json
+import secrets
 import time
 from io import BytesIO, StringIO
 from types import SimpleNamespace
@@ -32,9 +38,18 @@ MANIFESTE = {
     "id": "vdoodle", "version": "1.0.0", "nom": {"fr": "VDoodle"},
     "hote": HOTE,
     "composeurs": [{"id": "nouveau", "nom": {"fr": "Sondage"}, "commandes": ["new", "reply"],
-                    "conteneur": "composeur_vdoodle", "contexte": ["objet", "de"]}],
-    "applications": [{"id": "sondage", "conteneur": "lecteur_vdoodle"}],
+                    "taille": {"largeur": 720, "hauteur": 560}, "contexte": ["objet", "de"]}],
+    "applications": [{"id": "sondage"}],
+    "api": {"conteneur": "API"},
 }
+
+MAIL = {"a": ["marie@exemple.fr"], "objet": "Sondage", "texte": "Votez", "html": "<p>Votez</p>",
+        "application": "sondage", "instance": "i-42", "titre": "Nouveau VDoodle",
+        "expire": 1798761600, "methode": "new"}
+
+
+def wholexml(vdomxml, events=""):
+    return "<WHOLEXML><VDOMXML><![CDATA[%s]]></VDOMXML><EVENTS><![CDATA[%s]]></EVENTS></WHOLEXML>" % (vdomxml, events)
 
 
 def raw(public_key):
@@ -61,12 +76,16 @@ class ProAdmin(object):
     def ticket(self, **changes):
         now = int(time.time())
         claims = {"iss": ISS, "aud": HOTE, "typ": "bd-ticket", "mode": "lire",
-                  "fournisseur": "vdoodle", "conteneur": "lecteur_vdoodle",
+                  "fournisseur": "vdoodle",
                   "bd": "bd-6f1c", "application": "sondage", "instance": "i-42", "expire": False,
                   "lecteur": "lec-1", "societe": "soc-1", "origines": [ISS],
-                  "iat": now, "exp": now + 300, "jti": "%032x" % int(time.time() * 1e6)}
+                  "iat": now, "exp": now + 300, "jti": secrets.token_hex(16)}
         claims.update(changes)
         return self.sign(claims)
+
+    def composer(self, **changes):
+        claims = dict({"mode": "composer", "commande": "new", "contexte": {"objet": "x"}}, **changes)
+        return self.ticket(**claims)
 
     def bearer(self, **changes):
         now = int(time.time())
@@ -96,9 +115,10 @@ def proadmin(monkeypatch, tmp_path):
 # the ticket (§4.1)
 
 def test_ticket_valide(proadmin):
-    claims, provider, container = core.open_ticket(proadmin.ticket(), [HOTE])
+    claims, provider = core.open_ticket(proadmin.ticket(), [HOTE])
     assert provider.id == "vdoodle" and provider.application == APPLICATION
-    assert container == "lecteur_vdoodle"
+    assert provider.api == {"application": APPLICATION, "conteneur": "API",
+                            "get": "bd_get", "event": "bd_event", "compose": "bd_compose"}
     assert claims["lecteur"] == "lec-1"
 
 
@@ -131,24 +151,13 @@ def test_ticket_jti_rejoue(proadmin):
     assert refused.value.motif == "rejoue"
 
 
-def test_ticket_conteneur_non_declare(proadmin):
+def test_ticket_non_declare(proadmin):
     with pytest.raises(BlueDynamicError) as refused:
-        core.open_ticket(proadmin.ticket(conteneur="administration"), [HOTE])
-    assert refused.value.motif == "conteneur"
-    # the container of a composer is not one a reading ticket may open
+        core.open_ticket(proadmin.ticket(application="agenda"), [HOTE])
+    assert refused.value.motif == "application"
     with pytest.raises(BlueDynamicError) as refused:
-        core.open_ticket(proadmin.ticket(conteneur="composeur_vdoodle"), [HOTE])
-    assert refused.value.motif == "conteneur"
-
-
-def test_ticket_composer_commande(proadmin):
-    _, _, container = core.open_ticket(proadmin.ticket(
-        mode="composer", conteneur="composeur_vdoodle", commande="reply", contexte={"objet": "x"}), [HOTE])
-    assert container == "composeur_vdoodle"
-    with pytest.raises(BlueDynamicError) as refused:
-        core.open_ticket(proadmin.ticket(
-            mode="composer", conteneur="composeur_vdoodle", commande="forward"), [HOTE])
-    assert refused.value.motif == "conteneur"
+        core.open_ticket(proadmin.composer(commande="forward"), [HOTE])
+    assert refused.value.motif == "commande"
 
 
 def test_ticket_emetteur_inconnu(proadmin):
@@ -161,7 +170,7 @@ def test_ticket_mauvaise_cle(proadmin):
     other = Ed25519PrivateKey.generate()
     now = int(time.time())
     forged = proadmin.sign({"iss": ISS, "aud": HOTE, "typ": "bd-ticket", "mode": "lire",
-                            "fournisseur": "vdoodle", "conteneur": "lecteur_vdoodle", "application": "sondage",
+                            "fournisseur": "vdoodle", "application": "sondage",
                             "iat": now, "exp": now + 300, "jti": "f" * 32}, key=other)
     with pytest.raises(BlueDynamicError) as refused:
         core.open_ticket(forged, [HOTE])
@@ -191,7 +200,7 @@ def test_declaration(proadmin):
     assert url == ISS + "/bluedynamic/declarer"
     assert bearer == "bdd-" + "x" * 32
     manifest = json.loads(core.b64url_decode(fields["manifeste"]))
-    assert manifest["id"] == "vdoodle"
+    assert manifest["id"] == "vdoodle" and manifest["api"]["application"] == APPLICATION
     assert len(base64.b64decode(manifest["cle_publique"])) == 32
     # replayed, the key and the declaration key stay
     core.declare(APPLICATION, dict(MANIFESTE, version="1.0.1"))
@@ -200,10 +209,17 @@ def test_declaration(proadmin):
     assert proadmin.sent[-1][2] == bearer
 
 
-def test_declaration_par_une_autre_application(proadmin):
+def test_declaration_refusee(proadmin):
+    other = "99999999-2222-3333-4444-555555555555"
     with pytest.raises(BlueDynamicError) as refused:
-        core.declare("99999999-2222-3333-4444-555555555555", MANIFESTE)
+        core.declare(other, MANIFESTE)
     assert refused.value.motif == "fournisseur"
+    # the api cannot send this server's calls to another application
+    with pytest.raises(BlueDynamicError) as refused:
+        core.declare(APPLICATION, dict(MANIFESTE, api={"application": other, "conteneur": "API"}))
+    assert refused.value.motif == "manifeste"
+    with pytest.raises(BlueDynamicError):
+        core.declare(APPLICATION, dict(MANIFESTE, api={}))
 
 
 def test_preuve(proadmin):
@@ -216,63 +232,34 @@ def test_preuve(proadmin):
         provider.proof("../../etc")
 
 
-# the composer (§5)
+# what the plugin answers (§8)
 
-def composer_scope(proadmin):
-    claims, provider, container = core.open_ticket(proadmin.ticket(
-        mode="composer", conteneur="composeur_vdoodle", commande="new"), [HOTE])
-    return core.scope(claims, APPLICATION, "container-id")
-
-
-MAIL = {"a": ["marie@exemple.fr"], "objet": "Sondage", "texte": "Votez", "html": "<p>Votez</p>",
-        "application": "sondage", "instance": "i-42", "titre": "Nouveau VDoodle",
-        "expire": 1798761600, "methode": "new"}
-
-
-def test_composer(proadmin):
-    jeton = core.render_mail(composer_scope(proadmin), MAIL)
-    token = core.compose(proadmin.bearer(), jeton, [HOTE])
-    provider = core.Provider.find("vdoodle")
-    public = Ed25519PublicKey.from_public_bytes(base64.b64decode(provider.manifest["cle_publique"]))
-    mail = jwt.decode(token, public, algorithms=["EdDSA"])
-    assert mail["typ"] == "bd-mail" and mail["jeton"] == jeton
-    assert mail["a"] == ["marie@exemple.fr"] and mail["cc"] == [] and mail["expire"] == 1798761600
-    # once only
-    with pytest.raises(BlueDynamicError) as refused:
-        core.compose(proadmin.bearer(), jeton, [HOTE])
-    assert refused.value.motif == "jeton"
-
-
-def test_composer_refus(proadmin):
-    scope = composer_scope(proadmin)
-    jeton = core.render_mail(scope, MAIL)
-    for bearer, motif in ((proadmin.bearer(typ="bd-ticket"), "typ"),
-                          (proadmin.bearer(aud="https://ailleurs.exemple.fr"), "aud"),
-                          (proadmin.bearer(iat=1, exp=2), "expire")):
-        with pytest.raises(BlueDynamicError) as refused:
-            core.compose(bearer, jeton, [HOTE])
-        assert refused.value.motif == motif
-    # dates are epoch seconds
+def test_reponses_du_plugin():
+    assert core.parse_reply(wholexml("<CONTAINER/>", '{"ok:click": ["ok:click"]}')) == \
+        ("wholexml", "<CONTAINER/>", '{"ok:click": ["ok:click"]}')
+    assert core.parse_reply(json.dumps(["success", wholexml("<CONTAINER/>")]))[0] == "wholexml"
+    assert core.parse_reply(json.dumps(["success", {"bd": "compose", "mail": MAIL}]))[0] == "compose"
+    assert core.parse_reply(json.dumps(["success", MAIL]))[0] == "mail"
+    for bad in (json.dumps(["error", "plugin", "en panne"]), "", "du texte", "<WHOLEXML/>",
+                "<html/>", json.dumps({"rien": 1})):
+        with pytest.raises(BlueDynamicError):
+            core.parse_reply(bad)
+    # an event bound to server code (a bare string) is refused
     with pytest.raises(BlueDynamicError):
-        core.render_mail(scope, dict(MAIL, expire="2026-12-31T00:00:00Z"))
-    # update needs the BlueMail it replaces
+        core.parse_reply(wholexml("<CONTAINER/>", '{"ok:click": "import os"}'))
     with pytest.raises(BlueDynamicError):
-        core.render_mail(scope, dict(MAIL, methode="update"))
-    # a reading session composes nothing
-    claims, _, _ = core.open_ticket(proadmin.ticket(), [HOTE])
-    with pytest.raises(BlueDynamicError):
-        core.render_mail(core.scope(claims, APPLICATION, "x"), MAIL)
+        core.parse_reply(wholexml("<CONTAINER/>", '{"ok:click": [["ok:hide", 1]]}'))
 
 
-# the HTTP entry point and the session
+# the server, the host application and its plugin
 
 class Arguments(object):
     def __init__(self, values):
         self.values = values
 
     def arguments(self, values=None):
-        if values is not None:
-            self.values.update(values)
+        if values:
+            self.values = values
         return self.values
 
 
@@ -295,10 +282,12 @@ class FakeRequest(object):
         self.app = application
         self.redirect_to = None
         self.fh = None
+        self.container_id = None
         self.action_result = StringIO()
         self.shared_variables = {}
         self.next_state = None
         self.last_state = {"#": 0}
+        managers.request_manager.current = self
 
     def arguments(self):
         return self.args
@@ -363,127 +352,253 @@ class Sessions(dict):
         return dict.get(self, sid)
 
 
-def node(identifier, parent=None, **more):
-    return SimpleNamespace(id=identifier, parent=parent, **more)
+class VirtualObject(object):
+    """The page's virtual objects, as far as the transport touches them."""
+
+    def __init__(self, identifier, container):
+        self.id = identifier
+        self.type = SimpleNamespace(container=container, id="type-" + identifier)
+        self.values = {}
+        self.attributes = SimpleNamespace(update=self.values.update)
+        self.objects = {}  # what the engine loaded for the previous interface
+
+
+class Plugin(object):
+    """The plugin in its host: what recevoir() hands it, and its answers."""
+
+    def __init__(self):
+        self.calls = []
+
+    def __call__(self, action, donnees):
+        self.calls.append((action, donnees))
+        if action == "get":
+            return wholexml('<CONTAINER name="sondage"><TEXT value="Bonjour %s"/></CONTAINER>'
+                            % donnees["ticket"]["lecteur"], '{"suivant:click": ["bouton:suivant"]}')
+        if action == "compose":
+            return dict(MAIL, objet="Par compose")
+        nom = donnees["evenement"]["nom"]
+        if nom == "suivant":
+            return wholexml('<CONTAINER name="sondage"><TEXT value="Page 2 %s"/></CONTAINER>'
+                            % donnees["evenement"]["donnees"].get("choix"))
+        if nom == "valider":
+            return {"bd": "compose", "mail": MAIL}
+        raise RuntimeError("en panne")
 
 
 @pytest.fixture
 def server(monkeypatch, proadmin):
-    """An application with the reader container (a button in it) and another
-    top level container (a button in it too)."""
-    page_type = SimpleNamespace(http_content_type="text/html", render_type="html", container=3, id="t")
-    reader = node("c-lecteur", type=page_type, name="lecteur_vdoodle")
-    inner = node("o-bouton", reader, type=page_type)
-    admin = node("c-admin", type=page_type, name="administration")
-    secret = node("o-secret", admin, type=page_type)
-    catalog = {each.id: each for each in (reader, inner, admin, secret)}
-    executed = []
+    from scripting.packages import bluedynamic as package
+    from admin import bluedynamic as entry
+    plugin = Plugin()
 
-    def callee(owner):
-        return SimpleNamespace(is_action=True, owner=owner)
+    def action(name, kind):
+        return SimpleNamespace(name=name, run=lambda: package.recevoir(kind, {"vdoodle": plugin}))
 
-    events = {("o-bouton", "click"): SimpleNamespace(callees=[callee(inner)]),
-              ("o-secret", "click"): SimpleNamespace(callees=[callee(secret)])}
-    application = SimpleNamespace(
-        id=APPLICATION, active=True, actions={},
-        objects=SimpleNamespace(get={"lecteur_vdoodle": reader, "administration": admin}.get, catalog=catalog),
-        events=SimpleNamespace(catalog=events))
+    api = SimpleNamespace(id="c-api", actions={"bd_get": action("bd_get", "get"),
+                                                "bd_event": action("bd_event", "event"),
+                                                "bd_compose": action("bd_compose", "compose")})
+    application = SimpleNamespace(id=APPLICATION, active=True, actions={},
+                                  objects=SimpleNamespace(get={"API": api}.get, catalog={"c-api": api}))
     sessions = Sessions()
+    pages = []
+
+    def make_page(application, width, height):
+        root, dynamic = VirtualObject("page", 3), VirtualObject("dyn", 2)
+        pages.append((root, dynamic, width, height))
+        return root, dynamic
+
+    def render(obj, parent=None, render_type=None):
+        dynamic = pages[-1][1]
+        inner = "<div>%s|%s</div>" % (dynamic.values.get("vdomxml"), dynamic.values.get("vdomactions"))
+        return "<html>%s</html>" % inner if obj is pages[-1][0] else inner
+
+    monkeypatch.setattr(entry, "make_page", make_page)
     monkeypatch.setattr(managers, "session_manager", sessions, raising=False)
+    monkeypatch.setattr(managers, "request_manager", SimpleNamespace(current=None), raising=False)
     monkeypatch.setattr(managers, "memory", SimpleNamespace(applications={APPLICATION: application}), raising=False)
     monkeypatch.setattr(managers, "engine", SimpleNamespace(
-        render=lambda container, render_type: "<html>%s</html>" % container.id,
-        execute=lambda action, render=0: executed.append(action.owner.id) or {}), raising=False)
-    return SimpleNamespace(application=application, sessions=sessions, executed=executed)
+        application=application, render=render, execute=lambda executable, render=0: executable.run()),
+        raising=False)
+    return SimpleNamespace(application=application, sessions=sessions, plugin=plugin, pages=pages)
 
 
-def test_page_du_ticket(server, proadmin):
+def open_page(server, ticket):
+    from admin import bluedynamic as entry
+    request = FakeRequest(server.sessions, {"t": [ticket]}, application=server.application)
+    entry.run(request)
+    return request
+
+
+def datafield(sid, source, custom, parameters=None):
+    return ("<EVENTS><APPLICATION ID='%s'/><SESSION ID='%s'/>"
+            "<EVENT objSrcID='o_%s' name='eventcaught'>"
+            "<PARAMETER name='customName'><![CDATA[%s]]></PARAMETER>"
+            "<PARAMETER name='parameters'><![CDATA[%s]]></PARAMETER>"
+            "</EVENT><STATE value='0' /></EVENTS>"
+            % (APPLICATION, sid, source.replace("-", "_"), custom, json.dumps(parameters or {})))
+
+
+def send_event(server, sid, source, custom, parameters=None):
+    from admin import e2vdom
+    request = FakeRequest(server.sessions, {"datafield": [datafield(sid, source, custom, parameters)]},
+                          method="post", application=server.application)
+    e2vdom.run(request)
+    return request
+
+
+def test_get_rendu(server, proadmin):
+    request = open_page(server, proadmin.ticket())
+    assert request.retcode == 200 and request.sent
+    body = request.body.getvalue().decode()
+    assert '<TEXT value="Bonjour lec-1"/>' in body and '{"suivant:click": ["bouton:suivant"]}' in body
+    assert request.out["content-security-policy"] == "frame-ancestors %s" % ISS
+    assert request.out["referrer-policy"] == "no-referrer"
+    assert request.out["cache-control"] == "no-store"
+    action, donnees = server.plugin.calls[-1]
+    assert action == "get" and donnees["ticket"]["lecteur"] == "lec-1"
+    assert donnees["session"] == request.session().id() and donnees["langue"] == "fr"
+    session = request.session()
+    assert session["bd"]["fournisseur"] == "vdoodle" and session.bd_scope["dynamique"].id == "dyn"
+    assert "sid" not in request.cookies_out
+
+
+def test_session_du_visiteur_gardee(server, proadmin):
     from admin import bluedynamic as entry
     request = FakeRequest(server.sessions, {"t": [proadmin.ticket()]}, application=server.application)
     visitor = request.session_object
     visitor["connecte"] = "oui"  # the visitor's own session on this site
     entry.run(request)
-    assert request.retcode == 200 and request.sent
-    assert request.body.getvalue() == b"<html>c-lecteur</html>"
-    assert request.out["content-security-policy"] == "frame-ancestors %s" % ISS
-    assert request.out["referrer-policy"] == "no-referrer"
-    assert request.out["cache-control"] == "no-store"
-    session = request.session()
-    assert session is not visitor and session.bd_scope["conteneur"] == "c-lecteur"
-    assert session["bd"]["fournisseur"] == "vdoodle"
-    # the visitor's session is kept, and its cookie is not replaced
-    assert server.sessions[visitor.id()] is visitor
-    assert "sid" not in request.cookies_out
+    assert request.session() is not visitor and server.sessions[visitor.id()] is visitor
 
 
-def test_page_refusee(server, proadmin):
-    from admin import bluedynamic as entry
-    request = FakeRequest(server.sessions, {"t": [proadmin.ticket(conteneur="administration")]},
-                          application=server.application)
-    entry.run(request)
-    assert request.retcode == 403
-    assert json.loads(request.body.getvalue())["motif"] == "conteneur"
-
-
-def test_api_preuve_http(server, proadmin):
-    from admin import bluedynamic as entry
-    request = FakeRequest(server.sessions, {"api": ["preuve"], "f": ["vdoodle"], "defi": ["a" * 32]})
-    entry.run(request)
-    assert request.retcode == 200 and "signature" in json.loads(request.body.getvalue())
-
-
-def test_api_composer_http(server, proadmin):
-    from admin import bluedynamic as entry
-    jeton = core.render_mail(composer_scope(proadmin), MAIL)
-    request = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [jeton]}, method="post",
-                          headers={"authorization": "Bearer " + proadmin.bearer()})
-    entry.run(request)
-    assert request.retcode == 200 and request.out["content-type"] == "application/jose"
-    assert request.body.getvalue().count(b".") == 2
-    refused = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [jeton]}, method="post")
-    entry.run(refused)
-    assert refused.retcode == 401
-
-
-def datafield(application, sid, source):
-    return ("<EVENTS><APPLICATION ID='%s'/><SESSION ID='%s'/>"
-            "<EVENT objSrcID='o_%s' name='click'></EVENT><STATE value='0' /></EVENTS>"
-            % (application, sid, source.replace("-", "_")))
-
-
-def test_session_bd_hors_de_son_conteneur(server, proadmin):
-    from admin import bluedynamic as entry
-    from admin import e2vdom
-    page = FakeRequest(server.sessions, {"t": [proadmin.ticket()]}, application=server.application)
-    entry.run(page)
+def test_evenement_aller_retour(server, proadmin):
+    page = open_page(server, proadmin.ticket())
     sid = page.session().id()
+    request = send_event(server, sid, "dyn", "bouton:suivant", {"choix": "mardi"})
+    action, donnees = server.plugin.calls[-1]
+    assert action == "event"
+    assert donnees["evenement"] == {"objet": "bouton", "nom": "suivant", "donnees": {"choix": "mardi"}}
+    body = request.body.getvalue().decode()
+    assert '<OBJECT ID="dyn" PARENT="page" CONTAINER="2" TYPE="type-dyn">' in body
+    assert "Page 2 mardi" in body
+    assert request.session().id() == sid
 
-    # the page's own button: executed
-    inside = FakeRequest(server.sessions, {"datafield": [datafield(APPLICATION, sid, "o-bouton")]},
-                         method="post", application=server.application)
-    e2vdom.run(inside)
-    assert server.executed == ["o-bouton"]
-    assert inside.session().id() == sid
 
-    # a button of another container, from the same session: not executed
-    outside = FakeRequest(server.sessions, {"datafield": [datafield(APPLICATION, sid, "o-secret")]},
-                          method="post", application=server.application)
-    e2vdom.run(outside)
-    assert server.executed == ["o-bouton"]
-
+def test_evenement_hors_de_son_interface(server, proadmin):
+    page = open_page(server, proadmin.ticket())
+    sid = page.session().id()
+    calls = len(server.plugin.calls)
+    request = send_event(server, sid, "c-api", "bouton:suivant")
+    assert len(server.plugin.calls) == calls
+    assert "<OBJECT" not in request.body.getvalue().decode()
     # another application: refused as a whole
-    other = FakeRequest(server.sessions, {"datafield": [datafield("99999999-2222-3333-4444-555555555555", sid, "o-bouton")]},
+    from admin import e2vdom
+    other = FakeRequest(server.sessions, {"datafield": [datafield(sid, "dyn", "bouton:suivant")
+                        .replace(APPLICATION, "99999999-2222-3333-4444-555555555555")]},
                         method="post", application=server.application)
     e2vdom.run(other)
-    assert b"SESSIONISOVER" in other.body.getvalue()
-    assert server.executed == ["o-bouton"]
+    assert b"SESSIONISOVER" in other.body.getvalue() and len(server.plugin.calls) == calls
+
+
+def test_erreur_du_plugin(server, proadmin):
+    page = open_page(server, proadmin.ticket())
+    request = send_event(server, page.session().id(), "dyn", "bouton:casser")
+    assert "ne peut pas être affiché" in request.body.getvalue().decode()
+    # get answering an error: the page says so, in the iframe
+    server.plugin.__class__ = type("Broken", (Plugin,), {"__call__": lambda self, action, donnees: ["error", "x"]})
+    refused = open_page(server, proadmin.ticket())
+    assert refused.retcode == 502
+    assert "ne peut pas être affiché" in refused.body.getvalue().decode()
+    assert refused.out["content-security-policy"] == "frame-ancestors %s" % ISS
+
+
+def test_ticket_invalide_refuse(server, proadmin):
+    for ticket, code in ((proadmin.ticket(aud="https://ailleurs.exemple.fr"), 403),
+                         (proadmin.ticket(iat=1, exp=2), 403),
+                         ("pas.un.jws", 400)):
+        calls = len(server.plugin.calls)
+        request = open_page(server, ticket)
+        assert request.retcode == code
+        assert len(server.plugin.calls) == calls
+    request = open_page(server, proadmin.ticket(iat=1, exp=2))
+    assert "a expiré" in request.body.getvalue().decode()
+
+
+def test_fin_de_composition_par_event(server, proadmin):
+    from admin import bluedynamic as entry
+    page = open_page(server, proadmin.composer())
+    scope = page.session().bd_scope
+    assert server.pages[-1][2:] == (720, 560)
+    assert server.plugin.calls[-1][1]["jeton"] == scope["jeton"]
+    request = send_event(server, page.session().id(), "dyn", "bouton:valider")
+    body = request.body.getvalue().decode()
+    assert '"bd": "compose", "jeton": "%s"' % scope["jeton"] in body.replace("&quot;", '"')
+    # ProAdmin takes the mail, once
+    api = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [scope["jeton"]]}, method="post",
+                      headers={"authorization": "Bearer " + proadmin.bearer()})
+    entry.run(api)
+    assert api.retcode == 200 and api.out["content-type"] == "application/jose"
+    provider = core.Provider.find("vdoodle")
+    public = Ed25519PublicKey.from_public_bytes(base64.b64decode(provider.manifest["cle_publique"]))
+    mail = jwt.decode(api.body.getvalue().decode(), public, algorithms=["EdDSA"])
+    assert mail["typ"] == "bd-mail" and mail["jeton"] == scope["jeton"] and mail["objet"] == "Sondage"
+    again = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [scope["jeton"]]}, method="post",
+                        headers={"authorization": "Bearer " + proadmin.bearer()})
+    entry.run(again)
+    assert again.retcode == 404
+
+
+def test_fin_de_composition_par_compose(server, proadmin):
+    from admin import bluedynamic as entry
+    page = open_page(server, proadmin.composer())
+    jeton = page.session().bd_scope["jeton"]
+    api = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [jeton]}, method="post",
+                      headers={"authorization": "Bearer " + proadmin.bearer()})
+    entry.run(api)
+    assert api.retcode == 200
+    assert server.plugin.calls[-1][0] == "compose"
+    assert jwt.decode(api.body.getvalue().decode(), options={"verify_signature": False})["objet"] == "Par compose"
+    unsigned = FakeRequest(server.sessions, {"api": ["composer"], "jeton": [jeton]}, method="post")
+    entry.run(unsigned)
+    assert unsigned.retcode == 401
+
+
+def test_composer_refus(server, proadmin):
+    page = open_page(server, proadmin.composer())
+    scope = page.session().bd_scope
+    jeton = core.render_mail(scope, MAIL)
+    for bearer, motif in ((proadmin.bearer(typ="bd-ticket"), "typ"),
+                          (proadmin.bearer(aud="https://ailleurs.exemple.fr"), "aud"),
+                          (proadmin.bearer(iat=1, exp=2), "expire")):
+        with pytest.raises(BlueDynamicError) as refused:
+            core.compose(bearer, jeton, [HOTE])
+        assert refused.value.motif == motif
+    # dates are epoch seconds
+    with pytest.raises(BlueDynamicError):
+        core.render_mail(scope, dict(MAIL, expire="2026-12-31T00:00:00Z"))
+    # update needs the BlueMail it replaces
+    with pytest.raises(BlueDynamicError):
+        core.render_mail(scope, dict(MAIL, methode="update"))
+    # a reading session composes nothing
+    reading = open_page(server, proadmin.ticket())
+    with pytest.raises(BlueDynamicError):
+        core.render_mail(reading.session().bd_scope, MAIL)
+
+
+def test_recevoir_hors_session_bluemail(server, proadmin):
+    """The host's API action called by /restapi.py, a forged ticket in its
+    data: refused, the plugin never called."""
+    from scripting.packages import bluedynamic as package
+    request = FakeRequest(server.sessions, application=server.application)
+    request.args = Arguments({"xml_data": [json.dumps({"ticket": {"lecteur": "faux"}})]})
+    result = package.recevoir("get", {"vdoodle": server.plugin})
+    assert result[0] == "error" and result[1] == "session"
+    assert json.loads(request.session()["response"])[0] == "error"
+    assert server.plugin.calls == []
 
 
 def test_session_bd_fin(server, proadmin):
-    from admin import bluedynamic as entry
-    page = FakeRequest(server.sessions, {"t": [proadmin.ticket()]}, application=server.application)
-    entry.run(page)
-    session = page.session()
+    session = open_page(server, proadmin.ticket()).session()
     assert not session.is_expired(1200)
     session.bd_scope["fin"] = time.time() - 1  # past the ticket and its grace
     assert session.is_expired(1200)
@@ -492,13 +607,11 @@ def test_session_bd_fin(server, proadmin):
     assert session.is_expired(1200)
 
 
-def test_session_bd_refusee_ailleurs(server, proadmin, monkeypatch):
+def test_session_bd_refusee_ailleurs(server, proadmin):
     """module/manager.py: a BlueMail session reaches e2vdom.py, bluedynamic.py
     and resources by guid, nothing else."""
     from module.manager import VDOM_module_manager
-    from admin import bluedynamic as entry
-    page = FakeRequest(server.sessions, {"t": [proadmin.ticket()]}, application=server.application)
-    entry.run(page)
+    page = open_page(server, proadmin.ticket())
 
     def ask(path):
         request = FakeRequest(server.sessions, application=server.application)
@@ -507,6 +620,6 @@ def test_session_bd_refusee_ailleurs(server, proadmin, monkeypatch):
         request.handler = lambda: SimpleNamespace(client_address=("127.0.0.1", 0))
         return VDOM_module_manager().process_request(request)
 
-    for path in ("/lecteur_vdoodle", "/administration.vdom", "/restapi.py", "/upload.py",
-                 "/%s/c-admin" % APPLICATION, "/app.css"):
+    for path in ("/api", "/index.vdom", "/restapi.py", "/upload.py",
+                 "/%s/c-api" % APPLICATION, "/app.css"):
         assert ask(path) == (403, None), path

@@ -1,17 +1,24 @@
 """BlueDynamic: what a VDOM server needs to show a BlueMail.
 
-A BlueMail is a mail that carries the descriptor of an application of this
-server. ProAdmin's mail view shows it in an iframe served from here, with a
-short ticket that ProAdmin signed. The contract that fixes every format is
-sites/proadmin/CONTRAT_BLUEDYNAMIC.md (ProAdmin's repository); the sections
-cited below are its own.
+A BlueMail is a mail that carries the descriptor of an application served
+by a plugin of this server. ProAdmin's mail view shows it in an iframe served
+from here, with a short ticket that ProAdmin signed. The contract that fixes
+every format is sites/proadmin/CONTRAT_BLUEDYNAMIC.md (ProAdmin's
+repository); the sections cited below are its own.
+
+As the EAC of ProMail did, the plugin serves VDOM: a WHOLEXML (the VDOMXML
+of the interface and its E2VDOM actions) that travels as data, which this
+server's engine evaluates on the fly (admin/bluedynamic.py). The plugin lives
+in any application that manages plugins; the server reaches it by an
+ordinary VDOM API call to that application: call(api.conteneur, action, JSON)
+on api.application, with the actions get, event and compose (§8).
 
 A provider ("fournisseur") is a folder under settings.BLUEDYNAMIC_LOCATION,
 named after the id of its manifest:
 
     <BLUEDYNAMIC_LOCATION>/<id>/fournisseur.json
-        {"application": "<guid of the VDOM application that serves it>",
-         "manifeste": {...the manifest of §2.2...},
+        {"application": "<guid of the VDOM application that declared it>",
+         "manifeste": {...the manifest of §2.2, with its api (§8)...},
          "cle_declaration": "bdd-...",            (optional, a secret)
          "proadmin": "https://proadmin..."}       (optional, where to declare)
     <BLUEDYNAMIC_LOCATION>/<id>/cle_privee.pem
@@ -45,6 +52,8 @@ RE_FOURNISSEUR = re.compile(r"^[a-z][a-z0-9_-]{1,39}$")
 RE_JTI = re.compile(r"^[0-9a-f]{32}$")
 RE_JETON = re.compile(r"^[0-9a-f]{32}$")
 RE_HOTE = re.compile(r"^https://[a-z0-9.-]+(:[0-9]{1,5})?$")
+RE_GUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+RE_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_.-]{0,99}$")
 
 MODES = "lire", "composer"
 COMMANDES = "new", "reply", "reply_all", "forward"
@@ -55,6 +64,8 @@ LEEWAY = 5  # seconds of clock difference accepted on exp and iat
 JWKS_RETRY = 30  # at most one reading a key set this often, on unknown kids
 MAIL_LIFETIME = 900  # a composed mail waits this long for ProAdmin
 MANIFEST_LIMIT = 64 * 1024  # §2.2
+API_ACTIONS = {"get": "bd_get", "event": "bd_event", "compose": "bd_compose"}  # §8, defaults
+WHOLEXML_LIMIT = 4 * 1024 * 1024  # what a plugin may answer
 
 
 class BlueDynamicError(Exception):
@@ -275,21 +286,27 @@ class Provider(object):
     def origin(self):
         return origine(self.manifest.get("hote"))
 
-    def container(self, claims):
-        """The container a ticket may open: it must be the one the manifest
-        gives for this mode (§4.1, step 2)."""
-        name = claims.get("conteneur")
-        if not isinstance(name, str) or not name:
-            raise BlueDynamicError("conteneur", "No container", 400)
+    @property
+    def api(self):
+        """How to reach the plugin (§8): the host application, its API
+        container, and the name of each action there."""
+        api = self.manifest.get("api") or {}
+        result = {"application": api.get("application"), "conteneur": api.get("conteneur")}
+        for action, default in API_ACTIONS.items():
+            result[action] = api.get(action) or default
+        return result
+
+    def check(self, claims):
+        """What a ticket names must be in the manifest (§4.1, step 2): its
+        application when reading, a composer for its command when composing."""
         if claims["mode"] == "lire":
-            for each in self.manifest.get("applications") or []:
-                if each.get("id") == claims.get("application") and each.get("conteneur") == name:
-                    return name
-        else:
-            for each in self.manifest.get("composeurs") or []:
-                if each.get("conteneur") == name and claims.get("commande") in (each.get("commandes") or []):
-                    return name
-        raise BlueDynamicError("conteneur", "Container %s not declared for %s" % (name, claims["mode"]))
+            if any(each.get("id") == claims.get("application") for each in self.manifest.get("applications") or []):
+                return
+            raise BlueDynamicError("application", "Application %s not declared" % claims.get("application"))
+        for each in self.manifest.get("composeurs") or []:
+            if claims.get("commande") in (each.get("commandes") or []):
+                return
+        raise BlueDynamicError("commande", "No composer declared for %s" % claims.get("commande"))
 
     # the key
 
@@ -340,15 +357,22 @@ def check_manifest(manifest):
     if not origine(manifest.get("hote")):
         raise BlueDynamicError("manifeste", "hote must be https://host[:port], without a path", 400)
     for each in manifest.get("applications") or []:
-        if not isinstance(each, dict) or not each.get("id") or not each.get("conteneur"):
-            raise BlueDynamicError("manifeste", "An application needs an id and a container", 400)
+        if not isinstance(each, dict) or not each.get("id"):
+            raise BlueDynamicError("manifeste", "An application needs an id", 400)
     for each in manifest.get("composeurs") or []:
-        if not isinstance(each, dict) or not each.get("id") or not each.get("conteneur"):
-            raise BlueDynamicError("manifeste", "A composer needs an id and a container", 400)
+        if not isinstance(each, dict) or not each.get("id"):
+            raise BlueDynamicError("manifeste", "A composer needs an id", 400)
         if not set(each.get("commandes") or []) <= set(COMMANDES):
             raise BlueDynamicError("manifeste", "commandes is a part of %s" % ", ".join(COMMANDES), 400)
         if not set(each.get("contexte") or []) <= set(CONTEXTE):
             raise BlueDynamicError("manifeste", "contexte is a part of %s" % ", ".join(CONTEXTE), 400)
+    api = manifest.get("api")
+    if not isinstance(api, dict) or not isinstance(api.get("conteneur"), str) \
+            or not (RE_NAME.match(api["conteneur"]) or RE_GUID.match(api["conteneur"].lower())):
+        raise BlueDynamicError("manifeste", "api.conteneur names the container of the host's API", 400)
+    for action in API_ACTIONS:
+        if api.get(action) is not None and not (isinstance(api[action], str) and RE_NAME.match(api[action])):
+            raise BlueDynamicError("manifeste", "api.%s is the name of an action" % action, 400)
 
 
 def post_form(url, fields, bearer, timeout=20.0):
@@ -384,12 +408,19 @@ def declare(application, manifest, declaration_key=None, proadmin=None):
         except ValueError:
             raise BlueDynamicError("manifeste", "The manifest is not JSON", 400)
     check_manifest(manifest)
+    # the plugin is reached through the application that declares it: the
+    # manifest cannot send this server's calls to another one
+    api = dict(manifest["api"])
+    if not api.get("application"):
+        api["application"] = application
+    if str(api["application"]).lower() != str(application).lower():
+        raise BlueDynamicError("manifeste", "api.application is the application that declares", 400)
     provider = Provider.find(manifest["id"])
     if provider is None:
         provider = Provider.create(manifest["id"], application)
     elif provider.application != application:
         raise BlueDynamicError("fournisseur", "Provider %s belongs to another application" % manifest["id"])
-    manifest = dict(manifest, cle_publique=provider.public_key())
+    manifest = dict(manifest, api=api, cle_publique=provider.public_key())
     encoded = b64url(json.dumps(manifest, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
     if len(encoded) > MANIFEST_LIMIT:
         raise BlueDynamicError("manifeste", "The manifest is over 64 KiB", 400)
@@ -411,32 +442,51 @@ def declare(application, manifest, declaration_key=None, proadmin=None):
 # the composed mail (§5)
 
 class ComposedMails(object):
-    """The mails a composer rendered, by jeton, until ProAdmin asks for them
-    (api=composer) - once."""
+    """The jeton of each composer session, and the mail once the plugin made
+    it; ProAdmin takes it (api=composer) once."""
 
     def __init__(self):
         self._lock = threading.Lock()
-        self._mails = {}  # jeton: (until, provider id, mail)
+        self._entries = {}  # jeton: {"until", "fournisseur", "session", "mail"}
 
     def clear(self):
         with self._lock:
-            self._mails.clear()
+            self._entries.clear()
 
-    def put(self, provider, mail):
+    def _prune(self, now):
+        for each in [key for key, value in self._entries.items() if value["until"] < now]:
+            del self._entries[each]
+
+    def open(self, provider, session_id, until=None):
+        """A jeton for a composer session, before any mail: it lasts as long
+        as the session may (`until`), the mail then MAIL_LIFETIME more."""
         jeton = secrets.token_hex(16)
         now = time.time()
         with self._lock:
-            for each in [key for key, value in self._mails.items() if value[0] < now]:
-                del self._mails[each]
-            self._mails[jeton] = (now + MAIL_LIFETIME, provider, mail)
+            self._prune(now)
+            self._entries[jeton] = {"until": until or now + MAIL_LIFETIME, "fournisseur": provider,
+                                    "session": session_id, "mail": None}
         return jeton
+
+    def put(self, jeton, mail):
+        with self._lock:
+            entry = self._entries.get(jeton)
+            if entry is None:
+                raise BlueDynamicError("jeton", "This composition is over", 404)
+            entry["mail"] = mail
+            entry["until"] = max(entry["until"], time.time() + MAIL_LIFETIME)
 
     def take(self, jeton):
         with self._lock:
-            entry = self._mails.pop(jeton, None)
-        if entry is None or entry[0] < time.time():
+            entry = self._entries.pop(jeton, None)
+        if entry is None or entry["until"] < time.time():
             return None
-        return entry[1], entry[2]
+        return entry
+
+    def give_back(self, jeton, entry):
+        """The plugin could not make the mail: the composition goes on."""
+        with self._lock:
+            self._entries.setdefault(jeton, entry)
 
 
 composed_mails = ComposedMails()
@@ -487,30 +537,44 @@ def check_mail(mail):
     return result
 
 
+
 def render_mail(scope, mail):
-    """Keep the mail a composer made in a BlueMail session, the jeton the page
-    sends to the view (postMessage {bd: "compose", jeton})."""
-    if not scope or scope["charge"].get("mode") != "composer":
+    """Keep the mail a composer made in a BlueMail session, under the jeton of
+    that session: the jeton the page sends to the view (postMessage
+    {bd: "compose", jeton})."""
+    if not scope or scope["charge"].get("mode") != "composer" or not scope.get("jeton"):
         raise BlueDynamicError("session", "Only a composer session renders a mail")
-    return composed_mails.put(scope["fournisseur"], check_mail(mail))
+    composed_mails.put(scope["jeton"], check_mail(mail))
+    return scope["jeton"]
 
 
-def compose(bearer, jeton, origins):
-    """api=composer: the JWS of the mail kept under `jeton`, signed with its
-    provider's key. `bearer` is ProAdmin's typ bd-api token, for this host."""
+def compose(bearer, jeton, origins, ask_plugin=None):
+    """api=composer: the JWS of the mail of `jeton`, signed with its
+    provider's key. `bearer` is ProAdmin's typ bd-api token, for this host.
+    When the plugin made no mail yet, ask_plugin(provider, session id) asks
+    its compose action (§8)."""
     if not isinstance(jeton, str) or not RE_JETON.match(jeton):
         raise BlueDynamicError("jeton", "No usable jeton", 400)
     verify(bearer, "bd-api", origins)
     entry = composed_mails.take(jeton)
     if entry is None:
         raise BlueDynamicError("jeton", "Unknown or expired jeton", 404)
-    identifier, mail = entry
-    provider = Provider.find(identifier)
+    provider = Provider.find(entry["fournisseur"])
     if provider is None:
         raise BlueDynamicError("fournisseur", "Unknown provider", 404)
     # the token was for one of this server's origins; the mail must come from
     # the provider ProAdmin knows at that origin
     verify_audience(bearer, provider.origin)
+    mail = entry["mail"]
+    if mail is None:
+        if ask_plugin is None:
+            composed_mails.give_back(jeton, entry)
+            raise BlueDynamicError("mail", "The composer made no mail yet", 409)
+        try:
+            mail = check_mail(ask_plugin(provider, entry["session"]))
+        except BlueDynamicError:
+            composed_mails.give_back(jeton, entry)
+            raise
     now = int(time.time())
     return provider.sign(dict(mail, jeton=jeton, iat=now))
 
@@ -524,32 +588,126 @@ def verify_audience(token, expected):
         raise BlueDynamicError("aud", "Not for this provider")
 
 
+
 # the ticket, whole (§4.1, steps 1 and 2)
 
 def open_ticket(ticket, origins):
-    """(claims, provider, container name) of a player ticket: verified, its
-    jti used, its provider at the origin it was issued for, its container
-    declared for its mode."""
+    """(claims, provider) of a player ticket: verified, its jti used, its
+    provider at the origin it was issued for, what it names declared."""
     claims = verify_ticket(ticket, origins)
     provider = Provider.find(claims.get("fournisseur"))
-    if provider is None:
+    if provider is None or not provider.api.get("conteneur"):
         raise BlueDynamicError("fournisseur", "Unknown provider %s" % claims.get("fournisseur"), 404)
     verify_audience(ticket, provider.origin)
-    return claims, provider, provider.container(claims)
+    provider.check(claims)
+    return claims, provider
+
+
+# what the plugin answers (§8)
+
+def parse_wholexml(text):
+    """(vdomxml, events) of a WHOLEXML: <WHOLEXML> with its <VDOMXML> and
+    its <EVENTS> (the E2VDOM actions, JSON), as the EAC had them."""
+    from defusedxml.minidom import parseString
+    try:
+        document = parseString(text.encode("utf-8") if isinstance(text, str) else text)
+    except Exception as error:
+        raise BlueDynamicError("wholexml", "The WHOLEXML cannot be read: %s" % error, 502)
+    root = document.documentElement
+    if root.tagName.upper() != "WHOLEXML":
+        raise BlueDynamicError("wholexml", "Not a WHOLEXML", 502)
+
+    def text_of(name):
+        for each in root.childNodes:
+            if getattr(each, "tagName", "").upper() == name:
+                return "".join(node.data for node in each.childNodes
+                               if node.nodeType in (node.TEXT_NODE, node.CDATA_SECTION_NODE)).strip()
+        return ""
+
+    vdomxml, events = text_of("VDOMXML"), text_of("EVENTS")
+    if not vdomxml:
+        raise BlueDynamicError("wholexml", "The WHOLEXML has no VDOMXML", 502)
+    check_events(events)
+    return vdomxml, events
+
+
+def check_events(events):
+    """The E2VDOM actions of a WHOLEXML: {"object:event": [step, ...]} where
+    a step is a client action ["object:action", parameter, ...] or a name the
+    server hears (the plugin's event). A bare string would be server code
+    run by this server (memory/vdomjson): refused."""
+    if not events:
+        return
+    try:
+        declared = json.loads(events)
+    except ValueError:
+        raise BlueDynamicError("wholexml", "EVENTS is not JSON", 502)
+    if not isinstance(declared, dict):
+        raise BlueDynamicError("wholexml", "EVENTS is an object", 502)
+    for key, steps in declared.items():
+        if not isinstance(key, str) or key.count(":") != 1 or not isinstance(steps, list):
+            raise BlueDynamicError("wholexml", "EVENTS: %s is not object:event with a list" % key, 502)
+        for step in steps:
+            if isinstance(step, str):
+                continue
+            if not (isinstance(step, list) and step and all(isinstance(each, str) for each in step)
+                    and step[0].count(":") == 1):
+                raise BlueDynamicError("wholexml", "EVENTS: a step of %s is not usable" % key, 502)
+
+
+def parse_reply(reply):
+    """What the plugin answered, as one of
+        ("wholexml", vdomxml, events)
+        ("compose", mail)              {"bd": "compose", "mail": {...}}
+        ("mail", mail)                 a mail (the compose action)
+    It answers a WHOLEXML as is, or the API's usual JSON: ["success", data],
+    ["error", motif...], or the data itself."""
+    if isinstance(reply, bytes):
+        reply = reply.decode("utf-8", "replace")
+    if isinstance(reply, str):
+        if len(reply) > WHOLEXML_LIMIT:
+            raise BlueDynamicError("plugin", "The plugin answered too much", 502)
+        text = reply.strip()
+        if not text:
+            raise BlueDynamicError("plugin", "The plugin answered nothing", 502)
+        if text[:20].upper().startswith("<WHOLEXML") or text.startswith("<?xml"):
+            return ("wholexml",) + parse_wholexml(text)
+        try:
+            reply = json.loads(text)
+        except ValueError:
+            raise BlueDynamicError("plugin", "The plugin answered neither a WHOLEXML nor JSON", 502)
+    if isinstance(reply, list) and reply:
+        if reply[0] == "error":
+            raise BlueDynamicError("plugin", "The plugin refused: %s" % " ".join(str(each) for each in reply[1:]), 502)
+        if reply[0] == "success":
+            return parse_reply(reply[1] if len(reply) > 1 else "")
+    if isinstance(reply, dict):
+        if reply.get("bd") == "compose":
+            return "compose", check_mail(reply.get("mail"))
+        if "application" in reply:
+            return "mail", check_mail(reply)
+    raise BlueDynamicError("plugin", "The plugin's answer is not usable", 502)
 
 
 # the session (§4.1, step 3)
 
-def scope(claims, application, container):
-    """What a BlueMail session may act on, and until when."""
-    return {
+def scope(claims, application, session_id=None):
+    """What a BlueMail session may act on, and until when. The page and its
+    dynamic object are set once the page is made (admin/bluedynamic.py)."""
+    result = {
         "fournisseur": claims["fournisseur"],
         "application": application,
-        "conteneur": container,
         "charge": claims,
+        "page": None,
+        "dynamique": None,
+        "jeton": None,
+        "taille": (800, 600),
         "inactivite": settings.BLUEDYNAMIC_SESSION_IDLE,
         "fin": claims["exp"] + settings.BLUEDYNAMIC_SESSION_GRACE,
     }
+    if claims.get("mode") == "composer":
+        result["jeton"] = composed_mails.open(claims["fournisseur"], session_id, result["fin"])
+    return result
 
 
 def headers(origins):

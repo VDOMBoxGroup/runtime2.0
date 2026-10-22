@@ -144,10 +144,10 @@ class VDOM_module_manager(object):
         # if "127.0.0.1" != request_object.handler().client_address[0]:
         #    debug("Request type: " + request_type)
 
-        # a BlueMail session (admin/bluedynamic.py) acts on its container
-        # only: through e2vdom.py, and the resources its page loads by guid.
-        # Not even its own container by name: that would render it without
-        # the headers that keep it in ProAdmin's frame.
+        # a BlueMail session (admin/bluedynamic.py) acts on its own dynamic
+        # interface only: through e2vdom.py, and the resources its page loads
+        # by guid. No container, no API, no page of the application: they
+        # would run with a session that its plugin's page names in the clear.
         session = request_object.session()
         if session is not None and session.bd_scope:
             allowed = script_name.lower() in ("/e2vdom.py", "/bluedynamic.py") or (
