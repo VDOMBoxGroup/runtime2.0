@@ -102,6 +102,10 @@ class VDOM_request(object):
     # handler sends nothing more (http_request_handler.on_request)
     streaming = False
 
+    # the body as it came, bytes: a JSON POST's, and a PUT's, DELETE's,
+    # PATCH's or OPTIONS' off WebDAV; empty otherwise
+    body = b""
+
     # ------------------------------------------------------------
     def __init__(self, arguments):
         """ Constructor, create headers, cookies, request and environment """
@@ -125,7 +129,16 @@ class VDOM_request(object):
         env = self.__environment.environment()
         # parse request data depenging on the request method
         try:
-            if arguments["method"] == "post":
+            if arguments["method"] in ("put", "delete", "patch", "options"):
+                # Off WebDAV, the application reads the body as it came:
+                # bytes, whatever their type (http_request_handler.do_APPLICATION).
+                try:
+                    request_body_size = int(env.get("HTTP_CONTENT-LENGTH", 0) or 0)
+                except ValueError:
+                    request_body_size = 0
+                self.body = handler.rfile.read(request_body_size) if request_body_size > 0 else b""
+                handler.body_fully_read()
+            elif arguments["method"] == "post":
                 if env.get("HTTP_CONTENT-TYPE", "").startswith(r'application/json'):
                     try:
                         request_body_size = int(
@@ -134,6 +147,7 @@ class VDOM_request(object):
                         request_body_size = 0
 
                     request_body = handler.rfile.read(request_body_size)
+                    self.body = request_body
                     # The body has been read in full: the connection stays
                     # reusable. Without this witness, handle_one_request cannot
                     # prove it and closes as a precaution, which brings back a

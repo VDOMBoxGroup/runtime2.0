@@ -148,6 +148,9 @@ def _readable_path(environ):
         return path
 
 
+# The methods besides GET and POST an application may answer, off WebDAV.
+APPLICATION_METHODS = ("PUT", "OPTIONS", "DELETE", "PATCH")
+
 class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     """VDOM http request handler"""
 
@@ -442,7 +445,18 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
                         mname = "do_WebDAV"
 
             if self.command not in ("GET", "POST"):
-                mname = "do_WebDAV"
+                # A method WebDAV does not need here reaches the application,
+                # as GET and POST do: a page answers a browser's CORS
+                # preflight (OPTIONS) and takes an upload (PUT). WebDAV keeps
+                # its shares, the server's root - where a DAV client starts,
+                # OPTIONS / then PROPFIND / - and every other method.
+                # Before, all of them went to WebDAV, which answered 404 off
+                # a share: no page could ever be called with them.
+                path = self.path.split("?", 1)[0]
+                if mname != "do_WebDAV" and self.command in APPLICATION_METHODS and path not in ("/", "*"):
+                    mname = "do_APPLICATION"
+                else:
+                    mname = "do_WebDAV"
 
             if mname == "do_WebDAV" and self.wsgidav_app is None:
                 managers.webdav_manager.load_webdav(app_id)
@@ -600,6 +614,17 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
             # debug("EXCEPTION WHEN DO GET %s"%self)
             # print dir(self)
             raise
+
+    def do_APPLICATION(self):
+        """serve PUT, OPTIONS, DELETE or PATCH off WebDAV: the application
+        answers, the request's body raw in request.body"""
+        self.create_request(self.command.lower())
+        f = self.on_request(self.command.lower())
+        if f:
+            self._write_body(f)
+            f.close()
+        if self.__request.nokeepalive and not getattr(self, "_length_announced", False):
+            self.close_connection = 1
 
     def do_HEAD(self):
         """serve a HEAD request"""
