@@ -69,6 +69,39 @@ SESSION_LIFETIME = 1200  # life time for web sessions
 
 SAME_SITE_NONE = False
 
+# framing
+
+# Content-Security-Policy frame-ancestors set on a page that did not set its
+# own (with X-Frame-Options SAMEORIGIN when it is exactly "'self'"). None
+# leaves the answer as it always was: Tekitisy's chat widget (/ai/chat/...)
+# is framed by its customers' sites, so a server-wide default would break it.
+# "'self'" is the value for a server that serves no page to other sites.
+FRAME_ANCESTORS = None
+
+# preview mode (/<application>/<container>): the application must be the one
+# of the host, as for /<container>; True lets any installed application be
+# previewed, as before, but still through its own hooks
+PREVIEW_ANY_APPLICATION = False
+
+# bluedynamic: a plugin of this server shows a BlueMail in ProAdmin's mail
+# view (admin/bluedynamic.py, utils/bluedynamic.py)
+
+# accepted ticket issuers, each with the address of its public keys
+BLUEDYNAMIC_ISSUERS = {
+    "https://proadmin.prosuite.technology": "https://proadmin.prosuite.technology/bluedynamic/jwks",
+}
+# public origins of this server ("https://apps.exemple.fr"); empty: the
+# origin is "https://" + the Host header of the request
+BLUEDYNAMIC_ORIGINS = []
+# providers: one folder each, <id>/fournisseur.json and <id>/cle_privee.pem
+BLUEDYNAMIC_LOCATION = DATA_LOCATION + "/bluedynamic"
+# a BlueMail session ends after this many idle seconds, and at the latest
+# this many seconds after its ticket expired
+BLUEDYNAMIC_SESSION_IDLE = 600
+BLUEDYNAMIC_SESSION_GRACE = 1800
+# how long a public key set is kept before it is read again
+BLUEDYNAMIC_JWKS_LIFETIME = 3600
+
 # timeouts
 
 SCRIPT_TIMEOUT = 3000.1  # default termination timeout for arbitrary actions

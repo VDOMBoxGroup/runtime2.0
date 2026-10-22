@@ -19,6 +19,9 @@ class VDOM_session(dict):
         self.update()
         self.files = {}
         self.states = [{"#": 0}]
+        # a BlueMail session (admin/bluedynamic.py): what it may act on and
+        # until when; set by the server only, never from a script
+        self.bd_scope = None
 
     def id(self):
         """access id property"""
@@ -29,8 +32,14 @@ class VDOM_session(dict):
         self.__last_access = time.time()
 
     def is_expired(self, tout):
-        """check if session is expired"""
-        if self.__last_access < time.time() - tout:
+        """check if session is expired
+
+        A BlueMail session has its own limits: a shorter idle time, and an
+        end set from its ticket that no activity pushes back."""
+        now = time.time()
+        if self.bd_scope:
+            return self.__last_access < now - self.bd_scope["inactivite"]                 or now > self.bd_scope["fin"]
+        if self.__last_access < now - tout:
             return True
         return False
 

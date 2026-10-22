@@ -49,3 +49,4 @@ from admin.e2vdom import run # noqa
 # from admin.vcard import run
 from admin.restapi import run  # noqa
 from admin.upload import run # noqa
+from admin.bluedynamic import run  # noqa

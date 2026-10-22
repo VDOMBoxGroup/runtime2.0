@@ -144,18 +144,36 @@ class VDOM_module_manager(object):
         # if "127.0.0.1" != request_object.handler().client_address[0]:
         #    debug("Request type: " + request_type)
 
-        # preview mode
+        # a BlueMail session (admin/bluedynamic.py) acts on its container
+        # only: through e2vdom.py, and the resources its page loads by guid.
+        # Not even its own container by name: that would render it without
+        # the headers that keep it in ProAdmin's frame.
+        session = request_object.session()
+        if session is not None and session.bd_scope:
+            allowed = script_name.lower() in ("/e2vdom.py", "/bluedynamic.py") or (
+                1 == len(url_parts) and "." in url_parts[0]
+                and RE_GUID.match(url_parts[0].partition(".")[0]))
+            if not allowed:
+                debug("BlueMail session refused on %s" % script_name)
+                return (403, None)
+
+        # preview mode: /<application>/<container> is /<container>, with the
+        # same checks and the same hooks. It used to render the container
+        # straight away: any top level container of any installed
+        # application, without requestonstart or sessiononstart - where an
+        # application checks who is asking.
         if 2 == len(url_parts) and RE_GUID.search(url_parts[0]) and RE_GUID.search(url_parts[1]):
-            a1 = managers.memory.applications[url_parts[0]]
-            request_object.set_application_id(a1.id)
-            # o1 = a1.search_object(parts1[1])
-            o1 = a1.objects.catalog.get(url_parts[1])
-            if o1 and 3 == o1.type.container:
-                request_object.container_id = o1.id
-                request_object.request_type = "vdom"
-                result = managers.engine.render(
-                    o1, render_type=o1.type.render_type.lower())
-                return (None, result.encode("utf-8"))
+            preview_id = url_parts[0].lower()
+            if preview_id != (request_object.app_id() or "").lower():
+                if not settings.PREVIEW_ANY_APPLICATION:
+                    return (404, None)
+                try:
+                    preview_application = managers.memory.applications[preview_id]
+                except KeyError:
+                    return (404, None)
+                request_object.set_application_id(preview_application.id)
+                session.context["application_id"] = preview_application.id
+            url_parts = [url_parts[1]]
 
         # check if container is present
         app = request_object.application()

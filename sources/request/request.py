@@ -430,13 +430,18 @@ class VDOM_request(object):
         """session object"""
         return self.__session
 
-    def set_session_id(self, sid):
-        """override session id"""
+    def set_session_id(self, sid, remove_old=True):
+        """override session id
+
+        remove_old=False keeps the session the request came with: a BlueMail
+        session is taken for one request only, and the visitor's own session
+        on this site, if the iframe carried its cookie, must outlive it."""
         old_sid = self.__session.id()
         self.__cookies["sid"] = sid
         self.args.arguments()["sid"] = sid
         self.__session = managers.session_manager[sid]
-        managers.session_manager.remove_session(old_sid)
+        if remove_old:
+            managers.session_manager.remove_session(old_sid)
 
     def headers(self, headers=None):
         """ Server headers. """

@@ -141,6 +141,21 @@ def calls_builder(parser):
     return document_handler
 
 
+def inside(obj, container_id):
+    """True when obj is the container or one of its descendants."""
+    while obj is not None:
+        if getattr(obj, "id", None) == container_id:
+            return True
+        obj = getattr(obj, "parent", None)
+    return False
+
+
+def disposable(session):
+    """A session nothing used yet: the one made for this very request."""
+    return session is not None and not session.on_start_executed \
+        and not session.user and not session.bd_scope and len(session) == 0
+
+
 def run(request):
     args = request.arguments().arguments()
     request.render_type = "e2vdom"
@@ -161,19 +176,44 @@ def run(request):
             debug("Unable to parse data: %s" % error)
             raise Exception("Unable to parse e2vdom data")
         app = request.application()
-        # TODO: Check ev.state for correct values - may be incorrect state value
-        try:
-            state = request.session().states[ev.state]
-        except KeyError:
-            state = None
         if sid is None and ev.sid:
             sid = ev.sid
             debug("Got no session id in args")
         if sid != ev.sid:
             debug("Got different  session id in args: %s <> %s" % (sid, ev.sid))
-            if managers.session_manager.session_exists(ev.sid):
+            # the getter, not session_exists: it drops an expired session,
+            # which set_session_id would otherwise install as None
+            target = managers.session_manager[ev.sid]
+            if target is not None:
                 sid = ev.sid
-                request.set_session_id(sid)
+                if target.bd_scope:
+                    # a BlueMail page names its session in the datafield; the
+                    # visitor's own session on this site stays as it was
+                    request.set_session_id(sid, remove_old=disposable(request.session()))
+                    request.sid = sid
+                    cookies = request.response_cookies()
+                    if "sid" in cookies:
+                        del cookies["sid"]
+                else:
+                    request.set_session_id(sid)
+        # the state of the session the events are for, read once it is known:
+        # read before, it came from the cookie's session - another one when
+        # the page runs in a frame without third party cookies
+        # TODO: Check ev.state for correct values - may be incorrect state value
+        try:
+            state = request.session().states[ev.state]
+        except (KeyError, IndexError, TypeError):
+            state = None
+        scope = request.session().bd_scope if sid == ev.sid else None
+        if scope:
+            # its application, whatever the host's is
+            if ev.appid != scope["application"]:
+                debug("Event: BlueMail session used out of its application")
+                request.write(b"<ACTIONS><SESSIONISOVER /></ACTIONS>")
+                return
+            if app is None or app.id != scope["application"]:
+                request.set_application_id(scope["application"])
+                app = request.application()
         if app is None:
             request.set_application_id(ev.appid)
             app = request.application()
@@ -198,6 +238,9 @@ def run(request):
                     if obj is None:
                         debug("Event: Incorrect source object")
                         continue
+                    if scope and not inside(obj, scope["conteneur"]):
+                        debug("Event: BlueMail session used out of its container")
+                        continue
                     h = app.events.catalog.get(
                         (event_info.event_source_id, event_info.event_name))  # all
                     if h is None:
@@ -207,6 +250,9 @@ def run(request):
                     # print "CALLEE >>>", callee
                     for callee in h.callees:
                         if not callee.is_action:
+                            continue
+                        if scope and not inside(callee.owner, scope["conteneur"]):
+                            debug("Event: BlueMail session used out of its container")
                             continue
                         params = event_info.event_parameters
                         params.update({

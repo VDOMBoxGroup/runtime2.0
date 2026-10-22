@@ -40,6 +40,26 @@ from utils.body import write_in_blocks
 THREAD_ATTRIBUTE_NAME = "vdom_web_server_request"
 
 
+def frame_defaults(headers):
+    """Who may frame a page that did not say: settings.FRAME_ANCESTORS, as
+    Content-Security-Policy frame-ancestors (and X-Frame-Options SAMEORIGIN
+    for older browsers when it is "'self'"). A page that set either header
+    keeps its own; anything but HTML is left alone. Off by default: see the
+    setting."""
+    ancestors = settings.FRAME_ANCESTORS
+    if not ancestors:
+        return
+    if "text/html" not in str(headers.get("content-type", "text/html")).lower():
+        return
+    policy = str(headers.get("content-security-policy", ""))
+    if "frame-ancestors" in policy.lower() or "x-frame-options" in headers:
+        return
+    headers["content-security-policy"] = "%sframe-ancestors %s" % (
+        policy.rstrip("; ") + "; " if policy.strip() else "", ancestors)
+    if ancestors.strip() == "'self'":
+        headers["x-frame-options"] = "SAMEORIGIN"
+
+
 class HeaderHandler(object):
     # Initially fail out if there are any problems.
     def __init__(self, header, attrs):
@@ -796,6 +816,7 @@ class VDOM_http_request_handler(http.server.SimpleHTTPRequestHandler):
     def send_headers(self):
         """send all headers"""
         headers = self.__request.headers_out().headers()
+        frame_defaults(headers)
         cookies = self.__request.response_cookies().output()
         # debug("Outgoing headers---")
         # for h in headers:
