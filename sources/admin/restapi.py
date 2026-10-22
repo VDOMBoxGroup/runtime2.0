@@ -1,6 +1,10 @@
+import re
 import managers
 from traceback import print_exc
 from utils.exception import exception_message
+
+
+RE_CALLBACK = re.compile(r"^[A-Za-z_$][0-9A-Za-z_$.]{0,127}$")
 
 
 class InvalidParamsException(Exception):
@@ -66,6 +70,22 @@ def run(request):
             request.write(f"<ERROR>{exception_message(ex)}</ERROR>".encode())
         except Exception as e:
             print_exc()
-            request.write(f"<ERROR>{e}</ERROR>" % e)
+            # `%` on an f-string raised TypeError here, so an action that
+            # failed answered nothing at all instead of its error
+            request.write(f"<ERROR>{exception_message(e)}</ERROR>".encode("utf8", "ignore"))
         else:
-            request.write("/**/ %s(%s);" % (callback, ret) if callback else ret)
+            # the output is a BytesIO: a str (the JSONP wrapper, or an action
+            # returning a number) raised TypeError and the answer was lost
+            if isinstance(ret, bytes):
+                body = ret
+            elif ret is None:
+                body = b""
+            else:
+                body = str(ret).encode("utf8", "ignore")
+            if callback:
+                # a JSONP callback is a name, never code from the address
+                if not RE_CALLBACK.match(callback):
+                    request.write(b"<ERROR>Invalid params</ERROR>")
+                    return
+                body = b"/**/ " + callback.encode("ascii") + b"(" + body + b");"
+            request.write(body)
