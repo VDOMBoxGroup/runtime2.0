@@ -22,4 +22,4 @@ from .whole import v_wholeconnection, v_wholeapplication, \
     v_wholenoapplicationerror as v_wholenoapplication
 from .csrf import v_csrf_token_arg_name, v_verify_csrf_token
 from .eac import v_eac
-from .bluedynamic import v_bluedynamic_declarer, v_bluedynamic_ticket, v_bluedynamic_rendre
+from .bluedynamic import v_bluedynamic_declarer, v_bluedynamic_ticket, v_bluedynamic_rendre, v_bluedynamic_evenement, v_bluedynamic_verifier

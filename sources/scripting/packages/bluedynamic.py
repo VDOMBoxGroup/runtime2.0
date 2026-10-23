@@ -7,6 +7,8 @@ The plugin (any application that manages plugins: Tekitisy, LimeOS, ...):
     charge = bluedynamic.ticket()            # while serving a BlueMail
     jeton = bluedynamic.rendre_mail(mail)    # the end of a composition, if
                                              # not answered by event or compose
+    bluedynamic.evenement(charge)            # an event of a service (§9.4)
+    charge = bluedynamic.verifier(jeton, typ)  # a receipt from ProAdmin (§9.6)
 
 The host application, in the actions of its API container that the manifest
 names (api.get, api.event, api.compose, contract §8), routes to its plugin:
@@ -14,7 +16,8 @@ names (api.get, api.event, api.compose, contract §8), routes to its plugin:
     from scripting.packages import bluedynamic
     bluedynamic.recevoir("event", lambda fournisseur: mes_plugins[fournisseur])
 
-From VScript: BlueDynamic_Declarer, BlueDynamic_Ticket and BlueDynamic_Rendre
+From VScript: BlueDynamic_Declarer, BlueDynamic_Ticket, BlueDynamic_Rendre,
+BlueDynamic_Evenement and BlueDynamic_Verifier
 (vscript/wrappers/bluedynamic.py), with JSON strings.
 
 The formats are those of ProAdmin's contract (CONTRAT_BLUEDYNAMIC.md); the
@@ -26,7 +29,7 @@ import managers
 from utils import bluedynamic as core
 
 
-ACTIONS = "get", "event", "compose"
+ACTIONS = "get", "event", "compose", "service"
 
 
 def _application_id():
@@ -77,10 +80,33 @@ def rendre_mail(mail):
     return core.render_mail(_scope(), mail)
 
 
+def evenement(charge):
+    """Tell ProAdmin of an event of a service (§9.4): charge = {abonnement
+    (bda-...), id (bde-..., the same if the event is sent again), evenement,
+    donnees}. Signed with the provider's key and sent to the ProAdmin of this
+    session's ticket. Returns ProAdmin's answer, or {"ok": False, "motif"}."""
+    try:
+        return core.event(_scope(), charge)
+    except core.BlueDynamicError as error:
+        return {"ok": False, "motif": error.motif, "message": str(error)}
+
+
+def verifier(jeton, typ):
+    """The claims of a JWS of ProAdmin (typ bd-recu, bd-destinataire or
+    bd-depot) made for this session's provider, or None: what the page
+    relays (a deposit receipt, the recipient a reader proved to be) is
+    trusted only once verified here (§9.6)."""
+    try:
+        return core.verify_for_provider(_scope(), jeton, typ)
+    except core.BlueDynamicError:
+        return None
+
+
 def recevoir(action, plugin):
     """The whole of an API action of the host (§8), for its plugin.
 
-    `action` is "get", "event" or "compose". `plugin` gives, for the provider
+    `action` is "get", "event", "compose" or "service" (§9.3: donnees
+    are {service, parametres, contexte}, the ticket is {mode: "service", ...}). `plugin` gives, for the provider
     id of the ticket, a function plugin(action, donnees) -> answer, where the
     answer is a WHOLEXML (text), a mail (dict), or {"bd": "compose", "mail":
     {...}} at the end of a composition; it may raise to refuse. `plugin` is

@@ -64,7 +64,13 @@ LEEWAY = 5  # seconds of clock difference accepted on exp and iat
 JWKS_RETRY = 30  # at most one reading a key set this often, on unknown kids
 MAIL_LIFETIME = 900  # a composed mail waits this long for ProAdmin
 MANIFEST_LIMIT = 64 * 1024  # §2.2
-API_ACTIONS = {"get": "bd_get", "event": "bd_event", "compose": "bd_compose"}  # §8, defaults
+API_ACTIONS = {"get": "bd_get", "event": "bd_event", "compose": "bd_compose", "service": "bd_service"}  # §8, §9, defaults
+NATURES = "lecture", "action"  # §9.1
+RE_SERVICE = re.compile(r"^[a-z][a-z0-9_]{1,39}$")
+RE_ABONNEMENT = re.compile(r"^bda-[0-9a-f]{16}$")
+RE_EVENEMENT = re.compile(r"^bde-[0-9a-f]{32}$")
+SERVICE_LIMIT = 1024 * 1024  # what a service call or answer may carry
+SERVICE_LIFETIME = 120  # seconds a service session lives
 WHOLEXML_LIMIT = 4 * 1024 * 1024  # what a plugin may answer
 
 
@@ -308,6 +314,11 @@ class Provider(object):
                 return
         raise BlueDynamicError("commande", "No composer declared for %s" % claims.get("commande"))
 
+    @property
+    def services(self):
+        """{id: service} of the services the manifest declares (§9.1)."""
+        return {each["id"]: each for each in self.manifest.get("services") or [] if isinstance(each, dict) and each.get("id")}
+
     # the key
 
     def private_key(self):
@@ -366,6 +377,18 @@ def check_manifest(manifest):
             raise BlueDynamicError("manifeste", "commandes is a part of %s" % ", ".join(COMMANDES), 400)
         if not set(each.get("contexte") or []) <= set(CONTEXTE):
             raise BlueDynamicError("manifeste", "contexte is a part of %s" % ", ".join(CONTEXTE), 400)
+    services = manifest.get("services") or []
+    if not isinstance(services, list) or len(services) > 20:
+        raise BlueDynamicError("manifeste", "services is a list of 20 services at most", 400)
+    for each in services:
+        if not isinstance(each, dict) or not isinstance(each.get("id"), str) or not RE_SERVICE.match(each["id"]):
+            raise BlueDynamicError("manifeste", "A service needs an id matching %s" % RE_SERVICE.pattern, 400)
+        if each.get("nature") not in NATURES:
+            raise BlueDynamicError("manifeste", "The nature of service %s is one of %s" % (each["id"], ", ".join(NATURES)), 400)
+        evenements = each.get("evenements") or []
+        if not isinstance(evenements, list) or len(evenements) > 20 \
+                or not all(isinstance(e, str) and RE_SERVICE.match(e) for e in evenements):
+            raise BlueDynamicError("manifeste", "The events of service %s are 20 ids at most" % each["id"], 400)
     api = manifest.get("api")
     if not isinstance(api, dict) or not isinstance(api.get("conteneur"), str) \
             or not (RE_NAME.match(api["conteneur"]) or RE_GUID.match(api["conteneur"].lower())):
@@ -375,13 +398,13 @@ def check_manifest(manifest):
             raise BlueDynamicError("manifeste", "api.%s is the name of an action" % action, 400)
 
 
-def post_form(url, fields, bearer, timeout=20.0):
+def post_form(url, fields, bearer=None, timeout=20.0):
     """POST a form, the answer's JSON. Module level, so a test can replace it."""
     body = urllib.parse.urlencode(fields).encode("ascii")
-    request = urllib.request.Request(url, data=body, method="POST", headers={
-        "Authorization": "Bearer %s" % bearer,
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept": "application/json"})
+    headers = {"Content-Type": "application/x-www-form-urlencoded", "Accept": "application/json"}
+    if bearer:
+        headers["Authorization"] = "Bearer %s" % bearer
+    request = urllib.request.Request(url, data=body, method="POST", headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as answer:
             return json.loads(answer.read().decode("utf-8"))
@@ -577,6 +600,138 @@ def compose(bearer, jeton, origins, ask_plugin=None):
             raise
     now = int(time.time())
     return provider.sign(dict(mail, jeton=jeton, iat=now))
+
+
+# the services (§9)
+
+def _service_demand(demande):
+    """The demand of an api=service call: base64url of its JSON (§9.3)."""
+    if not isinstance(demande, str) or len(demande) > SERVICE_LIMIT * 2:
+        raise BlueDynamicError("demande", "No usable demand", 400)
+    try:
+        value = json.loads(b64url_decode(demande).decode("utf-8"))
+    except Exception:  # noqa - whatever is wrong, the demand is unusable
+        raise BlueDynamicError("demande", "The demand is not base64url JSON", 400)
+    if not isinstance(value, dict):
+        raise BlueDynamicError("demande", "The demand is not an object", 400)
+    for name in ("parametres", "contexte"):
+        if not isinstance(value.get(name, {}), dict):
+            raise BlueDynamicError("demande", "%s is an object" % name, 400)
+    if not isinstance(value.get("service"), str) or not RE_SERVICE.match(value["service"]):
+        raise BlueDynamicError("demande", "service is the id of a service", 400)
+    contexte = value.get("contexte") or {}
+    if not isinstance(contexte.get("abonnement"), str) or not RE_ABONNEMENT.match(contexte["abonnement"]):
+        raise BlueDynamicError("demande", "contexte.abonnement is bda- and 16 hexadecimal digits", 400)
+    return value
+
+
+def service_scope(provider, charge):
+    """The scope of a service session (§9.3): no page, no reader's ticket;
+    it lives the time of the call."""
+    now = int(time.time())
+    return {"fournisseur": provider.id, "application": provider.application, "charge": charge,
+            "page": None, "dynamique": None, "jeton": None, "taille": (800, 600),
+            "inactivite": SERVICE_LIFETIME, "fin": now + SERVICE_LIFETIME}
+
+
+def parse_service_reply(reply):
+    """What the plugin's service action answered: {resultat, mail?}, or the
+    API's usual ["success", {...}] / ["error", ...]."""
+    if isinstance(reply, bytes):
+        reply = reply.decode("utf-8", "replace")
+    if isinstance(reply, str):
+        if len(reply) > SERVICE_LIMIT:
+            raise BlueDynamicError("plugin", "The plugin answered too much", 502)
+        try:
+            reply = json.loads(reply.strip() or "null")
+        except ValueError:
+            raise BlueDynamicError("plugin", "The plugin's service answer is not JSON", 502)
+    if isinstance(reply, list) and reply:
+        if reply[0] == "error":
+            raise BlueDynamicError("plugin", "The plugin refused: %s" % " ".join(str(each) for each in reply[1:]), 502)
+        if reply[0] == "success":
+            return parse_service_reply(reply[1] if len(reply) > 1 else None)
+    if not isinstance(reply, dict) or "resultat" not in reply:
+        raise BlueDynamicError("plugin", "A service answers {resultat, mail?}", 502)
+    result = {"resultat": reply["resultat"]}
+    if reply.get("mail"):
+        result["mail"] = check_mail(reply["mail"])
+    return result
+
+
+def service(bearer, demande, origins, ask_plugin):
+    """api=service (§9.3): the JWS, signed with the provider's key, of what
+    its service answered. `bearer` is ProAdmin's typ bd-api token for this
+    host; ask_plugin(provider, charge, donnees) runs the plugin's service
+    action in a session of its own."""
+    claims = verify(bearer, "bd-api", origins)
+    value = _service_demand(demande)
+    provider = Provider.find(value.get("fournisseur"))
+    if provider is None or not provider.api.get("conteneur"):
+        raise BlueDynamicError("fournisseur", "Unknown provider", 404)
+    verify_audience(bearer, provider.origin)
+    if value["service"] not in provider.services:
+        raise BlueDynamicError("service", "Service %s not declared" % value["service"], 404)
+    contexte = value.get("contexte") or {}
+    charge = {"mode": "service", "fournisseur": provider.id, "service": value["service"], "iss": claims["iss"],
+              "contexte": contexte, "lecteur": contexte.get("demandeur") or "", "societe": contexte.get("societe") or ""}
+    donnees = {"service": value["service"], "parametres": value.get("parametres") or {}, "contexte": contexte}
+    result = parse_service_reply(ask_plugin(provider, charge, donnees))
+    now = int(time.time())
+    return provider.sign(dict(result, typ="bd-service", service=value["service"], abonnement=contexte["abonnement"],
+                              iat=now, exp=now + 300))
+
+
+def event(scope, charge, post=None):
+    """BlueDynamic_Evenement (§9.4): sign an event of the provider of this
+    session with its key and send it to the ProAdmin that issued the
+    session's ticket. ProAdmin's answer."""
+    if not scope:
+        raise BlueDynamicError("session", "Not a BlueMail session")
+    provider = Provider.find(scope["fournisseur"])
+    if provider is None:
+        raise BlueDynamicError("fournisseur", "Unknown provider", 404)
+    issuer = (scope.get("charge") or {}).get("iss")
+    if not isinstance(issuer, str) or issuer not in settings.BLUEDYNAMIC_ISSUERS:
+        raise BlueDynamicError("emetteur", "No ProAdmin to tell")
+    if not isinstance(charge, dict):
+        raise BlueDynamicError("evenement", "The event is an object", 400)
+    if not isinstance(charge.get("abonnement"), str) or not RE_ABONNEMENT.match(charge["abonnement"]):
+        raise BlueDynamicError("evenement", "abonnement is bda- and 16 hexadecimal digits", 400)
+    if not isinstance(charge.get("id"), str) or not RE_EVENEMENT.match(charge["id"]):
+        raise BlueDynamicError("evenement", "id is bde- and 32 hexadecimal digits", 400)
+    if not isinstance(charge.get("evenement"), str) or not RE_SERVICE.match(charge["evenement"]):
+        raise BlueDynamicError("evenement", "evenement is the id of an event", 400)
+    donnees = charge.get("donnees") or {}
+    if not isinstance(donnees, dict) or len(json.dumps(donnees)) > 16384:
+        raise BlueDynamicError("evenement", "donnees is an object of 16 KiB at most", 400)
+    now = int(time.time())
+    token = provider.sign({"typ": "bd-evenement", "fournisseur": provider.id, "abonnement": charge["abonnement"],
+                           "id": charge["id"], "evenement": charge["evenement"], "donnees": donnees,
+                           "iat": now, "exp": now + 300, "jti": os.urandom(16).hex()})
+    return (post or post_form)(issuer.rstrip("/") + "/bluedynamic/evenement", {"evenement": token}, None)
+
+
+# what ProAdmin hands a plugin through its page (§9.6): a receipt, a recipient
+
+PROADMIN_TYPES = "bd-recu", "bd-destinataire", "bd-depot"
+
+
+def verify_for_provider(scope, token, typ):
+    """BlueDynamic_Verifier: the claims of a JWS of ProAdmin of type `typ`
+    (one of PROADMIN_TYPES), made for the provider of this session (aud =
+    its host): a plugin trusts what its page relays only once verified."""
+    if not scope:
+        raise BlueDynamicError("session", "Not a BlueMail session")
+    if typ not in PROADMIN_TYPES:
+        raise BlueDynamicError("typ", "Not a type ProAdmin hands a plugin", 400)
+    provider = Provider.find(scope["fournisseur"])
+    if provider is None or not provider.origin:
+        raise BlueDynamicError("fournisseur", "Unknown provider", 404)
+    claims = verify(token, typ, [provider.origin])
+    if claims.get("fournisseur") not in (None, provider.id):
+        raise BlueDynamicError("fournisseur", "Made for another provider")
+    return claims
 
 
 def verify_audience(token, expected):

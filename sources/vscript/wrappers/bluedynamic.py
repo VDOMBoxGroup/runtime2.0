@@ -3,6 +3,8 @@
     reponse = BlueDynamic_Declarer(manifeste [, cle_declaration [, proadmin]])
     charge = BlueDynamic_Ticket()          ' "" out of a BlueMail session
     jeton = BlueDynamic_Rendre(mail)
+    reponse = BlueDynamic_Evenement(charge)   ' an event of a service (§9.4)
+    charge = BlueDynamic_Verifier(jeton, typ) ' "" unless ProAdmin signed it for us (§9.6)
 
 The manifest and the mail are a JSON string or a Dictionary; the answers are
 JSON strings.
@@ -43,6 +45,16 @@ def v_bluedynamic_declarer(manifeste, cle_declaration=None, proadmin=None):
 
 def v_bluedynamic_ticket():
     claims = _package().ticket()
+    return string(json.dumps(claims, ensure_ascii=False) if claims else "")
+
+
+def v_bluedynamic_evenement(charge):
+    answer = _package().evenement(_value(charge))
+    return string(json.dumps(answer, ensure_ascii=False))
+
+
+def v_bluedynamic_verifier(jeton, typ):
+    claims = _package().verifier(_text(jeton) or "", _text(typ) or "")
     return string(json.dumps(claims, ensure_ascii=False) if claims else "")
 
 

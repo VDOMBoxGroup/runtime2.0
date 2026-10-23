@@ -118,7 +118,8 @@ def test_ticket_valide(proadmin):
     claims, provider = core.open_ticket(proadmin.ticket(), [HOTE])
     assert provider.id == "vdoodle" and provider.application == APPLICATION
     assert provider.api == {"application": APPLICATION, "conteneur": "API",
-                            "get": "bd_get", "event": "bd_event", "compose": "bd_compose"}
+                            "get": "bd_get", "event": "bd_event", "compose": "bd_compose",
+                            "service": "bd_service"}
     assert claims["lecteur"] == "lec-1"
 
 
@@ -451,6 +452,8 @@ def test_get_rendu(server, proadmin):
     assert request.retcode == 200 and request.sent
     body = request.body.getvalue().decode()
     assert '<TEXT value="Bonjour lec-1"/>' in body and '{"suivant:click": ["bouton:suivant"]}' in body
+    # la page dit sa hauteur au cadre, aux seules origines du ticket
+    assert 'bd:"hauteur"' in body and 'var O=["%s"]' % ISS in body
     assert request.out["content-security-policy"] == "frame-ancestors %s" % ISS
     assert request.out["referrer-policy"] == "no-referrer"
     assert request.out["cache-control"] == "no-store"
@@ -623,3 +626,145 @@ def test_session_bd_refusee_ailleurs(server, proadmin):
     for path in ("/api", "/index.vdom", "/restapi.py", "/upload.py",
                  "/%s/c-api" % APPLICATION, "/app.css"):
         assert ask(path) == (403, None), path
+
+
+# the services (§9)
+
+SERVICES = [{"id": "demander_fichiers", "nature": "action", "nom": {"fr": "Demander des fichiers"},
+             "parametres": {"type": "object"}, "evenements": ["piece_deposee"]},
+            {"id": "etat_demande", "nature": "lecture"}]
+ABONNEMENT = "bda-0123456789abcdef"
+
+
+def with_services(server):
+    """The provider declares services; the host routes bd_service to the plugin."""
+    from scripting.packages import bluedynamic as package
+    core.declare(APPLICATION, dict(MANIFESTE, services=SERVICES))
+    calls = []
+
+    def plugin(action, donnees):
+        calls.append((action, donnees))
+        if donnees["service"] == "etat_demande":
+            return ["success", {"resultat": {"etat": "ouverte"}}]
+        if donnees["parametres"].get("panne"):
+            return ["error", "parametres"]
+        return {"resultat": {"demande": "bdr-1"}, "mail": MAIL}
+
+    api = server.application.objects.get("API")
+    api.actions["bd_service"] = SimpleNamespace(name="bd_service",
+                                                run=lambda: package.recevoir("service", {"vdoodle": plugin}))
+    return calls
+
+
+def demande(**changes):
+    value = {"fournisseur": "vdoodle", "service": "demander_fichiers", "parametres": {"a": ["marie@exemple.fr"]},
+             "contexte": {"abonnement": ABONNEMENT, "societe": "soc-1", "demandeur": "lec-9"}}
+    value.update(changes)
+    return core.b64url(json.dumps(value).encode())
+
+
+def call_service(server, proadmin, value, bearer=True):
+    from admin import bluedynamic as entry
+    headers = {"authorization": "Bearer " + proadmin.bearer()} if bearer else {}
+    request = FakeRequest(server.sessions, {"api": ["service"], "demande": [value]}, method="post", headers=headers,
+                          application=server.application)
+    entry.run(request)
+    return request
+
+
+def provider_claims(request):
+    provider = core.Provider.find("vdoodle")
+    public = Ed25519PublicKey.from_public_bytes(base64.b64decode(provider.manifest["cle_publique"]))
+    return jwt.decode(request.body.getvalue().decode(), public, algorithms=["EdDSA"])
+
+
+def test_service_aller_retour(server, proadmin):
+    calls = with_services(server)
+    request = call_service(server, proadmin, demande())
+    assert request.retcode == 200 and request.out["content-type"] == "application/jose"
+    claims = provider_claims(request)
+    assert claims["typ"] == "bd-service" and claims["service"] == "demander_fichiers"
+    assert claims["abonnement"] == ABONNEMENT and claims["resultat"] == {"demande": "bdr-1"}
+    assert claims["mail"]["typ"] == "bd-mail" and claims["mail"]["application"] == "sondage"
+    action, donnees = calls[-1]
+    assert action == "service" and donnees["parametres"] == {"a": ["marie@exemple.fr"]}
+    # the plugin sees a service session, with the pseudonyms ProAdmin gave, never a reader's ticket
+    assert donnees["ticket"]["mode"] == "service" and donnees["ticket"]["lecteur"] == "lec-9"
+    assert donnees["ticket"]["iss"] == ISS
+    # a reading service answers without a mail
+    lecture = provider_claims(call_service(server, proadmin, demande(service="etat_demande")))
+    assert lecture["resultat"] == {"etat": "ouverte"} and "mail" not in lecture
+
+
+def test_service_refus(server, proadmin):
+    with_services(server)
+    assert call_service(server, proadmin, demande(), bearer=False).retcode == 401
+    assert call_service(server, proadmin, demande(service="inconnu")).retcode == 404
+    assert call_service(server, proadmin, demande(contexte={"abonnement": "x"})).retcode == 400
+    assert call_service(server, proadmin, "pas du base64 !").retcode == 400
+    assert call_service(server, proadmin, demande(parametres={"panne": 1})).retcode == 502
+    for bearer, motif in ((proadmin.bearer(typ="bd-ticket"), "typ"), (proadmin.bearer(aud="https://ailleurs.exemple.fr"), "aud")):
+        with pytest.raises(BlueDynamicError) as refused:
+            core.service(bearer, demande(), [HOTE], lambda *a: {"resultat": 1})
+        assert refused.value.motif == motif
+
+
+def test_service_manifeste_controle(proadmin):
+    for mauvais in ([{"id": "Mauvais", "nature": "action"}], [{"id": "ok_id", "nature": "autre"}],
+                    [{"id": "ok_id", "nature": "lecture", "evenements": ["Pas bon"]}], [{"id": "x%d" % i, "nature": "lecture"} for i in range(21)]):
+        with pytest.raises(BlueDynamicError):
+            core.declare(APPLICATION, dict(MANIFESTE, services=mauvais))
+    assert core.Provider.find("vdoodle").services == {}
+
+
+def test_evenement_signe(server, proadmin):
+    page = open_page(server, proadmin.ticket())
+    scope = page.session().bd_scope
+    sent = []
+    charge = {"abonnement": ABONNEMENT, "id": "bde-" + "a" * 32, "evenement": "piece_deposee", "donnees": {"piece": 0}}
+    answer = core.event(scope, charge, post=lambda url, fields, bearer: sent.append((url, fields, bearer)) or {"ok": 1})
+    assert answer == {"ok": 1}
+    url, fields, bearer = sent[-1]
+    assert url == ISS + "/bluedynamic/evenement" and bearer is None
+    provider = core.Provider.find("vdoodle")
+    public = Ed25519PublicKey.from_public_bytes(base64.b64decode(provider.manifest["cle_publique"]))
+    claims = jwt.decode(fields["evenement"], public, algorithms=["EdDSA"])
+    assert claims["typ"] == "bd-evenement" and claims["fournisseur"] == "vdoodle" and claims["id"] == charge["id"]
+    assert claims["donnees"] == {"piece": 0} and len(claims["jti"]) == 32
+    for mauvais in (dict(charge, id="bde-1"), dict(charge, abonnement="bda-x"), dict(charge, evenement="Mal"),
+                    dict(charge, donnees="texte")):
+        with pytest.raises(BlueDynamicError):
+            core.event(scope, mauvais, post=lambda *a: {"ok": 1})
+    with pytest.raises(BlueDynamicError):
+        core.event(None, charge, post=lambda *a: {"ok": 1})
+    # from the plugin, in its BlueMail session: the package sends it to the ticket's ProAdmin
+    from scripting.packages import bluedynamic as package
+    managers.request_manager.current = page
+    proadmin.sent.clear()
+    assert package.evenement(charge)["ok"] is True and proadmin.sent[-1][0] == ISS + "/bluedynamic/evenement"
+    # out of a BlueMail session: a refusal, not an exception
+    managers.request_manager.current = None
+    assert package.evenement(charge)["ok"] is False
+
+
+def test_verifier_ce_que_proadmin_donne_au_plugin(server, proadmin):
+    page = open_page(server, proadmin.ticket())
+    scope = page.session().bd_scope
+    now = int(time.time())
+    recu = proadmin.sign({"iss": ISS, "aud": HOTE, "typ": "bd-recu", "fournisseur": "vdoodle", "document": "cf-1",
+                          "iat": now, "exp": now + 300})
+    assert core.verify_for_provider(scope, recu, "bd-recu")["document"] == "cf-1"
+    refus = [(recu, "bd-destinataire"),                                         # not the type asked
+             (proadmin.sign({"iss": ISS, "aud": "https://ailleurs.exemple.fr", "typ": "bd-recu", "iat": now, "exp": now + 300}), "bd-recu"),
+             (proadmin.sign({"iss": ISS, "aud": HOTE, "typ": "bd-recu", "fournisseur": "autre", "iat": now, "exp": now + 300}), "bd-recu"),
+             (proadmin.sign({"iss": ISS, "aud": HOTE, "typ": "bd-recu", "iat": now, "exp": now + 300}, key=Ed25519PrivateKey.generate()), "bd-recu"),
+             (proadmin.sign({"iss": ISS, "aud": HOTE, "typ": "bd-ticket", "iat": now, "exp": now + 300}), "bd-ticket")]
+    for jeton, typ in refus:
+        with pytest.raises(BlueDynamicError):
+            core.verify_for_provider(scope, jeton, typ)
+    from scripting.packages import bluedynamic as package
+    managers.request_manager.current = page
+    assert package.verifier(recu, "bd-recu")["document"] == "cf-1"
+    assert package.verifier(refus[1][0], "bd-recu") is None
+    managers.request_manager.current = None
+    assert package.verifier(recu, "bd-recu") is None

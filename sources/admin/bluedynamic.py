@@ -4,6 +4,7 @@
                              of ProAdmin's mail view (contract §4.1)
     ?api=preuve&f=&defi=     the proof of the host (§2.3)
     ?api=composer            the mail a composer made, signed (§5)
+    ?api=service             a service of a provider, for an application (§9.3)
 
 The interface is the plugin's, as the EAC of ProMail had it: the plugin
 answers a WHOLEXML (VDOMXML and E2VDOM actions), which travels as data and is
@@ -50,6 +51,18 @@ MESSAGE = ('<CONTAINER name="bluedynamic_message" top="0" left="0" width="{width
            '<Attribute Name="htmlcode">{html}</Attribute></HYPERTEXT></CONTAINER>')
 COMPOSED = ('<script>(function(){{var m={message};{origins}.forEach(function(o){{'
             'try{{window.parent.postMessage(m,o)}}catch(e){{}}}});}})();</script>')
+# the height of what the plugin shows, told to the frame (§4.2, "hauteur"): the
+# page itself is as tall as its dynamicvdom, so the leaves are measured; the
+# frame then fits them, and the page does not scroll.
+SIZER = ('<style>html,body{{overflow:hidden;margin:0}}</style><script>(function(){{var O={origins},d=-1,t=0;'
+         'function h(){{var b=0,a=document.body.getElementsByTagName("*");'
+         'for(var i=0;i<a.length;i++){{if(a[i].children.length)continue;var r=a[i].getBoundingClientRect();'
+         'if(r.width&&r.height&&r.bottom>b)b=r.bottom;}}'
+         'b=Math.ceil(b+window.scrollY+16);if(b===d)return;d=b;'
+         'O.forEach(function(o){{try{{window.parent.postMessage({{bd:"hauteur",px:b}},o)}}catch(e){{}}}});}}'
+         'function p(){{clearTimeout(t);t=setTimeout(h,60);}}'
+         'window.addEventListener("load",p);window.addEventListener("resize",p);'
+         'new MutationObserver(p).observe(document.body,{{childList:true,subtree:true,characterData:true}});p();}})();</script>')
 
 
 def origins(request):
@@ -176,10 +189,11 @@ def plugin_data(request, scope, **more):
 # the page
 
 def size(provider, claims):
-    """The composer's declared size when composing; the default otherwise."""
+    """The composer's declared size when composing (the ticket names it; an
+    older ticket, the first one taking its command); the default otherwise."""
     if claims.get("mode") == "composer":
         for each in provider.manifest.get("composeurs") or []:
-            if claims.get("commande") in (each.get("commandes") or []):
+            if (each.get("id") == claims["composeur"]) if claims.get("composeur") else (claims.get("commande") in (each.get("commandes") or [])):
                 taille = each.get("taille") or {}
                 try:
                     return int(taille.get("largeur") or DEFAULT_SIZE[0]), int(taille.get("hauteur") or DEFAULT_SIZE[1])
@@ -211,6 +225,13 @@ def show(dynamic, vdomxml, events=""):
 
 def message(dynamic, html, width=DEFAULT_SIZE[0]):
     show(dynamic, MESSAGE.format(width=width, inner=max(width - 20, 100), html=xml_escape(html)))
+
+
+def sized(output, allowed):
+    """The page with SIZER before its </body> (or at its end)."""
+    script = SIZER.format(origins=json.dumps(allowed)).encode("utf-8")
+    at = output.rfind(b"</body>")
+    return output[:at] + script + output[at:] if at >= 0 else output + script
 
 
 def follow(scope, dynamic, reply):
@@ -270,7 +291,8 @@ def play(request, ticket):
             request.redirect_to = None
             raise BlueDynamicError("rendu", "The page redirected", 500)
         output = request.output() or (result or "").encode("utf-8")
-        answer(request, 200, output, "text/html; charset=utf-8", bluedynamic.headers(claims.get("origines")))
+        allowed = [each for each in (bluedynamic.origine(value) for value in claims.get("origines") or []) if each]
+        answer(request, 200, sized(output, allowed), "text/html; charset=utf-8", bluedynamic.headers(claims.get("origines")))
     except BlueDynamicError as error:
         refuse(request, error, page=True, claims=claims)
 
@@ -355,6 +377,39 @@ def compose(request):
     answer(request, 200, token, "application/jose", {"Cache-Control": "no-store"})
 
 
+def serve(request):
+    """api=service (§9.3): the plugin's service action, in a session of its
+    own (no page, no reader), its answer signed with the provider's key."""
+    if request.method != "post":
+        raise BlueDynamicError("methode", "POST only", 405)
+    authorization = request.headers().headers().get("authorization", "")
+    if not authorization.startswith("Bearer "):
+        raise BlueDynamicError("signature", "No bearer token", 401)
+
+    def ask_plugin(provider, charge, donnees):
+        try:
+            application = managers.memory.applications[provider.api["application"]]
+        except Exception:
+            raise BlueDynamicError("application", "Application of %s not installed" % provider.id, 503)
+        request.set_application_id(application.id)
+        previous = request.session()
+        sid = managers.session_manager.create_session()
+        request.set_session_id(sid, remove_old=disposable(previous))
+        request.sid = sid
+        session = request.session()
+        session.context["application_id"] = application.id
+        session.bd_scope = bluedynamic.service_scope(provider, charge)
+        session["bd"] = charge
+        cookies = request.response_cookies()
+        if "sid" in cookies:
+            del cookies["sid"]
+        return call_plugin(request, provider, "service", donnees)
+
+    token = bluedynamic.service(authorization[len("Bearer "):].strip(), argument(request, "demande"),
+                                origins(request), ask_plugin)
+    answer(request, 200, token, "application/jose", {"Cache-Control": "no-store"})
+
+
 def run(request):
     try:
         api = argument(request, "api")
@@ -365,6 +420,8 @@ def run(request):
             prove(request)
         elif api == "composer":
             compose(request)
+        elif api == "service":
+            serve(request)
         else:
             raise BlueDynamicError("requete", "Nothing asked", 400)
     except BlueDynamicError as error:
