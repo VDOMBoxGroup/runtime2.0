@@ -53,11 +53,14 @@ COMPOSED = ('<script>(function(){{var m={message};{origins}.forEach(function(o){
             'try{{window.parent.postMessage(m,o)}}catch(e){{}}}});}})();</script>')
 # the height of what the plugin shows, told to the frame (§4.2, "hauteur"): the
 # page itself is as tall as its dynamicvdom, so the leaves are measured; the
-# frame then fits them, and the page does not scroll.
+# frame then fits them, and the page does not scroll. A leaf in a fixed element
+# (the "Loading..." of the runtime, a dialog) follows the frame, not the content:
+# measured, it would grow the frame by 16 px at each round.
 SIZER = ('<style>html,body{{overflow:hidden;margin:0}}</style><script>(function(){{var O={origins},d=-1,t=0;'
+         'function f(e){{for(;e&&e!==document.body;e=e.parentElement)if(getComputedStyle(e).position==="fixed")return 1;return 0;}}'
          'function h(){{var b=0,a=document.body.getElementsByTagName("*");'
          'for(var i=0;i<a.length;i++){{if(a[i].children.length)continue;var r=a[i].getBoundingClientRect();'
-         'if(r.width&&r.height&&r.bottom>b)b=r.bottom;}}'
+         'if(r.width&&r.height&&r.bottom>b&&!f(a[i]))b=r.bottom;}}'
          'b=Math.ceil(b+window.scrollY+16);if(b===d)return;d=b;'
          'O.forEach(function(o){{try{{window.parent.postMessage({{bd:"hauteur",px:b}},o)}}catch(e){{}}}});}}'
          'function p(){{clearTimeout(t);t=setTimeout(h,60);}}'
@@ -95,10 +98,17 @@ def answer(request, code, body, content_type="application/json", headers=None):
 def refuse(request, error, page=False, claims=None):
     debug("BlueDynamic: %s (%s)" % (error, error.motif))
     if page:
-        # in the iframe: a few words a person can read
+        # in the iframe: a few words a person can read. A genuine ticket opened
+        # again carries its claims: the frame may show it, and asks its view
+        # for a new ticket ({bd: "rafraichir"}).
+        claims = claims or getattr(error, "claims", None)
+        again = ""
+        if error.motif == "rejoue" and claims:
+            allowed = [each for each in (bluedynamic.origine(value) for value in claims.get("origines") or []) if each]
+            again = COMPOSED.format(message=json.dumps({"bd": "rafraichir"}), origins=json.dumps(allowed))
         body = ("<!DOCTYPE html><html><head><meta charset=\"utf-8\"><title>BlueMail</title></head>"
-                "<body style=\"font-family:sans-serif;color:#555\"><p>%s</p></body></html>"
-                % xml_escape(message_for(error)))
+                "<body style=\"font-family:sans-serif;color:#555\"><p>%s</p>%s</body></html>"
+                % (xml_escape(message_for(error)), again))
         headers = bluedynamic.headers((claims or {}).get("origines"))
         answer(request, error.code, body, "text/html; charset=utf-8", headers)
     else:
@@ -109,6 +119,8 @@ def refuse(request, error, page=False, claims=None):
 def message_for(error):
     if error.motif == "expire":
         return "Ce BlueMail a expiré."
+    if error.motif == "rejoue":
+        return "Ouverture du BlueMail… Si rien ne s'affiche, rouvrez le message."
     if error.motif in ("plugin", "wholexml", "rendu", "application"):
         return "Ce BlueMail ne peut pas être affiché pour le moment."
     return "Ce BlueMail ne peut pas être ouvert (%s)." % error.motif

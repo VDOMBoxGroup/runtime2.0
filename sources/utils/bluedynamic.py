@@ -55,9 +55,9 @@ RE_HOTE = re.compile(r"^https://[a-z0-9.-]+(:[0-9]{1,5})?$")
 RE_GUID = re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
 RE_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_.-]{0,99}$")
 
-MODES = "lire", "composer"
+MODES = "lire", "composer", "app"   # app: a BlueApp, the provider's management screen (PLAN_BLUEAPP.md)
 COMMANDES = "new", "reply", "reply_all", "forward"
-CONTEXTE = "objet", "de", "a", "cc", "date", "texte"
+CONTEXTE = "objet", "de", "a", "cc", "date", "texte", "modele"   # modele: "send this template" from a BlueApp
 METHODES = "new", "update", "delete"
 
 LEEWAY = 5  # seconds of clock difference accepted on exp and iat
@@ -233,7 +233,11 @@ def verify_ticket(ticket, origins):
     if claims.get("mode") not in MODES:
         raise BlueDynamicError("mode", "Unknown mode", 400)
     if not used_tickets.use(jti, claims["exp"]):
-        raise BlueDynamicError("rejoue", "This ticket was used already")
+        # a genuine ticket opened again (a view showing a message again):
+        # its claims go with the refusal, so the frame may show it
+        error = BlueDynamicError("rejoue", "This ticket was used already")
+        error.claims = claims
+        raise error
     return claims
 
 
@@ -309,6 +313,10 @@ class Provider(object):
             if any(each.get("id") == claims.get("application") for each in self.manifest.get("applications") or []):
                 return
             raise BlueDynamicError("application", "Application %s not declared" % claims.get("application"))
+        if claims["mode"] == "app":
+            if any(each.get("id") == claims.get("blueapp") for each in self.manifest.get("blueapps") or [] if isinstance(each, dict)):
+                return
+            raise BlueDynamicError("blueapp", "BlueApp %s not declared" % claims.get("blueapp"))
         for each in self.manifest.get("composeurs") or []:
             if claims.get("commande") in (each.get("commandes") or []):
                 return
@@ -389,6 +397,9 @@ def check_manifest(manifest):
         if not isinstance(evenements, list) or len(evenements) > 20 \
                 or not all(isinstance(e, str) and RE_SERVICE.match(e) for e in evenements):
             raise BlueDynamicError("manifeste", "The events of service %s are 20 ids at most" % each["id"], 400)
+    blueapps = manifest.get("blueapps") or []
+    if not isinstance(blueapps, list) or len(blueapps) > 5             or not all(isinstance(e, dict) and isinstance(e.get("id"), str) and RE_SERVICE.match(e["id"]) for e in blueapps):
+        raise BlueDynamicError("manifeste", "blueapps is a list of 5 BlueApps at most, each with an id matching %s" % RE_SERVICE.pattern, 400)
     api = manifest.get("api")
     if not isinstance(api, dict) or not isinstance(api.get("conteneur"), str) \
             or not (RE_NAME.match(api["conteneur"]) or RE_GUID.match(api["conteneur"].lower())):

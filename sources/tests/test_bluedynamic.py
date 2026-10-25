@@ -40,6 +40,7 @@ MANIFESTE = {
     "composeurs": [{"id": "nouveau", "nom": {"fr": "Sondage"}, "commandes": ["new", "reply"],
                     "taille": {"largeur": 720, "hauteur": 560}, "contexte": ["objet", "de"]}],
     "applications": [{"id": "sondage"}],
+    "blueapps": [{"id": "gestion", "nom": {"fr": "Gestion"}}],
     "api": {"conteneur": "API"},
 }
 
@@ -150,6 +151,8 @@ def test_ticket_jti_rejoue(proadmin):
     with pytest.raises(BlueDynamicError) as refused:
         core.open_ticket(ticket, [HOTE])
     assert refused.value.motif == "rejoue"
+    # the claims go with the refusal: the frame may show it, and ask for a new ticket
+    assert refused.value.claims["jti"]
 
 
 def test_ticket_non_declare(proadmin):
@@ -159,6 +162,18 @@ def test_ticket_non_declare(proadmin):
     with pytest.raises(BlueDynamicError) as refused:
         core.open_ticket(proadmin.composer(commande="forward"), [HOTE])
     assert refused.value.motif == "commande"
+
+
+def test_ticket_blueapp(proadmin):
+    """A BlueApp (PLAN_BLUEAPP.md): declared in the manifest, refused otherwise."""
+    claims, provider = core.open_ticket(proadmin.ticket(mode="app", blueapp="gestion", portee="miennes", droits=["lire"]), [HOTE])
+    assert claims["mode"] == "app" and claims["blueapp"] == "gestion"
+    with pytest.raises(BlueDynamicError) as refused:
+        core.open_ticket(proadmin.ticket(mode="app", blueapp="autre"), [HOTE])
+    assert refused.value.motif == "blueapp"
+    with pytest.raises(BlueDynamicError) as refused:
+        core.open_ticket(proadmin.ticket(mode="admin"), [HOTE])
+    assert refused.value.motif == "mode"
 
 
 def test_ticket_emetteur_inconnu(proadmin):
